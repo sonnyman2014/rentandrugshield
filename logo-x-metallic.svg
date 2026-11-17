@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="xBg" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="70%" stop-color="#050b16"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="xMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="35%" stop-color="#64748b"/>
+      <stop offset="70%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="xSol" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9945FF"/>
+      <stop offset="50%" stop-color="#14F195"/>
+      <stop offset="100%" stop-color="#00D4FF"/>
+    </linearGradient>
+    <linearGradient id="xGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#xBg)"/>
+  <!-- Outer Metallic Cyber Medallion Ring -->
+  <circle cx="256" cy="256" r="236" fill="#060d1a" stroke="url(#xMetal)" stroke-width="14"/>
+  <circle cx="256" cy="256" r="214" fill="none" stroke="url(#xSol)" stroke-width="4" opacity="0.85"/>
+  <circle cx="256" cy="256" r="164" fill="#040914" stroke="url(#xMetal)" stroke-width="6"/>
+  <!-- Top & Bottom Rim Typography -->
+  <text x="256" y="70" text-anchor="middle" fill="url(#xSol)" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="30" letter-spacing="3">SOLANA RENT CLAIM</text>
+  <text x="256" y="462" text-anchor="middle" fill="url(#xGold)" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="34" letter-spacing="4">RUG SHIELD</text>
+  <!-- Center Armored Crest -->
+  <path d="M256 106 L378 156 L378 264 C378 346 322 398 256 422 C190 398 134 346 134 264 L134 156 Z" fill="#091326" stroke="url(#xMetal)" stroke-width="10"/>
+  <path d="M256 128 L356 170 L356 260 C356 328 308 372 256 394 C204 372 156 328 156 260 L156 170 Z" fill="#050b16" stroke="url(#xGold)" stroke-width="4"/>
+  <text x="256" y="246" text-anchor="middle" fill="url(#xSol)" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="68" letter-spacing="3">SOL</text>
+  <rect x="166" y="268" width="180" height="40" rx="10" fill="#042f2e" stroke="#14F195" stroke-width="2.5"/>
+  <text x="256" y="295" text-anchor="middle" fill="#fde047" font-family="Arial Black, sans-serif" font-weight="900" font-size="23" letter-spacing="2">9-LAYER AI</text>
+</svg>

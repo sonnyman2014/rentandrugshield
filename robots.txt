@@ -1,0 +1,53 @@
+# Solana Rent & Rug Shield — Search & AI Discovery Crawler Policy
+# Canonical Sitemap & 10-Layer Solana Token Safety Audit Index
+
+User-agent: Googlebot
+Allow: /
+Allow: /audit/
+Allow: /mcp
+Allow: /.well-known/
+
+User-agent: Bingbot
+Allow: /
+Allow: /audit/
+Allow: /mcp
+Allow: /.well-known/
+
+User-agent: DuckDuckBot
+Allow: /
+Allow: /audit/
+Allow: /mcp
+Allow: /.well-known/
+
+User-agent: OAI-SearchBot
+Allow: /
+Allow: /audit/
+Allow: /mcp
+Allow: /.well-known/
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /audit/
+Allow: /mcp
+Allow: /.well-known/
+
+User-agent: GPTBot
+Allow: /
+Allow: /audit/
+Allow: /mcp
+Allow: /.well-known/
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /audit/
+Allow: /mcp
+Allow: /.well-known/
+
+User-agent: *
+Allow: /
+Allow: /audit/
+Allow: /mcp
+Allow: /.well-known/
+
+Sitemap: https://rentandrugshield.com/sitemap.xml
+Host: https://rentandrugshield.com

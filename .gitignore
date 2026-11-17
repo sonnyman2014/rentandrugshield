@@ -30,6 +30,7 @@ venv/
 !/actions.json
 !/live_endpoint.json
 !/openapi.json
+!/manifest.json
 !/.well-known/*.json
 !/.well-known/**/*.json
 

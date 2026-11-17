@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="rbBg" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="55%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="rbFire" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fde047"/>
+    </linearGradient>
+    <linearGradient id="rbNeon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14F195"/>
+      <stop offset="100%" stop-color="#00D4FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#rbBg)" stroke="url(#rbFire)" stroke-width="8"/>
+  <!-- Outer Radar Sweep Crosshair -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="url(#rbNeon)" stroke-width="4" stroke-dasharray="18 10"/>
+  <line x1="256" y1="28" x2="256" y2="90" stroke="#14F195" stroke-width="4"/>
+  <line x1="256" y1="422" x2="256" y2="484" stroke="#14F195" stroke-width="4"/>
+  <line x1="28" y1="256" x2="90" y2="256" stroke="#14F195" stroke-width="4"/>
+  <line x1="422" y1="256" x2="484" y2="256" stroke="#14F195" stroke-width="4"/>
+  <!-- Armored Burner Shield -->
+  <path d="M256 56 L424 122 L424 254 C424 360 350 434 256 466 C162 434 88 360 88 254 L88 122 Z"
+        fill="#060c1a" stroke="url(#rbFire)" stroke-width="14"/>
+  <path d="M256 84 L396 140 L396 250 C396 336 334 400 256 428 C178 400 116 336 116 250 L116 140 Z"
+        fill="#040914" stroke="url(#rbNeon)" stroke-width="5"/>
+  <!-- Stylized Burner Flame + SOL Badge -->
+  <path d="M256 106 C282 138 308 158 296 192 C288 212 268 220 256 220 C244 220 224 212 216 192 C204 158 230 138 256 106 Z" fill="url(#rbFire)"/>
+  <text x="256" y="282" text-anchor="middle" fill="#ffffff" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="64" letter-spacing="3">SOL</text>
+  <text x="256" y="330" text-anchor="middle" fill="#fde047" font-family="Arial Black, sans-serif" font-weight="900" font-size="34" letter-spacing="2">BURN &amp; RENT</text>
+  <text x="256" y="378" text-anchor="middle" fill="#14F195" font-family="Arial Black, sans-serif" font-weight="900" font-size="28" letter-spacing="3">9-LAYER SHIELD</text>
+</svg>

@@ -752,6 +752,14 @@
         💎 $1.99 Unlimited Pass
       </button>
     </div>
+    <div id="appAlertsOptInBar" style="margin:0 0 9px 0; padding:8px 10px; border-radius:10px; background:linear-gradient(90deg, rgba(6, 44, 62, 0.95), rgba(6, 52, 39, 0.95)); border:1.5px solid #fde047; display:flex; flex-direction:column; gap:6px;">
+      <div style="font-size:11px; font-weight:900; color:#fde047; text-align:center;">🔔 Get Rug &amp; Free-SOL Browser/Telegram Alerts</div>
+      <div style="display:flex; gap:6px; flex-wrap:wrap;">
+        <input id="appAlertsOptInContactInp" type="text" placeholder="Optional @telegram_handle or email..." autocomplete="off" style="flex:1; min-width:150px; padding:6px 9px; border-radius:7px; border:1px solid #38bdf8; background:#020617; color:#f8fafc; font-size:11px;" onkeydown="if(event.key==='Enter') window.submitOneClickAlertsOptIn('app');" />
+        <button type="button" id="appAlertsOptInOneClickBtn" onclick="window.submitOneClickAlertsOptIn('app')" style="padding:7px 11px; border-radius:8px; border:1.5px solid #14f195; background:linear-gradient(90deg, #14f195, #fde047); color:#022c22; font-size:11px; font-weight:900; cursor:pointer;">🔔 Enable Alerts</button>
+      </div>
+      <div id="appAlertsOptInStatusMsg" style="display:none; font-size:10.5px; font-weight:800; color:#14f195; text-align:center;"></div>
+    </div>
     <div id="aboveFoldTrustProofBanner" data-trust-proof="100% Read-Only Public Address Scan • Zero Seed Phrases • Official Solana SPL CloseAccount Only • Full Open-Source &amp; On-Chain Transaction Preview" style="margin:0 0 10px; padding:8px 11px; border-radius:10px; background:linear-gradient(90deg, rgba(6,78,59,0.94), rgba(8,47,73,0.94)); border:1.5px solid #14f195; color:#ecfdf5; font-size:11px; font-weight:900; line-height:1.38; text-align:center; box-shadow:0 0 12px rgba(20,241,149,0.24);">
       🛡️ 100% Read-Only Public Address Scan • Zero Seed Phrases • Official Solana SPL <code style="color:#fde047;">CloseAccount</code> Only • Full Open-Source &amp; On-Chain Transaction Preview
       • <a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener noreferrer" style="color:#14f195;text-decoration:underline;">GitHub ↗</a>
@@ -892,7 +900,7 @@
     <section id="tab-shield" class="tab-panel" aria-label="10-Layer Shield">
       <div class="card card-cyan">
         <div class="trust-strip">
-          <span class="badge-pill" id="appDemoScansBadge">🎁 1 Free Sample 10-Layer Audit</span>
+          <span class="badge-pill" id="appDemoScansBadge">🎁 2 Free Sample 10-Layer Audits</span>
           <span class="badge-pill badge-amber">⚡ Then 2¢/Scan ($0.02 USDC / 0.00028 SOL)</span>
           <span class="badge-pill badge-cyan">🛡️ 10/10 Layers &lt;200ms</span>
         </div>
@@ -1797,7 +1805,7 @@
                + "<a href='" + ((window.BACKEND_TUNNEL_BASE || window.location.origin) + "/api/actions/trade/" + encodeURIComponent(m)) + "' target='_blank' rel='noopener noreferrer' class='btn-secondary' style='min-height:38px;font-size:11px;border-color:#22d3ee;color:#67e8f9;'>⚡ Solana Blink ↗</a>"
                + "</div></div>")
             : ("<div id='appTradeBlockedWarn' style='margin-top:8px;padding:8px 10px;border-radius:9px;background:rgba(239,68,68,0.15);border:1.5px solid #ef4444;color:#fecaca;font-size:10.5px;font-weight:800;'>"
-               + "🚫 Trade Verified Safe Token LOCKED: SHIELD " + score + "/100 is below the strict 85/100 Verified Safe gate. Swap disabled to protect your SOL."
+               + "🚫 DANGER / UNBURNED LP — Trade Verified Safe Token LOCKED: SHIELD " + score + "/100 is below the strict 85/100 Verified Safe gate. Swap disabled to protect your SOL."
                + "</div>"))
           + "<div class='grid-2-tight' style='margin-top:8px;'>"
           + "  <a href='https://dexscreener.com/solana/" + encodeURIComponent(m) + "' target='_blank' rel='noopener noreferrer' class='btn-secondary' style='min-height:36px;font-size:11px;'>📈 DexScreener ↗</a>"
@@ -2129,13 +2137,9 @@
           }
         });
       }
-      // 3) Opened inside Phantom / Solflare In-App Browser -> Auto-connect & Auto-Scan!
-      else if (getInjectedProvider()) {
-        connectInjectedWallet(!autoScan).then(function(pk) {
-          if (!pk && autoScan) {
-            connectInjectedWallet(false);
-          }
-        });
+      // 3) Strictly ZERO unsolicited auto-connect popups on normal page load; connect ONLY when ?autoscan=1 is explicitly requested
+      else if (autoScan && getInjectedProvider()) {
+        connectInjectedWallet(false);
       }
 
       // Register v101-carbon Service Worker & purge stale caches immediately
@@ -2572,7 +2576,7 @@
         <button type="button" onclick="closeAppSingleAudit2cModal()" style="background:#0f172a;border:1px solid #475569;color:#e2e8f0;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:900;cursor:pointer;">✕</button>
       </div>
       <div style="font-size:10.5px;color:#cbd5e1;background:#030b17;border:1px solid rgba(20,241,149,0.35);border-radius:8px;padding:7px 9px;margin-bottom:9px;line-height:1.38;">
-        Treasury: <code style="color:#14f195;">89Sv5Fvn...nKK1</code> • 1 Free Sample Audit included; Rent Reclaim stays $0 upfront (5% only on recovered SOL).
+        Treasury: <code style="color:#14f195;">89Sv5Fvn...nKK1</code> • 2 Free Sample Audits included; Rent Reclaim stays $0 upfront (5% only on recovered SOL).
       </div>
       <div class="grid-2-tight" style="margin-bottom:8px;">
         <button type="button" class="btn-cta" style="background:linear-gradient(90deg,#14f195,#fde047);border-color:#fde047;color:#022c22;min-height:40px;font-size:11.5px;" onclick="buyAppSingleAudit2c('USDC')">💵 Pay $0.02 USDC</button>
@@ -2598,7 +2602,7 @@
       var used = parseInt(localStorage.getItem("dex6_app_free_sample_used") || "0", 10);
       if (isPro) b.innerText = "💎 Unlimited $1.99 Pass Active";
       else if (cr > 0) b.innerText = "⚡ " + cr + " Paid 2¢ Audit Credit(s)";
-      else b.innerText = used < 1 ? "🎁 1 Free Sample 10-Layer Audit" : "⚡ Free Sample Used • 2¢/Scan";
+      else b.innerText = used < 1 ? "🎁 2 Free Sample 10-Layer Audits" : "⚡ Free Sample Used • 2¢/Scan";
     }
     function setApp2cMsg(html, isErr){
       var el = document.getElementById("appSingleAudit2cStatus");
@@ -2695,9 +2699,9 @@
         var isPro = localStorage.getItem("dex6_pro_pass_unlocked") === "1";
         var credits = parseInt(localStorage.getItem("dex6_single_audit_credits") || "0", 10);
         var used = parseInt(localStorage.getItem("dex6_app_free_sample_used") || "0", 10);
-        if (!isPro && credits <= 0 && used >= 1){
+        if (!isPro && credits <= 0 && used >= 2){
           openAppSingleAudit2cModal();
-          setApp2cMsg("ℹ️ Your <b>1 Free Sample 10-Layer Audit</b> has been used. Unlock a single check for <b>2¢ ($0.02 USDC or 0.00028 SOL)</b> or <b>$1.99 Unlimited Pass</b>!", false);
+          setApp2cMsg("ℹ️ Your <b>2 Free Sample 10-Layer Audits</b> have been used. Unlock a single check for <b>2¢ ($0.02 USDC or 0.00028 SOL)</b> or <b>$1.99 Unlimited Pass</b>!", false);
           return;
         }
         var r = await origRunMint(hintSym);
@@ -2712,5 +2716,123 @@
     syncAppAuditBadge();
   })();
   </script>
+
+  <script id="passive-dwell-wallet-and-alerts-optin-js">
+  (function(){
+    function getPassiveWalletBooleans(){
+      return {
+        phantom: !!window.phantom?.solana,
+        solflare: !!window.solflare,
+        backpack: !!window.backpack
+      };
+    }
+    var activeDwellSec = 0;
+    var hbSid = (window.RentShieldTelemetry && window.RentShieldTelemetry.sessionId) || ("rs_apphb_" + Math.random().toString(36).slice(2, 12));
+    function resolveHbEndpoint(){
+      var host = String((window.location && window.location.hostname) || "").toLowerCase();
+      var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
+      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://rolled-raleigh-chair-shakespeare.trycloudflare.com").replace(/\/+$/, "") : "";
+      return base + "/api/human-telemetry";
+    }
+    function sendPassiveHeartbeat(evName, deltaSec){
+      if (navigator.webdriver === true) return;
+      var w = getPassiveWalletBooleans();
+      var payload = {
+        event: evName || "dwell_heartbeat",
+        session_id: hbSid,
+        page: (window.location && window.location.pathname) || "/app.html",
+        origin: (window.location && window.location.origin) || "",
+        ref: String(document.referrer || ""),
+        dwell_seconds: activeDwellSec,
+        dwell_delta_seconds: deltaSec || 0,
+        phantom: w.phantom,
+        solflare: w.solflare,
+        backpack: w.backpack,
+        wallet_apps: w,
+        ts: Date.now()
+      };
+      try {
+        fetch(resolveHbEndpoint(), {
+          method: "POST",
+          mode: "cors",
+          credentials: "omit",
+          keepalive: true,
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(payload)
+        }).catch(function(){});
+      } catch (_e) {}
+    }
+    setTimeout(function(){
+      if (document.visibilityState === "visible") {
+        sendPassiveHeartbeat("wallet_passive_probe", 0);
+      }
+    }, 1800);
+    setInterval(function(){
+      if (document.visibilityState === "visible") {
+        activeDwellSec += 15;
+        sendPassiveHeartbeat("dwell_heartbeat", 15);
+      }
+    }, 15000);
+
+    window.submitOneClickAlertsOptIn = async function(surface){
+      var inp = document.getElementById("appAlertsOptInContactInp");
+      var st = document.getElementById("appAlertsOptInStatusMsg");
+      var btn = document.getElementById("appAlertsOptInOneClickBtn");
+      var contact = inp ? String(inp.value || "").trim() : "";
+      var perm = "default";
+      try {
+        if ("Notification" in window && Notification.permission === "default") {
+          perm = await Notification.requestPermission().catch(function(){ return "default"; });
+        } else if ("Notification" in window) {
+          perm = Notification.permission;
+        }
+      } catch (_e) {}
+      if (st) {
+        st.style.display = "block";
+        st.style.color = "#fde047";
+        st.innerText = "Saving alert opt-in...";
+      }
+      var channel = contact ? (contact.indexOf("@") === 0 || contact.toLowerCase().indexOf("t.me/") !== -1 ? "telegram" : (contact.indexOf("@") !== -1 ? "email" : "contact")) : "browser";
+      try {
+        var host = String((window.location && window.location.hostname) || "").toLowerCase();
+        var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
+        var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://rolled-raleigh-chair-shakespeare.trycloudflare.com").replace(/\/+$/, "") : "";
+        var res = await fetch(base + "/api/opt-in-alerts", {
+          method: "POST",
+          mode: "cors",
+          credentials: "omit",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+            channel: channel,
+            contact: contact,
+            telegram: contact.indexOf("@") === 0 ? contact : "",
+            browser_push: true,
+            notification_permission: perm,
+            page: "/app.html",
+            ref: String(document.referrer || "")
+          })
+        }).then(function(r){ return r.json(); });
+        if (res && res.ok) {
+          try { localStorage.setItem("rs_alerts_opted_in", "1"); } catch (_s) {}
+          if (st) {
+            st.style.display = "block";
+            st.style.color = "#14f195";
+            st.innerText = contact ? ("✅ Subscribed (" + contact + ")!") : "✅ Browser Rug & Free-SOL Alerts Active!";
+          }
+          if (btn) btn.innerText = "✅ Alerts Active";
+        } else if (st) {
+          st.style.color = "#fca5a5";
+          st.innerText = "⚠️ Could not save opt-in right now.";
+        }
+      } catch (_err) {
+        if (st) {
+          st.style.color = "#fca5a5";
+          st.innerText = "⚠️ Network error saving opt-in.";
+        }
+      }
+    };
+  })();
+  </script>
+
 </body>
 </html>
