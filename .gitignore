@@ -1,0 +1,56 @@
+# Ignore dotfiles & hidden keys/locks/env at root (except public GitHub Pages dotfiles)
+/.*
+!/.gitignore
+!/.nojekyll
+!/.well-known/
+!/.well-known/**
+
+# Backend Python source, bytecode, caches & virtualenvs
+*.py
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.venv/
+venv/
+
+# Secret keys, certificates & environment vaults
+*.key
+.*key
+*.pem
+*.p12
+*.pfx
+.env
+.env.*
+*.env
+
+# Private JSON/JSONL telemetry, visitor IP, wallet & API key ledgers
+*.json
+*.jsonl
+!/actions.json
+!/live_endpoint.json
+!/openapi.json
+!/.well-known/*.json
+!/.well-known/**/*.json
+
+# Backups, logs, lockfiles, shell scripts & local daemons/binaries
+*.bak
+*.bak*
+*.log
+*.lock
+*.pid
+*.sh
+cloudflared
+
+# Browser extensions, zip bundles & internal docs/artifacts
+*.zip
+chrome_extension/
+cws-promo-1280x800.png
+*.md
+advisories/
+/lead_retargeter.js
+/moon_sphere.html
+/index_simple.html
+/mcp
+/fe0c949234faab21330e69a5c717a57c.txt
+rent_shield_private_data/
