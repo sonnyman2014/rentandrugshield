@@ -1,0 +1,52 @@
+{
+  "rules": [
+    {
+      "pathPattern": "/trade/*",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/trade/*"
+    },
+    {
+      "pathPattern": "/trade",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/trade"
+    },
+    {
+      "pathPattern": "/swap/*",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/trade/*"
+    },
+    {
+      "pathPattern": "/swap",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/trade"
+    },
+    {
+      "pathPattern": "/audit/*",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/rug-audit/*"
+    },
+    {
+      "pathPattern": "/audit",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/rug-audit"
+    },
+    {
+      "pathPattern": "/rug-audit/*",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/rug-audit/*"
+    },
+    {
+      "pathPattern": "/rug-audit",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/rug-audit"
+    },
+    {
+      "pathPattern": "/rent-check/*",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/rent-check/*"
+    },
+    {
+      "pathPattern": "/rent-check",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/rent-check"
+    },
+    {
+      "pathPattern": "/",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/rent-check"
+    },
+    {
+      "pathPattern": "/api/actions/**",
+      "apiPath": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions/**"
+    }
+  ]
+}

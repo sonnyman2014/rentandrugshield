@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "endpoint": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com",
+  "api_base": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com",
+  "rpc_url": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/rpc",
+  "actions_base": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/actions",
+  "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+  "referral_bps": 50,
+  "shield_trade_gate_min": 85,
+  "excluded_frozen_atas": [
+    "5sEb9m4XP3mXJSsv8GEeck62Z6PY8TfAhmngZrpgNU9Q",
+    "CsLX8FSsWc8uNfMBUB9PhwcsZBaLstoYpiUi9SDdkDLg",
+    "DGnsyzo5cbQZMpXEwSbESBnSrdjroj7DhpcAPbfQaUft",
+    "FRCeYgC1PR7kTKhgk8Peq7WE8Rz6E7cEXnhB77DT5G8F"
+  ],
+  "updated_at": "2026-11-17T18:20:00Z"
+}
