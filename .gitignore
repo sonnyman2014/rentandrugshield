@@ -67,3 +67,8 @@ package-lock.json
 
 directory_submissions/
 !/mcp.json
+
+data/
+staging_previews/
+staging_meme_vs_institution.html
+!/static/rrs_telemetry.js

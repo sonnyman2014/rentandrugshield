@@ -1,5 +1,5 @@
 # Solana Rent & Rug Shield — Search & AI Discovery Crawler Policy
-# Canonical Sitemap & 10-Layer Solana Token Safety Audit Index
+# Canonical Sitemap & 11-Layer Solana Token Safety Audit Index
 
 User-agent: Googlebot
 Allow: /
