@@ -1,6 +1,26 @@
 {
   "rules": [
     {
+      "pathPattern": "/api/actions/reclaim-rent",
+      "apiPath": "https://expires-beatles-rainbow-penny.trycloudflare.com/api/actions/reclaim-rent"
+    },
+    {
+      "pathPattern": "/api/actions/reclaim-rent/*",
+      "apiPath": "https://expires-beatles-rainbow-penny.trycloudflare.com/api/actions/reclaim-rent/*"
+    },
+    {
+      "pathPattern": "/reclaim-rent",
+      "apiPath": "https://expires-beatles-rainbow-penny.trycloudflare.com/api/actions/reclaim-rent"
+    },
+    {
+      "pathPattern": "/reclaim-rent/*",
+      "apiPath": "https://expires-beatles-rainbow-penny.trycloudflare.com/api/actions/reclaim-rent/*"
+    },
+    {
+      "pathPattern": "/proof/zero-fee-vs-incinerator",
+      "apiPath": "https://expires-beatles-rainbow-penny.trycloudflare.com/api/actions/reclaim-rent"
+    },
+    {
       "pathPattern": "/api/actions/scan-rent",
       "apiPath": "https://expires-beatles-rainbow-penny.trycloudflare.com/api/actions/scan-rent"
     },

@@ -13,9 +13,7 @@
   <link id="dynamic-apple-icon" rel="apple-touch-icon" href="/apple-touch-icon.png?v=202" />
   <link rel="icon" type="image/png" href="/favicon.png?v=202" />
   <link id="dynamic-favicon" rel="icon" type="image/svg+xml" href="/shield-app-icon.svg?v=202" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/fonts/fonts.css?v=20261118sri" integrity="sha384-EOrrT0KeeSLzhi1WFOdDbEu5AXPk19b/1o5DEYXRng7Uyktu7m1YFNUluRAnfY84" crossorigin="anonymous" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@RentAndRugShield" />
@@ -62,7 +60,7 @@
           "name": "First 11-Layer Adaptive Token Audit & First Wallet Rent Claim",
           "price": "0.00",
           "priceCurrency": "USD",
-          "description": "Free first 11-Layer Adaptive Token Audit and 0% fee on first SOL rent recovery claim (5% on repeat claims)."
+          "description": "Free first 11-Layer Adaptive Token Audit and 0% fee on first SOL rent recovery claim (1.5% on repeat cleanups, 25% cheaper than Sol Incinerator)."
         },
         {
           "@type": "Offer",
@@ -104,7 +102,7 @@
           "name": "How much does Solana Rent & Rug Shield cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "First Claim 0% Fee vs 5% to 20% on Legacy Cleaners (repeat rent claims are 5%). Your first 11-Layer Adaptive Token Audit is free. Extra single audits are 10¢ for our first 30 days so active Solana traders can test our scanner live. Regular price is 99¢ per audit. Need full day or monthly access? Pick our recommended 24 Hour Day Pass for $1.99 (regularly $3.99) or unlock the 30 Day Monthly Pro Pass for $4.99 (regularly $14.99)."
+            "text": "First Claim 0.0% Fee Forever vs Sol Incinerator 2.0%, ClaimFreeSOL 3.0%, SolCleaner 5.0%, RefundYourSol 15.0% (repeat cleanups are 1.5%). Your first 11-Layer Adaptive Token Audit is free. Extra single audits are 10¢ for our first 30 days so active Solana traders can test our scanner live. Regular price is 99¢ per audit. Need full day or monthly access? Pick our recommended 24 Hour Day Pass for $1.99 (regularly $3.99) or unlock the 30 Day Monthly Pro Pass for $4.99 (regularly $14.99)."
           }
         },
         {
@@ -132,8 +130,8 @@
       }
     })();
   </script>
-  <script src="/static/solana-web3.iife.min.js?v=20261118c"></script>
-  <script>if(!window.solanaWeb3){document.write('<scr'+'ipt src="https://unpkg.com/@solana/web3.js@1.95.8/lib/index.iife.min.js"><\/scr'+'ipt>');}</script>
+  <script src="/static/solana-web3.iife.min.js?v=20261118c" integrity="sha384-/DrfHcMv2oct38wKpVJfpgeNtoI/0oLq19w5L43FEGrv9vU6rXSZ7UW+ksAcWvgd" crossorigin="anonymous"></script>
+  
 
   <!-- Phantom & Blowfish Clean Simulation Guard (ComputeBudgetProgram + sigVerify: false) -->
   <script id="blowfish-phantom-tx-guard">
@@ -1344,11 +1342,13 @@
     </div>
     <!-- TAB 1: 💰 CLAIM SOL (SERVICE 1 DEFAULT LANDING TAB)                 -->
     <!-- ================================================================== -->
+    <section id="whySwitchFromIncineratorStrip" aria-label="Why Switch From Sol Incinerator" style="margin:0 0 12px 0; padding:12px 15px; border-radius:12px; background:linear-gradient(135deg, rgba(4,47,46,0.72), rgba(15,23,42,0.92)); border:1.5px solid rgba(52,211,153,0.55);"><div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;"><strong style="font-size:0.93rem; color:#F8FAFC;">⚡ Why Switch From Sol Incinerator?</strong><a href="/proof/zero-fee-vs-incinerator" style="font-size:0.81rem; font-weight:700; color:#38BDF8; text-decoration:underline;">Live Mainnet Proof &amp; Calculator &rarr;</a></div><div style="display:flex; flex-wrap:wrap; gap:7px; align-items:center; font-size:0.82rem;"><span class="jb-mono" style="padding:4px 9px; border-radius:8px; background:rgba(16,185,129,0.22); border:1px solid #10B981; color:#6EE7B7; font-weight:700;">Claim #1: 0.0% Fee [Keep 100% SOL]</span><span class="jb-mono" style="padding:4px 9px; border-radius:8px; background:rgba(56,189,248,0.18); border:1px solid #38BDF8; color:#BAE6FD; font-weight:700;">Repeat Cleanups: 1.5% [25% cheaper than Sol Incinerator]</span><span class="jb-mono" style="padding:4px 9px; border-radius:8px; background:rgba(15,23,42,0.85); border:1px solid rgba(148,163,184,0.3); color:#CBD5E1;">vs Sol Incinerator 2.0% | ClaimFreeSOL 3.0% | SolCleaner 5.0% | RefundYourSol 15.0%</span></div></section>
+    <section id="continuousAdversarialTelemetrySection" aria-label="Continuous Adversarial Telemetry" style="margin:0 0 12px 0; padding:12px 15px; border-radius:12px; background:linear-gradient(90deg, rgba(6,78,59,0.42), rgba(12,74,110,0.42)); border:1.5px solid rgba(16,185,129,0.52);"><div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:5px;"><strong style="font-size:0.92rem; color:#6EE7B7; letter-spacing:0.01em;">🛡️ Continuous Adversarial Telemetry: Free Lifetime Layer Upgrades Included ($0 Add-Ons for Active Subscribers)</strong><span class="jb-mono" style="font-size:0.76rem; font-weight:700; padding:3px 9px; border-radius:999px; background:rgba(56,189,248,0.16); border:1px solid #38BDF8; color:#BAE6FD;">GEMINI 4 CARBON | RELEASED NOV 10, 2026</span></div><p style="margin:0; font-size:0.86rem; line-height:1.48; color:#E2E8F0;">Powered by Google's latest frontier AI model <strong style="color:#7DD3FC;">Gemini 4 Carbon</strong> (released November 10, 2026), our 24/7 Solana mainnet adversarial telemetry synthesizes emerging rug-pull, Block-0 Sybil cluster, Token-2022 hook, and inner-CPI drainer signatures automatically. Active Day Pass, Monthly Shield, and $500/mo Enterprise API subscribers receive Layer 12, Layer 13, and every future defense layer upgrade automatically at <strong style="color:#34D399;">$0 extra add-on cost</strong>.</p></section>
     <section id="tab-claim" class="tab-panel active" aria-label="Claim SOL">
       <div class="card">
         <div class="trust-strip">
           <span class="badge-pill" style="font-size:0.82rem;">🎁 1st Claim: 0% Fee (Keep 100% SOL)</span>
-          <span class="badge-pill badge-amber" style="font-size:0.82rem;">Repeat Claims: 5% Fee (Keep 95%)</span>
+          <span class="badge-pill badge-amber" style="font-size:0.82rem;">Repeat Cleanups: 1.5% Fee (Keep 98.5% • Beat Incinerator 2%)</span>
         </div>
 
         <div style="font-size:15px;font-weight:900;color:#ffffff;line-height:1.25;margin-bottom:4px;">
@@ -1487,7 +1487,7 @@
     <!-- ================================================================== -->
     <section id="tab-shield" class="tab-panel" aria-label="11-Layer Adaptive Shield">
       <div id="appAdaptiveShieldCallout" style="margin:0 0 12px 0; padding:10px 13px; border-radius:11px; background:linear-gradient(90deg, rgba(16,185,129,0.12), rgba(56,189,248,0.12)); border:1px solid rgba(56,189,248,0.42); font-size:0.84rem; line-height:1.45; color:#E2E8F0;">
-        🛡️ <strong style="color:#6EE7B7;">Why Layers Keep Growing:</strong> Live 24/7 Mainnet combat telemetry + <strong style="color:#7DD3FC;">Gemini 4 Carbon High</strong> (released Nov 10, 2026) detect new rug vectors in real time — adding <strong style="color:#FDE047;">Layer 11: Block-0 Sybil Wallet-Cluster &amp; Spoofed Migration LP Guard</strong> ahead of static scanners.
+        🛡️ <strong style="color:#6EE7B7;">Why Layers Keep Growing:</strong> Live 24/7 Mainnet combat telemetry + <strong style="color:#7DD3FC;">Gemini 4 Carbon High</strong> (released Nov 10, 2026) detect new rug vectors in real time - adding <strong style="color:#FDE047;">Layer 11: Block-0 Sybil Wallet-Cluster &amp; Spoofed Migration LP Guard</strong> ahead of static scanners.
       </div>
 
       <div class="card card-cyan">
@@ -1988,7 +1988,7 @@
           <div>
             <div class="choice-a-tier-name">Wallet Rent Reclaim</div>
             <div class="choice-a-tier-price"><span class="mono-pct">0%</span> <span style="font-family:var(--font-sans);font-size:0.86rem;font-weight:500;color:#CBD5E1;">1st Claim</span></div>
-            <div class="choice-a-tier-reg">Keep <span class="mono-pct">100%</span> SOL on 1st claim (<span class="mono-pct">5%</span> fee on repeats).</div>
+            <div class="choice-a-tier-reg">Keep <span class="mono-pct">100%</span> SOL on 1st claim (<span class="mono-pct">1.5%</span> fee on repeats - 25% cheaper than Sol Incinerator).</div>
           </div>
           <button type="button" class="choice-a-btn" onclick="(function(){ if('app'==='app' && typeof switchNativeTab==='function') switchNativeTab('claim'); var el=document.getElementById('w-inp'); if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.focus(); } })()" style="border:1px solid #10B981; background:rgba(16, 185, 129,0.12); color:#10B981;">Scan Wallet Above</button>
         </div>
@@ -2393,7 +2393,7 @@
         reclaimable_count: emptyCnt + dustCnt,
         total_reclaimable_sol: Number(totSol.toFixed(6)),
         total_reclaimable_usd: Number((totSol * 74.0).toFixed(2)),
-        user_net_95_sol: Number((totSol * 0.95).toFixed(6))
+        user_net_95_sol: Number((totSol * 0.985).toFixed(6))
       };
     }
 
@@ -2708,7 +2708,7 @@
           + rowsHtml
           + (Number(score) >= 85
             ? ("<div style='margin-top:8px;padding:9px;border-radius:9px;background:rgba(16, 185, 129,0.14);border:1.5px solid #10B981;'>"
-               + "<div style='font-size: 13.5px;font-weight:900;color:#10B981;margin-bottom:6px;'>✅ VERIFIED SAFE GATE PASSED (SHIELD " + score + "/100 &ge; 85 • 50 bps Ref -> 89Sv5F..nKK1)</div>"
+               + "<div style='font-size: 13.5px;font-weight:900;color:#10B981;margin-bottom:6px;'>✅ VERIFIED SAFE GATE PASSED • 0.50% (50 bps) JUPITER SWAP (SHIELD " + score + "/100 &ge; 85 • 50 bps Ref -> 89Sv5F..nKK1)</div>"
                + "<div class='grid-2-tight'>"
                + "<a id='appTradeVerifiedSafeBtn' href='https://jup.ag/swap/SOL-" + encodeURIComponent(m) + "?referrer=89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1&feeBps=50' target='_blank' rel='noopener noreferrer' class='btn-primary' style='min-height:38px;font-size: 13.5px;background:linear-gradient(90deg,#10B981,#10b981);color:#022c22;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;'>⚡ Trade Verified Safe Token ↗</a>"
                + "<a href='" + ((window.BACKEND_TUNNEL_BASE || window.location.origin) + "/api/actions/trade/" + encodeURIComponent(m)) + "' target='_blank' rel='noopener noreferrer' class='btn-secondary' style='min-height:38px;font-size: 13.5px;border-color:#22d3ee;color:#67e8f9;'>⚡ Solana Blink ↗</a>"
@@ -3845,7 +3845,7 @@
 
     var chapters = [
       {t: 0,  title: "STEP 1 • PASTE WALLET ($0 UPFRONT)", sub: "100% Read-Only Scan finds empty SPL & Token-2022 ATAs (~0.00204 SOL each)", accent: "#10B981"},
-      {t: 10, title: "STEP 2 • NATIVE 0x09 CLOSEACCOUNT", sub: "1st Claim 0% Fee (Keep 100% SOL) • Repeat 5% • Active Held Tokens 100% Untouched", accent: "#38bdf8"},
+      {t: 10, title: "STEP 2 • NATIVE 0x09 CLOSEACCOUNT", sub: "1st Claim 0% Fee (Keep 100% SOL) • Repeat 1.5% • Active Held Tokens 100% Untouched", accent: "#38bdf8"},
       {t: 20, title: "STEP 3 • 11-LAYER PRE-BUY RUG SHIELD", sub: "1 Free Audit • Blocks Freeze Hooks, Sniper Bundles & Unburned LP in <120ms", accent: "#fde047"},
       {t: 30, title: "STEP 4 • 10¢ INTRO OR DEDUCT $1.99 PASS", sub: "Extra Single Audits 10¢ (regularly 99¢), $1.99 24 Hour Day Pass (regularly $3.99), or $4.99 Monthly Pro (regularly $14.99)!", accent: "#c084fc"}
     ];
