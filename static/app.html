@@ -1171,6 +1171,141 @@
     }
   }
 </style>
+<script type="application/ld+json" id="rrs-ai-overview-disambiguation-schema">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["WebApplication", "SoftwareApplication"],
+      "@id": "https://rentandrugshield.com/#solana-blockchain-application",
+      "name": "Solana Rent & Rug Shield",
+      "alternateName": [
+        "Solana SPL Rent Recovery & Token Rug Scanner",
+        "SOL Rent & Rug Shield Web3 Security Utility"
+      ],
+      "url": "https://rentandrugshield.com/",
+      "applicationCategory": "FinanceApplication",
+      "applicationSubCategory": "Solana Blockchain SPL Token Rent Recovery & Smart Contract Rug Pull Scanner",
+      "operatingSystem": "Web, Chrome, Brave, Phantom, Solflare, Backpack, iOS, Android",
+      "browserRequirements": "Requires JavaScript. Non-custodial Solana Web3 utility.",
+      "description": "Solana Blockchain SPL & Token-2022 rent recovery utility and 10-layer token rug pull scanner. Reclaims locked SOL lamports (~0.00203928 SOL per empty Associated Token Account via native SPL Token 0x09 CloseAccount) and audits Solana mint addresses for freeze/mint authorities, Token-2022 transfer hooks, sniper bundles, and unburned liquidity pools.",
+      "disambiguatingDescription": "Strictly a Solana (SOL) cryptocurrency blockchain software application for SPL token account rent recovery and crypto token rug-pull detection. Never household carpet cleaning, floor rug stain protection, furniture care, or residential apartment tenant rent insurance.",
+      "keywords": "Solana rent recovery, reclaim SOL, close empty SPL token accounts, Solana rug checker, Solana token scanner, Token-2022 hook audit, Solana Blinks, Phantom wallet rent",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "1st Wallet Rent Recovery Claim (0% Fee) & 1st 10-Layer Token Audit",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Extra Single 10-Layer Solana Token Audit",
+          "price": "0.10",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "24-Hour Unlimited Solana Token Scanner Day Pass",
+          "price": "1.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "30-Day Monthly Pro Solana Token Scanner Pass",
+          "price": "4.99",
+          "priceCurrency": "USD"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://rentandrugshield.com/#solana-faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Solana Rent & Rug Shield (rentandrugshield.com)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Solana Rent & Rug Shield is a non-custodial Solana blockchain Web3 application with two core tools: (1) an SPL & Token-2022 Wallet Rent Scanner that reclaims ~0.00204 SOL per empty token account using native SPL 0x09 CloseAccount instructions (0% fee on your first claim), and (2) a 10-Layer Solana Token Rug Scanner that audits SPL and Token-2022 mint addresses in under 200ms before you swap. It is purely cryptocurrency blockchain software, not household carpet or apartment rent protection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Solana SPL token rent recovery work without seed phrases?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every token account on the Solana blockchain locks a ~0.00203928 SOL rent-exempt deposit. When a token balance reaches zero, that SOL stays locked until closed. Solana Rent & Rug Shield scans your public wallet address read-only and builds an unsigned native SPL 0x09 CloseAccount transaction that you inspect and sign inside Phantom, Solflare, or Backpack."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the 10-Layer Solana Token Rug Scanner check?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It checks Mint Authority, Freeze Authority, Token-2022 Permanent Delegate and Transfer Hooks, LP Burn & Lock status, Top Holder Concentration, Creator Sniper Bundles, Jupiter Sell-Side Honeypot Simulation, and Inner-CPI Drainer instructions, returning a 0 to 100 Shield Score. Your first token audit is free, extra single audits are 10 cents, a 24-hour unlimited pass is $1.99, and a 30-day Pro pass is $4.99."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style id="rrs-app-equal-cards-1440">
+  @media (min-width: 1024px) {
+    #tab-claim.tab-panel.active,
+    #tab-pro.tab-panel.active {
+      align-items: stretch !important;
+    }
+    #tab-claim.tab-panel.active > .card,
+    #tab-pro.tab-panel.active > .card {
+      height: 100% !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+  }
+</style>
+<script id="rrs-sw-v306-cache-bust">
+(function() {
+  var SW_VER = "306-carbon";
+  var EXPECTED_CACHE = "rent-shield-v306-carbon-live";
+  var ACTIVE_TUNNEL = "https://opinion-unit-filling-boc.trycloudflare.com";
+  try {
+    for (var sIdx = 0; sIdx < 2; sIdx++) {
+      var st = sIdx === 0 ? window.localStorage : window.sessionStorage;
+      if (!st) continue;
+      for (var kIdx = st.length - 1; kIdx >= 0; kIdx--) {
+        var k = st.key(kIdx);
+        if (!k) continue;
+        var v = String(st.getItem(k) || "");
+        if (v.indexOf(".trycloudflare.com") !== -1 && v.indexOf(ACTIVE_TUNNEL) === -1) {
+          st.removeItem(k);
+        }
+      }
+    }
+  } catch (_se) {}
+  try {
+    if ("caches" in window && caches.keys) {
+      caches.keys().then(function(names) {
+        names.forEach(function(n) {
+          if (n !== EXPECTED_CACHE) caches.delete(n).catch(function() {});
+        });
+      }).catch(function() {});
+    }
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("/sw.js?v=" + SW_VER, { updateViaCache: "none" }).then(function(reg) {
+          if (reg && reg.waiting) {
+            try { reg.waiting.postMessage({ type: "SKIP_WAITING" }); } catch (_we) {}
+          }
+          if (reg && reg.update) reg.update().catch(function() {});
+        }).catch(function() {});
+      });
+    }
+  } catch (_swe) {}
+})();
+</script>
 </head>
 <body>
 
@@ -1935,7 +2070,7 @@
     // Service Worker Registration + Instant Update Activation
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function() {
-        navigator.serviceWorker.register("/sw.js?v=200").then(function(reg) {
+        navigator.serviceWorker.register("/sw.js?v=306-carbon", { updateViaCache: "none" }).then(function(reg) {
           if (reg && reg.update) reg.update().catch(function() {});
         }).catch(function() {});
       });
@@ -2907,7 +3042,7 @@
 
       // Register v101-carbon Service Worker & purge stale caches immediately
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/sw.js?v=101-carbon").then(function(reg) { reg.update(); }).catch(function() {});
+        navigator.serviceWorker.register("/sw.js?v=306-carbon", { updateViaCache: "none" }).then(function(reg) { reg.update(); }).catch(function() {});
       }
       // 25s Smart Scroll Popup for 10 Free Safety Pings (once per session)
       var _appScrolled = false;

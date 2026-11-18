@@ -1,6 +1,38 @@
 {
   "rules": [
     {
+      "pathPattern": "/api/actions/scan-rent",
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/scan-rent"
+    },
+    {
+      "pathPattern": "/api/actions/scan-rent/*",
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/scan-rent/*"
+    },
+    {
+      "pathPattern": "/api/actions/audit-token",
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/audit-token"
+    },
+    {
+      "pathPattern": "/api/actions/audit-token/*",
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/audit-token/*"
+    },
+    {
+      "pathPattern": "/scan-rent",
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/scan-rent"
+    },
+    {
+      "pathPattern": "/scan-rent/*",
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/scan-rent/*"
+    },
+    {
+      "pathPattern": "/audit-token",
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/audit-token"
+    },
+    {
+      "pathPattern": "/audit-token/*",
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/audit-token/*"
+    },
+    {
       "pathPattern": "/trade/*",
       "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/trade/*"
     },
@@ -18,11 +50,11 @@
     },
     {
       "pathPattern": "/audit/*",
-      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/rug-audit/*"
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/audit-token/*"
     },
     {
       "pathPattern": "/audit",
-      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/rug-audit"
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/audit-token"
     },
     {
       "pathPattern": "/rug-audit/*",
@@ -42,7 +74,7 @@
     },
     {
       "pathPattern": "/",
-      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/rent-check"
+      "apiPath": "https://opinion-unit-filling-boc.trycloudflare.com/api/actions/scan-rent"
     },
     {
       "pathPattern": "/api/actions/**",

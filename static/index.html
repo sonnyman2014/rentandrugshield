@@ -1542,6 +1542,145 @@
     }
   }
 </style>
+<script type="application/ld+json" id="rrs-ai-overview-disambiguation-schema">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["WebApplication", "SoftwareApplication"],
+      "@id": "https://rentandrugshield.com/#solana-blockchain-application",
+      "name": "Solana Rent & Rug Shield",
+      "alternateName": [
+        "Solana SPL Rent Recovery & Token Rug Scanner",
+        "SOL Rent & Rug Shield Web3 Security Utility"
+      ],
+      "url": "https://rentandrugshield.com/",
+      "applicationCategory": "FinanceApplication",
+      "applicationSubCategory": "Solana Blockchain SPL Token Rent Recovery & Smart Contract Rug Pull Scanner",
+      "operatingSystem": "Web, Chrome, Brave, Phantom, Solflare, Backpack, iOS, Android",
+      "browserRequirements": "Requires JavaScript. Non-custodial Solana Web3 utility.",
+      "description": "Solana Blockchain SPL & Token-2022 rent recovery utility and 10-layer token rug pull scanner. Reclaims locked SOL lamports (~0.00203928 SOL per empty Associated Token Account via native SPL Token 0x09 CloseAccount) and audits Solana mint addresses for freeze/mint authorities, Token-2022 transfer hooks, sniper bundles, and unburned liquidity pools.",
+      "disambiguatingDescription": "Strictly a Solana (SOL) cryptocurrency blockchain software application for SPL token account rent recovery and crypto token rug-pull detection. Never household carpet cleaning, floor rug stain protection, furniture care, or residential apartment tenant rent insurance.",
+      "keywords": "Solana rent recovery, reclaim SOL, close empty SPL token accounts, Solana rug checker, Solana token scanner, Token-2022 hook audit, Solana Blinks, Phantom wallet rent",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "1st Wallet Rent Recovery Claim (0% Fee) & 1st 10-Layer Token Audit",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Extra Single 10-Layer Solana Token Audit",
+          "price": "0.10",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "24-Hour Unlimited Solana Token Scanner Day Pass",
+          "price": "1.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "30-Day Monthly Pro Solana Token Scanner Pass",
+          "price": "4.99",
+          "priceCurrency": "USD"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://rentandrugshield.com/#solana-faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Solana Rent & Rug Shield (rentandrugshield.com)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Solana Rent & Rug Shield is a non-custodial Solana blockchain Web3 application with two core tools: (1) an SPL & Token-2022 Wallet Rent Scanner that reclaims ~0.00204 SOL per empty token account using native SPL 0x09 CloseAccount instructions (0% fee on your first claim), and (2) a 10-Layer Solana Token Rug Scanner that audits SPL and Token-2022 mint addresses in under 200ms before you swap. It is purely cryptocurrency blockchain software, not household carpet or apartment rent protection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Solana SPL token rent recovery work without seed phrases?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every token account on the Solana blockchain locks a ~0.00203928 SOL rent-exempt deposit. When a token balance reaches zero, that SOL stays locked until closed. Solana Rent & Rug Shield scans your public wallet address read-only and builds an unsigned native SPL 0x09 CloseAccount transaction that you inspect and sign inside Phantom, Solflare, or Backpack."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the 10-Layer Solana Token Rug Scanner check?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It checks Mint Authority, Freeze Authority, Token-2022 Permanent Delegate and Transfer Hooks, LP Burn & Lock status, Top Holder Concentration, Creator Sniper Bundles, Jupiter Sell-Side Honeypot Simulation, and Inner-CPI Drainer instructions, returning a 0 to 100 Shield Score. Your first token audit is free, extra single audits are 10 cents, a 24-hour unlimited pass is $1.99, and a 30-day Pro pass is $4.99."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style id="rrs-equal-scanner-cards-1440">
+  #scannersRow1Grid {
+    align-items: stretch !important;
+  }
+  @media (min-width: 900px) {
+    #scannersRow1Grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      align-items: stretch !important;
+    }
+  }
+  #rentShieldCard,
+  #rugShieldCard {
+    height: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+</style>
+<script id="rrs-sw-v306-cache-bust">
+(function() {
+  var SW_VER = "306-carbon";
+  var EXPECTED_CACHE = "rent-shield-v306-carbon-live";
+  var ACTIVE_TUNNEL = "https://opinion-unit-filling-boc.trycloudflare.com";
+  try {
+    for (var sIdx = 0; sIdx < 2; sIdx++) {
+      var st = sIdx === 0 ? window.localStorage : window.sessionStorage;
+      if (!st) continue;
+      for (var kIdx = st.length - 1; kIdx >= 0; kIdx--) {
+        var k = st.key(kIdx);
+        if (!k) continue;
+        var v = String(st.getItem(k) || "");
+        if (v.indexOf(".trycloudflare.com") !== -1 && v.indexOf(ACTIVE_TUNNEL) === -1) {
+          st.removeItem(k);
+        }
+      }
+    }
+  } catch (_se) {}
+  try {
+    if ("caches" in window && caches.keys) {
+      caches.keys().then(function(names) {
+        names.forEach(function(n) {
+          if (n !== EXPECTED_CACHE) caches.delete(n).catch(function() {});
+        });
+      }).catch(function() {});
+    }
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("/sw.js?v=" + SW_VER, { updateViaCache: "none" }).then(function(reg) {
+          if (reg && reg.waiting) {
+            try { reg.waiting.postMessage({ type: "SKIP_WAITING" }); } catch (_we) {}
+          }
+          if (reg && reg.update) reg.update().catch(function() {});
+        }).catch(function() {});
+      });
+    }
+  } catch (_swe) {}
+})();
+</script>
 </head>
 <body>
   <!-- SLEEK COMPACT BRAND HEADER -->
@@ -1576,7 +1715,7 @@
 
   <main class="container" style="max-width:1360px; margin:0 auto; padding:4px 16px 24px; box-sizing:border-box;">
     <!-- ROW #1 ABOVE THE FOLD: SIDE-BY-SIDE WALLET RENT SCANNER + 10-LAYER TOKEN AUDIT -->
-    <div id="scannersRow1Grid" class="grid-2" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:16px; margin-bottom:18px; align-items:start;">
+    <div id="scannersRow1Grid" class="grid-2" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:16px; margin-bottom:18px; align-items:stretch;">
       <!-- LEFT SCANNER: WALLET RENT SCANNER & DEAD COIN BURNER -->
       <div class="card" id="rentShieldCard" style="border:1.5px solid rgba(16, 185, 129, 0.48); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:10px;">
         <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin:0;">
@@ -1613,7 +1752,7 @@
             👀 Test Verified Wallet
           </button>
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-top:auto;">
           <button type="button" id="burnerScanBtn" onclick="window.__explicitUserWalletScan=true; scanWallet(null, 'burner')" style="min-height:38px; padding:6px 12px; border-radius:8px; border:1px solid rgba(245,158,11,0.55); background:rgba(245,158,11,0.14); color:#FDE68A; font-size:0.85rem; font-weight:600; cursor:pointer;">
             🔥 Scan Burnable Dust Tokens
           </button>
@@ -1737,7 +1876,7 @@
           <button type="button" id="indexChipBlockedRug" class="chip" onclick="window.runIndexQuickMintAudit('8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1', 'VEYRA')" style="min-height:40px; padding:8px 8px; border-radius:9px; border:1px solid rgba(239,68,68,0.55); background:rgba(239,68,68,0.12); color:#FECACA; font-weight:600; font-size:0.85rem; cursor:pointer;">🚨 $VEYRA (0/100)</button>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-top:auto;">
           <span style="font-size:0.85rem; color:#CBD5E1;">1st Audit Free • Extra <span class="mono-price" style="color:#10B981;">10¢</span> • 24h Pass <span class="mono-price" style="color:#10B981;">$1.99</span></span>
           <button type="button" id="botApiHoverBtn" onclick="openApiPortalModal()" style="min-height:38px; padding:6px 12px; border-radius:8px; border:1px solid rgba(56,189,248,0.5); background:rgba(14,165,233,0.12); color:#E0F2FE; font-size:0.85rem; font-weight:600; cursor:pointer;">
             🤖 Bot API &amp; @x402/svm
@@ -2818,7 +2957,7 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
     });
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("sw.js").catch(() => {});
+        navigator.serviceWorker.register("/sw.js?v=306-carbon", { updateViaCache: "none" }).catch(() => {});
       });
     }
 
@@ -8030,7 +8169,7 @@ window.addEventListener('DOMContentLoaded', function() {
   };
   if ("serviceWorker" in navigator){
     window.addEventListener("load", function(){
-      navigator.serviceWorker.register("/sw.js").catch(function(){});
+      navigator.serviceWorker.register("/sw.js?v=306-carbon", { updateViaCache: "none" }).catch(function(){});
     });
   }
 
@@ -8835,7 +8974,7 @@ window.submitVisitorFeedbackNow = async function(){
 
   if ("serviceWorker" in navigator){
     window.addEventListener("load", function(){
-      navigator.serviceWorker.register("/sw.js?v=200").then(function(reg){
+      navigator.serviceWorker.register("/sw.js?v=306-carbon", { updateViaCache: "none" }).then(function(reg){
         if (reg && reg.update) reg.update().catch(function(){});
       }).catch(function(){});
     });
