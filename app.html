@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <meta name="theme-color" content="#040914" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
@@ -13,6 +13,9 @@
   <link id="dynamic-apple-icon" rel="apple-touch-icon" href="/apple-touch-icon.png?v=202" />
   <link rel="icon" type="image/png" href="/favicon.png?v=202" />
   <link id="dynamic-favicon" rel="icon" type="image/svg+xml" href="/shield-app-icon.svg?v=202" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@SolRentClaim" />
@@ -212,7 +215,7 @@
   <style>
     :root {
       --bg: #040914;
-      --card: #081224;
+      --card: #0B1120;
       --card-2: #0b1830;
       --emerald: #14f195;
       --emerald-dk: #059669;
@@ -220,8 +223,8 @@
       --amber: #fde047;
       --danger: #f87171;
       --purple: #9945ff;
-      --text: #f8fafc;
-      --muted: #94a3b8;
+      --text: #F8FAFC;
+      --muted: #CBD5E1;
       --border: rgba(20, 241, 149, 0.28);
       --tabbar-h: 66px;
     }
@@ -242,7 +245,9 @@
       overflow-x: hidden !important;
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
       overscroll-behavior-x: none;
     }
 
@@ -407,7 +412,7 @@
       background: #020611;
       color: #ffffff;
       border: 1.5px solid rgba(56, 189, 248, 0.65);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 13px;
       outline: none;
     }
@@ -551,7 +556,7 @@
       margin-bottom: 6px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       font-size: 10px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
     .proof-main-row {
       display: flex;
@@ -722,6 +727,113 @@
       box-shadow: 0 0 14px rgba(20, 241, 149, 0.2);
     }
   </style>
+<style id="pro-fintech-readability-upgrade">
+  :root {
+    --card: #0B1120 !important;
+    --card-alt: #0F172A !important;
+    --text: #F8FAFC !important;
+    --muted: #CBD5E1 !important;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  html {
+    font-size: 16px !important;
+  }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+    color: #F8FAFC !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .card, .modal-card, .choice-a-tier-card, .rrs-paywall-cta-box {
+    background-color: #0B1120 !important;
+    color: #F8FAFC !important;
+  }
+  p, li, label, button, .btn, .btn-cta, .btn-secondary {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  .jb-mono, .mono-price, .mono-pct, .mono-addr, code, pre,
+  #walletInput, #mintInput, #modalWalletPaste, #singleAudit2cSigInput,
+  #w-inp, #m-inp, #appSingleAudit2cSigInp {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+    font-variant-numeric: tabular-nums;
+  }
+  #chkEmailInput, #chkNameInput, #alertsOptInContactInp, #appAlertsOptInContactInp,
+  #visitorFeedbackContactInp, #visitorFeedbackMsgInp, #app-feedback-contact, #app-feedback-msg {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  }
+  .choice-a-pricing-section {
+    width: min(95vw, 1360px);
+    max-width: 1360px;
+    margin: 10px auto 16px;
+    padding: 20px 22px;
+    background: #0B1120;
+    border: 1.5px solid rgba(20, 241, 149, 0.45);
+    border-radius: 16px;
+    color: #F8FAFC;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  }
+  .choice-a-copy-lead {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: #F8FAFC;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .choice-a-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .choice-a-tier-card {
+    background: #0B1120;
+    border: 1px solid #1E293B;
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .choice-a-tier-card.recommended {
+    border: 2px solid #14F195;
+    box-shadow: 0 0 20px rgba(20, 241, 149, 0.16);
+  }
+  .choice-a-tier-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #F8FAFC;
+    line-height: 1.4;
+  }
+  .choice-a-tier-price {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #14F195;
+    line-height: 1.3;
+  }
+  .choice-a-tier-reg {
+    font-size: 0.88rem;
+    color: #CBD5E1;
+    line-height: 1.45;
+  }
+  .choice-a-badge-rec {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(20, 241, 149, 0.18);
+    border: 1px solid #14F195;
+    color: #14F195;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+</style>
 </head>
 <body>
 
@@ -743,15 +855,69 @@
   </header>
 
   <main class="native-app-frame">
-    <div id="zeroDashPitchBanner">Solana Rent and Rug Shield Built on Gemini 4 Carbon Swarm Architecture. Paste any public wallet or token address with zero login required. Our 10 Layer On Chain Shield verifies real liquidity burns, hidden Token 2022 taxes, and insider whale clusters in milliseconds while recovering trapped empty account SOL for zero upfront cost and just 5 percent on recovered cash, or run individual 10 Layer token checks for 2 cents.</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:0 0 8px 0;">
-      <button type="button" id="appTopSingleAudit2cBtn" onclick="openAppSingleAudit2cModal()" style="padding:8px 8px;border-radius:9px;border:1.5px solid #fde047;background:linear-gradient(90deg,#14f195,#fde047);color:#022c22;font-size:11px;font-weight:900;cursor:pointer;">
-        ⚡ 2¢ Instant Single Audit
+    <div id="zeroDashPitchBanner">Your first 10 Layer Token Audit is free. Extra single audits are 10¢ for our first 30 days so active Solana traders can test our scanner live. Regular price is 99¢ per audit. Need full day or monthly access? Pick our recommended 24 Hour Day Pass for $1.99 (regularly $3.99) or unlock the 30 Day Monthly Pro Pass for $4.99 (regularly $14.99). Wallet rent recovery has a 0% fee on your first claim so 100% of your SOL goes straight to your wallet.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:7px;margin:0 0 10px 0;">
+      <button type="button" id="appTopSingleAudit2cBtn" onclick="openAppSingleAudit2cModal()" style="padding:9px 8px;border-radius:9px;border:1.5px solid #FDE047;background:linear-gradient(90deg,#14F195,#FDE047);color:#022C22;font-size:0.82rem;font-weight:800;cursor:pointer;">
+        Single Audit <span class="mono-price">10¢</span> (Reg <span class="mono-price">99¢</span>)
       </button>
-      <button type="button" id="appTopUnlimitedPassBtn" onclick="switchNativeTab('pro'); buyProPass(0.026, '$1.99 Unlimited Pass');" style="padding:8px 8px;border-radius:9px;border:1.5px solid #38bdf8;background:linear-gradient(90deg,#0891b2,#14f195);color:#022c22;font-size:11px;font-weight:900;cursor:pointer;">
-        💎 $1.99 Unlimited Pass
+      <button type="button" id="appTopUnlimitedPassBtn" onclick="switchNativeTab('pro'); buyProPass(0.026, '24 Hour Unlimited Day Pass ($1.99, regularly $3.99)');" style="padding:9px 8px;border-radius:9px;border:2px solid #14F195;background:linear-gradient(90deg,#0891B2,#14F195);color:#022C22;font-size:0.82rem;font-weight:800;cursor:pointer;">
+        24 Hour Day Pass <span class="mono-price">$1.99</span> (Reg <span class="mono-price">$3.99</span>)
+      </button>
+      <button type="button" id="appTopMonthlyPassBtn" onclick="switchNativeTab('pro'); buyProPass(0.066, '30 Day Monthly Pro Pass ($4.99, regularly $14.99)');" style="padding:9px 8px;border-radius:9px;border:1.5px solid #38BDF8;background:rgba(14,165,233,0.22);color:#F8FAFC;font-size:0.82rem;font-weight:800;cursor:pointer;">
+        Monthly Pro <span class="mono-price">$4.99</span> (Reg <span class="mono-price">$14.99</span>)
       </button>
     </div>
+    <section id="choiceAPricingSection" class="choice-a-pricing-section" aria-label="Scanner and Wallet Rent Recovery Pricing">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+        <h2 style="font-size:1.15rem; font-weight:800; color:#F8FAFC; margin:0;">Transparent Solana Scanner &amp; Rent Recovery Pricing</h2>
+        <span style="font-size:0.85rem; font-weight:700; color:#CBD5E1;">First Rent Claim <span class="mono-pct" style="color:#14F195;">0%</span> Fee • Repeat Claims <span class="mono-pct">5%</span></span>
+      </div>
+      <p id="choiceAHumanCopyText" class="choice-a-copy-lead">Your first 10 Layer Token Audit is free. Extra single audits are 10¢ for our first 30 days so active Solana traders can test our scanner live. Regular price is 99¢ per audit. Need full day or monthly access? Pick our recommended 24 Hour Day Pass for $1.99 (regularly $3.99) or unlock the 30 Day Monthly Pro Pass for $4.99 (regularly $14.99).</p>
+      <div class="choice-a-grid">
+        <div class="choice-a-tier-card">
+          <div>
+            <div class="choice-a-tier-name">First 10 Layer Token Audit</div>
+            <div class="choice-a-tier-price"><span class="mono-price">Free</span></div>
+            <div class="choice-a-tier-reg">1 free try via SQLite Triple-Lock. Paste any Solana mint address with zero login.</div>
+          </div>
+        </div>
+        <div class="choice-a-tier-card">
+          <div>
+            <div class="choice-a-tier-name">Extra Single 10 Layer Token Audit</div>
+            <div class="choice-a-tier-price"><span class="mono-price">10¢</span> <span style="font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:600;color:#CBD5E1;">for 30 days</span></div>
+            <div class="choice-a-tier-reg">Regularly <span class="mono-price">99¢</span> per audit. Instant SOL or USDC unlock.</div>
+          </div>
+          <button type="button" onclick="openAppSingleAudit2cModal()" style="width:100%; padding:9px 12px; border-radius:8px; border:1.5px solid #FDE047; background:linear-gradient(90deg,#14F195,#FDE047); color:#022C22; font-weight:800; font-size:0.88rem; cursor:pointer;">Unlock Single Audit (<span class="mono-price">10¢</span>)</button>
+        </div>
+        <div class="choice-a-tier-card recommended">
+          <div>
+            <span class="choice-a-badge-rec">Recommended</span>
+            <div class="choice-a-tier-name" style="margin-top:6px;">24 Hour Unlimited Day Pass</div>
+            <div class="choice-a-tier-price"><span class="mono-price">$1.99</span> <span style="font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:600;color:#CBD5E1;">for 30 days</span></div>
+            <div class="choice-a-tier-reg">Regularly <span class="mono-price">$3.99</span>. 1-click payable from recovered SOL.</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <button type="button" onclick="buyProPass(0.026, '24 Hour Unlimited Day Pass ($1.99, regularly $3.99)')" style="width:100%; padding:9px 12px; border-radius:8px; border:1.5px solid #14F195; background:linear-gradient(90deg,#10B981,#14F195); color:#022C22; font-weight:800; font-size:0.88rem; cursor:pointer;">Get 24 Hour Day Pass (<span class="mono-price">$1.99</span>)</button>
+            <button type="button" onclick="window.deductUnlimitedPassFromRecoveredSol(document.getElementById('m-inp') ? document.getElementById('m-inp').value.trim() : '')" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid #C084FC; background:rgba(147,51,234,0.22); color:#F8FAFC; font-weight:700; font-size:0.82rem; cursor:pointer;">Pay <span class="mono-price">$1.99</span> from Recovered SOL</button>
+          </div>
+        </div>
+        <div class="choice-a-tier-card">
+          <div>
+            <div class="choice-a-tier-name">30 Day Monthly Pro Pass</div>
+            <div class="choice-a-tier-price"><span class="mono-price">$4.99</span> <span style="font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:600;color:#CBD5E1;">for 30 days</span></div>
+            <div class="choice-a-tier-reg">Regularly <span class="mono-price">$14.99</span> per month. Unlimited scans and API key.</div>
+          </div>
+          <button type="button" onclick="buyProPass(0.066, '30 Day Monthly Pro Pass ($4.99, regularly $14.99)')" style="width:100%; padding:9px 12px; border-radius:8px; border:1.5px solid #38BDF8; background:rgba(14,165,233,0.22); color:#F8FAFC; font-weight:800; font-size:0.88rem; cursor:pointer;">Get Monthly Pro Pass (<span class="mono-price">$4.99</span>)</button>
+        </div>
+        <div class="choice-a-tier-card">
+          <div>
+            <div class="choice-a-tier-name">Wallet Rent Recovery</div>
+            <div class="choice-a-tier-price"><span class="mono-pct">0%</span> <span style="font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:600;color:#CBD5E1;">First Claim Fee</span></div>
+            <div class="choice-a-tier-reg"><span class="mono-pct">100%</span> of SOL goes to your wallet on your first claim. Repeat claims <span class="mono-pct">5%</span>.</div>
+          </div>
+        </div>
+      </div>
+    </section>
     <div id="appAlertsOptInBar" style="margin:0 0 9px 0; padding:8px 10px; border-radius:10px; background:linear-gradient(90deg, rgba(6, 44, 62, 0.95), rgba(6, 52, 39, 0.95)); border:1.5px solid #fde047; display:flex; flex-direction:column; gap:6px;">
       <div style="font-size:11px; font-weight:900; color:#fde047; text-align:center;">🔔 Get Rug &amp; Free-SOL Browser/Telegram Alerts</div>
       <div style="display:flex; gap:6px; flex-wrap:wrap;">
@@ -902,7 +1068,7 @@
       <div class="card card-cyan">
         <div class="trust-strip">
           <span class="badge-pill" id="appDemoScansBadge">🎁 1 Free 10-Layer Audit</span>
-          <span class="badge-pill badge-amber">⚡ 10¢ (30-Day Intro, Reg. 25¢)</span>
+          <span class="badge-pill badge-amber">Extra Single <span class="mono-price">10¢</span> (Reg <span class="mono-price">99¢</span>)</span>
           <span class="badge-pill badge-cyan">🛡️ 10/10 Layers &lt;200ms</span>
         </div>
 
@@ -934,14 +1100,14 @@
         </button>
         <div class="grid-2-tight" style="margin-top:7px;">
           <button type="button" id="appShieldSingleAudit2cBtn" class="btn-secondary" style="border-color:#fde047;color:#022c22;background:linear-gradient(90deg,#14f195,#fde047);font-weight:900;font-size:11px;" onclick="openAppSingleAudit2cModal()">
-            ⚡ Unlock — 10¢ (Intro, Reg. 25¢)
+            Single Audit <span class="mono-price">10¢</span> (Reg <span class="mono-price">99¢</span>)
           </button>
-          <button type="button" id="appShieldUnlimitedPassBtn" class="btn-secondary" style="border-color:#38bdf8;color:#ecfeff;background:rgba(8,145,178,0.28);font-weight:900;font-size:11px;" onclick="buyProPass(0.026, '$1.99 Unlimited Pass')">
-            💎 $1.99 Unlimited Pass
+          <button type="button" id="appShieldUnlimitedPassBtn" class="btn-secondary" style="border-color:#38bdf8;color:#ecfeff;background:rgba(8,145,178,0.28);font-weight:900;font-size:11px;" onclick="buyProPass(0.026, '24 Hour Unlimited Day Pass ($1.99, regularly $3.99)')">
+            24 Hour Day Pass <span class="mono-price">$1.99</span> (Reg <span class="mono-price">$3.99</span>)
           </button>
         </div>
         <button type="button" id="appDeduct199RecoveredBtn" class="btn-secondary" style="margin-top:7px;width:100%;border-color:#c084fc;color:#fdf4ff;background:linear-gradient(90deg,rgba(147,51,234,0.32),rgba(20,241,149,0.20));font-weight:900;font-size:11.5px;" onclick="window.deductUnlimitedPassFromRecoveredSol(document.getElementById('m-inp') ? document.getElementById('m-inp').value.trim() : '')">
-          ✨ Deduct $1.99 from my recovered Free SOL
+          Pay <span class="mono-price">$1.99</span> Day Pass from Recovered SOL (<span class="mono-pct">0%</span> First Claim Fee)
         </button>
 
         <!-- 3 LIVE 1-TAP TOKEN AUDIT CHIPS -->
@@ -1040,7 +1206,7 @@
     <!-- ================================================================== -->
     <section id="tab-pro" class="tab-panel" aria-label="Pro Pass and App">
 
-      <!-- 1. 7-DAY FREE / $1.99 TRIAL + ENABLE 10 FREE PINGS -->
+      <!-- 1. ENABLE 10 FREE PINGS -->
       <div class="card" style="border-color:rgba(20,241,149,0.5);">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
           <span style="font-size:13.5px;font-weight:900;color:#14f195;">⚡ Enable 10 Free Safety Pings</span>
@@ -1070,10 +1236,10 @@
         <div id="app-ping-status" style="display:none;margin-top:6px;font-size:11px;font-weight:800;color:#14f195;line-height:1.35;"></div>
       </div>
 
-      <!-- 2. $1.99 7-DAY UNLIMITED PRO PASS & BOT API KEY -->
+      <!-- 2. CHOICE A PASSES ($1.99 DAY PASS & $4.99 MONTHLY PRO) + API KEY -->
       <div class="card card-cyan">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
-          <span style="font-size:13.5px;font-weight:900;color:#67e8f9;">🔑 $1.99 Pro Pass &amp; Sniper API Key</span>
+          <span style="font-size:13.5px;font-weight:900;color:#67e8f9;">Choice A Passes &amp; Scanner API Key</span>
           <span class="badge-pill badge-amber">Cancel Free • $0 Penalty</span>
         </div>
         <div style="font-size:11px;color:#cbd5e1;line-height:1.36;margin-bottom:8px;">
@@ -1082,15 +1248,15 @@
         <div style="display:flex;flex-direction:column;gap:7px;">
           <div class="grid-2-tight">
             <button type="button" id="appProSingleAudit2cBtn" class="btn-cta" style="background:linear-gradient(90deg,#14f195,#fde047);border-color:#fde047;color:#022c22;font-size:11.5px;" onclick="openAppSingleAudit2cModal()">
-              ⚡ 2¢ Instant Single Audit
+              Single Audit <span class="mono-price">10¢</span> (Reg <span class="mono-price">99¢</span>)
             </button>
-            <button type="button" class="btn-cta" style="font-size:11.5px;" onclick="buyProPass(0.026, '$1.99 Unlimited Pass')">
-              💎 $1.99 Unlimited Pass
+            <button type="button" class="btn-cta" style="font-size:11.5px;" onclick="buyProPass(0.026, '24 Hour Unlimited Day Pass ($1.99, regularly $3.99)')">
+              24 Hour Day Pass <span class="mono-price">$1.99</span> (Reg <span class="mono-price">$3.99</span>)
             </button>
           </div>
           <div class="grid-2-tight">
-            <button type="button" class="btn-secondary" style="border-color:#c084fc;color:#f3e8ff;background:rgba(124,58,237,0.2);" onclick="buyProPass(0.105, '$7.99 30-Day Pro')">
-              🔥 $7.99 30-Day Pro
+            <button type="button" class="btn-secondary" style="border-color:#c084fc;color:#f3e8ff;background:rgba(124,58,237,0.2);" onclick="buyProPass(0.066, '30 Day Monthly Pro Pass ($4.99, regularly $14.99)')">
+              30 Day Monthly Pro <span class="mono-price">$4.99</span> (Reg <span class="mono-price">$14.99</span>)
             </button>
             <button type="button" class="btn-secondary" onclick="generateFreeTrialApiKey()">
               🔑 Get Free Dev API Key
@@ -1259,7 +1425,7 @@
         <span style="font-size:0.68rem; font-weight:900; padding:2px 7px; border-radius:999px; background:rgba(20,241,149,0.18); border:1px solid #14f195; color:#14f195;">NO PURCHASE NECESSARY</span>
       </div>
       <div style="font-size:0.74rem; color:#e2e8f0; line-height:1.38; margin-bottom:8px;">
-        Enter our festive Free SOL Vault Draw! Zero purchase required — solve the Canadian skill-testing math question to lock your encrypted vault ticket:
+        Enter our festive Free SOL Vault Draw! Zero purchase required :  solve the Canadian skill-testing math question to lock your encrypted vault ticket:
       </div>
       <input
         type="text"
@@ -1938,7 +2104,7 @@
       out.innerHTML = "<div class='layer-row' style='color:#67e8f9;'>⚡ Running 10-Layer Rug &amp; Inner-CPI Drain Audit on <code>" + m.slice(0, 6) + ".." + m.slice(-4) + "</code>...</div>";
 
       try {
-        var rawResp = await fetch("/api/audit-mint", {
+        var rawResp = await fetch("/api/scan-token", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ mint: m, user_initiated: true, device_hash: window.__RRS_DEVICE_HASH || "" })
@@ -2006,7 +2172,7 @@
                + "<a href='" + ((window.BACKEND_TUNNEL_BASE || window.location.origin) + "/api/actions/trade/" + encodeURIComponent(m)) + "' target='_blank' rel='noopener noreferrer' class='btn-secondary' style='min-height:38px;font-size:11px;border-color:#22d3ee;color:#67e8f9;'>⚡ Solana Blink ↗</a>"
                + "</div></div>")
             : ("<div id='appTradeBlockedWarn' style='margin-top:8px;padding:8px 10px;border-radius:9px;background:rgba(239,68,68,0.15);border:1.5px solid #ef4444;color:#fecaca;font-size:10.5px;font-weight:800;'>"
-               + "🚫 DANGER / UNBURNED LP — Trade Verified Safe Token LOCKED: SHIELD " + score + "/100 is below the strict 85/100 Verified Safe gate. Swap disabled to protect your SOL."
+               + "🚫 DANGER / UNBURNED LP: Trade Verified Safe Token LOCKED: SHIELD " + score + "/100 is below the strict 85/100 Verified Safe gate. Swap disabled to protect your SOL."
                + "</div>"))
           + "<div class='grid-2-tight' style='margin-top:8px;'>"
           + "  <a href='https://dexscreener.com/solana/" + encodeURIComponent(m) + "' target='_blank' rel='noopener noreferrer' class='btn-secondary' style='min-height:36px;font-size:11px;'>📈 DexScreener ↗</a>"
@@ -2524,7 +2690,7 @@
     ["#tabbtn-claim", "TAB 1 • CLAIM SOL", "Scan & reclaim trapped SOL rent (~0.002039 SOL/ATA) + burn dead dust tokens (1st claim 0% fee)."],
     ["#tabbtn-shield", "TAB 2 • 10-LAYER SHIELD", "Run <200ms pre-buy anti-rug audits on any Solana token mint before swapping."],
     ["#tabbtn-proof", "TAB 3 • LIVE PROOF", "Inspect real-time DEX-6 runners & clickable Solscan blockchain transaction receipts."],
-    ["#tabbtn-pro", "TAB 4 • PRO PASS & APP", "Enable 10 Free Pings, unlock $1.99 7-Day Pro Pass, or install the Desktop/Mobile Shield App."]
+    ["#tabbtn-pro", "TAB 4 • PASSES & APP", "Enable 10 Free Pings, pick the $1.99 24 Hour Day Pass (regularly $3.99), unlock the $4.99 30 Day Monthly Pro Pass (regularly $14.99), or install the App."]
   ];
 
   function bindAppTargets(){
@@ -2766,37 +2932,43 @@
   <script src="/static/lead_retargeter.js?v=5" defer></script>
 
 
-  <!-- 2-CENT INSTANT SINGLE AUDIT MODAL FOR APP.HTML ($0.02 USDC OR 0.00028 SOL) -->
+  <!-- CHOICE A UNLOCK MODAL FOR APP.HTML -->
   <div id="appSingleAudit2cModal" onclick="if(event.target===this)closeAppSingleAudit2cModal()" style="display:none;position:fixed;inset:0;background:rgba(2,6,23,0.88);z-index:100080;align-items:center;justify-content:center;padding:12px;backdrop-filter:blur(5px);">
-    <div style="width:94vw;max-width:390px;background:linear-gradient(180deg,#07192e 0%,#041020 100%);border:2px solid #14f195;border-radius:14px;padding:14px;color:#f8fafc;box-sizing:border-box;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;">
+    <div style="width:94vw;max-width:410px;background:#0B1120;border:2px solid #14F195;border-radius:14px;padding:16px;color:#F8FAFC;box-sizing:border-box;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
         <div>
-          <div style="font-size:12.5px;font-weight:900;color:#14f195;">⚡ UNLOCK FULL 10-LAYER AUDIT — 10¢</div>
-          <div style="font-size:10px;color:#fde047;font-weight:800;">10¢ (30-Day Introductory Price, Reg. 25¢) • $0.10 USDC / SOL</div>
+          <div style="font-size:0.98rem;font-weight:800;color:#14F195;">Unlock 10 Layer Token Audit</div>
+          <div style="font-size:0.82rem;color:#FDE047;font-weight:700;"><span class="mono-price">10¢</span> for 30 days (regularly <span class="mono-price">99¢</span>)</div>
         </div>
-        <button type="button" onclick="closeAppSingleAudit2cModal()" style="background:#0f172a;border:1px solid #475569;color:#e2e8f0;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:900;cursor:pointer;">✕</button>
+        <button type="button" onclick="closeAppSingleAudit2cModal()" style="background:#0F172A;border:1px solid #475569;color:#F8FAFC;border-radius:6px;padding:3px 8px;font-size:0.85rem;font-weight:800;cursor:pointer;">✕</button>
       </div>
-      <div style="font-size:10.5px;color:#cbd5e1;background:#030b17;border:1px solid rgba(20,241,149,0.35);border-radius:8px;padding:7px 9px;margin-bottom:9px;line-height:1.38;">
-        Treasury: <code style="color:#14f195;">89Sv5Fvn...nKK1</code> • 2 Free Sample Audits included; Rent Reclaim stays $0 upfront (5% only on recovered SOL).
-      </div>
+      <p style="font-size:0.85rem;color:#F8FAFC;background:#0F172A;border:1px solid rgba(20,241,149,0.35);border-radius:8px;padding:8px 10px;margin-bottom:10px;line-height:1.5;">
+        Your first 10 Layer Token Audit is free. Extra single audits are 10¢ for our first 30 days so active Solana traders can test our scanner live. Regular price is 99¢ per audit. Need full day or monthly access? Pick our recommended 24 Hour Day Pass for $1.99 (regularly $3.99) or unlock the 30 Day Monthly Pro Pass for $4.99 (regularly $14.99).
+      </p>
       <div class="grid-2-tight" style="margin-bottom:8px;">
-        <button type="button" class="btn-cta" style="background:linear-gradient(90deg,#14f195,#fde047);border-color:#fde047;color:#022c22;min-height:40px;font-size:11.5px;" onclick="buyAppSingleAudit2c('USDC')">💵 Pay 10¢ USDC</button>
-        <button type="button" class="btn-cta" style="background:linear-gradient(90deg,#38bdf8,#14f195);border-color:#67e8f9;color:#022c22;min-height:40px;font-size:11.5px;" onclick="buyAppSingleAudit2c('SOL')">◎ Pay 10¢ SOL</button>
+        <button type="button" class="btn-cta" style="background:linear-gradient(90deg,#14F195,#FDE047);border-color:#FDE047;color:#022C22;min-height:42px;font-size:0.84rem;" onclick="buyAppSingleAudit2c('USDC')">Pay <span class="mono-price">10¢</span> USDC</button>
+        <button type="button" class="btn-cta" style="background:linear-gradient(90deg,#38BDF8,#14F195);border-color:#67E8F9;color:#022C22;min-height:42px;font-size:0.84rem;" onclick="buyAppSingleAudit2c('SOL')">Pay <span class="mono-price">10¢</span> SOL</button>
       </div>
-      <button type="button" class="btn-secondary" style="width:100%;margin-bottom:8px;border-color:#c084fc;color:#fdf4ff;background:linear-gradient(90deg,rgba(147,51,234,0.34),rgba(20,241,149,0.22));font-size:11px;font-weight:900;" onclick="closeAppSingleAudit2cModal(); window.deductUnlimitedPassFromRecoveredSol(window.__RRS_PENDING_MINT || '');">
-        ✨ Deduct $1.99 from my recovered Free SOL
+      <button type="button" class="btn-cta" style="width:100%;margin-bottom:7px;min-height:42px;font-size:0.84rem;" onclick="closeAppSingleAudit2cModal(); buyProPass(0.026, '24 Hour Unlimited Day Pass ($1.99, regularly $3.99)');">
+        Recommended: 24 Hour Day Pass <span class="mono-price">$1.99</span> (reg <span class="mono-price">$3.99</span>)
       </button>
-      <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:7px;">
-        <div style="font-size:10px;color:#94a3b8;font-weight:800;margin-bottom:4px;">Or paste confirmed Solana TX Signature ($0.02 USDC / 0.00028 SOL):</div>
+      <button type="button" class="btn-secondary" style="width:100%;margin-bottom:7px;border-color:#C084FC;color:#F8FAFC;background:linear-gradient(90deg,rgba(147,51,234,0.34),rgba(20,241,149,0.22));font-size:0.82rem;font-weight:800;" onclick="closeAppSingleAudit2cModal(); window.deductUnlimitedPassFromRecoveredSol(window.__RRS_PENDING_MINT || '');">
+        Pay <span class="mono-price">$1.99</span> Day Pass from Recovered SOL (<span class="mono-pct">0%</span> First Claim Fee)
+      </button>
+      <button type="button" class="btn-secondary" style="width:100%;margin-bottom:9px;border-color:#38BDF8;color:#F8FAFC;background:rgba(14,165,233,0.20);font-size:0.82rem;font-weight:800;" onclick="closeAppSingleAudit2cModal(); buyProPass(0.066, '30 Day Monthly Pro Pass ($4.99, regularly $14.99)');">
+        30 Day Monthly Pro Pass <span class="mono-price">$4.99</span> (reg <span class="mono-price">$14.99</span>)
+      </button>
+      <div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:8px;">
+        <div style="font-size:0.80rem;color:#CBD5E1;font-weight:700;margin-bottom:5px;">Or paste confirmed Solana TX Signature (<span class="mono-price">10¢</span>, <span class="mono-price">$1.99</span>, or <span class="mono-price">$4.99</span>):</div>
         <div style="display:flex;gap:6px;">
-          <input id="appSingleAudit2cSigInp" type="text" placeholder="Paste Solana TX signature..." style="flex:1;min-width:0;padding:7px 8px;border-radius:7px;border:1px solid #334155;background:#020617;color:#f8fafc;font-size:11px;" />
-          <button type="button" onclick="verifyAppSingleAudit2cSig()" style="padding:7px 10px;border-radius:7px;border:1.5px solid #14f195;background:#059669;color:#fff;font-size:11px;font-weight:900;cursor:pointer;">Verify</button>
+          <input id="appSingleAudit2cSigInp" type="text" value="" placeholder="Paste Solana TX signature..." style="flex:1;min-width:0;padding:8px;border-radius:7px;border:1px solid #334155;background:#020617;color:#F8FAFC;font-size:0.82rem;" />
+          <button type="button" onclick="verifyAppSingleAudit2cSig()" style="padding:8px 11px;border-radius:7px;border:1.5px solid #14F195;background:#059669;color:#FFF;font-size:0.82rem;font-weight:800;cursor:pointer;">Verify</button>
         </div>
       </div>
-      <div id="appSingleAudit2cStatus" style="display:none;margin-top:8px;padding:7px 9px;border-radius:8px;background:#042f2e;border:1px solid #14f195;font-size:10.5px;color:#ecfdf5;line-height:1.38;word-break:break-word;"></div>
+      <div id="appSingleAudit2cStatus" style="display:none;margin-top:8px;padding:8px 10px;border-radius:8px;background:#042F2E;border:1px solid #14F195;font-size:0.82rem;color:#F8FAFC;line-height:1.45;word-break:break-word;"></div>
     </div>
   </div>
-  <script id="app-two-cent-single-audit-js">
+  <script id="app-choice-a-single-audit-js">
   (function(){
     function syncAppAuditBadge(){
       var b = document.getElementById("appDemoScansBadge");
@@ -2804,15 +2976,15 @@
       var isPro = localStorage.getItem("dex6_pro_pass_unlocked") === "1";
       var cr = parseInt(localStorage.getItem("dex6_single_audit_credits") || "0", 10);
       var used = parseInt(localStorage.getItem("dex6_app_free_sample_used") || "0", 10);
-      if (isPro) b.innerText = "💎 Unlimited $1.99 Pass Active";
-      else if (cr > 0) b.innerText = "⚡ " + cr + " Paid 2¢ Audit Credit(s)";
-      else b.innerText = used < 1 ? "🎁 2 Free Sample 10-Layer Audits" : "⚡ Free Sample Used • 2¢/Scan";
+      if (isPro) b.innerText = "Unlimited Pass Active";
+      else if (cr > 0) b.innerText = cr + " Paid 10¢ Audit Credit(s)";
+      else b.innerText = used < 1 ? "First 10 Layer Audit Free" : "Free Audit Used • 10¢/Audit (Reg 99¢)";
     }
-    function setApp2cMsg(html, isErr){
+    function setApp10cMsg(html, isErr){
       var el = document.getElementById("appSingleAudit2cStatus");
       if (el){
         el.style.display = "block";
-        el.style.color = isErr ? "#fca5a5" : "#ecfdf5";
+        el.style.color = isErr ? "#FCA5A5" : "#F8FAFC";
         el.innerHTML = html;
       }
     }
@@ -2828,10 +3000,10 @@
     window.verifyAppSingleAudit2cSig = async function(){
       var sig = (document.getElementById("appSingleAudit2cSigInp").value || "").trim();
       if (sig.length < 60){
-        setApp2cMsg("⚠️ Paste a valid base58 Solana transaction signature.", true);
+        setApp10cMsg("Paste a valid base58 Solana transaction signature.", true);
         return;
       }
-      setApp2cMsg("⏳ Verifying on-chain $0.02 USDC / 0.00028 SOL payment...", false);
+      setApp10cMsg("Verifying on-chain Solana payment...", false);
       try {
         var d = await fetch("/api/verify-payment", {
           method: "POST",
@@ -2839,6 +3011,12 @@
           body: JSON.stringify({tx_signature: sig})
         }).then(function(r){ return r.json(); });
         if (d && d.ok && d.verified_onchain){
+          if (d.plan === "MONTHLY_PRO_PASS_499" || d.plan === "SERVICE2_199_LAUNCH_PASS"){
+            localStorage.setItem("dex6_pro_pass_unlocked", "1");
+            syncAppAuditBadge();
+            setApp10cMsg("<b>Pass Activated!</b> Unlimited 10 Layer Token Audits unlocked.", false);
+            return;
+          }
           if (d.single_scan_token){
             var q10 = [];
             try { q10 = JSON.parse(localStorage.getItem("dex6_single_audit_tokens") || "[]"); } catch(_e){}
@@ -2848,21 +3026,21 @@
           var cur = parseInt(localStorage.getItem("dex6_single_audit_credits") || "0", 10);
           localStorage.setItem("dex6_single_audit_credits", String(cur + 1));
           syncAppAuditBadge();
-          setApp2cMsg("✅ <b>10¢ Single Audit Unlocked!</b> Run your 10-Layer token audit now.", false);
+          setApp10cMsg("<b>10¢ Single Audit Unlocked!</b> Run your 10 Layer Token Audit now.", false);
         } else {
-          setApp2cMsg("⚠️ " + ((d && d.error) || "Could not verify transaction on Solana Mainnet."), true);
+          setApp10cMsg(((d && d.error) || "Could not verify transaction on Solana Mainnet."), true);
         }
       } catch (e){
-        setApp2cMsg("⚠️ Verification error: " + (e.message || e), true);
+        setApp10cMsg("Verification error: " + (e.message || e), true);
       }
     };
     window.buyAppSingleAudit2c = async function(assetMode){
       var asset = (String(assetMode || "SOL").toUpperCase() === "USDC") ? "USDC" : "SOL";
-      var label = (asset === "USDC") ? "$0.02 USDC" : "0.00028 SOL";
-      setApp2cMsg("⚡ Building " + label + " 2¢ Single Audit TX...", false);
+      var label = (asset === "USDC") ? "$0.10 USDC" : "10¢ SOL";
+      setApp10cMsg("Building " + label + " Extra Single Audit TX (regularly 99¢)...", false);
       var prov = (typeof getInjectedProvider === "function") ? getInjectedProvider() : ((window.phantom && window.phantom.solana) || window.solana);
       if (!prov){
-        var target = "https://rentandrugshield.com/app.html?single2c=" + encodeURIComponent(asset);
+        var target = "https://rentandrugshield.com/app.html?single10c=" + encodeURIComponent(asset);
         window.location.href = "https://phantom.app/ul/browse/" + encodeURIComponent(target) + "?ref=" + encodeURIComponent("https://rentandrugshield.com");
         return;
       }
@@ -2875,7 +3053,7 @@
           body: JSON.stringify({wallet: payer, asset: asset})
         }).then(function(r){ return r.json(); });
         if (!bRes || !bRes.ok || !bRes.tx_base64){
-          setApp2cMsg("⚠️ " + ((bRes && bRes.error) || "Could not build 2¢ Single Audit TX."), true);
+          setApp10cMsg(((bRes && bRes.error) || "Could not build 10¢ Single Audit TX."), true);
           return;
         }
         var raw = Uint8Array.from(atob(bRes.tx_base64), function(c){ return c.charCodeAt(0); });
@@ -2899,17 +3077,16 @@
           var cur = parseInt(localStorage.getItem("dex6_single_audit_credits") || "0", 10);
           localStorage.setItem("dex6_single_audit_credits", String(cur + 1));
           syncAppAuditBadge();
-          setApp2cMsg("✅ <b>10¢ Single Audit Unlocked!</b> TX: <code>" + sig.slice(0, 12) + "...</code>", false);
+          setApp10cMsg("<b>10¢ Single Audit Unlocked!</b> TX: <code>" + sig.slice(0, 12) + "...</code>", false);
           setTimeout(function(){ closeAppSingleAudit2cModal(); }, 1000);
         } else {
           document.getElementById("appSingleAudit2cSigInp").value = sig;
-          setApp2cMsg("⏳ TX sent — tap Verify in a moment once confirmed on-chain.", false);
+          setApp10cMsg("TX sent. Tap Verify in a moment once confirmed on-chain.", false);
         }
       } catch (e){
-        setApp2cMsg("ℹ️ " + (e.message || "Approve 2¢ TX in wallet or paste TX signature."), true);
+        setApp10cMsg((e.message || "Approve 10¢ TX in wallet or paste TX signature."), true);
       }
     };
-    // Server-enforced SQLite WAL Triple-Lock (1 Free Try -> 402 10c Intro)
     syncAppAuditBadge();
   })();
   </script>
@@ -3284,25 +3461,26 @@
       + '</div>';
 
     var ctaHtml = ''
-      + '<div class="rrs-paywall-cta-box">'
-      + '  <div style="font-size:0.84rem;font-weight:900;color:#fde047;margin-bottom:4px;">🛡️ 1 Free 10-Layer Audit Used — Forensic Insider Whale &amp; Wash Layers Locked</div>'
-      + '  <div style="font-size:0.74rem;color:#cbd5e1;margin-bottom:10px;line-height:1.4;">'
-      + '    Unblur all 10 forensic layers on <b>$' + sym + '</b> instantly (Wallet Rent Reclaim stays <b>$0 upfront</b>):'
-      + '  </div>'
+      + '<div class="rrs-paywall-cta-box" style="background:#0B1120;border:1.5px solid #14F195;border-radius:12px;padding:14px 16px;color:#F8FAFC;">'
+      + '  <div style="font-size:0.95rem;font-weight:800;color:#FDE047;margin-bottom:6px;">Free 10 Layer Token Audit Used: Forensic Whale &amp; Wash Layers Locked</div>'
+      + '  <p style="font-size:0.92rem;color:#F8FAFC;margin-bottom:12px;line-height:1.55;">Your first 10 Layer Token Audit is free. Extra single audits are 10¢ for our first 30 days so active Solana traders can test our scanner live. Regular price is 99¢ per audit. Need full day or monthly access? Pick our recommended 24 Hour Day Pass for $1.99 (regularly $3.99) or unlock the 30 Day Monthly Pro Pass for $4.99 (regularly $14.99).</p>'
       + '  <div style="display:flex;flex-direction:column;gap:8px;">'
-      + '    <button type="button" data-telemetry-btn="paywall_unlock_10c_intro" onclick="' + (surface === "app" ? "openAppSingleAudit2cModal()" : "openSingleAudit2cModal()") + '" style="width:100%;padding:11px 12px;border-radius:9px;border:1.5px solid #fde047;background:linear-gradient(90deg,#14f195,#fde047);color:#022c22;font-size:0.80rem;font-weight:900;cursor:pointer;">'
-      + '      ⚡ Unlock Full 10-Layer Audit — 10¢ (30-Day Introductory Price, Reg. 25¢)'
+      + '    <button type="button" data-telemetry-btn="paywall_unlock_10c_intro" onclick="' + (surface === "app" ? "openAppSingleAudit2cModal()" : "openSingleAudit2cModal()") + '" style="width:100%;padding:11px 12px;border-radius:9px;border:1.5px solid #FDE047;background:linear-gradient(90deg,#14F195,#FDE047);color:#022C22;font-size:0.90rem;font-weight:800;cursor:pointer;">'
+      + '      Extra Single 10 Layer Token Audit: <span class="mono-price">10¢</span> for 30 days (regularly <span class="mono-price">99¢</span>)'
       + '    </button>'
-      + '    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;">'
-      + '      <button type="button" data-telemetry-btn="paywall_unlimited_199_pass" onclick="' + (surface === "app" ? "buyProPass(0.026, '$1.99 Unlimited Pass')" : "openInstantBuyBubble('1.99')") + '" style="width:100%;padding:10px 10px;border-radius:9px;border:1.5px solid #38bdf8;background:rgba(14,165,233,0.22);color:#ecfeff;font-size:0.76rem;font-weight:900;cursor:pointer;">'
-      + '        💎 $1.99 Unlimited Pass'
+      + '    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:8px;">'
+      + '      <button type="button" data-telemetry-btn="paywall_unlimited_199_pass" onclick="' + (surface === "app" ? "buyProPass(0.026, \'24 Hour Unlimited Day Pass ($1.99, regularly $3.99)\')" : "openInstantBuyBubble(\'1.99\')") + '" style="width:100%;padding:10px 10px;border-radius:9px;border:2px solid #14F195;background:rgba(20,241,149,0.18);color:#F8FAFC;font-size:0.85rem;font-weight:800;cursor:pointer;">'
+      + '        Recommended: 24 Hour Day Pass <span class="mono-price">$1.99</span> (reg <span class="mono-price">$3.99</span>)'
       + '      </button>'
-      + '      <button type="button" data-telemetry-btn="paywall_deduct_199_recovered_sol" onclick="window.deductUnlimitedPassFromRecoveredSol(\'' + escS2(window.__RRS_PENDING_MINT) + '\')" style="width:100%;padding:10px 10px;border-radius:9px;border:1.5px solid #c084fc;background:linear-gradient(90deg,rgba(147,51,234,0.34),rgba(20,241,149,0.22));color:#fdf4ff;font-size:0.76rem;font-weight:900;cursor:pointer;">'
-      + '        ✨ Deduct $1.99 from my recovered Free SOL'
+      + '      <button type="button" data-telemetry-btn="paywall_monthly_499_pass" onclick="' + (surface === "app" ? "buyProPass(0.066, \'30 Day Monthly Pro Pass ($4.99, regularly $14.99)\')" : "openInstantBuyBubble(\'4.99\')") + '" style="width:100%;padding:10px 10px;border-radius:9px;border:1.5px solid #38BDF8;background:rgba(14,165,233,0.22);color:#F8FAFC;font-size:0.85rem;font-weight:800;cursor:pointer;">'
+      + '        30 Day Monthly Pro Pass <span class="mono-price">$4.99</span> (reg <span class="mono-price">$14.99</span>)'
       + '      </button>'
       + '    </div>'
+      + '    <button type="button" data-telemetry-btn="paywall_deduct_199_recovered_sol" onclick="window.deductUnlimitedPassFromRecoveredSol(\'' + escS2(window.__RRS_PENDING_MINT) + '\')" style="width:100%;padding:10px 12px;border-radius:9px;border:1.5px solid #C084FC;background:linear-gradient(90deg,rgba(147,51,234,0.34),rgba(20,241,149,0.22));color:#F8FAFC;font-size:0.85rem;font-weight:800;cursor:pointer;">'
+      + '      Pay <span class="mono-price">$1.99</span> 24 Hour Day Pass from Recovered SOL (<span class="mono-pct">0%</span> First Claim Fee)'
+      + '    </button>'
       + '  </div>'
-      + '  <div id="rrsDeductRecoveredStatus" style="display:none;margin-top:8px;padding:8px 10px;border-radius:8px;background:#042f2e;border:1px solid #14f195;font-size:0.74rem;color:#ecfdf5;line-height:1.4;"></div>'
+      + '  <div id="rrsDeductRecoveredStatus" style="display:none;margin-top:8px;padding:8px 10px;border-radius:8px;background:#042F2E;border:1px solid #14F195;font-size:0.84rem;color:#F8FAFC;line-height:1.5;"></div>'
       + '</div>';
 
     if (surface === "app"){
@@ -3320,7 +3498,7 @@
     if (tTitle) tTitle.innerText = sym + " • 10-Layer Forensic Preview (HTTP 402 Paywall)";
     var tVerdict = document.getElementById("tokVerdict");
     if (tVerdict){
-      tVerdict.innerText = "🔒 INSIDER WHALE & WASH LAYERS LOCKED — UNLOCK FOR 10¢";
+      tVerdict.innerText = "INSIDER WHALE & WASH LAYERS LOCKED: UNLOCK FOR 10¢ (REG 99¢)";
       tVerdict.style.color = "#fde047";
     }
     var tScore = document.getElementById("tokScore");
@@ -3507,7 +3685,7 @@
             ? "🏆 <b style='color:#14f195;'>NAILED IT! $JESTER Mooned (+55.72%) &amp; $VEYRA Rugged (-99.4%)!</b><br/>"
             : "💥 <b style='color:#fde047;'>GOTCHA! $VEYRA Faked Early Green Candles Then Pulled LP (-99.4%)!</b><br/>")
             + "🛡️ <b>How Our 10-Layer Shield Caught $VEYRA Pre-Buy (0/100):</b> "
-            + "<code>L3 Creator Sniper Bundle (44.8%)</code> • <code>L4 Liq/MC Trap</code> • <code>L5 Unburned Custom LP</code> • <code>L10 Wash-Trade Dump</code> — while clearing <b>$JESTER (96/100 SAFE)</b>!";
+            + "<code>L3 Creator Sniper Bundle (44.8%)</code> • <code>L4 Liq/MC Trap</code> • <code>L5 Unburned Custom LP</code> • <code>L10 Wash-Trade Dump</code> :  while clearing <b>$JESTER (96/100 SAFE)</b>!";
         }
       }
     }, 50);
@@ -3536,7 +3714,7 @@
       {t: 0,  title: "STEP 1 • PASTE WALLET ($0 UPFRONT)", sub: "100% Read-Only Scan finds empty SPL & Token-2022 ATAs (~0.00204 SOL each)", accent: "#14f195"},
       {t: 10, title: "STEP 2 • NATIVE 0x09 CLOSEACCOUNT", sub: "Keep 95% SOL (1st Claim 0% Fee!) • Active Held Tokens 100% Untouched", accent: "#38bdf8"},
       {t: 20, title: "STEP 3 • 10-LAYER PRE-BUY RUG SHIELD", sub: "1 Free Audit • Blocks Freeze Hooks, Sniper Bundles & Unburned LP in <120ms", accent: "#fde047"},
-      {t: 30, title: "STEP 4 • 10¢ INTRO OR DEDUCT $1.99 PASS", sub: "Unlock Single Scans for 10¢ (Reg. 25¢) or Deduct $1.99 Pass from Free SOL!", accent: "#c084fc"}
+      {t: 30, title: "STEP 4 • 10¢ INTRO OR DEDUCT $1.99 PASS", sub: "Extra Single Audits 10¢ (regularly 99¢), $1.99 24 Hour Day Pass (regularly $3.99), or $4.99 Monthly Pro (regularly $14.99)!", accent: "#c084fc"}
     ];
     var ch = chapters[0];
     for (var i = 0; i < chapters.length; i++){
@@ -3631,7 +3809,7 @@
         clearInterval(st.timer);
         st.timer = null;
         st.playing = false;
-        if (btn) btn.innerText = "✅ 100% Watched — Replay Walkthrough";
+        if (btn) btn.innerText = "✅ 100% Watched :  Replay Walkthrough";
       }
     }, 250);
   };

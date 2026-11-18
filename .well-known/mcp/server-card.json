@@ -227,6 +227,7 @@
   ],
   "x402": {
     "sdk": "@x402/svm",
+    "sdkVersion": "2.31.0",
     "x402Version": 1,
     "supportedX402Versions": [
       1,
@@ -349,6 +350,7 @@
         "description": "$0.02 SPL USDC Instant Single Audit (20000 atomic units of EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 / ATA BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8) granting 1 verified scan",
         "extra": {
           "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
           "type": "PaymentRequirements",
           "option": "option_b_usdc_single_scan",
           "name": "$0.02 SPL USDC Instant Single Audit",
@@ -396,6 +398,7 @@
         "description": "0.00028 SOL (280000 lamports / ~$0.02) Instant Single Audit to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 granting 1 verified scan",
         "extra": {
           "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
           "type": "PaymentRequirements",
           "option": "option_b_single_scan",
           "name": "0.00028 SOL (~$0.02) Instant Single Audit",
@@ -437,6 +440,7 @@
         "description": "Option A: $1.99 Unlimited Pro Pass (0.026 SOL / 26000000 lamports) to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 issuing reusable X-Pro-Pass-Token",
         "extra": {
           "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
           "type": "PaymentRequirements",
           "option": "option_a_pro_pass",
           "name": "$1.99 Unlimited Pro Pass",
@@ -478,6 +482,7 @@
         "description": "$0.02 SPL USDC Instant Single Audit (20000 atomic units of EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 / ATA BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8) granting 1 verified scan",
         "extra": {
           "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
           "type": "PaymentRequirements",
           "option": "option_b_usdc_single_scan",
           "name": "$0.02 SPL USDC Instant Single Audit",
@@ -525,6 +530,7 @@
         "description": "0.00028 SOL (280000 lamports / ~$0.02) Instant Single Audit to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 granting 1 verified scan",
         "extra": {
           "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
           "type": "PaymentRequirements",
           "option": "option_b_single_scan",
           "name": "0.00028 SOL (~$0.02) Instant Single Audit",
@@ -566,6 +572,7 @@
         "description": "Option A: $1.99 Unlimited Pro Pass (0.026 SOL / 26000000 lamports) to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 issuing reusable X-Pro-Pass-Token",
         "extra": {
           "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
           "type": "PaymentRequirements",
           "option": "option_a_pro_pass",
           "name": "$1.99 Unlimited Pro Pass",
