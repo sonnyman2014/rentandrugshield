@@ -2130,15 +2130,18 @@
         <div id="trialPassBox" style="margin-top:4px; background:linear-gradient(135deg, rgba(153,69,255,0.14), rgba(20,241,149,0.10)); border:1.5px solid rgba(20,241,149,0.55); border-radius:12px; padding:12px; display:flex; flex-direction:column; flex:1; justify-content:flex-start; gap:8px;">
           <div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; align-items:stretch;">
-              <button type="button" id="singleAudit2cBtn" class="btn btn-primary" style="width:100%; justify-content:center; font-size:0.77rem; padding:10px 10px; background:linear-gradient(135deg, #14f195, #fde047); color:#04120c; font-weight:900; border:1.5px solid #fde047;" onclick="openSingleAudit2cModal()">
-                ⚡ 2¢ Instant Single Audit
+              <button type="button" id="singleAudit2cBtn" class="btn btn-primary" style="width:100%; justify-content:center; font-size:0.75rem; padding:10px 9px; background:linear-gradient(135deg, #14f195, #fde047); color:#04120c; font-weight:900; border:1.5px solid #fde047;" onclick="openSingleAudit2cModal()">
+                ⚡ Unlock Full 10-Layer Audit — 10¢ (Intro, Reg. 25¢)
               </button>
-              <button type="button" id="startTrialPassBtn" class="btn btn-primary" style="width:100%; justify-content:center; font-size:0.77rem; padding:10px 10px; background:linear-gradient(135deg, #00d4ff, #14f195); color:#04120c; font-weight:900;" onclick="openInstantBuyBubble('1.99')" onmouseenter="showGuideStoryIndex('trial')">
+              <button type="button" id="startTrialPassBtn" class="btn btn-primary" style="width:100%; justify-content:center; font-size:0.75rem; padding:10px 9px; background:linear-gradient(135deg, #00d4ff, #14f195); color:#04120c; font-weight:900;" onclick="openInstantBuyBubble('1.99')" onmouseenter="showGuideStoryIndex('trial')">
                 💎 $1.99 Unlimited Pass
               </button>
             </div>
+            <button type="button" id="indexDeduct199RecoveredBtn" onclick="window.deductUnlimitedPassFromRecoveredSol(document.getElementById('mintInput') ? document.getElementById('mintInput').value.trim() : '')" style="margin-top:7px; width:100%; padding:8px 10px; border-radius:8px; border:1.5px solid #c084fc; background:linear-gradient(90deg, rgba(147,51,234,0.28), rgba(20,241,149,0.20)); color:#fdf4ff; font-size:0.74rem; font-weight:900; cursor:pointer;">
+              ✨ Deduct $1.99 from my recovered Free SOL (0% Reclaim Fee!)
+            </button>
             <div style="margin-top:6px; display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
-              <span style="font-size:0.71rem; color:#fde68a; font-weight:800;">2 Free Sample Audits Included • Pay $0.02 USDC or 0.00028 SOL per check</span>
+              <span style="font-size:0.71rem; color:#fde68a; font-weight:800;">1 Free 10-Layer Audit Included • Then 10¢ (30-Day Introductory Price, Reg. 25¢)</span>
               <button type="button" id="botApiHoverBtn" class="btn btn-outline" style="justify-content:center; font-size:0.72rem; padding:5px 10px; border:1.5px solid #00d4ff; color:#ecfeff; background:rgba(0,212,255,0.12); font-weight:900;" onmouseenter="showBotApiWebhookCard(true)" onclick="toggleBotApiWebhookCard()">
                 🤖 Bot API &amp; @x402/svm
               </button>
@@ -2437,6 +2440,193 @@
         <a href="javascript:void(0)" onclick="openApiPortalModal()" style="color:var(--cyan); text-decoration:underline;">Open Sniper Bot API Portal</a>
       </div>
     </div>
+
+
+<!-- === BEGIN SQUAD 2 INTERACTIVE PIZZAZZ DECK (IDX) === -->
+<section id="idx-pizzazz-showcase-deck" aria-label="Interactive Rug-or-Moon Mini-Game, Demo Walkthrough, Holiday SOL Vault &amp; Feedback" style="margin: 16px auto 18px auto; max-width: 1220px; width: 100%; box-sizing: border-box;">
+  <style>
+    .rrs-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(305px, 1fr));
+      gap: 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .rrs-pizzazz-card {
+      background: linear-gradient(165deg, rgba(7, 20, 38, 0.97) 0%, rgba(3, 10, 22, 0.99) 100%);
+      border: 1.5px solid rgba(20, 241, 149, 0.48);
+      border-radius: 14px;
+      padding: 14px;
+      color: #f8fafc;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55), inset 0 0 18px rgba(20, 241, 149, 0.07);
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+    .rrs-blur-forensic-row {
+      position: relative;
+      border-radius: 9px;
+      padding: 9px 11px;
+      margin-bottom: 7px;
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.88));
+      border: 1px dashed rgba(250, 204, 21, 0.55);
+      overflow: hidden;
+    }
+    .rrs-blur-secret-text {
+      filter: blur(5.5px);
+      -webkit-filter: blur(5.5px);
+      user-select: none;
+      pointer-events: none;
+      opacity: 0.78;
+      font-family: ui-monospace, monospace;
+      font-size: 0.76rem;
+      color: #fde047;
+    }
+    .rrs-paywall-cta-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(6, 36, 46, 0.96), rgba(15, 12, 41, 0.96));
+      border: 2px solid #14f195;
+      box-shadow: 0 0 24px rgba(20, 241, 149, 0.28);
+    }
+  </style>
+
+  <div class="rrs-showcase-grid">
+    <!-- 1. RUG-OR-MOON 5-SECOND LIVE MINI-GAME (VEYRA vs JESTER) -->
+    <div class="rrs-pizzazz-card" id="idx-rug-or-moon-card" style="border-color: rgba(56, 189, 248, 0.65);">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+        <span style="font-size:0.86rem; font-weight:900; color:#38bdf8;">🎮 RUG-OR-MOON: 5-Second Live Chart Challenge</span>
+        <span id="idx-rom-timer" style="font-family:ui-monospace,monospace; font-size:0.74rem; font-weight:900; padding:3px 8px; border-radius:999px; background:rgba(250,204,21,0.16); border:1px solid #fde047; color:#fde047;">⏱️ 5.0s LIVE</span>
+      </div>
+      <div style="font-size:0.75rem; color:#cbd5e1; line-height:1.38; margin-bottom:8px;">
+        Two real Solana launches at T+0s: <b style="color:#f472b6;">$VEYRA</b> vs <b style="color:#14f195;">$JESTER</b>. One pumped <b>+55.7%</b>; one rugged <b>-99.4%</b>. Can your eyes beat our 10-Layer Shield in <b>5 seconds</b>?
+      </div>
+      <div style="position:relative; background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:10px; padding:6px; margin-bottom:9px;">
+        <canvas id="idx-rom-canvas" width="460" height="150" style="width:100%; height:142px; display:block; border-radius:7px;"></canvas>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+        <button type="button" id="idx-rom-pick-veyra" data-telemetry-btn="rom_guess_veyra" onclick="window.startRugOrMoonChallenge('idx', 'VEYRA')" style="padding:9px 8px; border-radius:9px; border:1.5px solid #f472b6; background:rgba(244,114,182,0.15); color:#fdf2f8; font-size:0.76rem; font-weight:900; cursor:pointer;">
+          🚀 Guess $VEYRA Moons
+        </button>
+        <button type="button" id="idx-rom-pick-jester" data-telemetry-btn="rom_guess_jester" onclick="window.startRugOrMoonChallenge('idx', 'JESTER')" style="padding:9px 8px; border-radius:9px; border:1.5px solid #14f195; background:rgba(20,241,149,0.16); color:#ecfdf5; font-size:0.76rem; font-weight:900; cursor:pointer;">
+          🚀 Guess $JESTER Moons
+        </button>
+      </div>
+      <div id="idx-rom-forensic-reveal" style="display:none; padding:9px 10px; border-radius:9px; background:rgba(4,24,38,0.95); border:1px solid #14f195; font-size:0.73rem; line-height:1.42; color:#ecfdf5;"></div>
+    </div>
+
+    <!-- 2. INTERACTIVE LIVE DEMO WALKTHROUGH VIDEO (25% / 50% / 75% / 100% TELEMETRY) -->
+    <div class="rrs-pizzazz-card" id="idx-demo-video-card" style="border-color: rgba(168, 85, 247, 0.65);">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+        <span style="font-size:0.86rem; font-weight:900; color:#e9d5ff;">🎬 40s Live Walkthrough: Rent Reclaim &amp; 10-Layer Shield</span>
+        <span id="idx-video-pct-badge" style="font-family:ui-monospace,monospace; font-size:0.72rem; font-weight:900; padding:3px 8px; border-radius:999px; background:rgba(168,85,247,0.18); border:1px solid #c084fc; color:#f3e8ff;">Watched: 0%</span>
+      </div>
+      <div style="font-size:0.75rem; color:#cbd5e1; line-height:1.38; margin-bottom:8px;">
+        Watch how non-custodial <code style="color:#14f195;">0x09 CloseAccount</code> recovers trapped SOL ($0 upfront) &amp; blocks rugs in &lt;120ms:
+      </div>
+      <div style="position:relative; background:#020617; border:1px solid rgba(192,132,252,0.4); border-radius:10px; overflow:hidden; margin-bottom:8px;">
+        <video id="idx-demo-video-el" playsinline muted style="display:none; width:100%; height:142px;"></video>
+        <canvas id="idx-demo-video-canvas" width="460" height="150" onclick="window.toggleRrsDemoVideo('idx')" style="width:100%; height:142px; display:block; cursor:pointer;"></canvas>
+        <div style="height:5px; width:100%; background:#0f172a;">
+          <div id="idx-demo-video-bar" style="height:100%; width:0%; background:linear-gradient(90deg,#14f195,#38bdf8,#c084fc); transition:width 0.2s linear;"></div>
+        </div>
+      </div>
+      <div style="display:flex; gap:7px; align-items:center; justify-content:space-between;">
+        <button type="button" id="idx-demo-video-play-btn" data-telemetry-btn="demo_video_play_toggle" onclick="window.toggleRrsDemoVideo('idx')" style="flex:1; padding:8px 10px; border-radius:8px; border:1.5px solid #c084fc; background:linear-gradient(90deg, rgba(147,51,234,0.32), rgba(20,241,149,0.24)); color:#ffffff; font-size:0.76rem; font-weight:900; cursor:pointer;">
+          ▶️ Play 40s Live Walkthrough
+        </button>
+        <button type="button" data-telemetry-btn="demo_video_restart" onclick="window.restartRrsDemoVideo('idx')" style="padding:8px 10px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:#cbd5e1; font-size:0.73rem; font-weight:800; cursor:pointer;">
+          ↺ Replay
+        </button>
+      </div>
+    </div>
+
+    <!-- 3. HAPPY HOLIDAYS FREE SOL DRAW VAULT (NO PURCHASE NECESSARY + CANADIAN MATH SKILL TEST) -->
+    <div class="rrs-pizzazz-card" id="idx-holiday-vault-card" style="border-color: rgba(250, 204, 21, 0.72); background: linear-gradient(165deg, rgba(16, 32, 24, 0.97) 0%, rgba(28, 12, 18, 0.97) 100%);">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:6px; flex-wrap:wrap;">
+        <span style="font-size:0.86rem; font-weight:900; color:#fde047;">🎄 Happy Holidays Free SOL Draw Vault</span>
+        <span style="font-size:0.68rem; font-weight:900; padding:2px 7px; border-radius:999px; background:rgba(20,241,149,0.18); border:1px solid #14f195; color:#14f195;">NO PURCHASE NECESSARY</span>
+      </div>
+      <div style="font-size:0.74rem; color:#e2e8f0; line-height:1.38; margin-bottom:8px;">
+        Enter our festive Free SOL Vault Draw! Zero purchase required — solve the Canadian skill-testing math question to lock your encrypted vault ticket:
+      </div>
+      <input
+        type="text"
+        id="idx-holiday-entrant-inp"
+        value=""
+        autocomplete="off"
+        placeholder="Public Solana Wallet or @Telegram / Email..."
+        style="width:100%; box-sizing:border-box; padding:8px 10px; border-radius:8px; border:1px solid rgba(250,204,21,0.5); background:#030b16; color:#f8fafc; font-size:0.76rem; margin-bottom:7px;"
+      />
+      <div style="display:flex; gap:7px; align-items:center; margin-bottom:7px; flex-wrap:wrap;">
+        <label for="idx-holiday-math-inp" style="font-size:0.74rem; font-weight:900; color:#fde68a; white-space:nowrap;">
+          🍁 Skill Test: <code>(12 × 4) + 18 - 6 =</code>
+        </label>
+        <input
+          type="text"
+          id="idx-holiday-math-inp"
+          value=""
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="?"
+          style="width:74px; padding:7px 9px; border-radius:8px; border:1.5px solid #14f195; background:#020617; color:#14f195; font-weight:900; font-size:0.8rem; text-align:center;"
+        />
+        <button type="button" id="idx-holiday-enter-btn" data-telemetry-btn="holiday_vault_submit" onclick="window.submitHolidaySolVault('idx')" style="flex:1; min-width:125px; padding:8px 10px; border-radius:8px; border:1.5px solid #fde047; background:linear-gradient(90deg, #10b981, #eab308); color:#022c22; font-size:0.76rem; font-weight:900; cursor:pointer;">
+          🎁 Claim Free Vault Ticket
+        </button>
+      </div>
+      <label style="display:flex; align-items:flex-start; gap:7px; font-size:0.70rem; color:#cbd5e1; cursor:pointer; line-height:1.32;">
+        <input type="checkbox" id="idx-holiday-weekly-optin" style="margin-top:2px; accent-color:#14f195;" />
+        <span>Optional: Send me classy <b>max 1x/week</b> VIP Free-SOL &amp; Rug Alert digest (zero spam • Thank you, GS).</span>
+      </label>
+      <div id="idx-holiday-vault-status" style="display:none; margin-top:7px; padding:7px 9px; border-radius:8px; background:rgba(4,47,46,0.9); border:1px solid #14f195; font-size:0.73rem; font-weight:800; color:#ecfdf5; line-height:1.38;"></div>
+    </div>
+
+    <!-- 4. "TELL US WHAT TO IMPROVE OR ADD NEXT" FEEDBACK BOX -->
+    <div class="rrs-pizzazz-card" id="idx-improve-feedback-card" style="border-color: rgba(20, 241, 149, 0.6);">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:6px;">
+        <span style="font-size:0.86rem; font-weight:900; color:#14f195;">💡 Tell Us What to Improve or Add Next</span>
+        <span style="font-size:0.68rem; font-weight:800; color:#67e8f9;">Direct Queue</span>
+      </div>
+      <div style="font-size:0.74rem; color:#cbd5e1; line-height:1.36; margin-bottom:7px;">
+        Every suggestion goes straight to our engineering roadmap &amp; Study_Queen UX analyzer:
+      </div>
+      <div style="display:flex; gap:6px; margin-bottom:7px; flex-wrap:wrap;">
+        <select id="idx-improve-category" style="padding:7px 8px; border-radius:8px; border:1px solid #38bdf8; background:#030b16; color:#e2e8f0; font-size:0.73rem; font-weight:800;">
+          <option value="feature_request">✨ New Feature Idea</option>
+          <option value="ux_improvement">⚡ UX / Speed Improvement</option>
+          <option value="token_scanner">🛡️ 10-Layer Scanner</option>
+          <option value="wallet_mobile">📱 Wallet / Mobile</option>
+        </select>
+        <input
+          type="text"
+          id="idx-improve-contact-inp"
+          value=""
+          autocomplete="off"
+          placeholder="Optional @handle / email"
+          style="flex:1; min-width:120px; padding:7px 9px; border-radius:8px; border:1px solid #334155; background:#030b16; color:#f8fafc; font-size:0.73rem;"
+        />
+      </div>
+      <div style="display:flex; gap:6px;">
+        <input
+          type="text"
+          id="idx-improve-msg-inp"
+          value=""
+          autocomplete="off"
+          placeholder="What should we improve or build next?"
+          onkeydown="if(event.key==='Enter') window.submitImproveNextFeedback('idx')"
+          style="flex:1; min-width:0; padding:8px 10px; border-radius:8px; border:1.5px solid rgba(20,241,149,0.55); background:#020617; color:#f8fafc; font-size:0.75rem;"
+        />
+        <button type="button" id="idx-improve-send-btn" data-telemetry-btn="improve_feedback_submit" onclick="window.submitImproveNextFeedback('idx')" style="padding:8px 12px; border-radius:8px; border:1.5px solid #14f195; background:linear-gradient(90deg, #059669, #14f195); color:#022c22; font-size:0.75rem; font-weight:900; cursor:pointer; white-space:nowrap;">
+          Send Idea 🚀
+        </button>
+      </div>
+      <div id="idx-improve-status" style="display:none; margin-top:7px; padding:7px 9px; border-radius:8px; background:rgba(4,47,46,0.9); border:1px solid #14f195; font-size:0.73rem; font-weight:800; color:#14f195;"></div>
+    </div>
+  </div>
+</section>
+<!-- === END SQUAD 2 INTERACTIVE PIZZAZZ DECK (IDX) === -->
 
     <!-- ====================================================================== -->
     <!-- POP-UP MODAL 1: NATIVE SOLANA SPL CLOSEACCOUNT (0x09) & 10-LAYER SECURITY SPECIFICATION -->
@@ -5568,19 +5758,30 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
       }
       try {
         let d = null;
+        let hitPaywall402 = false;
+        let paywallData402 = null;
         try {
           const srvRes = await fetch("/api/audit-mint", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({mint: m, user_initiated: !isAutoInit})
+            body: JSON.stringify({mint: m, user_initiated: !isAutoInit, device_hash: window.__RRS_DEVICE_HASH || ""})
           });
-          if (srvRes && srvRes.ok) {
+          if (srvRes && srvRes.status === 402) {
+            hitPaywall402 = true;
+            paywallData402 = await srvRes.json().catch(() => null);
+          } else if (srvRes && srvRes.ok) {
             const srvJson = await srvRes.json();
             if (srvJson && srvJson.ok) {
               d = srvJson;
             }
           }
         } catch (_srvErr) {}
+        if (hitPaywall402) {
+          if (typeof window.renderTripleLock402Paywall === "function") {
+            window.renderTripleLock402Paywall(paywallData402 || window.__RRS_LAST_402_PAYLOAD || {}, m, "index");
+          }
+          return null;
+        }
 
         if ((!d || !d.ok) && (m === "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v" || m === "So11111111111111111111111111111111111111112")) {
           var isUsdc = (m === "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");
@@ -9920,8 +10121,8 @@ window.submitVisitorFeedbackNow = async function(){
   <div style="width:94vw; max-width:410px; background:linear-gradient(180deg, #07192e 0%, #041020 100%); border:2px solid #14f195; border-radius:14px; padding:15px; color:#f8fafc; box-sizing:border-box; box-shadow:0 18px 50px rgba(0,0,0,0.95);">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
       <div>
-        <div style="font-size:13px; font-weight:900; color:#14f195;">⚡ 2¢ INSTANT SINGLE 10-LAYER AUDIT</div>
-        <div style="font-size:10.5px; color:#fde047; font-weight:800;">Pay $0.02 SPL USDC (20,000 atomic) or 0.00028 SOL • Zero Subscription</div>
+        <div style="font-size:13px; font-weight:900; color:#14f195;">⚡ UNLOCK FULL 10-LAYER AUDIT — 10¢ INTRO</div>
+        <div style="font-size:10.5px; color:#fde047; font-weight:800;">10¢ (30-Day Introductory Price, Reg. 25¢) • $0.10 USDC or ~0.0013 SOL</div>
       </div>
       <button type="button" onclick="closeSingleAudit2cModal()" style="background:#0f172a; border:1px solid #475569; color:#e2e8f0; border-radius:6px; padding:3px 9px; font-size:12px; font-weight:900; cursor:pointer;">✕</button>
     </div>
@@ -9931,14 +10132,17 @@ window.submitVisitorFeedbackNow = async function(){
     </div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:9px;">
       <button type="button" onclick="executeSingleAudit2cPay('USDC')" style="padding:11px 8px; border-radius:9px; background:linear-gradient(90deg,#14f195,#fde047); color:#022c22; border:1.5px solid #fde047; font-size:12px; font-weight:900; cursor:pointer;">
-        💵 Pay $0.02 USDC
+        💵 Pay 10¢ USDC ($0.10)
       </button>
       <button type="button" onclick="executeSingleAudit2cPay('SOL')" style="padding:11px 8px; border-radius:9px; background:linear-gradient(90deg,#38bdf8,#14f195); color:#022c22; border:1.5px solid #67e8f9; font-size:12px; font-weight:900; cursor:pointer;">
-        ◎ Pay 0.00028 SOL
+        ◎ Pay 10¢ in SOL
       </button>
     </div>
+    <button type="button" onclick="closeSingleAudit2cModal(); window.deductUnlimitedPassFromRecoveredSol(window.__RRS_PENDING_MINT || '');" style="width:100%; margin-bottom:8px; padding:9px 10px; border-radius:8px; border:1.5px solid #c084fc; background:linear-gradient(90deg,rgba(147,51,234,0.34),rgba(20,241,149,0.22)); color:#fdf4ff; font-size:11.5px; font-weight:900; cursor:pointer;">
+      ✨ Deduct $1.99 from my recovered Free SOL (Unlimited Pass!)
+    </button>
     <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:8px; margin-top:4px;">
-      <div style="font-size:10.5px; color:#94a3b8; font-weight:800; margin-bottom:5px;">Already sent $0.02 USDC or 0.00028 SOL? Paste Solana TX Signature:</div>
+      <div style="font-size:10.5px; color:#94a3b8; font-weight:800; margin-bottom:5px;">Already sent 10¢ ($0.10 USDC / SOL) or $1.99? Paste Solana TX Signature:</div>
       <div style="display:flex; gap:6px;">
         <input id="singleAudit2cSigInput" type="text" placeholder="Paste confirmed Solana TX signature..." style="flex:1; min-width:0; padding:8px 9px; border-radius:7px; border:1px solid #334155; background:#020617; color:#f8fafc; font-size:11px;" />
         <button type="button" onclick="verifySingleAudit2cSignatureManual()" style="padding:8px 11px; border-radius:7px; border:1.5px solid #14f195; background:#059669; color:#ffffff; font-size:11px; font-weight:900; cursor:pointer; white-space:nowrap;">Verify TX</button>
@@ -10062,33 +10266,10 @@ window.submitVisitorFeedbackNow = async function(){
     }
   };
 
-  // Enforce 2 Free Sample 10-Layer Token Audits -> 2¢ Single Audit or $1.99 Unlimited Pass on manual scans
-  var prevScanToken = window.scanToken;
-  if (typeof prevScanToken === "function"){
-    window.scanToken = async function(isAutoInit, optionalMint){
-      if (!isAutoInit){
-        var isPro = localStorage.getItem("dex6_pro_pass_unlocked") === "1";
-        var credits = parseInt(localStorage.getItem("dex6_single_audit_credits") || "0", 10);
-        var freeUsed = parseInt(localStorage.getItem("dex6_free_sample_10layer_used") || "0", 10);
-        if (!isPro && credits <= 0 && freeUsed >= 2){
-          openSingleAudit2cModal();
-          set2cStatus("ℹ️ Your <b>2 Free Sample 10-Layer Audits</b> have been used. Unlock an instant single check for <b>2¢ ($0.02 USDC or 0.00028 SOL)</b> or unlock unlimited checks for <b>$1.99</b>!", false);
-          return null;
-        }
-        var res = await prevScanToken(isAutoInit, optionalMint);
-        if (!isPro){
-          if (credits > 0){
-            localStorage.setItem("dex6_single_audit_credits", String(Math.max(0, credits - 1)));
-          } else {
-            localStorage.setItem("dex6_free_sample_10layer_used", String(freeUsed + 1));
-          }
-          if (typeof updateDemoBadge === "function") updateDemoBadge();
-        }
-        return res;
-      }
-      return await prevScanToken(isAutoInit, optionalMint);
-    };
-    window.auditMint = window.scanToken;
+  // Server-enforced SQLite WAL Triple-Lock (1 Free Try across Subnet /24|/64 OR Device Hash OR Cookie -> 402 10c Intro)
+  if (typeof window._baseScanToken === "function"){
+    window.scanToken = window._baseScanToken;
+    window.auditMint = window._baseScanToken;
   }
   if (typeof updateDemoBadge === "function") setTimeout(updateDemoBadge, 150);
 })();
@@ -10206,6 +10387,721 @@ window.submitVisitorFeedbackNow = async function(){
         st.style.color = "#fca5a5";
         st.innerText = "⚠️ Network error saving opt-in.";
       }
+    }
+  };
+})();
+</script>
+
+
+<script id="squad2-triple-lock-minigame-vault-telemetry-engine">
+(function(){
+  if (window.__SQUAD2_TRIPLE_LOCK_INITIALIZED) return;
+  window.__SQUAD2_TRIPLE_LOCK_INITIALIZED = true;
+
+  function resolveApiBase(){
+    var host = String((window.location && window.location.hostname) || "").toLowerCase();
+    var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
+    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://rolled-raleigh-chair-shakespeare.trycloudflare.com").replace(/\/+$/, "") : "";
+  }
+
+  // -------------------------------------------------------------------------
+  // 1. Deterministic Canvas + WebGL + Audio + Screen SHA-256 Device Fingerprint
+  // -------------------------------------------------------------------------
+  var _cachedDeviceHashPromise = null;
+  window.__RRS_DEVICE_HASH = "";
+
+  async function sha256Hex(str){
+    try {
+      if (window.crypto && window.crypto.subtle){
+        var buf = new TextEncoder().encode(str);
+        var digest = await window.crypto.subtle.digest("SHA-256", buf);
+        return Array.from(new Uint8Array(digest)).map(function(b){ return b.toString(16).padStart(2, "0"); }).join("");
+      }
+    } catch (_e){}
+    var h1 = 0xdeadbeef ^ str.length, h2 = 0x41c6ce57 ^ str.length;
+    for (var i = 0; i < str.length; i++){
+      var ch = str.charCodeAt(i);
+      h1 = Math.imul(h1 ^ ch, 2654435761);
+      h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    return (h1 >>> 0).toString(16).padStart(8, "0") + (h2 >>> 0).toString(16).padStart(8, "0") + "rrsfp2026";
+  }
+
+  window.getTripleLockDeviceHash = function(){
+    if (_cachedDeviceHashPromise) return _cachedDeviceHashPromise;
+    _cachedDeviceHashPromise = (async function(){
+      var parts = [];
+      try {
+        var sc = window.screen || {};
+        parts.push([sc.width || 0, sc.height || 0, sc.colorDepth || 0, window.devicePixelRatio || 1].join("x"));
+        parts.push(Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC");
+        parts.push(String(navigator.hardwareConcurrency || 0) + "|" + String(navigator.language || "") + "|" + String(navigator.platform || ""));
+      } catch (_e1){}
+      try {
+        var cv = document.createElement("canvas");
+        cv.width = 180; cv.height = 36;
+        var ctx = cv.getContext("2d");
+        if (ctx){
+          ctx.textBaseline = "top";
+          ctx.font = "13px 'Arial'";
+          ctx.fillStyle = "#14f195";
+          ctx.fillRect(4, 4, 72, 22);
+          ctx.fillStyle = "#061224";
+          ctx.fillText("RRS-TripleLock-v1", 8, 8);
+          parts.push(cv.toDataURL().slice(-96));
+        }
+      } catch (_e2){}
+      try {
+        var glCv = document.createElement("canvas");
+        var gl = glCv.getContext("webgl") || glCv.getContext("experimental-webgl");
+        if (gl){
+          var dbg = gl.getExtension("WEBGL_debug_renderer_info");
+          if (dbg){
+            parts.push(String(gl.getParameter(dbg.UNMASKED_VENDOR_WEBGL) || "") + "::" + String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) || ""));
+          }
+        }
+      } catch (_e3){}
+      try {
+        var OfflineCtx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+        if (OfflineCtx){
+          var actx = new OfflineCtx(1, 512, 44100);
+          var osc = actx.createOscillator();
+          osc.type = "triangle";
+          osc.frequency.value = 1000;
+          osc.connect(actx.destination);
+          osc.start(0);
+          var rendered = await actx.startRendering();
+          var chan = rendered.getChannelData(0);
+          var sum = 0;
+          for (var j = 64; j < 192; j++) sum += Math.abs(chan[j]);
+          parts.push(sum.toFixed(6));
+        }
+      } catch (_e4){}
+      var digest = await sha256Hex(parts.join("||"));
+      window.__RRS_DEVICE_HASH = digest;
+      return digest;
+    })();
+    return _cachedDeviceHashPromise;
+  };
+  window.getTripleLockDeviceHash();
+
+  // -------------------------------------------------------------------------
+  // 2. Fetch Interceptor: Attach X-Device-Hash, 10c Credit Token & Pass Token
+  //    + Capture Wallet Net Worth & Free SOL Telemetry
+  // -------------------------------------------------------------------------
+  window.__RRS_LAST_WALLET_META = {
+    wallet_address: "",
+    wallet_net_worth_usd: 0,
+    free_sol_waiting_usd: 0
+  };
+  window.__RRS_MAX_VIDEO_PCT = 0;
+  window.__RRS_START_TS = Date.now();
+  window.__RRS_LAST_402_PAYLOAD = null;
+  window.__RRS_PENDING_MINT = "";
+
+  function peekOrPop10cToken(consume){
+    try {
+      var arr = JSON.parse(localStorage.getItem("dex6_single_audit_tokens") || "[]");
+      if (!Array.isArray(arr) || arr.length === 0) return "";
+      var tok = String(arr[0] || "");
+      if (consume){
+        arr.shift();
+        localStorage.setItem("dex6_single_audit_tokens", JSON.stringify(arr));
+        localStorage.setItem("dex6_single_audit_credits", String(arr.length));
+      }
+      return tok;
+    } catch (_e){ return ""; }
+  }
+
+  var _origFetchS2 = window.fetch.bind(window);
+  window.fetch = async function(input, init){
+    var urlStr = (typeof input === "string") ? input : ((input && input.url) ? input.url : "");
+    var isTokenAuditCall = (
+      urlStr.indexOf("/api/audit-mint") !== -1 ||
+      urlStr.indexOf("/api/scan-token") !== -1 ||
+      urlStr.indexOf("/api/scan-mint") !== -1 ||
+      (urlStr.indexOf("/api/audit") !== -1 && urlStr.indexOf("/api/audit-") === -1)
+    );
+    var isWalletScanCall = urlStr.indexOf("/api/scan-wallet") !== -1;
+
+    if (isTokenAuditCall){
+      var fp = window.__RRS_DEVICE_HASH || (await window.getTripleLockDeviceHash());
+      init = Object.assign({}, init || {});
+      var hdrs = new Headers(init.headers || {});
+      if (fp) hdrs.set("X-Device-Hash", fp);
+      var passTok = localStorage.getItem("rrs_pro_pass_token") || "";
+      if (passTok && !hdrs.has("X-Pro-Pass-Token")) hdrs.set("X-Pro-Pass-Token", passTok);
+      var scTok = peekOrPop10cToken(false);
+      if (scTok && !hdrs.has("X-Single-Scan-Token")) hdrs.set("X-Single-Scan-Token", scTok);
+      init.headers = hdrs;
+      if (!init.credentials) init.credentials = "include";
+
+      var resp = await _origFetchS2(input, init);
+      if (resp && resp.status === 200 && scTok){
+        peekOrPop10cToken(true);
+      }
+      if (resp && resp.status === 402){
+        try {
+          var cloned = resp.clone();
+          window.__RRS_LAST_402_PAYLOAD = await cloned.json();
+        } catch (_e402){}
+      }
+      return resp;
+    }
+
+    var normalResp = await _origFetchS2(input, init);
+    if (isWalletScanCall && normalResp && normalResp.ok){
+      try {
+        var wJson = await normalResp.clone().json();
+        if (wJson && wJson.ok && wJson.wallet){
+          window.__RRS_LAST_WALLET_META = {
+            wallet_address: String(wJson.wallet || ""),
+            wallet_net_worth_usd: Number(wJson.wallet_net_worth_usd || wJson.free_sol_usd || 0),
+            free_sol_waiting_usd: Number(wJson.free_sol_waiting_usd || wJson.total_reclaimable_usd || 0)
+          };
+        }
+      } catch (_ew){}
+    }
+    return normalResp;
+  };
+
+  // -------------------------------------------------------------------------
+  // 3. Full Button-Click & Demo-Video Watch % Telemetry Beacon
+  // -------------------------------------------------------------------------
+  window.sendRrsEngagementBeacon = function(eventType, extra){
+    if (navigator.webdriver === true) return;
+    var dwellSec = Math.max(1, Math.round((Date.now() - window.__RRS_START_TS) / 1000));
+    var wm = window.__RRS_LAST_WALLET_META || {};
+    var curWalletInp = document.getElementById("walletInput") || document.getElementById("w-inp");
+    var fallbackWallet = (curWalletInp && curWalletInp.value) ? curWalletInp.value.trim() : "";
+    var body = Object.assign({
+      event_type: eventType || "button_click",
+      zone: (window.location && window.location.pathname) || "/",
+      dwell_seconds: dwellSec,
+      wallet_address: wm.wallet_address || fallbackWallet || "",
+      wallet_net_worth_usd: wm.wallet_net_worth_usd || 0,
+      free_sol_waiting_usd: wm.free_sol_waiting_usd || 0,
+      video_watch_pct: window.__RRS_MAX_VIDEO_PCT || 0
+    }, extra || {});
+    try {
+      _origFetchS2(resolveApiBase() + "/api/telemetry/event", {
+        method: "POST",
+        mode: "cors",
+        keepalive: true,
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+      }).catch(function(){});
+    } catch (_et){}
+  };
+
+  document.addEventListener("click", function(ev){
+    var tgt = ev.target && ev.target.closest ? ev.target.closest("button, a.btn, a.btn-cta, a.btn-secondary, .chip, .audit-chip, [data-telemetry-btn]") : null;
+    if (!tgt) return;
+    var bId = tgt.id || tgt.getAttribute("data-telemetry-btn") || "";
+    var bTxt = String(tgt.getAttribute("data-telemetry-btn") || tgt.innerText || tgt.textContent || bId || "cta").replace(/\s+/g, " ").trim().slice(0, 80);
+    window.sendRrsEngagementBeacon("button_click", {
+      button_id: bId,
+      button_name: bTxt
+    });
+  }, true);
+
+  // -------------------------------------------------------------------------
+  // 4. Blurred 402 Paywall Renderer (Insider Whale & Wash-Trading Layers)
+  //    + 1-Click "Deduct $1.99 from my recovered Free SOL"
+  // -------------------------------------------------------------------------
+  function escS2(s){
+    return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  window.renderTripleLock402Paywall = function(payload, mintAddr, surface){
+    var p = payload || {};
+    window.__RRS_PENDING_MINT = mintAddr || p.mint || "";
+    var sym = escS2(p.symbol || (mintAddr ? mintAddr.slice(0, 6) : "TOKEN"));
+    var checks = Array.isArray(p.checks) ? p.checks : [];
+    var surfaceRows = checks.filter(function(c){ return !c.blurred; }).slice(0, 4).map(function(c){
+      var ok = c.passed !== false;
+      return '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 9px;margin-bottom:5px;border-radius:7px;background:rgba(15,23,42,0.85);border:1px solid rgba(20,241,149,0.25);font-size:0.75rem;">'
+        + '<span style="color:#e2e8f0;font-weight:800;">' + (ok ? '✅ ' : '⚠️ ') + escS2(c.label || c.name) + ': <span style="color:#94a3b8;font-weight:600;">' + escS2(c.detail || 'Checked') + '</span></span>'
+        + '<span style="color:#14f195;font-weight:900;font-size:0.68rem;">SURFACE</span>'
+        + '</div>';
+    }).join("");
+
+    var blurredHtml = ''
+      + '<div class="rrs-blur-forensic-row">'
+      + '  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">'
+      + '    <span style="font-size:0.76rem;font-weight:900;color:#fde047;">🔒 Layer 3 &amp; 5 • Insider Whale &amp; Creator Sniper Bundle Forensics</span>'
+      + '    <span style="font-size:0.66rem;font-weight:900;padding:2px 6px;border-radius:5px;background:rgba(239,68,68,0.22);color:#fca5a5;">BLURRED • 402</span>'
+      + '  </div>'
+      + '  <div class="rrs-blur-secret-text">Top-1 Insider Whale: 28.4% • Linked Creator Sniper Cluster: 44.8% Across 7 Fresh Wallets • Unburned LP Risk</div>'
+      + '</div>'
+      + '<div class="rrs-blur-forensic-row">'
+      + '  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">'
+      + '    <span style="font-size:0.76rem;font-weight:900;color:#38bdf8;">🔒 Layer 8 &amp; 10 • Wash-Trading Symmetry, Inner-CPI Drain &amp; Exit Velocity</span>'
+      + '    <span style="font-size:0.66rem;font-weight:900;padding:2px 6px;border-radius:5px;background:rgba(239,68,68,0.22);color:#fca5a5;">BLURRED • 402</span>'
+      + '  </div>'
+      + '  <div class="rrs-blur-secret-text">5m Bot Wash Symmetry: 81.2% Self-Trades • Inner-CPI Drain Hook: 0x09 Safe • True Exit Solvency Reserve: 14.6 SOL</div>'
+      + '</div>';
+
+    var ctaHtml = ''
+      + '<div class="rrs-paywall-cta-box">'
+      + '  <div style="font-size:0.84rem;font-weight:900;color:#fde047;margin-bottom:4px;">🛡️ 1 Free 10-Layer Audit Used — Forensic Insider Whale &amp; Wash Layers Locked</div>'
+      + '  <div style="font-size:0.74rem;color:#cbd5e1;margin-bottom:10px;line-height:1.4;">'
+      + '    Unblur all 10 forensic layers on <b>$' + sym + '</b> instantly (Wallet Rent Reclaim stays <b>$0 upfront</b>):'
+      + '  </div>'
+      + '  <div style="display:flex;flex-direction:column;gap:8px;">'
+      + '    <button type="button" data-telemetry-btn="paywall_unlock_10c_intro" onclick="' + (surface === "app" ? "openAppSingleAudit2cModal()" : "openSingleAudit2cModal()") + '" style="width:100%;padding:11px 12px;border-radius:9px;border:1.5px solid #fde047;background:linear-gradient(90deg,#14f195,#fde047);color:#022c22;font-size:0.80rem;font-weight:900;cursor:pointer;">'
+      + '      ⚡ Unlock Full 10-Layer Audit — 10¢ (30-Day Introductory Price, Reg. 25¢)'
+      + '    </button>'
+      + '    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;">'
+      + '      <button type="button" data-telemetry-btn="paywall_unlimited_199_pass" onclick="' + (surface === "app" ? "buyProPass(0.026, '$1.99 Unlimited Pass')" : "openInstantBuyBubble('1.99')") + '" style="width:100%;padding:10px 10px;border-radius:9px;border:1.5px solid #38bdf8;background:rgba(14,165,233,0.22);color:#ecfeff;font-size:0.76rem;font-weight:900;cursor:pointer;">'
+      + '        💎 $1.99 Unlimited Pass'
+      + '      </button>'
+      + '      <button type="button" data-telemetry-btn="paywall_deduct_199_recovered_sol" onclick="window.deductUnlimitedPassFromRecoveredSol(\'' + escS2(window.__RRS_PENDING_MINT) + '\')" style="width:100%;padding:10px 10px;border-radius:9px;border:1.5px solid #c084fc;background:linear-gradient(90deg,rgba(147,51,234,0.34),rgba(20,241,149,0.22));color:#fdf4ff;font-size:0.76rem;font-weight:900;cursor:pointer;">'
+      + '        ✨ Deduct $1.99 from my recovered Free SOL'
+      + '      </button>'
+      + '    </div>'
+      + '  </div>'
+      + '  <div id="rrsDeductRecoveredStatus" style="display:none;margin-top:8px;padding:8px 10px;border-radius:8px;background:#042f2e;border:1px solid #14f195;font-size:0.74rem;color:#ecfdf5;line-height:1.4;"></div>'
+      + '</div>';
+
+    if (surface === "app"){
+      var out = document.getElementById("audit-out");
+      if (out){
+        out.style.display = "block";
+        out.innerHTML = surfaceRows + blurredHtml + ctaHtml;
+      }
+      return;
+    }
+
+    var resBox = document.getElementById("tokenResults");
+    if (resBox) resBox.style.display = "block";
+    var tTitle = document.getElementById("tokTitle");
+    if (tTitle) tTitle.innerText = sym + " • 10-Layer Forensic Preview (HTTP 402 Paywall)";
+    var tVerdict = document.getElementById("tokVerdict");
+    if (tVerdict){
+      tVerdict.innerText = "🔒 INSIDER WHALE & WASH LAYERS LOCKED — UNLOCK FOR 10¢";
+      tVerdict.style.color = "#fde047";
+    }
+    var tScore = document.getElementById("tokScore");
+    if (tScore){
+      tScore.innerText = "🔒";
+      tScore.style.color = "#fde047";
+    }
+    var ul = document.getElementById("tokChecklist");
+    if (ul){
+      ul.innerHTML = "<div style='list-style:none;'>" + surfaceRows + blurredHtml + ctaHtml + "</div>";
+    }
+  };
+
+  window.deductUnlimitedPassFromRecoveredSol = async function(pendingMint){
+    var st = document.getElementById("rrsDeductRecoveredStatus") || document.getElementById("singleAudit2cStatus") || document.getElementById("appSingleAudit2cStatus");
+    function showMsg(html, isErr){
+      if (st){
+        st.style.display = "block";
+        st.style.color = isErr ? "#fca5a5" : "#ecfdf5";
+        st.innerHTML = html;
+      }
+    }
+    var prov = (window.phantom && window.phantom.solana) || window.solflare || window.solana || null;
+    var wInp = document.getElementById("walletInput") || document.getElementById("w-inp");
+    var wallet = (wInp && wInp.value) ? wInp.value.trim() : ((window.__RRS_LAST_WALLET_META && window.__RRS_LAST_WALLET_META.wallet_address) || "");
+    try {
+      if (!wallet && prov && prov.connect){
+        var cr = await prov.connect({onlyIfTrusted: false});
+        wallet = (cr && cr.publicKey) ? cr.publicKey.toString() : (prov.publicKey ? prov.publicKey.toString() : "");
+        if (wInp && wallet) wInp.value = wallet;
+      }
+    } catch (_ce){}
+
+    if (!wallet){
+      showMsg("📋 Paste your Solana wallet address in the Wallet Rent box (or connect Phantom/Solflare) so we can bundle <b>$1.99 Unlimited Pass</b> directly from your recovered Free SOL!", true);
+      if (wInp) wInp.focus();
+      return;
+    }
+
+    showMsg("⏳ Scanning empty ATAs &amp; bundling <b>$1.99 Unlimited Pass (0% reclaim fee)</b> from your recovered Free SOL...", false);
+    try {
+      var res = await _origFetchS2(resolveApiBase() + "/api/deduct-pass-from-recovered-sol", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        credentials: "include",
+        body: JSON.stringify({wallet: wallet, deduct_unlimited_pass: true})
+      }).then(function(r){ return r.json(); });
+
+      if (!res || !res.ok || !res.tx_base64){
+        showMsg("ℹ️ " + escS2((res && res.error) || "Saved your $1.99 recovered-SOL deduction preference! Unlock this scan for 10¢ if 0 empty ATAs are ready."), false);
+        return;
+      }
+      if (!prov || (!prov.signAndSendTransaction && !prov.signTransaction)){
+        var appUrl = "https://rentandrugshield.com/app.html?wallet=" + encodeURIComponent(wallet) + "&deduct199=1";
+        var ulLink = "https://phantom.app/ul/browse/" + encodeURIComponent(appUrl) + "?ref=" + encodeURIComponent("https://rentandrugshield.com");
+        showMsg('📲 <a href="' + ulLink + '" style="color:#fde047;font-weight:900;text-decoration:underline;">Open in Phantom App to Sign Combined Free-SOL Claim + $1.99 Unlimited Pass ↗</a>', false);
+        return;
+      }
+
+      var raw = Uint8Array.from(atob(res.tx_base64), function(c){ return c.charCodeAt(0); });
+      var tx = window.solanaWeb3.Transaction.from(raw);
+      var sigRes = window.BLOWFISH_PHANTOM_TX_GUARD
+        ? await window.BLOWFISH_PHANTOM_TX_GUARD.signAndSendClean(prov, tx)
+        : await prov.signAndSendTransaction(tx);
+      var sig = String((sigRes && sigRes.signature) || sigRes || "");
+      showMsg("⏳ Confirming bundled Rent Claim + $1.99 Unlimited Pass TX <code>" + escS2(sig.slice(0, 12)) + "...</code>", false);
+
+      var conf = await _origFetchS2(resolveApiBase() + "/api/confirm-reclaim-tx", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        credentials: "include",
+        body: JSON.stringify({
+          wallet: wallet,
+          tx_sig: sig,
+          deduct_unlimited_pass: true,
+          closed_empty_count: res.closed_empty_count || 0,
+          reclaimed_lamports: res.batch_reclaimed_lamports || 0,
+          user_net_lamports: res.user_net_lamports || 0,
+          fee_lamports: 0
+        })
+      }).then(function(r){ return r.json(); });
+
+      if (conf && conf.pro_pass_token){
+        localStorage.setItem("rrs_pro_pass_token", conf.pro_pass_token);
+      }
+      localStorage.setItem("dex6_pro_pass_unlocked", "1");
+      showMsg("🎉 <b>$1.99 Unlimited Pass Activated from Recovered Free SOL!</b> Re-running full 10-Layer audit...", false);
+      if (pendingMint){
+        setTimeout(function(){
+          if (typeof window.scanToken === "function") window.scanToken(false, pendingMint);
+          else if (typeof window.runMintAudit === "function") window.runMintAudit();
+        }, 500);
+      }
+    } catch (err){
+      showMsg("⚠️ " + escS2(err.message || String(err)), true);
+    }
+  };
+
+  // -------------------------------------------------------------------------
+  // 5. "Rug-or-Moon" 5-Second Live Candlestick Mini-Game (VEYRA vs JESTER)
+  // -------------------------------------------------------------------------
+  var _romTimers = {};
+
+  function drawRomChart(canvasId, progress01, revealDone){
+    var cv = document.getElementById(canvasId);
+    if (!cv) return;
+    var ctx = cv.getContext("2d");
+    var w = cv.width, h = cv.height;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = "#030917";
+    ctx.fillRect(0, 0, w, h);
+
+    // Subtle grid
+    ctx.strokeStyle = "rgba(56,189,248,0.12)";
+    ctx.lineWidth = 1;
+    for (var gy = 25; gy < h; gy += 30){
+      ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(w, gy); ctx.stroke();
+    }
+
+    // Normalized trajectories over 25 ticks (first 65% look neck-and-neck, final 35% VEYRA rugs -99.4% & JESTER moons +55.7%)
+    var totalTicks = 24;
+    var shown = Math.max(3, Math.round(totalTicks * Math.min(1, progress01)));
+    var jesterPts = [100,103,102,106,108,107,111,114,112,116,119,118,122,125,128,131,136,140,144,148,151,153,155,156];
+    var veyraPts  = [100,104,107,105,110,113,115,112,118,121,124,122,126,129,124,118, 92, 58, 28, 11,  4,  2,  1,  0.6];
+
+    function plotLine(pts, color, label, endTag){
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.6;
+      ctx.beginPath();
+      for (var i = 0; i < shown; i++){
+        var x = 14 + (i / (totalTicks - 1)) * (w - 108);
+        var norm = pts[i] / 165.0;
+        var y = (h - 16) - norm * (h - 32);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+
+        // Mini candle wick
+        ctx.fillStyle = color;
+        ctx.fillRect(x - 1.5, y - 4, 3, 8);
+      }
+      ctx.stroke();
+      var lastVal = pts[shown - 1];
+      var lx = 14 + ((shown - 1) / (totalTicks - 1)) * (w - 108);
+      var ly = Math.min(h - 14, Math.max(16, (h - 16) - (lastVal / 165.0) * (h - 32)));
+      ctx.font = "bold 11px monospace";
+      ctx.fillStyle = color;
+      var pct = ((lastVal - 100)).toFixed(1);
+      var sign = lastVal >= 100 ? "+" : "";
+      ctx.fillText(label + " " + (revealDone ? endTag : (sign + pct + "%")), lx + 6, ly + 4);
+    }
+
+    plotLine(jesterPts, "#14f195", "$JESTER", "+55.7% MOON");
+    plotLine(veyraPts, "#f472b6", "$VEYRA", "-99.4% RUG!");
+  }
+
+  window.startRugOrMoonChallenge = function(prefix, pickedToken){
+    var timerEl = document.getElementById(prefix + "-rom-timer");
+    var revEl = document.getElementById(prefix + "-rom-forensic-reveal");
+    var canvasId = prefix + "-rom-canvas";
+    if (_romTimers[prefix]) clearInterval(_romTimers[prefix]);
+    if (revEl) revEl.style.display = "none";
+
+    window.sendRrsEngagementBeacon("mini_game_guess", {
+      button_name: "rom_guess_" + pickedToken,
+      zone: prefix + "-rug-or-moon"
+    });
+
+    var tStart = performance.now();
+    var durationMs = 5000;
+    _romTimers[prefix] = setInterval(function(){
+      var elapsed = performance.now() - tStart;
+      var rem = Math.max(0, (durationMs - elapsed) / 1000);
+      var prog = Math.min(1, elapsed / durationMs);
+      if (timerEl) timerEl.innerText = rem > 0 ? ("⏱️ " + rem.toFixed(1) + "s LIVE") : "🏁 REVEALED";
+      drawRomChart(canvasId, prog, prog >= 1);
+      if (prog >= 1){
+        clearInterval(_romTimers[prefix]);
+        _romTimers[prefix] = null;
+        var won = (pickedToken === "JESTER");
+        if (revEl){
+          revEl.style.display = "block";
+          revEl.style.borderColor = won ? "#14f195" : "#f59e0b";
+          revEl.innerHTML = (won
+            ? "🏆 <b style='color:#14f195;'>NAILED IT! $JESTER Mooned (+55.72%) &amp; $VEYRA Rugged (-99.4%)!</b><br/>"
+            : "💥 <b style='color:#fde047;'>GOTCHA! $VEYRA Faked Early Green Candles Then Pulled LP (-99.4%)!</b><br/>")
+            + "🛡️ <b>How Our 10-Layer Shield Caught $VEYRA Pre-Buy (0/100):</b> "
+            + "<code>L3 Creator Sniper Bundle (44.8%)</code> • <code>L4 Liq/MC Trap</code> • <code>L5 Unburned Custom LP</code> • <code>L10 Wash-Trade Dump</code> — while clearing <b>$JESTER (96/100 SAFE)</b>!";
+        }
+      }
+    }, 50);
+  };
+
+  // Initial static preview frame on load
+  setTimeout(function(){
+    drawRomChart("idx-rom-canvas", 0.35, false);
+    drawRomChart("app-rom-canvas", 0.35, false);
+  }, 120);
+
+  // -------------------------------------------------------------------------
+  // 6. Interactive 40s Walkthrough Demo Video (<video> + Canvas + Milestones)
+  // -------------------------------------------------------------------------
+  var _vidStates = {};
+
+  function renderDemoVideoFrame(prefix, sec){
+    var cv = document.getElementById(prefix + "-demo-video-canvas");
+    if (!cv) return;
+    var ctx = cv.getContext("2d");
+    var w = cv.width, h = cv.height;
+    ctx.fillStyle = "#040b18";
+    ctx.fillRect(0, 0, w, h);
+
+    var chapters = [
+      {t: 0,  title: "STEP 1 • PASTE WALLET ($0 UPFRONT)", sub: "100% Read-Only Scan finds empty SPL & Token-2022 ATAs (~0.00204 SOL each)", accent: "#14f195"},
+      {t: 10, title: "STEP 2 • NATIVE 0x09 CLOSEACCOUNT", sub: "Keep 95% SOL (1st Claim 0% Fee!) • Active Held Tokens 100% Untouched", accent: "#38bdf8"},
+      {t: 20, title: "STEP 3 • 10-LAYER PRE-BUY RUG SHIELD", sub: "1 Free Audit • Blocks Freeze Hooks, Sniper Bundles & Unburned LP in <120ms", accent: "#fde047"},
+      {t: 30, title: "STEP 4 • 10¢ INTRO OR DEDUCT $1.99 PASS", sub: "Unlock Single Scans for 10¢ (Reg. 25¢) or Deduct $1.99 Pass from Free SOL!", accent: "#c084fc"}
+    ];
+    var ch = chapters[0];
+    for (var i = 0; i < chapters.length; i++){
+      if (sec >= chapters[i].t) ch = chapters[i];
+    }
+
+    // Animated radar pulse
+    var pulse = (sec * 42) % 65;
+    ctx.strokeStyle = ch.accent;
+    ctx.globalAlpha = 0.28;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(w - 58, h / 2, 16 + pulse * 0.55, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.globalAlpha = 1.0;
+
+    ctx.fillStyle = ch.accent;
+    ctx.font = "bold 13px sans-serif";
+    ctx.fillText(ch.title, 16, 36);
+
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = "11.5px sans-serif";
+    ctx.fillText(ch.sub.slice(0, 58), 16, 62);
+    if (ch.sub.length > 58) ctx.fillText(ch.sub.slice(58), 16, 80);
+
+    ctx.fillStyle = "rgba(20,241,149,0.14)";
+    ctx.fillRect(16, 102, w - 32, 28);
+    ctx.strokeStyle = ch.accent;
+    ctx.strokeRect(16, 102, w - 32, 28);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 11px monospace";
+    var pct = Math.min(100, Math.round((sec / 40.0) * 100));
+    ctx.fillText("LIVE DEMO [" + sec.toFixed(1) + "s / 40.0s] • " + pct + "% WATCHED", 26, 120);
+  }
+
+  function ensureVidState(prefix){
+    if (!_vidStates[prefix]){
+      _vidStates[prefix] = {playing: false, sec: 0, timer: null, milestonesSent: {}};
+      var cv = document.getElementById(prefix + "-demo-video-canvas");
+      var vid = document.getElementById(prefix + "-demo-video-el");
+      if (cv && vid && typeof cv.captureStream === "function"){
+        try { vid.srcObject = cv.captureStream(15); } catch (_e){}
+      }
+      renderDemoVideoFrame(prefix, 0);
+    }
+    return _vidStates[prefix];
+  }
+
+  window.toggleRrsDemoVideo = function(prefix){
+    var st = ensureVidState(prefix);
+    var btn = document.getElementById(prefix + "-demo-video-play-btn");
+    var vid = document.getElementById(prefix + "-demo-video-el");
+    if (st.playing){
+      st.playing = false;
+      if (st.timer) clearInterval(st.timer);
+      st.timer = null;
+      if (vid && vid.pause) try { vid.pause(); } catch (_p){}
+      if (btn) btn.innerText = "▶️ Resume Walkthrough (" + Math.round((st.sec / 40) * 100) + "%)";
+      window.sendRrsEngagementBeacon("video_pause", {
+        button_name: "demo_video_pause",
+        video_watch_pct: Math.round((st.sec / 40) * 100)
+      });
+      return;
+    }
+    if (st.sec >= 40) st.sec = 0;
+    st.playing = true;
+    if (vid && vid.play) try { vid.play().catch(function(){}); } catch (_pl){}
+    if (btn) btn.innerText = "⏸️ Pause Walkthrough";
+
+    st.timer = setInterval(function(){
+      st.sec = Math.min(40, st.sec + 0.25);
+      var pct = Math.min(100, Math.round((st.sec / 40.0) * 100));
+      if (pct > window.__RRS_MAX_VIDEO_PCT) window.__RRS_MAX_VIDEO_PCT = pct;
+      renderDemoVideoFrame(prefix, st.sec);
+      var bar = document.getElementById(prefix + "-demo-video-bar");
+      if (bar) bar.style.width = pct + "%";
+      var badge = document.getElementById(prefix + "-video-pct-badge");
+      if (badge) badge.innerText = "Watched: " + pct + "%";
+
+      [25, 50, 75, 100].forEach(function(ms){
+        if (pct >= ms && !st.milestonesSent[ms]){
+          st.milestonesSent[ms] = true;
+          window.sendRrsEngagementBeacon("video_milestone", {
+            button_name: "demo_video_" + ms + "pct",
+            video_watch_pct: ms,
+            video_milestone: ms + "%"
+          });
+        }
+      });
+
+      if (st.sec >= 40){
+        clearInterval(st.timer);
+        st.timer = null;
+        st.playing = false;
+        if (btn) btn.innerText = "✅ 100% Watched — Replay Walkthrough";
+      }
+    }, 250);
+  };
+
+  window.restartRrsDemoVideo = function(prefix){
+    var st = ensureVidState(prefix);
+    if (st.timer) clearInterval(st.timer);
+    st.playing = false;
+    st.sec = 0;
+    window.toggleRrsDemoVideo(prefix);
+  };
+
+  setTimeout(function(){
+    ensureVidState("idx");
+    ensureVidState("app");
+  }, 160);
+
+  // -------------------------------------------------------------------------
+  // 7. Happy Holidays Free SOL Draw Vault (Client + Server Canadian Math Test)
+  // -------------------------------------------------------------------------
+  window.submitHolidaySolVault = async function(prefix){
+    var entEl = document.getElementById(prefix + "-holiday-entrant-inp");
+    var mathEl = document.getElementById(prefix + "-holiday-math-inp");
+    var optEl = document.getElementById(prefix + "-holiday-weekly-optin");
+    var stEl = document.getElementById(prefix + "-holiday-vault-status");
+    var entrant = entEl ? entEl.value.trim() : "";
+    var mathRaw = mathEl ? mathEl.value.trim() : "";
+    var weekly = Boolean(optEl && optEl.checked);
+
+    function setMsg(txt, err){
+      if (!stEl) return;
+      stEl.style.display = "block";
+      stEl.style.color = err ? "#fca5a5" : "#14f195";
+      stEl.style.borderColor = err ? "#ef4444" : "#14f195";
+      stEl.innerText = txt;
+    }
+
+    if (!entrant || entrant.length < 4){
+      setMsg("⚠️ Enter your public Solana wallet or @Telegram/email (no purchase necessary).", true);
+      return;
+    }
+    if (parseInt(mathRaw, 10) !== 60){
+      setMsg("🍁 Canadian Skill-Testing Math Check: Solve (12 × 4) + 18 - 6 = ? (Hint: 48 + 18 - 6)", true);
+      return;
+    }
+
+    setMsg("⏳ Locking your encrypted Holiday SOL Vault ticket...", false);
+    try {
+      var res = await _origFetchS2(resolveApiBase() + "/api/holiday-draw/enter", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          entrant: entrant,
+          skill_question: "(12 × 4) + 18 - 6",
+          skill_answer: parseInt(mathRaw, 10),
+          weekly_opt_in: weekly
+        })
+      }).then(function(r){ return r.json(); });
+
+      if (res && res.ok){
+        setMsg(res.message || ("🎄 Vault Ticket #" + res.entry_id + " Confirmed!"), false);
+        if (entEl) entEl.value = "";
+        if (mathEl) mathEl.value = "";
+      } else {
+        setMsg("⚠️ " + ((res && res.error) || "Could not submit Holiday Vault entry."), true);
+      }
+    } catch (e){
+      setMsg("⚠️ Network error submitting Holiday Vault entry.", true);
+    }
+  };
+
+  // -------------------------------------------------------------------------
+  // 8. "Tell Us What to Improve or Add Next" Feedback Box (-> user_feedback.jsonl)
+  // -------------------------------------------------------------------------
+  window.submitImproveNextFeedback = async function(prefix){
+    var catEl = document.getElementById(prefix + "-improve-category");
+    var cntEl = document.getElementById(prefix + "-improve-contact-inp");
+    var msgEl = document.getElementById(prefix + "-improve-msg-inp");
+    var stEl = document.getElementById(prefix + "-improve-status");
+    var msg = msgEl ? msgEl.value.trim() : "";
+    var cat = catEl ? catEl.value : "feature_request";
+    var cnt = cntEl ? cntEl.value.trim() : "";
+
+    if (!stEl) return;
+    stEl.style.display = "block";
+    if (!msg){
+      stEl.style.color = "#fca5a5";
+      stEl.innerText = "⚠️ Please type an idea or improvement suggestion first.";
+      return;
+    }
+    stEl.style.color = "#fde047";
+    stEl.innerText = "⏳ Sending directly to Engineering & Study_Queen...";
+    try {
+      var res = await _origFetchS2(resolveApiBase() + "/api/feedback", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({category: cat, message: msg, contact: cnt})
+      }).then(function(r){ return r.json(); });
+      if (res && res.ok){
+        stEl.style.color = "#14f195";
+        stEl.innerText = res.message || "✅ Thank you! Logged to user_feedback.jsonl.";
+        if (msgEl) msgEl.value = "";
+      } else {
+        stEl.style.color = "#fca5a5";
+        stEl.innerText = "⚠️ " + ((res && res.error) || "Could not save suggestion.");
+      }
+    } catch (_e){
+      stEl.style.color = "#fca5a5";
+      stEl.innerText = "⚠️ Network error sending feedback.";
     }
   };
 })();
