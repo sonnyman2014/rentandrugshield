@@ -1,5 +1,5 @@
-/* Solana Rent & Rug Shield - 11-Layer Adaptive Self-Refreshing Service Worker v311 */
-const CACHE_NAME = 'rent-shield-v311-11layer-carbon-high';
+/* Solana Rent & Rug Shield - 11-Layer Adaptive Self-Refreshing Service Worker v314 */
+const CACHE_NAME = 'rent-shield-v314-11layer-live-ticker';
 const IMMUTABLE_ICONS = ['/icon-192.png', '/icon-512.png', '/shield-app-icon.svg'];
 
 self.addEventListener('install', (event) => {
@@ -21,7 +21,7 @@ self.addEventListener('activate', (event) => {
       .then((clients) => {
         for (const client of clients) {
           try {
-            client.postMessage({ type: 'RRS_SW_ACTIVATED', cache: CACHE_NAME, version: 311 });
+            client.postMessage({ type: 'RRS_SW_ACTIVATED', cache: CACHE_NAME, version: 314 });
           } catch (_e) {}
         }
       })
@@ -48,7 +48,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Never intercept cross-origin requests (Cloudflare live tunnel APIs, Google Fonts, Solscan, RPCs)
+  // Never intercept cross-origin requests (Cloudflare live tunnel APIs, DexScreener, Google Fonts, Solscan, RPCs)
   if (url.origin !== self.location.origin) {
     return;
   }
