@@ -1,11 +1,14 @@
-/* Solana Rent & Rug Shield - Self-Refreshing Service Worker v306 */
-const CACHE_NAME = 'rent-shield-v306-carbon-live';
+/* Solana Rent & Rug Shield - 11-Layer Adaptive Self-Refreshing Service Worker v311 */
+const CACHE_NAME = 'rent-shield-v311-11layer-carbon-high';
 const IMMUTABLE_ICONS = ['/icon-192.png', '/icon-512.png', '/shield-app-icon.svg'];
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(IMMUTABLE_ICONS).catch(() => {}))
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))))
+      .then(() => caches.open(CACHE_NAME))
+      .then((cache) => cache.addAll(IMMUTABLE_ICONS).catch(() => {}))
   );
 });
 
@@ -18,7 +21,7 @@ self.addEventListener('activate', (event) => {
       .then((clients) => {
         for (const client of clients) {
           try {
-            client.postMessage({ type: 'RRS_SW_ACTIVATED', cache: CACHE_NAME });
+            client.postMessage({ type: 'RRS_SW_ACTIVATED', cache: CACHE_NAME, version: 311 });
           } catch (_e) {}
         }
       })
@@ -50,7 +53,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Never cache HTML documents, JSON manifests/live_endpoint, JS bundles, or /api/* routes
+  // Never cache HTML documents, JSON manifests/live_endpoint, txt docs, JS bundles, or /api/* routes
   if (
     req.method !== 'GET' ||
     req.mode === 'navigate' ||
@@ -59,6 +62,7 @@ self.addEventListener('fetch', (event) => {
     url.pathname.startsWith('/.well-known/') ||
     url.pathname.endsWith('.html') ||
     url.pathname.endsWith('.json') ||
+    url.pathname.endsWith('.txt') ||
     url.pathname.endsWith('.js')
   ) {
     event.respondWith(fetch(req, { cache: 'no-store' }));

@@ -123,10 +123,10 @@
     {
       "path": "/api/v1/shield-check",
       "method": "POST",
-      "tool": "audit_solana_token_10_layer",
+      "tool": "audit_solana_token",
       "url": "https://rentandrugshield.com/api/v1/shield-check",
       "liveUrl": "https://expires-beatles-rainbow-penny.trycloudflare.com/api/v1/shield-check",
-      "description": "Sub-120ms 10-layer Solana SPL & Token-2022 pre-buy anti-rug safety gate."
+      "description": "Sub-120ms 11-layer Solana SPL & Token-2022 pre-buy anti-rug safety gate."
     },
     {
       "path": "/api/v1/simulate-tx",

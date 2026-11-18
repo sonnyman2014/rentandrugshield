@@ -13,7 +13,7 @@
     "io.github.sonnyman2014/solana-rent-rug-shield-mcp"
   ],
   "title": "Solana Rent & Rug Shield MCP Gateway",
-  "description": "Solana pre-buy 10-layer token rug audit (<120ms), Layer-9 Inner-CPI transaction drain simulator, and read-only unclaimed ATA SOL rent scanner via zero-install Streamable HTTP MCP and native Solana x402 auto-pay.",
+  "description": "Solana pre-buy 11-layer token rug audit (<120ms), Layer-9 Inner-CPI transaction drain simulator, and read-only unclaimed ATA SOL rent scanner via zero-install Streamable HTTP MCP and native Solana x402 auto-pay.",
   "version": "1.0.0",
   "websiteUrl": "https://rentandrugshield.com",
   "repository": {
@@ -77,9 +77,9 @@
   },
   "tools": [
     {
-      "name": "audit_solana_token_10_layer",
-      "title": "Solana 10-Layer Pre-Buy Token Anti-Rug Audit (<120ms)",
-      "description": "<120ms pre-buy 10-layer Solana token safety gate over persistent keep-alive connections. Audits mint/freeze authorities, Token-2022 extensions (transfer fee, permanent delegate, transfer hook, default frozen), LP lock/burn status, top holder cluster concentration, exit liquidity solvency, Layer-8/9 Inner-CPI rent traps, pool age, and orderflow velocity. Includes 2 free pings and Solana x402 auto-upgrade.",
+      "name": "audit_solana_token",
+      "title": "Solana 11-Layer Adaptive Pre-Buy Token Anti-Rug Audit (<120ms)",
+      "description": "<120ms pre-buy 11-layer Solana token safety gate over persistent keep-alive connections. Audits mint/freeze authorities, Token-2022 extensions (transfer fee, permanent delegate, transfer hook, default frozen), LP lock/burn status, top holder cluster concentration, exit liquidity solvency, Layer-8/9 Inner-CPI rent traps, pool age, and orderflow velocity. Includes 2 free pings and Solana x402 auto-upgrade.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -114,7 +114,7 @@
         "additionalProperties": false
       },
       "annotations": {
-        "title": "10-Layer Solana Token Rug & Token-2022 Audit",
+        "title": "11-Layer Solana Token Rug & Token-2022 Audit",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
