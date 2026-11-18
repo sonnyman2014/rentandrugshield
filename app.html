@@ -1270,7 +1270,7 @@
 (function() {
   var SW_VER = "306-carbon";
   var EXPECTED_CACHE = "rent-shield-v306-carbon-live";
-  var ACTIVE_TUNNEL = "https://opinion-unit-filling-boc.trycloudflare.com";
+  var ACTIVE_TUNNEL = "https://expires-beatles-rainbow-penny.trycloudflare.com";
   try {
     for (var sIdx = 0; sIdx < 2; sIdx++) {
       var st = sIdx === 0 ? window.localStorage : window.sessionStorage;
@@ -2027,7 +2027,7 @@
     // 0. LIVE BACKEND TUNNEL ROUTING (WORKS ON BOTH rentandrugshield.com & 8088)
     // =========================================================================
     var _IS_STATIC_APP_HOST = (window.location.hostname.indexOf("rentandrugshield.com") !== -1 || window.location.hostname.indexOf("github.io") !== -1);
-    var BACKEND_TUNNEL_BASE = _IS_STATIC_APP_HOST ? "https://opinion-unit-filling-boc.trycloudflare.com" : "";
+    var BACKEND_TUNNEL_BASE = _IS_STATIC_APP_HOST ? "https://expires-beatles-rainbow-penny.trycloudflare.com" : "";
     window.BACKEND_TUNNEL_BASE = BACKEND_TUNNEL_BASE;
     (function syncAppLiveEndpoint() {
       var rawFetch = window.fetch ? window.fetch.bind(window) : null;
@@ -3229,7 +3229,7 @@
     function resolveHbEndpoint(){
       var host = String((window.location && window.location.hostname) || "").toLowerCase();
       var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://opinion-unit-filling-boc.trycloudflare.com").replace(/\/+$/, "") : "";
+      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://expires-beatles-rainbow-penny.trycloudflare.com").replace(/\/+$/, "") : "";
       return base + "/api/human-telemetry";
     }
     function sendPassiveHeartbeat(evName, deltaSec){
@@ -3294,7 +3294,7 @@
       try {
         var host = String((window.location && window.location.hostname) || "").toLowerCase();
         var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-        var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://opinion-unit-filling-boc.trycloudflare.com").replace(/\/+$/, "") : "";
+        var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://expires-beatles-rainbow-penny.trycloudflare.com").replace(/\/+$/, "") : "";
         var res = await fetch(base + "/api/opt-in-alerts", {
           method: "POST",
           mode: "cors",
@@ -3341,7 +3341,7 @@
   function resolveApiBase(){
     var host = String((window.location && window.location.hostname) || "").toLowerCase();
     var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://opinion-unit-filling-boc.trycloudflare.com").replace(/\/+$/, "") : "";
+    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://expires-beatles-rainbow-penny.trycloudflare.com").replace(/\/+$/, "") : "";
   }
 
   // -------------------------------------------------------------------------
