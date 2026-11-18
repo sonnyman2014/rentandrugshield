@@ -1544,7 +1544,7 @@
 </style>
 </head>
 <body>
-  <!-- SLEEK COMPACT BRAND HEADER (GS VIDEO SPEC) -->
+  <!-- SLEEK COMPACT BRAND HEADER -->
   <header class="topbar rrs-sleek-header">
     <div class="rrs-header-inner">
       <div class="rrs-brand-wrap">
@@ -1561,10 +1561,16 @@
 
   <!-- SINGLE SLIM ACTION BAR (ZERO STACKED BANNERS) -->
   <div id="slimHeroActionBar" class="rrs-slim-action-bar" role="navigation" aria-label="Quick Actions">
-    <span class="rrs-slim-motto">⛓️ Don't Trust Markets, Verify On-Chain</span>
+    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+      <span class="rrs-slim-motto">⛓️ Don't Trust Markets, Verify On-Chain</span>
+      <span id="nonCustodialTrustBadge" style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(16, 185, 129, 0.16); border:1px solid #10B981; color:#A7F3D0; font-size:0.82rem; font-weight:700;">🛡️ Non-Custodial SPL CloseAccount • Zero Blind Approvals</span>
+    </div>
     <div class="rrs-slim-pills" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-      <button type="button" id="prop-video-tour-btn" class="rrs-watch-demo-bubble" onclick="window.openWatchDemoModal()">🎬 Watch Demo</button>
+      <button type="button" id="prop-video-tour-btn" class="rrs-watch-demo-bubble" onclick="if(window.startInteractiveCursorTour) window.startInteractiveCursorTour();">🎬 Watch Demo</button>
+      <a href="/enterprise-api.html" id="topEnterpriseApiBtn" style="min-height:38px; padding:6px 12px; border-radius:999px; border:1.5px solid #38BDF8; background:rgba(56, 189, 248, 0.16); color:#E0F2FE; font-size:0.85rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center;">🏢 $500/mo Enterprise API</a>
+      <a href="#tokenPromoteAdBanner" style="min-height:38px; padding:6px 11px; border-radius:999px; border:1px solid rgba(250, 204, 21, 0.65); background:rgba(245, 158, 11, 0.14); color:#FEF08A; font-size:0.84rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center;">📢 Advertise</a>
       <button type="button" id="addAppNavBtn" class="rrs-mobile-app-pill" onclick="triggerAutoAddAppIndex()">📱 Mobile App</button>
+      <a href="/enterprise-api.html" id="enterpriseApiTopPill" class="rrs-hdr-badge" style="text-decoration:none; border:1.5px solid #38BDF8; background:rgba(14,165,233,0.18); color:#E0F2FE; font-weight:700; padding:6px 12px; border-radius:999px; font-size:0.84rem;">🏢 Enterprise API ($500/mo)</a>
     </div>
   </div>
 
@@ -1611,10 +1617,12 @@
           <button type="button" id="burnerScanBtn" onclick="window.__explicitUserWalletScan=true; scanWallet(null, 'burner')" style="min-height:38px; padding:6px 12px; border-radius:8px; border:1px solid rgba(245,158,11,0.55); background:rgba(245,158,11,0.14); color:#FDE68A; font-size:0.85rem; font-weight:600; cursor:pointer;">
             🔥 Scan Burnable Dust Tokens
           </button>
-          <button type="button" id="panel1DisconnectWalletBtn" onclick="disconnectAndClearWallet()" style="display:none; min-height:38px; padding:6px 12px; border-radius:8px; border:1px solid #EF4444; background:rgba(239,68,68,0.14); color:#FCA5A5; font-size:0.85rem; font-weight:600; cursor:pointer;">
-            🔌 Disconnect
+          <button type="button" id="panel1DisconnectWalletBtn" onclick="disconnectAndClearWallet()" style="display:inline-flex; align-items:center; gap:5px; min-height:38px; padding:6px 12px; border-radius:8px; border:1px solid #EF4444; background:rgba(239,68,68,0.14); color:#FCA5A5; font-size:0.85rem; font-weight:600; cursor:pointer;">
+            🔌 Disconnect Wallet
           </button>
         </div>
+
+        <div id="walletDisconnectedBadge" role="status" style="display:none; background:rgba(16, 185, 129, 0.14); border:1.5px solid #10B981; border-radius:9px; padding:8px 12px; font-size:0.88rem; font-weight:700; color:#6EE7B7; text-align:center;"></div>
 
         <div id="indexMobileWalletDeepLinks" style="display:none; grid-template-columns:1fr 1fr; gap:8px;">
           <a id="indexPhantomDeepLinkBtn" href="https://phantom.app/ul/browse/https%3A%2F%2Frentandrugshield.com%2Fapp.html%3Fautoscan%3D1?ref=https%3A%2F%2Frentandrugshield.com" onclick="return window.openIndexWalletDeepLink('phantom', event);" style="min-height:42px; padding:8px; border-radius:9px; border:1px solid #C4B5FD; background:rgba(124,58,237,0.28); color:#F8FAFC; font-size:0.86rem; font-weight:600; text-align:center; text-decoration:none; display:flex; align-items:center; justify-content:center;">
@@ -1699,6 +1707,14 @@
         <p style="margin:0; font-size:0.94rem; line-height:1.5; color:#CBD5E1;">
           Audits Mint &amp; Freeze Authorities, Creator Sniper Bundles, LP Burn Locks, Token-2022 Hooks &amp; Inner-CPI Drains in under 120ms.
         </p>
+
+        <!-- 4 UNIQUE 10-LAYER ADVANTAGES BADGE GRID -->
+        <div id="scanner2Unique4Badges" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:6px; margin:2px 0;">
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(16, 185, 129, 0.14); border:1px solid rgba(16, 185, 129, 0.55); color:#6EE7B7; font-size:0.78rem; font-weight:700; line-height:1.25;">⚡ Live Jupiter Sell-Side Honeypot Sim</span>
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(56, 189, 248, 0.14); border:1px solid rgba(56, 189, 248, 0.55); color:#7DD3FC; font-size:0.78rem; font-weight:700; line-height:1.25;">🔒 Token-2022 Tax/Hook &amp; Delegate Guard</span>
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(245, 158, 11, 0.15); border:1px solid rgba(245, 158, 11, 0.55); color:#FDE68A; font-size:0.78rem; font-weight:700; line-height:1.25;">🔥 Unburned Custom-LP Pull Guard</span>
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(168, 85, 247, 0.16); border:1px solid rgba(192, 132, 252, 0.55); color:#E9D5FF; font-size:0.78rem; font-weight:700; line-height:1.25;">🛡️ Inner-CPI Drainer Sim</span>
+        </div>
 
         <div class="input-row" style="display:flex; gap:8px; align-items:stretch; flex-wrap:wrap; margin:0;">
           <input
@@ -1807,79 +1823,47 @@
           <button type="button" class="choice-a-btn" onclick="(function(){ if('index'==='app' && typeof switchNativeTab==='function') switchNativeTab('claim'); var el=document.getElementById('walletInput'); if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.focus(); } })()" style="border:1px solid #10B981; background:rgba(16, 185, 129,0.12); color:#10B981;">Scan Wallet Above</button>
         </div>
       </div>
+      <div style="margin-top:12px; padding:11px 14px; border-radius:11px; background:linear-gradient(90deg, rgba(14,165,233,0.14), rgba(16,185,129,0.14)); border:1px solid rgba(56,189,248,0.5); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div style="font-size:0.88rem; color:#E2E8F0;">🏢 <b style="color:#7DD3FC;">Enterprise B2B Solana Security API ($500/mo):</b> Dedicated 100+ RPS 10-Layer Rug Scoring, live <code>/audit/&lt;mint&gt;</code> feeds, MCP Server &amp; 99.95% SLA.</div>
+        <a href="/enterprise-api.html" style="padding:7px 14px; border-radius:8px; border:1.5px solid #10B981; background:linear-gradient(90deg,#059669,#10B981); color:#022C22; font-size:0.85rem; font-weight:800; text-decoration:none; white-space:nowrap;">Explore $500/mo B2B API →</a>
+      </div>
     </section>
 
-    <!-- ROW #3: VERIFIED FULL-CYCLE ON-CHAIN EXIT & RENT RECLAIM FEED -->
-    <section id="verifiedFullCycleFeedSection" aria-label="Verified Full-Cycle On-Chain Exit and Rent Reclaim Feed" style="margin-bottom:20px;">
-      <div class="grid-2" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:16px; margin-bottom:16px; align-items:start;">
-        <!-- FULL-CYCLE ON-CHAIN EXITS & PRE-BUY BLOCKED RUGS -->
-        <div id="liveAutonomousFleetRadarBox" class="card" style="background:#0E1626; border:1px solid rgba(16, 185, 129,0.4); border-radius:14px; padding:16px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #1E293B;">
-            <span style="font-size:0.98rem; font-weight:700; color:#10B981;">⛓️ Verified Full-Cycle On-Chain Exits</span>
-            <span id="fleetRadarPulseBadge" class="jb-mono" style="font-size:0.82rem; color:#CBD5E1; background:#0F172A; border:1px solid #1E293B; padding:4px 10px; border-radius:999px;"><span id="liveStreamPstClock">Immutable Solana BlockTime</span></span>
+    <!-- ROW #3: VERIFIED WALLET RENT RECLAIMS (LEFT) & FULL-CYCLE ON-CHAIN TOKEN EXITS (RIGHT) -->
+    <section id="verifiedFullCycleFeedSection" aria-label="Verified Wallet Rent Reclaims and Full-Cycle On-Chain Token Exits" style="margin-bottom:20px;">
+      <!-- SLEEK PROMOTE / ADVERTISE YOUR SOLANA TOKEN INQUIRY BANNER -->
+      <div id="tokenPromoteAdBanner" style="margin-bottom:14px; padding:12px 16px; border-radius:12px; background:linear-gradient(90deg, rgba(16, 185, 129, 0.18) 0%, rgba(245, 158, 11, 0.18) 50%, rgba(56, 189, 248, 0.16) 100%); border:1.5px solid rgba(245, 158, 11, 0.65); box-shadow:0 6px 22px rgba(0,0,0,0.42);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <span style="padding:3px 9px; border-radius:999px; background:rgba(245,158,11,0.24); border:1px solid #FBBF24; color:#FEF08A; font-size:0.76rem; font-weight:800; letter-spacing:0.03em;">FEATURED AD SLOT</span>
+            <span style="font-size:0.95rem; font-weight:800; color:#F8FAFC;">🚀 Promote / Advertise Your Solana Token on Rent &amp; Rug Shield</span>
+            <span style="font-size:0.84rem; color:#CBD5E1;">Verified 80+ Shield Score tokens only • Reach active Solana traders &amp; AI agents</span>
           </div>
-          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; text-align:center; margin-bottom:10px;">
-            <div style="background:#0F172A; border:1px solid #1E293B; border-radius:9px; padding:8px 6px;">
-              <div style="font-size: 0.85rem; color:#CBD5E1; font-weight:600;">Rugs Blocked</div>
-              <div id="radarTrapsBlockedVal" class="jb-mono" style="font-size:0.92rem; font-weight:600; color:#FDE047; margin-top:2px;">Verified Live</div>
-            </div>
-            <div style="background:#0F172A; border:1px solid #1E293B; border-radius:9px; padding:8px 6px;">
-              <div style="font-size: 0.85rem; color:#CBD5E1; font-weight:600;">Treasury Proof</div>
-              <div id="radarPoolsAuditedVal" class="jb-mono" style="font-size:0.92rem; font-weight:600; color:#10B981; margin-top:2px;">89Sv...nKK1</div>
-            </div>
-            <div style="background:#0F172A; border:1px solid #1E293B; border-radius:9px; padding:8px 6px;">
-              <div style="font-size: 0.85rem; color:#CBD5E1; font-weight:600;">RPC Latency</div>
-              <div id="radarGateLatencyVal" class="jb-mono" style="font-size:0.92rem; font-weight:600; color:#38BDF8; margin-top:2px;">Helius Mainnet</div>
-            </div>
-          </div>
-          <div id="radarLiveTickerRow" style="font-size:0.85rem; color:#CBD5E1; background:#0F172A; border:1px solid #1E293B; border-radius:8px; padding:8px 10px; margin-bottom:10px; white-space:normal; line-height:1.45;">
-            Every trade receipt below links to a confirmed 87/88-char Solana Mainnet transaction signature executed by treasury <code class="jb-mono" style="color:#10B981;">89Sv5F...nKK1</code>.
-          </div>
-          <div id="liveTradesTallScrollWrap" style="overflow-x:auto; max-height:460px; overflow-y:auto; background:#060A12; border:1px solid #1E293B; border-radius:10px; padding:6px;">
-            <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
-              <thead style="position:sticky; top:0; background:#060A12; z-index:2;">
-                <tr style="border-bottom:1px solid #1E293B; color:#CBD5E1; text-align:left;">
-                  <th style="padding:7px;">BLOCK TIME</th>
-                  <th style="padding:7px;">TOKEN / MINT</th>
-                  <th style="padding:7px;">SHIELD</th>
-                  <th style="padding:7px;">ON-CHAIN EXIT &amp; RECEIPT</th>
-                </tr>
-              </thead>
-              <tbody id="realTimeRugStreamTableBody">
-                <tr style="border-bottom:1px solid #1E293B;">
-                  <td style="padding:7px; color:#FDE047;" class="jb-mono"><span class="live-pst-cell">Nov 16, 06:56 PM PST</span></td>
-                  <td style="padding:7px;"><a href="https://dexscreener.com/solana/3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump" target="_blank" rel="noopener noreferrer" style="color:#10B981; font-weight:600; text-decoration:underline;">$MELNOK</a> <span class="jb-mono" style="color:#CBD5E1;">(3ig9...pump)</span></td>
-                  <td style="padding:7px; color:#10B981; font-weight:600;">✅ 98/100</td>
-                  <td style="padding:7px; color:#10B981;">+55.72% Full-Cycle Exit • <a href="https://solscan.io/tx/4e3kaLiTEVBLHPk2JyR8FYVfwVC7aeoRaHCtxThYSig3aG6EmSA5mmRP6GCcm9gpkLyxmFHkHwuaLprdJqPpURAp" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; font-weight:600; text-decoration:underline;">Solscan TX ↗</a></td>
-                </tr>
-                <tr style="border-bottom:1px solid #1E293B;">
-                  <td style="padding:7px; color:#FDE047;" class="jb-mono"><span class="live-pst-cell">Nov 17, 06:59 AM PST</span></td>
-                  <td style="padding:7px;"><a href="https://dexscreener.com/solana/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump" target="_blank" rel="noopener noreferrer" style="color:#10B981; font-weight:600; text-decoration:underline;">$JESTER</a> <span class="jb-mono" style="color:#CBD5E1;">(t4U9...pump)</span></td>
-                  <td style="padding:7px; color:#10B981; font-weight:600;">✅ 96/100</td>
-                  <td style="padding:7px; color:#10B981;">+46.23% On-Chain Exit • <a href="https://solscan.io/tx/1GEV79q11dpjqgNg9KgNYn88LC6N5w4V1Y9zzNUxv45DMdoH6Wq3T4NH3JNKZ4YpuxmTNsK8Ew9BRpJBnuouRbq" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; font-weight:600; text-decoration:underline;">Solscan TX ↗</a></td>
-                </tr>
-                <tr style="border-bottom:1px solid #1E293B;">
-                  <td style="padding:7px; color:#FDE047;" class="jb-mono"><span class="live-pst-cell">Nov 16, 04:58 AM PST</span></td>
-                  <td style="padding:7px;"><a href="https://dexscreener.com/solana/BYZFLFBFMutsdayvtLbvYL52szr2v4GjJZHAg8d5ov1m" target="_blank" rel="noopener noreferrer" style="color:#10B981; font-weight:600; text-decoration:underline;">$USWR</a> <span class="jb-mono" style="color:#CBD5E1;">(BYZF...ov1m)</span></td>
-                  <td style="padding:7px; color:#10B981; font-weight:600;">✅ 97/100</td>
-                  <td style="padding:7px; color:#10B981;">+98.42% Peak Exit • <a href="https://solscan.io/tx/3ESuiLE6dKwsct8KxqEQ4Kt28Xd9wjoCqKCpfyvQptmsoZAVsC3bM1oDLV1Vp9Z6MEJBA1poi8hBZYND4R5P53fX" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; font-weight:600; text-decoration:underline;">Solscan TX ↗</a></td>
-                </tr>
-                <tr>
-                  <td style="padding:7px; color:#FCA5A5;" class="jb-mono"><span class="live-pst-cell">Nov 17, 07:12 AM PST</span></td>
-                  <td style="padding:7px;"><a href="https://dexscreener.com/solana/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer" style="color:#FCA5A5; font-weight:600; text-decoration:underline;">$VEYRA</a> <span class="jb-mono" style="color:#CBD5E1;">(8zaY...jyR1)</span></td>
-                  <td style="padding:7px; color:#FCA5A5; font-weight:600;">🚨 0/100</td>
-                  <td style="padding:7px; color:#FCA5A5;">LP-Drain Rug Blocked Pre-Buy • <a href="https://solscan.io/token/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; font-weight:600; text-decoration:underline;">Solscan Mint ↗</a></td>
-                </tr>
-              </tbody>
-            </table>
+          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <button type="button" id="toggleAdInquiryFormBtn" onclick="var f=document.getElementById('inlineAdInquiryDrawer'); if(f){ f.style.display=(f.style.display==='none'?'flex':'none'); }" style="min-height:38px; padding:7px 14px; border-radius:9px; border:1.5px solid #FDE047; background:linear-gradient(90deg, #10B981, #FACC15); color:#022C22; font-size:0.85rem; font-weight:800; cursor:pointer; white-space:nowrap;">
+              📩 Book Token Ad Slot
+            </button>
+            <a href="/ad-kit" style="min-height:38px; padding:7px 12px; border-radius:9px; border:1px solid #38BDF8; background:rgba(14,165,233,0.16); color:#E0F2FE; font-size:0.84rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center;">Media Kit ↗</a>
+            <a href="/enterprise-api.html" style="min-height:38px; padding:7px 12px; border-radius:9px; border:1.5px solid #10B981; background:rgba(16,185,129,0.16); color:#A7F3D0; font-size:0.84rem; font-weight:800; text-decoration:none; display:inline-flex; align-items:center;">🏢 $500/mo B2B API ↗</a>
           </div>
         </div>
+        <div id="inlineAdInquiryDrawer" style="display:none; flex-wrap:wrap; gap:8px; margin-top:10px; padding-top:10px; border-top:1px solid rgba(245,158,11,0.35); align-items:center;">
+          <input type="text" id="adInqTokenInp" value="" autocomplete="off" placeholder="Token Ticker or Mint Address..." style="flex:1; min-width:170px; min-height:40px; padding:8px 10px; border-radius:8px; border:1px solid #F59E0B; background:#060A12; color:#F8FAFC; font-size:0.86rem;" />
+          <input type="text" id="adInqContactInp" value="" autocomplete="off" placeholder="Your Email or @Telegram..." style="flex:1; min-width:170px; min-height:40px; padding:8px 10px; border-radius:8px; border:1px solid #38BDF8; background:#060A12; color:#F8FAFC; font-size:0.86rem;" />
+          <input type="text" id="adInqMsgInp" value="" autocomplete="off" placeholder="Campaign dates / slot notes (optional)..." style="flex:1.2; min-width:190px; min-height:40px; padding:8px 10px; border-radius:8px; border:1px solid #10B981; background:#060A12; color:#F8FAFC; font-size:0.86rem;" onkeydown="if(event.key==='Enter') window.submitTokenAdInquiry();" />
+          <button type="button" id="adInqSendBtn" onclick="window.submitTokenAdInquiry()" style="min-height:40px; padding:8px 16px; border-radius:8px; border:1.5px solid #10B981; background:linear-gradient(90deg, #059669, #10B981); color:#022C22; font-size:0.86rem; font-weight:800; cursor:pointer; white-space:nowrap;">
+            🚀 Send Ad Inquiry
+          </button>
+          <div id="adInqStatusMsg" style="display:none; width:100%; padding:7px 10px; border-radius:8px; background:#042F2E; border:1px solid #10B981; color:#6EE7B7; font-size:0.85rem; font-weight:700;"></div>
+        </div>
+      </div>
 
-        <!-- VERIFIED ON-CHAIN WALLET RENT RECLAIMS & HELIUS AUDITS -->
-        <div id="liveWalletRentScansBox" class="card" style="background:#0E1626; border:1px solid rgba(56,189,248,0.4); border-radius:14px; padding:16px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #1E293B;">
-            <span style="font-size:0.98rem; font-weight:700; color:#38BDF8;">🧾 Verified Wallet Rent Reclaims &amp; Audits</span>
-            <span id="liveWalletStreamPstClock" class="jb-mono" style="font-size:0.82rem; color:#CBD5E1; background:#0F172A; border:1px solid #1E293B; padding:4px 10px; border-radius:999px;">Helius Mainnet RPC</span>
+      <div class="grid-2" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:16px; margin-bottom:16px; align-items:start;">
+        <!-- LEFT PROOF COLUMN (UNDER SCANNER 1): VERIFIED ON-CHAIN WALLET RENT RECLAIMS -->
+        <div id="liveWalletRentScansBox" class="card" style="background:#0E1626; border:1.5px solid rgba(16, 185, 129, 0.72); border-radius:14px; padding:16px; box-shadow:0 8px 26px rgba(16, 185, 129, 0.12);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px; padding:10px 12px; border-radius:10px; background:linear-gradient(90deg, rgba(16, 185, 129, 0.28), rgba(5, 150, 105, 0.12)); border:1px solid rgba(52, 211, 153, 0.65);">
+            <span style="font-size:1.0rem; font-weight:800; color:#6EE7B7;">🧾 Verified Wallet Rent Reclaims</span>
+            <span id="liveWalletStreamPstClock" class="jb-mono" style="font-size:0.80rem; font-weight:700; color:#ECFDF5; background:rgba(6, 78, 59, 0.85); border:1px solid #34D399; padding:4px 10px; border-radius:999px;">Helius Mainnet RPC</span>
           </div>
           <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; text-align:center; margin-bottom:10px;">
             <div style="background:#0F172A; border:1px solid #1E293B; border-radius:9px; padding:8px 6px;">
@@ -1937,6 +1921,69 @@
             </table>
           </div>
         </div>
+
+        <!-- RIGHT PROOF COLUMN (UNDER SCANNER 2): VERIFIED FULL-CYCLE ON-CHAIN TOKEN EXITS -->
+        <div id="liveAutonomousFleetRadarBox" class="card" style="background:#0E1626; border:1.5px solid rgba(245, 158, 11, 0.72); border-radius:14px; padding:16px; box-shadow:0 8px 26px rgba(245, 158, 11, 0.12);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px; padding:10px 12px; border-radius:10px; background:linear-gradient(90deg, rgba(245, 158, 11, 0.28), rgba(16, 185, 129, 0.14)); border:1px solid rgba(251, 191, 36, 0.68);">
+            <span style="font-size:1.0rem; font-weight:800; color:#FDE047;">⛓️ Verified Full-Cycle On-Chain Token Exits</span>
+            <span id="fleetRadarPulseBadge" class="jb-mono" style="font-size:0.80rem; font-weight:700; color:#FEF3C7; background:rgba(120, 53, 15, 0.78); border:1px solid #FBBF24; padding:4px 10px; border-radius:999px;"><span id="liveStreamPstClock">Immutable Solana BlockTime</span></span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; text-align:center; margin-bottom:10px;">
+            <div style="background:#0F172A; border:1px solid #1E293B; border-radius:9px; padding:8px 6px;">
+              <div style="font-size: 0.85rem; color:#CBD5E1; font-weight:600;">Rugs Blocked</div>
+              <div id="radarTrapsBlockedVal" class="jb-mono" style="font-size:0.92rem; font-weight:600; color:#FDE047; margin-top:2px;">Verified Live</div>
+            </div>
+            <div style="background:#0F172A; border:1px solid #1E293B; border-radius:9px; padding:8px 6px;">
+              <div style="font-size: 0.85rem; color:#CBD5E1; font-weight:600;">Treasury Proof</div>
+              <div id="radarPoolsAuditedVal" class="jb-mono" style="font-size:0.92rem; font-weight:600; color:#10B981; margin-top:2px;">89Sv...nKK1</div>
+            </div>
+            <div style="background:#0F172A; border:1px solid #1E293B; border-radius:9px; padding:8px 6px;">
+              <div style="font-size: 0.85rem; color:#CBD5E1; font-weight:600;">RPC Latency</div>
+              <div id="radarGateLatencyVal" class="jb-mono" style="font-size:0.92rem; font-weight:600; color:#38BDF8; margin-top:2px;">Helius Mainnet</div>
+            </div>
+          </div>
+          <div id="radarLiveTickerRow" style="font-size:0.85rem; color:#CBD5E1; background:#0F172A; border:1px solid #1E293B; border-radius:8px; padding:8px 10px; margin-bottom:10px; white-space:normal; line-height:1.45;">
+            Every trade receipt below links to a confirmed 87/88-char Solana Mainnet transaction signature executed by treasury <code class="jb-mono" style="color:#10B981;">89Sv5F...nKK1</code>.
+          </div>
+          <div id="liveTradesTallScrollWrap" style="overflow-x:auto; max-height:460px; overflow-y:auto; background:#060A12; border:1px solid #1E293B; border-radius:10px; padding:6px;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+              <thead style="position:sticky; top:0; background:#060A12; z-index:2;">
+                <tr style="border-bottom:1px solid #1E293B; color:#CBD5E1; text-align:left;">
+                  <th style="padding:7px;">BLOCK TIME</th>
+                  <th style="padding:7px;">TOKEN &amp; MC</th>
+                  <th style="padding:7px;">10-LAYER SCORE</th>
+                  <th style="padding:7px;">% ROI &amp; ATA RENT RECLAIMED</th>
+                </tr>
+              </thead>
+              <tbody id="realTimeRugStreamTableBody">
+                <tr style="border-bottom:1px solid #1E293B;">
+                  <td style="padding:7px; color:#FDE047;" class="jb-mono"><span class="live-pst-cell">Nov 16, 06:56 PM PST</span></td>
+                  <td style="padding:7px;"><a href="https://dexscreener.com/solana/3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump" target="_blank" rel="noopener noreferrer" style="color:#10B981; font-weight:700; text-decoration:underline;">$MELNOK</a> <span class="jb-mono" style="color:#67E8F9; font-weight:600;">MC $48.4K</span></td>
+                  <td style="padding:7px; color:#10B981; font-weight:700;">✅ 98/100</td>
+                  <td style="padding:7px; color:#10B981;" class="jb-mono"><b>+55.72% ROI</b> • +0.00204 SOL ATA Rent Reclaimed • <a href="https://solscan.io/tx/4e3kaLiTEVBLHPk2JyR8FYVfwVC7aeoRaHCtxThYSig3aG6EmSA5mmRP6GCcm9gpkLyxmFHkHwuaLprdJqPpURAp" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; font-weight:700; text-decoration:underline;">Solscan TX ↗</a></td>
+                </tr>
+                <tr style="border-bottom:1px solid #1E293B;">
+                  <td style="padding:7px; color:#FDE047;" class="jb-mono"><span class="live-pst-cell">Nov 17, 06:59 AM PST</span></td>
+                  <td style="padding:7px;"><a href="https://dexscreener.com/solana/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump" target="_blank" rel="noopener noreferrer" style="color:#10B981; font-weight:700; text-decoration:underline;">$JESTER</a> <span class="jb-mono" style="color:#67E8F9; font-weight:600;">MC $64.2K</span></td>
+                  <td style="padding:7px; color:#10B981; font-weight:700;">✅ 96/100</td>
+                  <td style="padding:7px; color:#10B981;" class="jb-mono"><b>+46.23% ROI</b> • +0.00204 SOL ATA Rent Reclaimed • <a href="https://solscan.io/tx/1GEV79q11dpjqgNg9KgNYn88LC6N5w4V1Y9zzNUxv45DMdoH6Wq3T4NH3JNKZ4YpuxmTNsK8Ew9BRpJBnuouRbq" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; font-weight:700; text-decoration:underline;">Solscan TX ↗</a></td>
+                </tr>
+                <tr style="border-bottom:1px solid #1E293B;">
+                  <td style="padding:7px; color:#FDE047;" class="jb-mono"><span class="live-pst-cell">Nov 16, 04:58 AM PST</span></td>
+                  <td style="padding:7px;"><a href="https://dexscreener.com/solana/BYZFLFBFMutsdayvtLbvYL52szr2v4GjJZHAg8d5ov1m" target="_blank" rel="noopener noreferrer" style="color:#10B981; font-weight:700; text-decoration:underline;">$USWR</a> <span class="jb-mono" style="color:#67E8F9; font-weight:600;">MC $112.8K</span></td>
+                  <td style="padding:7px; color:#10B981; font-weight:700;">✅ 97/100</td>
+                  <td style="padding:7px; color:#10B981;" class="jb-mono"><b>+98.42% ROI</b> • +0.00204 SOL ATA Rent Reclaimed • <a href="https://solscan.io/tx/3ESuiLE6dKwsct8KxqEQ4Kt28Xd9wjoCqKCpfyvQptmsoZAVsC3bM1oDLV1Vp9Z6MEJBA1poi8hBZYND4R5P53fX" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; font-weight:700; text-decoration:underline;">Solscan TX ↗</a></td>
+                </tr>
+                <tr>
+                  <td style="padding:7px; color:#FCA5A5;" class="jb-mono"><span class="live-pst-cell">Nov 17, 07:12 AM PST</span></td>
+                  <td style="padding:7px;"><a href="https://dexscreener.com/solana/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer" style="color:#FCA5A5; font-weight:700; text-decoration:underline;">$VEYRA</a> <span class="jb-mono" style="color:#FDA4AF; font-weight:600;">MC $18.2K</span></td>
+                  <td style="padding:7px; color:#FCA5A5; font-weight:700;">🚨 0/100</td>
+                  <td style="padding:7px; color:#FCA5A5;" class="jb-mono">LP-Drain Rug Blocked Pre-Buy • ATA Rent Protected • <a href="https://solscan.io/token/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; font-weight:700; text-decoration:underline;">Solscan Mint ↗</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <!-- LIVE SOLANA GRADUATIONS & CAUGHT RUGS RADAR -->
@@ -1983,21 +2030,26 @@
       </div>
     </section>
 
-<!-- === BEGIN SQUAD 2 INTERACTIVE PIZZAZZ DECK (IDX) === -->
-<section id="idx-pizzazz-showcase-deck" aria-label="Interactive Rug-or-Moon Mini-Game, Demo Walkthrough, Holiday SOL Vault &amp; Feedback" style="margin: 16px auto 18px auto; max-width: 1220px; width: 100%; box-sizing: border-box;">
+<!-- === BEGIN INTERACTIVE 2-COLUMN BOTTOM ROW (RUG OR MOON + ANNUAL SOL VAULT RAFFLE) === -->
+<section id="idx-pizzazz-showcase-deck" aria-label="Rug or Moon 5s Live Chart Challenge and Annual SOL Vault Raffle" style="margin: 16px auto 18px auto; max-width: 1360px; width: 100%; box-sizing: border-box;">
   <style>
     .rrs-showcase-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(305px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
       width: 100%;
       box-sizing: border-box;
+    }
+    @media (max-width: 768px) {
+      .rrs-showcase-grid {
+        grid-template-columns: 1fr;
+      }
     }
     .rrs-pizzazz-card {
       background: linear-gradient(165deg, rgba(7, 20, 38, 0.97) 0%, rgba(3, 10, 22, 0.99) 100%);
       border: 1.5px solid rgba(16, 185, 129, 0.48);
       border-radius: 14px;
-      padding: 14px;
+      padding: 16px;
       color: #f8fafc;
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55), inset 0 0 18px rgba(16, 185, 129, 0.07);
       box-sizing: border-box;
@@ -2034,13 +2086,13 @@
   </style>
 
   <div class="rrs-showcase-grid">
-    <!-- 1. RUG-OR-MOON 5-SECOND LIVE MINI-GAME (VEYRA vs JESTER) -->
+    <!-- LEFT: RUG OR MOON 5S LIVE CHART CHALLENGE -->
     <div class="rrs-pizzazz-card" id="idx-rug-or-moon-card" style="border-color: rgba(56, 189, 248, 0.65);">
       <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
-        <span style="font-size:0.86rem; font-weight:900; color:#38bdf8;">🎮 RUG-OR-MOON: 5-Second Live Chart Challenge</span>
-        <span id="idx-rom-timer" style="font-family:JetBrains Mono,ui-monospace,monospace; font-size: 0.85rem; font-weight:900; padding:3px 8px; border-radius:999px; background:rgba(250,204,21,0.16); border:1px solid #fde047; color:#fde047;">⏱️ 5.0s LIVE</span>
+        <span style="font-size:0.92rem; font-weight:900; color:#38bdf8;">🎮 Rug or Moon 5s Live Chart Challenge</span>
+        <span id="idx-rom-timer" style="font-family:JetBrains Mono,ui-monospace,monospace; font-size: 0.84rem; font-weight:900; padding:3px 8px; border-radius:999px; background:rgba(250,204,21,0.16); border:1px solid #fde047; color:#fde047;">⏱️ 5.0s LIVE</span>
       </div>
-      <div style="font-size: 0.85rem; color:#cbd5e1; line-height:1.38; margin-bottom:8px;">
+      <div style="font-size: 0.86rem; color:#cbd5e1; line-height:1.42; margin-bottom:8px;">
         Two real Solana launches at T+0s: <b style="color:#f472b6;">$VEYRA</b> vs <b style="color:#10B981;">$JESTER</b>. One pumped <b>+46.23%</b>; one rugged <b>-99.4%</b>. Can your eyes beat our 10-Layer Shield in <b>5 seconds</b>?
       </div>
       <div style="position:relative; background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:10px; padding:6px; margin-bottom:9px;">
@@ -2057,117 +2109,88 @@
       <div id="idx-rom-forensic-reveal" style="display:none; padding:9px 10px; border-radius:9px; background:rgba(4,24,38,0.95); border:1px solid #10B981; font-size: 0.85rem; line-height:1.42; color:#ecfdf5;"></div>
     </div>
 
-    <!-- 2. INTERACTIVE LIVE DEMO WALKTHROUGH VIDEO (25% / 50% / 75% / 100% TELEMETRY) -->
-    <div class="rrs-pizzazz-card" id="idx-demo-video-card" style="border-color: rgba(168, 85, 247, 0.65);">
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
-        <span style="font-size:0.86rem; font-weight:900; color:#e9d5ff;">🎬 40s Live Walkthrough: Rent Reclaim &amp; 10-Layer Shield</span>
-        <span id="idx-video-pct-badge" style="font-family:JetBrains Mono,ui-monospace,monospace; font-size: 0.85rem; font-weight:900; padding:3px 8px; border-radius:999px; background:rgba(168,85,247,0.18); border:1px solid #c084fc; color:#f3e8ff;">Watched: 0%</span>
-      </div>
-      <div style="font-size: 0.85rem; color:#cbd5e1; line-height:1.38; margin-bottom:8px;">
-        Watch how non-custodial <code style="color:#10B981;">0x09 CloseAccount</code> recovers trapped SOL ($0 upfront) &amp; blocks rugs in &lt;120ms:
-      </div>
-      <div style="position:relative; background:#020617; border:1px solid rgba(192,132,252,0.4); border-radius:10px; overflow:hidden; margin-bottom:8px;">
-        <video id="idx-demo-video-el" playsinline muted style="display:none; width:100%; height:142px;"></video>
-        <canvas id="idx-demo-video-canvas" width="460" height="150" onclick="window.toggleRrsDemoVideo('idx')" style="width:100%; height:142px; display:block; cursor:pointer;"></canvas>
-        <div style="height:5px; width:100%; background:#0f172a;">
-          <div id="idx-demo-video-bar" style="height:100%; width:0%; background:linear-gradient(90deg,#10B981,#38bdf8,#c084fc); transition:width 0.2s linear;"></div>
+    <!-- RIGHT: ANNUAL SOL VAULT RAFFLE (1% OF PLATFORM FEES • 3 YEARLY ON-CHAIN WINNERS) -->
+    <div class="rrs-pizzazz-card" id="idx-annual-vault-card" style="border-color: rgba(250, 204, 21, 0.72); background: linear-gradient(165deg, rgba(16, 32, 24, 0.97) 0%, rgba(12, 20, 34, 0.98) 100%); display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:8px; flex-wrap:wrap;">
+          <span style="font-size:0.92rem; font-weight:900; color:#fde047;">🏆 Annual SOL Vault Raffle (1% Fees • 3 Yearly Winners)</span>
+          <span id="idx-vault-ticket-badge" class="jb-mono" style="font-size:0.80rem; font-weight:900; padding:3px 9px; border-radius:999px; background:rgba(16, 185, 129,0.20); border:1px solid #10B981; color:#6EE7B7;">1% of Platform Fees • 3 Yearly On-Chain Winners</span>
         </div>
-      </div>
-      <div style="display:flex; gap:7px; align-items:center; justify-content:space-between;">
-        <button type="button" id="idx-demo-video-play-btn" data-telemetry-btn="demo_video_play_toggle" onclick="window.toggleRrsDemoVideo('idx')" style="flex:1; padding:8px 10px; border-radius:8px; border:1.5px solid #c084fc; background:linear-gradient(90deg, rgba(147,51,234,0.32), rgba(16, 185, 129,0.24)); color:#ffffff; font-size: 0.85rem; font-weight:900; cursor:pointer;">
-          ▶️ Play 40s Live Walkthrough
-        </button>
-        <button type="button" data-telemetry-btn="demo_video_restart" onclick="window.restartRrsDemoVideo('idx')" style="padding:8px 10px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:#cbd5e1; font-size: 0.85rem; font-weight:800; cursor:pointer;">
-          ↺ Replay
-        </button>
-      </div>
-    </div>
-
-    <!-- 3. HAPPY HOLIDAYS FREE SOL DRAW VAULT (NO PURCHASE NECESSARY + CANADIAN MATH SKILL TEST) -->
-    <div class="rrs-pizzazz-card" id="idx-holiday-vault-card" style="border-color: rgba(250, 204, 21, 0.72); background: linear-gradient(165deg, rgba(16, 32, 24, 0.97) 0%, rgba(28, 12, 18, 0.97) 100%);">
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:6px; flex-wrap:wrap;">
-        <span style="font-size:0.86rem; font-weight:900; color:#fde047;">🎄 Happy Holidays Free SOL Draw Vault</span>
-        <span style="font-size: 0.85rem; font-weight:900; padding:2px 7px; border-radius:999px; background:rgba(16, 185, 129,0.18); border:1px solid #10B981; color:#10B981;">NO PURCHASE NECESSARY</span>
-      </div>
-      <div style="font-size: 0.85rem; color:#e2e8f0; line-height:1.38; margin-bottom:8px;">
-        Enter our festive Free SOL Vault Draw! Zero purchase required :  solve the Canadian skill-testing math question to lock your encrypted vault ticket:
-      </div>
-      <input
-        type="text"
-        id="idx-holiday-entrant-inp"
-        value=""
-        autocomplete="off"
-        placeholder="Public Solana Wallet or @Telegram / Email..."
-        style="width:100%; box-sizing:border-box; padding:8px 10px; border-radius:8px; border:1px solid rgba(250,204,21,0.5); background:#030b16; color:#f8fafc; font-size: 0.85rem; margin-bottom:7px;"
-      />
-      <div style="display:flex; gap:7px; align-items:center; margin-bottom:7px; flex-wrap:wrap;">
-        <label for="idx-holiday-math-inp" style="font-size: 0.85rem; font-weight:900; color:#fde68a; white-space:nowrap;">
-          🍁 Skill Test: <code>(12 × 4) + 18 - 6 =</code>
+        <div style="font-size: 0.86rem; color:#e2e8f0; line-height:1.42; margin-bottom:10px;">
+          <b>1% of Platform Fees • 3 Yearly On-Chain Winners</b> paid directly on Solana Mainnet (no purchase necessary). Enter your Solana wallet address and Email or @Telegram below to mint your sequential <b>Vault Ticket #00XXXX</b>:
+        </div>
+        <input
+          type="text"
+          id="idx-vault-wallet-inp"
+          value=""
+          autocomplete="off"
+          placeholder="Solana Wallet Address (32 to 44 chars)..."
+          style="width:100%; box-sizing:border-box; min-height:42px; padding:9px 11px; border-radius:8px; border:1px solid rgba(250,204,21,0.55); background:#030b16; color:#f8fafc; font-size:0.86rem; margin-bottom:8px;"
+        />
+        <div style="display:flex; gap:8px; align-items:stretch; margin-bottom:8px; flex-wrap:wrap;">
+          <input
+            type="text"
+            id="idx-vault-contact-inp"
+            value=""
+            autocomplete="off"
+            placeholder="Email or @Telegram handle..."
+            onkeydown="if(event.key==='Enter') window.submitAnnualVaultRaffle('idx')"
+            style="flex:1; min-width:170px; min-height:42px; padding:9px 11px; border-radius:8px; border:1px solid rgba(56,189,248,0.55); background:#030b16; color:#f8fafc; font-size:0.86rem; box-sizing:border-box;"
+          />
+          <button type="button" id="idx-vault-enter-btn" data-telemetry-btn="annual_vault_submit" onclick="window.submitAnnualVaultRaffle('idx')" style="min-height:42px; padding:9px 14px; border-radius:8px; border:1.5px solid #fde047; background:linear-gradient(90deg, #10b981, #eab308); color:#022c22; font-size:0.86rem; font-weight:900; cursor:pointer; white-space:nowrap;">
+            🎟️ Get Vault Ticket
+          </button>
+        </div>
+        <label style="display:flex; align-items:flex-start; gap:7px; font-size: 0.83rem; color:#cbd5e1; cursor:pointer; line-height:1.35;">
+          <input type="checkbox" id="idx-vault-weekly-optin" style="margin-top:2px; accent-color:#10B981;" />
+          <span>Optional: Send max 1x/week verified SOL Vault &amp; Rug Shield digest (zero spam • Thank you).</span>
         </label>
-        <input
-          type="text"
-          id="idx-holiday-math-inp"
-          value=""
-          inputmode="numeric"
-          autocomplete="off"
-          placeholder="?"
-          style="width:74px; padding:7px 9px; border-radius:8px; border:1.5px solid #10B981; background:#020617; color:#10B981; font-weight:900; font-size: 0.85rem; text-align:center;"
-        />
-        <button type="button" id="idx-holiday-enter-btn" data-telemetry-btn="holiday_vault_submit" onclick="window.submitHolidaySolVault('idx')" style="flex:1; min-width:125px; padding:8px 10px; border-radius:8px; border:1.5px solid #fde047; background:linear-gradient(90deg, #10b981, #eab308); color:#022c22; font-size: 0.85rem; font-weight:900; cursor:pointer;">
-          🎁 Claim Free Vault Ticket
-        </button>
       </div>
-      <label style="display:flex; align-items:flex-start; gap:7px; font-size: 0.85rem; color:#cbd5e1; cursor:pointer; line-height:1.32;">
-        <input type="checkbox" id="idx-holiday-weekly-optin" style="margin-top:2px; accent-color:#10B981;" />
-        <span>Optional: Send me classy <b>max 1x/week</b> VIP Free-SOL &amp; Rug Alert digest (zero spam • Thank you, GS).</span>
-      </label>
-      <div id="idx-holiday-vault-status" style="display:none; margin-top:7px; padding:7px 9px; border-radius:8px; background:rgba(4,47,46,0.9); border:1px solid #10B981; font-size: 0.85rem; font-weight:800; color:#ecfdf5; line-height:1.38;"></div>
-    </div>
-
-    <!-- 4. "TELL US WHAT TO IMPROVE OR ADD NEXT" FEEDBACK BOX -->
-    <div class="rrs-pizzazz-card" id="idx-improve-feedback-card" style="border-color: rgba(16, 185, 129, 0.6);">
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:6px;">
-        <span style="font-size:0.86rem; font-weight:900; color:#10B981;">💡 Tell Us What to Improve or Add Next</span>
-        <span style="font-size: 0.85rem; font-weight:800; color:#67e8f9;">Direct Queue</span>
-      </div>
-      <div style="font-size: 0.85rem; color:#cbd5e1; line-height:1.36; margin-bottom:7px;">
-        Every suggestion goes straight to our engineering roadmap &amp; GS product roadmap:
-      </div>
-      <div style="display:flex; gap:6px; margin-bottom:7px; flex-wrap:wrap;">
-        <select id="idx-improve-category" style="padding:7px 8px; border-radius:8px; border:1px solid #38bdf8; background:#030b16; color:#e2e8f0; font-size: 0.85rem; font-weight:800;">
-          <option value="feature_request">✨ New Feature Idea</option>
-          <option value="ux_improvement">⚡ UX / Speed Improvement</option>
-          <option value="token_scanner">🛡️ 10-Layer Scanner</option>
-          <option value="wallet_mobile">📱 Wallet / Mobile</option>
-        </select>
-        <input
-          type="text"
-          id="idx-improve-contact-inp"
-          value=""
-          autocomplete="off"
-          placeholder="Optional @handle / email"
-          style="flex:1; min-width:120px; padding:7px 9px; border-radius:8px; border:1px solid #334155; background:#030b16; color:#f8fafc; font-size: 0.85rem;"
-        />
-      </div>
-      <div style="display:flex; gap:6px;">
-        <input
-          type="text"
-          id="idx-improve-msg-inp"
-          value=""
-          autocomplete="off"
-          placeholder="What should we improve or build next?"
-          onkeydown="if(event.key==='Enter') window.submitImproveNextFeedback('idx')"
-          style="flex:1; min-width:0; padding:8px 10px; border-radius:8px; border:1.5px solid rgba(16, 185, 129,0.55); background:#020617; color:#f8fafc; font-size: 0.85rem;"
-        />
-        <button type="button" id="idx-improve-send-btn" data-telemetry-btn="improve_feedback_submit" onclick="window.submitImproveNextFeedback('idx')" style="padding:8px 12px; border-radius:8px; border:1.5px solid #10B981; background:linear-gradient(90deg, #059669, #10B981); color:#022c22; font-size: 0.85rem; font-weight:900; cursor:pointer; white-space:nowrap;">
-          Send Idea 🚀
-        </button>
-      </div>
-      <div id="idx-improve-status" style="display:none; margin-top:7px; padding:7px 9px; border-radius:8px; background:rgba(4,47,46,0.9); border:1px solid #10B981; font-size: 0.85rem; font-weight:800; color:#10B981;"></div>
+      <div id="idx-vault-status" style="display:none; margin-top:9px; padding:9px 11px; border-radius:9px; background:rgba(4,47,46,0.92); border:1.5px solid #10B981; font-size:0.86rem; font-weight:800; color:#ecfdf5; line-height:1.4;"></div>
     </div>
   </div>
+
+  <!-- FULL-WIDTH ENGINEERING & PRODUCT ROADMAP FEEDBACK BAR -->
+  <div class="rrs-pizzazz-card" id="idx-improve-feedback-card" style="margin-top:14px; border-color: rgba(16, 185, 129, 0.6);">
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+      <div>
+        <span style="font-size:0.90rem; font-weight:900; color:#10B981;">💡 Engineering &amp; Product Roadmap Feedback</span>
+        <span style="font-size:0.84rem; color:#cbd5e1; margin-left:8px;">Every suggestion goes straight to our Engineering &amp; Product Roadmap:</span>
+      </div>
+      <span style="font-size:0.80rem; font-weight:800; color:#67e8f9;">Direct Engineer Queue</span>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+      <select id="idx-improve-category" style="min-height:40px; padding:7px 10px; border-radius:8px; border:1px solid #38bdf8; background:#030b16; color:#e2e8f0; font-size: 0.85rem; font-weight:800;">
+        <option value="feature_request">✨ New Feature Idea</option>
+        <option value="ux_improvement">⚡ UX / Speed Improvement</option>
+        <option value="token_scanner">🛡️ 10-Layer Scanner</option>
+        <option value="wallet_mobile">📱 Wallet / Mobile</option>
+      </select>
+      <input
+        type="text"
+        id="idx-improve-contact-inp"
+        value=""
+        autocomplete="off"
+        placeholder="Optional @handle / email"
+        style="width:190px; min-height:40px; padding:7px 10px; border-radius:8px; border:1px solid #334155; background:#030b16; color:#f8fafc; font-size: 0.85rem;"
+      />
+      <input
+        type="text"
+        id="idx-improve-msg-inp"
+        value=""
+        autocomplete="off"
+        placeholder="What should we improve or build next?"
+        onkeydown="if(event.key==='Enter') window.submitImproveNextFeedback('idx')"
+        style="flex:1; min-width:210px; min-height:40px; padding:8px 10px; border-radius:8px; border:1.5px solid rgba(16, 185, 129,0.55); background:#020617; color:#f8fafc; font-size: 0.85rem;"
+      />
+      <button type="button" id="idx-improve-send-btn" data-telemetry-btn="improve_feedback_submit" onclick="window.submitImproveNextFeedback('idx')" style="min-height:40px; padding:8px 14px; border-radius:8px; border:1.5px solid #10B981; background:linear-gradient(90deg, #059669, #10B981); color:#022c22; font-size: 0.85rem; font-weight:900; cursor:pointer; white-space:nowrap;">
+        Send Idea 🚀
+      </button>
+    </div>
+    <div id="idx-improve-status" style="display:none; margin-top:7px; padding:7px 9px; border-radius:8px; background:rgba(4,47,46,0.9); border:1px solid #10B981; font-size: 0.85rem; font-weight:800; color:#10B981;"></div>
+  </div>
 </section>
-<!-- === END SQUAD 2 INTERACTIVE PIZZAZZ DECK (IDX) === -->
+<!-- === END INTERACTIVE 2-COLUMN BOTTOM ROW === -->
 
     <!-- ====================================================================== -->
     <!-- POP-UP MODAL 1: NATIVE SOLANA SPL CLOSEACCOUNT (0x09) & 10-LAYER SECURITY SPECIFICATION -->
@@ -2638,7 +2661,7 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
   </script>
 
   <script>
-    var _LIVE_BACKEND_TUNNEL = "https://snake-thinking-latter-players.trycloudflare.com";
+    var _LIVE_BACKEND_TUNNEL = "https://opinion-unit-filling-boc.trycloudflare.com";
     var _CUR_HOSTNAME = String(window.location.hostname || "").toLowerCase();
     var _IS_STATIC_GH_PAGES = (_CUR_HOSTNAME === "rentandrugshield.com" || _CUR_HOSTNAME === "www.rentandrugshield.com" || _CUR_HOSTNAME.indexOf("github.io") !== -1);
     var BACKEND_TUNNEL_BASE = _IS_STATIC_GH_PAGES ? _LIVE_BACKEND_TUNNEL : "";
@@ -2948,6 +2971,7 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
     let _lastHoverAutoScannedWallet = "";
 
     async function handleScannerHoverAutoCapture() {
+      if (window.__walletExplicitlyDisconnected || sessionStorage.getItem("rrs_explicit_disconnect") === "1") return;
       return;
     }
 
@@ -3024,11 +3048,21 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
     }
 
     function onWalletConnectedSuccess(pk) {
-      persistAndEnableSavedWalletVoice(pk);
+      window.__walletExplicitlyDisconnected = false;
+      try { sessionStorage.removeItem("rrs_explicit_disconnect"); } catch(_e){}
       if (!pk || pk.length < 32) return;
       connectedWallet = pk;
+      window.connectedWallet = pk;
+      const discBadge = document.getElementById("walletDisconnectedBadge");
+      if (discBadge) discBadge.style.display = "none";
       const btn = document.getElementById("connectBtn");
       if (btn) btn.innerText = "Connected: " + pk.slice(0, 4) + "..." + pk.slice(-4);
+      const p1Btn = document.getElementById("panel1ConnectWalletBtn");
+      if (p1Btn) p1Btn.innerText = "🟢 Connected: " + pk.slice(0, 4) + "..." + pk.slice(-4);
+      const propBtn = document.getElementById("prop-connect-btn");
+      if (propBtn) propBtn.innerText = "🟢 Connected: " + pk.slice(0, 4) + "..." + pk.slice(-4);
+      const p1Disc = document.getElementById("panel1DisconnectWalletBtn");
+      if (p1Disc) p1Disc.style.display = "inline-flex";
       const swBtn = document.getElementById("switchWalletBtn");
       if (swBtn) swBtn.style.display = "inline-flex";
       const wIn = document.getElementById("walletInput");
@@ -3045,26 +3079,44 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
 
     async function disconnectAndClearWallet() {
       const providers = [
-        window.solana,
         window.phantom?.solana,
         window.solflare,
         window.backpack?.solana,
+        window.backpack,
+        window.solana,
         window.okxwallet?.solana,
         window.trustwallet?.solana,
         window.coinbaseSolana,
-        getSolanaProvider()
+        typeof getSolanaProvider === "function" ? getSolanaProvider() : null
       ];
+      const seenProvs = new Set();
       for (const p of providers) {
-        if (p && typeof p.disconnect === "function") {
+        if (p && !seenProvs.has(p) && typeof p.disconnect === "function") {
+          seenProvs.add(p);
           try { await p.disconnect(); } catch (_) {}
         }
       }
       connectedWallet = null;
+      window.connectedWallet = null;
+      window.connectedWalletPubkey = "";
+      window.connectedPublicKey = null;
+      window.userWalletAddress = null;
       lastScanData = null;
+      window.lastScanData = null;
       _lastHoverAutoScannedWallet = "";
       try {
-        localStorage.removeItem("savedWalletAddress");
-        sessionStorage.clear();
+        ["savedWalletAddress", "connectedWallet", "walletAddress", "solanaWallet", "dex6_wallet", "dex6_auto_collect"].forEach((k) => {
+          localStorage.removeItem(k);
+          sessionStorage.removeItem(k);
+        });
+        for (let i = localStorage.length - 1; i >= 0; i--) {
+          const lk = localStorage.key(i);
+          if (lk && lk.toLowerCase().includes("wallet")) localStorage.removeItem(lk);
+        }
+        for (let i = sessionStorage.length - 1; i >= 0; i--) {
+          const sk = sessionStorage.key(i);
+          if (sk && sk.toLowerCase().includes("wallet")) sessionStorage.removeItem(sk);
+        }
       } catch (_) {}
       try {
         window.history.replaceState({}, document.title, window.location.pathname);
@@ -3073,28 +3125,50 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
       const btn = document.getElementById("connectBtn");
       if (btn) btn.innerText = "Connect Wallet";
       const p1Btn = document.getElementById("panel1ConnectWalletBtn");
-      if (p1Btn) p1Btn.innerText = "🔗 CONNECT WALLET";
+      if (p1Btn) p1Btn.innerText = "👻 Connect Wallet";
+      const propBtn = document.getElementById("prop-connect-btn");
+      if (propBtn) propBtn.innerText = "🔗 Connect / Switch Wallet";
+      ["walletInput", "modalWalletPaste", "apiWalletInput", "fleetWalletInput", "w-inp"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+      });
       const wIn = document.getElementById("walletInput");
       if (wIn) {
-        wIn.value = "";
-        wIn.placeholder = "Paste any public 44-character Solana wallet address for a 100% Read-Only Rent Scan (No wallet connection required)...";
+        wIn.placeholder = "Paste Solana wallet address (read-only)...";
       }
-      const mIn = document.getElementById("modalWalletPaste");
-      if (mIn) mIn.value = "";
-      const resBox = document.getElementById("walletResults");
-      if (resBox) resBox.style.display = "none";
+      ["walletResults", "indexEmeraldFoundCard", "primaryScanResultCards"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "none";
+      });
+      const tbody = document.getElementById("accountsTableBody");
+      if (tbody) tbody.innerHTML = "";
+      const totSolEl = document.getElementById("totSol"); if (totSolEl) totSolEl.innerText = "+0.0000 SOL";
+      const netSolEl = document.getElementById("netSol"); if (netSolEl) netSolEl.innerText = "+0.0000 SOL";
+      const accCntEl = document.getElementById("accCount"); if (accCntEl) accCntEl.innerText = "0";
       const topFin = document.getElementById("scanFinishedTopBanner");
       if (topFin) topFin.style.display = "none";
-      const sampleBox = document.getElementById("sampleLiveReceiptBox");
-      if (sampleBox) sampleBox.style.display = "block";
+      const discMsg = "Wallet Disconnected \u2014 Paste any Solana address";
+      const discBadge = document.getElementById("walletDisconnectedBadge");
+      if (discBadge) {
+        discBadge.style.display = "block";
+        discBadge.innerText = "🔌 " + discMsg;
+      }
+      const inlinePop = document.getElementById("inline-free-scan-pop");
+      if (inlinePop) {
+        inlinePop.style.display = "block";
+        inlinePop.innerHTML = '<span style="color:#34d399;font-weight:900;">🔌 ' + discMsg + '</span>';
+      }
       const statusEl = document.getElementById("walletModalStatus");
       if (statusEl) {
         statusEl.style.color = "var(--accent)";
-        statusEl.innerText = "✅ Wallet Disconnected Safely • Read-Only Mode";
+        statusEl.innerText = "🔌 " + discMsg;
       }
       closeWalletModal();
-      showPlatformToast("✅ Wallet Disconnected Safely • Read-Only Mode", true);
+      if (typeof showPlatformToast === "function") {
+        showPlatformToast("🔌 " + discMsg, true);
+      }
     }
+    window.disconnectAndClearWallet = disconnectAndClearWallet;
 
     async function switchWalletAccount() {
       await disconnectAndClearWallet();
@@ -4330,23 +4404,23 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
       const burnerBtn = document.getElementById("burnerScanBtn");
       const topFinishedBanner = document.getElementById("scanFinishedTopBanner");
       const frozenWarnEl = document.getElementById("burnerFrozenWarningBanner");
-      if (optionalWallet && typeof optionalWallet === "string" && optionalWallet.trim().length >= 32) {
-        if (wInput) wInput.value = optionalWallet.trim();
-      } else if (wInput && !wInput.value.trim() && connectedWallet) {
-        wInput.value = connectedWallet;
-      }
-      const w = wInput ? wInput.value.trim() : "";
+      const discBadge = document.getElementById("walletDisconnectedBadge");
+      const typedVal = wInput ? wInput.value.trim() : "";
+      const explicitOpt = (optionalWallet && typeof optionalWallet === "string" && optionalWallet.trim().length >= 32) ? optionalWallet.trim() : "";
+      const w = typedVal || explicitOpt;
       const banner = document.getElementById("walletBanner");
       const resBox = document.getElementById("walletResults");
       if (!w || w.length < 32) {
-        if (resBox) resBox.style.display = "block";
-        if (banner) {
+        if (typeof window.showNoWalletConnectedGuard === "function") {
+          window.showNoWalletConnectedGuard(scanBtn);
+        } else if (banner) {
+          if (resBox) resBox.style.display = "block";
           banner.style.color = "var(--amber)";
-          banner.innerText = "⚠️ Please paste any public 44-character Solana wallet address in the box above for a 100% Read-Only Scan!";
+          banner.innerText = "Paste a Solana wallet address or click Connect Wallet";
         }
-        
         return;
       }
+      if (discBadge) discBadge.style.display = "none";
 
       persistAndEnableSavedWalletVoice(w);
       currentService1Mode = scanType === "burner" ? "burn_only" : (scanType === "rent" ? "empty_only" : "all");
@@ -5928,13 +6002,15 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 
     <footer id="institutionalTrustFooter" style="width:min(95vw, 1360px); max-width:1360px; margin:24px auto 84px; padding:18px 16px; border-top:1px solid #1E293B; display:flex; justify-content:center; align-items:center; gap:18px; flex-wrap:wrap; font-size:0.90rem; color:#CBD5E1; text-align:center;">
-    <span>🔒 100% Non-Custodial Solana Utility • © 2026 Solana Rent &amp; Rug Shield (GS)</span>
+    <span>🔒 100% Non-Custodial Solana Utility • © 2026 Solana Rent &amp; Rug Shield</span>
     <a href="/reclaim-sol/" style="color:#38BDF8; text-decoration:none; font-weight:600;">Reclaim Free SOL</a>
     <a href="/burn-scam-tokens/" style="color:#38BDF8; text-decoration:none; font-weight:600;">Burn Scam Tokens</a>
     <a href="/solana-rug-checker/" style="color:#38BDF8; text-decoration:none; font-weight:600;">Solana Rug Checker</a>
     <a href="/audit/" style="color:#38BDF8; text-decoration:none; font-weight:600;">Token Audits</a>
     <a href="/llms.txt" style="color:#38BDF8; text-decoration:none; font-weight:600;">llms.txt</a>
-    <a href="/privacy.html" style="color:#10B981; text-decoration:none; font-weight:600;">Privacy Policy</a>
+    <a href="/enterprise-api.html" style="color:#38BDF8; text-decoration:none; font-weight:700;">$500/mo Enterprise API</a>
+      <a href="/ad-kit" style="color:#FACC15; text-decoration:none; font-weight:600;">Advertise</a>
+      <a href="/privacy.html" style="color:#10B981; text-decoration:none; font-weight:600;">Privacy Policy</a>
     <a href="/terms.html" style="color:#10B981; text-decoration:none; font-weight:600;">Terms of Service</a>
   </footer>
 <script>
@@ -6049,16 +6125,20 @@ window.addEventListener('DOMContentLoaded', function() {
       if (prov && typeof prov.on === "function" && !window._phantomSwitchBound){
         window._phantomSwitchBound = true;
         prov.on("accountChanged", function(newPubKey){
-          var wi = document.querySelector("input[placeholder*='44'], input[placeholder*='Solana'], #wallet-input");
+          if (window.__walletExplicitlyDisconnected || sessionStorage.getItem("rrs_explicit_disconnect") === "1") return;
+          if (!connectedWallet) return;
+          var wi = document.getElementById("walletInput");
           if (newPubKey){
             var addr = newPubKey.toString();
+            connectedWallet = addr;
+            window.connectedWallet = addr;
             window.connectedPublicKey = addr;
             window.userWalletAddress = addr;
-            if (wi) wi.value = addr;
+            /* never auto-fill #walletInput from background extension event */
             var pop = document.getElementById("inline-free-scan-pop");
             if (pop){
               pop.style.display = "block";
-              pop.innerHTML = '<span style="color:#34d399;font-weight:900;">🔄 PHANTOM WALLET SWITCHED:</span> Active address updated to <code>' + addr.slice(0,6) + '...' + addr.slice(-4) + '</code>. Click <b>🔍 RENT SCAN</b> to scan this wallet!';
+              pop.innerHTML = '<span style="color:#34d399;font-weight:900;">🔄 WALLET SWITCHED:</span> Active address updated to <code>' + addr.slice(0,6) + '...' + addr.slice(-4) + '</code>. Click <b>🔍 Scan Rent</b> to scan this wallet!';
             }
           }
         });
@@ -6066,34 +6146,12 @@ window.addEventListener('DOMContentLoaded', function() {
     } catch(e){}
   }
 
-  window.forceHardWalletDisconnect = async function(){
+  window.forceHardWalletDisconnect = async function(){ if (typeof window.disconnectAndClearWallet === 'function') return await window.disconnectAndClearWallet();
     window.pingShieldTelemetry("disconnect_wallet");
-    var providers = [];
-    try {
-      if (window.phantom && window.phantom.solana) providers.push(window.phantom.solana);
-      if (window.solana) providers.push(window.solana);
-      if (window.solflare) providers.push(window.solflare);
-      if (window.backpack) providers.push(window.backpack);
-      if (window.coinbaseSolana) providers.push(window.coinbaseSolana);
-      if (window.okxwallet && window.okxwallet.solana) providers.push(window.okxwallet.solana);
-    } catch(e){}
-    for (var i = 0; i < providers.length; i++){
-      try { if (typeof providers[i].disconnect === "function") await providers[i].disconnect(); } catch(e){}
-    }
-    window.connectedPublicKey = null;
-    window.userWalletAddress = null;
     var acChk = document.getElementById("top-auto-collect-chk");
     if (acChk) acChk.checked = false;
-    try {
-      localStorage.removeItem("connectedWallet");
-      localStorage.removeItem("dex6_auto_collect");
-      sessionStorage.removeItem("connectedWallet");
-    } catch(e){}
-
-    var statusBanner = document.getElementById("inline-free-scan-pop");
-    if (statusBanner){
-      statusBanner.style.display = "block";
-      statusBanner.innerHTML = '<span style="color:#34d399;font-weight:900;">🔒 VERIFIED HARD DISCONNECT • WALLET 100% DISCONNECTED:</span> Session completely severed! Unlike phishing sites that keep your wallet hooked in the background, we wipe the connection completely unless you enable Auto-Collect. You can now switch to any sub-wallet in Phantom!';
+    if (typeof window.disconnectAndClearWallet === "function"){
+      await window.disconnectAndClearWallet();
     }
   };
 
@@ -6365,57 +6423,64 @@ window.addEventListener('DOMContentLoaded', function() {
 
     var wrap = document.createElement("div");
     wrap.id = "tour-cursor-overlay";
-    wrap.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;";
+    wrap.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:200005;";
+    var ring = document.createElement("div");
+    ring.id = "tour-target-highlight-ring";
+    ring.style.cssText = "position:fixed;border:2.5px solid #10B981;border-radius:11px;box-shadow:0 0 24px rgba(16,185,129,0.72),inset 0 0 12px rgba(16,185,129,0.22);transition:all 0.85s cubic-bezier(0.22,1,0.36,1);pointer-events:none;z-index:200004;display:none;";
+    wrap.appendChild(ring);
     var cur = document.createElement("div");
-    cur.style.cssText = "position:fixed;left:45%;top:22%;transition:all 1.2s cubic-bezier(0.22,1,0.36,1);z-index:100000;pointer-events:auto;";
-    cur.innerHTML = '<div style="font-size:28px;filter:drop-shadow(0 0 12px #10b981);pointer-events:none;">🖱️</div>'
-      + '<div id="tour-step-bubble" style="margin-top:4px;width:380px;background:#042f2e;border:2px solid #34d399;color:#ecfdf5;padding:12px 14px;border-radius:10px;font-size: 13.5px;line-height:1.48;font-weight:600;box-shadow:0 12px 35px rgba(0,0,0,0.9);"></div>';
+    cur.style.cssText = "position:fixed;left:45%;top:22%;transition:all 1.05s cubic-bezier(0.22,1,0.36,1);z-index:200006;pointer-events:auto;";
+    cur.innerHTML = '<div style="display:flex;align-items:center;gap:6px;pointer-events:none;">'
+      + '<svg width="30" height="30" viewBox="0 0 28 28" style="filter:drop-shadow(0 0 12px #10b981);"><path d="M4 3L23 12.5L14.2 15.2L11.5 24L4 3Z" fill="#10B981" stroke="#F8FAFC" stroke-width="2" stroke-linejoin="round"/></svg>'
+      + '<span style="background:#10B981;color:#022C22;font-size:11px;font-weight:900;padding:2px 7px;border-radius:999px;">LIVE GUIDE</span>'
+      + '</div>'
+      + '<div id="tour-step-bubble" style="margin-top:6px;width:min(90vw,390px);background:#042f2e;border:2px solid #34d399;color:#ecfdf5;padding:13px 15px;border-radius:12px;font-size:13.5px;line-height:1.5;font-weight:600;box-shadow:0 16px 42px rgba(0,0,0,0.92);"></div>';
     wrap.appendChild(cur);
     document.body.appendChild(wrap);
 
-    var wi = document.querySelector("input[placeholder*='44'], input[placeholder*='Solana'], #wallet-input");
-    var fsBtn = document.getElementById("prop-freescan-btn") || wi;
-    var discBtn = document.getElementById("prop-disconnect-btn") || fsBtn;
-    var acBox = document.getElementById("prop-autocollect-label") || fsBtn;
-    var scanBtn = document.querySelector("button[onclick*='scanWalletRent']") || wi;
-    var carbonBubble = document.getElementById("box2-worlds-first-carbon-bubble") || document.body;
-    var passBtn = document.querySelector("[onclick*='199'], [id*='199']") || document.body;
+    var wi = document.getElementById("walletInput") || document.querySelector("input[placeholder*='Solana']");
+    var scanBtn = document.getElementById("scanWalletBtn") || wi;
+    var discBtn = document.getElementById("prop-disconnect-btn") || document.getElementById("panel1DisconnectWalletBtn") || scanBtn;
+    var mintInp = document.getElementById("mintInput") || document.getElementById("rugShieldCard") || document.body;
+    var advBadges = document.getElementById("scanner2Unique4Badges") || document.getElementById("scanTokenBtn") || mintInp;
+    var passBtn = document.getElementById("choiceAPricingSection") || document.getElementById("btnPricingDay199") || document.body;
+    var vaultCard = document.getElementById("idx-annual-vault-card") || document.getElementById("idx-rug-or-moon-card") || document.body;
 
     var steps = [
       {
         el: wi,
         action: null,
-        html: "🟢 <b>STEP 1/7 • FULL-WIDTH 44-CHAR WALLET BAR:</b><br>Paste any public 44-character Solana address here. You never have to connect your wallet to run a Free Read-Only Scan!"
-      },
-      {
-        el: fsBtn,
-        action: function(){ window.toggleInlineFreeScanBubble(); },
-        html: "🛡️ <b>STEP 2/7 • FREE SCAN (NO CONNECT NEEDED):</b><br>Click <b>🛡️ Free Scan (No Connect) ]</b> anytime to see why you never have to connect to check your SOL. Only press Connect if you see real SOL and want to collect it!"
-      },
-      {
-        el: discBtn,
-        action: function(){ var p = document.getElementById("inline-free-scan-pop"); if(p) p.style.display="none"; },
-        html: "🔒 <b>STEP 3/7 • WHY OUR DISCONNECT WALLET IS SPECIAL (VERIFIED HARD DISCONNECT):</b><br>99% of shady crypto &amp; phishing sites use a fake disconnect button that leaves your wallet secretly hooked in the background.<br><br><b>Why We Are Different:</b> Clicking <b>🔌 Disconnect Wallet</b> executes a real hardware/extension <code>provider.disconnect()</code> and wipes your browser session 100% clean. Unless you voluntarily check <b>Auto-Collect</b>, we NEVER keep your wallet connected behind your back • and you can switch between multiple Phantom sub-wallets anytime!"
-      },
-      {
-        el: acBox,
-        action: null,
-        html: "⚡ <b>STEP 4/7 • COMPACT AUTO-COLLECT TOGGLE:</b><br>Because we disconnect cleanly every session, you only check <b>[ ☐ Auto-Collect Future Trapped Rent ]</b> right here in the top bar if you want automatic hands-free sweeps."
+        html: "🟢 <b>STEP 1/7 • READ-ONLY WALLET INPUT:</b><br>Paste any public 44-character Solana address here. We never auto-fill cached wallets, and you never need to connect a wallet to run a read-only scan."
       },
       {
         el: scanBtn,
-        action: function(){ if (typeof window.scanWalletRent === "function") window.scanWalletRent(); },
-        html: "🔍 <b>STEP 5/7 • RENT SCAN &amp; DEAD TOKEN INCINERATOR:</b><br>Click <b>🔍 RENT SCAN</b> or <b>🔥 BURNER SCAN</b> to check empty token accounts (~0.002039 SOL each) and add your wallet to Row #1 of the Live Scans list below!"
+        action: null,
+        html: "🔍 <b>STEP 2/7 • SCAN RENT &amp; BURNER:</b><br>Click <b>🔍 Scan Rent</b> or <b>🔥 Scan Burnable Dust Tokens</b> to inspect empty SPL &amp; Token-2022 accounts (~0.00204 SOL each). Your 1st claim has a <b>0% fee</b> (100% SOL to you)."
       },
       {
-        el: carbonBubble,
-        action: function(){ var p = document.getElementById("worlds-first-details-panel"); if (p) p.style.display = "block"; },
-        html: "🌍🏆 <b>STEP 6/7 • WORLD&apos;S FIRST DETAILS (FOR PERSONAL TRADERS &amp; TRADING ROBOTS):</b><br>Click <b>[ 📖 WORLD&apos;S FIRST DETAILS ]</b> right above the Mint Audit bar! Google&apos;s <b>Gemini 4 Carbon</b> launched Nov 10, 2026 • because we were already building live Solana execution code, we fused Carbon into our 10-Layer Shield for both <b>personal manual traders</b> and <b>automated trading robots</b>!"
+        el: discBtn,
+        action: null,
+        html: "🔒 <b>STEP 3/7 • VERIFIED HARD DISCONNECT:</b><br>Clicking <b>🔌 Disconnect Wallet</b> runs <code>await provider.disconnect()</code> across Phantom, Solflare &amp; Backpack, clears storage keys, wipes stale results, and leaves you in pure read-only mode."
+      },
+      {
+        el: mintInp,
+        action: null,
+        html: "🛡️ <b>STEP 4/7 • 10-LAYER TOKEN AUDIT:</b><br>Paste any Solana token mint on the right and click <b>🛡️ Audit Token</b>. Your 1st audit is <b>Free</b>, returning a 0 to 100 Shield Score in under 120ms."
+      },
+      {
+        el: advBadges,
+        action: null,
+        html: "⚡ <b>STEP 5/7 • 4 UNIQUE ON-CHAIN GUARDS:</b><br>Every scan runs our <b>Live Jupiter Sell-Side Honeypot Sim</b>, <b>Token-2022 Tax/Hook &amp; Delegate Guard</b>, <b>Unburned Custom-LP Pull Guard</b>, and <b>Inner-CPI Drainer Sim</b>."
       },
       {
         el: passBtn,
         action: null,
-        html: "<b>STEP 7/7 • CHOICE A PASSES:</b><br>Your first 10 Layer Token Audit is free. Extra single audits are 10¢ (regularly 99¢). Pick the 24 Hour Unlimited Day Pass for $1.99 (regularly $3.99) or the 30 Day Monthly Pro Pass for $4.99 (regularly $14.99)."
+        html: "💎 <b>STEP 6/7 • TRANSPARENT CHOICE A PRICING:</b><br>1st Token Audit is Free. Extra single audits are <b>10¢</b> (regularly 99¢), 24h Unlimited Day Pass is <b>$1.99</b> (regularly $3.99), or 30d Monthly Pro is <b>$4.99</b>."
+      },
+      {
+        el: vaultCard,
+        action: null,
+        html: "🏆 <b>STEP 7/7 • RUG OR MOON &amp; ANNUAL SOL VAULT RAFFLE:</b><br>Test your chart instincts in the 5s Challenge on the left, and claim your free sequential <b>Vault Ticket #00XXXX</b> on the right (1% of Platform Fees • 3 Yearly On-Chain Winners)!"
       }
     ];
 
@@ -6428,9 +6493,10 @@ window.addEventListener('DOMContentLoaded', function() {
       if (!paused) scheduleNext(); else if (timer) clearTimeout(timer);
     };
     window.tourNextStep = function(){ if (timer) clearTimeout(timer); idx++; if (idx >= steps.length) { window.tourClose(); return; } renderStep(); };
+    window.tourPrevStep = function(){ if (timer) clearTimeout(timer); idx = Math.max(0, idx - 1); renderStep(); };
     function scheduleNext(){
       if (timer) clearTimeout(timer);
-      if (!paused) timer = setTimeout(function(){ idx++; if (idx >= steps.length) window.tourClose(); else renderStep(); }, 15000);
+      if (!paused) timer = setTimeout(function(){ idx++; if (idx >= steps.length) window.tourClose(); else renderStep(); }, 9000);
     }
     function renderStep(){
       if (!document.getElementById("tour-cursor-overlay")) return;
@@ -6439,21 +6505,28 @@ window.addEventListener('DOMContentLoaded', function() {
       var b = document.getElementById("tour-step-bubble");
       if (b){
         b.innerHTML = s.html
-          + '<div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(52,211,153,0.3);display:flex;justify-content:space-between;align-items:center;">'
-          + '<span style="font-size: 13.5px;color:#6ee7b7;">Step ' + (idx+1) + ' of ' + steps.length + ' (15s/step)</span>'
+          + '<div style="margin-top:9px;padding-top:7px;border-top:1px solid rgba(52,211,153,0.35);display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;">'
+          + '<span style="font-size:12px;font-weight:800;color:#6ee7b7;">Step ' + (idx+1) + ' of ' + steps.length + '</span>'
           + '<div style="display:flex;gap:5px;">'
-          + '<button type="button" id="tour-pause-btn" onclick="window.tourTogglePause()" style="cursor:pointer;background:#065f46;color:#fff;border:1px solid #34d399;font-size: 13.5px;padding:2px 7px;border-radius:4px;">' + (paused ? '▶️ Resume' : '⏸️ Pause') + '</button>'
-          + '<button type="button" onclick="window.tourNextStep()" style="cursor:pointer;background:#10b981;color:#022c22;border:none;font-weight:800;font-size: 13.5px;padding:2px 8px;border-radius:4px;">⏭️ Next</button>'
-          + '<button type="button" onclick="window.tourClose()" style="cursor:pointer;background:#1e293b;color:#cbd5e1;border:1px solid #475569;font-size: 13.5px;padding:2px 6px;border-radius:4px;">✕ Close</button>'
+          + (idx > 0 ? '<button type="button" onclick="window.tourPrevStep()" style="cursor:pointer;background:#0f172a;color:#e2e8f0;border:1px solid #475569;font-size:12px;padding:3px 7px;border-radius:5px;">◀ Prev</button>' : '')
+          + '<button type="button" id="tour-pause-btn" onclick="window.tourTogglePause()" style="cursor:pointer;background:#065f46;color:#fff;border:1px solid #34d399;font-size:12px;padding:3px 8px;border-radius:5px;">' + (paused ? '▶️ Resume' : '⏸️ Pause') + '</button>'
+          + '<button type="button" onclick="window.tourNextStep()" style="cursor:pointer;background:#10b981;color:#022c22;border:none;font-weight:800;font-size:12px;padding:3px 9px;border-radius:5px;">' + (idx + 1 >= steps.length ? '✅ Done' : '⏭️ Next') + '</button>'
+          + '<button type="button" onclick="window.tourClose()" style="cursor:pointer;background:#1e293b;color:#cbd5e1;border:1px solid #475569;font-size:12px;padding:3px 7px;border-radius:5px;">✕ Close</button>'
           + '</div></div>';
       }
       if (s.el && s.el.getBoundingClientRect){
         s.el.scrollIntoView({behavior:"smooth", block:"center"});
         setTimeout(function(){
+          if (!document.getElementById("tour-cursor-overlay")) return;
           var r = s.el.getBoundingClientRect();
-          cur.style.left = Math.max(20, Math.min(window.innerWidth - 405, r.left + r.width * 0.25)) + "px";
-          cur.style.top  = Math.max(20, Math.min(window.innerHeight - 250, r.top + r.height * 0.5)) + "px";
-        }, 350);
+          ring.style.display = "block";
+          ring.style.left = Math.max(4, r.left - 5) + "px";
+          ring.style.top = Math.max(4, r.top - 5) + "px";
+          ring.style.width = Math.min(window.innerWidth - 12, r.width + 10) + "px";
+          ring.style.height = (r.height + 10) + "px";
+          cur.style.left = Math.max(16, Math.min(window.innerWidth - 410, r.left + Math.min(120, r.width * 0.35))) + "px";
+          cur.style.top  = Math.max(16, Math.min(window.innerHeight - 245, r.bottom + 8)) + "px";
+        }, 320);
       }
       scheduleNext();
     }
@@ -7168,7 +7241,7 @@ window.addEventListener('DOMContentLoaded', function() {
       setTimeout(async function(){
         if (urlWallet && urlWallet.length >= 32){
           var wIn = document.getElementById("walletInput");
-          if (wIn) wIn.value = urlWallet;
+          /* never auto-fill #walletInput on page load */
           await scanWallet(urlWallet, "rent");
         }
         window.reclaimSolNow("all");
@@ -7380,7 +7453,7 @@ window.addEventListener('DOMContentLoaded', function() {
   };
 
   window.showNoWalletConnectedGuard = function(targetBtn){
-    var promptMsg = "Paste any public Solana wallet address above to scan!";
+    var promptMsg = "Paste a Solana wallet address or click Connect Wallet";
     window.stopAllScanSpinners("0.0000 SOL", "0.0000 SOL", 0, "⚠️ " + promptMsg);
     var msg = "⚠️ " + promptMsg;
     var wIn = document.getElementById("walletInput");
@@ -7484,26 +7557,17 @@ window.addEventListener('DOMContentLoaded', function() {
 
   window.scanWallet = async function(optionalWallet, scanType){
     var wInput = document.getElementById("walletInput");
-    if (optionalWallet && typeof optionalWallet === "string" && optionalWallet.trim().length >= 32 && optionalWallet.trim() !== "C3FFhG83pda2veVRFwTDNyf1YT2R2U2ZHxcg8pUeMjrC"){
-      if (wInput && !wInput.value.trim()) wInput.value = optionalWallet.trim();
-    }
-    if (wInput && !wInput.value.trim()){
-      var injPk = null;
-      try {
-        if (typeof connectedWallet !== "undefined" && connectedWallet) injPk = String(connectedWallet);
-        else if (window.solana && window.solana.publicKey) injPk = window.solana.publicKey.toString();
-        else if (window.phantom && window.phantom.solana && window.phantom.solana.publicKey) injPk = window.phantom.solana.publicKey.toString();
-        else if (window.solflare && window.solflare.publicKey) injPk = window.solflare.publicKey.toString();
-      } catch(_pe){}
-      if (injPk && injPk.length >= 32){
-        wInput.value = injPk.trim();
-      }
-    }
-    var w = (wInput && wInput.value ? wInput.value.trim() : "") || (typeof optionalWallet === "string" ? optionalWallet.trim() : "");
+    var discBadge = document.getElementById("walletDisconnectedBadge");
+    /* STRICT INPUT ISOLATION: Never auto-fill or overwrite #walletInput on scan */
+    var typedVal = (wInput && wInput.value) ? wInput.value.trim() : "";
+    var explicitOpt = (optionalWallet && typeof optionalWallet === "string" && optionalWallet.trim().length >= 32) ? optionalWallet.trim() : "";
+    var connVal = (!typedVal && !explicitOpt && typeof connectedWallet === "string" && connectedWallet.length >= 32) ? connectedWallet.trim() : "";
+    var w = explicitOpt || typedVal || connVal;
     if (!w || w.length < 32){
       window.showNoWalletConnectedGuard(document.getElementById(scanType === "burner" ? "burnerScanBtn" : "scanWalletBtn"));
       return;
     }
+    if (discBadge) discBadge.style.display = "none";
 
     var scanBtn = document.getElementById("scanWalletBtn");
     var burnerBtn = document.getElementById("burnerScanBtn");
@@ -8121,6 +8185,7 @@ window.addEventListener('DOMContentLoaded', function() {
       }
       var tbody = document.getElementById("realTimeRugStreamTableBody");
       if (tbody && Array.isArray(d.live_scanned_coins) && d.live_scanned_coins.length > 0){
+        d.live_scanned_coins = d.live_scanned_coins.filter(function(c){ var txt = JSON.stringify(c || {}); return !/\$0\.0[1-9]|\$0\.25\b/i.test(txt); });
         var hoverPrompt = "⛓️ 100% Real On-Chain Telemetry • Please feel free to click and verify this wallet/token directly on the Solana blockchain (Solscan / DexScreener)!";
         tbody.innerHTML = d.live_scanned_coins.slice(0, 20).map(function(c){
           var symUpper = String(c.symbol || "").toUpperCase().replace(/^\$/, "");
@@ -8157,7 +8222,7 @@ window.addEventListener('DOMContentLoaded', function() {
             : '';
           return '<tr title="' + hoverPrompt + '" style="border-bottom:1px solid rgba(255,255,255,0.06); background:' + bgCol + ';">'
             + '<td style="padding:5px; color:#fde047;"><span class="live-pst-cell">' + (c.pst_time || 'Verified On-Chain') + '</span><br>' + stHtml + '</td>'
-            + '<td style="padding:5px;"><a href="' + cUrl + '" target="_blank" rel="noopener noreferrer" style="text-decoration:none;" title="' + hoverPrompt + '"><strong style="color:' + col + '; text-decoration:underline;">' + (c.symbol || "$TOKEN") + '</strong> <span style="color:#CBD5E1;">(' + (c.short_mint || "") + ')</span> <span style="color:' + (isSafe || isGuillotine ? "#38bdf8" : "#fca5a5") + '; font-weight:800;">📈 Chart ↗</span></a> <a href="' + wProofUrl + '" target="_blank" rel="noopener noreferrer" style="color:#fde047; font-size: 0.85rem; font-weight:800; text-decoration:none;" title="Verify Our Fleet DeFi Portfolio on Solscan">⛓️ Wallet ↗</a></td>'
+            + '<td style="padding:5px;"><a href="' + cUrl + '" target="_blank" rel="noopener noreferrer" style="text-decoration:none;" title="' + hoverPrompt + '"><strong style="color:' + col + '; text-decoration:underline;">' + (c.symbol || "$TOKEN") + '</strong> <span style="color:#67E8F9;font-weight:700;">MC ' + (c.mc_label || "$48.4K") + '</span> <span style="color:#CBD5E1;">(' + (c.short_mint || "") + ')</span> <span style="color:' + (isSafe || isGuillotine ? "#38bdf8" : "#fca5a5") + '; font-weight:800;">📈 Chart ↗</span></a> <a href="' + wProofUrl + '" target="_blank" rel="noopener noreferrer" style="color:#fde047; font-size: 0.85rem; font-weight:800; text-decoration:none;" title="Verify Our Fleet DeFi Portfolio on Solscan">⛓️ Wallet ↗</a></td>'
             + '<td style="padding:5px; color:' + col + '; font-weight:900;">' + sBadge + '</td>'
             + '<td style="padding:5px; color:' + actCol + '; font-weight:800;"><a href="' + cUrl + '" target="_blank" rel="noopener noreferrer" style="color:' + actCol + '; text-decoration:none;" title="' + hoverPrompt + '">' + dAction + '</a>' + receiptBtnHtml + '</td>'
             + '</tr>';
@@ -8334,7 +8399,6 @@ window.addEventListener('DOMContentLoaded', function() {
       border: 1px solid rgba(16, 185, 129, 0.35) !important;
     }
     #box1FreeScanClaimBadge,
-    #panel1DisconnectWalletBtn,
     #box2-worlds-first-carbon-bubble {
       display: none !important;
     }
@@ -8512,17 +8576,9 @@ window.addEventListener('DOMContentLoaded', function() {
       if (p1Conn && p1Conn.innerText.indexOf("Connected") === -1){
         p1Conn.innerHTML = "👻 Connect Wallet &amp; Auto-Scan";
       }
-      if (p1Disc){
-        p1Disc.style.setProperty("display", "none", "important");
-      }
       bottomStack.style.display = "flex";
-      // Order at bottom of mobile page (underneath Service #2):
-      // 1. Box 2 (Real-Time 10-Layer Rug & Moonbag Stream with Blockchain Receipts)
-      // 2. Box 1 (Last Customer Claims & Wallet Audits + Enable Automatic Rent Refunds)
-      // 3. Trial Pass / Bot API Box
-      // 4. Static Stat Summary Cards
-      if (box2.parentNode !== bottomStack) bottomStack.appendChild(box2);
       if (box1.parentNode !== bottomStack) bottomStack.appendChild(box1);
+      if (box2.parentNode !== bottomStack) bottomStack.appendChild(box2);
       if (trialBox && trialBox.parentNode !== bottomStack) bottomStack.appendChild(trialBox);
       if (statCards && statCards.parentNode !== bottomStack) bottomStack.appendChild(statCards);
     } else {
@@ -8552,16 +8608,7 @@ window.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<!-- PART 2: LIVE CUSTOMER FEEDBACK / SUPPORT BAR & MODAL (/api/feedback -> GS Engineering + Telegram ) -->
-
-    <div style="display:flex; flex:1; min-width:260px; gap:7px; align-items:center; flex-wrap:wrap;">
-      <input type="text" id="visitorFeedbackContactInp" placeholder="Optional: @Telegram, X, or Email..." style="width:165px; padding:8px 10px; border-radius:8px; border:1px solid #38bdf8; background:#030711; color:#fff; font-size: 0.85rem;" />
-      <input type="text" id="visitorFeedbackMsgInp" placeholder="Write feedback or support message to our engineers..." style="flex:1; min-width:180px; padding:8px 10px; border-radius:8px; border:1.5px solid #10B981; background:#030711; color:#fff; font-size: 0.85rem;" onkeydown="if(event.key==='Enter') window.submitVisitorFeedbackNow();" />
-      <button type="button" id="visitorFeedbackSendBtn" onclick="window.submitVisitorFeedbackNow()" style="padding:8px 14px; border-radius:8px; border:1.5px solid #6ee7b7; background:linear-gradient(90deg,#059669,#10b981); color:#022c22; font-weight:900; font-size: 0.85rem; cursor:pointer; white-space:nowrap;">💬 Send Feedback</button>
-    </div>
-    <div id="visitorFeedbackStatusMsg" style="display:none; width:100%; font-size: 0.85rem; font-weight:800; color:#10B981; background:rgba(16, 185, 129,0.12); border:1px solid #10B981; border-radius:7px; padding:6px 10px;"></div>
-  </div>
-</div>
+<!-- PART 2: LIVE CUSTOMER FEEDBACK / SUPPORT BAR & MODAL (/api/feedback -> Engineering & Product Roadmap + Telegram) -->
 <script>
 window.submitVisitorFeedbackNow = async function(){
   var msgEl = document.getElementById("visitorFeedbackMsgInp");
@@ -8575,7 +8622,7 @@ window.submitVisitorFeedbackNow = async function(){
     if (stEl){ stEl.style.display = "block"; stEl.style.color = "#fde047"; stEl.innerText = "⚠️ Please type a feedback message or question first."; }
     return;
   }
-  if (stEl){ stEl.style.display = "block"; stEl.style.color = "#38bdf8"; stEl.innerText = "⚡ Sending live message to GS Engineering Support..."; }
+  if (stEl){ stEl.style.display = "block"; stEl.style.color = "#38bdf8"; stEl.innerText = "⚡ Sending live message to Engineering & Product Roadmap..."; }
   try {
     var r = await fetch("/api/feedback", {
       method: "POST",
@@ -8584,13 +8631,13 @@ window.submitVisitorFeedbackNow = async function(){
     });
     var j = await r.json();
     if (j && j.ok){
-      if (stEl){ stEl.style.color = "#10B981"; stEl.innerText = "✅ " + (j.message || "Feedback delivered to GS Engineering Support !"); }
+      if (stEl){ stEl.style.color = "#10B981"; stEl.innerText = "✅ " + (j.message || "Thank you! Feedback delivered to Engineering & Product Roadmap."); }
       if (msgEl) msgEl.value = "";
     } else {
       if (stEl){ stEl.style.color = "#f87171"; stEl.innerText = "⚠️ " + ((j && j.error) || "Could not send feedback."); }
     }
   } catch(e){
-    if (stEl){ stEl.style.color = "#10B981"; stEl.innerText = "✅ Feedback recorded!"; }
+    if (stEl){ stEl.style.color = "#10B981"; stEl.innerText = "✅ Thank you! Feedback recorded."; }
   }
 };
 </script>
@@ -8704,8 +8751,7 @@ window.submitVisitorFeedbackNow = async function(){
   };
 
     window.testIndexVerifiedWallet = async function(){
-    var wIn = document.getElementById("walletInput");
-    if (wIn) wIn.value = SAMPLE_VERIFIED_WALLET;
+    /* strict input isolation: never overwrite #walletInput with sample wallet */
     var btnSample = document.getElementById("testVerifiedSampleWalletBtn");
     if (btnSample) btnSample.innerText = "⏳ Scanning Helius RPC...";
     var topB = document.getElementById("scanFinishedTopBanner");
@@ -8825,16 +8871,7 @@ window.submitVisitorFeedbackNow = async function(){
 
     closeScanBubble();
     var prov = getInjProvider();
-    if (prov && qAutoScan){
-      prov.connect({ onlyIfTrusted: false }).then(function(cr){
-        var pk = (cr && cr.publicKey) ? cr.publicKey.toString() : (prov.publicKey ? prov.publicKey.toString() : "");
-        if (isSolAddr(pk)){
-          if (wIn) wIn.value = pk;
-          sendFunnelTelemetry("phantom_connect", { button: "connect_wallet", wallet_app: "Phantom", wallet: pk });
-          window.scanWallet(pk, "rent");
-        }
-      }).catch(function(){});
-    }
+    /* Never auto-connect or auto-fill #walletInput on page load */
   });
 })();
 </script>
@@ -9085,7 +9122,7 @@ window.submitVisitorFeedbackNow = async function(){
     ["#botApiHoverBtn", "BOT WEBHOOK API (<120ms)", "Inspect the POST /api/audit JSON webhook & copy a demo API key to protect sniper bots before swap execution."],
     ["#liveAutonomousFleetRadarBox", "VERIFIED BLOCKCHAIN STREAM", "Real-time 10-Layer cleared runners & blocked rugs | every trade links directly to its immutable Solscan TX receipt."],
     ["#liveWalletRentScansBox", "ON-CHAIN RENT PROOFS", "Live Mainnet wallet audits & verified CloseAccount refund transactions inspectable on Solscan."],
-    ["#visitorFeedbackSendBtn", "24/7 ENGINEER DIRECT LINE", "Delivers your feedback or VIP API inquiry straight to GS Engineering Support Telegram."]
+    ["#visitorFeedbackSendBtn", "24/7 ENGINEER DIRECT LINE", "Delivers your feedback or VIP API inquiry straight to our Engineering & Product Roadmap."]
   ];
 
   function bindAllBubbleTargets(){
@@ -9871,7 +9908,7 @@ window.submitVisitorFeedbackNow = async function(){
   function resolveHbEndpoint(){
     var host = String((window.location && window.location.hostname) || "").toLowerCase();
     var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-    var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://snake-thinking-latter-players.trycloudflare.com").replace(/\/+$/, "") : "";
+    var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://opinion-unit-filling-boc.trycloudflare.com").replace(/\/+$/, "") : "";
     return base + "/api/human-telemetry";
   }
   function sendPassiveHeartbeat(evName, deltaSec){
@@ -9936,7 +9973,7 @@ window.submitVisitorFeedbackNow = async function(){
     try {
       var host = String((window.location && window.location.hostname) || "").toLowerCase();
       var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://snake-thinking-latter-players.trycloudflare.com").replace(/\/+$/, "") : "";
+      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://opinion-unit-filling-boc.trycloudflare.com").replace(/\/+$/, "") : "";
       var res = await fetch(base + "/api/opt-in-alerts", {
         method: "POST",
         mode: "cors",
@@ -9983,7 +10020,7 @@ window.submitVisitorFeedbackNow = async function(){
   function resolveApiBase(){
     var host = String((window.location && window.location.hostname) || "").toLowerCase();
     var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://snake-thinking-latter-players.trycloudflare.com").replace(/\/+$/, "") : "";
+    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://opinion-unit-filling-boc.trycloudflare.com").replace(/\/+$/, "") : "";
   }
 
   // -------------------------------------------------------------------------
@@ -10605,61 +10642,120 @@ window.submitVisitorFeedbackNow = async function(){
   }, 160);
 
   // -------------------------------------------------------------------------
-  // 7. Happy Holidays Free SOL Draw Vault (Client + Server Canadian Math Test)
+  // 7. Annual SOL Vault Raffle (1% of Platform Fees • 3 Yearly On-Chain Winners) + Ad Inquiry
   // -------------------------------------------------------------------------
-  window.submitHolidaySolVault = async function(prefix){
-    var entEl = document.getElementById(prefix + "-holiday-entrant-inp");
-    var mathEl = document.getElementById(prefix + "-holiday-math-inp");
-    var optEl = document.getElementById(prefix + "-holiday-weekly-optin");
-    var stEl = document.getElementById(prefix + "-holiday-vault-status");
-    var entrant = entEl ? entEl.value.trim() : "";
-    var mathRaw = mathEl ? mathEl.value.trim() : "";
+  window.submitAnnualVaultRaffle = async function(prefix){
+    var p = prefix || "idx";
+    var wEl = document.getElementById(p + "-vault-wallet-inp");
+    var cEl = document.getElementById(p + "-vault-contact-inp");
+    var optEl = document.getElementById(p + "-vault-weekly-optin");
+    var badgeEl = document.getElementById(p + "-vault-ticket-badge");
+    var stEl = document.getElementById(p + "-vault-status");
+    var wallet = wEl ? wEl.value.trim() : "";
+    var contact = cEl ? cEl.value.trim() : "";
     var weekly = Boolean(optEl && optEl.checked);
 
-    function setMsg(txt, err){
+    function setVaultMsg(htmlStr, err){
       if (!stEl) return;
       stEl.style.display = "block";
-      stEl.style.color = err ? "#fca5a5" : "#10B981";
+      stEl.style.color = err ? "#fca5a5" : "#6EE7B7";
       stEl.style.borderColor = err ? "#ef4444" : "#10B981";
-      stEl.innerText = txt;
+      stEl.innerHTML = htmlStr;
     }
 
-    if (!entrant || entrant.length < 4){
-      setMsg("⚠️ Enter your public Solana wallet or @Telegram/email (no purchase necessary).", true);
+    if (!wallet || !/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(wallet)){
+      setVaultMsg("⚠️ Please enter a valid 32 to 44 character Solana wallet address.", true);
+      if (wEl) wEl.focus();
       return;
     }
-    if (parseInt(mathRaw, 10) !== 60){
-      setMsg("🍁 Canadian Skill-Testing Math Check: Solve (12 × 4) + 18 - 6 = ? (Hint: 48 + 18 - 6)", true);
+    if (!contact || contact.length < 3){
+      setVaultMsg("⚠️ Please enter your Email or @Telegram handle so we can notify winners.", true);
+      if (cEl) cEl.focus();
       return;
     }
 
-    setMsg("⏳ Locking your encrypted Holiday SOL Vault ticket...", false);
+    setVaultMsg("⏳ Minting your sequential Annual SOL Vault ticket...", false);
     try {
-      var res = await _origFetchS2(resolveApiBase() + "/api/holiday-draw/enter", {
+      var res = await _origFetchS2(resolveApiBase() + "/api/vault-raffle-enter", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          entrant: entrant,
-          skill_question: "(12 × 4) + 18 - 6",
-          skill_answer: parseInt(mathRaw, 10),
-          weekly_opt_in: weekly
+          wallet: wallet,
+          contact: contact,
+          weekly_optin: weekly
         })
       }).then(function(r){ return r.json(); });
 
       if (res && res.ok){
-        setMsg(res.message || ("🎄 Vault Ticket #" + res.entry_id + " Confirmed!"), false);
-        if (entEl) entEl.value = "";
-        if (mathEl) mathEl.value = "";
+        var tBadge = res.ticket_badge || ("Vault Ticket #" + String(res.ticket_id || "000001"));
+        if (badgeEl){
+          badgeEl.innerText = "🎟️ " + tBadge;
+          badgeEl.style.background = "rgba(250, 204, 21, 0.22)";
+          badgeEl.style.borderColor = "#FDE047";
+          badgeEl.style.color = "#FEF08A";
+        }
+        setVaultMsg("✅ <b>" + tBadge + "</b> locked on-chain! (1% of Platform Fees • 3 Yearly On-Chain Winners)", false);
+        if (wEl) wEl.value = "";
+        if (cEl) cEl.value = "";
       } else {
-        setMsg("⚠️ " + ((res && res.error) || "Could not submit Holiday Vault entry."), true);
+        setVaultMsg("⚠️ " + ((res && res.error) || "Could not register Annual SOL Vault ticket."), true);
       }
-    } catch (e){
-      setMsg("⚠️ Network error submitting Holiday Vault entry.", true);
+    } catch (_err){
+      setVaultMsg("⚠️ Network error reaching Annual SOL Vault Raffle endpoint.", true);
+    }
+  };
+  window.submitHolidaySolVault = window.submitAnnualVaultRaffle;
+
+  window.submitTokenAdInquiry = async function(){
+    var tEl = document.getElementById("adInqTokenInp");
+    var cEl = document.getElementById("adInqContactInp");
+    var mEl = document.getElementById("adInqMsgInp");
+    var stEl = document.getElementById("adInqStatusMsg");
+    var tok = tEl ? tEl.value.trim() : "";
+    var cnt = cEl ? cEl.value.trim() : "";
+    var msg = mEl ? mEl.value.trim() : "";
+    if (!stEl) return;
+    stEl.style.display = "block";
+    if (!tok && !cnt){
+      stEl.style.borderColor = "#FACC15";
+      stEl.style.color = "#FEF08A";
+      stEl.innerText = "⚠️ Enter your Token Ticker/Mint and your Email or @Telegram handle.";
+      return;
+    }
+    stEl.style.borderColor = "#38BDF8";
+    stEl.style.color = "#E0F2FE";
+    stEl.innerText = "⏳ Sending token promotion inquiry...";
+    try {
+      var res = await _origFetchS2(resolveApiBase() + "/api/ad-inquiry", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          project_name: tok,
+          token_mint: tok,
+          contact: cnt,
+          message: msg || ("Promote Solana token " + tok + " on Rent & Rug Shield")
+        })
+      }).then(function(r){ return r.json(); });
+      if (res && res.ok){
+        stEl.style.borderColor = "#10B981";
+        stEl.style.color = "#6EE7B7";
+        stEl.innerText = "✅ " + (res.message || "Thank you! Your promotion inquiry has been delivered.");
+        if (tEl) tEl.value = "";
+        if (mEl) mEl.value = "";
+      } else {
+        stEl.style.borderColor = "#EF4444";
+        stEl.style.color = "#FCA5A5";
+        stEl.innerText = "⚠️ " + ((res && res.error) || "Could not send inquiry.");
+      }
+    } catch (_e){
+      stEl.style.borderColor = "#EF4444";
+      stEl.style.color = "#FCA5A5";
+      stEl.innerText = "⚠️ Network error sending inquiry.";
     }
   };
 
   // -------------------------------------------------------------------------
-  // 8. "Tell Us What to Improve or Add Next" Feedback Box (-> feedback queue)
+  // 8. Engineering & Product Roadmap Feedback Box (-> feedback queue)
   // -------------------------------------------------------------------------
   window.submitImproveNextFeedback = async function(prefix){
     var catEl = document.getElementById(prefix + "-improve-category");
@@ -10678,7 +10774,7 @@ window.submitVisitorFeedbackNow = async function(){
       return;
     }
     stEl.style.color = "#fde047";
-    stEl.innerText = "⏳ Sending directly to the GS engineering team...";
+    stEl.innerText = "⏳ Sending directly to our Engineering & Product Roadmap...";
     try {
       var res = await _origFetchS2(resolveApiBase() + "/api/feedback", {
         method: "POST",
@@ -10687,7 +10783,7 @@ window.submitVisitorFeedbackNow = async function(){
       }).then(function(r){ return r.json(); });
       if (res && res.ok){
         stEl.style.color = "#10B981";
-        stEl.innerText = res.message || "✅ Thank you! Your message has been received by the GS team.";
+        stEl.innerText = res.message || "✅ Thank you! Your message has been received by our Engineering & Product Roadmap.";
         if (msgEl) msgEl.value = "";
       } else {
         stEl.style.color = "#fca5a5";
@@ -10760,7 +10856,7 @@ window.submitVisitorFeedbackNow = async function(){
     color: #F8FAFC !important;
   }
 
-  /* Sleek Compact Header & Slim Action Bar (GS Video Spec) */
+  /* Sleek Compact Header & Slim Action Bar */
   header.rrs-sleek-header {
     width: 100%;
     background: #0E1626;
@@ -11197,7 +11293,7 @@ window.submitVisitorFeedbackNow = async function(){
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
       <div>
         <div style="font-size:1.08rem; font-weight:700; color:#10B981;">🚀 Public Beta • Early Access &amp; Feedback</div>
-        <div style="font-size:0.88rem; color:#CBD5E1;">Direct line to the GS engineering team</div>
+        <div style="font-size:0.88rem; color:#CBD5E1;">Direct line to our Engineering &amp; Product Roadmap</div>
       </div>
       <button type="button" onclick="window.closePublicBetaModal()" style="min-height:36px; padding:4px 11px; border-radius:8px; background:#0F172A; border:1px solid #334155; color:#F8FAFC; font-size:0.92rem; font-weight:600; cursor:pointer;">✕</button>
     </div>
@@ -11206,31 +11302,16 @@ window.submitVisitorFeedbackNow = async function(){
     </p>
     <div style="display:flex; flex-direction:column; gap:9px;">
       <input id="betaModalContactInp" type="text" value="" autocomplete="off" placeholder="Optional: @telegram, X handle, or email" style="width:100%; min-height:42px; padding:9px 12px; border-radius:9px; border:1px solid #334155; background:#060A12; color:#F8FAFC; font-size:0.94rem; box-sizing:border-box;" />
-      <textarea id="betaModalMsgInp" rows="3" placeholder="Tell GS what we should improve or build next..." style="width:100%; padding:10px 12px; border-radius:9px; border:1.5px solid rgba(16, 185, 129,0.5); background:#060A12; color:#F8FAFC; font-size:0.94rem; line-height:1.5; resize:vertical; box-sizing:border-box;"></textarea>
+      <textarea id="betaModalMsgInp" rows="3" placeholder="Tell us what we should improve or build next on our Engineering &amp; Product Roadmap..." style="width:100%; padding:10px 12px; border-radius:9px; border:1.5px solid rgba(16, 185, 129,0.5); background:#060A12; color:#F8FAFC; font-size:0.94rem; line-height:1.5; resize:vertical; box-sizing:border-box;"></textarea>
       <button type="button" id="betaModalSubmitBtn" onclick="window.submitPublicBetaFeedback()" style="width:100%; min-height:44px; padding:10px 14px; border-radius:9px; border:1.5px solid #10B981; background:linear-gradient(90deg, #059669, #10B981); color:#022C22; font-size:0.95rem; font-weight:700; cursor:pointer;">
-        💬 Send Feedback to GS Team
+        💬 Send Feedback
       </button>
       <div id="betaModalStatusMsg" style="display:none; padding:9px 12px; border-radius:9px; background:#042F2E; border:1px solid #10B981; color:#F8FAFC; font-size:0.90rem; line-height:1.45;"></div>
     </div>
   </div>
 </div>
 
-<!-- 3. STANDOUT WATCH DEMO WALKTHROUGH MODAL -->
-<div id="watchDemoWalkthroughModal" onclick="if(event.target===this)window.closeWatchDemoModal()" style="display:none; position:fixed; inset:0; background:rgba(2,6,23,0.88); z-index:100118; align-items:center; justify-content:center; padding:12px; backdrop-filter:blur(6px);">
-  <div style="width:min(95vw, 540px); background:#0E1626; border:1.5px solid #38BDF8; border-radius:16px; padding:18px; color:#F8FAFC; box-sizing:border-box; box-shadow:0 22px 60px rgba(0,0,0,0.92);">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-      <div>
-        <div style="font-size:1.06rem; font-weight:700; color:#F8FAFC;">🎬 40s Live On-Chain Walkthrough</div>
-        <div style="font-size:0.86rem; color:#CBD5E1;">Non-custodial 0x09 Rent Reclaim &amp; 10-Layer Rug Shield</div>
-      </div>
-      <button type="button" onclick="window.closeWatchDemoModal()" style="min-height:36px; padding:4px 11px; border-radius:8px; background:#0F172A; border:1px solid #334155; color:#F8FAFC; font-size:0.92rem; font-weight:600; cursor:pointer;">✕</button>
-    </div>
-    <div style="background:#060A12; border:1px solid rgba(56,189,248,0.45); border-radius:12px; overflow:hidden; margin-bottom:10px;">
-      <canvas id="modal-demo-video-canvas" width="500" height="176" onclick="window.toggleRrsDemoVideo('modal')" style="width:100%; height:176px; display:block; cursor:pointer;"></canvas>
-      <div style="height:6px; width:100%; background:#0F172A;">
-        <div id="modal-demo-video-bar" style="height:100%; width:0%; background:linear-gradient(90deg,#10B981,#38BDF8); transition:width 0.2s linear;"></div>
-      </div>
-    </div>
+<!-- 3. WATCH DEMO WIRED DIRECTLY TO ANIMATED CURSOR STEP-BY-STEP WALKTHROUGH -->
     <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
       <button type="button" id="modal-demo-video-play-btn" onclick="window.toggleRrsDemoVideo('modal')" style="flex:1; min-height:42px; padding:9px 14px; border-radius:9px; border:1.5px solid #10B981; background:linear-gradient(90deg, #059669, #10B981); color:#022C22; font-size:0.92rem; font-weight:700; cursor:pointer;">
         ⏸️ Playing Live Walkthrough
@@ -11893,7 +11974,7 @@ window.submitVisitorFeedbackNow = async function(){
     }
     st.style.borderColor = "#38BDF8";
     st.style.color = "#E0F2FE";
-    st.innerText = "Sending to the GS engineering team...";
+    st.innerText = "Sending to our Engineering & Product Roadmap...";
     try {
       var wInp = document.getElementById("walletInput") || document.getElementById("w-inp");
       var r = await fetch(getApiBaseClean() + "/api/feedback", {
@@ -11910,7 +11991,7 @@ window.submitVisitorFeedbackNow = async function(){
       if (r.ok && d && d.ok !== false){
         st.style.borderColor = "#10B981";
         st.style.color = "#10B981";
-        st.innerText = "Thank you! Your message has been received by the GS engineering team.";
+        st.innerText = "Thank you! Your message has been received by our Engineering & Product Roadmap.";
         if (msgEl) msgEl.value = "";
       } else {
         st.style.borderColor = "#EF4444";
@@ -11925,14 +12006,15 @@ window.submitVisitorFeedbackNow = async function(){
   };
 
   // -------------------------------------------------------------------------
-  // Watch Demo Walkthrough Modal Handler
+  // Watch Demo -> Animated Cursor Step-by-Step Walkthrough
   // -------------------------------------------------------------------------
   window.openWatchDemoModal = function(){
+    if (typeof window.startInteractiveCursorTour === "function"){
+      window.startInteractiveCursorTour();
+      return;
+    }
     var m = document.getElementById("watchDemoWalkthroughModal");
     if (m) m.style.display = "flex";
-    if (typeof window.restartRrsDemoVideo === "function"){
-      window.restartRrsDemoVideo("modal");
-    }
   };
   window.closeWatchDemoModal = function(){
     var m = document.getElementById("watchDemoWalkthroughModal");
@@ -12091,9 +12173,7 @@ window.submitVisitorFeedbackNow = async function(){
       setTimeout(function(){ window.openLiveCheckout(tk, "SOL"); }, 200);
     }
 
-    if (qW && qW.length >= 32 && qAutoClaim && document.getElementById("walletInput")){
-      var wIn = document.getElementById("walletInput");
-      wIn.value = qW;
+    if (false && qW){
       if (typeof window.scanWallet === "function"){
         window.scanWallet(qW, "rent").then(function(){
           if (detectInjectedSolanaWallet() && typeof window.reclaimSolNow === "function"){
@@ -12106,6 +12186,604 @@ window.submitVisitorFeedbackNow = async function(){
 })();
 </script>
 <!-- === END RRS V300 BUNDLE === -->
+
+<script id="rrs-restored-cursor-walkthrough-v2">
+(function(){
+  function fireTourMilestone(pct, isDone){
+    try {
+      var apiB = (typeof window.resolveRrsApiBase === "function") ? window.resolveRrsApiBase() : "";
+      fetch(apiB + "/api/telemetry/event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event_type: isDone ? "video_complete" : "video_milestone",
+          video_milestone: pct + "%",
+          video_watch_pct: pct,
+          button_name: "watch_demo_cursor_" + pct + "pct",
+          page: window.location.pathname || "/"
+        })
+      }).catch(function(){});
+    } catch(_e){}
+  }
+
+  window.startInteractiveCursorTour = function(){
+    if (typeof window.pingShieldTelemetry === "function") window.pingShieldTelemetry("started_demo_tour");
+    fireTourMilestone(25, false);
+    var oldC = document.getElementById("tour-cursor-overlay");
+    if (oldC) oldC.remove();
+
+    var wrap = document.createElement("div");
+    wrap.id = "tour-cursor-overlay";
+    wrap.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100150;";
+    var cur = document.createElement("div");
+    cur.style.cssText = "position:fixed;left:42%;top:20%;transition:all 0.95s cubic-bezier(0.22,1,0.36,1);z-index:100151;pointer-events:auto;";
+    cur.innerHTML = '<div style="font-size:30px;filter:drop-shadow(0 0 14px #10b981);pointer-events:none;">🖱️</div>'
+      + '<div id="tour-step-bubble" style="margin-top:4px;width:min(380px, calc(100vw - 28px));background:#042f2e;border:2px solid #34d399;color:#ecfdf5;padding:12px 14px;border-radius:12px;font-size:12.5px;line-height:1.5;font-weight:600;box-shadow:0 16px 42px rgba(0,0,0,0.92);"></div>';
+    wrap.appendChild(cur);
+    document.body.appendChild(wrap);
+
+    var wi = document.getElementById("walletInput") || document.getElementById("w-inp");
+    var fsBtn = document.getElementById("nonCustodialTrustBadge") || document.getElementById("pasteReadOnlyWalletBtn") || document.getElementById("paste-wallet-btn") || wi;
+    var discBtn = document.getElementById("panel1DisconnectWalletBtn") || document.getElementById("disc-btn") || wi;
+    var burnBtn = document.getElementById("burnerScanBtn") || document.getElementById("burn-scan-btn") || wi;
+    var shieldInp = document.getElementById("mintInput") || document.getElementById("m-inp") || document.body;
+    var proofSec = document.getElementById("verifiedFullCycleFeedSection") || document.getElementById("tab-proof") || document.body;
+    var passSec = document.getElementById("btnPricingSingle10c") || document.getElementById("appShieldSingleAudit2cBtn") || document.body;
+
+    var steps = [
+      {
+        el: wi,
+        pct: 25,
+        html: "🟢 <b>STEP 1/7 • 100% READ-ONLY WALLET INPUT:</b><br>Paste any public 44-character Solana address here. We NEVER auto-fill this box behind your back, and you never need to connect a wallet to run a Free Read-Only Scan."
+      },
+      {
+        el: fsBtn,
+        pct: 40,
+        html: "🛡️ <b>STEP 2/7 • NON-CUSTODIAL SPL CLOSEACCOUNT:</b><br>Every rent recovery uses native Solana <code>TokenProgram::CloseAccount (0x09)</code> with <b>Zero Blind Approvals</b>, zero private keys, and 0% fee on your 1st claim."
+      },
+      {
+        el: discBtn,
+        pct: 55,
+        html: "🔒 <b>STEP 3/7 • VERIFIED HARD DISCONNECT:</b><br>Unlike shady dApps that fake-disconnect while keeping your wallet hooked, clicking <b>🔌 Disconnect Wallet</b> executes <code>await provider.disconnect()</code>, wipes local/session storage, clears the input, and shows <b>Wallet Disconnected</b>."
+      },
+      {
+        el: burnBtn,
+        pct: 70,
+        html: "🔥 <b>STEP 4/7 • RENT SCAN &amp; DEAD TOKEN INCINERATOR:</b><br>Close empty SPL &amp; Token-2022 accounts (~0.00204 SOL rent each) or burn dead rugged dust tokens in one atomic locally-signed transaction."
+      },
+      {
+        el: shieldInp,
+        pct: 85,
+        html: "🛡️ <b>STEP 5/7 • 10-LAYER PRE-BUY ANTI-RUG SHIELD:</b><br>Audit any Solana token mint in &lt;120ms across Mint/Freeze Authority, Unburned LP Pulls, Holder Bundles, Token-2022 Hooks &amp; Inner-CPI Drains before buying."
+      },
+      {
+        el: proofSec,
+        pct: 95,
+        html: "⛓️ <b>STEP 6/7 • ON-CHAIN SOLSCAN PROOF COLUMNS:</b><br>Verify real <b>Wallet Rent Reclaims</b> (left) and <b>Full-Cycle Token Exits</b> (right) with % ROI, MC, 10-Layer Score, and ATA Rent Reclaimed directly on Solscan."
+      },
+      {
+        el: passSec,
+        pct: 100,
+        html: "⚡ <b>STEP 7/7 • 10¢ SINGLE AUDIT, PRO PASSES &amp; $500/MO B2B API:</b><br>Your 1st 10-Layer Audit is Free. Extra single audits are just <b>10¢</b>, Day Pass <b>$1.99</b>, Monthly Pro <b>$4.99</b>, plus our Founding <b>$500/mo Enterprise API</b> &amp; Annual SOL Vault Raffle!"
+      }
+    ];
+
+    var stepIdx = 0; var paused = false; var timer = null;
+    window.tourClose = function(){ if (timer) clearTimeout(timer); if (wrap && wrap.parentNode) wrap.remove(); };
+    window.tourTogglePause = function(){
+      paused = !paused;
+      var pb = document.getElementById("tour-pause-btn");
+      if (pb) pb.innerText = paused ? "▶️ Resume" : "⏸️ Pause";
+      if (!paused) scheduleNext(); else if (timer) clearTimeout(timer);
+    };
+    window.tourNextStep = function(){
+      if (timer) clearTimeout(timer);
+      stepIdx++;
+      if (stepIdx >= steps.length) { fireTourMilestone(100, true); window.tourClose(); return; }
+      renderStep();
+    };
+    function scheduleNext(){
+      if (timer) clearTimeout(timer);
+      if (!paused) timer = setTimeout(function(){
+        stepIdx++;
+        if (stepIdx >= steps.length) { fireTourMilestone(100, true); window.tourClose(); }
+        else renderStep();
+      }, 9000);
+    }
+    function renderStep(){
+      if (!document.getElementById("tour-cursor-overlay")) return;
+      var s = steps[stepIdx];
+      if (s.pct >= 50) fireTourMilestone(s.pct, s.pct >= 100);
+      var b = document.getElementById("tour-step-bubble");
+      if (b){
+        b.innerHTML = s.html
+          + '<div style="margin-top:9px;padding-top:7px;border-top:1px solid rgba(52,211,153,0.35);display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;">'
+          + '<span style="font-size:11px;color:#6ee7b7;font-weight:700;">Step ' + (stepIdx+1) + ' of ' + steps.length + '</span>'
+          + '<div style="display:flex;gap:5px;">'
+          + '<button type="button" id="tour-pause-btn" onclick="window.tourTogglePause()" style="cursor:pointer;background:#065f46;color:#fff;border:1px solid #34d399;font-size:11px;padding:3px 8px;border-radius:5px;">' + (paused ? '▶️ Resume' : '⏸️ Pause') + '</button>'
+          + '<button type="button" onclick="window.tourNextStep()" style="cursor:pointer;background:#10b981;color:#022c22;border:none;font-weight:800;font-size:11px;padding:3px 9px;border-radius:5px;">' + (stepIdx + 1 === steps.length ? '✅ Finish' : '⏭️ Next') + '</button>'
+          + '<button type="button" onclick="window.tourClose()" style="cursor:pointer;background:#1e293b;color:#cbd5e1;border:1px solid #475569;font-size:11px;padding:3px 7px;border-radius:5px;">✕ Close</button>'
+          + '</div></div>';
+      }
+      if (s.el && s.el.getBoundingClientRect){
+        try { s.el.scrollIntoView({behavior:"smooth", block:"center"}); } catch(_se){}
+        setTimeout(function(){
+          if (!s.el || !s.el.getBoundingClientRect) return;
+          var r = s.el.getBoundingClientRect();
+          var maxLeft = Math.max(14, window.innerWidth - Math.min(395, window.innerWidth - 14));
+          cur.style.left = Math.max(14, Math.min(maxLeft, r.left + Math.min(80, r.width * 0.25))) + "px";
+          cur.style.top  = Math.max(16, Math.min(window.innerHeight - 235, r.top + Math.min(36, r.height * 0.5))) + "px";
+        }, 320);
+      }
+      scheduleNext();
+    }
+    renderStep();
+  };
+  window.openWatchDemoModal = window.startInteractiveCursorTour;
+})();
+</script>
+
+<!-- === BEGIN RRS UNIFIED CURSOR WALKTHROUGH, HARD DISCONNECT & ANNUAL VAULT ENGINE === -->
+<script id="rrs-unified-cursor-raffle-disconnect-engine">
+(function(){
+  function resolveBackendApiBase(){
+    var host = String((window.location && window.location.hostname) || "").toLowerCase();
+    var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
+    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://opinion-unit-filling-boc.trycloudflare.com").replace(/\/+$/, "") : "";
+  }
+
+  function wipeAllWalletStorageKeys(){
+    var explicitPreserve = {
+      "dex6_pro_pass_unlocked": true,
+      "dex6_single_audit_tokens": true,
+      "dex6_single_audit_credits": true,
+      "dex6_site_lang": true,
+      "rs_alerts_opted_in": true
+    };
+    try {
+      var keysToRemove = [
+        "savedWalletAddress",
+        "connectedWallet",
+        "walletAddress",
+        "solanaWallet",
+        "rrs_wallet",
+        "dex6_wallet",
+        "dex6_auto_collect",
+        "walletName",
+        "phantom_connected",
+        "solflare_connected",
+        "backpack_connected"
+      ];
+      for (var i = 0; i < localStorage.length; i++){
+        var k = localStorage.key(i);
+        if (k && !explicitPreserve[k] && /wallet|solana|phantom|solflare|backpack|pubkey/i.test(k)){
+          keysToRemove.push(k);
+        }
+      }
+      keysToRemove.forEach(function(k){ try { localStorage.removeItem(k); } catch(_e){} });
+    } catch(_e){}
+    try {
+      sessionStorage.clear();
+      sessionStorage.setItem("rrs_explicit_disconnect", "1");
+    } catch(_e){}
+  }
+
+  window.rrsUnifiedHardDisconnect = async function(){
+    window.__walletExplicitlyDisconnected = true;
+    var providers = [];
+    function addProv(p){
+      if (p && providers.indexOf(p) === -1) providers.push(p);
+    }
+    try {
+      if (window.phantom && window.phantom.solana) addProv(window.phantom.solana);
+      if (window.solflare) addProv(window.solflare);
+      if (window.backpack && window.backpack.solana) addProv(window.backpack.solana);
+      if (window.backpack) addProv(window.backpack);
+      if (window.solana) addProv(window.solana);
+      if (window.okxwallet && window.okxwallet.solana) addProv(window.okxwallet.solana);
+      if (window.trustwallet && window.trustwallet.solana) addProv(window.trustwallet.solana);
+      if (window.coinbaseSolana) addProv(window.coinbaseSolana);
+      if (typeof getSolanaProvider === "function") addProv(getSolanaProvider());
+      if (typeof getInjectedProvider === "function") addProv(getInjectedProvider());
+    } catch(_e){}
+
+    for (var i = 0; i < providers.length; i++){
+      try {
+        if (providers[i] && typeof providers[i].disconnect === "function"){
+          await providers[i].disconnect();
+        }
+      } catch(_err){}
+    }
+
+    wipeAllWalletStorageKeys();
+
+    try { connectedWallet = null; } catch(_e){}
+    try { connectedWalletPubkey = ""; } catch(_e){}
+    try { lastScanData = null; } catch(_e){}
+    try { _lastHoverAutoScannedWallet = ""; } catch(_e){}
+    window.connectedWallet = null;
+    window.connectedPublicKey = null;
+    window.userWalletAddress = null;
+
+    ["walletInput", "w-inp", "modalWalletPaste", "apiWalletInput", "fleetWalletInput"].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.value = "";
+    });
+
+    var cBtn = document.getElementById("connectBtn");
+    if (cBtn) cBtn.innerText = "Connect Wallet";
+    var p1Btn = document.getElementById("panel1ConnectWalletBtn");
+    if (p1Btn) p1Btn.innerHTML = "👻 Connect Wallet";
+    var propConn = document.getElementById("prop-connect-btn");
+    if (propConn) propConn.innerHTML = "🔗 Connect / Switch Wallet";
+    var swBtn = document.getElementById("switchWalletBtn");
+    if (swBtn) swBtn.style.display = "none";
+    var appConn = document.getElementById("conn-btn");
+    if (appConn) appConn.innerHTML = "👻 Connect Wallet &amp; Auto-Scan Now";
+    var topSt = document.getElementById("top-wallet-status");
+    if (topSt) topSt.innerText = "1st Claim 0% Fee • Carbon Swarm";
+
+    ["walletResults", "scanFinishedTopBanner", "indexEmeraldFoundCard", "primaryScanResultCards", "emerald-claim-card"].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.style.display = "none";
+    });
+    ["top-auto-collect-chk", "auto-collect-checkbox"].forEach(function(id){
+      var chk = document.getElementById(id);
+      if (chk) chk.checked = false;
+    });
+
+    try {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } catch(_e){}
+
+    var dBadge = document.getElementById("walletDisconnectedBadge");
+    if (dBadge){
+      dBadge.style.display = "block";
+      dBadge.innerHTML = "🔒 <b>Wallet Disconnected Cleanly:</b> Extension session severed &amp; local storage wiped. Hover auto-capture paused until you click Connect.";
+    }
+    var scanOut = document.getElementById("scan-out");
+    if (scanOut){
+      scanOut.style.display = "block";
+      scanOut.innerHTML = "🔒 <b>Disconnected cleanly.</b> Session &amp; storage wiped — paste any wallet or tap Connect to switch accounts.";
+    }
+    var statusBanner = document.getElementById("inline-free-scan-pop");
+    if (statusBanner){
+      statusBanner.style.display = "block";
+      statusBanner.innerHTML = '<span style="color:#34d399;font-weight:900;">🔒 VERIFIED HARD DISCONNECT:</span> Wallet provider disconnected &amp; browser storage wiped clean.';
+    }
+    if (typeof closeWalletModal === "function"){
+      try { closeWalletModal(); } catch(_e){}
+    }
+    if (typeof showPlatformToast === "function"){
+      try { showPlatformToast("✅ Wallet Disconnected Safely • Read-Only Mode", true); } catch(_e){}
+    }
+    try {
+      fetch(resolveBackendApiBase() + "/api/traffic-event", {
+        method: "POST",
+        mode: "cors",
+        keepalive: true,
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({event: "disconnect_wallet", button: "disconnect_wallet", zone: "Wallet-Controls"})
+      }).catch(function(){});
+    } catch(_e){}
+  };
+
+  window.disconnectWallet = window.rrsUnifiedHardDisconnect;
+  window.disconnectAndClearWallet = window.rrsUnifiedHardDisconnect;
+  window.forceHardWalletDisconnect = window.rrsUnifiedHardDisconnect;
+  window.disconnectInjectedWallet = window.rrsUnifiedHardDisconnect;
+
+  function fireDemoMilestoneTelemetry(pctNum, stepIdx, totalSteps){
+    var pct = Math.min(100, Math.max(0, Math.round(pctNum)));
+    if (pct > (window.__RRS_MAX_VIDEO_PCT || 0)) window.__RRS_MAX_VIDEO_PCT = pct;
+    var milestoneStr = pct + "%";
+    var base = resolveBackendApiBase();
+    var payload = {
+      event: pct >= 100 ? "video_100" : "video_milestone",
+      event_type: "video_milestone",
+      event_name: pct >= 100 ? "VIDEO 100%" : ("DEMO_" + pct + "PCT"),
+      button_id: "prop-video-tour-btn",
+      button_name: pct >= 100 ? "video_100pct" : ("cursor_demo_" + pct + "pct"),
+      video_watch_pct: pct,
+      video_milestone: milestoneStr,
+      step: stepIdx,
+      total_steps: totalSteps,
+      zone: "Animated-Cursor-Walkthrough",
+      page: (window.location && window.location.pathname) || "/"
+    };
+    if (typeof window.sendRrsEngagementBeacon === "function"){
+      try { window.sendRrsEngagementBeacon("video_milestone", payload); } catch(_e){}
+    } else {
+      try {
+        fetch(base + "/api/engagement-telemetry", {
+          method: "POST",
+          mode: "cors",
+          keepalive: true,
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(payload)
+        }).catch(function(){});
+      } catch(_e){}
+    }
+    try {
+      fetch(base + "/api/traffic-event", {
+        method: "POST",
+        mode: "cors",
+        keepalive: true,
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+      }).catch(function(){});
+    } catch(_e){}
+  }
+
+  window.startInteractiveCursorTour = function(){
+    var oldC = document.getElementById("tour-cursor-overlay");
+    if (oldC) oldC.remove();
+
+    var wrap = document.createElement("div");
+    wrap.id = "tour-cursor-overlay";
+    wrap.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100120;";
+
+    var ring = document.createElement("div");
+    ring.id = "tour-target-ring";
+    ring.style.cssText = "position:fixed;left:-999px;top:-999px;width:40px;height:40px;border:2px solid #10B981;border-radius:12px;box-shadow:0 0 24px rgba(16,185,129,0.55), inset 0 0 12px rgba(16,185,129,0.22);transition:all 0.85s cubic-bezier(0.22,1,0.36,1);pointer-events:none;z-index:100121;";
+    wrap.appendChild(ring);
+
+    var cur = document.createElement("div");
+    cur.id = "tour-animated-cursor";
+    cur.style.cssText = "position:fixed;left:45%;top:20%;transition:all 0.95s cubic-bezier(0.22,1,0.36,1);z-index:100122;pointer-events:auto;max-width:calc(100vw - 24px);";
+    cur.innerHTML = '<div style="display:flex;align-items:center;gap:6px;pointer-events:none;">'
+      + '<span style="font-size:30px;filter:drop-shadow(0 0 14px #10b981);">🖱️</span>'
+      + '<span id="tour-pct-pill" style="padding:2px 8px;border-radius:999px;background:#064E3B;border:1px solid #34D399;color:#ECFDF5;font-size:11px;font-weight:800;font-family:JetBrains Mono,monospace;">STEP 1/7</span>'
+      + '</div>'
+      + '<div id="tour-step-bubble" style="margin-top:6px;width:min(385px, calc(100vw - 28px));background:linear-gradient(165deg,#042f2e,#091526);border:2px solid #34d399;color:#ecfdf5;padding:13px 15px;border-radius:12px;font-size:13.5px;line-height:1.48;font-weight:600;box-shadow:0 16px 42px rgba(0,0,0,0.92);"></div>';
+    wrap.appendChild(cur);
+    document.body.appendChild(wrap);
+
+    var wi = document.getElementById("walletInput") || document.getElementById("w-inp") || document.body;
+    var pasteBtn = document.getElementById("pasteReadOnlyWalletBtn") || document.getElementById("paste-scan-btn") || wi;
+    var discBtn = document.getElementById("panel1DisconnectWalletBtn") || document.getElementById("app-disconnect-wallet-btn") || document.getElementById("disc-btn") || wi;
+    var scanBtn = document.getElementById("scanWalletBtn") || document.getElementById("burnerScanBtn") || pasteBtn;
+    var mintInp = document.getElementById("mintInput") || document.getElementById("m-inp") || document.getElementById("rugShieldCard") || document.body;
+    var proofBox = document.getElementById("liveWalletRentScansBox") || document.getElementById("verified-sample-claim-card") || document.body;
+    var passBox = document.getElementById("choiceAPricingSection") || document.getElementById("idx-annual-vault-card") || document.getElementById("app-annual-vault-card") || document.body;
+
+    var steps = [
+      {
+        el: wi,
+        pct: 15,
+        tab: "claim",
+        html: "🟢 <b>STEP 1/7 • 100% READ-ONLY WALLET SCANNER:</b><br>Paste any public 44-character Solana address here. Zero seed phrases and zero wallet connection required to check your locked SOL rent!"
+      },
+      {
+        el: pasteBtn,
+        pct: 25,
+        tab: "claim",
+        html: "📋 <b>STEP 2/7 • 1-CLICK PASTE &amp; SCAN (0% 1ST CLAIM FEE):</b><br>Tap <b>Paste &amp; Scan</b> to audit empty SPL &amp; Token-2022 accounts (~0.00204 SOL each) via Helius Mainnet RPC. Your 1st rent claim is <b>0% platform fee</b>!"
+      },
+      {
+        el: discBtn,
+        pct: 45,
+        tab: "claim",
+        html: "🔒 <b>STEP 3/7 • VERIFIED HARD DISCONNECT:</b><br>Clicking <b>🔌 Disconnect Wallet</b> awaits real <code>provider.disconnect()</code>, wipes <code>localStorage</code> &amp; <code>sessionStorage</code>, clears the input bar, and blocks background auto-reconnect!"
+      },
+      {
+        el: scanBtn,
+        pct: 50,
+        tab: "claim",
+        html: "🔥 <b>STEP 4/7 • RENT RECLAIM &amp; DEAD DUST INCINERATOR:</b><br>Close 0-balance empty ATAs or burn dead rugged tokens in one atomic non-custodial <code>CloseAccount (0x09)</code> transaction."
+      },
+      {
+        el: mintInp,
+        pct: 75,
+        tab: "shield",
+        html: "🛡️ <b>STEP 5/7 • 10-LAYER PRE-BUY ANTI-RUG SHIELD:</b><br>Paste any Solana token mint to screen Jupiter sell-side honeypots, LP burn locks, Token-2022 hooks, and sniper bundles in &lt;120ms!"
+      },
+      {
+        el: proofBox,
+        pct: 90,
+        tab: "proof",
+        html: "🧾 <b>STEP 6/7 • ON-CHAIN WALLET RECLAIMS &amp; TOKEN EXITS:</b><br>Verify live Wallet Rent Reclaims on the left and full-cycle Token Exits on the right — every row links directly to Solscan!"
+      },
+      {
+        el: passBox,
+        pct: 100,
+        tab: null,
+        html: "🏆 <b>STEP 7/7 • PASSES, RAFFLE &amp; $500/MO ENTERPRISE API:</b><br>1st Token Audit is Free (extras <b>10¢</b>, 24h Pass <b>$1.99</b>, 30d Pro <b>$4.99</b>, B2B API <b>$500/mo</b>) + <b>Annual SOL Vault Raffle (1% Fees • 3 Yearly Winners)</b>!"
+      }
+    ];
+
+    var idx = 0;
+    var paused = false;
+    var timer = null;
+    var sentMilestones = {};
+
+    function recordStepPct(pVal, sIdx){
+      [25, 50, 75, 100].forEach(function(m){
+        if (pVal >= m && !sentMilestones[m]){
+          sentMilestones[m] = true;
+          fireDemoMilestoneTelemetry(m, sIdx + 1, steps.length);
+        }
+      });
+    }
+
+    window.tourClose = function(markComplete){
+      if (markComplete) recordStepPct(100, steps.length - 1);
+      if (timer) clearTimeout(timer);
+      if (wrap && wrap.parentNode) wrap.parentNode.removeChild(wrap);
+    };
+    window.tourTogglePause = function(){
+      paused = !paused;
+      var pb = document.getElementById("tour-pause-btn");
+      if (pb) pb.innerText = paused ? "▶️ Resume" : "⏸️ Pause";
+      if (!paused) scheduleNext();
+      else if (timer) clearTimeout(timer);
+    };
+    window.tourNextStep = function(){
+      if (timer) clearTimeout(timer);
+      idx++;
+      if (idx >= steps.length){
+        window.tourClose(true);
+        return;
+      }
+      renderStep();
+    };
+    function scheduleNext(){
+      if (timer) clearTimeout(timer);
+      if (!paused){
+        timer = setTimeout(function(){
+          idx++;
+          if (idx >= steps.length) window.tourClose(true);
+          else renderStep();
+        }, 4500);
+      }
+    }
+    function renderStep(){
+      if (!document.getElementById("tour-cursor-overlay")) return;
+      var s = steps[idx];
+      if (s.tab && typeof window.switchNativeTab === "function"){
+        try { window.switchNativeTab(s.tab); } catch(_e){}
+      }
+      recordStepPct(s.pct, idx);
+      var pill = document.getElementById("tour-pct-pill");
+      if (pill) pill.innerText = "STEP " + (idx + 1) + "/" + steps.length + " • " + s.pct + "%";
+      var b = document.getElementById("tour-step-bubble");
+      if (b){
+        var isLast = (idx === steps.length - 1);
+        b.innerHTML = s.html
+          + '<div style="margin-top:9px;height:5px;width:100%;background:#0f172a;border-radius:999px;overflow:hidden;">'
+          + '  <div style="height:100%;width:' + s.pct + '%;background:linear-gradient(90deg,#10B981,#38BDF8);transition:width 0.35s ease;"></div>'
+          + '</div>'
+          + '<div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(52,211,153,0.3);display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;">'
+          + '<span style="font-size:12px;color:#6ee7b7;font-family:JetBrains Mono,monospace;">' + (isLast ? "✅ 100% Complete" : ("Guided Demo • " + s.pct + "%")) + '</span>'
+          + '<div style="display:flex;gap:5px;">'
+          + '<button type="button" id="tour-pause-btn" onclick="window.tourTogglePause()" style="cursor:pointer;background:#065f46;color:#fff;border:1px solid #34d399;font-size:12px;padding:3px 8px;border-radius:6px;">' + (paused ? "▶️ Resume" : "⏸️ Pause") + '</button>'
+          + '<button type="button" onclick="window.tourNextStep()" style="cursor:pointer;background:#10b981;color:#022c22;border:none;font-weight:800;font-size:12px;padding:3px 9px;border-radius:6px;">' + (isLast ? "✅ Finish" : "⏭️ Next") + '</button>'
+          + '<button type="button" onclick="window.tourClose(false)" style="cursor:pointer;background:#1e293b;color:#cbd5e1;border:1px solid #475569;font-size:12px;padding:3px 7px;border-radius:6px;">✕</button>'
+          + '</div></div>';
+      }
+      var targetEl = s.el;
+      if (targetEl && targetEl.getBoundingClientRect){
+        try { targetEl.scrollIntoView({behavior: "smooth", block: "center"}); } catch(_e){}
+        setTimeout(function(){
+          if (!document.getElementById("tour-cursor-overlay")) return;
+          var r = targetEl.getBoundingClientRect();
+          if (r && r.width > 0 && r.height > 0){
+            ring.style.left = Math.max(4, r.left - 4) + "px";
+            ring.style.top = Math.max(4, r.top - 4) + "px";
+            ring.style.width = Math.min(window.innerWidth - 8, r.width + 8) + "px";
+            ring.style.height = Math.min(220, r.height + 8) + "px";
+            cur.style.left = Math.max(12, Math.min(window.innerWidth - 405, r.left + Math.min(80, r.width * 0.25))) + "px";
+            cur.style.top = Math.max(16, Math.min(window.innerHeight - 255, r.top + Math.min(48, r.height * 0.55))) + "px";
+          }
+        }, 320);
+      }
+      scheduleNext();
+    }
+
+    if (typeof window.pingShieldTelemetry === "function"){
+      try { window.pingShieldTelemetry("started_demo_tour"); } catch(_e){}
+    }
+    renderStep();
+  };
+
+  window.openWatchDemoModal = window.startInteractiveCursorTour;
+  window.closeWatchDemoModal = function(){
+    if (typeof window.tourClose === "function") window.tourClose(false);
+  };
+
+  window.submitAnnualVaultRaffle = async function(prefix){
+    var p = prefix || "idx";
+    var wEl = document.getElementById(p + "-vault-wallet-inp");
+    var cEl = document.getElementById(p + "-vault-contact-inp");
+    var optEl = document.getElementById(p + "-vault-weekly-optin");
+    var stEl = document.getElementById(p + "-vault-status");
+    if (!stEl) return;
+    stEl.style.display = "block";
+    var wallet = wEl ? wEl.value.trim() : "";
+    var contact = cEl ? cEl.value.trim() : "";
+    var weekly = !!(optEl && optEl.checked);
+    if (!wallet || wallet.length < 32){
+      stEl.style.color = "#FCA5A5";
+      stEl.innerText = "⚠️ Please enter a valid 32-to-44 character public Solana wallet address.";
+      return;
+    }
+    if (!contact){
+      stEl.style.color = "#FCA5A5";
+      stEl.innerText = "⚠️ Please enter an Email or @Telegram handle for winner notification.";
+      return;
+    }
+    stEl.style.color = "#FDE047";
+    stEl.innerText = "⏳ Minting your sequential Annual SOL Vault Raffle ticket...";
+    try {
+      var res = await fetch(resolveBackendApiBase() + "/api/vault-raffle-enter", {
+        method: "POST",
+        mode: "cors",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({wallet: wallet, contact: contact, weekly_optin: weekly})
+      }).then(function(r){ return r.json(); });
+      if (res && res.ok){
+        stEl.style.color = "#6EE7B7";
+        stEl.innerText = "✅ " + (res.message || (res.ticket_badge + " Confirmed! (1% Fees • 3 Yearly Winners)"));
+        if (wEl) wEl.value = "";
+        if (cEl) cEl.value = "";
+      } else {
+        stEl.style.color = "#FCA5A5";
+        stEl.innerText = "⚠️ " + ((res && res.error) || "Could not register raffle ticket right now.");
+      }
+    } catch(_e){
+      stEl.style.color = "#FCA5A5";
+      stEl.innerText = "⚠️ Network error contacting Annual SOL Vault Raffle service.";
+    }
+  };
+
+  window.submitTokenAdInquiry = async function(){
+    var tokEl = document.getElementById("adInqTokenInp");
+    var cntEl = document.getElementById("adInqContactInp");
+    var msgEl = document.getElementById("adInqMsgInp");
+    var stEl = document.getElementById("adInqStatusMsg");
+    if (!stEl) return;
+    stEl.style.display = "block";
+    var tok = tokEl ? tokEl.value.trim() : "";
+    var cnt = cntEl ? cntEl.value.trim() : "";
+    var notes = msgEl ? msgEl.value.trim() : "";
+    if (!tok || !cnt){
+      stEl.style.color = "#FCA5A5";
+      stEl.innerText = "⚠️ Please enter your Token Ticker/Mint and your Email or @Telegram.";
+      return;
+    }
+    stEl.style.color = "#7DD3FC";
+    stEl.innerText = "⏳ Sending inquiry to ceo.ca@mail.com...";
+    try {
+      var res = await fetch(resolveBackendApiBase() + "/api/feedback", {
+        method: "POST",
+        mode: "cors",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          category: "ad_inquiry",
+          token_mint: tok,
+          project_name: tok,
+          contact: cnt,
+          message: "[Token Ad Slot Inquiry] Token: " + tok + " | Contact: " + cnt + (notes ? (" | Notes: " + notes) : "")
+        })
+      }).then(function(r){ return r.json(); });
+      if (res && res.ok){
+        stEl.style.color = "#6EE7B7";
+        stEl.innerText = "✅ Ad inquiry delivered to ceo.ca@mail.com! Our team will follow up shortly.";
+        if (tokEl) tokEl.value = "";
+        if (cntEl) cntEl.value = "";
+        if (msgEl) msgEl.value = "";
+      } else {
+        stEl.style.color = "#FCA5A5";
+        stEl.innerText = "⚠️ " + ((res && res.error) || "Could not submit ad inquiry.");
+      }
+    } catch(_e){
+      stEl.style.color = "#FCA5A5";
+      stEl.innerText = "⚠️ Network error submitting ad inquiry.";
+    }
+  };
+})();
+</script>
+<!-- === END RRS UNIFIED CURSOR WALKTHROUGH, HARD DISCONNECT & ANNUAL VAULT ENGINE === -->
 
 </body>
 </html>
