@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Token-2022 DefaultAccountState Frozen &amp; Soulbound Detector | 11-Layer</title>
+  <meta name="description" content="Stop Token-2022 DefaultAccountState::Frozen traps via 11-Layer Shield. Reclaim 2,039,280 lamports (0.00203928 SOL) at 0% 1st claim + 30% ?ref= split." />
+  <meta name="rrs:marketing-unit" content="M026" />
+  <meta name="rrs:cluster" content="Cluster D: Token-2022 Malicious Transfer-Hook &amp; Permanent-Delegate Detectors" />
+  <link rel="canonical" href="https://rentandrugshield.com/funnel/token-2022-default-account-state-frozen-detector.html" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
+  <meta property="og:title" content="Token-2022 DefaultAccountState Frozen &amp; Soulbound Detector | 11-Layer" />
+  <meta property="og:description" content="Stop Token-2022 DefaultAccountState::Frozen traps via 11-Layer Shield. Reclaim 2,039,280 lamports (0.00203928 SOL) at 0% 1st claim + 30% ?ref= split." />
+  <meta property="og:url" content="https://rentandrugshield.com/funnel/token-2022-default-account-state-frozen-detector.html" />
+  <meta property="og:image" content="https://rentandrugshield.com/og-shield-v3.png?v=20261118v4" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Token-2022 DefaultAccountState Frozen &amp; Soulbound Detector | 11-Layer" />
+  <meta name="twitter:description" content="Stop Token-2022 DefaultAccountState::Frozen traps via 11-Layer Shield. Reclaim 2,039,280 lamports (0.00203928 SOL) at 0% 1st claim + 30% ?ref= split." />
+  <meta name="twitter:image" content="https://rentandrugshield.com/og-shield-v3.png?v=20261118v4" />
+  <link rel="stylesheet" href="/static/fonts/fonts.css?v=20261118sri" integrity="sha384-EOrrT0KeeSLzhi1WFOdDbEu5AXPk19b/1o5DEYXRng7Uyktu7m1YFNUluRAnfY84" crossorigin="anonymous" />
+  <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Token-2022 DefaultAccountState Frozen & Soulbound Detector | 11-Layer",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web, Solana Mainnet, HTTP x402, MCP",
+    "description": "Stop Token-2022 DefaultAccountState::Frozen traps via 11-Layer Shield. Reclaim 2,039,280 lamports (0.00203928 SOL) at 0% 1st claim + 30% ?ref= split.",
+    "url": "https://rentandrugshield.com/funnel/token-2022-default-account-state-frozen-detector.html",
+    "image": "https://rentandrugshield.com/og-shield-v3.png?v=20261118v4",
+    "brand": {
+      "@type": "Brand",
+      "name": "Solana Rent & Rug Shield"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "0.00",
+      "highPrice": "500.00",
+      "priceCurrency": "USD",
+      "offerCount": 6,
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free 1st Scan & 0% 1st Rent Claim (2,039,280 lamports)",
+          "price": "0.00",
+          "priceCurrency": "USD",
+          "url": "https://rentandrugshield.com/funnel/token-2022-default-account-state-frozen-detector.html"
+        },
+        {
+          "@type": "Offer",
+          "name": "24h Trench Pass ($0 auto-billing)",
+          "price": "1.99",
+          "priceCurrency": "USD",
+          "url": "https://rentandrugshield.com/funnel/token-2022-default-account-state-frozen-detector.html"
+        },
+        {
+          "@type": "Offer",
+          "name": "30-Day Trader Pro ($0 auto-billing)",
+          "price": "19.99",
+          "priceCurrency": "USD",
+          "url": "https://rentandrugshield.com/funnel/token-2022-default-account-state-frozen-detector.html"
+        },
+        {
+          "@type": "Offer",
+          "name": "30-Day Ultra Pro + Sniper Bot API (15,000 calls/mo)",
+          "price": "49.99",
+          "priceCurrency": "USD",
+          "url": "https://rentandrugshield.com/funnel/token-2022-default-account-state-frozen-detector.html"
+        },
+        {
+          "@type": "Offer",
+          "name": "30-Day Quant Desk Pro API (100,000 calls/mo, <120ms SLA)",
+          "price": "99.00",
+          "priceCurrency": "USD",
+          "url": "https://rentandrugshield.com/funnel/token-2022-default-account-state-frozen-detector.html"
+        },
+        {
+          "@type": "Offer",
+          "name": "Enterprise Unlimited B2B Security API",
+          "price": "500.00",
+          "priceCurrency": "USD",
+          "url": "https://rentandrugshield.com/funnel/token-2022-default-account-state-frozen-detector.html"
+        }
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does DefaultAccountState::Frozen do on a Solana Token-2022 mint?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Extension Type 6 (DefaultAccountState) instructs the Token-2022 program to set byte 108 of every newly created Associated Token Account to 0x02 (Frozen) at the exact moment of creation. Unless a whitelisted authority thaws your account, you can never transfer, burn, or close that token account."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I recover SOL rent from a NonTransferable (soulbound) spam token?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, as long as the account is not also Frozen (byte 108 == 0x01)! While spl-token-2022 blocks transfers on NonTransferable accounts, it explicitly permits the owner to Burn (0x08) the soulbound balance to zero and execute CloseAccount (0x09) to reclaim all 2,101,920+ lamports."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why cannot any tool close an ATA whose state byte equals 0x02 (Frozen)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is a hard consensus rule inside both SPL Tokenkeg and Token-2022: Processor::process_close_account checks is_frozen() and unconditionally throws TokenError::AccountFrozen unless the mint's freeze_authority signs a ThawAccount (0x0b) instruction first. Quarantining frozen ATAs keeps all your other 2,039,280-lamport accounts closing cleanly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is MintCloseAuthority (Extension Type 3) risky for traders?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MintCloseAuthority lets a 32-byte authority delete the Mint account itself once total supply reaches zero. Combined with PermanentDelegate (Extension Type 12), an attacker can burn all holder balances to zero and close the Mint account, wiping token metadata from standard explorers."
+        }
+      }
+    ]
+  }
+]
+  </script>
+  <style>
+    :root {
+      --bg: #060A12;
+      --card: #0C1322;
+      --card-alt: #101A2E;
+      --border: rgba(56, 189, 248, 0.16);
+      --border-hi: rgba(16, 185, 129, 0.42);
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --dim: #64748B;
+      --emerald: #10B981;
+      --emerald-hi: #34D399;
+      --cyan: #38BDF8;
+      --amber: #FBBF24;
+      --red: #F87171;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.09), transparent 55%), var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: var(--emerald-hi); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 10, 18, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+    }
+    .topbar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .quick-nav-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .qnav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(16, 26, 46, 0.92);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 6px 11px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none !important;
+    }
+    .qnav-btn:hover {
+      border-color: var(--emerald);
+      background: rgba(16, 185, 129, 0.14);
+    }
+    .medallion { width: 44px; height: 44px; flex-shrink: 0; }
+    .brand-title { font-weight: 800; font-size: 1.08rem; letter-spacing: 0.02em; color: var(--text); }
+    .brand-sub { font-size: 0.78rem; color: var(--emerald-hi); font-weight: 600; }
+    .nav-center {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .nav-center a {
+      color: var(--muted);
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-center a:hover, .nav-center a.active {
+      color: #ffffff;
+      background: rgba(16, 185, 129, 0.16);
+      text-decoration: none;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 36px 20px 72px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--emerald-hi);
+      margin-bottom: 10px;
+    }
+    .info-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--cyan);
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-size: 0.74rem;
+      cursor: pointer;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .layer-bubble {
+      display: none;
+      background: #0F172A;
+      border: 1px solid var(--cyan);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      max-width: 660px;
+      margin: 6px 0 16px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+    }
+    .layer-bubble.open { display: block; }
+    h1 { font-size: clamp(1.85rem, 3.6vw, 2.65rem); line-height: 1.18; margin: 0 0 14px; letter-spacing: -0.02em; }
+    .lead { font-size: 1.05rem; color: var(--muted); max-width: 980px; margin: 0 0 24px; }
+    .sec-p { font-size: 0.98rem; color: #CBD5E1; max-width: 980px; margin: 0 0 14px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none !important;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #10B981, #059669);
+      color: #04130d;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.28);
+    }
+    .btn-primary:hover { filter: brightness(1.07); }
+    .btn-secondary {
+      background: rgba(14, 22, 38, 0.9);
+      color: var(--text);
+      border-color: var(--border-hi);
+    }
+    .btn-secondary:hover { background: rgba(16, 185, 129, 0.12); }
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+    .kpi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .kpi-val { font-size: 1.38rem; font-weight: 800; color: var(--emerald-hi); margin-bottom: 4px; }
+    .kpi-lbl { font-size: 0.84rem; color: var(--muted); }
+    h2 { font-size: 1.48rem; margin: 36px 0 14px; letter-spacing: -0.01em; }
+    h3 { font-size: 1.1rem; margin: 0 0 8px; color: var(--text); }
+    .tech-section {
+      background: rgba(12, 19, 34, 0.55);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 22px;
+    }
+    .tech-section h2 { margin-top: 0; }
+    .code-panel {
+      margin-top: 14px;
+      background: #050811;
+      border: 1px solid rgba(56, 189, 248, 0.26);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .code-header {
+      background: rgba(16, 26, 46, 0.95);
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    .code-block {
+      margin: 0;
+      padding: 14px 16px;
+      font-size: 0.83rem;
+      line-height: 1.55;
+      color: #E2E8F0;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .calc-card {
+      background: linear-gradient(135deg, rgba(16, 26, 46, 0.94), rgba(12, 19, 34, 0.98));
+      border: 1px solid var(--border-hi);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 28px 0;
+    }
+    .calc-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 28px;
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 680px; }
+    th, td {
+      padding: 13px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+      vertical-align: top;
+    }
+    th {
+      background: var(--card-alt);
+      color: var(--emerald-hi);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    tr:last-child td { border-bottom: none; }
+    .good { color: var(--emerald-hi); font-weight: 700; }
+    .bad { color: var(--red); font-weight: 600; }
+    .warn { color: var(--amber); font-weight: 600; }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .panel.highlight {
+      border-color: var(--emerald);
+      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.22);
+    }
+    .price-tag { font-size: 1.52rem; font-weight: 800; color: var(--emerald-hi); }
+    .price-reg { font-size: 0.84rem; color: var(--dim); text-decoration: line-through; margin-left: 6px; }
+    .pass-note { font-size: 0.88rem; color: var(--emerald-hi); font-weight: 600; margin: 6px 0 18px; }
+    .aff-box {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.11), rgba(14, 22, 38, 0.96));
+      border: 1px solid var(--emerald);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 32px 0;
+    }
+    .aff-form { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .aff-input {
+      flex: 1 1 320px;
+      background: #060A12;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 11px 14px;
+      font-size: 0.92rem;
+    }
+    .aff-out {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: rgba(6, 10, 18, 0.85);
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+      word-break: break-all;
+      display: none;
+    }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+    .faq-q { font-weight: 700; font-size: 1.02rem; margin-bottom: 6px; color: var(--text); }
+    .faq-a { color: var(--muted); font-size: 0.93rem; margin: 0; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--dim);
+      font-size: 0.84rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-row">
+        <a href="https://rentandrugshield.com/" class="aff-cta" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+          <svg class="medallion" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Solana Rent and Rug Shield Medallion">
+            <circle cx="32" cy="32" r="30" fill="#091322" stroke="#10B981" stroke-width="2.5"/>
+            <circle cx="32" cy="32" r="23" fill="none" stroke="#38BDF8" stroke-width="1" stroke-dasharray="3 2"/>
+            <path d="M32 14L45 20V31C45 40.2 39.4 47.9 32 51C24.6 47.9 19 40.2 19 31V20L32 14Z" fill="rgba(16,185,129,0.18)" stroke="#34D399" stroke-width="2"/>
+            <text x="32" y="35" text-anchor="middle" fill="#F8FAFC" font-family="Inter, sans-serif" font-weight="800" font-size="9.5">DEX6</text>
+          </svg>
+          <div>
+            <div class="brand-title">SOLANA RENT &amp; RUG SHIELD</div>
+            <div class="brand-sub">0% 1st Rent Claim (2,039,280 Lamports) + 11-Layer Block-0 Sybil Defense</div>
+          </div>
+        </a>
+        <div class="quick-nav-controls" role="navigation" aria-label="Scanner Quick Navigation">
+          <a class="qnav-btn aff-cta" data-telemetry="nav-back" href="/#scanner" onclick="if(window.history.length&gt;1){window.history.back();return false;}">[← Back]</a>
+          <a class="qnav-btn aff-cta" data-telemetry="nav-home" href="https://rentandrugshield.com/">[🏠 Home]</a>
+          <a class="qnav-btn aff-cta" data-telemetry="nav-live-scanner" href="/#scanner">⚡ Live Scanner</a>
+        </div>
+      </div>
+      <nav class="nav-center" aria-label="Primary Funnel Navigation">
+        <a href="https://rentandrugshield.com/" class="aff-cta">Home</a> &bull;
+        <a href="/#scanner" class="aff-cta">Live 11-Layer Scanner</a> &bull;
+        <a href="/app.html" class="aff-cta">0% 1st Rent Claim</a> &bull;
+        <a href="/compare/index.html" class="aff-cta">Compare Hub</a> &bull;
+        <a href="/compare/sol-incinerator-vs-rentandrugshield.html" class="aff-cta">vs Sol Incinerator</a> &bull;
+        <a href="/compare/claimyoursol-vs-rentandrugshield.html" class="aff-cta">vs ClaimYourSol</a> &bull;
+        <a href="/worlds-first-11-layer-solana-rug-shield.html" class="aff-cta">11-Layer Proof</a> &bull;
+        <a href="/enterprise-api.html" class="aff-cta">$49.99–$500 API</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="eyebrow">
+      <span>Token-2022 Extension Types 3, 6 &amp; 9 Trap Forensics &bull; M026</span>
+      <button type="button" id="layerInfoToggle" class="info-pill" data-telemetry="layer11-info-bubble">&#9432; 11-Layer Live Upgrade</button>
+    </div>
+    <div id="layerInfoBubble" class="layer-bubble">
+      <strong>11-Layer Adaptive Architecture:</strong> Layer 11 (Block-0 Jito/Sybil Cluster Defense) shipped live at $0 extra cost during active passes. Every active pass ($1.99 24h / $19.99 / $49.99 / $99 / $500) includes new security layers automatically with $0 auto-billing.
+    </div>
+
+    <h1>Token-2022 DefaultAccountState::Frozen, NonTransferable &amp; MintCloseAuthority Trap Audit</h1>
+    <p class="lead">Token-2022 introduces three structural mint extensions—DefaultAccountState::Frozen (Extension Type 6), NonTransferable (Extension Type 9), and MintCloseAuthority (Extension Type 3)—that let malicious deployers freeze newly created buyer accounts on arrival or lock tokens into soulbound purgatory before you can ever click sell. Solana Rent &amp; Rug Shield runs a live 11-Layer Block-0 Jito and Sybil audit with sub-120ms Layer-10 TLV byte decoding to block instant-freeze and soulbound traps missed by RugCheck, SolSniffer, and GoPlus. Simultaneously, our cleaner quarantines frozen traps while reclaiming 2,039,280 lamports (0.00203928 SOL) per empty ATA at a 0% 1st-claim fee versus Sol Incinerator (~2%) and ClaimYourSol (5%), plus a 30% ?ref= split.</p>
+
+    <div class="cta-row">
+      <a class="btn btn-primary aff-cta" data-telemetry="hero-primary-m026" href="https://rentandrugshield.com/#scanner">Audit Token-2022 Freeze &amp; Soulbound Extensions (0% 1st Claim)</a>
+      <a class="btn btn-secondary aff-cta" data-telemetry="hero-secondary-m026" href="/app.html">Launch Layer-10 TLV Inspector</a>
+      <a class="btn btn-secondary" data-telemetry="hero-ref-m026" href="#affiliate-30pct">Get 30% ?ref= Link</a>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-val mono">Types 3 / 6 / 9</div>
+        <div class="kpi-lbl">TLV Freeze, Soulbound &amp; Close Extensions Audited</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val mono">Byte [108]=0x02</div>
+        <div class="kpi-lbl">Instant-Frozen ATA Trap Blocked Pre-Entry</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val mono">2,039,280+</div>
+        <div class="kpi-lbl">Lamports Reclaimed Per Eligible ATA (0% 1st)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val mono">&lt;120ms</div>
+        <div class="kpi-lbl">Live Mainnet Binary TLV Verification</div>
+      </div>
+    </div>
+
+
+    <section class="calc-card" id="sybil-ata-simulator" aria-label="Block-0 Sybil & Rug ATA Bleed Estimator">
+      <div class="eyebrow">Interactive Trench EV Simulator &bull; Unit M026</div>
+      <h2 style="margin-top:0;">Bundled Rug Loss Prevention + Dead ATA Rent Recovery Estimator</h2>
+      <p style="color:var(--muted);margin:0 0 14px;">
+        Estimate how much SOL our <strong>11-Layer Block-0 Jito/Sybil &amp; Token-2022 TLV Shield</strong> saves per month compared to relying on RugCheck, SolSniffer, or GoPlus &mdash; plus instant <strong>0%-fee 1st-claim recovery</strong> (<span class="mono">2,039,280 lamports = 0.00203928 SOL</span> per dead ATA).
+      </p>
+      <div class="calc-controls">
+        <label for="ataCountInput" style="font-weight:700;font-size:0.92rem;">Dead / Empty Trench ATAs:</label>
+        <input id="ataCountInput" class="aff-input mono" style="max-width:160px;" type="number" min="1" max="25000" value="300" />
+        <button type="button" class="qnav-btn calc-preset" data-atas="100">100 ATAs</button>
+        <button type="button" class="qnav-btn calc-preset" data-atas="300">300 ATAs</button>
+        <button type="button" class="qnav-btn calc-preset" data-atas="1000">1,000 ATAs</button>
+      </div>
+      <div class="kpi-strip" style="margin-top:16px;margin-bottom:0;">
+        <div class="kpi-card">
+          <div id="calcRrsFirst" class="kpi-val mono">0.611784 SOL</div>
+          <div class="kpi-lbl">Unlocked Free on Claim #1 (0% Fee &bull; 2,039,280 lamports/ATA)</div>
+        </div>
+        <div class="kpi-card">
+          <div id="calcIncLoss" class="kpi-val mono" style="color:var(--amber);">-0.012236 SOL</div>
+          <div class="kpi-lbl">Saved vs Sol Incinerator ~2% Fee (-0.030589 SOL vs 5% Burn)</div>
+        </div>
+        <div class="kpi-card">
+          <div id="calcCysLoss" class="kpi-val mono" style="color:var(--red);">-0.030589 SOL</div>
+          <div class="kpi-lbl">Saved vs ClaimYourSol 5% Skim</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val mono">&lt;120ms</div>
+          <div class="kpi-lbl">Layer-11 Sybil &amp; Layer-10 TLV Verdict Speed (0 Auto-Billing)</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tech-section">
+      <h2>How Extension Types 6, 9 &amp; 3 Engineer Instant-Freeze and Soulbound Token-2022 Traps</h2>
+      <p class="sec-p">In legacy SPL Tokenkeg launches, an attacker with an active freeze_authority must monitor incoming buyers and submit explicit FreezeAccount (0x0a) transactions after each retail purchase lands. Token-2022&#x27;s ExtensionType::DefaultAccountState (TLV type u16 0x0600, length 1 byte / 0x0100) automates that ambush at the protocol level. When the single payload byte equals 0x02 (AccountState::Frozen)—or when an active freeze_authority fires DefaultAccountStateInstruction::Update ([0x1c, 0x01]) mid-pump—every newly initialized Associated Token Account is born frozen unless explicitly thawed by the deployer&#x27;s whitelist wrapper. Any retail trader whose buy clears through a temporary thaw CPI finds byte 108 locked at 0x02 milliseconds later, bricking both token exits and CloseAccount rent recovery.</p>
+      <p class="sec-p">Attackers also pair ExtensionType::NonTransferable (type 9 / 0x0900, 0-byte Mint marker plus NonTransferableAccount type 13 on ATAs) with deceptive presale or migration claim contracts, minting soulbound tokens directly into buyer wallets that throw TokenError::NonTransferable (0x25) on every DEX swap attempt. Meanwhile, ExtensionType::MintCloseAuthority (type 3 / 0x0300, 32-byte authority) allows rug operators to pair PermanentDelegate supply burns with Mint account deletion—erasing on-chain mint state after draining liquidity. Layer-10 decodes all three extensions directly from offset 166+ before a single lamport leaves your wallet.</p>
+      <div class="code-panel">
+        <div class="code-header mono">Token-2022 Multi-Extension Trap TLV Map (Types 3, 6 &amp; 9)</div>
+        <pre class="code-block mono">Mint Owner    : TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
+Offset [046..082] : freeze_authority = COption::Some(9mKp2vTx...4wQn7rZa)
+Offset [165]      : 0x01 (AccountType::Mint)
+
+Sequential TLV Stream Starting @ Byte [166]:
+  [166..170] type=0x0300 (3: MintCloseAuthority)  | len=0x2000 (32B)
+  [170..202] close_authority = 9mKp2vTx...4wQn7rZa (Can erase Mint state)
+  [202..206] type=0x0600 (6: DefaultAccountState) | len=0x0100 (1B)
+  [206]      state = 0x02 (AccountState::Frozen -&gt; Instant ATA Freeze!)
+  [207..211] type=0x0900 (9: NonTransferable)     | len=0x0000 (0B Soulbound!)
+
+Layer-10 Verdict: CRITICAL_SOULBOUND_FREEZE_TRAP -&gt; Hard Pre-Buy Block</pre>
+      </div>
+    </section>
+
+    <section class="tech-section">
+      <h2>Lamport &amp; EV Forensics: Frozen Rent Lockups vs Burn-and-Close Soulbound Recovery</h2>
+      <p class="sec-p">Distinguishing between AccountState::Frozen (Extension Type 6) and NonTransferable (Extension Type 9) directly determines whether your locked ATA rent lamports remain recoverable. When a token account has byte 108 set to 0x02 (Frozen), the spl-token-2022 runtime blocks TransferChecked, Burn, AND CloseAccount (0x09)—permanently trapping both your swap principal and the 2,074,080+ lamports of rent inside that ATA until thawed. Conversely, on an unfrozen NonTransferable (soulbound) spam or scam token, transfers revert, yet the account owner IS explicitly permitted by spl-token-2022 to execute Burn (0x08) down to zero followed immediately by CloseAccount (0x09)!</p>
+      <p class="sec-p">Solana Rent &amp; Rug Shield&#x27;s cleanup engine leverages this exact protocol distinction automatically. When scanning your wallet, any frozen honeypot ATA (byte 108 == 0x02) is quarantined so batch transactions never revert with TokenError::AccountFrozen, whereas zero-balance legacy SPL ATAs (2,039,280 lamports each) and eligible Token-2022 ATAs (2,074,080 to 2,157,600+ lamports each) close cleanly in a single signature. Across 65 cleanable empty accounts, our 0% 1st-claim fee returns 100% of your 132,553,200+ lamports (+0.13255320 SOL), beating Sol Incinerator (~2%–5%) and ClaimYourSol (5%).</p>
+      <div class="code-panel">
+        <div class="code-header mono">Protocol Closeability Matrix &amp; 65-ATA Recovery Payout Math</div>
+        <pre class="code-block mono">SPL / Token-2022 Account State vs Rent Recovery Eligibility:
+  1. Standard Empty SPL ATA (165B, state=0x01)      -&gt; CloseAccount [0x09] OK (2,039,280 lamports)
+  2. NonTransferable Spam ATA (174B, state=0x01)    -&gt; Burn [0x08] + Close [0x09] OK (2,101,920 lamports)
+  3. DefaultAccountState::Frozen ATA (state=0x02)   -&gt; Auto-Quarantined (Prevents Batch Revert!)
+
+Worked 65-Account Cleanup (50 SPL @ 165B + 15 Token-2022 @ 174B):
+  50 x 2,039,280 lamports       : 101,964,000 lamports
+  15 x 2,101,920 lamports       :  31,528,800 lamports
+  Total Gross Locked Rent       : 133,492,800 lamports (0.13349280 SOL)
+  ClaimYourSol Net (5% Fee)     : 126,818,160 lamports (-6,674,640 lamports lost)
+  Sol Incinerator Net (~2.5%)   : 130,155,480 lamports (-3,337,320 lamports lost)
+  Rent &amp; Rug Shield (0% 1st)    : 133,492,800 lamports (Full 0.13349280 SOL recovered)</pre>
+      </div>
+    </section>
+
+    <section class="tech-section">
+      <h2>11-Layer Live TLV Inspection vs RugCheck, SolSniffer &amp; GoPlus Static Blind Spots</h2>
+      <p class="sec-p">Why do traders still fall into DefaultAccountState and NonTransferable traps when checking popular token scanners? First, attackers initialize DefaultAccountState with byte [206] = 0x01 (Initialized) during token creation so initial indexer crawls on RugCheck, SolSniffer, and GoPlus cache a benign state—then fire DefaultAccountStateInstruction::Update ([0x1c, 0x01]) inside a Jito bundle seconds after liquidity migration, exploiting the 30-to-180-second REST cache window. Second, soulbound presale wrappers distribute NonTransferable tokens off-DEX before any AMM pool exists for DEX-centric scanners to index.</p>
+      <p class="sec-p">Solana Rent &amp; Rug Shield eliminates indexer lag by querying raw Mint account bytes directly at the slot tip in under 120ms. Layer-10 flags any presence of ExtensionType 6 with an active freeze_authority as an armed instant-freeze weapon, blocks ExtensionType 9 (NonTransferable) unconditionally for tradable pairs, flags ExtensionType 3 (MintCloseAuthority) rug vectors, and pairs with Layer-11 Sybil funding-tree analysis. Upgrade anytime with 24h, 30-Day, or Monthly passes ($0 auto-billing) and earn an automatic 30% SOL split on every ?ref= referral.</p>
+
+    </section>
+
+    <h2>Token-2022 Freeze &amp; Soulbound Defense vs Legacy Tools</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Dimension</th><th>Solana Rent &amp; Rug Shield</th><th>Sol Incinerator / ClaimYourSol</th><th>RugCheck / SolSniffer / GoPlus</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>DefaultAccountState (Type 6)</strong></td><td class="good">Live &lt;120ms check on state byte &amp; [0x1c, 0x01] update risk</td><td class="bad">Zero pre-buy mint extension inspection</td><td class="warn">30-180s cache misses mid-pump DefaultAccountState flips</td></tr>
+          <tr><td><strong>NonTransferable (Type 9)</strong></td><td class="good">Hard pre-buy soulbound block + post-airdrop close support</td><td class="warn">Charges ~2% to 5% cut when closing soulbound spam ATAs</td><td class="warn">Often unindexed on pre-AMM soulbound claim portals</td></tr>
+          <tr><td><strong>MintCloseAuthority (Type 3)</strong></td><td class="good">Flags 32-byte mint deletion authority alongside Type 12</td><td class="bad">No mint header or TLV security audit</td><td class="warn">Frequently buried in low-severity metadata notes</td></tr>
+          <tr><td><strong>Frozen ATA Quarantine</strong></td><td class="good">Auto-isolates byte [108]==0x02 so cleanups never revert</td><td class="warn">Frozen accounts can abort uncurated multi-close batches</td><td class="bad">No CloseAccount transaction builder</td></tr>
+          <tr><td><strong>1st-Claim Rent Fee</strong></td><td class="good">0% fee — full 2,039,280 to 2,157,600+ lamports kept</td><td class="bad">~2% to 5% platform fee deducted from recovered SOL</td><td class="bad">N/A</td></tr>
+          <tr><td><strong>Pass Terms &amp; ?ref= Split</strong></td><td class="good">24h / 30-Day / Monthly ($0 auto-billing) + 30% ?ref= SOL</td><td class="bad">No pre-trade sniper API; smaller affiliate splits</td><td class="bad">Recurring subscriptions; zero instant 30% SOL split</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>4-Step Playbook: Stop Instant-Freeze Traps &amp; Clean Eligible ATAs</h2>
+    <div class="grid-3">
+      <div class="panel">
+        <div>
+          <h3>Step 1: Scan Token-2022 Mint Bytes Before Entering Any Pool</h3>
+          <p style="color:var(--muted);font-size:0.9rem;margin:0;">Paste the mint address into our 11-Layer scanner. Layer-10 inspects raw TLV records from offset 166 onward to detect DefaultAccountState (Type 6), NonTransferable (Type 9), and MintCloseAuthority (Type 3).</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div>
+          <h3>Step 2: Block Any Active Freeze Authority or Soulbound Marker</h3>
+          <p style="color:var(--muted);font-size:0.9rem;margin:0;">Never buy a speculative Token-2022 asset carrying NonTransferable or an active freeze_authority paired with DefaultAccountState, as a single [0x1c, 0x01] update freezes every new buyer instantly.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div>
+          <h3>Step 3: Quarantine Frozen Traps &amp; Batch Eligible Empty ATAs</h3>
+          <p style="color:var(--muted);font-size:0.9rem;margin:0;">Connect your wallet non-custodially to separate permanently frozen ATAs (byte 108 == 0x02) from clean zero-balance SPL and Token-2022 accounts ready for immediate 0x09 CloseAccount recovery.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div>
+          <h3>Step 4: Reclaim 100% First-Claim SOL &amp; Share Your 30% ?ref= URL</h3>
+          <p style="color:var(--muted);font-size:0.9rem;margin:0;">Sign the verified transaction in your wallet to recover 2,039,280+ lamports per closed account at 0% first-claim fee, and earn 30% instant SOL commissions via your ?ref= link.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">What does DefaultAccountState::Frozen do on a Solana Token-2022 mint?</div>
+      <p class="faq-a">Extension Type 6 (DefaultAccountState) instructs the Token-2022 program to set byte 108 of every newly created Associated Token Account to 0x02 (Frozen) at the exact moment of creation. Unless a whitelisted authority thaws your account, you can never transfer, burn, or close that token account.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I recover SOL rent from a NonTransferable (soulbound) spam token?</div>
+      <p class="faq-a">Yes, as long as the account is not also Frozen (byte 108 == 0x01)! While spl-token-2022 blocks transfers on NonTransferable accounts, it explicitly permits the owner to Burn (0x08) the soulbound balance to zero and execute CloseAccount (0x09) to reclaim all 2,101,920+ lamports.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why cannot any tool close an ATA whose state byte equals 0x02 (Frozen)?</div>
+      <p class="faq-a">It is a hard consensus rule inside both SPL Tokenkeg and Token-2022: Processor::process_close_account checks is_frozen() and unconditionally throws TokenError::AccountFrozen unless the mint&#x27;s freeze_authority signs a ThawAccount (0x0b) instruction first. Quarantining frozen ATAs keeps all your other 2,039,280-lamport accounts closing cleanly.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why is MintCloseAuthority (Extension Type 3) risky for traders?</div>
+      <p class="faq-a">MintCloseAuthority lets a 32-byte authority delete the Mint account itself once total supply reaches zero. Combined with PermanentDelegate (Extension Type 12), an attacker can burn all holder balances to zero and close the Mint account, wiping token metadata from standard explorers.</p>
+    </div>
+
+    <h2>Institutional Pricing Ladder ($0 Free 1st Claim + $19.99 / $49.99 / $99 / $500 Passes)</h2>
+    <div class="pass-note">New layers included free during active pass, $0 auto-billing. Settle instantly in SOL, SPL USDC, Stripe Card, or autonomous HTTP 402 (x402).</div>
+    <div class="grid-3">
+      <div class="panel">
+        <div>
+          <h3>Free 1st Claim &amp; 24h Trench Pass</h3>
+          <div><span class="price-tag">$0 Free</span> <span style="color:var(--muted);font-size:0.86rem;">1st Scan &amp; 0% 1st Claim</span></div>
+          <p style="color:var(--muted);font-size:0.9rem;margin:10px 0 16px;">
+            Keep <strong>2,039,280 / 2,039,280 lamports (0.00203928 SOL)</strong> on your first wallet claim vs Sol Incinerator ~2% and ClaimYourSol 5%. Extra single 11-Layer scan: <strong>$0.10</strong>. <strong>24h Trench Pass: $1.99</strong>.
+          </p>
+        </div>
+        <a class="btn btn-secondary aff-cta" data-telemetry="tier-free-scanner" href="https://rentandrugshield.com/#scanner" style="width:100%;">Launch Live Scanner</a>
+      </div>
+      <div class="panel">
+        <div>
+          <h3>30-Day Trader Pro</h3>
+          <div><span class="price-tag">$19.99/mo</span><span class="price-reg">$39.99/mo</span></div>
+          <p style="color:var(--muted);font-size:0.9rem;margin:10px 0 16px;">
+            Unlimited Web &amp; Telegram 11-Layer pre-buy audits including Layer-11 Block-0 Jito/Sybil Cluster Defense, beating RugCheck, SolSniffer, and GoPlus.
+          </p>
+        </div>
+        <a class="btn btn-secondary aff-cta" data-telemetry="tier-trader-1999" href="/app.html?plan=trader_pro_1999" style="width:100%;">Activate $19.99 Trader Pro</a>
+      </div>
+      <div class="panel highlight">
+        <div>
+          <h3>30-Day Ultra Pro + Sniper Bot API</h3>
+          <div><span class="price-tag">$49.99/mo</span><span class="price-reg">$99.00/mo</span></div>
+          <p style="color:var(--muted);font-size:0.9rem;margin:10px 0 16px;">
+            <strong>15,000 API calls/mo</strong> ($0.0033/call) + real-time Rug Webhooks + Layer-11 Block-0 Sybil &amp; Token-2022 TLV flags for automated trading bots.
+          </p>
+        </div>
+        <a class="btn btn-primary aff-cta" data-telemetry="tier-ultra-4999" href="/enterprise-api.html?plan=ultra_pro_4999" style="width:100%;">Get $49.99 Sniper Bot API</a>
+      </div>
+      <div class="panel">
+        <div>
+          <h3>30-Day Quant Desk Pro API</h3>
+          <div><span class="price-tag">$99.00/mo</span><span class="price-reg">$199.00/mo</span></div>
+          <p style="color:var(--muted);font-size:0.9rem;margin:10px 0 16px;">
+            <strong>100,000 API calls/mo</strong> ($0.00099/call), <strong>&lt;120ms Priority SLA</strong> + Batch Sybil funding graph endpoints &amp; Streamable HTTP MCP.
+          </p>
+        </div>
+        <a class="btn btn-secondary aff-cta" data-telemetry="tier-quant-99" href="/enterprise-api.html?plan=quant_desk_99" style="width:100%;">Unlock $99 Quant Desk API</a>
+      </div>
+      <div class="panel">
+        <div>
+          <h3>Enterprise Unlimited API</h3>
+          <div><span class="price-tag">$500/mo</span><span class="price-reg">$999/mo</span></div>
+          <p style="color:var(--muted);font-size:0.9rem;margin:10px 0 16px;">
+            Unlimited B2B RPC-backed 11-Layer scoring feeds for wallets, DEX terminals, and launchpads with 100+ RPS throughput and 99.95% SLA.
+          </p>
+        </div>
+        <a class="btn btn-secondary aff-cta" data-telemetry="tier-enterprise-500" href="/enterprise-api.html?plan=enterprise_500" style="width:100%;">Provision $500/mo Enterprise SLA</a>
+      </div>
+      <div class="panel">
+        <div>
+          <h3>Autonomous HTTP x402 &amp; MCP</h3>
+          <div><span class="price-tag">x402 v2</span> <span style="color:var(--muted);font-size:0.86rem;">Zero-Signup Agent Pay</span></div>
+          <p style="color:var(--muted);font-size:0.9rem;margin:10px 0 16px;">
+            Machine-native Solana USDC &amp; SOL settlement via <span class="mono">/api/x402/v2</span> and <span class="mono">/mcp</span> with 14,640h Mainnet telemetry proof.
+          </p>
+        </div>
+        <a class="btn btn-secondary aff-cta" data-telemetry="tier-x402-spec" href="/enterprise-api.html" style="width:100%;">Inspect x402 &amp; MCP Spec</a>
+      </div>
+    </div>
+
+    <section class="aff-box" id="affiliate-30pct">
+      <div class="eyebrow">Zero-Custody On-Chain Affiliate Engine (3,000 bps)</div>
+      <h2 style="margin-top:0;">Earn a Sticky 30% Atomic ?ref= Split (+50% Higher Than 20% Programs)</h2>
+      <p style="color:var(--muted);margin:0 0 10px;">
+        Paste any valid Solana wallet address to generate your shareable <span class="mono">?ref=&lt;Wallet&gt;</span> link.
+        Every referred pass checkout ($1.99 / $19.99 / $49.99 / $99 / $500) or repeat rent cleanup splits <strong>30% directly to your wallet</strong>
+        inside the same unsigned Solana transaction with zero custody, zero withdrawal minimums, and automatic self-referral protection.
+      </p>
+      <div class="aff-form">
+        <input id="refWalletInput" class="aff-input mono" type="text" maxlength="48" placeholder="Enter your Solana wallet pubkey (32-44 base58 chars)" aria-label="Solana Referral Wallet Address" />
+        <button id="buildRefBtn" type="button" class="btn btn-primary" data-telemetry="generate-30pct-ref-link">Generate 30% ?ref= Link</button>
+        <button id="copyRefBtn" type="button" class="btn btn-secondary" data-telemetry="copy-30pct-ref-link" style="display:none;">Copy Link</button>
+        <a id="shareRefXBtn" class="btn btn-secondary" data-telemetry="share-30pct-ref-x" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener" style="display:none;">Share on X</a>
+      </div>
+      <div id="refOutputBox" class="aff-out mono"></div>
+    </section>
+
+    <h2>Related Solana Security &amp; Rent Forensics Guides</h2>
+    <div class="grid-3">
+      <div class="panel">
+        <div>
+          <div class="eyebrow" style="margin-bottom:4px;">Unit M023 &bull; Cluster D</div>
+          <h3 style="font-size:1.0rem;"><a class="aff-cta" href="/funnel/token-2022-transfer-hook-honeypot-detector.html">Token-2022 Malicious TransferHook Honeypot Detector | Layer-10 Audit</a></h3>
+          <p style="color:var(--muted);font-size:0.86rem;margin:6px 0 0;">Audit Token-2022 TransferHook honeypots via 11-Layer Shield. Reclaim 2,039,280 lamports (0.00203928 SOL) at 0% 1st claim + earn a 30% ?ref= split.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div>
+          <div class="eyebrow" style="margin-bottom:4px;">Unit M024 &bull; Cluster D</div>
+          <h3 style="font-size:1.0rem;"><a class="aff-cta" href="/funnel/token-2022-permanent-delegate-rug-scanner.html">Token-2022 PermanentDelegate Rug Scanner &amp; TLV Audit | 11-Layer Gate</a></h3>
+          <p style="color:var(--muted);font-size:0.86rem;margin:6px 0 0;">Block Token-2022 PermanentDelegate rugs with 11-Layer Shield. Reclaim 2,039,280 lamports (0.00203928 SOL) at 0% 1st claim + earn a 30% ?ref= split.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div>
+          <div class="eyebrow" style="margin-bottom:4px;">Unit M025 &bull; Cluster D</div>
+          <h3 style="font-size:1.0rem;"><a class="aff-cta" href="/funnel/token-2022-hidden-100-percent-transfer-fee-checker.html">Token-2022 Hidden 100% TransferFeeConfig Trap Checker | 11-Layer</a></h3>
+          <p style="color:var(--muted);font-size:0.86rem;margin:6px 0 0;">Catch 10,000 bps Token-2022 fee traps via our 11-Layer Shield. Reclaim 2,039,280 lamports (0.00203928 SOL) at 0% 1st claim + earn a 30% ?ref= split.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div>
+          <div class="eyebrow" style="margin-bottom:4px;">Unit M027 &bull; Cluster D</div>
+          <h3 style="font-size:1.0rem;"><a class="aff-cta" href="/funnel/reclaim-token-2022-withheld-fee-empty-accounts.html">Reclaim Token-2022 Withheld-Fee Empty Accounts | 0% 1st Rent Claim</a></h3>
+          <p style="color:var(--muted);font-size:0.86rem;margin:6px 0 0;">Unlock stuck Token-2022 withheld-fee ATAs + 11-Layer Shield. Reclaim 2,039,280 lamports (0.00203928 SOL) to 2,157,600 at 0% 1st claim + 30% ?ref= split.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div>
+          <div class="eyebrow" style="margin-bottom:4px;">Unit M033 &bull; Cluster E</div>
+          <h3 style="font-size:1.0rem;"><a class="aff-cta" href="/funnel/rabby-and-multichain-wallet-solana-ata-rent-guide.html">Solana ATA Rent Recovery for Rabby, Brave &amp; EVM Bridge Traders</a></h3>
+          <p style="color:var(--muted);font-size:0.86rem;margin:6px 0 0;">EVM bridge traders: recover 2,039,280 lamports (0.00203928 SOL) per empty Solana ATA at 0% 1st claim, run 11-Layer Shield, and earn 30% ?ref= split.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div>
+          <div class="eyebrow" style="margin-bottom:4px;">Unit M040 &bull; Cluster F</div>
+          <h3 style="font-size:1.0rem;"><a class="aff-cta" href="/funnel/rust-and-typescript-jito-sniper-pre-trade-11-layer-gate.html">Rust &amp; TypeScript Jito Sniper Guide: &lt;120ms 11-Layer Security Gate</a></h3>
+          <p style="color:var(--muted);font-size:0.86rem;margin:6px 0 0;">Build a &lt;120ms 11-Layer Shield gate for Rust &amp; TS Jito snipers, claim 2,039,280 lamports (0.00203928 SOL) at 0% 1st claim, and earn 30% ?ref= split.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div style="max-width:1120px;margin:0 auto;">
+      <div style="margin-bottom:10px;">
+        <a href="https://rentandrugshield.com/" class="aff-cta">[🏠 Home]</a> &bull;
+        <a href="/#scanner" class="aff-cta">Live Scanner (/#scanner)</a> &bull;
+        <a href="/compare/index.html" class="aff-cta">Comparison Hub</a> &bull;
+        <a href="/compare/sol-incinerator-vs-rentandrugshield.html" class="aff-cta">vs Sol Incinerator</a> &bull;
+        <a href="/compare/claimyoursol-vs-rentandrugshield.html" class="aff-cta">vs ClaimYourSol</a> &bull;
+        <a href="/compare/solsniffer-goplus-alternative.html" class="aff-cta">vs SolSniffer &amp; GoPlus</a> &bull;
+        <a href="/worlds-first-11-layer-solana-rug-shield.html" class="aff-cta">11-Layer Solana Rug Shield</a> &bull;
+        <a href="/enterprise-api.html" class="aff-cta">$500/mo Enterprise API</a>
+      </div>
+      <div style="margin-bottom:8px;color:var(--muted);">
+        Executive &amp; Institutional Inquiries: <a href="mailto:ceo@rentandrugshield.com">ceo@rentandrugshield.com</a> &bull;
+        B2B SLA &amp; Custom Feeds: <a href="mailto:enterprise@rentandrugshield.com">enterprise@rentandrugshield.com</a>
+      </div>
+      <div>Solana Rent &amp; Rug Shield is a 100% non-custodial Solana blockchain utility for SPL and Token-2022 rent recovery (2,039,280 lamports = 0.00203928 SOL at 0% 1st-claim fee) and 11-Layer pre-buy contract security auditing. New layers included free during active pass, $0 auto-billing.</div>
+    </div>
+  </footer>
+
+  <script>
+  (function() {
+    var B58_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+    var params = new URLSearchParams(window.location.search);
+    var incomingRef = (params.get('ref') || '').trim();
+    if (B58_RE.test(incomingRef)) {
+      try { localStorage.setItem('rrs_affiliate_ref_wallet', incomingRef); } catch (e) {}
+    }
+    var savedRef = '';
+    try { savedRef = incomingRef || localStorage.getItem('rrs_affiliate_ref_wallet') || ''; } catch (e) {}
+    if (B58_RE.test(savedRef)) {
+      var links = document.querySelectorAll('a.aff-cta, a[href="/"], a[href="/#scanner"], a[href^="https://rentandrugshield.com"], a[href^="/app.html"], a[href^="/enterprise-api.html"], a[href^="/compare/"], a[href^="/funnel/"]');
+      for (var i = 0; i < links.length; i++) {
+        try {
+          var rawHref = links[i].getAttribute('href');
+          if (!rawHref || rawHref.indexOf('mailto:') === 0) continue;
+          var u = new URL(rawHref, 'https://rentandrugshield.com');
+          if (u.hostname === 'rentandrugshield.com' && !u.searchParams.get('ref')) {
+            u.searchParams.set('ref', savedRef);
+            if (rawHref.indexOf('https://') === 0) {
+              links[i].setAttribute('href', u.toString());
+            } else {
+              links[i].setAttribute('href', u.pathname + u.search + u.hash);
+            }
+          }
+        } catch (e) {}
+      }
+    }
+
+    var ataInp = document.getElementById('ataCountInput');
+    function updateCalc() {
+      if (!ataInp) return;
+      var n = Math.max(1, Math.min(100000, parseInt(ataInp.value || '0', 10) || 1));
+      var gross = n * 0.00203928;
+      var elFirst = document.getElementById('calcRrsFirst');
+      var elInc = document.getElementById('calcIncLoss');
+      var elCys = document.getElementById('calcCysLoss');
+      var elRys = document.getElementById('calcRysLoss');
+      if (elFirst) elFirst.textContent = gross.toFixed(6) + ' SOL';
+      if (elInc) elInc.textContent = '-' + (gross * 0.02).toFixed(6) + ' SOL';
+      if (elCys) elCys.textContent = '-' + (gross * 0.05).toFixed(6) + ' SOL';
+      if (elRys) elRys.textContent = '-' + (gross * 0.15).toFixed(6) + ' SOL';
+    }
+    if (ataInp) {
+      ataInp.addEventListener('input', updateCalc);
+      var presets = document.querySelectorAll('.calc-preset');
+      for (var p = 0; p < presets.length; p++) {
+        presets[p].addEventListener('click', function() {
+          ataInp.value = this.getAttribute('data-atas') || '250';
+          updateCalc();
+        });
+      }
+    }
+
+    var infoBtn = document.getElementById('layerInfoToggle');
+    var infoBox = document.getElementById('layerInfoBubble');
+    if (infoBtn && infoBox) {
+      infoBtn.addEventListener('click', function() {
+        infoBox.classList.toggle('open');
+      });
+    }
+
+    function sendClickTelemetry(el) {
+      try {
+        var label = (el.getAttribute('data-telemetry') || el.id || el.textContent || 'cta').trim().slice(0, 80);
+        var payload = JSON.stringify({
+          page: window.location.pathname,
+          page_path: window.location.pathname,
+          unit_id: 'M026',
+          button_id: el.id || label,
+          button_label: label,
+          label: label,
+          ref: savedRef || '',
+          ref_wallet: savedRef || '',
+          ts: Date.now()
+        });
+        if (navigator.sendBeacon) {
+          var blob = new Blob([payload], { type: 'application/json' });
+          navigator.sendBeacon('/api/telemetry/click', blob);
+        } else {
+          fetch('/api/telemetry/click', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(function(){});
+        }
+      } catch (e) {}
+    }
+
+    document.addEventListener('click', function(ev) {
+      var t = ev.target && ev.target.closest ? ev.target.closest('button, a.btn, a.qnav-btn, a.aff-cta') : null;
+      if (t) { sendClickTelemetry(t); }
+    }, { passive: true });
+
+    var inp = document.getElementById('refWalletInput');
+    var btn = document.getElementById('buildRefBtn');
+    var copyBtn = document.getElementById('copyRefBtn');
+    var xBtn = document.getElementById('shareRefXBtn');
+    var out = document.getElementById('refOutputBox');
+    if (inp && B58_RE.test(savedRef)) { inp.value = savedRef; }
+    if (btn && inp && out) {
+      btn.addEventListener('click', function() {
+        var w = (inp.value || '').trim();
+        if (!B58_RE.test(w)) {
+          out.style.display = 'block';
+          out.style.color = '#F87171';
+          out.textContent = 'Invalid Solana pubkey: enter a valid 32-44 character base58 wallet address.';
+          return;
+        }
+        try { localStorage.setItem('rrs_affiliate_ref_wallet', w); } catch (e) {}
+        var shareUrl = 'https://rentandrugshield.com/funnel/token-2022-default-account-state-frozen-detector.html?ref=' + encodeURIComponent(w);
+        out.style.display = 'block';
+        out.style.color = '#34D399';
+        out.textContent = '30% Zero-Custody Referral URL: ' + shareUrl + ' (3,000 bps atomic on-chain split)';
+        if (copyBtn) {
+          copyBtn.style.display = 'inline-flex';
+          copyBtn.onclick = function() {
+            if (navigator.clipboard) { navigator.clipboard.writeText(shareUrl); copyBtn.textContent = 'Copied!'; }
+          };
+        }
+        if (xBtn) {
+          xBtn.style.display = 'inline-flex';
+          var txt = 'Reclaim 100% of your locked Solana empty token account SOL (2,039,280 lamports at 0% 1st-claim fee) + scan tokens with an 11-Layer Rug Shield: ' + shareUrl;
+          xBtn.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(txt);
+        }
+        fetch('/api/affiliate/link?wallet=' + encodeURIComponent(w)).then(function(r){ return r.json(); }).then(function(d){
+          if (d && d.ok && d.share_url) {
+            out.textContent = 'Verified 30% Zero-Custody Referral URL: ' + shareUrl + ' | Root Hub: ' + d.share_url;
+          }
+        }).catch(function(){});
+      });
+    }
+  })();
+  </script>
+  <script src="/static/rrs_telemetry.js?v=20261118v4" defer></script>
+</body>
+</html>
