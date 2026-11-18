@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#040914" />
+  <title>Organic Ad &amp; On-Chain Proof Kit | SOL Rent &amp; Rug Shield</title>
+  <meta name="description" content="Ready-to-post zero-dash X forensic proof cards ($VEYRA 0/100 LP-drain vs $JESTER 100/100 graduation), value-first r/solana &amp; r/solanamemecoins guides, and Chrome Web Store MV3 3-click publish checklist." />
+  <link rel="canonical" href="https://rentandrugshield.com/ad-kit" />
+  <style>
+    :root {
+      --bg: #040914;
+      --card: #081224;
+      --card-2: #0c1a33;
+      --emerald: #14f195;
+      --cyan: #22d3ee;
+      --amber: #fde047;
+      --danger: #f87171;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(20, 241, 149, 0.28);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      background: radial-gradient(circle at 12% 0%, rgba(20,241,149,0.09), transparent 42%),
+                  radial-gradient(circle at 88% 5%, rgba(34,211,238,0.09), transparent 40%),
+                  var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+    }
+    a { color: var(--emerald); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(4, 9, 20, 0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 12px 18px;
+    }
+    .topbar-inner {
+      max-width: 1180px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .brand { font-weight: 900; font-size: 15px; color: #fff; letter-spacing: -0.01em; text-decoration: none !important; }
+    .brand span { color: var(--emerald); display: block; font-size: 11.5px; font-weight: 800; }
+    .nav-pills { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .nav-pill {
+      padding: 7px 13px; border-radius: 999px; font-size: 12px; font-weight: 800;
+      background: rgba(20,241,149,0.12); border: 1px solid rgba(20,241,149,0.42); color: var(--emerald);
+      text-decoration: none !important;
+    }
+    .nav-pill-jup {
+      background: linear-gradient(90deg, #14f195, #22d3ee); color: #022018; border-color: #6ee7b7; font-weight: 900;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 22px 16px 80px; }
+    .hero {
+      background: linear-gradient(180deg, #09162c 0%, #050d1a 100%);
+      border: 1.5px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 22px;
+    }
+    .hero h1 { margin: 0 0 8px; font-size: clamp(22px, 3vw, 30px); font-weight: 900; }
+    .hero p { margin: 0; color: #cbd5e1; font-size: 14px; max-width: 900px; }
+    .proof-strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 16px;
+    }
+    .proof-box {
+      padding: 13px 15px; border-radius: 12px; background: rgba(4, 9, 20, 0.78);
+      border: 1px solid rgba(148,163,184,0.22); font-size: 12.5px;
+    }
+    .proof-box code { font-family: ui-monospace, monospace; font-size: 11.5px; color: var(--cyan); word-break: break-all; }
+    .sec-head { margin: 28px 0 12px; display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .sec-head h2 { margin: 0; font-size: 20px; font-weight: 900; color: #fff; }
+    .sec-head span { font-size: 12.5px; color: var(--muted); font-weight: 700; }
+    .kit-card {
+      background: linear-gradient(180deg, var(--card) 0%, #050c18 100%);
+      border: 1.5px solid rgba(20, 241, 149, 0.24); border-radius: 15px;
+      padding: 18px; margin-bottom: 16px; box-shadow: 0 8px 26px rgba(0,0,0,0.45);
+    }
+    .card-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .tag {
+      display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 900; margin-right: 6px;
+    }
+    .tag-emerald { background: rgba(20,241,149,0.16); color: var(--emerald); border: 1px solid rgba(20,241,149,0.45); }
+    .tag-cyan { background: rgba(34,211,238,0.14); color: var(--cyan); border: 1px solid rgba(34,211,238,0.4); }
+    .tag-amber { background: rgba(253,224,71,0.14); color: var(--amber); border: 1px solid rgba(253,224,71,0.4); }
+    .meta-pills { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .pill-ok {
+      font-size: 11px; font-weight: 800; color: #86efac; background: rgba(22,163,74,0.18);
+      border: 1px solid rgba(74,222,128,0.4); padding: 3px 8px; border-radius: 999px;
+    }
+    .pill-muted {
+      font-size: 11px; font-weight: 800; color: #cbd5e1; background: rgba(148,163,184,0.14);
+      padding: 3px 8px; border-radius: 999px;
+    }
+    .box-label {
+      font-size: 11.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--emerald); margin-bottom: 6px;
+    }
+    .copy-pre {
+      margin: 0 0 10px; padding: 13px 14px; border-radius: 11px;
+      background: #020611; border: 1px solid rgba(148,163,184,0.26);
+      color: #f8fafc; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px; line-height: 1.52; white-space: pre-wrap; word-break: break-word;
+    }
+    .copy-pre-reply { border-color: rgba(56,189,248,0.42); background: #041022; }
+    .copy-pre-tall { max-height: 360px; overflow-y: auto; font-size: 12.5px; }
+    .reply-stage {
+      margin-top: 14px; padding-top: 13px; border-top: 1px dashed rgba(56,189,248,0.35);
+    }
+    .btn-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .btn-copy {
+      cursor: pointer; border: none; border-radius: 10px; padding: 9px 15px;
+      font-size: 12.5px; font-weight: 900; transition: transform 0.1s ease, filter 0.12s ease;
+    }
+    .btn-copy:hover { transform: translateY(-1px); filter: brightness(1.06); }
+    .btn-emerald { background: linear-gradient(135deg, #14f195, #059669); color: #022419; }
+    .btn-cyan { background: linear-gradient(135deg, #38bdf8, #0284c7); color: #021827; }
+    .btn-link {
+      display: inline-flex; align-items: center; padding: 8px 13px; border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.35); background: rgba(15,23,42,0.75);
+      color: #e2e8f0; font-size: 12px; font-weight: 800; text-decoration: none !important;
+    }
+    .btn-link:hover { border-color: var(--emerald); color: var(--emerald); }
+    .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .step-item {
+      padding: 14px; border-radius: 12px; background: var(--card-2);
+      border: 1px solid rgba(253,224,71,0.35);
+    }
+    .step-item strong { display: block; color: var(--amber); font-size: 13.5px; margin-bottom: 5px; }
+    .step-item p { margin: 0; font-size: 12.5px; color: #e2e8f0; }
+    .perm-box { margin-top: 12px; }
+    .disc-list { margin: 8px 0 0; padding-left: 20px; font-size: 13px; color: #cbd5e1; }
+    .disc-list li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://rentandrugshield.com/">
+        SOLANA RENT &amp; RUG SHIELD  -  ORGANIC AD &amp; PROOF KIT
+        <span>Zero-Dash X Proof Posts • Value-First Reddit Breakdowns • CWS MV3 3-Click Launchpad</span>
+      </a>
+      <nav class="nav-pills">
+        <a class="nav-pill" href="#x-proof-section">5 Zero-Dash X Posts</a>
+        <a class="nav-pill" href="#reddit-section">2 Reddit Technical Posts</a>
+        <a class="nav-pill" href="#cws-section">CWS 3-Click Checklist</a>
+        <a class="nav-pill" href="/audit">1,700+ Token Audits</a>
+        <a class="nav-pill nav-pill-jup" href="https://jup.ag/swap/SOL-t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump?referrer=89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1&amp;feeBps=50" target="_blank" rel="noopener noreferrer">⚡ Trade $JESTER on Jupiter (50 bps) ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- LIVE 1 EXTERNAL SCAN / HR KPI TRACKER + CAUGHT-RUG PROOFS + 1-CLICK X REPLY ENGINE -->
+    <section class="card" id="external-scan-kpi-tracker" style="border:1.5px solid #f59e0b;margin-bottom:24px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+        <h2 class="section-title" style="margin:0;">📈 Live External Scans / Hour KPI Tracker (Target: &gt;= 1 External Scan/Hr)</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a class="btn-link" href="/verify-legit" style="border-color:#14f195;color:#14f195;">🛡️ Open /verify-legit Allowlist Center ↗</a>
+          <a class="btn-link" href="/api/ad-kit" target="_blank" rel="noopener noreferrer">{ } Live KPI JSON ↗</a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:12px;">
+        <div style="background:#070b15;border:1px solid #f59e0b;border-radius:10px;padding:12px;">
+          <div style="font-size:0.72rem;color:#94a3b8;font-weight:800;text-transform:uppercase;">External Scans (Last 1 Hour)</div>
+          <div style="font-size:1.65rem;font-weight:900;color:#f59e0b;font-family:monospace;">0 / 1 hr</div>
+          <div style="font-size:0.75rem;color:#cbd5e1;">GROWTH PUSH ACTIVE (&lt; 1 external scan/hr - Fire 1-Click X Replies Below)</div>
+        </div>
+        <div style="background:#070b15;border:1px solid #1e2d4a;border-radius:10px;padding:12px;">
+          <div style="font-size:0.72rem;color:#94a3b8;font-weight:800;text-transform:uppercase;">External Scans (Last 24h)</div>
+          <div style="font-size:1.65rem;font-weight:900;color:#22d3ee;font-family:monospace;">0</div>
+          <div style="font-size:0.75rem;color:#cbd5e1;">24h Avg: <code>0.0/hr</code> (Founder &amp; Bots Excluded)</div>
+        </div>
+        <div style="background:#070b15;border:1px solid #1e2d4a;border-radius:10px;padding:12px;">
+          <div style="font-size:0.72rem;color:#94a3b8;font-weight:800;text-transform:uppercase;">Verified Human Visitors</div>
+          <div style="font-size:1.65rem;font-weight:900;color:#14f195;font-family:monospace;">5</div>
+          <div style="font-size:0.75rem;color:#cbd5e1;">First-Party CORS Beacon (<code>credentials: 'omit'</code>)</div>
+        </div>
+      </div>
+      <div style="height:8px;background:#070b15;border-radius:999px;overflow:hidden;border:1px solid #1e2d4a;margin-bottom:12px;">
+        <div style="width:6%;height:100%;background:linear-gradient(90deg,#14f195,#22d3ee);"></div>
+      </div>
+      <div class="box-label">Recent Verified External Customer Scans</div>
+      <div style="display:grid;gap:6px;"><div style='padding:8px 12px;background:#070b15;border:1px dashed #1e2d4a;border-radius:8px;color:#94a3b8;font-size:0.82rem;'>Waiting for next external non-Founder scan  -  fire 2-3 1-Click X Replies on live trending tickers below to hit &gt;= 1 external scan/hr!</div></div>
+    </section>
+
+    <section class="card" id="public-caught-rug-proofs" style="margin-bottom:24px;">
+      <h2 class="section-title">🧾 Public Caught-Rug vs. Clean Graduation Proofs (<code>$VEYRA</code> &amp; <code>$JESTER</code>)</h2>
+      <p class="section-sub">
+        On-chain forensic receipts auto-syndicated to IndexNow, GitHub Showcase, HuggingFace dataset card, and Solana Blinks.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-bottom:12px;">
+        
+            <div style="background:#080c17;border:1.5px solid rgba(239,68,68,0.5);border-radius:12px;padding:15px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                <strong style="font-size:1.05rem;color:#fff;">$VEYRA</strong>
+                <span style="font-size:0.74rem;font-weight:900;color:#fca5a5;">DANGER • 0/100 MANUAL UNBURNED LP-DRAIN RUG CAUGHT</span>
+              </div>
+              <p style="margin:0 0 10px;font-size:0.83rem;color:#cbd5e1;">Mint &amp; Freeze authorities looked renounced, yet Layer 5 flagged lp_burned_pct = 0.0% on a manual non-.pump pool before liquidity drained 33.1% post-peak to $0.</p>
+              <pre id="caughtProofSnip_1" class="copy-pre" style="font-size:0.8rem;margin-bottom:9px;">🚨 Caught On-Chain Before $0 Drain: $VEYRA (8zaYjm...jyR1) scored 0/100 (lp_burned_pct = 0.0% manual pool). Full 10-layer receipt: https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1</pre>
+              <div class="btn-row">
+                <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('caughtProofSnip_1', this, 'Copy Proof Post')">📋 Copy Proof Post</button>
+                <a class="btn-link" href="https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer">🛡️ Live /audit Card ↗</a>
+                <a class="btn-link" href="https://solscan.io/tx/YQz4fr2XPeKZsCPndA71jrE7X3knWFhyWYVNopukYjeFhvbBMa4zRiCwsDfMPuMKsjPb6jvms4vErxCKvcWfV6F" target="_blank" rel="noopener noreferrer">⛓️ Solscan TX ↗</a>
+                <a class="btn-link" href="https://dial.to/?action=solana-action:https%3A%2F%2Fvia-tree-techno-rrp.trycloudflare.com%2Fapi%2Factions%2Frug-audit%2F8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer">⚡ Blink ↗</a>
+                
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1.5px solid rgba(20,241,149,0.5);border-radius:12px;padding:15px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                <strong style="font-size:1.05rem;color:#fff;">$JESTER</strong>
+                <span style="font-size:0.74rem;font-weight:900;color:#14f195;">SAFE • 100/100 CANONICAL .PUMP BURNED-LP GRADUATION</span>
+              </div>
+              <p style="margin:0 0 10px;font-size:0.83rem;color:#cbd5e1;">Passed 10/10 pre-buy gates: renounced Mint &amp; Freeze auth, 0 bps Token-2022 fee, 0.08% Top-10 concentration, and 100% burned canonical PumpSwap LP.</p>
+              <pre id="caughtProofSnip_2" class="copy-pre" style="font-size:0.8rem;margin-bottom:9px;">✅ Verified 100/100 Canonical Burned-LP Graduation: $JESTER (t4U9Fj...pump) passed all 10 Solana anti-rug gates in &lt;120ms: https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump</pre>
+              <div class="btn-row">
+                <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('caughtProofSnip_2', this, 'Copy Proof Post')">📋 Copy Proof Post</button>
+                <a class="btn-link" href="https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump" target="_blank" rel="noopener noreferrer">🛡️ Live /audit Card ↗</a>
+                <a class="btn-link" href="https://solscan.io/tx/1GEV79q11dpjqgNg9KgNYn88LC6N5w4V1Y9zzNUxv45DMdoH6Wq3T4NH3JNKZ4YpuxmTNsK8Ew9BRpJBnuouRbq" target="_blank" rel="noopener noreferrer">⛓️ Solscan TX ↗</a>
+                <a class="btn-link" href="https://dial.to/?action=solana-action:https%3A%2F%2Fvia-tree-techno-rrp.trycloudflare.com%2Fapi%2Factions%2Ftrade%2Ft4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump" target="_blank" rel="noopener noreferrer">⚡ Blink ↗</a>
+                <a class='btn-link' style='border-color:#14f195;color:#14f195;' href='https://jup.ag/swap/SOL-t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump?referrer=89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1&amp;feeBps=50' target='_blank' rel='noopener noreferrer'>⚡ Trade $JESTER (50 bps) ↗</a>
+              </div>
+            </div>
+            
+      </div>
+      <div class="box-label">Additional Published Caught-Rug Advisories (GitHub + /audit/&lt;mint&gt;)</div>
+      <div class="btn-row"><a class='btn-link' style='font-size:0.76rem;padding:6px 10px;' href='https://rentandrugshield.com/audit/4WSZkN6p4wfqGqQSwTnvpCTnjNMdazDebYQJu14nmeta' target='_blank' rel='noopener noreferrer'>🚨 $FINAL (5/100) ↗</a><a class='btn-link' style='font-size:0.76rem;padding:6px 10px;' href='https://rentandrugshield.com/audit/GwGd8qHUppLbALrY3naxZv3TkJ3hSTZqMb3DXm8UfiKS' target='_blank' rel='noopener noreferrer'>🚨 $WIF (0/100) ↗</a><a class='btn-link' style='font-size:0.76rem;padding:6px 10px;' href='https://rentandrugshield.com/audit/9xbgwwXdzJYv8sLmVCFsRSNKwzCCNQWiEhWVGNhWCNGE' target='_blank' rel='noopener noreferrer'>🚨 $PAWEL (0/100) ↗</a><a class='btn-link' style='font-size:0.76rem;padding:6px 10px;' href='https://rentandrugshield.com/audit/69PtxdxaN7DdAttdAqkXJt2goCwMnzWLdyG4FLeGpump' target='_blank' rel='noopener noreferrer'>🚨 $OFFC (0/100) ↗</a><a class='btn-link' style='font-size:0.76rem;padding:6px 10px;' href='https://rentandrugshield.com/audit/AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL' target='_blank' rel='noopener noreferrer'>🚨 $NVIDIA (0/100) ↗</a><a class='btn-link' style='font-size:0.76rem;padding:6px 10px;' href='https://rentandrugshield.com/audit/GUA8BwPWLhnMdhMvMpRsKDYXLPjvCw5oPX4GRvjmpump' target='_blank' rel='noopener noreferrer'>🚨 $NOVEMBER (0/100) ↗</a></div>
+    </section>
+
+    <section class="card" id="live-trending-x-replies" style="margin-bottom:24px;">
+      <h2 class="section-title">⚡ 1-Click X Reply Intent Engine (Live Trending Solana Tickers)</h2>
+      <p class="section-sub">
+        Auto-queued by <code>Rent_Shield_Marketing_Agent</code> from live DexScreener, Jupiter 24h Trending &amp; DEX6 Scanner feeds.
+        Click <strong>🔎 Live $TICKER Threads</strong> to open active trader conversations, or <strong>🚀 1-Click X Post/Reply</strong> to publish with pre-filled forensic audit link.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:12px;">
+        
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$TTWO</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_1" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Before aping $TTWO, check the live 10-layer Solana LP-burn, freeze auth &amp; holder bundle scorecard (100% read-only address check, 0 popups):
+https://rentandrugshield.com/audit/TTWofwAge91oFhZs7kpQdyrVRkmevgM88xijGvQFbKo</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24TTWO%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $TTWO Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Before%20aping%20%24TTWO%2C%20check%20the%20live%2010-layer%20Solana%20LP-burn%2C%20freeze%20auth%20%26%20holder%20bundle%20scorecard%20%28100%25%20read-only%20address%20check%2C%200%20popups%29%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2FTTWofwAge91oFhZs7kpQdyrVRkmevgM88xijGvQFbKo" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_1', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/TTWofwAge91oFhZs7kpQdyrVRkmevgM88xijGvQFbKo" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$pippin</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_2" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Rotating $pippin bags today? Run the free 10-layer rug check + reclaim ~0.00204 SOL locked rent per old empty meme ATA via native SPL CloseAccount:
+https://rentandrugshield.com/audit/Dfh5DzRgSvvCFDoYc2ciTkMrbDfRKybA4SoFbPmApump</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24pippin%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $pippin Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Rotating%20%24pippin%20bags%20today%3F%20Run%20the%20free%2010-layer%20rug%20check%20%2B%20reclaim%20~0.00204%20SOL%20locked%20rent%20per%20old%20empty%20meme%20ATA%20via%20native%20SPL%20CloseAccount%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2FDfh5DzRgSvvCFDoYc2ciTkMrbDfRKybA4SoFbPmApump" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_2', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/Dfh5DzRgSvvCFDoYc2ciTkMrbDfRKybA4SoFbPmApump" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$SPCX</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_3" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Before aping $SPCX, check the live 10-layer Solana LP-burn, freeze auth &amp; holder bundle scorecard (100% read-only address check, 0 popups):
+https://rentandrugshield.com/audit/SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24SPCX%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $SPCX Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Before%20aping%20%24SPCX%2C%20check%20the%20live%2010-layer%20Solana%20LP-burn%2C%20freeze%20auth%20%26%20holder%20bundle%20scorecard%20%28100%25%20read-only%20address%20check%2C%200%20popups%29%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2FSPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_3', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$USELESS</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_4" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Rotating $USELESS bags today? Run the free 10-layer rug check + reclaim ~0.00204 SOL locked rent per old empty meme ATA via native SPL CloseAccount:
+https://rentandrugshield.com/audit/Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24USELESS%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $USELESS Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Rotating%20%24USELESS%20bags%20today%3F%20Run%20the%20free%2010-layer%20rug%20check%20%2B%20reclaim%20~0.00204%20SOL%20locked%20rent%20per%20old%20empty%20meme%20ATA%20via%20native%20SPL%20CloseAccount%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2FDz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_4', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$SPCXx</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_5" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Before aping $SPCXx, check the live 10-layer Solana LP-burn, freeze auth &amp; holder bundle scorecard (100% read-only address check, 0 popups):
+https://rentandrugshield.com/audit/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24SPCXx%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $SPCXx Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Before%20aping%20%24SPCXx%2C%20check%20the%20live%2010-layer%20Solana%20LP-burn%2C%20freeze%20auth%20%26%20holder%20bundle%20scorecard%20%28100%25%20read-only%20address%20check%2C%200%20popups%29%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2FXs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_5', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$sUSD.infra</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_6" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Rotating $sUSD.infra bags today? Run the free 10-layer rug check + reclaim ~0.00204 SOL locked rent per old empty meme ATA via native SPL CloseAccount:
+https://rentandrugshield.com/audit/GvEMgNT6GKiYTvg7TskDio6RKzQdCuhwmH55tVCLaJTe</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24sUSD.infra%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $sUSD.infra Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Rotating%20%24sUSD.infra%20bags%20today%3F%20Run%20the%20free%2010-layer%20rug%20check%20%2B%20reclaim%20~0.00204%20SOL%20locked%20rent%20per%20old%20empty%20meme%20ATA%20via%20native%20SPL%20CloseAccount%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2FGvEMgNT6GKiYTvg7TskDio6RKzQdCuhwmH55tVCLaJTe" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_6', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/GvEMgNT6GKiYTvg7TskDio6RKzQdCuhwmH55tVCLaJTe" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$wNEAR</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_7" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Before aping $wNEAR, check the live 10-layer Solana LP-burn, freeze auth &amp; holder bundle scorecard (100% read-only address check, 0 popups):
+https://rentandrugshield.com/audit/3ZLekZYq2qkZiSpnSvabjit34tUkjSwD1JFuW9as9wBG</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24wNEAR%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $wNEAR Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Before%20aping%20%24wNEAR%2C%20check%20the%20live%2010-layer%20Solana%20LP-burn%2C%20freeze%20auth%20%26%20holder%20bundle%20scorecard%20%28100%25%20read-only%20address%20check%2C%200%20popups%29%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2F3ZLekZYq2qkZiSpnSvabjit34tUkjSwD1JFuW9as9wBG" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_7', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/3ZLekZYq2qkZiSpnSvabjit34tUkjSwD1JFuW9as9wBG" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$MET</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_8" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Rotating $MET bags today? Run the free 10-layer rug check + reclaim ~0.00204 SOL locked rent per old empty meme ATA via native SPL CloseAccount:
+https://rentandrugshield.com/audit/METvsvVRapdj9cFLzq4Tr43xK4tAjQfwX76z3n6mWQL</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24MET%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $MET Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Rotating%20%24MET%20bags%20today%3F%20Run%20the%20free%2010-layer%20rug%20check%20%2B%20reclaim%20~0.00204%20SOL%20locked%20rent%20per%20old%20empty%20meme%20ATA%20via%20native%20SPL%20CloseAccount%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2FMETvsvVRapdj9cFLzq4Tr43xK4tAjQfwX76z3n6mWQL" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_8', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/METvsvVRapdj9cFLzq4Tr43xK4tAjQfwX76z3n6mWQL" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$META</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_9" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Before aping $META, check the live 10-layer Solana LP-burn, freeze auth &amp; holder bundle scorecard (100% read-only address check, 0 popups):
+https://rentandrugshield.com/audit/METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24META%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $META Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Before%20aping%20%24META%2C%20check%20the%20live%2010-layer%20Solana%20LP-burn%2C%20freeze%20auth%20%26%20holder%20bundle%20scorecard%20%28100%25%20read-only%20address%20check%2C%200%20popups%29%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2FMETAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_9', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$VTC</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_10" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Rotating $VTC bags today? Run the free 10-layer rug check + reclaim ~0.00204 SOL locked rent per old empty meme ATA via native SPL CloseAccount:
+https://rentandrugshield.com/audit/3tjPCXfx3KrgMY53yo7pa67D2QQZMbLTRaqQckJmpump</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24VTC%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $VTC Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Rotating%20%24VTC%20bags%20today%3F%20Run%20the%20free%2010-layer%20rug%20check%20%2B%20reclaim%20~0.00204%20SOL%20locked%20rent%20per%20old%20empty%20meme%20ATA%20via%20native%20SPL%20CloseAccount%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2F3tjPCXfx3KrgMY53yo7pa67D2QQZMbLTRaqQckJmpump" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_10', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/3tjPCXfx3KrgMY53yo7pa67D2QQZMbLTRaqQckJmpump" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$AMD</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_11" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Before aping $AMD, check the live 10-layer Solana LP-burn, freeze auth &amp; holder bundle scorecard (100% read-only address check, 0 popups):
+https://rentandrugshield.com/audit/AMD8XwJXgQ9WV45Wyj9yFLejxzf2J6VM1PJY8bJEjeES</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24AMD%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $AMD Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Before%20aping%20%24AMD%2C%20check%20the%20live%2010-layer%20Solana%20LP-burn%2C%20freeze%20auth%20%26%20holder%20bundle%20scorecard%20%28100%25%20read-only%20address%20check%2C%200%20popups%29%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2FAMD8XwJXgQ9WV45Wyj9yFLejxzf2J6VM1PJY8bJEjeES" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_11', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/AMD8XwJXgQ9WV45Wyj9yFLejxzf2J6VM1PJY8bJEjeES" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+            <div style="background:#080c17;border:1px solid #1e2d4a;border-radius:12px;padding:13px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+                <strong style="color:#14f195;font-size:0.98rem;">$IO</strong>
+                <span class="pill-muted">jupiter_trending_24h</span>
+              </div>
+              <pre id="xLiveReply_12" class="copy-pre" style="font-size:0.79rem;margin-bottom:9px;">Rotating $IO bags today? Run the free 10-layer rug check + reclaim ~0.00204 SOL locked rent per old empty meme ATA via native SPL CloseAccount:
+https://rentandrugshield.com/audit/BZLbGTNCSFfoth2GYDtwr7e4imWzpR5jqcUuGEwr646K</pre>
+              <div class="btn-row">
+                <a class="btn-copy btn-emerald" style="text-decoration:none;" href="https://x.com/search?q=%24IO%20solana&amp;f=live" target="_blank" rel="noopener noreferrer">🔎 Live $IO Threads ↗</a>
+                <a class="btn-copy btn-cyan" style="text-decoration:none;" href="https://x.com/intent/tweet?text=Rotating%20%24IO%20bags%20today%3F%20Run%20the%20free%2010-layer%20rug%20check%20%2B%20reclaim%20~0.00204%20SOL%20locked%20rent%20per%20old%20empty%20meme%20ATA%20via%20native%20SPL%20CloseAccount%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2Faudit%2FBZLbGTNCSFfoth2GYDtwr7e4imWzpR5jqcUuGEwr646K" target="_blank" rel="noopener noreferrer">🚀 1-Click X Post/Reply ↗</a>
+                <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xLiveReply_12', this, 'Copy Reply')">📋 Copy Reply</button>
+                <a class="btn-link" style="padding:7px 10px;font-size:0.76rem;" href="https://rentandrugshield.com/audit/BZLbGTNCSFfoth2GYDtwr7e4imWzpR5jqcUuGEwr646K" target="_blank" rel="noopener noreferrer">🛡️ Audit ↗</a>
+              </div>
+            </div>
+            
+      </div>
+    </section>
+    
+    <section class="hero">
+      <h1>Ready-to-Post Organic Distribution &amp; On-Chain Proof Deck</h1>
+      <p>
+        Every asset below is anchored to live Mainnet forensic receipts contrasting our
+        <strong style="color:#f87171;">$VEYRA (0/100 LP-Drain Blocked)</strong> catch against
+        <strong style="color:#14f195;">$JESTER (100/100 Canonical .pump Graduation)</strong>.
+        All 5 X main posts are programmatically verified to have <strong>0 dashes</strong> and
+        <strong>0 main-body links</strong> for maximum X feed reach.
+      </p>
+      <div class="proof-strip">
+        <div class="proof-box" style="border-color:rgba(248,113,113,0.45);">
+          <div style="font-weight:900;color:#f87171;margin-bottom:4px;">🚨 Caught LP-Drain Rug: $VEYRA (0/100)</div>
+          <div>Mint: <code>8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1</code></div>
+          <div>TX Proof: <code>YQz4fr2XPeKZsCPndA71jrE7X3kn...</code></div>
+          <div style="margin-top:6px;"><a href="/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1">Inspect /audit/8zaYjmVa... →</a></div>
+        </div>
+        <div class="proof-box" style="border-color:rgba(20,241,149,0.45);">
+          <div style="font-weight:900;color:#14f195;margin-bottom:4px;">✅ Clean Canonical Graduation: $JESTER (100/100)</div>
+          <div>Mint: <code>t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump</code></div>
+          <div>TX Proof: <code>1GEV79q11dpjqgNg9KgNYn88LC6N...</code></div>
+          <div style="margin-top:6px;"><a href="/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump">Inspect /audit/t4U9Fjb9... →</a></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sec-head" id="x-proof-section">
+      <h2>1. Five Zero-Dash X Proof Posts + Pre-Staged Reply #1 Links</h2>
+      <span>Programmatic Check: 5/5 Posts • 0 Em-Dashes • 0 En-Dashes • 0 Hyphens • Links Isolated to Reply #1</span>
+    </div>
+    
+      <article class="kit-card" id="x-card-1">
+        <div class="card-head">
+          <div>
+            <span class="tag tag-emerald">X Proof Post #1</span>
+            <span class="tag tag-cyan">Side by Side Live Catch Verdict</span>
+          </div>
+          <div class="meta-pills">
+            <span class="pill-ok">0 Dashes Verified ✓</span>
+            <span class="pill-ok">0 Links in Body ✓</span>
+            <span class="pill-muted">274 / 280 chars</span>
+          </div>
+        </div>
+
+        <div class="box-label">Main X Post Copy (Zero-Dash • Maximum Reach • No External Link Penalty)</div>
+        <pre id="xPostBody1" class="copy-pre x-main-post-body" data-x-post-id="1">Two Solana launches hit our scanner minutes apart today.
+
+$VEYRA showed renounced authorities yet scored 0/100 on an unburned manual pool. Liquidity drained 33.1% after peak to $0.
+
+$JESTER graduated via canonical pump curve with burned LP and scored 100/100.
+
+Proof below 👇</pre>
+        <div class="btn-row">
+          <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('xPostBody1', this, 'Copy Main X Post #1')">📋 Copy Main X Post #1</button>
+          <a class="btn-link" href="https://x.com/intent/tweet?text=Two%20Solana%20launches%20hit%20our%20scanner%20minutes%20apart%20today.%0A%0A%24VEYRA%20showed%20renounced%20authorities%20yet%20scored%200/100%20on%20an%20unburned%20manual%20pool.%20Liquidity%20drained%2033.1%25%20after%20peak%20to%20%240.%0A%0A%24JESTER%20graduated%20via%20canonical%20pump%20curve%20with%20burned%20LP%20and%20scored%20100/100.%0A%0AProof%20below%20%F0%9F%91%87" target="_blank" rel="noopener noreferrer">Post #1 on X ↗</a>
+        </div>
+
+        <div class="reply-stage">
+          <div class="box-label" style="color:#38bdf8;">Pre-Staged Reply #1 (Drop Immediately Under Post #1 With Live Audit Proof Links)</div>
+          <pre id="xReplyBody1" class="copy-pre copy-pre-reply" data-x-reply-id="1">On chain forensic receipts:
+🚨 $VEYRA (0/100 LP drain caught): https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1
+✅ $JESTER (100/100 burned LP graduation): https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump</pre>
+          <div class="btn-row">
+            <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xReplyBody1', this, 'Copy Reply #1')">🔗 Copy Reply #1</button>
+            <a class="btn-link" href="https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer">Open $VEYRA (0/100) ↗</a>
+            <a class="btn-link" href="https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump" target="_blank" rel="noopener noreferrer">Open $JESTER (100/100) ↗</a>
+          </div>
+        </div>
+      </article>
+      <article class="kit-card" id="x-card-2">
+        <div class="card-head">
+          <div>
+            <span class="tag tag-emerald">X Proof Post #2</span>
+            <span class="tag tag-cyan">Why Green Authority Badges Fool Traders</span>
+          </div>
+          <div class="meta-pills">
+            <span class="pill-ok">0 Dashes Verified ✓</span>
+            <span class="pill-ok">0 Links in Body ✓</span>
+            <span class="pill-muted">275 / 280 chars</span>
+          </div>
+        </div>
+
+        <div class="box-label">Main X Post Copy (Zero-Dash • Maximum Reach • No External Link Penalty)</div>
+        <pre id="xPostBody2" class="copy-pre x-main-post-body" data-x-post-id="2">Green Mint and Freeze checkmarks did not save $VEYRA buyers today.
+
+Deployers renounce both authorities on Token 2022 then seed a manual pool without burning LP tokens. Our Layer 5 guard blocked $VEYRA at 0/100 before the LP drain.
+
+$JESTER cleared all 10 layers at 100/100 👇</pre>
+        <div class="btn-row">
+          <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('xPostBody2', this, 'Copy Main X Post #2')">📋 Copy Main X Post #2</button>
+          <a class="btn-link" href="https://x.com/intent/tweet?text=Green%20Mint%20and%20Freeze%20checkmarks%20did%20not%20save%20%24VEYRA%20buyers%20today.%0A%0ADeployers%20renounce%20both%20authorities%20on%20Token%202022%20then%20seed%20a%20manual%20pool%20without%20burning%20LP%20tokens.%20Our%20Layer%205%20guard%20blocked%20%24VEYRA%20at%200/100%20before%20the%20LP%20drain.%0A%0A%24JESTER%20cleared%20all%2010%20layers%20at%20100/100%20%F0%9F%91%87" target="_blank" rel="noopener noreferrer">Post #2 on X ↗</a>
+        </div>
+
+        <div class="reply-stage">
+          <div class="box-label" style="color:#38bdf8;">Pre-Staged Reply #1 (Drop Immediately Under Post #2 With Live Audit Proof Links)</div>
+          <pre id="xReplyBody2" class="copy-pre copy-pre-reply" data-x-reply-id="2">Compare both 10 layer Solana audit cards side by side:
+🚨 $VEYRA 0/100 LP drain proof: https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1
+✅ $JESTER 100/100 clean graduation: https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump</pre>
+          <div class="btn-row">
+            <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xReplyBody2', this, 'Copy Reply #1')">🔗 Copy Reply #1</button>
+            <a class="btn-link" href="https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer">Open $VEYRA (0/100) ↗</a>
+            <a class="btn-link" href="https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump" target="_blank" rel="noopener noreferrer">Open $JESTER (100/100) ↗</a>
+          </div>
+        </div>
+      </article>
+      <article class="kit-card" id="x-card-3">
+        <div class="card-head">
+          <div>
+            <span class="tag tag-emerald">X Proof Post #3</span>
+            <span class="tag tag-cyan">Canonical Pump Graduation vs Custom Vanity Pool</span>
+          </div>
+          <div class="meta-pills">
+            <span class="pill-ok">0 Dashes Verified ✓</span>
+            <span class="pill-ok">0 Links in Body ✓</span>
+            <span class="pill-muted">265 / 280 chars</span>
+          </div>
+        </div>
+
+        <div class="box-label">Main X Post Copy (Zero-Dash • Maximum Reach • No External Link Penalty)</div>
+        <pre id="xPostBody3" class="copy-pre x-main-post-body" data-x-post-id="3">How to spot a fake Solana graduation in under one second:
+
+$JESTER ends in canonical pump suffix and migrated to PumpSwap with burned LP and 0.06% top holder share. Score: 100/100.
+
+$VEYRA used a custom mint with unburned manual LP that pulled to $0. Score: 0/100 👇</pre>
+        <div class="btn-row">
+          <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('xPostBody3', this, 'Copy Main X Post #3')">📋 Copy Main X Post #3</button>
+          <a class="btn-link" href="https://x.com/intent/tweet?text=How%20to%20spot%20a%20fake%20Solana%20graduation%20in%20under%20one%20second%3A%0A%0A%24JESTER%20ends%20in%20canonical%20pump%20suffix%20and%20migrated%20to%20PumpSwap%20with%20burned%20LP%20and%200.06%25%20top%20holder%20share.%20Score%3A%20100/100.%0A%0A%24VEYRA%20used%20a%20custom%20mint%20with%20unburned%20manual%20LP%20that%20pulled%20to%20%240.%20Score%3A%200/100%20%F0%9F%91%87" target="_blank" rel="noopener noreferrer">Post #3 on X ↗</a>
+        </div>
+
+        <div class="reply-stage">
+          <div class="box-label" style="color:#38bdf8;">Pre-Staged Reply #1 (Drop Immediately Under Post #3 With Live Audit Proof Links)</div>
+          <pre id="xReplyBody3" class="copy-pre copy-pre-reply" data-x-reply-id="3">Verify both mints and Solscan liquidity signatures:
+✅ $JESTER (100/100): https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump
+🚨 $VEYRA (0/100): https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1</pre>
+          <div class="btn-row">
+            <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xReplyBody3', this, 'Copy Reply #1')">🔗 Copy Reply #1</button>
+            <a class="btn-link" href="https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer">Open $VEYRA (0/100) ↗</a>
+            <a class="btn-link" href="https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump" target="_blank" rel="noopener noreferrer">Open $JESTER (100/100) ↗</a>
+          </div>
+        </div>
+      </article>
+      <article class="kit-card" id="x-card-4">
+        <div class="card-head">
+          <div>
+            <span class="tag tag-emerald">X Proof Post #4</span>
+            <span class="tag tag-cyan">Clean Holder Spread Trap vs Locked Liquidity</span>
+          </div>
+          <div class="meta-pills">
+            <span class="pill-ok">0 Dashes Verified ✓</span>
+            <span class="pill-ok">0 Links in Body ✓</span>
+            <span class="pill-muted">267 / 280 chars</span>
+          </div>
+        </div>
+
+        <div class="box-label">Main X Post Copy (Zero-Dash • Maximum Reach • No External Link Penalty)</div>
+        <pre id="xPostBody4" class="copy-pre x-main-post-body" data-x-post-id="4">Clean holder distribution means nothing when LP tokens sit unlocked in a deployer wallet.
+
+$VEYRA had only 2.3% in the top wallet and 0 bps tax, yet our shield flagged 0/100 for unburned manual LP risk before the pool hit $0.
+
+$JESTER passed 10/10 checks at 100/100 👇</pre>
+        <div class="btn-row">
+          <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('xPostBody4', this, 'Copy Main X Post #4')">📋 Copy Main X Post #4</button>
+          <a class="btn-link" href="https://x.com/intent/tweet?text=Clean%20holder%20distribution%20means%20nothing%20when%20LP%20tokens%20sit%20unlocked%20in%20a%20deployer%20wallet.%0A%0A%24VEYRA%20had%20only%202.3%25%20in%20the%20top%20wallet%20and%200%20bps%20tax%2C%20yet%20our%20shield%20flagged%200/100%20for%20unburned%20manual%20LP%20risk%20before%20the%20pool%20hit%20%240.%0A%0A%24JESTER%20passed%2010/10%20checks%20at%20100/100%20%F0%9F%91%87" target="_blank" rel="noopener noreferrer">Post #4 on X ↗</a>
+        </div>
+
+        <div class="reply-stage">
+          <div class="box-label" style="color:#38bdf8;">Pre-Staged Reply #1 (Drop Immediately Under Post #4 With Live Audit Proof Links)</div>
+          <pre id="xReplyBody4" class="copy-pre copy-pre-reply" data-x-reply-id="4">Full Layer 1 through Layer 10 telemetry receipts:
+🚨 $VEYRA 0/100 blocked rug card: https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1
+✅ $JESTER 100/100 verified safe card: https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump</pre>
+          <div class="btn-row">
+            <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xReplyBody4', this, 'Copy Reply #1')">🔗 Copy Reply #1</button>
+            <a class="btn-link" href="https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer">Open $VEYRA (0/100) ↗</a>
+            <a class="btn-link" href="https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump" target="_blank" rel="noopener noreferrer">Open $JESTER (100/100) ↗</a>
+          </div>
+        </div>
+      </article>
+      <article class="kit-card" id="x-card-5">
+        <div class="card-head">
+          <div>
+            <span class="tag tag-emerald">X Proof Post #5</span>
+            <span class="tag tag-cyan">Double Loss Prevention: LP Drain + Locked ATA Rent</span>
+          </div>
+          <div class="meta-pills">
+            <span class="pill-ok">0 Dashes Verified ✓</span>
+            <span class="pill-ok">0 Links in Body ✓</span>
+            <span class="pill-muted">268 / 280 chars</span>
+          </div>
+        </div>
+
+        <div class="box-label">Main X Post Copy (Zero-Dash • Maximum Reach • No External Link Penalty)</div>
+        <pre id="xPostBody5" class="copy-pre x-main-post-body" data-x-post-id="5">Every rugged Solana swap hurts twice: your SOL vanishes in an LP drain and 0.002039 SOL stays locked inside an empty token account.
+
+Our free radar blocked $VEYRA at 0/100 prior to its manual LP pull while verifying $JESTER clean at 100/100.
+
+Audit receipts in reply 👇</pre>
+        <div class="btn-row">
+          <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('xPostBody5', this, 'Copy Main X Post #5')">📋 Copy Main X Post #5</button>
+          <a class="btn-link" href="https://x.com/intent/tweet?text=Every%20rugged%20Solana%20swap%20hurts%20twice%3A%20your%20SOL%20vanishes%20in%20an%20LP%20drain%20and%200.002039%20SOL%20stays%20locked%20inside%20an%20empty%20token%20account.%0A%0AOur%20free%20radar%20blocked%20%24VEYRA%20at%200/100%20prior%20to%20its%20manual%20LP%20pull%20while%20verifying%20%24JESTER%20clean%20at%20100/100.%0A%0AAudit%20receipts%20in%20reply%20%F0%9F%91%87" target="_blank" rel="noopener noreferrer">Post #5 on X ↗</a>
+        </div>
+
+        <div class="reply-stage">
+          <div class="box-label" style="color:#38bdf8;">Pre-Staged Reply #1 (Drop Immediately Under Post #5 With Live Audit Proof Links)</div>
+          <pre id="xReplyBody5" class="copy-pre copy-pre-reply" data-x-reply-id="5">Inspect both live Solana audit reports and check wallet rent free:
+🚨 $VEYRA (0/100 LP drain): https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1
+✅ $JESTER (100/100 clean graduation): https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump</pre>
+          <div class="btn-row">
+            <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('xReplyBody5', this, 'Copy Reply #1')">🔗 Copy Reply #1</button>
+            <a class="btn-link" href="https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1" target="_blank" rel="noopener noreferrer">Open $VEYRA (0/100) ↗</a>
+            <a class="btn-link" href="https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump" target="_blank" rel="noopener noreferrer">Open $JESTER (100/100) ↗</a>
+          </div>
+        </div>
+      </article>
+
+    <div class="sec-head" id="reddit-section">
+      <h2>2. Two Value-First Reddit Technical Posts (r/solana &amp; r/solanamemecoins)</h2>
+      <span>Step-by-Step Manual Pool LP-Pull Forensics vs Canonical .pump Graduations</span>
+    </div>
+    
+      <article class="kit-card" id="reddit-card-1">
+        <div class="card-head">
+          <div>
+            <span class="tag tag-amber">Reddit Post #1 • r/solana</span>
+            <span class="tag tag-cyan">Deep Technical Postmortem • Builders &amp; Active Solana Users</span>
+          </div>
+          <a class="btn-link" href="https://www.reddit.com/r/solana/submit?type=TEXT" target="_blank" rel="noopener noreferrer">Open r/solana Submit Form ↗</a>
+        </div>
+
+        <div class="box-label">Post Title (178 chars)</div>
+        <pre id="redditTitle1" class="copy-pre" data-reddit-title="r_solana">On-Chain Breakdown: How manual PumpSwap &amp; Meteora pools fake &#x27;green&#x27; safety badges while leaving LP unburned ($VEYRA 0/100 LP-drain vs $JESTER 100/100 canonical .pump graduation)</pre>
+        <div class="btn-row" style="margin-bottom:14px;">
+          <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('redditTitle1', this, 'Copy Title')">📋 Copy Title (r/solana)</button>
+        </div>
+
+        <div class="box-label">Value-First Technical Markdown Body (Paste in Markdown Mode)</div>
+        <pre id="redditBody1" class="copy-pre copy-pre-tall" data-reddit-body="r_solana">Over the past few weeks we have been logging live Solana token graduations and liquidity pulls to understand why experienced traders still get caught by pools showing **&quot;Mint Revoked&quot;**, **&quot;Freeze Revoked&quot;**, and **&quot;Clean Holder Spread&quot;** in standard trading terminals.
+
+Today two tokens scanned minutes apart gave the cleanest textbook comparison of this exact mechanic: **`$VEYRA`** (caught at `0/100` right before a manual LP drain to `$0`) vs **`$JESTER`** (cleared `100/100` via a canonical `.pump` migration).
+
+Here is the step-by-step on-chain breakdown so anyone can verify this directly on Solscan or via JSON-RPC before signing a swap.
+
+---
+
+### 1. Why &quot;Mint &amp; Freeze Renounced&quot; + &quot;Low Top-10 Holders&quot; Is No Longer Enough
+
+Most quick UI badges check three things on the Mint account (`getAccountInfo` with `jsonParsed`):
+1. `mintAuthority == null`
+2. `freezeAuthority == null`
+3. Top-10 non-pool holder concentration `&lt; 20%-30%`
+
+Rug deployers have adapted to all three:
+- Instead of graduating through the canonical Pump.fun bonding curve program (which deterministically migrates liquidity to **PumpSwap** `pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA` and burns/locks the LP shares), the deployer mints a **custom Token-2022 or SPL token** (often cloning a trending ticker), renounces Mint and Freeze authorities, splits supply across 40+ fresh wallets so Top-1 is `&lt; 2.5%`, and **manually seeds a custom PumpSwap / Raydium CPMM / Meteora DYN2 pool**.
+- Because it is a *manual* pool rather than a canonical curve graduation, **100% of the LP withdrawal tokens (or position NFT) stay unlocked in the deployer&#x27;s wallet**, even while surface token-authority badges show green!
+
+---
+
+### 2. Side-by-Side Forensic Receipts (`$VEYRA` vs `$JESTER`)
+
+| Forensic Signal | `$VEYRA` (`0/100` LP-Drain Catch) | `$JESTER` (`100/100` Clean Graduation) |
+| :--- | :--- | :--- |
+| **Mint Address** | `8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1` | `t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump` |
+| **Mint Suffix / Origin** | Custom non-`.pump` mint (copycat ticker trap) | Canonical `.pump` bonding-curve mint |
+| **Mint &amp; Freeze Authority** | Both Revoked (`null`)  -  *surface badge looked green!* | Both Revoked (`null`) |
+| **Token-2022 Extensions** | `0 bps` fee, `None` PermanentDelegate/Hook | `0 bps` fee, `None` PermanentDelegate/Hook |
+| **Top-1 / Top-5 / Top-10 Holders** | `2.32%` / `9.87%` / `16.74%` (deliberately fragmented) | `0.06%` / `0.08%` / `0.08%` |
+| **LP Lock / Burn Architecture** | **UNBURNED manual pool**  -  deployer kept LP withdrawal rights | **100% Burned / Canonical PumpSwap migration** |
+| **Outcome &amp; On-Chain TX** | Post-peak **+33.1% LP pull -&gt; `$0` active liquidity** (`TX: YQz4fr2XPeKZsCPn...`) | Clean active `PumpSwap` trading, `$86.8k` 24h vol (`TX: 1GEV79q11dpjqgNg...`) |
+| **10-Layer Shield Verdict** | **`0/100`  -  SWAP BLOCKED (Layer 4 &amp; Layer 5 Critical)** | **`100/100`  -  10/10 LAYERS PASSED** |
+
+**Solscan Signatures to verify yourself:**
+- `$VEYRA` LP-Drain Proof TX: `https://solscan.io/tx/YQz4fr2XPeKZsCPndA71jrE7X3knWFhyWYVNopukYjeFhvbBMa4zRiCwsDfMPuMKsjPb6jvms4vErxCKvcWfV6F`
+- `$JESTER` Clean Graduation TX: `https://solscan.io/tx/1GEV79q11dpjqgNg9KgNYn88LC6N5w4V1Y9zzNUxv45DMdoH6Wq3T4NH3JNKZ4YpuxmTNsK8Ew9BRpJBnuouRbq`
+
+---
+
+### 3. 4-Step Pre-Swap Checklist You Can Run in 10 Seconds
+
+1. **Check Mint Origin vs Venue:** If a token claims to be a fresh PumpSwap graduation, check whether the mint address actually derives from the canonical `.pump` factory or is a random Base58 mint manually paired into a custom AMM pool.
+2. **Verify Actual LP Token Supply / Position NFT Custody:** On manual PumpSwap, Raydium CPMM, or Meteora DLMM/DYN2 pools, verify that `lpReserve` is burned to the incinerator (`1nc1nerator...`) or locked in an audited locker PDA - not sitting in an EOA wallet.
+3. **Inspect Token-2022 Extensions Beyond Mint/Freeze:** Always check `transferFeeConfig` (deployers can stage a `newerTransferFee` up to `10,000 bps` / 100%), `permanentDelegate` (allows silent token seizure from any ATA), and custom `transferHook` programs.
+4. **Reclaim Stranded ATA Rent (`~0.00203928 SOL` per dead trade):** Every SPL or Token-2022 token you touch creates an Associated Token Account locking `~0.00203928 SOL`. After selling or burning rugged dust, closing 0-balance ATAs via native `TokenProgram::CloseAccount (0x09)` returns that SOL straight back to your wallet.
+
+---
+
+### 4. Open Forensic Audit Pages (Zero Wallet Connection Required)
+
+If you want to inspect the full 10-layer JSON-LD &amp; on-chain breakdowns we logged for both mints:
+- **`$VEYRA` (`0/100` LP-Drain Forensic Report):** https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1
+- **`$JESTER` (`100/100` Clean Graduation Report):** https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump
+
+Stay safe out there and always verify LP custody - not just Mint/Freeze checkmarks - before aping manual pools.</pre>
+        <div class="btn-row">
+          <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('redditBody1', this, 'Copy Markdown Body')">📋 Copy Markdown Body (r/solana)</button>
+        </div>
+      </article>
+      <article class="kit-card" id="reddit-card-2">
+        <div class="card-head">
+          <div>
+            <span class="tag tag-amber">Reddit Post #2 • r/solanamemecoins</span>
+            <span class="tag tag-cyan">Trench Trader Field Guide • Anti-Rug Alpha</span>
+          </div>
+          <a class="btn-link" href="https://www.reddit.com/r/solanamemecoins/submit?type=TEXT" target="_blank" rel="noopener noreferrer">Open r/solanamemecoins Submit Form ↗</a>
+        </div>
+
+        <div class="box-label">Post Title (176 chars)</div>
+        <pre id="redditTitle2" class="copy-pre" data-reddit-title="r_solanamemecoins">PSA for trench traders: Stop trusting &#x27;Mint &amp; Freeze Revoked&#x27; alone  -  here is how $VEYRA faked clean stats right before pulling LP to $0 (vs $JESTER 100/100 graduation proof)</pre>
+        <div class="btn-row" style="margin-bottom:14px;">
+          <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('redditTitle2', this, 'Copy Title')">📋 Copy Title (r/solanamemecoins)</button>
+        </div>
+
+        <div class="box-label">Value-First Technical Markdown Body (Paste in Markdown Mode)</div>
+        <pre id="redditBody2" class="copy-pre copy-pre-tall" data-reddit-body="r_solanamemecoins">Quick heads-up for everyone trading new PumpSwap and Meteora pairs right now, because scammers are running a specific **manual-pool ticker spoof** designed to bypass basic green checkmarks in bots and DEX sidebars.
+
+We caught a live example today on **`$VEYRA`** (`8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1`) vs a clean graduation on **`$JESTER`** (`t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump`). Look at how deceptive `$VEYRA` looked on the surface before it rugged:
+
+### How the `$VEYRA` Manual-Pool Trap Worked
+1. **Ticker Spoof on a Non-`.pump` Mint:** While traders were searching for `$VEYRA`, the deployer created a custom Token-2022 mint (`8zaY...jyR1`  -  notice it does **not** end in canonical `pump`).
+2. **Faked &quot;Clean&quot; Badges:**
+   - Mint Authority: **Renounced** ✅
+   - Freeze Authority: **Renounced** ✅
+   - Transfer Tax: **0%** (`0 bps`) ✅
+   - Top-1 Holder: **2.32%** (Top-5: **9.87%**, Top-10: **16.74%**) ✅
+3. **The Hidden Kill Switch (Unburned Manual LP):** Because it never graduated from the real Pump.fun bonding curve, the liquidity pool was **manually seeded** without burning the LP tokens. Once enough buyers aped the green checkmarks, the deployer yanked the SOL liquidity (+33.1% post-peak LP drain -&gt; **$0 exit liquidity**).
+   - Solscan TX proof: `https://solscan.io/tx/YQz4fr2XPeKZsCPndA71jrE7X3knWFhyWYVNopukYjeFhvbBMa4zRiCwsDfMPuMKsjPb6jvms4vErxCKvcWfV6F`
+
+### Contrast That With `$JESTER` (`100/100` Clean Graduation)
+- **Mint:** `t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump` (canonical `.pump` bonding curve graduation to `PumpSwap`)
+- **LP Status:** **100% Burned / Canonical Migration**  -  neither the dev nor anyone else holds LP withdrawal tokens.
+- **Distribution &amp; Extensions:** Mint &amp; Freeze revoked, `0 bps` tax, zero `PermanentDelegate` or `TransferHook`, Top-1 non-pool holder `0.06%`, `$86.8k+` 24h volume.
+- **Solscan TX proof:** `https://solscan.io/tx/1GEV79q11dpjqgNg9KgNYn88LC6N5w4V1Y9zzNUxv45DMdoH6Wq3T4NH3JNKZ4YpuxmTNsK8Ew9BRpJBnuouRbq`
+
+---
+
+### 3 Rules That Will Save Your SOL in the Trenches Today
+1. **Never assume a PumpSwap or Meteora pair has burned LP unless it is a verified canonical `.pump` graduation.** Custom vanity mints on manual pools let the dev pull 100% of the SOL pool with zero Mint/Freeze authority needed.
+2. **Watch `Liq / Market Cap` ratio and exit reserve depth:** If a `$100k+` MC coin only has `$2k-$4k` real SOL reserve (or an unburned custom LP), one sell or LP pull zeros the chart.
+3. **Don&#x27;t forget your trapped `0.002039 SOL` ATA rent:** Every rugged or sold memecoin leaves an empty token account locking `~0.00204 SOL` in your wallet. If you&#x27;ve traded 100-300 memecoins this month, you likely have `0.20 to 0.60 SOL` sitting idle in empty ATAs that you can close natively (`0x09 CloseAccount`).
+
+### Side-by-Side Live Proof Cards (Free / Read-Only)
+- 🚨 **`$VEYRA` (`0/100` LP-Drain Blocked Card):** https://rentandrugshield.com/audit/8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1
+- ✅ **`$JESTER` (`100/100` Clean Graduation Card):** https://rentandrugshield.com/audit/t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump
+
+Hope this saves somebody a few SOL today - always double-check the mint suffix and LP burn custody before aping!</pre>
+        <div class="btn-row">
+          <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('redditBody2', this, 'Copy Markdown Body')">📋 Copy Markdown Body (r/solanamemecoins)</button>
+        </div>
+      </article>
+
+    <div class="sec-head" id="cws-section">
+      <h2>3. Chrome Web Store 3-Click Upload Checklist (Paid Developer Account)</h2>
+      <span>Bundle: CWS_READY_SolanaRentRugShield_MV3.zip • 34.9 KB (35,761 bytes) • Manifest V3 (version 4.1.0)</span>
+    </div>
+    <section class="kit-card">
+      <div class="step-grid">
+        <div class="step-item"><strong>Click 1  -  Upload Verified MV3 Bundle</strong><p>Open Chrome Web Store Developer Console (https://chrome.google.com/webstore/devconsole) -&gt; Click &#x27;+ New Item&#x27; -&gt; Upload /home/bigrigv2/rent_shield_app/CWS_READY_SolanaRentRugShield_MV3.zip (CWS_READY_SolanaRentRugShield_MV3.zip, Manifest V3 v4.1.0, root manifest.json, icons 16/48/128 verified).</p></div><div class="step-item"><strong>Click 2  -  Paste Store Listing &amp; Privacy Tab</strong><p>Paste Store Title (57/75 chars), Short Summary (126/132 chars), and Full Description below; select Category &#x27;Developer Tools&#x27;; attach /home/bigrigv2/rent_shield_app/cws-promo-1280x800.png (1280x800 PNG); then on the Privacy tab paste Single-Purpose + the 3 MV3 Permission Justifications, check all 3 Data Usage certifications, and enter Privacy Policy URL https://rentandrugshield.com/privacy.html.</p></div><div class="step-item"><strong>Click 3  -  Save &amp; Submit for Review</strong><p>Click &#x27;Save Draft&#x27; -&gt; Click &#x27;Submit for Review&#x27; with &#x27;Publish automatically after it passes review&#x27; enabled.</p></div>
+      </div>
+
+      <div class="box-label">Exact Upload Archive Path (MV3 Root manifest.json Verified)</div>
+      <pre id="cwsZipPath" class="copy-pre">/home/bigrigv2/rent_shield_app/CWS_READY_SolanaRentRugShield_MV3.zip</pre>
+      <div class="btn-row" style="margin-bottom:14px;">
+        <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('cwsZipPath', this, 'Copy ZIP File Path')">📋 Copy ZIP File Path</button>
+        <a class="btn-link" href="/CWS_READY_SolanaRentRugShield_MV3.zip" download>⬇️ Download CWS_READY_SolanaRentRugShield_MV3.zip</a>
+        <a class="btn-link" href="https://chrome.google.com/webstore/devconsole" target="_blank" rel="noopener noreferrer">Open CWS Developer Console ↗</a>
+      </div>
+
+      <div class="box-label">Store Title (57 / 75 Characters)</div>
+      <pre id="cwsTitle" class="copy-pre">SOL Rent &amp; Rug Shield  -  10-Layer Anti-Rug &amp; Rent Recovery</pre>
+      <div class="btn-row" style="margin-bottom:14px;">
+        <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('cwsTitle', this, 'Copy Store Title')">📋 Copy Store Title</button>
+      </div>
+
+      <div class="box-label">Short Summary (126 / 132 Characters)</div>
+      <pre id="cwsSummary" class="copy-pre">10-Layer Solana Pre-Buy Anti-Rug Scanner, Read-Only Wallet Rent Finder (95% Net SOL), &amp; Live Verified On-Chain Trade Receipts.</pre>
+      <div class="btn-row" style="margin-bottom:14px;">
+        <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('cwsSummary', this, 'Copy Short Summary')">📋 Copy Short Summary</button>
+      </div>
+
+      <div class="box-label">Full Chrome Web Store Description</div>
+      <pre id="cwsDesc" class="copy-pre copy-pre-tall">SOL Rent &amp; Rug Shield is a 100% non-custodial Solana security companion built to sit right next to Phantom or Solflare in your Chrome toolbar.
+
+🛡️ 1. 10-LAYER PRE-BUY ANTI-RUG MINT SCANNER (&lt;200ms)
+• Auto-detects any 32-44 character Solana token mint address when you click the Shield icon on DexScreener, Birdeye, PumpSwap, Raydium, Jupiter, or Solscan - or paste any mint manually.
+• Audits Mint Authority, Freeze Authority, Token-2022 PermanentDelegate / TransferHook traps, LP Burn/Lock status, Top-10 non-pool sniper bundle concentration, liquidity-to-market-cap depth, and Inner-CPI drain risk before you swap.
+• Returns a clear 0-100 Shield Safety Score and human-readable pass/fail breakdown.
+
+💰 2. 100% READ-ONLY WALLET RENT SCANNER (NATIVE 0x09 CLOSEACCOUNT)
+• Paste any public Solana wallet address to check how many 0-balance SPL &amp; Token-2022 token accounts are locking ~0.00203928 SOL each on Solana Mainnet.
+• Zero wallet connection, private keys, or seed phrases are ever requested in the extension.
+• When you choose to reclaim your SOL rent on our non-custodial claim page, transactions use native Solana TokenProgram::CloseAccount (0x09) signed exclusively inside your own wallet (1st claim 0% fee; keep 95% net SOL thereafter).
+
+🚀 3. LIVE ON-CHAIN VERIFIED RECEIPTS STREAM
+• View real-time tokens that cleared our 10-Layer Shield alongside direct Solscan transaction signature links so every metric can be independently verified on the Solana blockchain.
+
+🔒 SECURITY &amp; PRIVACY GUARANTEES
+• 100% Non-Custodial &amp; Read-Only inside Chrome.
+• Zero background browsing history tracking.
+• Zero remote code execution (100% local packaged MV3 HTML/JS).</pre>
+      <div class="btn-row" style="margin-bottom:14px;">
+        <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('cwsDesc', this, 'Copy Full Description')">📋 Copy Full Description</button>
+      </div>
+
+      <div class="box-label">Category &amp; Official Privacy Policy URL</div>
+      <pre id="cwsPrivacyUrl" class="copy-pre">https://rentandrugshield.com/privacy.html</pre>
+      <div class="btn-row" style="margin-bottom:14px;">
+        <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('cwsPrivacyUrl', this, 'Copy Privacy Policy URL')">📋 Copy Privacy Policy URL</button>
+        <span class="pill-muted">Category: Developer Tools (Secondary: Productivity)</span>
+        <span class="pill-muted">Promo PNG: /home/bigrigv2/rent_shield_app/cws-promo-1280x800.png</span>
+        <span class="pill-muted">Windows Unpacked: C:\SolanaRentRugShield_Extension</span>
+      </div>
+
+      <div class="box-label">Single-Purpose Statement (Privacy Practices Tab)</div>
+      <pre id="cwsSinglePurpose" class="copy-pre">Provide Solana users with an on-demand toolbar popup to audit public Solana token mint addresses for pre-buy rug-pull risks and scan public Solana wallet addresses for reclaimable empty-account SOL rent using read-only blockchain lookups.</pre>
+      <div class="btn-row" style="margin-bottom:14px;">
+        <button type="button" class="btn-copy btn-emerald" onclick="copyFromId('cwsSinglePurpose', this, 'Copy Single-Purpose Statement')">📋 Copy Single-Purpose Statement</button>
+      </div>
+
+      <div class="box-label">Manifest V3 Permission Justifications</div>
+      
+          <div class="perm-box">
+            <div class="box-label" style="color:#fde047;">Permission #1: <code>activeTab</code></div>
+            <pre id="cwsPerm1" class="copy-pre">Used only when the user explicitly clicks the SOL Rent &amp; Rug Shield toolbar icon so popup.js can check whether the active DEX or block-explorer tab URL contains a 32-44 character Base58 Solana token mint address and auto-run the 10-Layer safety audit. No background tab monitoring or browsing history collection ever occurs.</pre>
+            <div class="btn-row">
+              <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('cwsPerm1', this, 'Copy Permission #1 Justification')">📋 Copy Permission #1 Justification</button>
+            </div>
+          </div>
+          <div class="perm-box">
+            <div class="box-label" style="color:#fde047;">Permission #2: <code>storage</code></div>
+            <pre id="cwsPerm2" class="copy-pre">Stores only lightweight local user preferences (such as the most recently audited Solana token mint) locally inside the browser.</pre>
+            <div class="btn-row">
+              <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('cwsPerm2', this, 'Copy Permission #2 Justification')">📋 Copy Permission #2 Justification</button>
+            </div>
+          </div>
+          <div class="perm-box">
+            <div class="box-label" style="color:#fde047;">Permission #3: <code>host_permissions (https://rentandrugshield.com/*, https://rentshield.duckdns.org/*)</code></div>
+            <pre id="cwsPerm3" class="copy-pre">Required strictly over HTTPS so the extension popup can query our live 10-Layer Solana token security endpoint (/api/scan-token), read-only wallet rent scanner (/api/scan-wallet), and verified Solscan telemetry stream (/api/live-telemetry).</pre>
+            <div class="btn-row">
+              <button type="button" class="btn-copy btn-cyan" onclick="copyFromId('cwsPerm3', this, 'Copy Permission #3 Justification')">📋 Copy Permission #3 Justification</button>
+            </div>
+          </div>
+
+      <div style="margin-top:16px;">
+        <div class="box-label">Data Usage &amp; CWS Policy Certifications Checklist</div>
+        <ul class="disc-list">
+          <li>Personal / Sensitive Data Collected: None (only public Solana addresses queried on demand).</li><li>Private Keys / Seed Phrases: Never requested, accessed, transmitted, or stored.</li><li>Certification 1 [x]: We do NOT sell or transfer user data to third parties.</li><li>Certification 2 [x]: We do NOT use or transfer user data for purposes unrelated to the item&#x27;s single purpose.</li><li>Certification 3 [x]: We do NOT use or transfer user data to determine creditworthiness or for lending purposes.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function copyFromId(elId, btn, resetLabel) {
+      var el = document.getElementById(elId);
+      if (!el) return;
+      var txt = el.textContent || '';
+      function markDone() {
+        btn.textContent = '✅ Copied!';
+        setTimeout(function() { btn.textContent = '📋 ' + resetLabel; }, 1800);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(markDone).catch(function() { fallbackCopy(txt, markDone); });
+      } else {
+        fallbackCopy(txt, markDone);
+      }
+    }
+    function fallbackCopy(txt, cb) {
+      var ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); if (cb) cb(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  </script>
+</body>
+</html>

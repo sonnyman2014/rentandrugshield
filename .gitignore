@@ -66,3 +66,4 @@ package-lock.json
 !/static/lead_retargeter.js
 
 directory_submissions/
+!/mcp.json
