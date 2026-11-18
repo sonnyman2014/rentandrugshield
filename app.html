@@ -94,7 +94,7 @@
           "name": "Is Solana Rent & Rug Shield affiliated with Rug Doctor or physical carpet cleaner rentals?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Solana Rent & Rug Shield is a non-custodial Solana blockchain Web3 utility for reclaiming locked SOL from empty SPL and Token-2022 token accounts and scanning crypto tokens across 10 security layers. It has zero affiliation with Rug Doctor, physical rug cleaners, or real estate rentals."
+            "text": "No. Solana Rent & Rug Shield is a non-custodial Solana blockchain Web3 utility for reclaiming locked SOL from empty SPL and Token-2022 token accounts and scanning crypto tokens across 11 security layers. It has zero affiliation with Rug Doctor, physical rug cleaners, or real estate rentals."
           }
         },
         {
@@ -1120,7 +1120,7 @@
     #floatingBottomRightFeedbackBtn { bottom: 72px !important; right: 12px !important; }
   }
 </style>
-<style id="gs-obsidian-emerald-lock">
+<style id="rrs-obsidian-emerald-lock">
   :root {
     --bg-obsidian: #060A12;
     --card-slate: #0E1626;
@@ -1250,24 +1250,108 @@
 }
 </script>
 <style id="rrs-app-equal-cards-1440">
-  @media (min-width: 1024px) {
-    #tab-claim.tab-panel.active,
-    #tab-pro.tab-panel.active {
-      align-items: stretch !important;
+  .service-card-head {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    gap: 6px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .service-card-head > .card-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    min-height: 32px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .service-card-head > .service-card-desc {
+    margin: 0 !important;
+    font-size: 0.92rem !important;
+    line-height: 1.45 !important;
+    color: #CBD5E1 !important;
+  }
+  .service-primary-input-wrap {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .service-primary-input-wrap > input.service-primary-input {
+    display: block !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    padding: 10px 14px !important;
+    margin: 0 !important;
+    border-radius: 9px !important;
+    box-sizing: border-box !important;
+  }
+  @media (min-width: 900px) {
+    body:not([data-active-tab="proof"]):not([data-active-tab="pro"]) #scannersRow1Grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 16px !important;
+      align-items: start !important;
+      margin-bottom: 16px !important;
     }
-    #tab-claim.tab-panel.active > .card,
-    #tab-pro.tab-panel.active > .card {
-      height: 100% !important;
-      box-sizing: border-box !important;
+    body:not([data-active-tab="proof"]):not([data-active-tab="pro"]) #tab-claim,
+    body:not([data-active-tab="proof"]):not([data-active-tab="pro"]) #tab-shield {
       display: flex !important;
       flex-direction: column !important;
+      gap: 12px !important;
+      width: 100% !important;
+    }
+    body[data-active-tab="proof"] #scannersRow1Grid,
+    body[data-active-tab="pro"] #scannersRow1Grid {
+      display: none !important;
+    }
+    #rentShieldCard,
+    #rugShieldCard {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding: 16px 18px !important;
+      border-width: 1.5px !important;
+      border-style: solid !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      box-sizing: border-box !important;
+    }
+    #rentShieldCard > .service-card-head > .card-header,
+    #rugShieldCard > .service-card-head > .card-header {
+      flex-wrap: nowrap !important;
+    }
+    #rentShieldCard > .service-card-head,
+    #rugShieldCard > .service-card-head {
+      height: 108px !important;
+      min-height: 108px !important;
+      max-height: 108px !important;
+      overflow: hidden !important;
+    }
+  }
+  @media (min-width: 1140px) {
+    #rentShieldCard > .service-card-head,
+    #rugShieldCard > .service-card-head {
+      height: 88px !important;
+      min-height: 88px !important;
+      max-height: 88px !important;
     }
   }
 </style>
 <script id="rrs-sw-v311-cache-bust">
 (function() {
-  var SW_VER = "311-11layer";
-  var EXPECTED_CACHE = "rent-shield-v311-11layer-live";
+  var SW_VER = "313-11layer";
+  var EXPECTED_CACHE = "rent-shield-v313-11layer-ui-aligned";
   var ACTIVE_TUNNEL = "https://via-tree-techno-rrp.trycloudflare.com";
   try {
     for (var sIdx = 0; sIdx < 2; sIdx++) {
@@ -1419,6 +1503,17 @@
       border: 1px solid rgba(56, 189, 248, 0.45);
       background: rgba(14, 165, 233, 0.12);
     }
+    .rrs-centered-nav a.rrs-nav-aff-hi {
+      color: #6EE7B7;
+      border: 1px solid rgba(20, 241, 149, 0.55);
+      background: rgba(16, 185, 129, 0.14);
+      font-weight: 800;
+    }
+    .rrs-centered-nav a.rrs-nav-aff-hi:hover {
+      color: #FEF08A;
+      border-color: #FACC15;
+      background: rgba(20, 241, 149, 0.24);
+    }
     .rrs-centered-nav .rrs-nav-sep {
       color: #475569;
       font-size: 0.80rem;
@@ -1445,6 +1540,8 @@
       <span class="rrs-nav-sep" aria-hidden="true">•</span>
       <a href="#tab-shield" onclick="if(typeof switchNativeTab==='function'){switchNativeTab('shield'); return false;}">11-Layer Rug Shield</a>
       <span class="rrs-nav-sep" aria-hidden="true">•</span>
+      <a href="#affiliate30PctEngineBar" id="topAffiliateNavBtn" class="rrs-nav-aff-hi" onclick="if(typeof window.jumpToAffiliate30Engine==='function'){window.jumpToAffiliate30Engine(); return false;}">💰 Earn 30% Affiliate</a>
+      <span class="rrs-nav-sep" aria-hidden="true">•</span>
       <a href="#app-pizzazz-showcase-deck">🏆 Annual SOL Raffle</a>
       <span class="rrs-nav-sep" aria-hidden="true">•</span>
       <a href="#tab-proof" onclick="if(typeof switchNativeTab==='function'){switchNativeTab('proof'); return false;}">📊 Live Proof</a>
@@ -1461,31 +1558,24 @@
 
   <main class="native-app-frame">
     <div id="rrsAppOnPageNavBar" style="display:flex; justify-content:center; align-items:center; gap:8px; margin:6px auto 8px; flex-wrap:wrap;" aria-label="App View Navigation"><div class="rrs-onpage-nav-bar"><button type="button" id="appNavBackBtn" class="rrs-nav-ctrl-btn" onclick="window.rrsNavAction('back')">← Back</button><a href="/" id="appNavHomeBtn" class="rrs-nav-ctrl-btn rrs-nav-ctrl-home" onclick="window.rrsNavAction('home');return false;">🏠 Home</a><button type="button" id="appNavForwardBtn" class="rrs-nav-ctrl-btn" onclick="window.rrsNavAction('forward')">Forward →</button></div></div>
-    <!-- ONE CONCISE UNBOXED STATEMENT ABOVE THE 2 EQUAL-HEIGHT SCANNER CARDS -->
-    <p id="unboxedTopStatement" style="margin:8px auto 14px; max-width:1160px; padding:0; background:transparent; border:none; box-shadow:none; text-align:center; font-size:0.94rem; line-height:1.5; color:#E2E8F0; font-weight:500;">
-      Free 1st Scan &amp; <strong style="color:#14F195;">0% 1st Rent Claim</strong> (<code class="jb-mono" style="color:#6EE7B7;">2,039,280 / 2,039,280</code> lamports kept) • &lt;120ms 11-Layer Pre-Buy Rug Shield <button type="button" id="appTopLayer11InfoBtn" class="rrs-layer11-info-btn" title="We launched at 10 layers and already shipped Layer 11 (Block-0 Sybil Cluster Defense) live at $0 extra cost during active passes." aria-label="11-Layer Upgrade Info">ⓘ</button> • <strong style="color:#7DD3FC;">New layers included free during active pass, $0 auto-billing</strong>.
-    </p>
+    <div id="scannersRow1Grid" class="app-scanners-grid">
     <section id="tab-claim" class="tab-panel active" aria-label="Claim SOL">
-      <div class="card">
-        <div class="trust-strip">
-          <span class="badge-pill" style="font-size:0.82rem;">🎁 1st Claim: 0% Fee (Keep 100% SOL)</span>
-          <span class="badge-pill badge-amber" style="font-size:0.82rem;">Repeat Cleanups: 1.5% Fee (Keep 98.5% • Beat Incinerator 2%)</span>
+      <div class="card" id="rentShieldCard" style="border:1.5px solid rgba(16, 185, 129, 0.48); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:10px; box-sizing:border-box;">
+        <div class="service-card-head">
+          <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin:0;">
+            <div class="card-title" style="font-size:1.04rem; font-weight:700; color:#F8FAFC; white-space:nowrap;">💰 Wallet Rent Scanner &amp; Burner</div>
+            <span class="badge-pill" id="appFeeBadge" style="font-size:0.82rem; font-weight:700; padding:4px 10px; white-space:nowrap;">Claim #1: 0.0% Fee • Repeat: 1.5%</span>
+          </div>
+          <p class="service-card-desc" style="margin:0; font-size:0.92rem; line-height:1.45; color:#CBD5E1;">Read-only public address check with zero seed phrases, reclaiming 100% on your 1st claim (2,039,280 lamports per empty ATA, 0% fee).</p>
         </div>
 
-        <div style="font-size:15px;font-weight:900;color:#ffffff;line-height:1.25;margin-bottom:4px;">
-          💰 Reclaim Trapped Wallet Rent &amp; Burn Empty ATAs
-        </div>
-        <div style="font-size: 13.5px;color:#cbd5e1;line-height:1.38;margin-bottom:9px;">
-          Every closed meme coin leaves ~0.00204 SOL locked on-chain. Check your public address with <b>zero signature popups</b> first:
-        </div>
-
-        <!-- Prominent Wallet Input -->
-        <div class="input-wrap">
+        <div class="input-wrap service-primary-input-wrap" style="width:100%; box-sizing:border-box; margin:0;">
           <input
             id="w-inp"
-            class="native-input"
+            class="native-input service-primary-input"
             type="text"
             value=""
+            style="width:100%; min-width:100%; box-sizing:border-box; height:46px; min-height:46px; padding:10px 14px; border-radius:9px; border:1.5px solid rgba(16, 185, 129, 0.55);"
             placeholder="Paste Solana Wallet Address (Read-Only)..."
             autocomplete="off"
             autocorrect="off"
@@ -1493,21 +1583,18 @@
             spellcheck="false"
             onkeydown="if(event.key==='Enter') runWalletScan('rent', false);"
           />
-          <button type="button" class="clear-inp-btn" title="Clear" onclick="clearWalletInput()">✕</button>
         </div>
 
-        <!-- Huge Frictionless Read-Only Scan Rent & Paste Buttons -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:7px;">
-          <button type="button" id="scanWalletBtn" class="btn-cta" onclick="runWalletScan('rent', false)">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%; box-sizing:border-box;">
+          <button type="button" id="scanWalletBtn" class="btn-cta" onclick="runWalletScan('rent', false)" style="min-height:42px;">
             🔍 Scan Rent
           </button>
-          <button type="button" id="paste-scan-btn" class="btn-secondary" style="border-color:#10B981;color:#6EE7B7;" onclick="pasteAndScanWallet()">
+          <button type="button" id="paste-scan-btn" class="btn-secondary" style="border-color:#10B981;color:#6EE7B7;min-height:42px;" onclick="pasteAndScanWallet()">
             📋 Paste &amp; Scan
           </button>
         </div>
 
-        <!-- 1-Tap Sample Verified Wallet Test + Disconnect Buttons -->
-        <div style="display:grid; grid-template-columns:1fr auto; gap:7px; margin-top:7px;">
+        <div style="display:grid; grid-template-columns:1fr auto; gap:8px; width:100%; box-sizing:border-box;">
           <button type="button" id="test-verified-wallet-btn" class="btn-secondary" onclick="testRealVerifiedWallet()">
             👀 Test Real Verified Wallet
           </button>
@@ -1515,6 +1602,14 @@
             🔌 Disconnect Wallet
           </button>
         </div>
+
+        <label id="app-autocollect-label" style="display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;box-sizing:border-box;padding:8px 12px;border-radius:9px;background:rgba(15,23,42,0.92);border:1px solid rgba(16,185,129,0.38);cursor:pointer;">
+          <span style="display:flex;align-items:center;gap:8px;font-size:0.84rem;font-weight:700;color:#ecfdf5;">
+            <input type="checkbox" id="app-autocollect-chk" style="width:17px;height:17px;accent-color:#10B981;margin:0;" />
+            <span>⚡ Auto-Collect &amp; Alert When 5+ Empty ATAs Build Up</span>
+          </span>
+          <span style="font-size:0.78rem;font-weight:800;color:#10B981;">OPT-IN</span>
+        </label>
 
         <div id="walletDisconnectedBadge" role="status" style="display:none;margin-top:8px;padding:8px 10px;border-radius:9px;background:rgba(16,185,129,0.14);border:1.5px solid #10B981;font-size:13.5px;font-weight:800;color:#6EE7B7;text-align:center;"></div>
 
@@ -1596,13 +1691,6 @@
             Wallet <code style="color:#fde047;">Cw3w...kmHY</code> • Active <code style="color:#67e8f9;">$MEW</code> Preserved • Fleet Total: <b style="color:#10B981;">+0.1915 SOL (125 ATAs)</b>
           </div>
         </div>
-        <label style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding:7px 9px;border-radius:8px;background:#030b17;border:1px solid rgba(16, 185, 129,0.3);cursor:pointer;">
-          <span style="display:flex;align-items:center;gap:7px;font-size: 13.5px;font-weight:800;color:#ecfdf5;">
-            <input type="checkbox" id="app-autocollect-chk" checked style="width:17px;height:17px;accent-color:#10B981;margin:0;" />
-            ⚡ Auto-Alert When 5+ Empty ATAs Build Up
-          </span>
-          <span style="font-size: 13.5px;font-weight:900;color:#10B981;">FREE</span>
-        </label>
       </div>
     </section>
 
@@ -1610,33 +1698,22 @@
     <!-- TAB 2: 🛡️ 11-LAYER SHIELD (SERVICE 2 COIN RUG & CPI DRAIN SCANNER) -->
     <!-- ================================================================== -->
     <section id="tab-shield" class="tab-panel" aria-label="11-Layer Adaptive Shield">
-      <div class="card card-cyan">
-        <div class="trust-strip">
-          <span class="badge-pill" id="appDemoScansBadge">🎁 1 Free 11-Layer Audit</span>
-          <span class="badge-pill badge-amber">Extra Single <span class="mono-price">10¢</span> (Reg <span class="mono-price">99¢</span>)</span>
-          <span class="badge-pill badge-cyan">🛡️ 11-Layer &lt;120ms</span>
+      <div class="card card-cyan" id="rugShieldCard" style="border:1.5px solid rgba(56, 189, 248, 0.48); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:10px; box-sizing:border-box;">
+        <div class="service-card-head">
+          <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin:0;">
+            <div class="card-title" style="font-size:1.04rem; font-weight:700; color:#F8FAFC; white-space:nowrap;">🛡️ 11-Layer Adaptive Token Audit</div>
+            <span class="badge-pill badge-amber" id="appDemoScansBadge" style="font-size:0.82rem; font-weight:700; padding:4px 10px; white-space:nowrap;">1ST AUDIT FREE • READY</span>
+          </div>
+          <p class="service-card-desc" style="margin:0; font-size:0.92rem; line-height:1.45; color:#CBD5E1;">Audits Mint &amp; Freeze Authorities, Layer-11 Sybil Wallet Clusters, Spoofed .pump LPs, Token-2022 Hooks &amp; Inner-CPI Drains in under 120ms.</p>
         </div>
 
-        <div style="font-size:15px;font-weight:900;color:#ffffff;line-height:1.25;margin-bottom:4px;">
-          🛡️ 11-Layer Adaptive Pre-Buy Coin &amp; Rug Scanner <button type="button" id="appShieldLayer11InfoBtn" class="rrs-layer11-info-btn" title="We launched at 10 layers and already shipped Layer 11 (Block-0 Sybil Cluster Defense) live at $0 extra cost during active passes." aria-label="11-Layer Upgrade Info">ⓘ</button>
-        </div>
-        <div style="font-size: 13.5px;color:#cbd5e1;line-height:1.38;margin-bottom:9px;">
-          Audits Mint/Freeze Auth, Top-1/Top-5 Holders, Liq/MC Ratio, Custom-Mint LP-Pulls, Token-2022 Tax &amp; Inner-CPI Drains before you buy:
-        </div>
-
-        <div id="scanner2Unique4BadgesApp" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:6px; margin-bottom:9px;">
-          <span style="display:flex; align-items:center; gap:5px; padding:5px 7px; border-radius:8px; background:rgba(16, 185, 129, 0.14); border:1px solid rgba(16, 185, 129, 0.55); color:#6EE7B7; font-size:0.76rem; font-weight:700; line-height:1.25;">⚡ Live Jupiter Sell-Side Honeypot Sim</span>
-          <span style="display:flex; align-items:center; gap:5px; padding:5px 7px; border-radius:8px; background:rgba(56, 189, 248, 0.14); border:1px solid rgba(56, 189, 248, 0.55); color:#7DD3FC; font-size:0.76rem; font-weight:700; line-height:1.25;">🔒 Token-2022 Tax/Hook &amp; Delegate Guard</span>
-          <span style="display:flex; align-items:center; gap:5px; padding:5px 7px; border-radius:8px; background:rgba(245, 158, 11, 0.15); border:1px solid rgba(245, 158, 11, 0.55); color:#FDE68A; font-size:0.76rem; font-weight:700; line-height:1.25;">🔥 Unburned Custom-LP Pull Guard</span>
-          <span style="display:flex; align-items:center; gap:5px; padding:5px 7px; border-radius:8px; background:rgba(168, 85, 247, 0.16); border:1px solid rgba(192, 132, 252, 0.55); color:#E9D5FF; font-size:0.76rem; font-weight:700; line-height:1.25;">🛡️ Inner-CPI Drainer Sim</span>
-        </div>
-
-        <div class="input-wrap">
+        <div class="input-wrap service-primary-input-wrap" style="width:100%; box-sizing:border-box; margin:0;">
           <input
             id="m-inp"
-            class="native-input"
+            class="native-input service-primary-input"
             type="text"
             value=""
+            style="width:100%; min-width:100%; box-sizing:border-box; height:46px; min-height:46px; padding:10px 14px; border-radius:9px; border:1.5px solid rgba(56, 189, 248, 0.55);"
             placeholder="Paste Solana Token Mint Address..."
             autocomplete="off"
             autocorrect="off"
@@ -1644,44 +1721,57 @@
             spellcheck="false"
             onkeydown="if(event.key==='Enter') runMintAudit();"
           />
-          <button type="button" class="clear-inp-btn" title="Clear" onclick="clearMintInput()">✕</button>
         </div>
 
-        <button type="button" id="paste-mint-btn" class="btn-cta" style="background:linear-gradient(90deg,#0891b2,#10B981);border-color:#67e8f9;" onclick="pasteAndAuditMint()">
-          📋 Paste Token Mint &amp; Run 11-Layer Audit
-        </button>
-        <div class="grid-2-tight" style="margin-top:7px;">
-          <button type="button" id="appShieldSingleAudit2cBtn" class="btn-secondary" style="border-color:#fde047;color:#022c22;background:linear-gradient(90deg,#10B981,#fde047);font-weight:900;font-size: 13.5px;" onclick="openAppSingleAudit2cModal()">
-            Single Audit <span class="mono-price">10¢</span> (Reg <span class="mono-price">99¢</span>)
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%; box-sizing:border-box;">
+          <button type="button" id="scanTokenBtn" class="btn-cta" style="min-height:42px;" onclick="runMintAudit()">
+            🛡️ Scan Token
           </button>
-          <button type="button" id="appShieldUnlimitedPassBtn" class="btn-secondary" style="border-color:#38bdf8;color:#ecfeff;background:rgba(8,145,178,0.28);font-weight:900;font-size: 13.5px;" onclick="buyProPass(0.026, '24 Hour Unlimited Day Pass ($1.99, Reg. $4.99)')">
-            24 Hour Day Pass <span class="mono-price">$1.99</span> (Reg <span class="mono-price">$4.99</span>)
+          <button type="button" id="paste-mint-btn" class="btn-secondary" style="border-color:#38BDF8;color:#7DD3FC;min-height:42px;" onclick="pasteAndAuditMint()">
+            📋 Paste &amp; Scan
           </button>
         </div>
-        <button type="button" id="appDeduct199RecoveredBtn" class="btn-secondary" style="margin-top:7px;width:100%;border-color:#c084fc;color:#fdf4ff;background:linear-gradient(90deg,rgba(147,51,234,0.32),rgba(16, 185, 129,0.20));font-weight:900;font-size: 13.5px;" onclick="window.deductUnlimitedPassFromRecoveredSol(document.getElementById('m-inp') ? document.getElementById('m-inp').value.trim() : '')">
-          Pay <span class="mono-price">$1.99</span> Day Pass from Recovered SOL (<span class="mono-pct">0%</span> First Claim Fee)
-        </button>
 
-        <!-- 3 LIVE 1-TAP TOKEN AUDIT CHIPS -->
-        <div style="font-size: 13.5px;font-weight:900;color:#CBD5E1;margin-top:9px;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.02em;">
-          ⚡ 1-Tap Instant Live Token Audits (&lt;200ms):
+        <!-- 4 UNIQUE 11-LAYER ADVANTAGES BADGE GRID (BELOW MINT ADDRESS BAR) -->
+        <div id="scanner2Unique4BadgesApp" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:6px; width:100%; box-sizing:border-box; margin:0;">
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 7px; border-radius:8px; background:rgba(16, 185, 129, 0.14); border:1px solid rgba(16, 185, 129, 0.55); color:#6EE7B7; font-size:0.76rem; font-weight:700; line-height:1.25;">⚡ Live Jupiter Sell-Side Honeypot Sim</span>
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 7px; border-radius:8px; background:rgba(56, 189, 248, 0.14); border:1px solid rgba(56, 189, 248, 0.55); color:#7DD3FC; font-size:0.76rem; font-weight:700; line-height:1.25;">🔒 Token-2022 Tax/Hook &amp; Delegate Guard</span>
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 7px; border-radius:8px; background:rgba(245, 158, 11, 0.15); border:1px solid rgba(245, 158, 11, 0.55); color:#FDE68A; font-size:0.76rem; font-weight:700; line-height:1.25;">🧬 Layer-11 Sybil Cluster &amp; Spoofed .pump LP Guard</span>
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 7px; border-radius:8px; background:rgba(168, 85, 247, 0.16); border:1px solid rgba(192, 132, 252, 0.55); color:#E9D5FF; font-size:0.76rem; font-weight:700; line-height:1.25;">🛡️ Inner-CPI Drainer Sim</span>
         </div>
+
+        <!-- INSTANT UNLIMITED 11-LAYER SHIELD BOX (BELOW MINT ADDRESS BAR) -->
+        <div id="instantUnlimitedShieldBox" style="display:flex; flex-direction:column; gap:7px; width:100%; box-sizing:border-box; padding:9px 11px; border-radius:9px; background:rgba(15, 23, 42, 0.92); border:1px solid rgba(56, 189, 248, 0.42);">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; flex-wrap:wrap;">
+            <span style="font-size:0.84rem; font-weight:800; color:#E2E8F0;">⚡ Instant UNLIMITED 11-Layer Shield</span>
+            <button type="button" id="appShieldLayer11InfoBtn" class="rrs-layer11-info-btn" title="We launched at 10 layers and already shipped Layer 11 (Block-0 Sybil Cluster Defense) live at $0 extra cost during active passes." aria-label="11-Layer Upgrade Info">ⓘ</button>
+          </div>
+          <div class="grid-2-tight">
+            <button type="button" id="appShieldSingleAudit2cBtn" class="btn-secondary" style="border-color:#fde047;color:#022c22;background:linear-gradient(90deg,#10B981,#fde047);font-weight:900;font-size:0.82rem;min-height:38px;" onclick="openAppSingleAudit2cModal()">
+              Single Audit <span class="mono-price">10¢</span> (Reg <span class="mono-price">99¢</span>)
+            </button>
+            <button type="button" id="appShieldUnlimitedPassBtn" class="btn-secondary" style="border-color:#38bdf8;color:#ecfeff;background:rgba(8,145,178,0.28);font-weight:900;font-size:0.82rem;min-height:38px;" onclick="buyProPass(0.026, '24 Hour Unlimited Day Pass ($1.99, Reg. $4.99)')">
+              24h Day Pass <span class="mono-price">$1.99</span> (Reg <span class="mono-price">$4.99</span>)
+            </button>
+          </div>
+          <button type="button" id="appDeduct199RecoveredBtn" class="btn-secondary" style="width:100%;border-color:#c084fc;color:#fdf4ff;background:linear-gradient(90deg,rgba(147,51,234,0.32),rgba(16, 185, 129,0.20));font-weight:900;font-size:0.82rem;min-height:38px;" onclick="window.deductUnlimitedPassFromRecoveredSol(document.getElementById('m-inp') ? document.getElementById('m-inp').value.trim() : '')">
+            Pay <span class="mono-price">$1.99</span> Day Pass from Recovered SOL (<span class="mono-pct">0%</span> First Claim Fee)
+          </button>
+        </div>
+
+        <!-- QUICK-TEST CHIPS (BONK, POPCAT, WIF) BELOW MINT ADDRESS BAR -->
         <div class="grid-3-chips" id="live-3-mint-chips">
-          <button type="button" class="audit-chip" id="chip-live-winner" onclick="quickAuditChip('t4U9Fjb9hCfg3RE5ZZteMurs2zTK9MP6aqG1t5Epump', 'JESTER')">
-            <span style="color:#10B981;">🚀 $JESTER</span>
-            <span style="font-size: 13.5px;color:#fde047;">+46.23% Win</span>
+          <button type="button" class="audit-chip" id="chip-bonk" onclick="quickAuditChip('DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263', 'BONK')">
+            <span style="color:#10B981;">⚡ BONK</span>
           </button>
-          <button type="button" class="audit-chip" id="chip-alltime-winner" onclick="quickAuditChip('3wyRvbB6nFD7Y9cuozSXrUajZs1EoJxrcBCDBxwupump', 'WASTED6')">
-            <span style="color:#67e8f9;">🏆 $WASTED6</span>
-            <span style="font-size: 13.5px;color:#a7f3d0;">+500.7% #1</span>
+          <button type="button" class="audit-chip" id="chip-popcat" onclick="quickAuditChip('7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr', 'POPCAT')">
+            <span style="color:#67e8f9;">⚡ POPCAT</span>
           </button>
-          <button type="button" class="audit-chip rug-chip" id="chip-blocked-rug" onclick="quickAuditChip('AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL', 'NVIDIA')">
-            <span style="color:#fca5a5;">🚨 $NVIDIA</span>
-            <span style="font-size: 13.5px;color:#fde047;">Blocked Rug</span>
+          <button type="button" class="audit-chip" id="chip-wif" onclick="quickAuditChip('EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm', 'WIF')">
+            <span style="color:#fde047;">⚡ WIF</span>
           </button>
         </div>
 
-        <!-- 10/10 VISUAL CHECKLIST OUTPUT WITH TOP & BOTTOM BACK TO LIVE TRADES + 240s AUTO-RETURN -->
         <div id="app-audit-nav-top" style="display:none;justify-content:space-between;align-items:center;gap:6px;margin-top:10px;margin-bottom:6px;">
           <button type="button" onclick="window.appReturnToLiveDex6Trades()" style="padding:6px 10px;border-radius:7px;border:1.5px solid #10B981;background:rgba(16, 185, 129,0.16);color:#ecfdf5;font-size: 13.5px;font-weight:900;cursor:pointer;">← Back to Live DEX-6 Trades</button>
           <span id="app-audit-countdown" style="font-family:JetBrains Mono,ui-monospace,monospace;font-size: 13.5px;color:#fde68a;font-weight:800;">⏱️ 240s</span>
@@ -1692,6 +1782,7 @@
         </div>
       </div>
     </section>
+    </div>
 
     <!-- ================================================================== -->
     <!-- TAB 3: 🚀 LIVE PROOF (SINGLE UNIFIED <2s DEX-6 RECEIPTS STREAM)    -->
@@ -2077,7 +2168,7 @@
             </div>
             <div class="choice-a-tier-price"><span class="mono-price" style="font-size:1.45rem; font-weight:800; color:#14F195;">$1.99</span> <span style="font-size:0.82rem; color:#94A3B8;">(Reg. <s class="mono-price">$4.99</s>)</span></div>
             <div class="choice-a-tier-reg" style="font-size:0.83rem; color:#CBD5E1; margin:6px 0 10px; line-height:1.42;">
-              • Free 1st Scan &amp; <b style="color:#14F195;">0%</b> 1st Claim (<code class="jb-mono">2,039,280</code> lamports)<br>
+              • 1st Audit Free &amp; <b style="color:#14F195;">0%</b> 1st Claim (<code class="jb-mono">2,039,280</code> lamports)<br>
               • Extra Single Scan: <b class="mono-price" style="color:#FDE047;">$0.10</b> (<span class="mono-price">10¢</span> Intro, Reg. <span class="mono-price">$0.99</span> / <span class="mono-price">99¢</span>)
             </div>
           </div>
@@ -2249,7 +2340,7 @@
     // Service Worker Registration + Instant Update Activation
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function() {
-        navigator.serviceWorker.register("/sw.js?v=311-11layer", { updateViaCache: "none" }).then(function(reg) {
+        navigator.serviceWorker.register("/sw.js?v=313-11layer", { updateViaCache: "none" }).then(function(reg) {
           if (reg && reg.update) reg.update().catch(function() {});
         }).catch(function() {});
       });
@@ -2282,6 +2373,7 @@
       var valid = ["claim", "shield", "proof", "pro"];
       if (valid.indexOf(tabKey) === -1) tabKey = "claim";
       currentTab = tabKey;
+      if (document.body) document.body.setAttribute("data-active-tab", tabKey);
       for (var i = 0; i < valid.length; i++) {
         var k = valid[i];
         var p = document.getElementById("tab-" + k);
@@ -2817,7 +2909,7 @@
 
       if (typeof window.startAppAudit240sTimer === "function") window.startAppAudit240sTimer(240);
       var t0 = performance.now();
-      if (btn) btn.innerHTML = "🔄 Auditing All 10 Safety Layers...";
+      if (btn) btn.innerHTML = "🔄 Auditing All 11 Safety Layers...";
       out.innerHTML = "<div class='layer-row' style='color:#67e8f9;'>⚡ Running 11-Layer Rug &amp; Inner-CPI Drain Audit on <code>" + m.slice(0, 6) + ".." + m.slice(-4) + "</code>...</div>";
 
       try {
@@ -2899,7 +2991,7 @@
       } catch (e) {
         out.innerHTML = "<div class='layer-row' style='color:#fca5a5;'>⚠️ Audit failed: " + (e.message || "Network error") + "</div>";
       } finally {
-        if (btn) btn.innerHTML = "📋 Paste Token Mint &amp; Run 11-Layer Audit";
+        if (btn) btn.innerHTML = "📋 Paste &amp; Scan";
       }
     }
 
@@ -3221,7 +3313,7 @@
 
       // Register v101-carbon Service Worker & purge stale caches immediately
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/sw.js?v=311-11layer", { updateViaCache: "none" }).then(function(reg) { reg.update(); }).catch(function() {});
+        navigator.serviceWorker.register("/sw.js?v=313-11layer", { updateViaCache: "none" }).then(function(reg) { reg.update(); }).catch(function() {});
       }
       // 25s Smart Scroll Popup for 10 Free Safety Pings (once per session)
       var _appScrolled = false;
@@ -3273,15 +3365,22 @@
   </div>
   <script id="app-choice-a-single-audit-js">
   (function(){
+    window.hasVerifiedPaidPassToken = function(){
+      try {
+        var tok = String(localStorage.getItem("rrs_pro_pass_token") || "").trim();
+        var tx = String(localStorage.getItem("dex6_pro_pass_tx") || "").trim();
+        return Boolean(localStorage.getItem("dex6_pro_pass_unlocked") === "1" && (tok.length >= 16 || tx.length >= 32));
+      } catch(_e){ return false; }
+    };
     function syncAppAuditBadge(){
       var b = document.getElementById("appDemoScansBadge");
       if (!b) return;
-      var isPro = localStorage.getItem("dex6_pro_pass_unlocked") === "1";
+      var isPro = Boolean(window.hasVerifiedPaidPassToken && window.hasVerifiedPaidPassToken());
       var cr = parseInt(localStorage.getItem("dex6_single_audit_credits") || "0", 10);
       var used = parseInt(localStorage.getItem("dex6_app_free_sample_used") || "0", 10);
-      if (isPro) b.innerText = "Unlimited Pass Active";
+      if (isPro) b.innerText = "UNLIMITED $1.99 PASS ACTIVE";
       else if (cr > 0) b.innerText = cr + " Paid 10¢ Audit Credit(s)";
-      else b.innerText = used < 1 ? "First 11-Layer Audit Free" : "Free Audit Used • 10¢/Audit (Reg 99¢)";
+      else b.innerText = used < 1 ? "1ST AUDIT FREE • READY" : "Free Audit Used • 10¢/Audit (Reg 99¢)";
     }
     function setApp10cMsg(html, isErr){
       var el = document.getElementById("appSingleAudit2cStatus");
@@ -3315,6 +3414,8 @@
         }).then(function(r){ return r.json(); });
         if (d && d.ok && d.verified_onchain){
           if (d.plan === "MONTHLY_PRO_PASS_499" || d.plan === "SERVICE2_199_LAUNCH_PASS"){
+            if (d.pro_pass_token) localStorage.setItem("rrs_pro_pass_token", d.pro_pass_token);
+            if (sig && sig.length >= 32) localStorage.setItem("dex6_pro_pass_tx", sig);
             localStorage.setItem("dex6_pro_pass_unlocked", "1");
             syncAppAuditBadge();
             setApp10cMsg("<b>Pass Activated!</b> Unlimited 11-Layer Adaptive Token Audits unlocked.", false);
@@ -5901,6 +6002,19 @@
   };
   window.shareOnX = window.shareReclaimedSolOnX;
 
+  window.jumpToAffiliate30Engine = function(){
+    var bar = document.getElementById("affiliate30PctEngineBar");
+    if (bar){
+      bar.scrollIntoView({ behavior: "smooth", block: "center" });
+      bar.style.boxShadow = "0 0 0 2px #14F195, 0 0 24px rgba(20, 241, 149, 0.45)";
+      setTimeout(function(){ bar.style.boxShadow = ""; }, 2200);
+    }
+    var inp = document.getElementById("affRefWalletGenInp");
+    var w = detectUserWalletForShare();
+    if (inp && w && !inp.value) inp.value = w;
+    if (w) window.copyAffiliateLink30Pct();
+    else if (inp) setTimeout(function(){ inp.focus(); }, 350);
+  };
   // 4. 30% ?ref=<Wallet> Affiliate Link Generator
   window.copyAffiliateLink30Pct = async function(){
     var w = detectUserWalletForShare();
