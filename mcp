@@ -16,7 +16,7 @@
     "2024-11-05"
   ],
   "endpoint": "https://rentandrugshield.com/mcp",
-  "liveStreamableHttpEndpoint": "https://expires-beatles-rainbow-penny.trycloudflare.com/mcp",
+  "liveStreamableHttpEndpoint": "https://via-tree-techno-rrp.trycloudflare.com/mcp",
   "discovery": {
     "mcp": "https://rentandrugshield.com/.well-known/mcp.json",
     "serverCard": "https://rentandrugshield.com/.well-known/mcp/server-card.json",

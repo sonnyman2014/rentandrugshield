@@ -1268,7 +1268,7 @@
 (function() {
   var SW_VER = "311-11layer";
   var EXPECTED_CACHE = "rent-shield-v311-11layer-live";
-  var ACTIVE_TUNNEL = "https://expires-beatles-rainbow-penny.trycloudflare.com";
+  var ACTIVE_TUNNEL = "https://via-tree-techno-rrp.trycloudflare.com";
   try {
     for (var sIdx = 0; sIdx < 2; sIdx++) {
       var st = sIdx === 0 ? window.localStorage : window.sessionStorage;
@@ -1303,6 +1303,72 @@
     }
   } catch (_swe) {}
 })();
+</script>
+<script>
+  // Live-Endpoint-Aware CORS POST Helper (handles tunnel rotation & transient 429/5xx retries cleanly)
+  if (!window.__rrsResilientFeedbackPost) {
+    window.__rrsResolveLiveBase = function() {
+      var host = String((window.location && window.location.hostname) || "").toLowerCase();
+      var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
+      if (!isStatic) return "";
+      var cfg = window.__LIVE_ENDPOINT_CONFIG;
+      if (cfg && (cfg.endpoint || cfg.api_base)) return String(cfg.endpoint || cfg.api_base).replace(/\/+$/, "");
+      return String(window.BACKEND_TUNNEL_BASE || "").replace(/\/+$/, "");
+    };
+    window.__rrsRefreshLiveBaseOnce = async function() {
+      try {
+        var r = await fetch("/live_endpoint.json?t=" + Date.now(), { cache: "no-store", credentials: "omit" });
+        if (r && r.ok) {
+          var cfg = await r.json();
+          if (cfg && (cfg.endpoint || cfg.api_base)) {
+            window.__LIVE_ENDPOINT_CONFIG = cfg;
+            var ep = String(cfg.endpoint || cfg.api_base).replace(/\/+$/, "");
+            window.BACKEND_TUNNEL_BASE = ep;
+            try { BACKEND_TUNNEL_BASE = ep; } catch (_be) {}
+            return ep;
+          }
+        }
+      } catch (_re) {}
+      return window.__rrsResolveLiveBase();
+    };
+    window.__rrsResilientFeedbackPost = async function(primaryPath, payload, fallbackPath) {
+      var paths = [primaryPath];
+      if (fallbackPath && fallbackPath !== primaryPath) paths.push(fallbackPath);
+      var lastErr = null;
+      for (var attempt = 0; attempt < 2; attempt++) {
+        var base = (attempt === 0) ? window.__rrsResolveLiveBase() : (await window.__rrsRefreshLiveBaseOnce());
+        for (var pIdx = 0; pIdx < paths.length; pIdx++) {
+          var targetUrl = base + paths[pIdx];
+          try {
+            var resp = await fetch(targetUrl, {
+              method: "POST",
+              mode: "cors",
+              credentials: "omit",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+              body: JSON.stringify(payload)
+            });
+            if (resp && (resp.status === 429 || resp.status >= 500)) {
+              lastErr = new Error("HTTP " + resp.status);
+              continue;
+            }
+            var data = await resp.json().catch(function() { return null; });
+            if (data && typeof data === "object") {
+              return data;
+            }
+          } catch (err) {
+            lastErr = err;
+          }
+        }
+        if (attempt === 0) {
+          await new Promise(function(res) { setTimeout(res, 450); });
+        }
+      }
+      throw (lastErr || new Error("Network error"));
+    };
+  }
 </script>
 </head>
 <body>
@@ -2031,7 +2097,7 @@
     // 0. LIVE BACKEND TUNNEL ROUTING (WORKS ON BOTH rentandrugshield.com & 8088)
     // =========================================================================
     var _IS_STATIC_APP_HOST = (window.location.hostname.indexOf("rentandrugshield.com") !== -1 || window.location.hostname.indexOf("github.io") !== -1);
-    var BACKEND_TUNNEL_BASE = _IS_STATIC_APP_HOST ? "https://expires-beatles-rainbow-penny.trycloudflare.com" : "";
+    var BACKEND_TUNNEL_BASE = _IS_STATIC_APP_HOST ? "https://via-tree-techno-rrp.trycloudflare.com" : "";
     window.BACKEND_TUNNEL_BASE = BACKEND_TUNNEL_BASE;
     (function syncAppLiveEndpoint() {
       var rawFetch = window.fetch ? window.fetch.bind(window) : null;
@@ -3233,7 +3299,7 @@
     function resolveHbEndpoint(){
       var host = String((window.location && window.location.hostname) || "").toLowerCase();
       var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://expires-beatles-rainbow-penny.trycloudflare.com").replace(/\/+$/, "") : "";
+      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
       return base + "/api/human-telemetry";
     }
     function sendPassiveHeartbeat(evName, deltaSec){
@@ -3298,7 +3364,7 @@
       try {
         var host = String((window.location && window.location.hostname) || "").toLowerCase();
         var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-        var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://expires-beatles-rainbow-penny.trycloudflare.com").replace(/\/+$/, "") : "";
+        var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
         var res = await fetch(base + "/api/opt-in-alerts", {
           method: "POST",
           mode: "cors",
@@ -3345,7 +3411,7 @@
   function resolveApiBase(){
     var host = String((window.location && window.location.hostname) || "").toLowerCase();
     var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://expires-beatles-rainbow-penny.trycloudflare.com").replace(/\/+$/, "") : "";
+    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
   }
 
   // -------------------------------------------------------------------------
@@ -4049,11 +4115,7 @@
     stEl.style.color = "#fde047";
     stEl.innerText = "⏳ Sending directly to our engineering team...";
     try {
-      var res = await _origFetchS2(resolveApiBase() + "/api/feedback", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({category: cat, message: msg, contact: cnt})
-      }).then(function(r){ return r.json(); });
+      var res = await window.__rrsResilientFeedbackPost("/api/feedback", {category: cat, message: msg, contact: cnt});
       if (res && res.ok){
         stEl.style.color = "#10B981";
         stEl.innerText = res.message || "✅ Thank you! Your message has been received by our engineering team.";
@@ -5250,18 +5312,13 @@
     st.innerText = "Sending to our engineering team...";
     try {
       var wInp = document.getElementById("walletInput") || document.getElementById("w-inp");
-      var r = await fetch(getApiBaseClean() + "/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          category: "public_beta_feedback",
-          contact: cnt.trim(),
-          message: msg,
-          wallet: (wInp && wInp.value) ? wInp.value.trim() : ""
-        })
+      var d = await window.__rrsResilientFeedbackPost("/api/feedback", {
+        category: "public_beta_feedback",
+        contact: cnt.trim(),
+        message: msg,
+        wallet: (wInp && wInp.value) ? wInp.value.trim() : ""
       });
-      var d = await r.json();
-      if (r.ok && d && d.ok !== false){
+      if (d && d.ok !== false){
         st.style.borderColor = "#10B981";
         st.style.color = "#10B981";
         st.innerText = "Thank you! Your message has been received by our engineering team.";

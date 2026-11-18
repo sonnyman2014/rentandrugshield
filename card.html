@@ -1643,7 +1643,7 @@
 (function() {
   var SW_VER = "311-11layer";
   var EXPECTED_CACHE = "rent-shield-v311-11layer-live";
-  var ACTIVE_TUNNEL = "https://expires-beatles-rainbow-penny.trycloudflare.com";
+  var ACTIVE_TUNNEL = "https://via-tree-techno-rrp.trycloudflare.com";
   try {
     for (var sIdx = 0; sIdx < 2; sIdx++) {
       var st = sIdx === 0 ? window.localStorage : window.sessionStorage;
@@ -2835,7 +2835,7 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
   </script>
 
   <script>
-    var _LIVE_BACKEND_TUNNEL = "https://expires-beatles-rainbow-penny.trycloudflare.com";
+    var _LIVE_BACKEND_TUNNEL = "https://via-tree-techno-rrp.trycloudflare.com";
     var _CUR_HOSTNAME = String(window.location.hostname || "").toLowerCase();
     var _IS_STATIC_GH_PAGES = (_CUR_HOSTNAME === "rentandrugshield.com" || _CUR_HOSTNAME === "www.rentandrugshield.com" || _CUR_HOSTNAME.indexOf("github.io") !== -1);
     var BACKEND_TUNNEL_BASE = _IS_STATIC_GH_PAGES ? _LIVE_BACKEND_TUNNEL : "";
@@ -7211,8 +7211,10 @@ window.addEventListener('DOMContentLoaded', function() {
         var urlStr = (typeof input === "string") ? input : (input && input.url ? input.url : "");
         if (urlStr && (urlStr.indexOf("/api/") === 0 || urlStr === "/actions.json" || urlStr === "/.well-known/actions.json")){
           var host = String(window.location.hostname || "");
-          if ((host.indexOf("rentandrugshield.com") !== -1 || host.indexOf("github.io") !== -1) && typeof BACKEND_TUNNEL_BASE !== "undefined" && BACKEND_TUNNEL_BASE){
-            input = BACKEND_TUNNEL_BASE + urlStr;
+          if (host.indexOf("rentandrugshield.com") !== -1 || host.indexOf("github.io") !== -1){
+            var _liveCfg = window.__LIVE_ENDPOINT_CONFIG;
+            var _dynBase = (_liveCfg && (_liveCfg.endpoint || _liveCfg.api_base)) ? String(_liveCfg.endpoint || _liveCfg.api_base).replace(/\/+$/, "") : ((typeof window.BACKEND_TUNNEL_BASE !== "undefined" && window.BACKEND_TUNNEL_BASE) ? String(window.BACKEND_TUNNEL_BASE).replace(/\/+$/, "") : ((typeof BACKEND_TUNNEL_BASE !== "undefined" && BACKEND_TUNNEL_BASE) ? String(BACKEND_TUNNEL_BASE).replace(/\/+$/, "") : ""));
+            if (_dynBase) input = _dynBase + urlStr;
           }
         }
       } catch(e){}
@@ -8794,6 +8796,72 @@ window.addEventListener('DOMContentLoaded', function() {
 
 <!-- PART 2: LIVE CUSTOMER FEEDBACK / SUPPORT BAR & MODAL (/api/feedback -> Engineering & Product Roadmap + Telegram) -->
 <script>
+
+  // Live-Endpoint-Aware CORS POST Helper (handles tunnel rotation & transient 429/5xx retries cleanly)
+  if (!window.__rrsResilientFeedbackPost) {
+    window.__rrsResolveLiveBase = function() {
+      var host = String((window.location && window.location.hostname) || "").toLowerCase();
+      var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
+      if (!isStatic) return "";
+      var cfg = window.__LIVE_ENDPOINT_CONFIG;
+      if (cfg && (cfg.endpoint || cfg.api_base)) return String(cfg.endpoint || cfg.api_base).replace(/\/+$/, "");
+      return String(window.BACKEND_TUNNEL_BASE || "").replace(/\/+$/, "");
+    };
+    window.__rrsRefreshLiveBaseOnce = async function() {
+      try {
+        var r = await fetch("/live_endpoint.json?t=" + Date.now(), { cache: "no-store", credentials: "omit" });
+        if (r && r.ok) {
+          var cfg = await r.json();
+          if (cfg && (cfg.endpoint || cfg.api_base)) {
+            window.__LIVE_ENDPOINT_CONFIG = cfg;
+            var ep = String(cfg.endpoint || cfg.api_base).replace(/\/+$/, "");
+            window.BACKEND_TUNNEL_BASE = ep;
+            try { BACKEND_TUNNEL_BASE = ep; } catch (_be) {}
+            return ep;
+          }
+        }
+      } catch (_re) {}
+      return window.__rrsResolveLiveBase();
+    };
+    window.__rrsResilientFeedbackPost = async function(primaryPath, payload, fallbackPath) {
+      var paths = [primaryPath];
+      if (fallbackPath && fallbackPath !== primaryPath) paths.push(fallbackPath);
+      var lastErr = null;
+      for (var attempt = 0; attempt < 2; attempt++) {
+        var base = (attempt === 0) ? window.__rrsResolveLiveBase() : (await window.__rrsRefreshLiveBaseOnce());
+        for (var pIdx = 0; pIdx < paths.length; pIdx++) {
+          var targetUrl = base + paths[pIdx];
+          try {
+            var resp = await fetch(targetUrl, {
+              method: "POST",
+              mode: "cors",
+              credentials: "omit",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+              body: JSON.stringify(payload)
+            });
+            if (resp && (resp.status === 429 || resp.status >= 500)) {
+              lastErr = new Error("HTTP " + resp.status);
+              continue;
+            }
+            var data = await resp.json().catch(function() { return null; });
+            if (data && typeof data === "object") {
+              return data;
+            }
+          } catch (err) {
+            lastErr = err;
+          }
+        }
+        if (attempt === 0) {
+          await new Promise(function(res) { setTimeout(res, 450); });
+        }
+      }
+      throw (lastErr || new Error("Network error"));
+    };
+  }
+
 window.submitVisitorFeedbackNow = async function(){
   var msgEl = document.getElementById("visitorFeedbackMsgInp");
   var cntEl = document.getElementById("visitorFeedbackContactInp");
@@ -8808,12 +8876,7 @@ window.submitVisitorFeedbackNow = async function(){
   }
   if (stEl){ stEl.style.display = "block"; stEl.style.color = "#38bdf8"; stEl.innerText = "⚡ Sending live message to Engineering & Product Roadmap..."; }
   try {
-    var r = await fetch("/api/feedback", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({ message: msg, contact: contact, wallet: wallet })
-    });
-    var j = await r.json();
+    var j = await window.__rrsResilientFeedbackPost("/api/feedback", { message: msg, contact: contact, wallet: wallet });
     if (j && j.ok){
       if (stEl){ stEl.style.color = "#10B981"; stEl.innerText = "✅ " + (j.message || "Thank you! Feedback delivered to Engineering & Product Roadmap."); }
       if (msgEl) msgEl.value = "";
@@ -10103,7 +10166,7 @@ window.submitVisitorFeedbackNow = async function(){
   function resolveHbEndpoint(){
     var host = String((window.location && window.location.hostname) || "").toLowerCase();
     var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-    var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://expires-beatles-rainbow-penny.trycloudflare.com").replace(/\/+$/, "") : "";
+    var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
     return base + "/api/human-telemetry";
   }
   function sendPassiveHeartbeat(evName, deltaSec){
@@ -10168,7 +10231,7 @@ window.submitVisitorFeedbackNow = async function(){
     try {
       var host = String((window.location && window.location.hostname) || "").toLowerCase();
       var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://expires-beatles-rainbow-penny.trycloudflare.com").replace(/\/+$/, "") : "";
+      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
       var res = await fetch(base + "/api/opt-in-alerts", {
         method: "POST",
         mode: "cors",
@@ -10215,7 +10278,7 @@ window.submitVisitorFeedbackNow = async function(){
   function resolveApiBase(){
     var host = String((window.location && window.location.hostname) || "").toLowerCase();
     var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://expires-beatles-rainbow-penny.trycloudflare.com").replace(/\/+$/, "") : "";
+    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
   }
 
   // -------------------------------------------------------------------------
@@ -10921,16 +10984,13 @@ window.submitVisitorFeedbackNow = async function(){
     stEl.style.color = "#E0F2FE";
     stEl.innerText = "⏳ Sending token promotion inquiry...";
     try {
-      var res = await _origFetchS2(resolveApiBase() + "/api/ad-inquiry", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          project_name: tok,
-          token_mint: tok,
-          contact: cnt,
-          message: msg || ("Promote Solana token " + tok + " on Rent & Rug Shield")
-        })
-      }).then(function(r){ return r.json(); });
+      var res = await window.__rrsResilientFeedbackPost("/api/ad-inquiry", {
+        category: "ad_inquiry",
+        project_name: tok,
+        token_mint: tok,
+        contact: cnt,
+        message: msg || ("Promote Solana token " + tok + " on Rent & Rug Shield")
+      }, "/api/feedback");
       if (res && res.ok){
         stEl.style.borderColor = "#10B981";
         stEl.style.color = "#6EE7B7";
@@ -10971,11 +11031,7 @@ window.submitVisitorFeedbackNow = async function(){
     stEl.style.color = "#fde047";
     stEl.innerText = "⏳ Sending directly to our Engineering & Product Roadmap...";
     try {
-      var res = await _origFetchS2(resolveApiBase() + "/api/feedback", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({category: cat, message: msg, contact: cnt})
-      }).then(function(r){ return r.json(); });
+      var res = await window.__rrsResilientFeedbackPost("/api/feedback", {category: cat, message: msg, contact: cnt});
       if (res && res.ok){
         stEl.style.color = "#10B981";
         stEl.innerText = res.message || "✅ Thank you! Your message has been received by our Engineering & Product Roadmap.";
@@ -12172,18 +12228,13 @@ window.submitVisitorFeedbackNow = async function(){
     st.innerText = "Sending to our Engineering & Product Roadmap...";
     try {
       var wInp = document.getElementById("walletInput") || document.getElementById("w-inp");
-      var r = await fetch(getApiBaseClean() + "/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          category: "public_beta_feedback",
-          contact: cnt.trim(),
-          message: msg,
-          wallet: (wInp && wInp.value) ? wInp.value.trim() : ""
-        })
+      var d = await window.__rrsResilientFeedbackPost("/api/feedback", {
+        category: "public_beta_feedback",
+        contact: cnt.trim(),
+        message: msg,
+        wallet: (wInp && wInp.value) ? wInp.value.trim() : ""
       });
-      var d = await r.json();
-      if (r.ok && d && d.ok !== false){
+      if (d && d.ok !== false){
         st.style.borderColor = "#10B981";
         st.style.color = "#10B981";
         st.innerText = "Thank you! Your message has been received by our Engineering & Product Roadmap.";
@@ -12524,7 +12575,7 @@ window.submitVisitorFeedbackNow = async function(){
   function resolveBackendApiBase(){
     var host = String((window.location && window.location.hostname) || "").toLowerCase();
     var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://expires-beatles-rainbow-penny.trycloudflare.com").replace(/\/+$/, "") : "";
+    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
   }
 
   function wipeAllWalletStorageKeys(){
@@ -12949,18 +13000,13 @@ window.submitVisitorFeedbackNow = async function(){
     stEl.style.color = "#7DD3FC";
     stEl.innerText = "⏳ Sending inquiry to ceo.ca@mail.com...";
     try {
-      var res = await fetch(resolveBackendApiBase() + "/api/feedback", {
-        method: "POST",
-        mode: "cors",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          category: "ad_inquiry",
-          token_mint: tok,
-          project_name: tok,
-          contact: cnt,
-          message: "[Token Ad Slot Inquiry] Token: " + tok + " | Contact: " + cnt + (notes ? (" | Notes: " + notes) : "")
-        })
-      }).then(function(r){ return r.json(); });
+      var res = await window.__rrsResilientFeedbackPost("/api/ad-inquiry", {
+        category: "ad_inquiry",
+        token_mint: tok,
+        project_name: tok,
+        contact: cnt,
+        message: "[Token Ad Slot Inquiry] Token: " + tok + " | Contact: " + cnt + (notes ? (" | Notes: " + notes) : "")
+      }, "/api/feedback");
       if (res && res.ok){
         stEl.style.color = "#6EE7B7";
         stEl.innerText = "✅ Ad inquiry delivered to ceo.ca@mail.com! Our team will follow up shortly.";

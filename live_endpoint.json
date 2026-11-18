@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://expires-beatles-rainbow-penny.trycloudflare.com",
-  "api_base": "https://expires-beatles-rainbow-penny.trycloudflare.com",
-  "rpc_url": "https://expires-beatles-rainbow-penny.trycloudflare.com/api/rpc",
-  "actions_base": "https://expires-beatles-rainbow-penny.trycloudflare.com/api/actions",
+  "endpoint": "https://via-tree-techno-rrp.trycloudflare.com",
+  "api_base": "https://via-tree-techno-rrp.trycloudflare.com",
+  "rpc_url": "https://via-tree-techno-rrp.trycloudflare.com/api/rpc",
+  "actions_base": "https://via-tree-techno-rrp.trycloudflare.com/api/actions",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
   "referral_bps": 50,
   "shield_trade_gate_min": 85,
