@@ -50,9 +50,9 @@
   "freePingsLimit": 2,
   "freePingsIncluded": 2,
   "baseUrl": "https://rentandrugshield.com",
-  "liveGatewayUrl": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com",
+  "liveGatewayUrl": "https://snake-thinking-latter-players.trycloudflare.com",
   "mcpEndpoint": "https://rentandrugshield.com/mcp",
-  "liveMcpEndpoint": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/mcp",
+  "liveMcpEndpoint": "https://snake-thinking-latter-players.trycloudflare.com/mcp",
   "mcpDiscoveryUrl": "https://rentandrugshield.com/.well-known/mcp.json",
   "wwwAuthenticate": "x402 sdk=\"@x402/svm\", network=\"solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\", treasury=\"89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1\", treasury_usdc_ata=\"BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8\", usdc_mint=\"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\", option_b_usdc_atomic=\"20000\", option_b_sol=\"0.00028\", option_a_sol=\"0.026\"",
   "supportedHeaders": [
@@ -102,13 +102,13 @@
   },
   "resources": [
     "https://rentandrugshield.com/mcp",
-    "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/mcp",
+    "https://snake-thinking-latter-players.trycloudflare.com/mcp",
     "https://rentandrugshield.com/api/v1/shield-check",
     "https://rentandrugshield.com/api/v1/simulate-tx",
     "https://rentandrugshield.com/api/v1/scan-wallet",
-    "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/v1/shield-check",
-    "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/v1/simulate-tx",
-    "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/v1/scan-wallet"
+    "https://snake-thinking-latter-players.trycloudflare.com/api/v1/shield-check",
+    "https://snake-thinking-latter-players.trycloudflare.com/api/v1/simulate-tx",
+    "https://snake-thinking-latter-players.trycloudflare.com/api/v1/scan-wallet"
   ],
   "endpoints": [
     {
@@ -116,7 +116,7 @@
       "method": "POST",
       "transport": "streamable-http",
       "url": "https://rentandrugshield.com/mcp",
-      "liveUrl": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/mcp",
+      "liveUrl": "https://snake-thinking-latter-players.trycloudflare.com/mcp",
       "description": "Zero-install Streamable HTTP MCP JSON-RPC 2.0 endpoint (tools/list free, tools/call 2 free pings then x402)."
     },
     {
@@ -124,7 +124,7 @@
       "method": "POST",
       "tool": "audit_solana_token_10_layer",
       "url": "https://rentandrugshield.com/api/v1/shield-check",
-      "liveUrl": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/v1/shield-check",
+      "liveUrl": "https://snake-thinking-latter-players.trycloudflare.com/api/v1/shield-check",
       "description": "Sub-120ms 10-layer Solana SPL & Token-2022 pre-buy anti-rug safety gate."
     },
     {
@@ -132,7 +132,7 @@
       "method": "POST",
       "tool": "simulate_solana_tx_drain",
       "url": "https://rentandrugshield.com/api/v1/simulate-tx",
-      "liveUrl": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/v1/simulate-tx",
+      "liveUrl": "https://snake-thinking-latter-players.trycloudflare.com/api/v1/simulate-tx",
       "description": "Layer-9 Inner-CPI transaction drainer & authority hijack simulator."
     },
     {
@@ -140,7 +140,7 @@
       "method": "POST",
       "tool": "scan_wallet_unclaimed_sol",
       "url": "https://rentandrugshield.com/api/v1/scan-wallet",
-      "liveUrl": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/api/v1/scan-wallet",
+      "liveUrl": "https://snake-thinking-latter-players.trycloudflare.com/api/v1/scan-wallet",
       "description": "Read-only Solana wallet unclaimed ATA & Token-2022 SOL rent scanner."
     }
   ],

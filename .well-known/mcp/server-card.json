@@ -29,7 +29,7 @@
   "url": "https://rentandrugshield.com/mcp",
   "endpoint": "https://rentandrugshield.com/mcp",
   "mcpEndpoint": "https://rentandrugshield.com/mcp",
-  "liveStreamableHttpEndpoint": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/mcp",
+  "liveStreamableHttpEndpoint": "https://snake-thinking-latter-players.trycloudflare.com/mcp",
   "remotes": [
     {
       "type": "streamable-http",
@@ -37,14 +37,14 @@
     },
     {
       "type": "streamable-http",
-      "url": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/mcp"
+      "url": "https://snake-thinking-latter-players.trycloudflare.com/mcp"
     }
   ],
   "endpoints": {
     "streamableHttp": "https://rentandrugshield.com/mcp",
-    "liveStreamableHttp": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/mcp",
+    "liveStreamableHttp": "https://snake-thinking-latter-players.trycloudflare.com/mcp",
     "sse": "https://rentandrugshield.com/mcp",
-    "liveSse": "https://rolled-raleigh-chair-shakespeare.trycloudflare.com/mcp",
+    "liveSse": "https://snake-thinking-latter-players.trycloudflare.com/mcp",
     "x402Discovery": "https://rentandrugshield.com/.well-known/x402",
     "mcpDiscovery": "https://rentandrugshield.com/.well-known/mcp.json"
   },
