@@ -1,0 +1,531 @@
+{
+  "ok": true,
+  "status": "online",
+  "service": "Solana Rent & Rug Shield MCP Gateway",
+  "name": "io.github.rentandrugshield/mcp-server",
+  "serverInfo": {
+    "name": "@rentandrugshield/mcp-server",
+    "title": "Solana Rent & Rug Shield MCP Gateway",
+    "version": "1.0.0"
+  },
+  "transport": "streamable-http",
+  "protocolVersion": "2025-03-26",
+  "supportedProtocolVersions": [
+    "2025-06-18",
+    "2025-03-26",
+    "2024-11-05"
+  ],
+  "endpoint": "https://rentandrugshield.com/mcp",
+  "liveStreamableHttpEndpoint": "https://snake-thinking-latter-players.trycloudflare.com/mcp",
+  "discovery": {
+    "mcp": "https://rentandrugshield.com/.well-known/mcp.json",
+    "serverCard": "https://rentandrugshield.com/.well-known/mcp/server-card.json",
+    "x402": "https://rentandrugshield.com/.well-known/x402"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  },
+  "toolNames": [
+    "audit_solana_token_10_layer",
+    "simulate_solana_tx_drain",
+    "scan_wallet_unclaimed_sol"
+  ],
+  "tools": [
+    {
+      "name": "audit_solana_token_10_layer",
+      "title": "Solana 10-Layer Pre-Buy Token Anti-Rug Audit (<120ms)",
+      "description": "<120ms pre-buy 10-layer Solana token safety gate over persistent keep-alive connections. Audits mint/freeze authorities, Token-2022 extensions (transfer fee, permanent delegate, transfer hook, default frozen), LP lock/burn status, top holder cluster concentration, exit liquidity solvency, Layer-8/9 Inner-CPI rent traps, pool age, and orderflow velocity. Includes 2 free pings and Solana x402 auto-upgrade.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "mint": {
+            "type": "string",
+            "description": "Solana SPL or Token-2022 token mint address (base58) to audit pre-buy."
+          },
+          "pool_address": {
+            "type": "string",
+            "description": "Optional DEX liquidity pool or pair address (base58)."
+          },
+          "wallet": {
+            "type": "string",
+            "description": "Optional buyer Solana wallet public key (base58)."
+          },
+          "payment_signature": {
+            "type": "string",
+            "description": "Optional confirmed Solana transaction signature paying 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 (0.026 SOL Option A or 0.00028 SOL Option B)."
+          },
+          "pro_pass_token": {
+            "type": "string",
+            "description": "Optional X-Pro-Pass-Token from Option A ($1.99 / 0.026 SOL Unlimited Pro Pass)."
+          },
+          "x_payment": {
+            "type": "string",
+            "description": "Optional base64 or JSON Solana x402 payment payload (X-Payment / PAYMENT-SIGNATURE) for automatic HTTP 402 settlement."
+          }
+        },
+        "required": [
+          "mint"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "10-Layer Solana Token Rug & Token-2022 Audit",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "simulate_solana_tx_drain",
+      "title": "Layer-9 Inner-CPI Solana Transaction Drainer Simulator",
+      "description": "Pre-sign Layer-9 Inner-CPI Solana transaction drainer check. Inspects base64 or base58 serialized transactions before wallet signing to block malicious inner CPI SOL drains, stealth SPL Approve/SetAuthority delegations, creator-vault rent traps, and unexpected balance deltas.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "transaction": {
+            "type": "string",
+            "description": "Serialized Solana transaction (unsigned or signed) in base64 or base58."
+          },
+          "wallet": {
+            "type": "string",
+            "description": "Optional fee-payer/signer Solana wallet public key (base58)."
+          },
+          "encoding": {
+            "type": "string",
+            "enum": [
+              "base64",
+              "base58"
+            ],
+            "default": "base64",
+            "description": "Encoding of the serialized transaction ('base64' or 'base58')."
+          },
+          "payment_signature": {
+            "type": "string",
+            "description": "Optional confirmed Solana transaction signature paying 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 for x402 retry."
+          },
+          "pro_pass_token": {
+            "type": "string",
+            "description": "Optional X-Pro-Pass-Token from Option A Unlimited Pro Pass."
+          },
+          "x_payment": {
+            "type": "string",
+            "description": "Optional base64 or JSON Solana x402 payment payload (X-Payment / PAYMENT-SIGNATURE) for automatic HTTP 402 settlement."
+          }
+        },
+        "required": [
+          "transaction"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Layer-9 Inner-CPI Transaction Drainer Check",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "scan_wallet_unclaimed_sol",
+      "title": "Read-Only Solana Wallet Unclaimed ATA & Token-2022 SOL Rent Scanner",
+      "description": "Read-only Solana wallet ATA and Token-2022 rent scanner. Identifies empty and dust token accounts holding reclaimable SOL rent without requiring private keys, returning exact lamport, SOL, and USD recovery breakdowns.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "wallet": {
+            "type": "string",
+            "description": "Solana wallet public key (base58) to scan read-only for reclaimable ATA rent."
+          },
+          "include_token_2022": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include Token-2022 accounts alongside SPL Token accounts (default: true)."
+          },
+          "payment_signature": {
+            "type": "string",
+            "description": "Optional confirmed Solana transaction signature paying 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 for x402 retry."
+          },
+          "pro_pass_token": {
+            "type": "string",
+            "description": "Optional X-Pro-Pass-Token from Option A Unlimited Pro Pass."
+          },
+          "x_payment": {
+            "type": "string",
+            "description": "Optional base64 or JSON Solana x402 payment payload (X-Payment / PAYMENT-SIGNATURE) for automatic HTTP 402 settlement."
+          }
+        },
+        "required": [
+          "wallet"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Read-Only Unclaimed ATA SOL Rent Scanner",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    }
+  ],
+  "x402": {
+    "sdk": "@x402/svm",
+    "sdkVersion": "2.31.0",
+    "x402Version": 1,
+    "supportedX402Versions": [
+      1,
+      2
+    ],
+    "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+    "networkId": "solana:mainnet-beta",
+    "canonicalNetwork": "solana-mainnet",
+    "caip2Network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+    "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+    "usdcMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "treasuryUsdcAta": "BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8",
+    "freePingsLimit": 2,
+    "options": {
+      "option_b_usdc_single_scan": {
+        "id": "option_b_usdc_single_scan",
+        "option": "option_b_usdc_single_scan",
+        "name": "$0.02 SPL USDC Instant Single Audit",
+        "label": "$0.02 SPL USDC Instant Single Audit",
+        "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "symbol": "USDC",
+        "decimals": 6,
+        "atomicUnits": 20000,
+        "amount": "20000",
+        "maxAmountRequired": "20000",
+        "priceUsd": 0.02,
+        "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasuryUsdcAta": "BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8",
+        "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "canonicalNetwork": "solana-mainnet",
+        "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "unlimited": false,
+        "grants": "single_request",
+        "requestsGranted": 1,
+        "antiReplayPerRequest": true
+      },
+      "option_b_single_scan": {
+        "id": "option_b_single_scan",
+        "option": "option_b_single_scan",
+        "name": "0.00028 SOL (~$0.02) Instant Single Audit",
+        "label": "0.00028 SOL (~$0.02) Instant Single Audit",
+        "asset": "SOL",
+        "sol": "0.00028",
+        "amountSol": 0.00028,
+        "lamports": 280000,
+        "amount": "280000",
+        "maxAmountRequired": "280000",
+        "priceUsd": 0.02,
+        "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "canonicalNetwork": "solana-mainnet",
+        "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "unlimited": false,
+        "grants": "single_request",
+        "requestsGranted": 1,
+        "antiReplayPerRequest": true
+      },
+      "option_a_pro_pass": {
+        "id": "option_a_pro_pass",
+        "option": "option_a_pro_pass",
+        "name": "$1.99 Unlimited Pro Pass",
+        "label": "$1.99 Unlimited Pro Pass",
+        "asset": "SOL",
+        "sol": "0.026",
+        "amountSol": 0.026,
+        "lamports": 26000000,
+        "amount": "26000000",
+        "maxAmountRequired": "26000000",
+        "priceUsd": 1.99,
+        "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "canonicalNetwork": "solana-mainnet",
+        "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "unlimited": true,
+        "grants": "unlimited",
+        "issuesHeader": "X-Pro-Pass-Token"
+      }
+    },
+    "paymentRequirements": [
+      {
+        "scheme": "exact",
+        "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2Network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "networkId": "solana:mainnet-beta",
+        "canonicalNetwork": "solana-mainnet",
+        "option": "option_b_usdc_single_scan",
+        "id": "option_b_usdc_single_scan",
+        "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "symbol": "USDC",
+        "decimals": 6,
+        "amount": "20000",
+        "maxAmountRequired": "20000",
+        "atomicUnits": 20000,
+        "priceUsd": 0.02,
+        "usd": "0.02",
+        "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasuryAta": "BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8",
+        "treasuryUsdcAta": "BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8",
+        "resource": "https://rentandrugshield.com/mcp",
+        "mimeType": "application/json",
+        "maxTimeoutSeconds": 300,
+        "description": "$0.02 SPL USDC Instant Single Audit (20000 atomic units of EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 / ATA BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8) granting 1 verified scan",
+        "extra": {
+          "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
+          "type": "PaymentRequirements",
+          "option": "option_b_usdc_single_scan",
+          "name": "$0.02 SPL USDC Instant Single Audit",
+          "assetType": "SPL",
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "tokenProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "associatedTokenProgram": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+          "decimals": 6,
+          "atomicUnits": 20000,
+          "amount": "20000",
+          "priceUsd": 0.02,
+          "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+          "treasuryUsdcAta": "BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8",
+          "ataInitializedOnChain": false,
+          "unlimited": false,
+          "requestsGranted": 1
+        }
+      },
+      {
+        "scheme": "exact",
+        "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2Network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "networkId": "solana:mainnet-beta",
+        "canonicalNetwork": "solana-mainnet",
+        "option": "option_b_single_scan",
+        "id": "option_b_single_scan",
+        "asset": "SOL",
+        "mint": "So11111111111111111111111111111111111111112",
+        "symbol": "SOL",
+        "decimals": 9,
+        "amount": "280000",
+        "maxAmountRequired": "280000",
+        "lamports": 280000,
+        "amountSol": 0.00028,
+        "sol": 0.00028,
+        "solStr": "0.00028",
+        "priceUsd": 0.02,
+        "usd": "0.02",
+        "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "resource": "https://rentandrugshield.com/mcp",
+        "mimeType": "application/json",
+        "maxTimeoutSeconds": 300,
+        "description": "0.00028 SOL (280000 lamports / ~$0.02) Instant Single Audit to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 granting 1 verified scan",
+        "extra": {
+          "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
+          "type": "PaymentRequirements",
+          "option": "option_b_single_scan",
+          "name": "0.00028 SOL (~$0.02) Instant Single Audit",
+          "assetType": "NATIVE_SOL",
+          "lamports": 280000,
+          "sol": "0.00028",
+          "priceUsd": 0.02,
+          "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+          "unlimited": false,
+          "requestsGranted": 1
+        }
+      },
+      {
+        "scheme": "exact",
+        "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2Network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "networkId": "solana:mainnet-beta",
+        "canonicalNetwork": "solana-mainnet",
+        "option": "option_a_pro_pass",
+        "id": "option_a_pro_pass",
+        "asset": "SOL",
+        "mint": "So11111111111111111111111111111111111111112",
+        "symbol": "SOL",
+        "decimals": 9,
+        "amount": "26000000",
+        "maxAmountRequired": "26000000",
+        "lamports": 26000000,
+        "amountSol": 0.026,
+        "sol": 0.026,
+        "solStr": "0.026",
+        "priceUsd": 1.99,
+        "usd": "1.99",
+        "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "resource": "https://rentandrugshield.com/mcp",
+        "mimeType": "application/json",
+        "maxTimeoutSeconds": 300,
+        "description": "Option A: $1.99 Unlimited Pro Pass (0.026 SOL / 26000000 lamports) to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 issuing reusable X-Pro-Pass-Token",
+        "extra": {
+          "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
+          "type": "PaymentRequirements",
+          "option": "option_a_pro_pass",
+          "name": "$1.99 Unlimited Pro Pass",
+          "lamports": 26000000,
+          "sol": "0.026",
+          "priceUsd": 1.99,
+          "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+          "unlimited": true,
+          "issuesHeader": "X-Pro-Pass-Token"
+        }
+      }
+    ],
+    "accepts": [
+      {
+        "scheme": "exact",
+        "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2Network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "networkId": "solana:mainnet-beta",
+        "canonicalNetwork": "solana-mainnet",
+        "option": "option_b_usdc_single_scan",
+        "id": "option_b_usdc_single_scan",
+        "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "symbol": "USDC",
+        "decimals": 6,
+        "amount": "20000",
+        "maxAmountRequired": "20000",
+        "atomicUnits": 20000,
+        "priceUsd": 0.02,
+        "usd": "0.02",
+        "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasuryAta": "BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8",
+        "treasuryUsdcAta": "BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8",
+        "resource": "https://rentandrugshield.com/mcp",
+        "mimeType": "application/json",
+        "maxTimeoutSeconds": 300,
+        "description": "$0.02 SPL USDC Instant Single Audit (20000 atomic units of EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 / ATA BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8) granting 1 verified scan",
+        "extra": {
+          "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
+          "type": "PaymentRequirements",
+          "option": "option_b_usdc_single_scan",
+          "name": "$0.02 SPL USDC Instant Single Audit",
+          "assetType": "SPL",
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "tokenProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "associatedTokenProgram": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+          "decimals": 6,
+          "atomicUnits": 20000,
+          "amount": "20000",
+          "priceUsd": 0.02,
+          "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+          "treasuryUsdcAta": "BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8",
+          "ataInitializedOnChain": false,
+          "unlimited": false,
+          "requestsGranted": 1
+        }
+      },
+      {
+        "scheme": "exact",
+        "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2Network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "networkId": "solana:mainnet-beta",
+        "canonicalNetwork": "solana-mainnet",
+        "option": "option_b_single_scan",
+        "id": "option_b_single_scan",
+        "asset": "SOL",
+        "mint": "So11111111111111111111111111111111111111112",
+        "symbol": "SOL",
+        "decimals": 9,
+        "amount": "280000",
+        "maxAmountRequired": "280000",
+        "lamports": 280000,
+        "amountSol": 0.00028,
+        "sol": 0.00028,
+        "solStr": "0.00028",
+        "priceUsd": 0.02,
+        "usd": "0.02",
+        "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "resource": "https://rentandrugshield.com/mcp",
+        "mimeType": "application/json",
+        "maxTimeoutSeconds": 300,
+        "description": "0.00028 SOL (280000 lamports / ~$0.02) Instant Single Audit to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 granting 1 verified scan",
+        "extra": {
+          "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
+          "type": "PaymentRequirements",
+          "option": "option_b_single_scan",
+          "name": "0.00028 SOL (~$0.02) Instant Single Audit",
+          "assetType": "NATIVE_SOL",
+          "lamports": 280000,
+          "sol": "0.00028",
+          "priceUsd": 0.02,
+          "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+          "unlimited": false,
+          "requestsGranted": 1
+        }
+      },
+      {
+        "scheme": "exact",
+        "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip2Network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "networkId": "solana:mainnet-beta",
+        "canonicalNetwork": "solana-mainnet",
+        "option": "option_a_pro_pass",
+        "id": "option_a_pro_pass",
+        "asset": "SOL",
+        "mint": "So11111111111111111111111111111111111111112",
+        "symbol": "SOL",
+        "decimals": 9,
+        "amount": "26000000",
+        "maxAmountRequired": "26000000",
+        "lamports": 26000000,
+        "amountSol": 0.026,
+        "sol": 0.026,
+        "solStr": "0.026",
+        "priceUsd": 1.99,
+        "usd": "1.99",
+        "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+        "resource": "https://rentandrugshield.com/mcp",
+        "mimeType": "application/json",
+        "maxTimeoutSeconds": 300,
+        "description": "Option A: $1.99 Unlimited Pro Pass (0.026 SOL / 26000000 lamports) to 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 issuing reusable X-Pro-Pass-Token",
+        "extra": {
+          "sdk": "@x402/svm",
+          "sdkVersion": "2.31.0",
+          "type": "PaymentRequirements",
+          "option": "option_a_pro_pass",
+          "name": "$1.99 Unlimited Pro Pass",
+          "lamports": 26000000,
+          "sol": "0.026",
+          "priceUsd": 1.99,
+          "payTo": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
+          "unlimited": true,
+          "issuesHeader": "X-Pro-Pass-Token"
+        }
+      }
+    ]
+  }
+}

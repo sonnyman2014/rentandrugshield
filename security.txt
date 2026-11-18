@@ -1,0 +1,7 @@
+Contact: mailto:ceo.ca@mail.com
+Contact: https://x.com/SolRentClaim
+Contact: https://github.com/sonnyman2014/rentandrugshield/issues
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en, zh, ja, ko, hi
+Canonical: https://rentandrugshield.com/.well-known/security.txt
+Policy: https://rentandrugshield.com/terms.html
