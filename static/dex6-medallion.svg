@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="SOLANA RENT CLAIM • RUG SHIELD (DEX6) Medallion">
+  <defs>
+    <radialGradient id="mBg" cx="50%" cy="45%" r="58%">
+      <stop offset="0%" stop-color="#0E233E"/>
+      <stop offset="65%" stop-color="#061020"/>
+      <stop offset="100%" stop-color="#030712"/>
+    </radialGradient>
+    <linearGradient id="mEm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="50%" stop-color="#14F195"/>
+      <stop offset="100%" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <linearGradient id="mGd" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="55%" stop-color="#FACC15"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <path id="topArc" d="M 30,120 A 90,90 0 1,1 210,120"/>
+    <path id="botArc" d="M 212,124 A 92,92 0 0,1 28,124"/>
+  </defs>
+  <circle cx="120" cy="120" r="114" fill="url(#mBg)" stroke="url(#mEm)" stroke-width="6"/>
+  <circle cx="120" cy="120" r="104" fill="none" stroke="url(#mGd)" stroke-width="2" opacity="0.85"/>
+  <circle cx="120" cy="120" r="76" fill="#040B16" stroke="#38BDF8" stroke-width="2.5"/>
+  <text fill="#6EE7B7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="800" letter-spacing="2.2">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">SOLANA RENT CLAIM</textPath>
+  </text>
+  <text fill="#FDE047" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="2.4">
+    <textPath href="#botArc" startOffset="50%" text-anchor="middle">• RUG SHIELD •</textPath>
+  </text>
+  <path d="M120 54 L172 76 L164 134 L120 176 L76 134 L68 76 Z" fill="#0A192F" stroke="url(#mEm)" stroke-width="4"/>
+  <path d="M120 62 L163 81 L156 130 L120 166 L84 130 L77 81 Z" fill="#050D1A" stroke="url(#mGd)" stroke-width="1.5"/>
+  <polygon points="96,82 148,82 142,89 90,89" fill="#14F195"/>
+  <polygon points="90,94 142,94 148,101 96,101" fill="#FACC15"/>
+  <polygon points="96,106 148,106 142,113 90,113" fill="#38BDF8"/>
+  <text x="120" y="142" text-anchor="middle" fill="#F8FAFC" font-family="Inter, Segoe UI, Arial Black, sans-serif" font-weight="900" font-size="27" letter-spacing="1.5">DEX6</text>
+</svg>

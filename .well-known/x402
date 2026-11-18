@@ -477,5 +477,56 @@
         "issuesHeader": "X-Pro-Pass-Token"
       }
     }
-  ]
+  ],
+  "institutionalPricingLadder": {
+    "guarantee": "New layers included free during active pass, $0 auto-billing",
+    "affiliateSplit": "30% zero-custody ?ref=<SolanaWallet> on-chain split",
+    "firstScanFree": true,
+    "firstRentClaimFeeBps": 0,
+    "firstRentClaimLamports": 2039280,
+    "tiers": [
+      {
+        "id": "single_10c",
+        "name": "Extra Single Scan",
+        "usd": 0.1,
+        "regularUsd": 0.99,
+        "usdcAtomic": "100000"
+      },
+      {
+        "id": "day_199",
+        "name": "24h Trench Pass",
+        "usd": 1.99,
+        "regularUsd": 4.99,
+        "usdcAtomic": "1990000"
+      },
+      {
+        "id": "trader_pro_1999",
+        "name": "30-Day Trader Pro (Unlimited Web/TG, No API Key)",
+        "usd": 19.99,
+        "regularUsd": 39.99,
+        "usdcAtomic": "19990000"
+      },
+      {
+        "id": "ultra_pro_4999",
+        "name": "30-Day Ultra Pro + Sniper Bot API (15,000 calls/mo + Rug Webhooks)",
+        "usd": 49.99,
+        "regularUsd": 99.0,
+        "usdcAtomic": "49990000"
+      },
+      {
+        "id": "quant_desk_99",
+        "name": "30-Day Quant Desk Pro API (100,000 calls/mo, <120ms Priority + Batch Sybil)",
+        "usd": 99.0,
+        "regularUsd": 199.0,
+        "usdcAtomic": "99000000"
+      },
+      {
+        "id": "enterprise_500",
+        "name": "Enterprise Unlimited API",
+        "usd": 500.0,
+        "regularUsd": 999.0,
+        "usdcAtomic": "500000000"
+      }
+    ]
+  }
 }
