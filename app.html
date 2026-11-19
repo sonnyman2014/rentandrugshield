@@ -2310,6 +2310,38 @@ body.rrs-mode-original {
 }
 
 </style>
+<!-- RANGER_PIXEL_LOCK_V6_START -->
+<style id="ranger-pixel-lock-v6">
+  [id*="panel"] *, [class*="panel"] *, [class*="card"] * {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+  [id*="panel"] [class*="badge"], [id*="panel"] [class*="pill"], [class*="fee-box"], [class*="ata-free"] {
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    flex-wrap: wrap !important;
+  }
+</style>
+<script id="ranger-ui-guard-v6">
+(function(){
+  function cleanLayout(){
+    document.querySelectorAll('body *').forEach(function(el){
+      var st = window.getComputedStyle(el);
+      if (st.position === 'fixed') {
+        var r = el.getBoundingClientRect();
+        var tx = (el.textContent || '').trim();
+        if (r.left < 140 && r.bottom > (window.innerHeight - 160) && r.width < 360 && /12-Layer Shield LIVE/i.test(tx)) {
+          el.style.setProperty('display', 'none', 'important');
+        }
+      }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanLayout);
+  else cleanLayout();
+  setTimeout(cleanLayout, 800);
+})();
+</script>
+<!-- RANGER_PIXEL_LOCK_V6_END -->
 </head>
 <body class="rrs-mode-original">
 
