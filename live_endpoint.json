@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://inline-laura-engagement-mild.trycloudflare.com",
-  "api_base": "https://inline-laura-engagement-mild.trycloudflare.com",
-  "rpc_url": "https://inline-laura-engagement-mild.trycloudflare.com/api/rpc",
-  "actions_base": "https://inline-laura-engagement-mild.trycloudflare.com/api/actions",
+  "endpoint": "https://congressional-aid-attention-yeah.trycloudflare.com",
+  "api_base": "https://congressional-aid-attention-yeah.trycloudflare.com",
+  "rpc_url": "https://congressional-aid-attention-yeah.trycloudflare.com/api/rpc",
+  "actions_base": "https://congressional-aid-attention-yeah.trycloudflare.com/api/actions",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
   "referral_bps": 50,
   "shield_trade_gate_min": 85,
