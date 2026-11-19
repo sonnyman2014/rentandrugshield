@@ -332,6 +332,14 @@
     }
 
   </style>
+  <style id="rrs-v315-modal-hidden-default-css">
+    .modal, .modal-backdrop, [role="dialog"] {
+      display: none;
+    }
+    .modal[hidden], .modal-backdrop[hidden], [role="dialog"][hidden], #periodic90sPingsBubble[hidden], #inlineAdInquiryDrawer[hidden], #layerInfoBubble[hidden] {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
   <header class="topbar">
@@ -363,7 +371,7 @@
         <a href="/app.html" class="aff-cta">Wallet Rent Claim</a> &bull;
         <a href="/worlds-first-11-layer-solana-rug-shield.html" class="aff-cta">11-Layer Shield</a> &bull;
         <a href="/enterprise-api.html" class="aff-cta">$500/mo Enterprise API</a>
-      </nav>
+       • <a href="https://x.com/SolRentClaim" target="_blank" rel="noopener noreferrer">𝕏 (Twitter)</a> • <a href="https://t.me/Bigmoonbag50bot" target="_blank" rel="noopener noreferrer">Telegram</a> • <a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener noreferrer">GitHub</a> • <a href="/openapi.json" target="_blank" rel="noopener noreferrer">OpenAPI Docs</a></nav>
     </div>
   </header>
   <main class="wrap">
@@ -371,7 +379,7 @@
       <span>Sub-120ms 11-Layer Security API &bull; SolSniffer &amp; GoPlus Alternative</span>
       <button type="button" id="layerInfoToggle" class="info-pill" data-telemetry="layer11-info-bubble">&#9432; 11-Layer Live Upgrade</button>
     </div>
-    <div id="layerInfoBubble" class="layer-bubble">
+    <div id="layerInfoBubble" class="layer-bubble" style="display: none;" aria-hidden="true" hidden>
       <strong>11-Layer Adaptive Architecture:</strong> Layer 11 (Block-0 Sybil Cluster Defense) shipped live at $0 extra cost during active passes. Active passes ($19.99 / $49.99 / $99 / $500) receive all newly shipped security layers automatically with $0 auto-billing.
     </div>
     <h1>Best SolSniffer &amp; GoPlus Alternative: Sub-120ms 11-Layer Solana Rug Shield API</h1>
@@ -573,6 +581,8 @@
       </div>
       <div>Solana Rent &amp; Rug Shield is a 100% non-custodial Solana blockchain utility for SPL and Token-2022 rent recovery and 11-Layer pre-buy contract security auditing. New layers included free during active pass, $0 auto-billing.</div>
     </div>
+  
+    <div style="margin-top:8px;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;font-size:0.84rem;"><a href="https://x.com/SolRentClaim" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;text-decoration:none;font-weight:700;">𝕏 (Twitter)</a><a href="https://t.me/Bigmoonbag50bot" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;text-decoration:none;font-weight:700;">Telegram</a><a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener noreferrer" style="color:#6EE7B7;text-decoration:none;font-weight:700;">GitHub</a><a href="/openapi.json" target="_blank" rel="noopener noreferrer" style="color:#FDE047;text-decoration:none;font-weight:700;">OpenAPI Docs</a></div>
   </footer>
   <script>
   (function() {
@@ -601,7 +611,7 @@
     var infoBox = document.getElementById('layerInfoBubble');
     if (infoBtn && infoBox) {
       infoBtn.addEventListener('click', function() {
-        infoBox.classList.toggle('open');
+        var _op = infoBox.classList.toggle('open'); if(_op){infoBox.removeAttribute('hidden');infoBox.setAttribute('aria-hidden','false');infoBox.style.display='block';}else{infoBox.style.display='none';infoBox.setAttribute('aria-hidden','true');infoBox.setAttribute('hidden','');}
       });
     }
 

@@ -453,6 +453,14 @@
       font-size: 0.84rem;
     }
   </style>
+  <style id="rrs-v315-modal-hidden-default-css">
+    .modal, .modal-backdrop, [role="dialog"] {
+      display: none;
+    }
+    .modal[hidden], .modal-backdrop[hidden], [role="dialog"][hidden], #periodic90sPingsBubble[hidden], #inlineAdInquiryDrawer[hidden], #layerInfoBubble[hidden] {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
   <header class="topbar">
@@ -485,7 +493,7 @@
         <a href="/compare/claimyoursol-vs-rentandrugshield.html" class="aff-cta">vs ClaimYourSol</a> &bull;
         <a href="/worlds-first-11-layer-solana-rug-shield.html" class="aff-cta">11-Layer Proof</a> &bull;
         <a href="/enterprise-api.html" class="aff-cta">$49.99–$500 API</a>
-      </nav>
+       • <a href="https://x.com/SolRentClaim" target="_blank" rel="noopener noreferrer">𝕏 (Twitter)</a> • <a href="https://t.me/Bigmoonbag50bot" target="_blank" rel="noopener noreferrer">Telegram</a> • <a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener noreferrer">GitHub</a> • <a href="/openapi.json" target="_blank" rel="noopener noreferrer">OpenAPI Docs</a></nav>
     </div>
   </header>
 
@@ -494,7 +502,7 @@
       <span>Layer-8 Pool Depth &amp; Wash Velocity Forensics &bull; M021</span>
       <button type="button" id="layerInfoToggle" class="info-pill" data-telemetry="layer11-info-bubble">&#9432; 11-Layer Live Upgrade</button>
     </div>
-    <div id="layerInfoBubble" class="layer-bubble">
+    <div id="layerInfoBubble" class="layer-bubble" style="display: none;" aria-hidden="true" hidden>
       <strong>11-Layer Adaptive Architecture:</strong> Layer 11 (Block-0 Jito/Sybil Cluster Defense) shipped live at $0 extra cost during active passes. Every active pass ($1.99 24h / $19.99 / $49.99 / $99 / $500) includes new security layers automatically with $0 auto-billing.
     </div>
 
@@ -586,7 +594,7 @@ Layer-8 Pool Depth &amp; Wash Telemetry:
     <section class="tech-section">
       <h2>Lamport &amp; EV Forensics: Thin-Pool Slippage Loss + Dead Wash-ATA Rent Recovery</h2>
       <p class="sec-p">Trading into a wash-traded liquidity mirage inflicts catastrophic constant-product execution decay before the operator even pulls liquidity. Under x * y = k math, submitting a 4.5 SOL buy order into a pool advertising $2,000,000 daily volume—but backed by just 44.82 WSOL in actual quote reserves—instantly shifts spot price by 21.1% round-trip before priority tips or MEV sandwich extraction. Once the operator halts the Jito volume script and dumps residual supply, WSOL reserves collapse below 0.5 SOL, stranding thousands of retail buyers with worthless dust or zeroed balances inside active 165-byte SPL Associated Token Accounts that permanently lock 2,039,280 lamports each.</p>
-      <p class="sec-p">Across an active meme-trading wallet holding 80 abandoned ATAs from dead volume-botted launches, those orphaned accounts freeze 163,142,400 lamports (0.16314240 SOL) in non-productive rent-exempt storage. Standard burn utilities tax that recovery heavily: Sol Incinerator deducts ~2% to 5% in platform cuts while ClaimYourSol extracts a flat 5% fee (8,157,120 lamports lost). Solana Rent &amp; Rug Shield constructs pure client-side 0x09 CloseAccount batches with a 0% fee on your entire 1st claim—returning every single lamport directly to your wallet—and pays affiliates an instant 30% on-chain SOL split via ?ref= links on subsequent cleans or 24h, 30-Day, and Monthly passes with $0 auto-billing.</p>
+      <p class="sec-p">Across an active meme-trading wallet holding 80 abandoned ATAs from dead volume-botted launches, those orphaned accounts freeze 163,142,400 lamports (0.16314240 SOL) in non-productive rent-exempt storage. Standard burn utilities tax that recovery heavily: Sol Incinerator deducts ~2% to 5% in platform cuts while ClaimYourSol extracts a flat 1.5% repeat fee (8,157,120 lamports lost). Solana Rent &amp; Rug Shield constructs pure client-side 0x09 CloseAccount batches with a 0% fee on your entire 1st claim—returning every single lamport directly to your wallet—and pays affiliates an instant 30% on-chain SOL split via ?ref= links on subsequent cleans or 24h, 30-Day, and Monthly passes with $0 auto-billing.</p>
       <div class="code-panel">
         <div class="code-header mono">Worked Constant-Product Slippage &amp; 80-ATA Rent Recovery Math</div>
         <pre class="code-block mono">1. Liquidity Mirage Execution Impact (Pool Reserve x = 44.82 WSOL):
@@ -820,6 +828,8 @@ Layer-8 Pool Depth &amp; Wash Telemetry:
       </div>
       <div>Solana Rent &amp; Rug Shield is a 100% non-custodial Solana blockchain utility for SPL and Token-2022 rent recovery (2,039,280 lamports = 0.00203928 SOL at 0% 1st-claim fee) and 11-Layer pre-buy contract security auditing. New layers included free during active pass, $0 auto-billing.</div>
     </div>
+  
+    <div style="margin-top:8px;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;font-size:0.84rem;"><a href="https://x.com/SolRentClaim" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;text-decoration:none;font-weight:700;">𝕏 (Twitter)</a><a href="https://t.me/Bigmoonbag50bot" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;text-decoration:none;font-weight:700;">Telegram</a><a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener noreferrer" style="color:#6EE7B7;text-decoration:none;font-weight:700;">GitHub</a><a href="/openapi.json" target="_blank" rel="noopener noreferrer" style="color:#FDE047;text-decoration:none;font-weight:700;">OpenAPI Docs</a></div>
   </footer>
 
   <script>
@@ -880,7 +890,7 @@ Layer-8 Pool Depth &amp; Wash Telemetry:
     var infoBox = document.getElementById('layerInfoBubble');
     if (infoBtn && infoBox) {
       infoBtn.addEventListener('click', function() {
-        infoBox.classList.toggle('open');
+        var _op = infoBox.classList.toggle('open'); if(_op){infoBox.removeAttribute('hidden');infoBox.setAttribute('aria-hidden','false');infoBox.style.display='block';}else{infoBox.style.display='none';infoBox.setAttribute('aria-hidden','true');infoBox.setAttribute('hidden','');}
       });
     }
 

@@ -44,7 +44,7 @@
       "applicationCategory": "FinanceApplication",
       "applicationSubCategory": "Solana Blockchain SPL & Token-2022 Rent Recovery and Token Security Scanner",
       "operatingSystem": "Web, Chrome, Brave, iOS, Android, Phantom, Solflare, Backpack",
-      "description": "Reclaim locked SOL from empty SPL and Token-2022 token accounts on Solana. First Claim 0% Fee vs 5% to 20% on Legacy Cleaners. Free first 11-Layer Adaptive Token Audit. Your first 11-Layer Adaptive Token Audit is free. Extra single audits are 10¢ for our first 30 days so active Solana traders can test our scanner live. Regular price is 99¢ per audit. Need full day or monthly access? Pick our recommended 24 Hour Day Pass for $1.99 (regularly $3.99) or unlock the 30 Day Monthly Pro Pass for $4.99 (regularly $14.99).",
+      "description": "Reclaim locked SOL from empty SPL and Token-2022 token accounts on Solana. First Claim 0% Fee vs 5% to 20% on Legacy Cleaners. Free first 11-Layer Adaptive Token Audit. Your first 11-Layer Adaptive Token Audit is free. Extra single audits are 10¢ for our first 30 days so active Solana traders can test our scanner live. Regular price is 99¢ per audit. Need full day or monthly access? Pick our recommended 24 Hour Day Pass for $1.99 (Reg. $4.99) or unlock 30-Day Trader Pro for $19.99/mo (Reg. $39.99/mo).",
       "disambiguatingDescription": "Non-custodial Solana blockchain Web3 utility for reclaiming SOL lamport rent deposits from empty SPL and Token-2022 token accounts (0x09 CloseAccount), burning scam tokens, and running 11-Layer pre-buy crypto rug checks. Distinct from physical carpet or rug cleaner rentals such as Rug Doctor and distinct from apartment rental services.",
       "offers": [
         {
@@ -70,10 +70,10 @@
         },
         {
           "@type": "Offer",
-          "name": "30 Day Monthly Pro Pass",
-          "price": "4.99",
+          "name": "30-Day Trader Pro",
+          "price": "19.99",
           "priceCurrency": "USD",
-          "description": "30 Day Monthly Pro Pass for $4.99 for 30 days (regularly $14.99)."
+          "description": "30-Day Trader Pro for $19.99/mo (Reg. $39.99/mo)."
         }
       ]
     },
@@ -95,7 +95,7 @@
           "name": "How much does Solana Rent & Rug Shield charge to reclaim SOL?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Your first rent recovery claim has a 0% fee so 100% of recovered SOL goes directly to your wallet. Repeat claims charge a flat 5% fee so you keep 95% net SOL. First Claim 0% Fee vs 5% to 20% on Legacy Cleaners."
+            "text": "Your first rent recovery claim has a 0% fee so 100% of recovered SOL goes directly to your wallet. Repeat claims charge a flat 1.5% fee so you keep 98.5% Net SOL (0.0% 1st Claim Free). First Claim 0% Fee vs 5% to 20% on Legacy Cleaners."
           }
         },
         {
@@ -388,6 +388,14 @@
       margin-bottom: 12px;
     }
   </style>
+  <style id="rrs-v315-modal-hidden-default-css">
+    .modal, .modal-backdrop, [role="dialog"] {
+      display: none;
+    }
+    .modal[hidden], .modal-backdrop[hidden], [role="dialog"][hidden], #periodic90sPingsBubble[hidden], #inlineAdInquiryDrawer[hidden], #layerInfoBubble[hidden] {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -400,6 +408,11 @@
         <a href="/solana-rug-checker" class="nav-link">Solana Rug Checker</a>
         <a href="/audit" class="nav-link">Token Audit Directory</a>
         <a href="/app.html" class="nav-link">Launch Wallet App</a>
+      
+        <a href="https://x.com/SolRentClaim" target="_blank" rel="noopener noreferrer" class="nav-link">𝕏 (Twitter)</a>
+        <a href="https://t.me/Bigmoonbag50bot" target="_blank" rel="noopener noreferrer" class="nav-link">Telegram</a>
+        <a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub</a>
+        <a href="/openapi.json" target="_blank" rel="noopener noreferrer" class="nav-link">OpenAPI Docs</a>
       </nav>
     </div>
   </header>
@@ -470,7 +483,7 @@
               </tr>
               <tr>
                 <td>Repeat Rent Recovery Fee</td>
-                <td><span class="mono">5%</span> Flat (<span class="mono">95%</span> net SOL to you)</td>
+                <td><span class="mono">1.5%</span> Repeat (<span class="mono">98.5%</span> Net SOL returned; <span class="mono">0.0%</span> 1st Claim Free)</td>
                 <td><span class="mono">5%</span> to <span class="mono">20%</span> per batch</td>
               </tr>
               <tr>
@@ -492,7 +505,7 @@
     <section class="section" id="pricing">
       <div class="card">
         <h2>Simple Choice A Pricing for Active Solana Traders</h2>
-        <p>Your first 11-Layer Adaptive Token Audit is free. Extra single audits are 10¢ for our first 30 days so active Solana traders can test our scanner live. Regular price is 99¢ per audit. Need full day or monthly access? Pick our recommended 24 Hour Day Pass for $1.99 (regularly $3.99) or unlock the 30 Day Monthly Pro Pass for $4.99 (regularly $14.99).</p>
+        <p>Your first 11-Layer Adaptive Token Audit is free. Extra single audits are 10¢ for our first 30 days so active Solana traders can test our scanner live. Regular price is 99¢ per audit. Need full day or monthly access? Pick our recommended 24 Hour Day Pass for $1.99 (Reg. $4.99) or unlock 30-Day Trader Pro for $19.99/mo (Reg. $39.99/mo).</p>
 
         <div class="grid-4">
           <div class="card price-card">
@@ -528,9 +541,9 @@
 
           <div class="card price-card">
             <div>
-              <h3>30 Day Monthly Pro Pass</h3>
-              <div class="price-big"><span class="mono">$4.99</span></div>
-              <div class="price-reg">30 day intro (regularly <span class="mono">$14.99</span>)</div>
+              <h3>30-Day Trader Pro</h3>
+            <div class="price-big"><span class="mono">$19.99/mo</span></div>
+            <div class="price-reg">Launch rate (Reg. <span class="mono">$39.99/mo</span>)</div>
               <p>Full month of unlimited 11-Layer Adaptive Token Audits and <span class="mono">0%</span> platform fee on wallet rent recovery.</p>
             </div>
             <a href="/app.html" class="btn-secondary">Unlock Monthly Pro</a>
@@ -579,6 +592,10 @@
         <a href="/audit">Top Solana Token Audits</a>
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
+              <a href="https://x.com/SolRentClaim" target="_blank" rel="noopener noreferrer">𝕏 (Twitter)</a>
+        <a href="https://t.me/Bigmoonbag50bot" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="/openapi.json" target="_blank" rel="noopener noreferrer">OpenAPI Docs</a>
       </div>
       <p>Non-custodial Solana SPL &amp; Token-2022 utility. Engineering &amp; Product Roadmap.</p>
     </div>

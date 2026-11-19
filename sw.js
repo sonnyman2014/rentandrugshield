@@ -1,5 +1,5 @@
-/* Solana Rent & Rug Shield - 11-Layer Adaptive Self-Refreshing Service Worker v314 */
-const CACHE_NAME = 'rent-shield-v314-11layer-live-ticker';
+/* Solana Rent & Rug Shield - 11-Layer Adaptive Self-Refreshing Service Worker v315 */
+const CACHE_NAME = 'rent-shield-v315-11layer-trust-clean';
 const IMMUTABLE_ICONS = ['/icon-192.png', '/icon-512.png', '/shield-app-icon.svg'];
 
 self.addEventListener('install', (event) => {
@@ -21,7 +21,7 @@ self.addEventListener('activate', (event) => {
       .then((clients) => {
         for (const client of clients) {
           try {
-            client.postMessage({ type: 'RRS_SW_ACTIVATED', cache: CACHE_NAME, version: 314 });
+            client.postMessage({ type: 'RRS_SW_ACTIVATED', cache: CACHE_NAME, version: 315 });
           } catch (_e) {}
         }
       })

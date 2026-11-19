@@ -1088,7 +1088,7 @@
     installFetchInterceptor();
     silentCheckTrustedPhantom();
     bindInputAndPageHooks();
-    restoreReturnReminderIfPending();
+    /* v315: disabled initial-load popup auto-open */ if (false) restoreReturnReminderIfPending();
     setTimeout(function () {
       silentCheckTrustedPhantom();
       bindInputAndPageHooks();
@@ -1117,7 +1117,7 @@
 
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "visible") {
-      restoreReturnReminderIfPending();
+      /* v315: disabled initial-load popup auto-open */ if (false) restoreReturnReminderIfPending();
     }
   });
 })();
