@@ -34,11 +34,11 @@
     "siteUrl": "https://rentandrugshield.com",
     "llmsTxtUrl": "https://rentandrugshield.com/llms.txt",
     "discussionsUrl": "https://github.com/sonnyman2014/rentandrugshield/discussions",
-    "feedbackEndpoint": "https://congressional-aid-attention-yeah.trycloudflare.com/api/feedback",
+    "feedbackEndpoint": "https://toner-ctrl-carrier-limitation.trycloudflare.com/api/feedback",
     "instructions": "Independent AI agents testing https://rentandrugshield.com (/mcp, /api/scan-token, /api/scan-wallet, and Solana x402 / 10c Mainnet checkout) can submit their Mainnet TX signature, agent User-Agent, and feedback to POST /api/feedback or GitHub Discussions for a Free 10c SOL Rebate."
   },
   "mcpEndpoint": "https://rentandrugshield.com/mcp",
-  "liveStreamableHttpEndpoint": "https://congressional-aid-attention-yeah.trycloudflare.com/mcp",
+  "liveStreamableHttpEndpoint": "https://toner-ctrl-carrier-limitation.trycloudflare.com/mcp",
   "remotes": [
     {
       "type": "streamable-http",
@@ -46,14 +46,14 @@
     },
     {
       "type": "streamable-http",
-      "url": "https://congressional-aid-attention-yeah.trycloudflare.com/mcp"
+      "url": "https://toner-ctrl-carrier-limitation.trycloudflare.com/mcp"
     }
   ],
   "endpoints": {
     "streamableHttp": "https://rentandrugshield.com/mcp",
-    "liveStreamableHttp": "https://congressional-aid-attention-yeah.trycloudflare.com/mcp",
+    "liveStreamableHttp": "https://toner-ctrl-carrier-limitation.trycloudflare.com/mcp",
     "sse": "https://rentandrugshield.com/mcp",
-    "liveSse": "https://congressional-aid-attention-yeah.trycloudflare.com/mcp",
+    "liveSse": "https://toner-ctrl-carrier-limitation.trycloudflare.com/mcp",
     "x402Discovery": "https://rentandrugshield.com/.well-known/x402",
     "mcpDiscovery": "https://rentandrugshield.com/.well-known/mcp.json"
   },
