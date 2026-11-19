@@ -2311,8 +2311,8 @@ body.rrs-mode-original {
 
 </style>
 <!-- RANGER_PIXEL_LOCK_V6_START -->
-<style id="ranger-pixel-lock-v6">
-  [id*="panel"] *, [class*="panel"] *, [class*="card"] * {
+<style id="ranger-pixel-lock-v7">
+  [id*="panel"] *, [class*="panel"] *s*="card"] * {
     box-sizing: border-box !important;
     max-width: 100% !important;
   }
@@ -2321,24 +2321,105 @@ body.rrs-mode-original {
     overflow-wrap: anywhere !important;
     flex-wrap: wrap !important;
   }
+  body.institutional-mode, [data-ui-mode="institutional"],
+  [id*="institutional"], [class*="institutional"] {
+    background-color: #090D16 !important;
+    color: #E5E7EB !important;
+  }
+  body.institutional-mode [class*="card"], [data-ui-mode="institutional"] [class*="card"],
+  [id*="institutional"] [class*="card"], [class*="institutional"] [class*="card"] {
+    background: #111827 !important;
+    border: 1px solid #1F2937 !important;
+    box-shadow: none !important;
+    border-radius: 6px !important;
+  }
+  body.institutional-mode button, [data-ui-mode="institutional"] button,
+  [id*="institutional"] button, [class*="institutional"] button {
+    min-height: 38px !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    letter-spacing: 0.02em !important;
+  }
 </style>
-<script id="ranger-ui-guard-v6">
+<script id="ranger-ui-guard-v7">
 (function(){
-  function cleanLayout(){
+  window.__rangerDeferredPrompt = null;
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    window.__rangerDeferredPrompt = e;
+  });
+
+  function stripEmojiText(s){
+    var out = '';
+    var arr = Array.from(s);
+    for (var i = 0; i < arr.length; i++) {
+      var cp = arr[i].codePointAt(0);
+      var isEm = (cp >= 0x1F300 && cp <= 0x1FAFF) || (cp >= 0x2600 && cp <= 0x27BF) || cp === 0xFE0F || cp === 0x200D;
+      if (!isEm) out += arr[i];
+    }
+    return out.split('  ').join(' ');
+  }
+
+  function stripInstEmojis(root){
+    if (!root) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var n;
+    while ((n = walker.nextNode())) {
+      var cleaned = stripEmojiText(n.nodeValue || '');
+      if (cleaned !== n.nodeValue) n.nodeValue = cleaned;
+    }
+  }
+
+  function cleanAndWire(){
     document.querySelectorAll('body *').forEach(function(el){
       var st = window.getComputedStyle(el);
       if (st.position === 'fixed') {
         var r = el.getBoundingClientRect();
         var tx = (el.textContent || '').trim();
-        if (r.left < 140 && r.bottom > (window.innerHeight - 160) && r.width < 360 && /12-Layer Shield LIVE/i.test(tx)) {
+        if (r.left < 140 && r.bottom > (window.innerHeight - 160) && r.width < 360 && tx.toLowerCase().indexOf('12-layer shield live') !== -1) {
           el.style.setProperty('display', 'none', 'important');
         }
       }
     });
+
+    document.querySelectorAll('[id*="institutional"], [class*="institutional"]').forEach(function(iv){
+      stripInstEmojis(iv);
+    });
+    if (document.body && (document.body.classList.contains('institutional-mode') || document.body.getAttribute('data-ui-mode') === 'institutional' || window.location.pathname.indexOf('institutional') !== -1)) {
+      stripInstEmojis(document.body);
+    }
+
+    document.querySelectorAll('button, a').forEach(function(btn){
+      var t = (btn.textContent || '').toLowerCase();
+      if (!btn.__ranger1ClickWired && (t.indexOf('install app') !== -1 || t.indexOf('save to taskbar') !== -1 || t.indexOf('pin to taskbar') !== -1)) {
+        btn.__ranger1ClickWired = true;
+        btn.addEventListener('click', async function(ev){
+          if ('Notification' in window && Notification.permission === 'default') {
+            try {
+              var perm = await Notification.requestPermission();
+              if (perm === 'granted') {
+                new Notification('Solana Rent & Rug Shield Active', { body: 'Live 12-Layer Rug & PC Security Pop-Up Alerts Enabled.' });
+              }
+            } catch (_e) {}
+          }
+          if (window.__rangerDeferredPrompt) {
+            ev.stopImmediatePropagation();
+            ev.preventDefault();
+            try {
+              window.__rangerDeferredPrompt.prompt();
+              await window.__rangerDeferredPrompt.userChoice;
+              window.__rangerDeferredPrompt = null;
+            } catch (_e) {}
+          }
+        }, true);
+      }
+    });
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanLayout);
-  else cleanLayout();
-  setTimeout(cleanLayout, 800);
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanAndWire);
+  else cleanAndWire();
+  setTimeout(cleanAndWire, 700);
+  document.addEventListener('click', function(){ setTimeout(cleanAndWire, 120); });
 })();
 </script>
 <!-- RANGER_PIXEL_LOCK_V6_END -->
