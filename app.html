@@ -1600,6 +1600,25 @@
   </header>
 
   <main class="native-app-frame"></div>
+    <!-- BOXED HERO POSITIONING BANNER + INSTALLABLE PWA + CSV EXPORTER -->
+    <div id="rrsHeroPositioningBox" style="border:1.5px solid rgba(16, 185, 129, 0.55); background:linear-gradient(135deg, rgba(6, 78, 59, 0.36) 0%, rgba(15, 23, 42, 0.88) 100%); border-radius:12px; padding:12px 16px; margin-bottom:14px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; box-sizing:border-box;">
+      <div style="min-width:240px; flex:1;">
+        <div style="font-size:1.02rem; font-weight:800; color:#F8FAFC; letter-spacing:-0.01em;">
+          🛡️ World&apos;s First Combined <span style="color:#14F195;">0%-1st-Claim Rent Cleaner</span> + <span style="color:#38BDF8;">11-Layer Rug Shield</span>
+        </div>
+        <div style="font-size:0.84rem; color:#CBD5E1; margin-top:3px;">
+          Reclaim <span class="jb-mono">100%</span> of locked SOL on Claim #1 (<span class="jb-mono">98.5%</span> net repeat, <span class="jb-mono">1.5%</span> fee) &amp; audit Solana mints in under <span class="jb-mono">120ms</span>. Pro Unlimited: <span class="jb-mono">$19.99/mo</span> (Reg. <s class="jb-mono">$39.99/mo</s>).
+        </div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px;">
+        <button type="button" id="rrsHeroPwaInstallBtn" onclick="window.triggerRrsPwaInstall && window.triggerRrsPwaInstall()" style="min-height:36px; padding:6px 12px; border-radius:8px; border:1px solid rgba(56, 189, 248, 0.65); background:rgba(14, 116, 144, 0.28); color:#E0F2FE; font-size:0.83rem; font-weight:700; cursor:pointer;">
+          📲 Install App
+        </button>
+        <button type="button" id="rrsExportAuditCsvBtn" onclick="window.exportDeadBagAuditCsv && window.exportDeadBagAuditCsv()" style="min-height:36px; padding:6px 12px; border-radius:8px; border:1px solid rgba(16, 185, 129, 0.65); background:rgba(6, 95, 70, 0.32); color:#D1FAE5; font-size:0.83rem; font-weight:700; cursor:pointer;">
+          📥 Export Audit CSV
+        </button>
+      </div>
+    </div>
     <div id="scannersRow1Grid" class="app-scanners-grid">
     <section id="tab-claim" class="tab-panel active" aria-label="Claim SOL">
       <div class="card" id="rentShieldCard" style="border:1.5px solid rgba(16, 185, 129, 0.48); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:10px; box-sizing:border-box;">
