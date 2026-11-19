@@ -6,9 +6,9 @@
 <title>Rent &amp; Rug Shield — 45s Staged Promo Video (DEX6 • Gemini 4 Carbon High)</title>
 <style>
   :root {
-    --bg-deep: #030711;
-    --bg-panel: #081224;
-    --emerald: #00FFA3;
+    --bg-deep: #050A08;
+    --bg-panel: #081610;
+    --emerald: #00FF88;
     --cyan: #00E5FF;
     --gold: #FFD166;
     --danger: #FF4D6D;
@@ -18,7 +18,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background: radial-gradient(circle at 50% 0%, #0b1c36 0%, #030711 72%);
+    background: radial-gradient(circle at 50% 0%, #092117 0%, #050A08 72%);
     color: var(--text-main);
     font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
     min-height: 100vh;
@@ -41,7 +41,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: #040915;
+    background: #050A08;
     cursor: pointer;
     overflow: hidden;
   }
@@ -228,7 +228,7 @@
       <div class="chapters-group" id="chaptersGroup">
         <button class="chapter-btn active" data-start="0" type="button">1. Hook (0:00)</button>
         <button class="chapter-btn" data-start="8" type="button">2. 0x09 Rent (0:08)</button>
-        <button class="chapter-btn" data-start="18" type="button">3. 11-Layer Shield (0:18)</button>
+        <button class="chapter-btn" data-start="18" type="button">3. 12-Layer Shield (0:18)</button>
         <button class="chapter-btn" data-start="30" type="button">4. 30% &amp; Pricing (0:30)</button>
         <button class="chapter-btn" data-start="38" type="button">5. CTA (0:38)</button>
       </div>
@@ -244,7 +244,7 @@
   const SCENES = [
     { idx: 0, start: 0,  end: 8,  tag: "SCENE 01 • SOLANA TRADER REALITY CHECK", title: "Hook: Stop Paying 5%–20% Skimmers & Buying Blind Rugs" },
     { idx: 1, start: 8,  end: 18, tag: "SCENE 02 • HONEST 0x09 SOL RENT RECOVERY", title: "100% 1st SOL Rent Claim FREE (2,039,280 Lamports)" },
-    { idx: 2, start: 18, end: 30, tag: "SCENE 03 • GEMINI 4 CARBON HIGH • DEX6 ENGINE", title: "<120ms 11-Layer Pre-Buy Rug & Sybil Shield" },
+    { idx: 2, start: 18, end: 30, tag: "SCENE 03 • GEMINI 4 CARBON HIGH • DEX6 ENGINE", title: "<120ms 12-Layer Pre-Buy Rug & Sybil Shield" },
     { idx: 3, start: 30, end: 38, tag: "SCENE 04 • ATOMIC CREATOR ALIGNMENT & PRICING", title: "30% Atomic Affiliate Split & Honest Pricing Ladder" },
     { idx: 4, start: 38, end: 45, tag: "SCENE 05 • PROTECT EVERY SWAP • RECLAIM EVERY LAMPORT", title: "Call to Action: rentandrugshield.com" }
   ];
@@ -261,6 +261,24 @@
 
   const canvas = document.getElementById("promoCanvas");
   const ctx = canvas.getContext("2d");
+
+  const _origFillText = ctx.fillText.bind(ctx);
+  ctx.fillText = function(txt, x, y, maxW) {
+    ctx.save();
+    ctx.lineJoin = "round";
+    ctx.miterLimit = 2;
+    ctx.strokeStyle = "rgba(3, 8, 6, 0.88)";
+    ctx.lineWidth = 3.2;
+    if (maxW !== undefined) {
+      ctx.strokeText(txt, x, y, maxW);
+      _origFillText(txt, x, y, maxW);
+    } else {
+      ctx.strokeText(txt, x, y);
+      _origFillText(txt, x, y);
+    }
+    ctx.restore();
+  };
+
   const scrubber = document.getElementById("scrubber");
   const timeReadout = document.getElementById("timeReadout");
   const playPauseBtn = document.getElementById("playPauseBtn");
@@ -540,10 +558,10 @@
       const barTop = cy + r + 26;
       drawSolanaBars(cx, barTop, 42, 24);
       ctx.textAlign = "center";
-      ctx.font = "800 14px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 17.4px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#E8FFF7";
       ctx.fillText("GEMINI 4 CARBON", cx, barTop + 44);
-      ctx.font = "700 11px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 13.6px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#00FFA3";
       ctx.fillText("HIGH • AI ENGINEERED", cx, barTop + 61);
     }
@@ -603,19 +621,19 @@
 
     // Header Left Pill
     ctx.textAlign = "left";
-    ctx.font = "800 13px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 16.1px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#00FFA3";
     ctx.fillText("◆ DEX6 • GEMINI 4 CARBON HIGH", 28, 33);
 
     // Header Center Scene Tag
     ctx.textAlign = "center";
-    ctx.font = "700 12.5px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 15.5px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#C9DCFA";
     ctx.fillText(activeScene.tag, 640, 33);
 
     // Header Right Domain Badge
     ctx.textAlign = "right";
-    ctx.font = "800 13px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 16.1px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FFD166";
     ctx.fillText("rentandrugshield.com", 1252, 33);
 
@@ -637,11 +655,11 @@
 
     // Headline
     ctx.textAlign = "center";
-    ctx.font = "900 40px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 43.2px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FFFFFF";
     ctx.fillText("STOP PAYING 5%–20% SOL RENT SKIMMERS", 640, 118 + (1 - enter) * 16);
 
-    ctx.font = "900 36px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 38.9px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FF5C7A";
     ctx.fillText("& BUYING BLIND RUGS ON SOLANA", 640, 164 + (1 - enter) * 16);
 
@@ -650,7 +668,7 @@
     ctx.globalAlpha = c1;
     drawGlassCard(54, 206, 444, 332, "rgba(255, 77, 109, 0.65)", 0.88, 16);
     ctx.textAlign = "left";
-    ctx.font = "800 18px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 20.9px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FF6B88";
     ctx.fillText("⚠ RENT SKIMMERS DRAIN YOUR SOL", 78, 244);
 
@@ -662,10 +680,10 @@
     ];
     leftItems.forEach(function(row, idx) {
       const ry = 288 + idx * 46;
-      ctx.font = "800 15px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 18.6px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#FFD166";
       ctx.fillText(row[0], 78, ry);
-      ctx.font = "600 15px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "800 18.6px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#E6EFFD";
       ctx.fillText(row[1], 222, ry);
     });
@@ -673,7 +691,7 @@
     roundRectPath(76, 474, 400, 44, 9);
     ctx.fillStyle = "rgba(255, 77, 109, 0.16)";
     ctx.fill();
-    ctx.font = "800 14px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 17.4px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FF8FA3";
     ctx.textAlign = "center";
     ctx.fillText("422.88 SOL / 30d Extracted Across Rival Vaults", 276, 501);
@@ -683,7 +701,7 @@
     ctx.globalAlpha = c2;
     drawGlassCard(782, 206, 444, 332, "rgba(255, 77, 109, 0.65)", 0.88, 16);
     ctx.textAlign = "left";
-    ctx.font = "800 18px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 20.9px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FF6B88";
     ctx.fillText("⚠ STATIC SCANNERS MISS LIVE RUGS", 806, 244);
 
@@ -695,10 +713,10 @@
     ];
     rightItems.forEach(function(row, idx) {
       const ry = 288 + idx * 46;
-      ctx.font = "800 15px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 18.6px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#FFD166";
       ctx.fillText(row[0], 806, ry);
-      ctx.font = "600 14.5px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "800 18px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#E6EFFD";
       ctx.fillText(row[1], 956, ry);
     });
@@ -706,7 +724,7 @@
     roundRectPath(804, 474, 400, 44, 9);
     ctx.fillStyle = "rgba(255, 77, 109, 0.16)";
     ctx.fill();
-    ctx.font = "800 14px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 17.4px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FF8FA3";
     ctx.textAlign = "center";
     ctx.fillText("Single-Layer Checks Leave Swappers Exposed", 1004, 501);
@@ -720,10 +738,10 @@
     ctx.globalAlpha = bAlpha;
     drawGlassCard(96, 586, 1088, 84, "#00FFA3", 0.92, 14);
     ctx.textAlign = "center";
-    ctx.font = "900 22px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 25.5px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#00FFA3";
     ctx.fillText("MEET RENT & RUG SHIELD — HONEST 0x09 RECOVERY + <120ms 11-LAYER DEFENSE", 640, 624);
-    ctx.font = "700 15px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 18.6px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#E4F4FF";
     ctx.fillText("0.0% 1st Rent Claim Fee • 100% Non-Custodial Local Wallet Sign • Zero Seed Phrases Ever", 640, 651);
 
@@ -736,11 +754,11 @@
     ctx.save();
 
     ctx.textAlign = "center";
-    ctx.font = "900 38px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 41px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#00FFA3";
     ctx.fillText("HONEST 0x09 SOL RENT RECOVERY: 100% 1ST CLAIM FREE", 640, 114 + (1 - enter) * 14);
 
-    ctx.font = "700 19px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 22px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#E8F4FF";
     ctx.fillText("Keep Every Single Lamport on Claim #1 — Full 2,039,280 Lamports Per Empty SPL ATA", 640, 152);
 
@@ -757,20 +775,20 @@
     ctx.stroke();
 
     ctx.textAlign = "center";
-    ctx.font = "800 14px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 17.4px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#00E5FF";
     ctx.fillText("1ST RENT CLAIM PAYOUT PER EMPTY SPL ATA", 336, 238);
 
-    ctx.font = "900 42px 'Consolas', 'JetBrains Mono', monospace";
+    ctx.font = "900 45.4px 'DejaVu Sans', 'Arial Black', 'Consolas', 'JetBrains Mono', monospace";
     ctx.fillStyle = "#FFFFFF";
     ctx.fillText(lamports.toLocaleString("en-US") + " LAMPORTS", 336, 286);
 
-    ctx.font = "800 15px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 18.6px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#00FFA3";
     ctx.fillText("0.0% FEE • 100.0% KEPT IN YOUR WALLET (0.00203928 SOL)", 336, 314);
 
     const guarantees = [
-      ["0.0% 1st Claim Fee", "Only 1.5% on repeat cleanups (0% on Trader Pro)"],
+      ["0.0% 1st Claim Fee", "Only 2.0% on repeat cleanups (0% on Trader Pro)"],
       ["Official SPL 0x09", "Native CloseAccount & BurnChecked instructions"],
       ["100% Non-Custodial", "Local wallet signature only — zero wrapper risk"],
       ["Zero Seed Phrases", "Public address read-only scan; active coins safe"]
@@ -778,10 +796,10 @@
     guarantees.forEach(function(g, i) {
       const gy = 368 + i * 54;
       ctx.textAlign = "left";
-      ctx.font = "800 16px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 19.8px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#00FFA3";
       ctx.fillText("✓ " + g[0], 84, gy);
-      ctx.font = "600 14.5px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "800 18px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#C9DCFA";
       ctx.fillText(g[1], 262, gy);
     });
@@ -789,13 +807,13 @@
     // Right Card: Competitor Fee Comparison Bars
     drawGlassCard(644, 186, 580, 404, "rgba(0, 229, 255, 0.55)", 0.88, 16);
     ctx.textAlign = "left";
-    ctx.font = "800 18px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 20.9px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FFD166";
     ctx.fillText("FEE EXTRACTION COMPARISON (VERIFIED ON-CHAIN)", 672, 224);
 
     const bars = [
       { label: "Rent & Rug Shield — 1st Claim", valText: "0.0% FEE (100% KEPT)", pct: 0.04, col: "#00FFA3" },
-      { label: "Rent & Rug Shield — Repeat Cleanup", valText: "1.5% FEE (0% on Pro)", pct: 0.14, col: "#00E5FF" },
+      { label: "Rent & Rug Shield — Repeat Cleanup", valText: "2.0% FEE (0% on Pro)", pct: 0.14, col: "#00E5FF" },
       { label: "Sol Incinerator (V1/V2/Burn+Close)", valText: "2.0% – 5.0% SKIM", pct: 0.42, col: "#FFB703" },
       { label: "ClaimYourSol (5% Fee / 20% Ref Cap)", valText: "5.0% STANDARD TAX", pct: 0.52, col: "#FB8500" },
       { label: "Clone / Wrapper Skimmers", valText: "15.0% – 20%+ SKIM", pct: 0.94, col: "#FF4D6D" }
@@ -805,12 +823,12 @@
     bars.forEach(function(b, i) {
       const by = 258 + i * 64;
       ctx.textAlign = "left";
-      ctx.font = "700 14.5px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 18px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#EFF6FF";
       ctx.fillText(b.label, 672, by);
 
       ctx.textAlign = "right";
-      ctx.font = "800 14.5px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 18px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = b.col;
       ctx.fillText(b.valText, 1196, by);
 
@@ -827,7 +845,7 @@
     // Bottom Strip
     drawGlassCard(56, 612, 1168, 68, "rgba(0, 255, 163, 0.42)", 0.9, 12);
     ctx.textAlign = "center";
-    ctx.font = "800 18px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 20.9px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FFFFFF";
     ctx.fillText("ZERO CONNECT WALL: Paste Any Public Solana Wallet to Preview Exact Closable Lamports Instantly", 640, 653);
 
@@ -839,11 +857,11 @@
     ctx.save();
 
     ctx.textAlign = "center";
-    ctx.font = "900 38px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 41px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#00E5FF";
     ctx.fillText("<120ms 11-LAYER DEX6 PRE-BUY RUG & SYBIL SHIELD", 640, 112);
 
-    ctx.font = "700 18px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 20.9px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#E4F2FF";
     ctx.fillText("Gemini 4 Carbon High Live RPC + Simulation vs Static Single-Layer Metadata (RugCheck)", 640, 148);
 
@@ -876,7 +894,7 @@
     ctx.lineWidth = 1.4;
     ctx.stroke();
     ctx.textAlign = "center";
-    ctx.font = "900 18px 'Consolas', 'JetBrains Mono', monospace";
+    ctx.font = "900 20.9px 'DejaVu Sans', 'Arial Black', 'Consolas', 'JetBrains Mono', monospace";
     ctx.fillStyle = "#00FFA3";
     ctx.fillText("PRE-BUY SLA: <120ms LIVE AUDIT", 260, 572);
 
@@ -884,10 +902,10 @@
     roundRectPath(80, 602, 360, 50, 10);
     ctx.fillStyle = "rgba(255, 209, 102, 0.12)";
     ctx.fill();
-    ctx.font = "800 13.5px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 16.7px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FFD166";
     ctx.fillText("MAINNET PROOF: $VEYRA 0/100 BLOCKED", 260, 624);
-    ctx.font = "700 12.5px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 15.5px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#D8E8FF";
     ctx.fillText("Caught Pre-Drain vs $JESTER 100/100 Burned LP", 260, 643);
 
@@ -917,16 +935,16 @@
       ctx.stroke();
 
       ctx.textAlign = "center";
-      ctx.font = "900 14px 'Consolas', monospace";
+      ctx.font = "900 17.4px 'DejaVu Sans', 'Arial Black', 'Consolas', monospace";
       ctx.fillStyle = "#00FFA3";
       ctx.fillText(item[0], 532, ly + 41);
 
       ctx.textAlign = "left";
-      ctx.font = "800 18px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 20.9px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#FFFFFF";
       ctx.fillText(item[1], 568, ly + 31);
 
-      ctx.font = "600 14px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "800 17.4px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#B8D0F0";
       ctx.fillText(item[2], 568, ly + 54);
 
@@ -935,7 +953,7 @@
       ctx.fillStyle = "rgba(0, 255, 163, 0.16)";
       ctx.fill();
       ctx.textAlign = "center";
-      ctx.font = "800 12px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 14.9px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#00FFA3";
       ctx.fillText("ACTIVE ✓", 1160, ly + 40);
     });
@@ -948,11 +966,11 @@
     ctx.save();
 
     ctx.textAlign = "center";
-    ctx.font = "900 38px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 41px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FFD166";
     ctx.fillText("30% ATOMIC AFFILIATE SPLIT & HONEST PRICING", 640, 112);
 
-    ctx.font = "700 18px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 20.9px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#E4F2FF";
     ctx.fillText("Zero Custodial Lockups • Zero Auto-Billing • Start 100% Free Today", 640, 148);
 
@@ -973,19 +991,19 @@
     ctx.stroke();
 
     ctx.textAlign = "center";
-    ctx.font = "900 54px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 58.3px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FFD166";
     ctx.fillText("30%", 232, 266);
-    ctx.font = "800 15px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 18.6px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#00FFA3";
     ctx.fillText("ATOMIC ON-CHAIN ?ref= SPLIT", 232, 298);
 
     ctx.textAlign = "left";
-    ctx.font = "900 23px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 26.7px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FFFFFF";
     ctx.fillText("+50% HIGHER THAN CLAIMYOURSOL'S 20% AFFILIATE CAP", 412, 228);
 
-    ctx.font = "700 16px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 19.8px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#00FFA3";
     ctx.fillText("✓ Instant Same-Block SystemProgram::Transfer Straight to Your Solana Wallet", 412, 266);
 
@@ -998,7 +1016,7 @@
         price: "FREE",
         tier: "1ST AUDIT & CLAIM",
         col: "#00FFA3",
-        l1: "1st 11-Layer Audit FREE",
+        l1: "1st 12-Layer Audit FREE",
         l2: "1st SOL Rent Claim 0.0% Fee",
         l3: "Keep 100% (2,039,280 L/ATA)"
       },
@@ -1007,7 +1025,7 @@
         tier: "PROMO SINGLE",
         col: "#00E5FF",
         l1: "Extra Single Pre-Buy Audit",
-        l2: "<120ms Full 11-Layer Scan",
+        l2: "<120ms Full 12-Layer Scan",
         l3: "Pay-As-You-Go • $0 Lock-In"
       },
       {
@@ -1022,7 +1040,7 @@
         price: "$19.99/mo",
         tier: "TRADER PRO",
         col: "#00FFA3",
-        l1: "Unlimited 11-Layer Audits",
+        l1: "Unlimited 12-Layer Audits",
         l2: "0.0% Repeat Rent Cleanup Fee",
         l3: "Priority <120ms DEX6 Lane"
       }
@@ -1041,23 +1059,23 @@
       ctx.fillStyle = "rgba(255,255,255,0.07)";
       ctx.fill();
       ctx.textAlign = "center";
-      ctx.font = "800 13px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 16.1px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = tr.col;
       ctx.fillText(tr.tier, cx + cw / 2, cy + 38);
 
-      ctx.font = "900 40px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 43.2px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#FFFFFF";
       ctx.fillText(tr.price, cx + cw / 2, cy + 104);
 
       ctx.fillStyle = "rgba(255,255,255,0.12)";
       ctx.fillRect(cx + 24, cy + 126, cw - 48, 1);
 
-      ctx.font = "700 14.5px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 18px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#E8F3FF";
       ctx.fillText(tr.l1, cx + cw / 2, cy + 166);
       ctx.fillText(tr.l2, cx + cw / 2, cy + 204);
       ctx.fillStyle = tr.col;
-      ctx.font = "800 14px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 17.4px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillText(tr.l3, cx + cw / 2, cy + 246);
     });
 
@@ -1101,15 +1119,15 @@
     const rx = 508;
     ctx.globalAlpha = enter;
     ctx.textAlign = "left";
-    ctx.font = "800 17px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 19.7px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#00FFA3";
     ctx.fillText("◆ LIVE ON SOLANA MAINNET • ZERO SEED PHRASES EVER", rx, 158);
 
-    ctx.font = "900 46px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 49.7px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#FFFFFF";
     ctx.fillText("RECLAIM 100% OF CLAIM #1.", rx, 218);
 
-    ctx.font = "900 44px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 47.5px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#00E5FF";
     ctx.fillText("SHIELD EVERY SWAP IN <120ms.", rx, 274);
 
@@ -1127,26 +1145,26 @@
     ctx.shadowBlur = 0;
 
     ctx.textAlign = "center";
-    ctx.font = "900 44px 'Segoe UI', system-ui, sans-serif";
+    ctx.font = "900 47.5px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
     ctx.fillStyle = "#03101F";
     ctx.fillText("rentandrugshield.com", rx + 348, 380);
 
     // 3 Crisp Summary Pills
     const pills = [
-      ["0.0% 1st Rent Claim Fee", "Keep Full 2,039,280 Lamports / ATA • 1.5% Repeat"],
-      ["<120ms 11-Layer DEX6 Shield", "Sybil DAG • LP-Burn >=95% • Token-2022 Hooks • Jupiter Sim"],
+      ["0.0% 1st Rent Claim Fee", "Keep Full 2,039,280 Lamports / ATA • 2.0% Repeat"],
+      ["<120ms 12-Layer DEX6 Shield", "Sybil DAG • LP-Burn >=95% • Token-2022 Hooks • Jupiter Sim"],
       ["30% Atomic ?ref= Split & Free Start", "1st Audit & Claim FREE • $0.10 Single • $1.99 24h • $19.99/mo"]
     ];
     pills.forEach(function(p, idx) {
       const py = 446 + idx * 68;
       drawGlassCard(rx, py, 696, 56, idx === 0 ? "#00FFA3" : (idx === 1 ? "#00E5FF" : "#FFD166"), 0.88, 12);
       ctx.textAlign = "left";
-      ctx.font = "800 16px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "900 19.8px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = idx === 0 ? "#00FFA3" : (idx === 1 ? "#00E5FF" : "#FFD166");
       ctx.fillText("★ " + p[0], rx + 20, py + 34);
 
       ctx.textAlign = "right";
-      ctx.font = "600 14px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "800 17.4px 'DejaVu Sans', 'Arial Black', 'Segoe UI', system-ui, sans-serif";
       ctx.fillStyle = "#E6F2FF";
       ctx.fillText(p[1], rx + 676, py + 34);
     });
@@ -1183,6 +1201,7 @@
     });
   }
 
+  window.__promoRenderAt = renderAt;
   function renderAt(t) {
     const sc = getSceneForTime(t);
     drawBaseStage(t, sc);
