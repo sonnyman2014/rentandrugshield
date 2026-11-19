@@ -51,9 +51,9 @@
   "freePingsLimit": 2,
   "freePingsIncluded": 2,
   "baseUrl": "https://rentandrugshield.com",
-  "liveGatewayUrl": "https://entrepreneurs-priced-describe-thirty.trycloudflare.com",
+  "liveGatewayUrl": "https://inline-laura-engagement-mild.trycloudflare.com",
   "mcpEndpoint": "https://rentandrugshield.com/mcp",
-  "liveMcpEndpoint": "https://entrepreneurs-priced-describe-thirty.trycloudflare.com/mcp",
+  "liveMcpEndpoint": "https://inline-laura-engagement-mild.trycloudflare.com/mcp",
   "mcpDiscoveryUrl": "https://rentandrugshield.com/.well-known/mcp.json",
   "wwwAuthenticate": "x402 sdk=\"@x402/svm\", network=\"solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\", treasury=\"89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1\", treasury_usdc_ata=\"BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8\", usdc_mint=\"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\", option_b_usdc_atomic=\"100000\", option_b_sol=\"0.00134\", option_a_sol=\"0.026\"",
   "supportedHeaders": [
@@ -103,13 +103,13 @@
   },
   "resources": [
     "https://rentandrugshield.com/mcp",
-    "https://entrepreneurs-priced-describe-thirty.trycloudflare.com/mcp",
+    "https://inline-laura-engagement-mild.trycloudflare.com/mcp",
     "https://rentandrugshield.com/api/v1/shield-check",
     "https://rentandrugshield.com/api/v1/simulate-tx",
     "https://rentandrugshield.com/api/v1/scan-wallet",
-    "https://entrepreneurs-priced-describe-thirty.trycloudflare.com/api/v1/shield-check",
-    "https://entrepreneurs-priced-describe-thirty.trycloudflare.com/api/v1/simulate-tx",
-    "https://entrepreneurs-priced-describe-thirty.trycloudflare.com/api/v1/scan-wallet"
+    "https://inline-laura-engagement-mild.trycloudflare.com/api/v1/shield-check",
+    "https://inline-laura-engagement-mild.trycloudflare.com/api/v1/simulate-tx",
+    "https://inline-laura-engagement-mild.trycloudflare.com/api/v1/scan-wallet"
   ],
   "endpoints": [
     {
@@ -117,7 +117,7 @@
       "method": "POST",
       "transport": "streamable-http",
       "url": "https://rentandrugshield.com/mcp",
-      "liveUrl": "https://entrepreneurs-priced-describe-thirty.trycloudflare.com/mcp",
+      "liveUrl": "https://inline-laura-engagement-mild.trycloudflare.com/mcp",
       "description": "Zero-install Streamable HTTP MCP JSON-RPC 2.0 endpoint (tools/list free, tools/call 2 free pings then x402)."
     },
     {
@@ -125,7 +125,7 @@
       "method": "POST",
       "tool": "audit_solana_token",
       "url": "https://rentandrugshield.com/api/v1/shield-check",
-      "liveUrl": "https://entrepreneurs-priced-describe-thirty.trycloudflare.com/api/v1/shield-check",
+      "liveUrl": "https://inline-laura-engagement-mild.trycloudflare.com/api/v1/shield-check",
       "description": "Sub-120ms 11-layer Solana SPL & Token-2022 pre-buy anti-rug safety gate."
     },
     {
@@ -133,7 +133,7 @@
       "method": "POST",
       "tool": "simulate_solana_tx_drain",
       "url": "https://rentandrugshield.com/api/v1/simulate-tx",
-      "liveUrl": "https://entrepreneurs-priced-describe-thirty.trycloudflare.com/api/v1/simulate-tx",
+      "liveUrl": "https://inline-laura-engagement-mild.trycloudflare.com/api/v1/simulate-tx",
       "description": "Layer-9 Inner-CPI transaction drainer & authority hijack simulator."
     },
     {
@@ -141,7 +141,7 @@
       "method": "POST",
       "tool": "scan_wallet_unclaimed_sol",
       "url": "https://rentandrugshield.com/api/v1/scan-wallet",
-      "liveUrl": "https://entrepreneurs-priced-describe-thirty.trycloudflare.com/api/v1/scan-wallet",
+      "liveUrl": "https://inline-laura-engagement-mild.trycloudflare.com/api/v1/scan-wallet",
       "description": "Read-only Solana wallet unclaimed ATA & Token-2022 SOL rent scanner."
     }
   ],
