@@ -2171,25 +2171,94 @@ body.rrs-mode-original {
   50% { box-shadow: 0 0 12px 2px rgba(0, 255, 136, 0.55); }
 }
 
-/* On-Page Flashing Green/Red Corner Cybersecurity Shield */
+/* Single Aligned Top-Bar 3-State Shield (0 Duplicate Corner Pills) */
+#floatingBottomRightFeedbackBtn { display: none !important; }
+#rrsDualUiTopBar .rrs-top-row {
+  flex-wrap: nowrap !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+#rrsDualUiTopBar .rrs-top-actions {
+  flex-wrap: nowrap !important;
+}
 #rrsFlashingCornerShield {
-  position: fixed;
-  left: 14px;
-  bottom: 14px;
-  z-index: 9985;
+  position: static !important;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 13px;
+  gap: 6px;
+  height: 32px;
+  padding: 0 11px;
   border-radius: 999px;
-  background: rgba(5, 14, 10, 0.94);
+  background: rgba(5, 22, 15, 0.96);
   border: 1.5px solid #00FF88;
   color: #00FF88;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65), 0 0 16px rgba(0, 255, 136, 0.38);
+  white-space: nowrap;
   animation: rrsCornerGreenPulse 1.8s ease-in-out infinite;
+}
+#rrsFlashingCornerShield.is-caution {
+  background: rgba(45, 28, 4, 0.96);
+  border-color: #FACC15;
+  color: #FDE047;
+  animation: none;
+  box-shadow: 0 0 14px rgba(250, 204, 21, 0.45);
+}
+#rrsFlashingCornerShield.is-caution .rrs-shield-led {
+  background: #FACC15;
+  box-shadow: 0 0 10px #FACC15;
+}
+/* Why Add & Features Dropdown in Top Bar */
+.rrs-why-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.rrs-why-panel {
+  display: none;
+  position: fixed;
+  top: 52px;
+  right: 16px;
+  width: min(410px, 94vw);
+  z-index: 10045;
+  background: #081512;
+  border: 1.5px solid #00FF88;
+  border-radius: 14px;
+  padding: 14px 16px;
+  color: #F8FAFC;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.92);
+  font-size: 0.82rem;
+  line-height: 1.48;
+}
+.rrs-why-panel.open { display: block; }
+/* Animated Lightning Bolt Install Pointers (Top-Right Chrome Bar & Bottom Taskbar) */
+#rrsLightningInstallPointers {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10055;
+  pointer-events: none;
+}
+#rrsLightningInstallPointers.show { display: block; }
+.rrs-bolt-callout {
+  position: fixed;
+  pointer-events: auto;
+  background: linear-gradient(135deg, #06281E 0%, #091526 100%);
+  border: 2px solid #FFD166;
+  border-radius: 14px;
+  padding: 10px 14px;
+  color: #F8FAFC;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  box-shadow: 0 12px 34px rgba(0,0,0,0.88), 0 0 24px rgba(255,209,102,0.55);
+  animation: rrsBoltBounce 0.95s ease-in-out infinite alternate;
+}
+.rrs-bolt-callout.top-right { top: 56px; right: 18px; max-width: 320px; }
+.rrs-bolt-callout.bottom-bar { bottom: 18px; left: 50%; transform: translateX(-50%); max-width: 390px; }
+@keyframes rrsBoltBounce {
+  0% { filter: drop-shadow(0 0 6px #FFD166); margin-top: 0; }
+  100% { filter: drop-shadow(0 0 18px #00FF88); margin-top: -6px; }
 }
 #rrsFlashingCornerShield .rrs-shield-led {
   width: 10px;
@@ -2253,21 +2322,60 @@ body.rrs-mode-original {
     </div>
 
     <div class="rrs-top-actions">
-      <span class="rrs-vote-label">🗳️ Vote Best Look:</span>
-      <button type="button" id="btnVoteOriginalUi" class="rrs-act-btn" onclick="window.rrsCastUiVote('original')">👍 Original (<span id="rrsVoteOrigCnt">0</span>)</button>
-      <button type="button" id="btnVoteInstUi" class="rrs-act-btn" onclick="window.rrsCastUiVote('institutional')">👍 Institutional (<span id="rrsVoteInstCnt">0</span>)</button>
-      <button type="button" id="btnSaveToTaskbarTop" class="rrs-act-btn" style="border-color:rgba(255,209,102,0.55);color:#FFD166;" onclick="window.rrsSaveToTaskbarAction()">📌 Save to Taskbar</button>
-      <button type="button" id="btnInstallAppTop" class="rrs-act-btn" onclick="window.triggerRrsPwaInstall()">📲 Install App</button>
-      <button type="button" id="btnAddChromeShieldTop" class="rrs-act-btn chrome-flash" onclick="window.rrsOpenChromeShieldModal()">🧩 Add Flashing Chrome Shield</button>
+      <button type="button" id="rrsFlashingCornerShield" onclick="window.rrsOpenTopModal('rrsCyberSentinelModal', true)" aria-label="3-State 12-Layer Shield Status">
+        <span class="rrs-shield-led" aria-hidden="true"></span>
+        <span id="rrsCornerShieldText">🟢 Secure</span>
+      </button>
+      <button type="button" id="btnTopTestAlert" class="rrs-act-btn" style="border-color:rgba(250,204,21,0.55);color:#FDE047;" onclick="window.rrsCycleTestAlert()">⚡ Test Alert</button>
+      <span class="rrs-vote-label">🗳️ Vote:</span>
+      <button type="button" id="btnVoteOriginalUi" class="rrs-act-btn" onclick="window.rrsCastUiVote('original')">👍 Orig (<span id="rrsVoteOrigCnt">0</span>)</button>
+      <button type="button" id="btnVoteInstUi" class="rrs-act-btn" onclick="window.rrsCastUiVote('institutional')">👍 Inst (<span id="rrsVoteInstCnt">0</span>)</button>
+      <button type="button" id="btnAddChromeShieldTop" class="rrs-act-btn chrome-flash" onclick="window.rrsOpenChromeShieldModal(true)">🧩 Chrome v5.1 (24h Ultra Pro FREE)</button>
+      <div class="rrs-why-dropdown">
+        <button type="button" id="btnWhyAddDropdown" class="rrs-act-btn" style="border-color:rgba(56,189,248,0.55);color:#7DD3FC;" onclick="window.rrsToggleWhyAddDropdown(event)" aria-expanded="false">Why Add &amp; Features ▾</button>
+      </div>
+      <button type="button" id="btnSaveToTaskbarTop" class="rrs-act-btn" style="border-color:rgba(255,209,102,0.55);color:#FFD166;" onclick="window.rrsSaveToTaskbarAction()">📌 Pin Taskbar</button>
+      <button type="button" id="btnVerifiedHoursTop" class="rrs-act-btn" onclick="window.rrsOpenTopModal('rrsVerifiedHoursModal', true)">📜 898h Proof</button>
     </div>
   </div>
 </div>
 
-<!-- Persistent On-Page Flashing Green/Red Corner Cybersecurity Shield -->
-<button type="button" id="rrsFlashingCornerShield" onclick="window.rrsOpenTopModal('rrsCyberSentinelModal', true)" aria-label="Inspect 12-Layer Cybersecurity Shield">
-  <span class="rrs-shield-led" aria-hidden="true"></span>
-  <span id="rrsCornerShieldText">🛡️ 12-Layer Shield: LIVE</span>
-</button>
+<!-- Why Add & Features Dropdown Panel -->
+<div id="rrsWhyAddFeaturesPanel" class="rrs-why-panel" role="region" aria-label="Why Add Extension v5.1 and Free Forever Features">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+    <strong style="color:#00FF88;font-size:0.94rem;">⚡ Why Add Chrome Shield v5.1?</strong>
+    <button type="button" onclick="window.rrsToggleWhyAddDropdown(null, false)" style="background:transparent;border:1px solid #334155;color:#CBD5E1;border-radius:6px;padding:2px 8px;cursor:pointer;">✕</button>
+  </div>
+  <div style="padding:8px 10px;border-radius:9px;background:rgba(250,204,21,0.12);border:1px solid rgba(250,204,21,0.45);color:#FEF08A;font-weight:800;margin-bottom:8px;">
+    🎁 Automatic 24-Hour Ultra Pro FREE Trial on Install (Zero Card • Zero Seed Phrase)
+  </div>
+  <ul style="margin:0 0 10px;padding-left:18px;color:#E2E8F0;">
+    <li><strong>FREE Forever After 24h:</strong> <strong>Personal PC Security</strong> + <strong>12-Layer Pre-Buy Rug Alerts</strong> + <strong>Early DEX-6 Trending Coin Alerts</strong> stay <strong>100% FREE forever</strong>!</li>
+    <li><strong>3-State Live Shield:</strong> Instant <strong>🟢 Secure</strong>, <strong>🟡 Caution</strong>, and <strong>🔴 Alert</strong> toolbar protection across Pump.fun, Jupiter, DexScreener &amp; Raydium.</li>
+    <li><strong>0% 1st ATA Rent Recovery:</strong> Keep 100% of your 1st empty ATA rent forever (2.0% SOL fee on repeat cleanups).</li>
+  </ul>
+  <div style="display:flex;gap:8px;">
+    <button type="button" onclick="window.rrsToggleWhyAddDropdown(null, false); window.rrsOpenChromeShieldModal(true);" style="flex:1;min-height:36px;border-radius:8px;border:0;background:linear-gradient(90deg,#00FF88,#10B981);color:#03120B;font-weight:900;cursor:pointer;">⚡ Install v5.1 + Start 24h Ultra Pro FREE</button>
+    <button type="button" onclick="window.rrsCycleTestAlert()" style="min-height:36px;padding:0 12px;border-radius:8px;border:1px solid #FACC15;background:#1E1B08;color:#FDE047;font-weight:800;cursor:pointer;">Test Alert</button>
+  </div>
+</div>
+
+<!-- Animated Lightning Bolt Pointers Highlighting Top-Right Chrome Bar & Bottom Taskbar -->
+<div id="rrsLightningInstallPointers" aria-hidden="true">
+  <div class="rrs-bolt-callout top-right">
+    <div style="font-size:1.15rem;color:#FFD166;margin-bottom:3px;">⚡↗ Top-Right Chrome Bar</div>
+    <div style="font-weight:600;color:#D1FAE5;">Click the <strong>🧩 Extensions</strong> icon at top-right &amp; click <strong>📌 Pin</strong> on <strong>Solana Rent &amp; Rug Shield v5.1</strong>!</div>
+  </div>
+  <div class="rrs-bolt-callout bottom-bar">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <div style="font-size:1.05rem;color:#00FF88;">⚡↘ Bottom Windows Taskbar</div>
+        <div style="font-weight:600;color:#E2E8F0;font-size:0.78rem;">Pin Shield + <strong>RangerHub</strong> on your bottom Taskbar for 1-click protection across all monitors!</div>
+      </div>
+      <button type="button" onclick="window.rrsShowInstallBolts(false)" style="background:#0F172A;border:1px solid #475569;color:#F8FAFC;border-radius:7px;padding:5px 10px;cursor:pointer;font-weight:800;">Got It</button>
+    </div>
+  </div>
+</div>
 
 <!-- Save to Taskbar Modal -->
 <div id="rrsSaveTaskbarModal" class="rrs-top-modal-backdrop" hidden>
@@ -2310,14 +2418,14 @@ body.rrs-mode-original {
 <div id="rrsChromeShieldModal" class="rrs-top-modal-backdrop" hidden>
   <div class="rrs-top-modal-card">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-      <h3 style="margin:0;font-size:1.1rem;color:#00FF88;">🧩 Flashing Chrome Cybersecurity Shield (MV3)</h3>
+      <h3 style="margin:0;font-size:1.1rem;color:#00FF88;">🧩 Chrome Shield v5.1 — Automatic 24-Hour Ultra Pro FREE Trial</h3>
       <button type="button" id="rrsCloseChromeModalBtn" onclick="window.rrsOpenTopModal('rrsChromeShieldModal', false)" style="background:transparent;border:1px solid #334155;color:#CBD5E1;border-radius:8px;padding:4px 10px;cursor:pointer;">✕</button>
     </div>
     <p style="font-size:0.86rem;color:#D1FAE5;line-height:1.5;margin:0 0 12px;">
       Real-time <strong>12-Layer Gemini 4 Carbon</strong> toolbar protection across <code>pump.fun</code>, <code>dexscreener.com</code>, <code>jup.ag</code>, and <code>gmgn.ai</code>. Pulses <strong>🟢 Green</strong> on clean mints and strobes <strong>🔴 Red</strong> on Slot-0 bundles &amp; drainers!
     </p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <a href="/CWS_READY_SolanaRentRugShield_MV3.zip" download id="rrsDownloadMv3ZipLink" style="flex:1;min-height:42px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(90deg,#00FF88,#10B981);color:#03120B;font-weight:900;text-decoration:none;">⬇️ Download Chrome MV3 Shield (.zip)</a>
+      <a href="/CWS_READY_SolanaRentRugShield_MV3.zip" download id="rrsDownloadMv3ZipLink" onclick="window.rrsShowInstallBolts(true)" style="flex:1;min-height:42px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(90deg,#00FF88,#10B981);color:#03120B;font-weight:900;text-decoration:none;">⚡ Download Extension v5.1 (Auto 24h Ultra Pro FREE)</a>
       <button type="button" onclick="window.rrsOpenTopModal('rrsChromeShieldModal', false)" style="min-height:42px;padding:0 16px;border-radius:10px;border:1px solid #334155;background:#0F172A;color:#F8FAFC;font-weight:700;cursor:pointer;">Close</button>
     </div>
   </div>
@@ -2331,11 +2439,61 @@ body.rrs-mode-original {
       <button type="button" id="rrsCloseCyberModalBtn" onclick="window.rrsOpenTopModal('rrsCyberSentinelModal', false)" style="background:transparent;border:1px solid #334155;color:#CBD5E1;border-radius:8px;padding:4px 10px;cursor:pointer;">✕</button>
     </div>
     <p style="font-size:0.85rem;color:#CBD5E1;line-height:1.5;margin:0 0 12px;">
-      Powered by <strong>Gemini 4 Carbon AI + 78,000+ Quant Man-Hours</strong>. Actively guards against <strong>Layer 12 Slot-0 Jito Insider Bundles</strong>, <code>ApproveChecked(u64::MAX)</code> wallet drainers, and <code>SetAuthority</code> account hijacks.
+      Powered by <strong>Gemini 4 Carbon AI • 898 Verified Founder Hrs (165 Days) + 5,501 Parallel Compute Hrs</strong>. Actively guards against <strong>Layer 12 Slot-0 Jito Insider Bundles</strong>, <code>ApproveChecked(u64::MAX)</code> wallet drainers, and <code>SetAuthority</code> account hijacks.
     </p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <button type="button" id="rrsSimulateRedAlertBtn" onclick="window.rrsSetCornerShieldState(true, 'Simulated Layer-12 Slot-0 Bundle & Drainer Blocked')" style="flex:1;min-height:38px;border-radius:9px;border:1px solid #FF3B5C;background:rgba(255,59,92,0.16);color:#FF8FA3;font-weight:800;cursor:pointer;">🔴 Test Red Threat Strobe</button>
-      <button type="button" id="rrsResetGreenShieldBtn" onclick="window.rrsSetCornerShieldState(false)" style="flex:1;min-height:38px;border-radius:9px;border:1px solid #00FF88;background:rgba(0,255,136,0.16);color:#00FF88;font-weight:800;cursor:pointer;">🟢 Reset Clean Status</button>
+      <button type="button" id="rrsResetGreenShieldBtn" onclick="window.rrsSetShieldThreeState('secure')" style="flex:1;min-height:38px;border-radius:9px;border:1px solid #00FF88;background:rgba(0,255,136,0.16);color:#00FF88;font-weight:800;cursor:pointer;">🟢 Secure</button>
+      <button type="button" id="rrsCautionShieldBtn" onclick="window.rrsSetShieldThreeState('caution', 'Elevated Top-10 Holder / Unverified Domain Caution')" style="flex:1;min-height:38px;border-radius:9px;border:1px solid #FACC15;background:rgba(250,204,21,0.16);color:#FDE047;font-weight:800;cursor:pointer;">🟡 Caution</button>
+      <button type="button" id="rrsSimulateRedAlertBtn" onclick="window.rrsSetShieldThreeState('alert', 'Simulated Layer-12 Slot-0 Bundle & Drainer Blocked')" style="flex:1;min-height:38px;border-radius:9px;border:1px solid #FF3B5C;background:rgba(255,59,92,0.16);color:#FF8FA3;font-weight:800;cursor:pointer;">🔴 Alert (Test Alert)</button>
+    </div>
+  </div>
+</div>
+
+<!-- In-Page 45s Promo Cinema Modal (Never Navigates Off-Page) -->
+<div id="rrsPromoCinemaModal" class="rrs-top-modal-backdrop" hidden onclick="if(event.target===this)window.rrsClosePromoCinemaModal()">
+  <div class="rrs-top-modal-card" style="max-width:920px;padding:16px 18px;background:#050B12;border:2px solid #FFD166;">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;">
+      <h3 style="margin:0;font-size:1.05rem;color:#FFD166;">🎬 Official 45s HD Promo — Solana Rent &amp; 12-Layer Rug Shield</h3>
+      <button type="button" id="rrsClosePromoCinemaBtn" onclick="window.rrsClosePromoCinemaModal()" style="background:#0F172A;border:1px solid #475569;color:#F8FAFC;border-radius:8px;padding:5px 12px;font-weight:800;cursor:pointer;">✕ Close</button>
+    </div>
+    <video id="rrsCinemaModalVideo" controls playsinline preload="metadata" poster="/og-master-shield-v7.png?v=1795125762" style="width:100%;max-height:74vh;border-radius:12px;background:#000;display:block;">
+      <source src="/promo/rent_rug_shield_promo_45s.mp4?v=1795125762" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+<!-- Court-Auditable Verified Engineering & Compute Hours Drawer -->
+<div id="rrsVerifiedHoursModal" class="rrs-top-modal-backdrop" hidden onclick="if(event.target===this)window.rrsOpenTopModal('rrsVerifiedHoursModal', false)">
+  <div class="rrs-top-modal-card" style="max-width:660px;border-color:#10B981;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <h3 style="margin:0;font-size:1.06rem;color:#00FF88;">📜 SHA-256 Verified Engineering &amp; Compute Hours Ledger</h3>
+      <button type="button" id="rrsCloseVerifiedHoursBtn" onclick="window.rrsOpenTopModal('rrsVerifiedHoursModal', false)" style="background:transparent;border:1px solid #334155;color:#CBD5E1;border-radius:8px;padding:4px 10px;cursor:pointer;">✕</button>
+    </div>
+    <p style="font-size:0.83rem;color:#94A3B8;margin:0 0 10px;">
+      Audited across first-party Git commits, WSL &amp; Windows NTFS filesystem timestamps, shell histories, Chrome sessions, and Antigravity JSONL logs (Feb 2026 &ndash; Nov 19, 2026: Flash &rarr; Pro &rarr; Argon &rarr; Carbon).
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:10px;">
+      <div style="background:#071713;border:1px solid rgba(16,185,129,0.45);border-radius:12px;padding:12px;">
+        <div style="font-size:0.74rem;color:#6EE7B7;font-weight:800;text-transform:uppercase;">(A) Human Founder Engineering</div>
+        <div style="font-size:1.35rem;font-weight:900;color:#F8FAFC;margin:4px 0;">897.9 Active Hrs</div>
+        <div style="font-size:0.79rem;color:#CBD5E1;line-height:1.45;">
+          • <strong>165 Active Engineering Days</strong> since Feb 2026<br/>
+          • Strict 15-min bucket floor: <strong>823.2 hrs</strong><br/>
+          • Verified Weekend Sprint: <strong>71.42 Continuous Hrs</strong> (Nov 11&ndash;14, 5,991 events) + 66.8h Oct Sprint
+        </div>
+      </div>
+      <div style="background:#081322;border:1px solid rgba(56,189,248,0.45);border-radius:12px;padding:12px;">
+        <div style="font-size:0.74rem;color:#7DD3FC;font-weight:800;text-transform:uppercase;">(B) Parallel AI &amp; Daemon Compute</div>
+        <div style="font-size:1.35rem;font-weight:900;color:#F8FAFC;margin:4px 0;">5,500.7 Compute Hrs</div>
+        <div style="font-size:0.79rem;color:#CBD5E1;line-height:1.45;">
+          • <strong>5,232.5 hrs</strong> Multi-Core WSL PM2 Daemons<br/>
+          • <strong>268.2 hrs</strong> Parallel AI-Agent Execution<br/>
+          • <strong>71,548</strong> verified JSONL trajectory steps
+        </div>
+      </div>
+    </div>
+    <div style="background:#050A0E;border:1px solid #1E293B;border-radius:9px;padding:8px 10px;font-family:monospace;font-size:0.74rem;color:#A7F3D0;word-break:break-all;">
+      SHA-256 Ledger Seal: 5ca3cc5f737351e7b8ae3ae6ee7e10d802a2d680536de1cc579cfede033758c9
     </div>
   </div>
 </div>
@@ -2691,7 +2849,7 @@ body.rrs-mode-original {
         <p class="inst-sub">Non-custodial SPL &amp; Token-2022 execution • Read-only zero-signature previews • Treasury routing <code style="color:#FCD34D;">89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1</code></p>
       </div>
       <div class="inst-badge-cluster">
-        <span class="inst-badge carbon">⚡ Powered by Gemini 4 Carbon AI + 78,000+ Quant Man-Hours</span>
+        <button type="button" class="inst-badge carbon" style="cursor:pointer;" onclick="window.rrsOpenTopModal('rrsVerifiedHoursModal', true)">⚡ Gemini 4 Carbon AI • 898 Verified Founder Hrs (165 Days) + 5,501 Parallel Compute Hrs (Audit Proof ↗)</button>
         <span class="inst-badge gold">🛡️ Layer 12: Slot-0 Insider Bundle &amp; Cybersecurity Drainer Detection</span>
         <span class="inst-badge">🎁 1st Token &amp; 1st ATA Lifetime Free &rarr; 2.0% SOL Fee</span>
       </div>
@@ -2710,7 +2868,7 @@ body.rrs-mode-original {
         </p>
 
         <div class="inst-input-bar">
-          <input type="text" id="instWalletInput" placeholder="Enter Solana Wallet Address (Read-Only Preview)..." autocomplete="off" spellcheck="false" aria-label="Institutional Solana Wallet Address Input" />
+          <input type="text" id="instWalletInput" value="" placeholder="Enter Solana Wallet Address (Read-Only Preview)..." autocomplete="off" spellcheck="false" aria-label="Institutional Solana Wallet Address Input" />
           <button type="button" class="inst-mini-btn" id="instPasteWalletBtn">Paste</button>
         </div>
 
@@ -2721,7 +2879,7 @@ body.rrs-mode-original {
 
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
           <button type="button" class="inst-mini-btn" id="instSampleWalletBtn" style="flex:1;">👀 Test Verified Sample Wallet</button>
-          <a href="/promo" target="_blank" rel="noopener" class="inst-mini-btn" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;color:#FCD34D;border-color:rgba(245,158,11,0.4);">🎬 Watch 45s Promo Video</a>
+          <button type="button" id="instWatchPromoModalBtn" onclick="window.rrsOpenPromoCinemaModal()" class="inst-mini-btn" style="display:inline-flex;align-items:center;justify-content:center;color:#FCD34D;border-color:rgba(245,158,11,0.45);">🎬 Watch 45s Promo</button>
         </div>
 
         <div class="inst-kpi-strip">
@@ -2744,7 +2902,7 @@ body.rrs-mode-original {
         </p>
 
         <div class="inst-input-bar">
-          <input type="text" id="instMintInput" placeholder="Enter Solana Token Mint Address..." autocomplete="off" spellcheck="false" aria-label="Institutional Token Mint Address Input" />
+          <input type="text" id="instMintInput" value="" placeholder="Enter Solana Token Mint Address..." autocomplete="off" spellcheck="false" aria-label="Institutional Token Mint Address Input" />
           <button type="button" class="inst-mini-btn" id="instPasteMintBtn">Paste</button>
         </div>
 
@@ -2767,7 +2925,7 @@ body.rrs-mode-original {
     <div class="inst-engine-card" style="margin-bottom:18px;">
       <div class="inst-card-head">
         <h3 class="inst-card-title" style="font-size:1.02rem;">🔬 Complete 12-Layer Gemini 4 Carbon Forensic Specification</h3>
-        <span class="inst-badge carbon">All 12 Layers Live • Powered by Gemini 4 Carbon AI + 78,000+ Quant Man-Hours</span>
+        <button type="button" class="inst-badge carbon" style="cursor:pointer;" onclick="window.rrsOpenTopModal('rrsVerifiedHoursModal', true)">All 12 Layers Live • 898 Verified Founder Hrs (165 Days) + 5,501 Parallel Compute Hrs (SHA-256 Proof)</button>
       </div>
       <div class="inst-layer12-grid">
         <div class="inst-layer-cell"><b>L01 · Mint Authority</b>Blocks uncapped post-launch supply inflation.</div>
@@ -3164,7 +3322,7 @@ body.rrs-mode-original {
       <div class="rrs-hero-copy-col">
         <div class="rrs-hero-eyebrow">
           <span class="rrs-live-pulse-dot"></span>
-          <span>@SolRentClaim OFFICIAL • POWERED BY GEMINI 4 CARBON AI • 78,000+ QUANT MAN-HOURS</span>
+          <span>@SolRentClaim OFFICIAL • GEMINI 4 CARBON AI • <button type="button" onclick="window.rrsOpenTopModal('rrsVerifiedHoursModal', true)" style="background:transparent;border:0;padding:0;color:#FFD166;font:inherit;font-weight:900;text-decoration:underline;cursor:pointer;">898 VERIFIED FOUNDER HRS (165 DAYS) + 5,501 PARALLEL COMPUTE HRS</button></span>
         </div>
         <h1 class="rrs-hero-main-title">
           Reclaim Trapped <span class="rrs-txt-emerald">SOL Rent</span> &amp; Block <span class="rrs-txt-gold">12-Layer Rugs</span> Pre-Buy
@@ -3176,9 +3334,9 @@ body.rrs-mode-original {
           <button type="button" id="rrsUnmutePromoHeroBtn" onclick="window.rrsToggleHeroPromoAudio && window.rrsToggleHeroPromoAudio()" class="rrs-hero-pill-btn gold">
             🔊 Unmute Promo Video
           </button>
-          <a href="/promo" target="_blank" rel="noopener" id="rrsOpenFullPromoLink" class="rrs-hero-pill-btn emerald-outline">
-            🎬 Fullscreen HD Promo (/promo)
-          </a>
+          <button type="button" id="rrsOpenFullPromoLink" onclick="window.rrsOpenPromoCinemaModal()" class="rrs-hero-pill-btn emerald-outline">
+            🎬 Watch 45s Promo
+          </button>
           <button type="button" id="rrsHeroPwaInstallBtn" onclick="window.triggerRrsPwaInstall && window.triggerRrsPwaInstall()" class="rrs-hero-pill-btn emerald">
             📲 Install App
           </button>
@@ -3377,7 +3535,7 @@ body.rrs-mode-original {
         <div id="instantUnlimitedShieldBox" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; width:100%; box-sizing:border-box; padding:8px 12px; border-radius:9px; background:rgba(15, 23, 42, 0.92); border:1px solid rgba(56, 189, 248, 0.42);">
           <div style="font-size:0.83rem; font-weight:700; color:#E2E8F0; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
             <span>⚡ Instant UNLIMITED 12-Layer Shield • Extra <span class="mono-price" style="color:#10B981;">10¢</span> • 24h <span class="mono-price" style="color:#10B981;">$1.99</span></span>
-            <button type="button" id="idxCardLayer11InfoBtn" class="rrs-layer11-info-btn" title="12-Layer Gemini 4 Carbon AI Shield: Includes Layer 11 (Block-0 Sybil Cluster Defense) + Layer 12 (Slot-0 Insider Bundle & Cybersecurity Drainer Detection) engineered across 78,000+ Quant Man-Hours." aria-label="12-Layer Upgrade Info">ⓘ</button>
+            <button type="button" id="idxCardLayer11InfoBtn" class="rrs-layer11-info-btn" title="12-Layer Gemini 4 Carbon AI Shield: Includes Layer 11 (Block-0 Sybil Cluster Defense) + Layer 12 (Slot-0 Insider Bundle & Cybersecurity Drainer Detection) engineered across 898 Verified Founder Hrs (165 Days) + 5,501 Parallel Compute Hrs." aria-label="12-Layer Upgrade Info">ⓘ</button>
           </div>
           <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
             <button type="button" onclick="window.openLiveCheckout('day_199','SOL')" style="min-height:32px; padding:4px 10px; border-radius:7px; border:1px solid #10B981; background:rgba(16,185,129,0.18); color:#6EE7B7; font-size:0.80rem; font-weight:700; cursor:pointer;">Unlock $1.99 Pass</button>
@@ -14800,7 +14958,7 @@ window.submitVisitorFeedbackNow = async function(){
   if (window.__RRS_0X107_TELEMETRY_LOADED) return;
   window.__RRS_0X107_TELEMETRY_LOADED = true;
 
-  var LAYER11_INFO_TEXT = "12-Layer Gemini 4 Carbon AI Shield: Includes Layer 11 (Block-0 Sybil Cluster Defense) + Layer 12 (Slot-0 Insider Bundle & Cybersecurity Drainer Detection) engineered across 78,000+ Quant Man-Hours.";
+  var LAYER11_INFO_TEXT = "12-Layer Gemini 4 Carbon AI Shield: Includes Layer 11 (Block-0 Sybil Cluster Defense) + Layer 12 (Slot-0 Insider Bundle & Cybersecurity Drainer Detection) engineered across 898 Verified Founder Hrs (165 Days) + 5,501 Parallel Compute Hrs.";
   var EXCLUDED_PREFIXES = ["5sEb9m", "CsLX8F", "DGnsyz", "FRCeYg"];
   var _apiBaseCache = null;
 
@@ -16488,31 +16646,103 @@ window.submitVisitorFeedbackNow = async function(){
     window.rrsOpenTopModal("rrsInstallPwaModal", true);
   };
 
-  window.rrsOpenChromeShieldModal = function() {
-    window.rrsOpenTopModal("rrsChromeShieldModal", true);
+  var _rrsBoltTimer = null;
+  window.rrsShowInstallBolts = function(show) {
+    var el = document.getElementById("rrsLightningInstallPointers");
+    if (!el) return;
+    if (_rrsBoltTimer) { clearTimeout(_rrsBoltTimer); _rrsBoltTimer = null; }
+    if (show) {
+      el.classList.add("show");
+      _rrsBoltTimer = setTimeout(function(){ el.classList.remove("show"); }, 9000);
+    } else {
+      el.classList.remove("show");
+    }
   };
 
-  window.rrsSetCornerShieldState = function(isRedAlert, alertHeadline) {
+  window.rrsOpenChromeShieldModal = function(withBolts) {
+    window.rrsOpenTopModal("rrsChromeShieldModal", true);
+    if (withBolts) window.rrsShowInstallBolts(true);
+  };
+
+  window.rrsToggleWhyAddDropdown = function(ev, forceState) {
+    if (ev && ev.stopPropagation) ev.stopPropagation();
+    var p = document.getElementById("rrsWhyAddFeaturesPanel");
+    var b = document.getElementById("btnWhyAddDropdown");
+    if (!p) return;
+    var next = (typeof forceState === "boolean") ? forceState : !p.classList.contains("open");
+    p.classList.toggle("open", next);
+    if (b) b.setAttribute("aria-expanded", String(next));
+  };
+
+  window.rrsOpenPromoCinemaModal = function() {
+    var heroV = document.getElementById("rrsHeroPromoVideo");
+    if (heroV && !heroV.paused) { try { heroV.pause(); } catch(_e){} }
+    window.rrsOpenTopModal("rrsPromoCinemaModal", true);
+    var cv = document.getElementById("rrsCinemaModalVideo");
+    if (cv) {
+      cv.currentTime = 0;
+      cv.muted = false;
+      cv.play().catch(function(){ cv.muted = true; cv.play().catch(function(){}); });
+    }
+  };
+
+  window.rrsClosePromoCinemaModal = function() {
+    var cv = document.getElementById("rrsCinemaModalVideo");
+    if (cv) { try { cv.pause(); } catch(_e){} }
+    window.rrsOpenTopModal("rrsPromoCinemaModal", false);
+  };
+
+  var _rrsShieldState = "secure";
+  window.rrsSetShieldThreeState = function(mode, headline) {
+    _rrsShieldState = (mode === "caution" || mode === "alert") ? mode : "secure";
     var badge = document.getElementById("rrsFlashingCornerShield");
     var txt = document.getElementById("rrsCornerShieldText");
     var modTitle = document.getElementById("rrsCyberSentinelTitle");
     if (!badge) return;
-    if (isRedAlert) {
+    badge.classList.remove("is-red-alert", "is-caution");
+    if (_rrsShieldState === "alert") {
       badge.classList.add("is-red-alert");
-      if (txt) txt.textContent = "🔴 CYBER ALERT: INSPECT";
+      if (txt) txt.textContent = "🔴 Alert";
       if (modTitle) {
         modTitle.style.color = "#FF4D6D";
-        modTitle.textContent = "🔴 " + (alertHeadline || "Layer-12 Drainer / Slot-0 Bundle Blocked");
+        modTitle.textContent = "🔴 Alert: " + (headline || "Layer-12 Drainer / Slot-0 Bundle Blocked");
+      }
+    } else if (_rrsShieldState === "caution") {
+      badge.classList.add("is-caution");
+      if (txt) txt.textContent = "🟡 Caution";
+      if (modTitle) {
+        modTitle.style.color = "#FDE047";
+        modTitle.textContent = "🟡 Caution: " + (headline || "Elevated Whale / Concentration Risk");
       }
     } else {
-      badge.classList.remove("is-red-alert");
-      if (txt) txt.textContent = "🛡️ 12-Layer Shield: LIVE";
+      if (txt) txt.textContent = "🟢 Secure";
       if (modTitle) {
         modTitle.style.color = "#00FF88";
-        modTitle.textContent = "🟢 12-Layer Gemini 4 Carbon Sentinel: CLEAN";
+        modTitle.textContent = "🟢 Secure: 12-Layer Gemini 4 Carbon Sentinel Armed";
       }
     }
   };
+
+  window.rrsCycleTestAlert = function() {
+    var order = ["secure", "caution", "alert"];
+    var nxt = order[(order.indexOf(_rrsShieldState) + 1) % order.length];
+    window.rrsSetShieldThreeState(nxt, nxt === "alert" ? "Test Alert Verified — 12-Layer Shield Armed" : "Test Caution Verified");
+  };
+
+  window.rrsSetCornerShieldState = function(isRedAlert, alertHeadline) {
+    window.rrsSetShieldThreeState(isRedAlert ? "alert" : "secure", alertHeadline);
+  };
+
+  function rrsClearStuckContractInputs() {
+    var sp = new URLSearchParams(window.location.search || "");
+    var hasExplicitQuery = !!(sp.get("mint") || sp.get("wallet"));
+    if (hasExplicitQuery) return;
+    ["walletInput", "mintInput", "instWalletInput", "instMintInput", "w-inp", "m-inp"].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el && el.value) el.value = "";
+    });
+  }
+  window.addEventListener("pageshow", rrsClearStuckContractInputs);
 
   document.addEventListener("DOMContentLoaded", function(){
     var qUi = new URLSearchParams(window.location.search).get("ui");
@@ -16531,6 +16761,8 @@ window.submitVisitorFeedbackNow = async function(){
       }
     }).catch(function(){});
 
+    rrsClearStuckContractInputs();
+    if (window.location.search.indexOf("ext_installed=1") !== -1) { window.rrsShowInstallBolts(true); }
     if (window.location.search.indexOf("cyber_inspect=1") !== -1) {
       window.rrsSetCornerShieldState(true, "Threat Advisory Inspection Mode");
       window.rrsOpenTopModal("rrsCyberSentinelModal", true);

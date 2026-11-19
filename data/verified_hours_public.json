@@ -1,0 +1,103 @@
+{
+  "audit_title": "Court-Auditable Forensic Engineering & Compute Hours Ledger (Feb 2026 – Nov 19, 2026)",
+  "generated_at_utc": "2026-11-19T22:26:09Z",
+  "model_progression": [
+    "Gemini Flash (Feb–Apr 2026)",
+    "Gemini Pro (May–Jul 2026)",
+    "Gemini Argon (Aug–Oct 2026)",
+    "Gemini 4 Carbon (Nov 2026)"
+  ],
+  "category_A_human_founder": {
+    "earliest_verified_date": "2026-02-01",
+    "latest_verified_date": "2026-11-19",
+    "calendar_span_days": 292,
+    "verified_active_engineering_days": 165,
+    "verified_active_human_hours": 897.9,
+    "strict_15min_bucket_hours": 823.2,
+    "focused_coding_sessions": 532,
+    "marathon_sprints_over_24h": 6,
+    "top_marathon_sprints": [
+      {
+        "start_pst": "2026-10-25 21:58:45 PDT",
+        "end_pst": "2026-11-07 18:35:51 PST",
+        "continuous_span_hours": 309.62,
+        "verified_events_in_block": 46217,
+        "max_rest_gap_minutes": 124.5
+      },
+      {
+        "start_pst": "2026-11-15 06:39:54 PST",
+        "end_pst": "2026-11-19 14:26:04 PST",
+        "continuous_span_hours": 103.77,
+        "verified_events_in_block": 20118,
+        "max_rest_gap_minutes": 142.9
+      },
+      {
+        "start_pst": "2026-11-11 00:46:29 PST",
+        "end_pst": "2026-11-14 00:11:54 PST",
+        "continuous_span_hours": 71.42,
+        "verified_events_in_block": 5991,
+        "max_rest_gap_minutes": 132.5
+      },
+      {
+        "start_pst": "2026-10-23 13:29:44 PDT",
+        "end_pst": "2026-10-25 18:19:37 PDT",
+        "continuous_span_hours": 52.83,
+        "verified_events_in_block": 1319,
+        "max_rest_gap_minutes": 104.2
+      },
+      {
+        "start_pst": "2026-11-09 03:43:44 PST",
+        "end_pst": "2026-11-10 20:26:11 PST",
+        "continuous_span_hours": 40.71,
+        "verified_events_in_block": 5321,
+        "max_rest_gap_minutes": 29.7
+      },
+      {
+        "start_pst": "2026-10-05 11:06:49 PDT",
+        "end_pst": "2026-10-06 23:37:33 PDT",
+        "continuous_span_hours": 36.51,
+        "verified_events_in_block": 182,
+        "max_rest_gap_minutes": 150.5
+      }
+    ],
+    "weekend_marathon_highlight": {
+      "start_pst": "2026-11-11 00:46:29 PST",
+      "end_pst": "2026-11-14 00:11:54 PST",
+      "continuous_span_hours": 71.42,
+      "verified_events_in_block": 5991,
+      "max_rest_gap_minutes": 132.5
+    },
+    "active_days_by_era": {
+      "Era_1_Flash_Foundation_Feb_Apr_2026": 29,
+      "Era_2_Pro_Architecture_May_Jul_2026": 29,
+      "Era_3_Argon_DEX_Engine_Aug_Oct_2026": 88,
+      "Era_4_Carbon_Shield_Live_Nov_2026": 19
+    }
+  },
+  "category_B_parallel_compute": {
+    "verified_wall_clock_daemon_hours": 230.5,
+    "live_pm2_daemons": 37,
+    "host_logical_cores": 12,
+    "verified_ai_agent_steps": 71205,
+    "parallel_ai_agent_compute_hours": 268.2,
+    "parallel_daemon_process_hours": 5232.5,
+    "total_verified_parallel_compute_hours": 5500.7
+  },
+  "evidence_counts": {
+    "first_party_git_commits": 404,
+    "git_repositories_audited": 56,
+    "source_and_system_files_audited": 97453,
+    "shell_commands_logged": 1858,
+    "ai_ide_trajectory_steps": 71548,
+    "daemon_audit_events_verified": 11613
+  },
+  "display_claims": {
+    "full_banner": "898 Verified Founder Engineering Hours (165 Active Days Since Feb 2026) + 5,501 Parallel AI & Multi-Core Compute Hours",
+    "compact_badge": "898 Verified Founder Hrs (165 Days) + 5,501 Parallel Compute Hrs",
+    "human_founder_hours": 898,
+    "human_active_days": 165,
+    "parallel_compute_hours": 5501,
+    "replaced_unverified_claim": "78,000+ Quant Man-Hours"
+  },
+  "ledger_sha256": "5ca3cc5f737351e7b8ae3ae6ee7e10d802a2d680536de1cc579cfede033758c9"
+}
