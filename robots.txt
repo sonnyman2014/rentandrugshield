@@ -1,6 +1,21 @@
 # Solana Rent & Rug Shield — Search & AI Discovery Crawler Policy
 # Canonical Sitemap & 11-Layer Solana Token Safety Audit Index
 
+User-agent: Twitterbot
+Allow: /
+Allow: /og-shield-v3.png
+Allow: /og-card-v2.png
+Allow: /audit/
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
 User-agent: Googlebot
 Allow: /
 Allow: /audit/
