@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://proceeding-pavilion-brunswick-wherever.trycloudflare.com",
-  "api_base": "https://proceeding-pavilion-brunswick-wherever.trycloudflare.com",
-  "rpc_url": "https://proceeding-pavilion-brunswick-wherever.trycloudflare.com/api/rpc",
-  "actions_base": "https://proceeding-pavilion-brunswick-wherever.trycloudflare.com/api/actions",
+  "endpoint": "https://awards-northern-needed-rom.trycloudflare.com",
+  "api_base": "https://awards-northern-needed-rom.trycloudflare.com",
+  "rpc_url": "https://awards-northern-needed-rom.trycloudflare.com/api/rpc",
+  "actions_base": "https://awards-northern-needed-rom.trycloudflare.com/api/actions",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
   "referral_bps": 50,
   "shield_trade_gate_min": 85,
@@ -13,5 +13,5 @@
     "DGnsyzo5cbQZMpXEwSbESBnSrdjroj7DhpcAPbfQaUft",
     "FRCeYgC1PR7kTKhgk8Peq7WE8Rz6E7cEXnhB77DT5G8F"
   ],
-  "updated_at": "2026-11-19T02:29:51Z"
+  "updated_at": "2026-11-19T19:13:33Z"
 }

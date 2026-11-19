@@ -72,3 +72,6 @@ data/
 staging_previews/
 staging_meme_vs_institution.html
 !/static/rrs_telemetry.js
+!/CWS_READY.zip
+!/icon192.png
+!/icon512.png

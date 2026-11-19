@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Clearing Old Service Worker Cache...</title></head>
+<body style="background:#06131f;color:#34d399;font-family:monospace;padding:40px;text-align:center;">
+  <h2>🧹 Wiping Old Service Worker & Browser Cache...</h2>
+  <p id="msg">Unregistering stale PWA Service Worker...</p>
+  <script>
+  (async function(){
+    try {
+      if ('serviceWorker' in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        for (let r of regs) { await r.unregister(); }
+      }
+      if ('caches' in window) {
+        const keys = await caches.keys();
+        for (let k of keys) { await caches.delete(k); }
+      }
+      localStorage.clear();
+      sessionStorage.clear();
+    } catch(e){}
+    document.getElementById('msg').innerText = '✅ Cache Wiped! Redirecting to fresh live site...';
+    setTimeout(function(){
+      window.location.replace('/?fresh=' + Date.now());
+    }, 800);
+  })();
+  </script>
+</body></html>
