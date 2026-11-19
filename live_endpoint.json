@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://awards-northern-needed-rom.trycloudflare.com",
-  "api_base": "https://awards-northern-needed-rom.trycloudflare.com",
-  "rpc_url": "https://awards-northern-needed-rom.trycloudflare.com/api/rpc",
-  "actions_base": "https://awards-northern-needed-rom.trycloudflare.com/api/actions",
+  "endpoint": "https://soldier-indirect-amber-messaging.trycloudflare.com",
+  "api_base": "https://soldier-indirect-amber-messaging.trycloudflare.com",
+  "rpc_url": "https://soldier-indirect-amber-messaging.trycloudflare.com/api/rpc",
+  "actions_base": "https://soldier-indirect-amber-messaging.trycloudflare.com/api/actions",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
   "referral_bps": 50,
   "shield_trade_gate_min": 85,
