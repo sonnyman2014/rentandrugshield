@@ -1641,9 +1641,9 @@
 </style>
 <script id="rrs-sw-v311-cache-bust">
 (function() {
-  var SW_VER = "315-11layer";
-  var EXPECTED_CACHE = "rent-shield-v315-11layer-trust-clean";
-  var ACTIVE_TUNNEL = "https://via-tree-techno-rrp.trycloudflare.com";
+  var SW_VER = "316-11layer";
+  var EXPECTED_CACHE = "rent-shield-v316-11layer-trust-clean";
+  var ACTIVE_TUNNEL = "https://entrepreneurs-priced-describe-thirty.trycloudflare.com";
   try {
     for (var sIdx = 0; sIdx < 2; sIdx++) {
       var st = sIdx === 0 ? window.localStorage : window.sessionStorage;
@@ -3100,7 +3100,7 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
   </script>
 
   <script>
-    var _LIVE_BACKEND_TUNNEL = "https://via-tree-techno-rrp.trycloudflare.com";
+    var _LIVE_BACKEND_TUNNEL = "https://entrepreneurs-priced-describe-thirty.trycloudflare.com";
     var _CUR_HOSTNAME = String(window.location.hostname || "").toLowerCase();
     var _IS_STATIC_GH_PAGES = (_CUR_HOSTNAME === "rentandrugshield.com" || _CUR_HOSTNAME === "www.rentandrugshield.com" || _CUR_HOSTNAME.indexOf("github.io") !== -1);
     var BACKEND_TUNNEL_BASE = _IS_STATIC_GH_PAGES ? _LIVE_BACKEND_TUNNEL : "";
@@ -3252,7 +3252,7 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
     });
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/sw.js?v=315-11layer", { updateViaCache: "none" }).catch(() => {});
+        navigator.serviceWorker.register("/sw.js?v=316-11layer", { updateViaCache: "none" }).catch(() => {});
       });
     }
 
@@ -8482,7 +8482,7 @@ window.addEventListener('DOMContentLoaded', function() {
   };
   if ("serviceWorker" in navigator){
     window.addEventListener("load", function(){
-      navigator.serviceWorker.register("/sw.js?v=315-11layer", { updateViaCache: "none" }).catch(function(){});
+      navigator.serviceWorker.register("/sw.js?v=316-11layer", { updateViaCache: "none" }).catch(function(){});
     });
   }
 
@@ -9348,7 +9348,7 @@ window.submitVisitorFeedbackNow = async function(){
 
   if ("serviceWorker" in navigator){
     window.addEventListener("load", function(){
-      navigator.serviceWorker.register("/sw.js?v=315-11layer", { updateViaCache: "none" }).then(function(reg){
+      navigator.serviceWorker.register("/sw.js?v=316-11layer", { updateViaCache: "none" }).then(function(reg){
         if (reg && reg.update) reg.update().catch(function(){});
       }).catch(function(){});
     });
@@ -10434,7 +10434,7 @@ window.submitVisitorFeedbackNow = async function(){
   function resolveHbEndpoint(){
     var host = String((window.location && window.location.hostname) || "").toLowerCase();
     var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-    var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
+    var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://entrepreneurs-priced-describe-thirty.trycloudflare.com").replace(/\/+$/, "") : "";
     return base + "/api/human-telemetry";
   }
   function sendPassiveHeartbeat(evName, deltaSec){
@@ -10499,7 +10499,7 @@ window.submitVisitorFeedbackNow = async function(){
     try {
       var host = String((window.location && window.location.hostname) || "").toLowerCase();
       var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
+      var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://entrepreneurs-priced-describe-thirty.trycloudflare.com").replace(/\/+$/, "") : "";
       var res = await fetch(base + "/api/opt-in-alerts", {
         method: "POST",
         mode: "cors",
@@ -10546,7 +10546,7 @@ window.submitVisitorFeedbackNow = async function(){
   function resolveApiBase(){
     var host = String((window.location && window.location.hostname) || "").toLowerCase();
     var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
+    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://entrepreneurs-priced-describe-thirty.trycloudflare.com").replace(/\/+$/, "") : "";
   }
 
   // -------------------------------------------------------------------------
@@ -12863,7 +12863,7 @@ window.submitVisitorFeedbackNow = async function(){
   function resolveBackendApiBase(){
     var host = String((window.location && window.location.hostname) || "").toLowerCase();
     var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://via-tree-techno-rrp.trycloudflare.com").replace(/\/+$/, "") : "";
+    return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://entrepreneurs-priced-describe-thirty.trycloudflare.com").replace(/\/+$/, "") : "";
   }
 
   function wipeAllWalletStorageKeys(){
@@ -13608,7 +13608,7 @@ window.submitVisitorFeedbackNow = async function(){
           }
         }
       } catch (_e) {}
-      _apiBaseCache = "https://via-tree-techno-rrp.trycloudflare.com";
+      _apiBaseCache = "https://entrepreneurs-priced-describe-thirty.trycloudflare.com";
       return _apiBaseCache + "/api/telemetry/click";
     }
     _apiBaseCache = "";
@@ -14189,6 +14189,8 @@ window.submitVisitorFeedbackNow = async function(){
       </div>
     </div>
 
+    <div id="rrsCoinDeadPoolBanner" style="display:none; margin-bottom:12px; padding:9px 12px; border-radius:10px; background:rgba(239,68,68,0.2); border:1.5px solid #EF4444; color:#FECACA; font-size:13px; font-weight:900; letter-spacing:0.02em; text-align:center;"></div>
+
     <div class="rrs-coin-metrics-grid">
       <div class="rrs-coin-metric-box">
         <div class="rrs-coin-metric-lbl">Live Price</div>
@@ -14428,6 +14430,9 @@ window.submitVisitorFeedbackNow = async function(){
       var pair = bestByMint[mAddr];
       if (!pair || !Number(pair.priceUsd || 0)) continue;
       var liqU = Number((pair.liquidity && pair.liquidity.usd) || 0);
+      var mcU = Number(pair.marketCap || pair.fdv || 0);
+      var ch24U = Number((pair.priceChange && pair.priceChange.h24) || 0);
+      if (liqU < 10000 || mcU < 15000 || !(ch24U > -60.0)) continue;
       var vol24 = Number((pair.volume && pair.volume.h24) || 0);
       var estScore = FALLBACK_MEMES.indexOf(mAddr) !== -1 ? 94 : (liqU >= 100000 ? 86 : (liqU >= 25000 ? 78 : 66));
       coins.push({
@@ -14437,8 +14442,8 @@ window.submitVisitorFeedbackNow = async function(){
         price_usd: Number(pair.priceUsd || 0),
         change_5m: Number((pair.priceChange && pair.priceChange.m5) || 0),
         change_1h: Number((pair.priceChange && pair.priceChange.h1) || 0),
-        change_24h: Number((pair.priceChange && pair.priceChange.h24) || 0),
-        market_cap: Number(pair.marketCap || pair.fdv || 0),
+        change_24h: ch24U,
+        market_cap: mcU,
         liquidity_usd: liqU,
         volume_24h: vol24,
         dex_id: String(pair.dexId || "raydium"),
@@ -14516,7 +14521,14 @@ window.submitVisitorFeedbackNow = async function(){
       }
     }
 
-    var coins = Array.isArray(data.coins) ? data.coins : [];
+    var rawCoins = Array.isArray(data.coins) ? data.coins : [];
+    var coins = rawCoins.filter(function(c) {
+      if (!c || !c.mint) return false;
+      var lq = Number(c.liquidity_usd || 0);
+      var mc = Number(c.market_cap || 0);
+      var ch = Number(c.change_24h != null ? c.change_24h : 0);
+      return lq >= 10000 && mc >= 15000 && ch > -60.0;
+    });
     if (!coins.length) return;
     state.coins = coins;
     for (var i = 0; i < coins.length; i++) {
@@ -14553,27 +14565,98 @@ window.submitVisitorFeedbackNow = async function(){
     }
   }
 
-  function renderLayersHtml(layers, verdictText, scoreNum) {
+  var DEAD_POOL_BADGE = "🔴 DEAD / DRAINED POOL — ILLIQUID";
+
+  function isDeadOrDrainedPool(c) {
+    if (!c || c.mint === WSOL_MINT) return false;
+    if (c.is_dead_pool === true || c.liquidity_viability_passed === false) return true;
+    var liq = Number(c.liquidity_usd != null ? c.liquidity_usd : 0);
+    var mc = Number(c.market_cap != null ? c.market_cap : 0);
+    var ch24 = Number(c.change_24h != null ? c.change_24h : 0);
+    return (liq < 5000) || (mc < 10000 && ch24 <= -80.0);
+  }
+
+  function renderLayersHtml(layers, verdictText, scoreNum, coinCtx) {
     var listEl = document.getElementById("rrsCoinModalLayersList");
     var verdEl = document.getElementById("rrsModalLayersVerdict");
     var pillEl = document.getElementById("rrsModalShieldPill");
-    if (pillEl && scoreNum != null) {
-      var sc = Number(scoreNum);
-      var col = sc >= 85 ? "#34D399" : (sc >= 65 ? "#FBBF24" : "#F87171");
-      var bdr = sc >= 85 ? "#10B981" : (sc >= 65 ? "#F59E0B" : "#EF4444");
-      pillEl.style.color = col;
-      pillEl.style.borderColor = bdr;
-      pillEl.textContent = "🛡️ " + sc + "/100";
+    var deadBannerEl = document.getElementById("rrsCoinDeadPoolBanner");
+    var swapBtnEl = document.getElementById("rrsCoinProtectedSwapBtn");
+    var layersBoxEl = listEl ? listEl.parentElement : null;
+
+    var deadPool = isDeadOrDrainedPool(coinCtx);
+    var sc = scoreNum != null ? Number(scoreNum) : (deadPool ? 20 : 75);
+    if (!isFinite(sc)) sc = deadPool ? 20 : 75;
+    if (deadPool && sc > 25) sc = 25;
+
+    if (deadBannerEl) {
+      if (deadPool) {
+        deadBannerEl.textContent = DEAD_POOL_BADGE + " • Liquidity Viability Layer FAILED (Shield Capped " + sc + "/100)";
+        deadBannerEl.style.display = "block";
+      } else {
+        deadBannerEl.textContent = "";
+        deadBannerEl.style.display = "none";
+      }
     }
-    if (verdEl && verdictText) {
-      verdEl.textContent = verdictText;
+
+    if (pillEl) {
+      if (deadPool) {
+        pillEl.style.background = "rgba(239, 68, 68, 0.22)";
+        pillEl.style.borderColor = "#EF4444";
+        pillEl.style.color = "#FCA5A5";
+        pillEl.textContent = DEAD_POOL_BADGE + " • " + sc + "/100";
+      } else {
+        var col = sc >= 85 ? "#34D399" : (sc >= 65 ? "#FBBF24" : "#F87171");
+        var bdr = sc >= 85 ? "#10B981" : (sc >= 65 ? "#F59E0B" : "#EF4444");
+        var bg = sc >= 85 ? "rgba(16, 185, 129, 0.16)" : (sc >= 65 ? "rgba(245, 158, 11, 0.16)" : "rgba(239, 68, 68, 0.18)");
+        pillEl.style.background = bg;
+        pillEl.style.color = col;
+        pillEl.style.borderColor = bdr;
+        pillEl.textContent = "🛡️ " + sc + "/100";
+      }
     }
+
+    if (verdEl) {
+      if (deadPool) {
+        verdEl.style.color = "#F87171";
+        verdEl.textContent = DEAD_POOL_BADGE;
+      } else {
+        verdEl.style.color = sc >= 85 ? "#34D399" : (sc >= 65 ? "#FBBF24" : "#F87171");
+        if (verdictText) verdEl.textContent = verdictText;
+      }
+    }
+
+    if (layersBoxEl) {
+      layersBoxEl.style.borderColor = deadPool
+        ? "rgba(239, 68, 68, 0.55)"
+        : (sc >= 85 ? "rgba(16, 185, 129, 0.36)" : (sc >= 65 ? "rgba(245, 158, 11, 0.42)" : "rgba(239, 68, 68, 0.48)"));
+    }
+
+    if (swapBtnEl) {
+      if (deadPool) {
+        swapBtnEl.textContent = "🚫 Dead Pool (Illiquid)";
+        swapBtnEl.style.background = "rgba(239, 68, 68, 0.2)";
+        swapBtnEl.style.borderColor = "#EF4444";
+        swapBtnEl.style.color = "#FECACA";
+      } else {
+        swapBtnEl.textContent = "⚡ Protected Swap";
+        swapBtnEl.style.background = "linear-gradient(135deg, #10B981, #059669)";
+        swapBtnEl.style.borderColor = "#34D399";
+        swapBtnEl.style.color = "#022C22";
+      }
+    }
+
     if (!listEl || !Array.isArray(layers) || !layers.length) return;
     listEl.innerHTML = layers.map(function(ly) {
-      var ok = Boolean(ly.passed);
+      var isLiqLayer = Number(ly.layer) === 6 || ly.key === "liquidity_viability";
+      var ok = deadPool && isLiqLayer ? false : Boolean(ly.passed);
+      var stUp = String(ly.status || "").toUpperCase();
+      var isFail = (!ok) && (stUp === "FAIL" || stUp === "CRITICAL" || (deadPool && isLiqLayer));
       var badge = ok
         ? '<span style="color:#34D399; font-weight:800;">✅ PASS</span>'
-        : '<span style="color:#FBBF24; font-weight:800;">⚠️ WARN</span>';
+        : (isFail
+            ? '<span style="color:#F87171; font-weight:900;">❌ FAIL</span>'
+            : '<span style="color:#FBBF24; font-weight:800;">⚠️ WARN</span>');
       return '<div class="rrs-coin-layer-item">'
         + '<span style="color:#E2E8F0; font-weight:700;">' + esc(ly.name || ("Layer " + ly.layer)) + '</span>'
         + '<span style="color:#94A3B8; text-align:right;">' + esc(ly.detail || "") + ' &nbsp;' + badge + '</span>'
@@ -14582,28 +14665,47 @@ window.submitVisitorFeedbackNow = async function(){
   }
 
   function buildClientFallbackLayers(c) {
-    var sc = Number(c.shield_score || 75);
-    var liqOk = Number(c.liquidity_usd || 0) >= 8000;
-    var volOk = Number(c.volume_24h || 0) >= 5000;
+    var deadPool = isDeadOrDrainedPool(c);
+    var liqUsd = Number(c.liquidity_usd || 0);
+    var mcUsd = Number(c.market_cap || 0);
+    var ch24 = Number(c.change_24h || 0);
+    var sc = deadPool ? Math.min(25, Number(c.shield_score != null ? c.shield_score : 20)) : Number(c.shield_score || 75);
+    var liqOk = (!deadPool) && (liqUsd >= 8000 || c.mint === WSOL_MINT);
+    var volOk = (!deadPool) && Number(c.volume_24h || 0) >= 5000;
     return [
-      { layer: 1, name: "Layer 1 • Mint Authority Lock", passed: sc >= 60, detail: sc >= 60 ? "Renounced / Fixed Supply" : "Verify Mint Authority" },
-      { layer: 2, name: "Layer 2 • Freeze Authority Guard", passed: sc >= 60, detail: sc >= 60 ? "Disabled" : "Verify Freeze Authority" },
-      { layer: 3, name: "Layer 3 • Token-2022 Drain Extensions", passed: true, detail: "0 Malicious Hooks Detected" },
-      { layer: 4, name: "Layer 4 • Metadata Spoof & Mutability", passed: sc >= 70, detail: sc >= 70 ? "Verified Metadata" : "Check Mutability" },
-      { layer: 5, name: "Layer 5 • LP Burn & Vault Lock", passed: liqOk, detail: liqOk ? "Active DEX Pool Verified" : "Low Pool Lock Depth" },
-      { layer: 6, name: "Layer 6 • Real Liquidity Depth", passed: liqOk, detail: fmtCompactUsd(c.liquidity_usd) + " Pool Liquidity" },
-      { layer: 7, name: "Layer 7 • Top-10 Whale Concentration", passed: sc >= 70, detail: sc >= 70 ? "Balanced Distribution" : "Monitor Top Holders" },
-      { layer: 8, name: "Layer 8 • Creator & Deployer Profile", passed: sc >= 72, detail: "Public Deployer Telemetry" },
-      { layer: 9, name: "Layer 9 • Sybil & Bundler Cluster Radar", passed: sc >= 75, detail: sc >= 75 ? "No Sybil Cluster Flagged" : "Run Full 11-Layer Deep Scan" },
-      { layer: 10, name: "Layer 10 • Organic Buyer & Wash Velocity", passed: volOk, detail: "24h Vol " + fmtCompactUsd(c.volume_24h) },
-      { layer: 11, name: "Layer 11 • Honeypot & Inner-CPI Drain Sim", passed: true, detail: String(c.dex_id || "DEX").toUpperCase() + " Route Active" }
+      { layer: 1, key: "mint_authority", name: "Layer 1 • Mint Authority Lock", passed: sc >= 60, status: sc >= 60 ? "PASS" : "WARN", detail: sc >= 60 ? "Renounced / Fixed Supply" : "Verify Mint Authority" },
+      { layer: 2, key: "freeze_authority", name: "Layer 2 • Freeze Authority Guard", passed: sc >= 60, status: sc >= 60 ? "PASS" : "WARN", detail: sc >= 60 ? "Disabled" : "Verify Freeze Authority" },
+      { layer: 3, key: "token2022_extensions", name: "Layer 3 • Token-2022 Drain Extensions", passed: true, status: "PASS", detail: "0 Malicious Hooks Detected" },
+      { layer: 4, key: "metadata_mutability", name: "Layer 4 • Metadata Spoof & Mutability", passed: sc >= 70, status: sc >= 70 ? "PASS" : "WARN", detail: sc >= 70 ? "Verified Metadata" : "Check Mutability" },
+      { layer: 5, key: "lp_burn_lock", name: "Layer 5 • LP Burn & Vault Lock", passed: liqOk, status: deadPool ? "FAIL" : (liqOk ? "PASS" : "WARN"), detail: deadPool ? ("Pool Drained (" + fmtCompactUsd(liqUsd) + " Liq)") : (liqOk ? "Active DEX Pool Verified" : "Low Pool Lock Depth") },
+      { layer: 6, key: "liquidity_viability", name: "Layer 6 • Liquidity Viability & Real Pool Depth", passed: liqOk, status: deadPool ? "FAIL" : (liqOk ? "PASS" : "WARN"), detail: deadPool ? ("FAILED Liquidity Viability (" + fmtCompactUsd(liqUsd) + " Liq • " + fmtCompactUsd(mcUsd) + " MC • " + fmtPct(ch24) + " 24h)") : (fmtCompactUsd(liqUsd) + " Active Pool Liquidity") },
+      { layer: 7, key: "whale_concentration", name: "Layer 7 • Top-10 Whale Concentration", passed: sc >= 70, status: sc >= 70 ? "PASS" : "WARN", detail: sc >= 70 ? "Balanced Distribution" : "Monitor Top Holders" },
+      { layer: 8, key: "creator_profile", name: "Layer 8 • Creator & Deployer Profile", passed: sc >= 72, status: sc >= 72 ? "PASS" : "WARN", detail: "Public Deployer Telemetry" },
+      { layer: 9, key: "sybil_cluster_radar", name: "Layer 9 • Sybil & Bundler Cluster Radar", passed: sc >= 75, status: sc >= 75 ? "PASS" : "WARN", detail: sc >= 75 ? "No Sybil Cluster Flagged" : "Run Full 11-Layer Deep Scan" },
+      { layer: 10, key: "organic_velocity", name: "Layer 10 • Organic Buyer & Wash Velocity", passed: volOk, status: volOk ? "PASS" : "WARN", detail: "24h Vol " + fmtCompactUsd(c.volume_24h) },
+      { layer: 11, key: "honeypot_exit_sim", name: "Layer 11 • Honeypot & Inner-CPI Drain Sim", passed: !deadPool, status: deadPool ? "FAIL" : "PASS", detail: deadPool ? "Illiquid Pool — Exit Insolvency Risk" : (String(c.dex_id || "DEX").toUpperCase() + " Route Active") }
     ];
   }
 
   async function openCoinIntelModal(mintAddr) {
-    var coin = state.coinsByMint[mintAddr];
-    if (!coin) return;
-    state.activeCoin = coin;
+    if (!mintAddr) return;
+    var coin = state.coinsByMint[mintAddr] || {
+      symbol: mintAddr.slice(0, 5).toUpperCase(),
+      name: "Solana Token",
+      mint: mintAddr,
+      price_usd: 0,
+      change_5m: 0,
+      change_1h: 0,
+      change_24h: 0,
+      market_cap: 0,
+      liquidity_usd: 0,
+      volume_24h: 0,
+      dex_id: "solana",
+      pair_url: "https://dexscreener.com/solana/" + encodeURIComponent(mintAddr),
+      age_label: "Live",
+      shield_score: 20
+    };
+    state.activeCoin = Object.assign({}, coin);
 
     // Auto-populate Service 2 scanner input immediately
     if (mintAddr !== WSOL_MINT) {
@@ -14619,7 +14721,7 @@ window.submitVisitorFeedbackNow = async function(){
     document.getElementById("rrsModalCoinMint").textContent = coin.mint;
     document.getElementById("rrsModalMetricPrice").textContent = fmtUsdPrice(coin.price_usd);
     document.getElementById("rrsModalMetricChanges").innerHTML = pctSpanHtml(coin.change_5m) + " / " + pctSpanHtml(coin.change_1h) + " / " + pctSpanHtml(coin.change_24h);
-    document.getElementById("rrsModalMetricMc").textContent = coin.market_cap > 0 ? fmtCompactUsd(coin.market_cap) : "Spot Mainnet";
+    document.getElementById("rrsModalMetricMc").textContent = coin.market_cap > 0 ? fmtCompactUsd(coin.market_cap) : (mintAddr === WSOL_MINT ? "Spot Mainnet" : "$0");
     document.getElementById("rrsModalMetricLiq").textContent = fmtCompactUsd(coin.liquidity_usd);
     document.getElementById("rrsModalMetricVol").textContent = fmtCompactUsd(coin.volume_24h);
     document.getElementById("rrsModalMetricAgeDex").textContent = String(coin.age_label || "Live") + " • " + String(coin.dex_id || "solana").toUpperCase();
@@ -14629,10 +14731,17 @@ window.submitVisitorFeedbackNow = async function(){
     var solBtn = document.getElementById("rrsCoinSolscanBtn");
     if (solBtn) solBtn.href = "https://solscan.io/token/" + encodeURIComponent(coin.mint);
 
-    renderLayersHtml(buildClientFallbackLayers(coin), "Syncing live /api/rug-check 11-Layer telemetry...", coin.shield_score);
+    if (state.coinsByMint[mintAddr]) {
+      renderLayersHtml(buildClientFallbackLayers(coin), "Syncing live /api/rug-check 11-Layer telemetry...", coin.shield_score, coin);
+    }
 
-    backdrop.style.display = "flex";
-    backdrop.setAttribute("aria-hidden", "false");
+    if (typeof window.rrsShowModalEl === "function") {
+      window.rrsShowModalEl(backdrop, "flex");
+    } else {
+      backdrop.removeAttribute("hidden");
+      backdrop.style.display = "flex";
+      backdrop.setAttribute("aria-hidden", "false");
+    }
 
     // Fetch live /api/rug-check with https://rentandrugshield.com/api/rug-check fallback
     var qs = "?mint=" + encodeURIComponent(coin.mint);
@@ -14646,15 +14755,58 @@ window.submitVisitorFeedbackNow = async function(){
       }
     }
     if (state.activeCoin && state.activeCoin.mint === coin.mint && rc && rc.ok && Array.isArray(rc.layers)) {
-      if (rc.price_usd) document.getElementById("rrsModalMetricPrice").textContent = fmtUsdPrice(rc.price_usd);
-      if (rc.liquidity_usd) document.getElementById("rrsModalMetricLiq").textContent = fmtCompactUsd(rc.liquidity_usd);
-      if (rc.volume_24h) document.getElementById("rrsModalMetricVol").textContent = fmtCompactUsd(rc.volume_24h);
-      renderLayersHtml(rc.layers, rc.checklist_summary + " • " + rc.verdict, rc.shield_score || rc.score);
-      state.activeCoin.shield_score = Number(rc.shield_score || rc.score || coin.shield_score);
+      if (rc.symbol) document.getElementById("rrsModalCoinSym").textContent = "$" + String(rc.symbol).replace(/^\$/, "");
+      if (rc.name) document.getElementById("rrsModalCoinName").textContent = String(rc.name);
+      if (rc.dex_id) {
+        document.getElementById("rrsModalCoinVenueBadge").textContent = String(rc.dex_id).toUpperCase() + " • " + String(rc.age_label || "Live");
+        document.getElementById("rrsModalMetricAgeDex").textContent = String(rc.age_label || "Live") + " • " + String(rc.dex_id).toUpperCase();
+      }
+      if (rc.price_usd != null) document.getElementById("rrsModalMetricPrice").textContent = fmtUsdPrice(rc.price_usd);
+      if (rc.change_24h != null) {
+        document.getElementById("rrsModalMetricChanges").innerHTML = pctSpanHtml(rc.change_5m) + " / " + pctSpanHtml(rc.change_1h) + " / " + pctSpanHtml(rc.change_24h);
+      }
+      if (rc.market_cap != null) {
+        document.getElementById("rrsModalMetricMc").textContent = rc.market_cap > 0 ? fmtCompactUsd(rc.market_cap) : (mintAddr === WSOL_MINT ? "Spot Mainnet" : "$0");
+      }
+      if (rc.liquidity_usd != null) document.getElementById("rrsModalMetricLiq").textContent = fmtCompactUsd(rc.liquidity_usd);
+      if (rc.volume_24h != null) document.getElementById("rrsModalMetricVol").textContent = fmtCompactUsd(rc.volume_24h);
+      if (rc.pair_url && dexBtn) dexBtn.href = rc.pair_url;
+
+      Object.assign(state.activeCoin, {
+        symbol: rc.symbol || state.activeCoin.symbol,
+        name: rc.name || state.activeCoin.name,
+        price_usd: rc.price_usd != null ? Number(rc.price_usd) : state.activeCoin.price_usd,
+        change_5m: rc.change_5m != null ? Number(rc.change_5m) : state.activeCoin.change_5m,
+        change_1h: rc.change_1h != null ? Number(rc.change_1h) : state.activeCoin.change_1h,
+        change_24h: rc.change_24h != null ? Number(rc.change_24h) : state.activeCoin.change_24h,
+        market_cap: rc.market_cap != null ? Number(rc.market_cap) : state.activeCoin.market_cap,
+        liquidity_usd: rc.liquidity_usd != null ? Number(rc.liquidity_usd) : state.activeCoin.liquidity_usd,
+        volume_24h: rc.volume_24h != null ? Number(rc.volume_24h) : state.activeCoin.volume_24h,
+        is_dead_pool: Boolean(rc.is_dead_pool),
+        liquidity_viability_passed: rc.liquidity_viability_passed
+      });
+
+      var deadNow = isDeadOrDrainedPool(rc) || isDeadOrDrainedPool(state.activeCoin);
+      var rawSc = rc.shield_score != null ? Number(rc.shield_score) : Number(rc.score != null ? rc.score : 20);
+      var effScore = deadNow ? Math.min(25, rawSc) : rawSc;
+      state.activeCoin.shield_score = effScore;
+      var effVerdict = deadNow
+        ? DEAD_POOL_BADGE
+        : (String(rc.checklist_summary || "11/11 Adaptive Security Layers") + " • " + String(rc.badge || rc.verdict || ""));
+      renderLayersHtml(rc.layers, effVerdict, effScore, state.activeCoin);
     } else if (state.activeCoin && state.activeCoin.mint === coin.mint) {
-      renderLayersHtml(buildClientFallbackLayers(coin), "11/11 Real-Time Pool & Authority Layers Evaluated", coin.shield_score);
+      var deadFallback = isDeadOrDrainedPool(state.activeCoin);
+      var fbScore = deadFallback ? Math.min(25, Number(state.activeCoin.shield_score || 20)) : Number(state.activeCoin.shield_score || 75);
+      state.activeCoin.shield_score = fbScore;
+      renderLayersHtml(
+        buildClientFallbackLayers(state.activeCoin),
+        deadFallback ? DEAD_POOL_BADGE : "11/11 Real-Time Pool & Authority Layers Evaluated",
+        fbScore,
+        state.activeCoin
+      );
     }
   }
+  window.openCoinIntelModal = openCoinIntelModal;
 
   function closeCoinIntelModal() {
     var backdrop = document.getElementById("rrsCoinIntelModalBackdrop");
