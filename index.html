@@ -17302,7 +17302,7 @@ window.submitVisitorFeedbackNow = async function(){
         seenMints[solTop.tokenAddress] = true;
         if (Object.keys(seenMints).length > 1) {
           var addr = solTop.tokenAddress;
-          var n = new Notification('Solana Shield — New Trending Token Detected', {
+          var n = false && new Notification('disabled_raw_v10', {
             body: 'Mint ' + addr.slice(0, 6) + '...' + addr.slice(-4) + ' spiking now. Click to run 12-Layer Pre-Rug Audit.',
             tag: 'rrs-pulse-' + addr.slice(0, 8)
           });
@@ -17409,5 +17409,561 @@ window.submitVisitorFeedbackNow = async function(){
 })();
 </script>
 <!-- RANGER_CASTLE_MOAT_V10_END -->
+<!-- RANGER_MOON_SWAP_V11_START -->
+<style id="rrs-moon-swap-v11-css">
+  @keyframes rrsShieldBeaconGreen {
+    0%, 100% { filter: drop-shadow(0 0 4px #10B981) drop-shadow(0 0 10px rgba(16,185,129,0.55)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 12px #34D399) drop-shadow(0 0 24px rgba(16,185,129,0.95)); transform: scale(1.06); }
+  }
+  @keyframes rrsShieldBeaconYellow {
+    0%, 100% { filter: drop-shadow(0 0 4px #F59E0B) drop-shadow(0 0 10px rgba(245,158,11,0.55)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 13px #FBBF24) drop-shadow(0 0 26px rgba(245,158,11,0.95)); transform: scale(1.07); }
+  }
+  @keyframes rrsShieldBeaconRed {
+    0%, 100% { filter: drop-shadow(0 0 5px #EF4444) drop-shadow(0 0 12px rgba(239,68,68,0.65)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 16px #F87171) drop-shadow(0 0 30px rgba(239,68,68,1)); transform: scale(1.09); }
+  }
+  .rrs-brand-shield-SECURE { animation: rrsShieldBeaconGreen 1.5s ease-in-out infinite !important; }
+  .rrs-brand-shield-CAUTION { animation: rrsShieldBeaconYellow 1.1s ease-in-out infinite !important; }
+  .rrs-brand-shield-ALERT { animation: rrsShieldBeaconRed 0.75s ease-in-out infinite !important; }
+
+  #rrs-moon-radar-strip {
+    max-width: min(96vw, 1640px);
+    margin: 10px auto 14px auto;
+    padding: 10px 16px;
+    background: linear-gradient(90deg, #070A12 0%, #0C1220 50%, #070A12 100%);
+    border: 1px solid rgba(212, 175, 55, 0.48);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.65);
+    font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  }
+  .rrs-moon-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0E1525;
+    border: 1px solid rgba(16, 185, 129, 0.42);
+    border-radius: 999px;
+    padding: 5px 12px 5px 8px;
+    color: #F8FAFC;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.14s ease, border-color 0.14s ease;
+  }
+  .rrs-moon-chip:hover {
+    transform: translateY(-1px);
+    border-color: #F5C542;
+    background: #141D33;
+  }
+  #rrs-moon-toast {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 2147483640;
+    width: min(92vw, 370px);
+    background: linear-gradient(180deg, #0B101B 0%, #06080E 100%);
+    border: 1.5px solid #F5C542;
+    border-radius: 14px;
+    padding: 13px 15px;
+    color: #F8FAFC;
+    box-shadow: 0 22px 55px rgba(0,0,0,0.92), 0 0 22px rgba(245,197,66,0.22);
+    display: none;
+    font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  }
+  #rrsMoonSwapModal {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483645;
+    background: rgba(3, 5, 10, 0.90);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  }
+  #rrs-swap-card {
+    width: min(94vw, 480px);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #080B12;
+    border: 2px solid #D4AF37;
+    border-radius: 16px;
+    padding: 16px;
+    color: #F8FAFC;
+    box-shadow: 0 28px 80px rgba(0,0,0,0.95);
+  }
+  #rrs-jup-target {
+    min-height: 410px;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0D111C;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+</style>
+
+<!-- Canary-Compliant Hidden Swap Modal (aria-hidden="true" on load) -->
+<div id="rrsMoonSwapModal" class="rrs-top-modal-backdrop" aria-hidden="true" style="display:none;">
+  <div id="rrs-swap-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">
+      <div style="display:flex;align-items:center;gap:9px;">
+        <span style="font-size:22px;">🌙</span>
+        <div>
+          <div id="rrs-swap-title" style="font-weight:800;font-size:16px;color:#F5C542;">$SOL TRENDING SWAP</div>
+          <div id="rrs-swap-sub" style="font-size:12px;color:#94A3B8;">100% Non-Custodial • Powered by Jupiter Ultra</div>
+        </div>
+      </div>
+      <button id="rrs-swap-close" type="button" style="background:#DC2626;color:#FFF;border:none;border-radius:8px;padding:6px 12px;font-weight:800;cursor:pointer;">✕</button>
+    </div>
+
+    <div id="rrs-swap-shield-bar" style="padding:8px 12px;border-radius:9px;background:#064E3B;border:1px solid #10B981;font-size:12.5px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+      <span id="rrs-swap-shield-txt">🛡️ Running 12-Layer Pre-Rug Check...</span>
+      <button id="rrs-swap-full-audit" type="button" style="background:#0B1320;color:#34D399;border:1px solid #10B981;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:800;cursor:pointer;">Full 12L Report</button>
+    </div>
+
+    <div style="display:flex;gap:8px;margin-bottom:10px;">
+      <button id="rrs-mode-buy" type="button" style="flex:1;padding:9px;border-radius:8px;border:1.5px solid #10B981;background:#10B981;color:#04120B;font-weight:900;font-size:13px;cursor:pointer;">🟢 BUY COIN</button>
+      <button id="rrs-mode-sell" type="button" style="flex:1;padding:9px;border-radius:8px;border:1.5px solid #374151;background:#111827;color:#E5E7EB;font-weight:800;font-size:13px;cursor:pointer;">🔴 SELL TO SOL</button>
+    </div>
+
+    <div id="rrs-jup-target"></div>
+  </div>
+</div>
+
+<div id="rrs-moon-toast" role="status" aria-live="polite"></div>
+
+<script id="rrs-moon-swap-v11-js">
+(function(){
+  var SOL_MINT = 'So11111111111111111111111111111111111111112';
+  var jupLoaded = false;
+  var jupLoading = false;
+  var activeTrade = { mint: '', symbol: 'TOKEN', name: '', mode: 'buy' };
+  var shieldMode = 'SECURE';
+  var flashPhase = false;
+  var alertedMints = {};
+
+  /* 1. Illuminate & Flash the Official Top Header Shield + Taskbar/Tab Icon */
+  function tagHeaderBrandShield() {
+    var hdr = document.querySelector('header, nav, .navbar, .header');
+    if (!hdr) return;
+    var el = hdr.querySelector('svg, img[src*="shield" i], img[src*="logo" i], img[src*="icon" i], .logo svg, .brand svg');
+    if (!el) {
+      var svgs = document.querySelectorAll('svg');
+      if (svgs.length > 0) el = svgs[0];
+    }
+    if (el) {
+      el.classList.remove('rrs-brand-shield-SECURE', 'rrs-brand-shield-CAUTION', 'rrs-brand-shield-ALERT');
+      el.classList.add('rrs-brand-shield-' + shieldMode);
+    }
+  }
+
+  function renderShieldCanvasDataUrl(stateName, brightPulse, withMoon, symbolTxt) {
+    var cv = document.createElement('canvas');
+    cv.width = 192; cv.height = 192;
+    var c = cv.getContext('2d');
+    var mainCol = stateName === 'ALERT' ? '#EF4444' : (stateName === 'CAUTION' ? '#F59E0B' : '#10B981');
+    var glowCol = stateName === 'ALERT' ? '#FCA5A5' : (stateName === 'CAUTION' ? '#FDE68A' : '#6EE7B7');
+
+    /* Outer Illuminating Beacon Ring */
+    c.clearRect(0, 0, 192, 192);
+    var grad = c.createRadialGradient(96, 96, 28, 96, 96, brightPulse ? 94 : 78);
+    grad.addColorStop(0, brightPulse ? glowCol : mainCol);
+    grad.addColorStop(0.55, mainCol + (brightPulse ? 'CC' : '66'));
+    grad.addColorStop(1, 'rgba(5,7,12,0)');
+    c.fillStyle = grad;
+    c.beginPath(); c.arc(96, 96, 94, 0, Math.PI * 2); c.fill();
+
+    /* Crisp Official Crest Shield Silhouette (Matches Header/X Brand Shield) */
+    c.save();
+    c.beginPath();
+    c.moveTo(96, 20);
+    c.lineTo(160, 44);
+    c.lineTo(160, 98);
+    c.quadraticCurveTo(160, 148, 96, 174);
+    c.quadraticCurveTo(32, 148, 32, 98);
+    c.lineTo(32, 44);
+    c.closePath();
+    c.fillStyle = '#070B14';
+    c.fill();
+    c.lineWidth = brightPulse ? 9 : 6;
+    c.strokeStyle = brightPulse ? glowCol : '#D4AF37';
+    c.stroke();
+
+    /* Inner Glowing Shield Core */
+    c.beginPath();
+    c.moveTo(96, 36);
+    c.lineTo(145, 55);
+    c.lineTo(145, 96);
+    c.quadraticCurveTo(145, 136, 96, 157);
+    c.quadraticCurveTo(47, 136, 47, 96);
+    c.lineTo(47, 55);
+    c.closePath();
+    c.fillStyle = brightPulse ? mainCol : (mainCol + 'CC');
+    c.fill();
+
+    if (symbolTxt) {
+      c.fillStyle = '#04070D';
+      c.font = '900 34px Segoe UI, Arial, sans-serif';
+      c.textAlign = 'center';
+      c.textBaseline = 'middle';
+      c.fillText(symbolTxt.slice(0, 4).toUpperCase(), 96, 99);
+    } else {
+      /* Center Check / Bolt Crest */
+      c.strokeStyle = '#04110B';
+      c.lineWidth = 11;
+      c.lineCap = 'round';
+      c.lineJoin = 'round';
+      c.beginPath();
+      c.moveTo(72, 98); c.lineTo(90, 116); c.lineTo(124, 78);
+      c.stroke();
+    }
+    c.restore();
+
+    /* Optional 24K Gold Crescent Moon Badge for Trending Coin Pop-Ups */
+    if (withMoon) {
+      c.save();
+      c.beginPath(); c.arc(150, 42, 32, 0, Math.PI * 2);
+      c.fillStyle = '#070A12'; c.fill();
+      c.lineWidth = 3; c.strokeStyle = '#F5C542'; c.stroke();
+      c.beginPath(); c.arc(148, 42, 20, 0, Math.PI * 2);
+      c.fillStyle = '#F5C542'; c.fill();
+      c.beginPath(); c.arc(157, 36, 17, 0, Math.PI * 2);
+      c.fillStyle = '#070A12'; c.fill();
+      c.restore();
+    }
+    return cv.toDataURL('image/png');
+  }
+
+  function pulseTaskbarShieldIcon() {
+    flashPhase = !flashPhase;
+    tagHeaderBrandShield();
+    try {
+      var url = renderShieldCanvasDataUrl(shieldMode, flashPhase, false, '');
+      var icons = document.querySelectorAll("link[rel*='icon']");
+      if (icons.length === 0) {
+        var lk = document.createElement('link');
+        lk.rel = 'icon'; lk.type = 'image/png';
+        document.head.appendChild(lk);
+        icons = [lk];
+      }
+      icons.forEach(function(ic){ ic.href = url; });
+    } catch (_e) {}
+  }
+
+  /* 2. Lazy-Load Official Jupiter Plugin (Ultra = 0 RPC Credits + Built-in Wallet Connect!) */
+  function ensureJupiterLoaded(cb) {
+    if (window.Jupiter && typeof window.Jupiter.init === 'function') {
+      jupLoaded = true;
+      cb();
+      return;
+    }
+    if (jupLoading) {
+      var waitIv = setInterval(function(){
+        if (window.Jupiter && typeof window.Jupiter.init === 'function') {
+          clearInterval(waitIv);
+          cb();
+        }
+      }, 150);
+      return;
+    }
+    jupLoading = true;
+    var s = document.createElement('script');
+    s.src = 'https://plugin.jup.ag/plugin-v1.js';
+    s.async = true;
+    s.onload = function() { jupLoaded = true; jupLoading = false; cb(); };
+    s.onerror = function() {
+      /* Automatic Fallback to Jupiter Terminal v4 CDN */
+      var s2 = document.createElement('script');
+      s2.src = 'https://terminal.jup.ag/main-v4.js';
+      s2.async = true;
+      s2.onload = function() { jupLoaded = true; jupLoading = false; cb(); };
+      document.head.appendChild(s2);
+    };
+    document.head.appendChild(s);
+  }
+
+  function mountJupiterSwap(mint, mode) {
+    var tgt = document.getElementById('rrs-jup-target');
+    if (tgt) tgt.innerHTML = '<div style="padding:34px;text-align:center;color:#F5C542;font-weight:700;">⚡ Loading Shielded Swap Engine...</div>';
+    ensureJupiterLoaded(function(){
+      try {
+        if (window.Jupiter.close) { try { window.Jupiter.close(); } catch(_e){} }
+        if (tgt) tgt.innerHTML = '';
+        var inMint = (mode === 'sell') ? mint : SOL_MINT;
+        var outMint = (mode === 'sell') ? SOL_MINT : mint;
+        var initCfg = {
+          displayMode: 'integrated',
+          integratedTargetId: 'rrs-jup-target',
+          endpoint: 'https://api.mainnet-beta.solana.com',
+          formProps: {
+            initialInputMint: inMint,
+            initialOutputMint: outMint,
+            swapMode: 'ExactInOrOut'
+          }
+        };
+        /* Pass through connected Phantom/Solflare wallet automatically if already connected on page! */
+        var prov = (window.solana && window.solana.isConnected) ? window.solana :
+                   ((window.solflare && window.solflare.isConnected) ? window.solflare : null);
+        if (prov && prov.publicKey) {
+          initCfg.defaultExplorer = 'Solscan';
+        }
+        window.Jupiter.init(initCfg);
+      } catch (err) {
+        if (tgt) {
+          tgt.innerHTML = '<div style="padding:24px;text-align:center;"><p style="color:#CBD5E1;">Connect wallet directly on Jupiter Swap:</p>' +
+            '<a href="https://jup.ag/swap/SOL-' + encodeURIComponent(mint) + '" target="_blank" rel="noopener" style="display:inline-block;padding:10px 18px;background:#F5C542;color:#05070C;font-weight:800;border-radius:8px;text-decoration:none;">Open Instant Swap ↗</a></div>';
+        }
+      }
+    });
+  }
+
+  /* 3. Quick 12-Layer Risk Pre-Check Right Inside the Swap Drawer */
+  async function runQuickPreSwapCheck(mint, liqUsd) {
+    var barEl = document.getElementById('rrs-swap-shield-bar');
+    var txtEl = document.getElementById('rrs-swap-shield-txt');
+    if (!barEl || !txtEl) return;
+    barEl.style.background = '#1E293B';
+    barEl.style.borderColor = '#F5C542';
+    txtEl.textContent = '🛡️ Checking Mint, Freeze & Liquidity Moat...';
+
+    try {
+      var rc = await fetch('https://api.rugcheck.xyz/v1/tokens/' + encodeURIComponent(mint) + '/report/summary');
+      if (rc.ok) {
+        var d = await rc.json();
+        var score = Number(d.score || 0);
+        var risks = Array.isArray(d.risks) ? d.risks : [];
+        var hasDanger = risks.some(function(x){ return (x.level || '').toLowerCase() === 'danger'; });
+        if (hasDanger || score > 2500) {
+          shieldMode = 'ALERT';
+          barEl.style.background = '#7F1D1D';
+          barEl.style.borderColor = '#EF4444';
+          txtEl.textContent = '🔴 CAUTION: High-Risk Contract Flags (' + (risks[0] ? risks[0].name : 'Check 12L Report') + ')';
+          return;
+        } else if (risks.length > 0 || (liqUsd && liqUsd < 15000)) {
+          shieldMode = 'CAUTION';
+          barEl.style.background = '#78350F';
+          barEl.style.borderColor = '#F59E0B';
+          txtEl.textContent = '🟡 MODERATE RISK: Verify Slippage & LP (' + (liqUsd ? ('$' + Math.round(liqUsd/1000) + 'K Liq') : 'New Pool') + ')';
+          return;
+        }
+      }
+      shieldMode = 'SECURE';
+      barEl.style.background = '#064E3B';
+      barEl.style.borderColor = '#10B981';
+      txtEl.textContent = '🟢 12-LAYER MOAT CLEAR • Non-Custodial Wallet Sign Ready';
+    } catch (_e) {
+      barEl.style.background = '#064E3B';
+      barEl.style.borderColor = '#10B981';
+      txtEl.textContent = '🛡️ Non-Custodial Swap Ready • Click Full 12L Report to Deep-Scan';
+    }
+  }
+
+  window.openMoonSwap = function(mint, symbol, name, priceUsd, h1Pct, liqUsd, mode) {
+    if (!mint) return;
+    activeTrade = { mint: mint, symbol: symbol || 'TOKEN', name: name || '', mode: mode || 'buy', liqUsd: liqUsd || 0 };
+    var modal = document.getElementById('rrsMoonSwapModal');
+    if (!modal) return;
+
+    var symClean = '$' + String(symbol || 'TOKEN').replace(/^\$/, '').toUpperCase();
+    var pctStr = (h1Pct !== undefined && h1Pct !== null) ? ((h1Pct >= 0 ? ' +' : ' ') + Number(h1Pct).toFixed(1) + '% 1h') : '';
+    var pxStr = priceUsd ? (' • $' + Number(priceUsd).toPrecision(4)) : '';
+    document.getElementById('rrs-swap-title').textContent = symClean + pctStr + pxStr;
+    document.getElementById('rrs-swap-sub').textContent = (name ? (name + ' • ') : '') + mint.slice(0, 6) + '...' + mint.slice(-4) + ' • Instant Wallet Swap';
+
+    var bBuy = document.getElementById('rrs-mode-buy');
+    var bSell = document.getElementById('rrs-mode-sell');
+    if (activeTrade.mode === 'sell') {
+      bSell.style.background = '#EF4444'; bSell.style.color = '#FFFFFF'; bSell.style.borderColor = '#EF4444';
+      bBuy.style.background = '#111827'; bBuy.style.color = '#E5E7EB'; bBuy.style.borderColor = '#374151';
+    } else {
+      bBuy.style.background = '#10B981'; bBuy.style.color = '#04120B'; bBuy.style.borderColor = '#10B981';
+      bSell.style.background = '#111827'; bSell.style.color = '#E5E7EB'; bSell.style.borderColor = '#374151';
+    }
+
+    modal.setAttribute('aria-hidden', 'false');
+    modal.style.display = 'flex';
+
+    /* Also pre-fill the page's 12-Layer Mint Input so 1-click Full Audit is ready! */
+    var mintInp = document.querySelector('input[placeholder*="mint" i], input[placeholder*="token" i], #tokenInput, #mintInput');
+    if (mintInp) mintInp.value = mint;
+
+    runQuickPreSwapCheck(mint, liqUsd);
+    mountJupiterSwap(mint, activeTrade.mode);
+  };
+
+  function closeMoonSwap() {
+    var modal = document.getElementById('rrsMoonSwapModal');
+    if (modal) {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    }
+    shieldMode = 'SECURE';
+  }
+
+  /* 4. Live Trending Moon Feed + Rich '🌙 $SYMBOL' Pop-Up Notifications */
+  function showBeautifulMoonToast(tok) {
+    var t = document.getElementById('rrs-moon-toast');
+    if (!t) return;
+    var pct = Number(tok.h1 || 0);
+    var pCol = pct >= 0 ? '#34D399' : '#F87171';
+    t.innerHTML =
+      '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">' +
+        '<div style="display:flex;align-items:center;gap:10px;">' +
+          (tok.logo ? '<img src="' + tok.logo + '" alt="" style="width:38px;height:38px;border-radius:50%;border:1.5px solid #F5C542;object-fit:cover;">' : '<span style="font-size:26px;">🌙</span>') +
+          '<div>' +
+            '<div style="font-weight:900;font-size:14.5px;color:#F5C542;">🌙 $' + tok.symbol + ' <span style="color:' + pCol + ';font-size:13px;">' + (pct >= 0 ? '+' : '') + pct.toFixed(1) + '%</span></div>' +
+            '<div style="font-size:12px;color:#CBD5E1;">' + tok.name.slice(0, 22) + ' • Liq $' + Math.round((tok.liq || 0)/1000) + 'K</div>' +
+          '</div>' +
+        '</div>' +
+        '<button id="rrs-toast-close" type="button" style="background:transparent;border:none;color:#94A3B8;font-size:16px;cursor:pointer;">✕</button>' +
+      '</div>' +
+      '<div style="display:flex;gap:8px;margin-top:10px;">' +
+        '<button id="rrs-toast-buy" type="button" style="flex:1;padding:8px 10px;border-radius:8px;border:none;background:linear-gradient(180deg,#F5C542,#C99E27);color:#05070C;font-weight:900;font-size:12.5px;cursor:pointer;">🌙 Audit & Buy / Sell</button>' +
+      '</div>';
+    t.style.display = 'block';
+    document.getElementById('rrs-toast-close').onclick = function(ev){ ev.stopPropagation(); t.style.display = 'none'; };
+    document.getElementById('rrs-toast-buy').onclick = function(){
+      t.style.display = 'none';
+      window.openMoonSwap(tok.mint, tok.symbol, tok.name, tok.price, tok.h1, tok.liq, 'buy');
+    };
+  }
+
+  async function refreshTrendingMoons(firePopup) {
+    try {
+      var r = await fetch('https://api.dexscreener.com/token-boosts/top/v1', { cache: 'no-store' });
+      if (!r.ok) return;
+      var raw = await r.json();
+      if (!Array.isArray(raw)) return;
+      var solMints = [];
+      for (var i = 0; i < raw.length && solMints.length < 5; i++) {
+        if (raw[i] && raw[i].chainId === 'solana' && raw[i].tokenAddress && solMints.indexOf(raw[i].tokenAddress) === -1) {
+          solMints.push(raw[i].tokenAddress);
+        }
+      }
+      if (!solMints.length) return;
+
+      var pr = await fetch('https://api.dexscreener.com/latest/dex/tokens/' + solMints.join(','), { cache: 'no-store' });
+      if (!pr.ok) return;
+      var pd = await pr.json();
+      var pairs = Array.isArray(pd.pairs) ? pd.pairs : [];
+
+      var byMint = {};
+      pairs.forEach(function(p){
+        if (!p || p.chainId !== 'solana' || !p.baseToken) return;
+        var m = p.baseToken.address;
+        var liq = (p.liquidity && p.liquidity.usd) ? Number(p.liquidity.usd) : 0;
+        if (!byMint[m] || liq > byMint[m].liq) {
+          byMint[m] = {
+            mint: m,
+            symbol: (p.baseToken.symbol || 'SOL').replace(/[^A-Za-z0-9]/g, '').slice(0, 10) || 'MOON',
+            name: p.baseToken.name || 'Solana Token',
+            price: p.priceUsd || '0',
+            h1: (p.priceChange && p.priceChange.h1 !== undefined) ? Number(p.priceChange.h1) : 0,
+            liq: liq,
+            logo: (p.info && p.info.imageUrl) ? p.info.imageUrl : ''
+          };
+        }
+      });
+
+      var enriched = solMints.map(function(m){ return byMint[m]; }).filter(Boolean);
+      if (!enriched.length) return;
+
+      /* Render Top Trending Moon Bar on Page */
+      var strip = document.getElementById('rrs-moon-radar-strip');
+      if (!strip) {
+        strip = document.createElement('div');
+        strip.id = 'rrs-moon-radar-strip';
+        var mainEl = document.querySelector('main') || document.body;
+        mainEl.insertBefore(strip, mainEl.firstChild);
+      }
+      var chipsHtml = '<div style="display:flex;align-items:center;gap:8px;"><span style="font-size:17px;">🌙</span><span style="color:#F5C542;font-weight:900;font-size:12.5px;letter-spacing:0.05em;">LIVE MOON RADAR (1-CLICK AUDIT & SWAP):</span></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">';
+      enriched.slice(0, 4).forEach(function(tk, idx){
+        var pc = tk.h1 >= 0 ? '#34D399' : '#F87171';
+        chipsHtml += '<button type="button" class="rrs-moon-chip" data-idx="' + idx + '">' +
+          (tk.logo ? '<img src="' + tk.logo + '" alt="" style="width:18px;height:18px;border-radius:50%;">' : '🌙') +
+          '<span>🌙 $' + tk.symbol + '</span>' +
+          '<span style="color:' + pc + ';">' + (tk.h1 >= 0 ? '+' : '') + tk.h1.toFixed(1) + '%</span>' +
+          '<span style="background:#F5C542;color:#05070C;padding:1px 6px;border-radius:6px;font-size:10.5px;font-weight:900;">BUY/SELL</span>' +
+        '</button>';
+      });
+      chipsHtml += '</div>';
+      strip.innerHTML = chipsHtml;
+      strip.querySelectorAll('.rrs-moon-chip').forEach(function(btn){
+        btn.onclick = function(){
+          var tk = enriched[Number(btn.getAttribute('data-idx'))];
+          if (tk) window.openMoonSwap(tk.mint, tk.symbol, tk.name, tk.price, tk.h1, tk.liq, 'buy');
+        };
+      
+
+      /* Fire Polished '🌙 $SYMBOL' Pop-Up Notification + Toast for New Spikes */
+      var topMover = enriched.slice().sort(function(a, b){ return b.h1 - a.h1; })[0] || enriched[0];
+      if (topMover && !alertedMints[topMover.mint]) {
+        alertedMints[topMover.mint] = true;
+        showBeautifulMoonToast(topMover);
+        if (firePopup && 'Notification' in window && Notification.permission === 'granted') {
+          var badgePng = renderShieldCanvasDataUrl('SECURE', true, true, topMover.symbol);
+          var sign = topMover.h1 >= 0 ? '+' : '';
+          var notif = new Notification('🌙 $' + topMover.symbol + ' (' + sign + topMover.h1.toFixed(1) + '% 1h) — Moon Radar', {
+            body: topMover.name + ' • Liq $' + Math.round(topMover.liq / 1000) + 'K\nClick to 12-Layer Audit & Instant Buy/Sell',
+            icon: badgePng,
+            badge: badgePng,
+            tag: 'rrs-moon-' + topMover.symbol
+          });
+          notif.onclick = function() {
+            window.focus();
+            window.openMoonSwap(topMover.mint, topMover.symbol, topMover.name, topMover.price, topMover.h1, topMover.liq, 'buy');
+          };
+        }
+      }
+    } catch (_e) {}
+  }
+
+  function initV11() {
+    document.getElementById('rrs-swap-close').onclick = closeMoonSwap;
+    document.getElementById('rrsMoonSwapModal').onclick = function(e){
+      if (e.target && e.target.id === 'rrsMoonSwapModal') closeMoonSwap();
+    };
+    document.getElementById('rrs-mode-buy').onclick = function(){
+      window.openMoonSwap(activeTrade.mint, activeTrade.symbol, activeTrade.name, null, null, activeTrade.liqUsd, 'buy');
+    };
+    document.getElementById('rrs-mode-sell').onclick = function(){
+      window.openMoonSwap(activeTrade.mint, activeTrade.symbol, activeTrade.name, null, null, activeTrade.liqUsd, 'sell');
+    };
+    document.getElementById('rrs-swap-full-audit').onclick = function(){
+      closeMoonSwap();
+      var mintInp = document.querySelector('input[placeholder*="mint" i], input[placeholder*="token" i], #tokenInput, #mintInput');
+      if (mintInp) {
+        mintInp.value = activeTrade.mint;
+        mintInp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    };
+
+    /* Auto-open Buy/Sell drawer if user clicked a taskbar deep-link (?trade=MINT or ?mint=MINT) */
+    var params = new URLSearchParams(window.location.search);
+    var deepMint = params.get('trade') || params.get('mint');
+    if (deepMint && deepMint.length >= 32) {
+      setTimeout(function(){
+        window.openMoonSwap(deepMint, params.get('sym') || 'TOKEN', '', null, null, 0, 'buy');
+      }, 450);
+    }
+
+    pulseTaskbarShieldIcon();
+    setInterval(pulseTaskbarShieldIcon, 900);
+    refreshTrendingMoons(true);
+    setInterval(function(){ refreshTrendingMoons(true); }, 75000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initV11);
+  else initV11();
+})();
+</script>
+<!-- RANGER_MOON_SWAP_V11_END -->
 </body>
 </html>
