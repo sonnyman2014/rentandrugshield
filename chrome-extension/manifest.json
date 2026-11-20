@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Solana Rent & Rug Shield \u2014 Carbon AI High Sentinel",
+  "version": "5.3.0",
+  "description": "12-Layer Pre-Rug Radar, Institutional & Meme Modes, Voice Rug Alerts, PC/RPC Lag Guard & Dust/Rent Recovery.",
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications",
+    "system.cpu",
+    "system.memory",
+    "tts"
+  ],
+  "host_permissions": [
+    "https://rentandrugshield.com/*",
+    "https://api.dexscreener.com/*",
+    "https://api.rugcheck.xyz/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Solana Rent & Rug Shield (Carbon AI High)",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

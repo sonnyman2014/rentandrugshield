@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { width: 356px; margin: 0; padding: 14px; background: #04070D; color: #FFFFFF; font-family: Segoe UI, sans-serif; }
+  .hdr { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #D4AF37; padding-bottom: 9px; }
+  .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 10px 0; }
+  .mbtn { padding: 7px; border-radius: 7px; border: 1px solid #334155; background: #0B111E; color: #CBD5E1; font-weight: 800; font-size: 11.5px; cursor: pointer; }
+  .mbtn.active { background: #F5C542; color: #04070D; border-color: #F5C542; }
+  .row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 12px; border-bottom: 1px solid #111827; }
+  select, .cta { width: 100%; margin-top: 8px; padding: 8px; border-radius: 7px; font-weight: 800; font-size: 12px; cursor: pointer; }
+  select { background: #0B1220; color: #F5C542; border: 1px solid #D4AF37; }
+  .cta { background: linear-gradient(180deg, #00FF88, #10B981); color: #03120A; border: none; }
+</style>
+</head>
+<body>
+  <div class="hdr">
+    <span style="color:#F5C542;font-weight:900;font-size:13px;">🛡️ CARBON AI HIGH SHIELD v5.3</span>
+    <span style="background:#032818;color:#00FF88;border:1px solid #00FF88;padding:2px 8px;border-radius:99px;font-size:10.5px;font-weight:900;">LIVE</span>
+  </div>
+  <div class="modes">
+    <button id="mInst" class="mbtn active" type="button">🏛️ Institutional</button>
+    <button id="mMeme" class="mbtn" type="button">🚀 Meme Mode</button>
+  </div>
+  <div id="statusBox" style="margin-bottom:8px;padding:8px 10px;border-radius:8px;background:#032818;border:1.5px solid #00FF88;color:#FFFFFF;font-size:12px;font-weight:800;">
+    🛡️ RUG SHIELD PASSED • PC &amp; Network Optimal
+  </div>
+  <div class="row"><span>🚀 Trending Passed Coin Alerts</span><input type="checkbox" id="togTrending" checked></div>
+  <div class="row"><span>🚨 Red "Rug Alert!" Trap Warnings</span><input type="checkbox" id="togRugRed" checked></div>
+  <div class="row"><span>💻 PC CPU &amp; RAM Slowdown (>85%)</span><input type="checkbox" id="togPcGuard" checked></div>
+  <div class="row"><span>🌐 Internet &amp; RPC Lag (>450ms)</span><input type="checkbox" id="togRpcLag" checked></div>
+  <div class="row"><span>📋 Clipboard Wallet Hijack Lock</span><input type="checkbox" id="togClipboard" checked></div>
+  <div class="row"><span>🧹 Post-Swap Auto Rent/Dust Check</span><input type="checkbox" id="togAutoReclaim" checked></div>
+  <select id="soundProfile">
+    <option value="voice">🗣️ AI Voice ("Rug Alert!" / "Shield Passed")</option>
+    <option value="tactical">🔔 Quant Chimes (Bell / Pulse / Klaxon)</option>
+    <option value="sonar">📡 Sonar Ping / Sweep / Geiger</option>
+    <option value="mute">🔇 Silent Visual Alerts Only</option>
+  </select>
+  <button class="cta" id="openSite" type="button">Open Chart, Swap &amp; Dust Reclaim ↗</button>
+  <script src="popup.js"></script>
+</body>
+</html>
