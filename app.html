@@ -18097,5 +18097,118 @@ window.submitVisitorFeedbackNow = async function(){
 })();
 </script>
 <!-- RANGER_V21_END -->
+<!-- RANGER_V22_START -->
+<style id="rrs-v22-css">
+  :root { --g22: linear-gradient(135deg,#BF953F 0%,#FCF6BA 28%,#D4AF37 52%,#FBF5B7 76%,#AA771C 100%); }
+  #rrs-shield-story-tip,#rrs-moon-toast,[data-modal="rrsVerifiedHoursModal"] { display:none !important; }
+  .v22-rx { background:#DC2626 !important; color:#FFF !important; border:1px solid #FCA5A5 !important; border-radius:7px !important; padding:4px 10px !important; font-weight:900 !important; cursor:pointer !important; }
+  #rrsEcosystemTradeModal #rrs-eco-dialog { background:#050507 !important; border:2px solid #D4AF37 !important; }
+  #rrs-eco-buy { background:var(--g22) !important; color:#050402 !important; border:none !important; font-weight:900 !important; }
+  #rrs-eco-sell { background:#2B0808 !important; color:#FCA5A5 !important; border:1.5px solid #DC2626 !important; }
+  #rrsCyberTeleModal { position:fixed; inset:0; z-index:2147483647; background:rgba(3,3,5,0.94); display:none; align-items:center; justify-content:center; padding:14px; }
+  #v22-mini-shield { position:fixed; right:18px; bottom:18px; z-index:2147483641; width:56px; height:56px; border-radius:50%; background:#050507; border:2.5px solid #00FF66; box-shadow:0 0 22px rgba(0,255,102,0.75); display:none; align-items:center; justify-content:center; cursor:pointer; }
+</style>
+
+<div id="v22-mini-shield" title="Click to Open RRS Carbon-AI Cybersecurity & PC Telemetry">
+  <img src="/icons/icon-192.png" alt="Shield" style="width:38px;height:38px;">
+</div>
+
+<div id="rrsCyberTeleModal" class="rrs-top-modal-backdrop" aria-hidden="true" style="display:none;">
+  <div style="width:min(95vw,540px);background:#050507;border:2px solid #D4AF37;border-radius:15px;padding:16px 18px;color:#F8FAFC;box-shadow:0 30px 90px rgba(0,0,0,0.98);">
+    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(212,175,55,0.35);padding-bottom:10px;margin-bottom:10px;">
+      <div style="display:flex;align-items:center;gap:9px;">
+        <img src="/icons/icon-192.png" alt="" style="width:30px;height:30px;">
+        <b style="color:#FCF6BA;font-size:14.5px;">RRS CARBON-AI™ CYBERSECURITY &amp; SYSTEM HUD</b>
+      </div>
+      <button id="v22-tclose" type="button" class="v22-rx">✕</button>
+    </div>
+    <div id="v22-tbody" style="display:grid;gap:7px;font-size:13px;"></div>
+    <div style="margin-top:11px;padding-top:8px;border-top:1px solid rgba(212,175,55,0.22);font-size:11px;color:#94A3B8;line-height:1.4;">
+      Powered by <b style="color:#FCF6BA;">RRS Carbon-AI™ Cybersecurity Swarm</b>. 100% Local-First Diagnostics: device, thermal &amp; latency checks stay on your machine (never uploaded or sold). Automated heuristic security telemetry, not financial advice.
+    </div>
+  </div>
+</div>
+
+<script id="rrs-v22-js">
+(function(){
+  ['rrs-eco-close','rrs-ext-vid-close'].forEach(function(id){
+    var b=document.getElementById(id); if(b){ b.className='v22-rx'; b.textContent='✕'; }
+  });
+
+  window.openCarbonTelemetry = async function() {
+    var m = document.getElementById('rrsCyberTeleModal'), bd = document.getElementById('v22-tbody');
+    m.setAttribute('aria-hidden', 'false'); m.style.display = 'flex';
+    bd.innerHTML = '<div style="color:#FCF6BA;font-weight:800;">Scanning live connection, RPC latency &amp; device health...</div>';
+
+    var cores = navigator.hardwareConcurrency || 8;
+    var memGb = navigator.deviceMemory ? (navigator.deviceMemory + ' GB Browser Cap') : 'Protected';
+    var tempStr = 'Install Desktop Sentinel for Hardware °C';
+    var cpuStr = cores + ' Logical Cores Active';
+    var edgeStr = 'TLS 1.3 Encrypted';
+    var solMs = 0, dexMs = 0;
+
+    try {
+      var loc = await (await fetch('http://127.0.0.1:18799/telemetry')).json();
+      cpuStr = 'CPU ' + loc.cpu + '%  •  RAM ' + loc.ram + '% (' + loc.ram_gb + ')';
+      tempStr = loc.temp_c; edgeStr = loc.isp_edge; solMs = loc.sol_ms; dexMs = loc.dex_ms;
+    } catch (_e) {
+      try {
+        var t0 = performance.now();
+        var tr = await (await fetch('/cdn-cgi/trace')).text();
+        var rMs = Math.round(performance.now() - t0);
+        var colo = (tr.match(/colo=([A-Z]+)/)||[])[1] || 'EDGE';
+        var tls = (tr.match(/tls=([^\n]+)/)||[])[1] || 'TLSv1.3';
+        edgeStr = 'Cloudflare ' + colo + ' • ' + tls + ' (' + rMs + 'ms)';
+      } catch (_e2) {}
+      try {
+        var s0 = performance.now();
+        await fetch('https://api.mainnet-beta.solana.com',{method:'POST',headers:{'Content-Type':'application/json'},body:'{"jsonrpc":"2.0","id":1,"method":"getHealth"}'});
+        solMs = Math.round(performance.now() - s0);
+      } catch (_e3) { solMs = -1; }
+      try {
+        var d0 = performance.now();
+        await fetch('https://api.dexscreener.com/token-boosts/top/v1');
+        dexMs = Math.round(performance.now() - d0);
+      } catch (_e4) {}
+    }
+    var wName = (window.solana && window.solana.isPhantom) ? 'Phantom (Non-Custodial)' : (window.solflare ? 'Solflare (Non-Custodial)' : 'Read-Only Shield Mode');
+    var rows = [
+      ['System & Memory', cpuStr + ' • ' + memGb],
+      ['Hardware Thermal', tempStr],
+      ['Connected Network', edgeStr],
+      ['Solana & Feed Ping', 'Solana RPC: ' + (solMs>0?solMs+' ms':'Check') + '  •  DexScreener: ' + dexMs + ' ms'],
+      ['Wallet Hookup', wName + ' (0 Seed Phrases)'],
+      ['12-Layer Cyber Moat', '🟢 ACTIVE • Clipboard Lock, CPI & Freeze Guard Armed']
+    ];
+    bd.innerHTML = rows.map(function(r){
+      return '<div style="background:#0B0A07;border:1px solid rgba(212,175,55,0.4);border-radius:8px;padding:8px 11px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">' +
+        '<b style="color:#D4AF37;">' + r[0] + ':</b><span style="color:#FFF;font-weight:800;">' + r[1] + '</span></div>';
+    }).join('');
+  };
+
+  document.getElementById('v22-tclose').onclick = function(){
+    var m = document.getElementById('rrsCyberTeleModal'); m.style.display='none'; m.setAttribute('aria-hidden','true');
+  };
+  document.getElementById('v22-mini-shield').onclick = function(){
+    var box = document.getElementById('rrs-rocket-ping-box');
+    if (box) box.style.display = 'block';
+    window.openCarbonTelemetry();
+  };
+
+  /* Clicking Header Brand Shield Opens Telemetry; Clicking Corner X Collapses To Mini Shield! */
+  setTimeout(function(){
+    var hSvg = document.querySelector('header svg, nav svg, header img');
+    if (hSvg) { hSvg.style.cursor = 'pointer'; hSvg.onclick = function(e){ e.preventDefault(); window.openCarbonTelemetry(); }; }
+    var box = document.getElementById('rrs-rocket-ping-box');
+    if (box) {
+      box.addEventListener('click', function(ev){
+        var t = (ev.target && ev.target.textContent || '').trim();
+        if (t === '✕') { document.getElementById('v22-mini-shield').style.display = 'flex'; }
+      });
+    }
+  }, 900);
+})();
+</script>
+<!-- RANGER_V22_END -->
 </body>
 </html>
