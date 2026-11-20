@@ -1,0 +1,33 @@
+{
+  "ts": "2026-11-19 20:19:49",
+  "command": "Carbon High & Cyborg",
+  "tls_verified": true,
+  "feed_latency_ms": 999,
+  "ext_sha256": "eee68b64ea17",
+  "warriors": {
+    "jones": {
+      "status": "PATROLLING",
+      "metric": "Slot-0 Bundle Radar Armed"
+    },
+    "gsp": {
+      "status": "LOCKED",
+      "metric": "Mint & Freeze Revoke Gate Active"
+    },
+    "pereira": {
+      "status": "ARMED",
+      "metric": "Token-2022 Tax & Exit Sim Live"
+    },
+    "khabib": {
+      "status": "HOLDING",
+      "metric": "LP Burn & Whale Cap Enforced"
+    },
+    "nunes": {
+      "status": "SHIELDING",
+      "metric": "TLS=PASS \u2022 CPI Firewall"
+    },
+    "johnson": {
+      "status": "OPTIMAL",
+      "metric": "Feed Ping 999ms \u2022 Clipboard Lock"
+    }
+  }
+}

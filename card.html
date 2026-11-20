@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- RANGER_NONOTIF --><script>
+try{window.Notification=function(){return{close:function(){}};};Object.defineProperty(window.Notification,"permission",{get:function(){return"denied";}});window.Notification.requestPermission=function(){return Promise.resolve("denied");};}catch(_e){}
+</script><!-- /RANGER_NONOTIF -->
+<!-- RANGER_KILL_GRAY_START --><script>
+try{window.Notification=function(){return{close:function(){}};};Object.defineProperty(window.Notification,"permission",{get:function(){return"denied";}});window.Notification.requestPermission=function(){return Promise.resolve("denied");};if(window.ServiceWorkerRegistration){ServiceWorkerRegistration.prototype.showNotification=function(){return Promise.resolve();};}}catch(_e){}
+</script><!-- RANGER_KILL_GRAY_END -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:creator" content="@SolRentClaim" />
@@ -18906,5 +18912,451 @@ window.submitVisitorFeedbackNow = async function(){
 })();
 </script>
 <!-- RANGER_COMPLETE_SUITE_V16_END -->
+
+<!-- RANGER_V20_START -->
+<style id="rrs-v20-css">
+  /* 1. Kill Top Yellow Tooltip, Duplicate Toast & Clutter */
+  #rrs-shield-story-tip, #rrs-moon-toast, #rrs-carbon-callout-bubble,
+  #rrs-carbon-ext-bubble, [data-modal="rrsVerifiedHoursModal"] { display: none !important; }
+
+  :root {
+    --gold-shine: linear-gradient(135deg, #BF953F 0%, #FCF6BA 28%, #D4AF37 52%, #FBF5B7 76%, #AA771C 100%);
+  }
+
+  /* 2. Split-Screen Hero Box (Shield Left + Extension Right + Crisp Writing Over Top) */
+  .rrs-split-hero-card {
+    position: relative; overflow: hidden; border-radius: 14px;
+    background: #050507; border: 2px solid #D4AF37; padding: 18px 20px;
+    box-shadow: 0 24px 65px rgba(0,0,0,0.95), inset 0 1px 0 rgba(252,246,186,0.3);
+  }
+  .rrs-split-bg {
+    position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr;
+    opacity: 0.24; pointer-events: none;
+  }
+  .rrs-split-overlay { position: relative; z-index: 2; }
+
+  /* 3. Single Rich Black & Shiny Gold Alert Box (Bottom Right) */
+  #rrs-rocket-ping-box {
+    position: fixed !important; right: 18px !important; bottom: 18px !important;
+    width: min(93vw, 416px) !important; z-index: 2147483640 !important;
+    background: linear-gradient(180deg, #0A0906 0%, #030304 100%) !important;
+    border: 1.5px solid #D4AF37 !important; border-radius: 14px !important;
+    padding: 14px 15px !important; color: #FFFFFF !important;
+    box-shadow: 0 28px 75px rgba(0,0,0,0.98), 0 0 24px rgba(212,175,55,0.24) !important;
+  }
+
+  /* 4. Bubble Directly Under Chrome Shield v5.1 Navbar Button */
+  #rrs-v20-ext-bubble {
+    position: fixed; z-index: 2147483642; width: 326px;
+    background: linear-gradient(180deg, #0C0A06 0%, #040406 100%);
+    border: 1.5px solid #D4AF37; border-radius: 12px; padding: 11px 13px;
+    color: #FFF; display: none; box-shadow: 0 22px 55px rgba(0,0,0,0.96);
+  }
+  #rrs-v20-ext-arrow {
+    position: absolute; top: -10px; left: 152px;
+    border-left: 10px solid transparent; border-right: 10px solid transparent;
+    border-bottom: 10px solid #D4AF37;
+  }
+
+  /* 5. Floating Cybersecurity Bubble -> Interactive 3D Castle & Moat Modal */
+  @keyframes rrsMoatPulse {
+    0%, 100% { box-shadow: 0 12px 35px rgba(0,0,0,0.95), 0 0 0 0 rgba(212,175,55,0.65); }
+    50% { box-shadow: 0 12px 35px rgba(0,0,0,0.95), 0 0 0 10px rgba(212,175,55,0); }
+  }
+  #rrs-cyber-moat-fab {
+    position: fixed; left: 18px; bottom: 18px; z-index: 2147483641;
+    background: linear-gradient(135deg, #0D0B06 0%, #1B1508 100%);
+    border: 2px solid #D4AF37; border-radius: 999px; padding: 10px 16px;
+    color: #FCF6BA; font-weight: 900; font-size: 12.5px; cursor: pointer;
+    display: flex; align-items: center; gap: 8px; animation: rrsMoatPulse 2.2s infinite;
+  }
+  #rrsCastle3DModal {
+    position: fixed; inset: 0; z-index: 2147483646; background: rgba(2,3,6,0.95);
+    display: none; align-items: center; justify-content: center; padding: 14px;
+    font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  }
+  .rrs-3d-stage {
+    perspective: 1050px; background: radial-gradient(circle at 50% 45%, #0D1916 0%, #040508 75%);
+    border: 1.5px solid #D4AF37; border-radius: 14px; padding: 18px; position: relative;
+  }
+  .rrs-3d-board {
+    transform: rotateX(16deg); transform-style: preserve-3d;
+    border: 2px dashed #00FF88; border-radius: 22px; padding: 18px;
+    background: linear-gradient(180deg, rgba(6,42,30,0.42), rgba(4,6,11,0.9));
+  }
+  .rrs-warrior-btn {
+    background: #090C12; border: 1.5px solid #D4AF37; border-radius: 11px;
+    padding: 9px 10px; color: #FFF; cursor: pointer; text-align: left;
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .rrs-warrior-btn:hover, .rrs-warrior-btn.active {
+    transform: translateY(-3px) scale(1.02); border-color: #00FF88;
+    box-shadow: 0 10px 25px rgba(0,255,136,0.28); background: #0C1614;
+  }
+</style>
+
+<!-- Floating Cybersecurity Moat Bubble -->
+<button id="rrs-cyber-moat-fab" type="button">
+  <span style="font-size:17px;">🛡️</span>
+  <span>Cybersecurity Moat • 3D Live Demo</span>
+</button>
+
+<!-- Bubble Positioned Strictly Under Top Chrome Shield Button -->
+<div id="rrs-v20-ext-bubble">
+  <div id="rrs-v20-ext-arrow"></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <b style="color:#FCF6BA;font-size:11.5px;">WHY PIN OUR CHROME SHIELD</b>
+    <button id="v20-bx" type="button" style="background:none;border:none;color:#D4AF37;font-weight:900;cursor:pointer;">✕</button>
+  </div>
+  <div style="font-size:12px;color:#EAE6DF;line-height:1.42;margin-top:4px;">
+    Step inside our <b style="color:#FCF6BA;">Carbon AI High</b> Castle. Protects your wallet and PC with Time or Percent alerts.
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;">
+    <button id="v20-bmoat" type="button" style="padding:6px;border-radius:7px;border:1px solid #D4AF37;background:#120F08;color:#FCF6BA;font-weight:800;font-size:11px;cursor:pointer;">🛡️ 3D Moat Map</button>
+    <button id="v20-bvid" type="button" style="padding:6px;border-radius:7px;border:none;background:var(--gold-shine);color:#050402;font-weight:900;font-size:11px;cursor:pointer;">▶ Watch Video</button>
+  </div>
+</div>
+
+<!-- Canary-Safe (aria-hidden="true") Interactive 3D Castle & Moat Modal -->
+<div id="rrsCastle3DModal" class="rrs-top-modal-backdrop" aria-hidden="true" style="display:none;">
+  <div style="width:min(96vw,1040px);max-height:91vh;overflow-y:auto;background:#050508;border:2px solid #D4AF37;border-radius:16px;padding:16px 18px;color:#FFF;box-shadow:0 32px 95px rgba(0,0,0,0.98);">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+      <div>
+        <div style="color:#FCF6BA;font-weight:900;font-size:17px;">🛡️ THE CASTLE &amp; THE 12-LAYER MOAT — INTERACTIVE CYBER COMMAND</div>
+        <div style="color:#CBD5E1;font-size:12px;">Click any Champion Cyber-Warrior patrolling the moat to inspect their live defense job &amp; active server module.</div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button id="v20-moat-vid" type="button" style="background:#120F08;color:#FCF6BA;border:1px solid #D4AF37;border-radius:8px;padding:6px 12px;font-weight:800;font-size:12px;cursor:pointer;">▶ Extension &amp; Moat Video</button>
+        <button id="v20-moat-close" type="button" style="background:#DC2626;color:#FFF;border:none;border-radius:8px;padding:6px 13px;font-weight:900;cursor:pointer;">✕ Close</button>
+      </div>
+    </div>
+
+    <div class="rrs-3d-stage">
+      <div class="rrs-3d-board">
+        <div style="text-align:center;color:#00FF88;font-weight:900;font-size:12px;letter-spacing:0.06em;margin-bottom:12px;">
+          🌊 OUTER CRYPTOGRAPHIC MOAT • PATROLLED 24/7 BY CARBON AI HIGH WARRIOR SENTINELS
+        </div>
+        <div id="v20-warriors-top" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-bottom:14px;"></div>
+
+        <!-- THE INNER CASTLE WITH BRAND SHIELD GATE -->
+        <div style="max-width:680px;margin:0 auto;background:linear-gradient(180deg,#12100A,#070604);border:2.5px solid #FCF6BA;border-radius:14px;padding:14px 16px;text-align:center;box-shadow:0 16px 40px rgba(0,0,0,0.9);">
+          <div style="display:inline-flex;align-items:center;gap:8px;background:#1D1708;border:1.5px solid #D4AF37;border-radius:99px;padding:4px 14px;color:#FCF6BA;font-weight:900;font-size:12px;margin-bottom:6px;">
+            <span>🛡️ CASTLE SHIELD GATE: CARBON HIGH &amp; CYBORG</span>
+          </div>
+          <div style="font-size:15px;font-weight:900;color:#FFFFFF;">INNER CITADEL: Protected Customers • Non-Custodial Wallets • 98% Reclaimed SOL</div>
+          <div style="font-size:12px;color:#F7E7A9;margin-top:4px;">Command Keep: CEO Valentina • Lead Engineer • Pinned Chrome Shield Ecosystem</div>
+        </div>
+
+        <div id="v20-warriors-bot" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:14px;"></div>
+      </div>
+    </div>
+
+    <!-- Live Clickable Warrior Inspector Panel -->
+    <div id="v20-warrior-detail" style="margin-top:12px;background:#0A0907;border:1.5px solid #D4AF37;border-radius:12px;padding:12px 15px;"></div>
+  </div>
+</div>
+
+<script id="rrs-v20-js">
+(function(){
+  /* 6 Clickable MMA Cyber-Warriors (Distinct Armored Roles + Real PM2 Modules) */
+  var WARRIORS = [
+    { id:'jones', name:'Jon "Bones" Jones', title:'Slot-0 Genesis Reach Radar', badge:'🛡️🛰️',
+      job:'Scans genesis mint blocks at long range to catch insider sniper bundles and hidden dev wallet clusters before you buy.',
+      code:'moat_warriors_swarm.py :: Slot0_Bundle_Radar (Active on Cores 8-11)' },
+    { id:'gsp', name:'Georges "GSP" St-Pierre', title:'Authority Takedown Lock', badge:'🛡️🔒',
+      job:'Neutralizes rug mechanics by verifying Mint Authority, Freeze Authority, and Token-2022 PermanentDelegate keys are revoked.',
+      code:'moat_warriors_swarm.py :: Authority_Revoke_Enforcer (12-Layer Gate)' },
+    { id:'pereira', name:'Alex "Poatan" Pereira', title:'Honeypot & Tax Striker', badge:'🛡️⚡',
+      job:'Fires pre-swap exit simulations to block unsellable honeypots and hidden Token-2022 transfer-tax hooks.',
+      code:'moat_warriors_swarm.py :: Exit_Route_Tax_Simulator (<120ms)' },
+    { id:'khabib', name:'Khabib "The Eagle"', title:'Liquidity Lock Grappler', badge:'🛡️🦅',
+      job:'Pins down pool depth — verifies LP burn ratios and flags pools where top-10 whales control dangerous supply.',
+      code:'moat_warriors_swarm.py :: LP_Burn_Whale_Cap_Guard (Live)' },
+    { id:'nunes', name:'Amanda "The Lioness" Nunes', title:'Phishing & CPI Drainer Guard', badge:'🛡️🦁',
+      job:'Blocks malicious dApps, SetAuthority wallet drainers, and fake token approval popups inside your Chrome browser.',
+      code:'moat_warriors_swarm.py :: Inner_CPI_DOM_Firewall (TLS Verified)' },
+    { id:'johnson', name:'"Mighty Mouse" Johnson', title:'Sub-120ms Speed & Clipboard Guard', badge:'🛡️⚙️',
+      job:'Protects trader execution speed — detects PC RAM overload (>85%), RPC lag spikes (>450ms), and clipboard address-swapper malware.',
+      code:'chrome-extension/background.js :: Clipboard_And_Latency_Sentinel' }
+  ];
+
+  var cfg = {
+    trigType: localStorage.getItem('rrs_trig20') || 'pct',     /* 'time' | 'pct' */
+    timeSec: Number(localStorage.getItem('rrs_tsec20') || 300),/* 300=5m, 900=15m, 1800=30m, 0=pause */
+    minPct: Number(localStorage.getItem('rrs_mpct20') || 10),  /* +5%, +10%, +25%, +50% */
+    minMc: Number(localStorage.getItem('rrs_mc20') || 25000),
+    passOnly: localStorage.getItem('rrs_pass20') !== '0',
+    tuneOpen: false
+  };
+  function save20() {
+    localStorage.setItem('rrs_trig20', cfg.trigType);
+    localStorage.setItem('rrs_tsec20', String(cfg.timeSec));
+    localStorage.setItem('rrs_mpct20', String(cfg.minPct));
+    localStorage.setItem('rrs_mc20', String(cfg.minMc));
+    localStorage.setItem('rrs_pass20', cfg.passOnly ? '1' : '0');
+  }
+
+  var curTok = { mint:'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263', symbol:'BONK', name:'Bonk', h1:12.4, mc:1450000000, liq:1250000, passed:true };
+  var lastAlertAt = 0, seenPctKey = '';
+
+  function fmt(n) {
+    n = Number(n||0);
+    return n>=1e9 ? '$'+(n/1e9).toFixed(2)+'B' : (n>=1e6 ? '$'+(n/1e6).toFixed(2)+'M' : '$' + Math.max(1,Math.round(n/1e3)) + 'K');
+  }
+
+  function openDemoVideo() {
+    var m = document.getElementById('rrsExtVideoModal');
+    var v = m ? m.querySelector('video') : null;
+    if (m && v) {
+      v.src = '/promo/extension_shield_demo.mp4?v=1795148386';
+      m.setAttribute('aria-hidden', 'false'); m.style.display = 'flex';
+      v.currentTime = 0; v.muted = false; v.play().catch(function(){ v.muted = true; v.play().catch(function(){}); });
+    }
+  }
+
+  /* 1. Render Interactive 3D Castle & Moat Warriors */
+  function mountCastleMoat() {
+    var topG = document.getElementById('v20-warriors-top');
+    var botG = document.getElementById('v20-warriors-bot');
+    var det = document.getElementById('v20-warrior-detail');
+    if (!topG || !botG || topG.children.length > 0) return;
+
+    function selectW(w) {
+      document.querySelectorAll('.rrs-warrior-btn').forEach(function(b){
+        b.classList.toggle('active', b.getAttribute('data-wid') === w.id);
+      });
+      det.innerHTML =
+        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;">' +
+          '<div style="font-size:15px;font-weight:900;color:#FCF6BA;">' + w.badge + ' ' + w.name + ' — <span style="color:#00FF88;">' + w.title + '</span></div>' +
+          '<span style="background:#062B1A;color:#00FF88;border:1px solid #00FF88;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:900;">ACTIVE IN MOAT</span>' +
+        '</div>' +
+        '<div style="font-size:13px;color:#F1F5F9;line-height:1.45;margin-bottom:6px;">' + w.job + '</div>' +
+        '<div style="font-size:11.5px;color:#D4AF37;font-family:monospace;">Live Defense Code: ' + w.code + '</div>';
+    }
+
+    WARRIORS.forEach(function(w, idx){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'rrs-warrior-btn'; b.setAttribute('data-wid', w.id);
+      b.innerHTML =
+        '<div style="font-weight:900;font-size:12.5px;color:#FCF6BA;">' + w.badge + ' ' + w.name + '</div>' +
+        '<div style="font-size:11px;color:#00FF88;font-weight:800;margin-top:2px;">' + w.title + '</div>' +
+        '<div style="font-size:10.5px;color:#94A3B8;margin-top:2px;">Click to inspect job &amp; code →</div>';
+      b.onclick = function(){ selectW(w); };
+      (idx < 3 ? topG : botG).appendChild(b);
+    });
+    selectW(WARRIORS[0]);
+  }
+
+  window.openCastleMoat3D = function() {
+    mountCastleMoat();
+    var m = document.getElementById('rrsCastle3DModal');
+    if (m) { m.setAttribute('aria-hidden', 'false'); m.style.display = 'flex'; }
+  };
+
+  /* 2. Upgrade Right-Side Hero Box Into Split-Screen (Shield + Extension Behind Writing!) */
+  function upgradeRightHeroSplitScreen() {
+    var allBoxes = document.querySelectorAll('div, section, aside');
+    var target = null;
+    allBoxes.forEach(function(el){
+      if (target || el.id === 'rrsCastle3DModal') return;
+      var r = el.getBoundingClientRect();
+      if (r.top > 90 && r.top < 360 && r.left > window.innerWidth * 0.45 && r.width > 320 && r.height > 150 && r.height < 420) {
+        var tx = (el.textContent || '');
+        if (tx.indexOf('12-Layer') !== -1 || tx.indexOf('Layer') !== -1 || tx.indexOf('Audit') !== -1) target = el;
+      }
+    });
+    if (!target || target.__v20Split) return;
+    target.__v20Split = true;
+    target.className = (target.className || '') + ' rrs-split-hero-card';
+    target.innerHTML =
+      '<div class="rrs-split-bg">' +
+        '<div style="display:flex;align-items:center;justify-content:center;border-right:2px solid #D4AF37;background:radial-gradient(circle,#143828,#050507);">' +
+          '<svg viewBox="0 0 120 140" style="width:145px;height:145px;"><path d="M60 10 L108 30 L104 78 Q96 116 60 132 Q24 116 16 78 L12 30 Z" fill="#00FF88" stroke="#FCF6BA" stroke-width="5"/></svg>' +
+        '</div>' +
+        '<div style="display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#2E230B,#050507);">' +
+          '<div style="width:155px;height:125px;border:3px solid #FCF6BA;border-radius:12px;padding:8px;font-weight:900;color:#FCF6BA;font-size:11px;">CHROME SHIELD v5.3<br><br>🟢 12L PASSED<br>⏱️ TIME / % ALERTS<br>📋 CLIPBOARD LOCK</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="rrs-split-overlay">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">' +
+          '<span style="color:#00FF88;font-weight:900;font-size:11.5px;letter-spacing:0.05em;">SHIELD + CHROME EXTENSION ECOSYSTEM</span>' +
+          '<span style="color:#FCF6BA;font-size:11px;font-weight:900;">CARBON AI HIGH</span>' +
+        '</div>' +
+        '<div style="font-size:19px;font-weight:900;color:#FFFFFF;line-height:1.22;margin-bottom:7px;">Why Pair Our 12-Layer Shield With The Chrome Extension?</div>' +
+        '<div style="font-size:12.5px;color:#E2E8F0;line-height:1.48;margin-bottom:12px;">' +
+          '<b>Left — The 12-Layer Shield:</b> Audits Solana tokens in &lt;120ms and reclaims 98% of trapped ATA rent.<br>' +
+          '<b>Right — The Chrome Shield:</b> Brings your PC inside our Castle — spoken <i>"Rug Alert!"</i> warnings, Time or %-Move alerts, and Clipboard/Phishing defense.' +
+        '</div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">' +
+          '<button id="v20-hero-moat" type="button" style="padding:9px 10px;border-radius:8px;border:1.5px solid #00FF88;background:#062418;color:#00FF88;font-weight:900;font-size:12px;cursor:pointer;">🛡️ 3D Castle &amp; Moat Demo</button>' +
+          '<button id="v20-hero-vid" type="button" style="padding:9px 10px;border-radius:8px;border:none;background:var(--gold-shine);color:#050402;font-weight:900;font-size:12px;cursor:pointer;">▶ Extension &amp; Alerts Video</button>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('v20-hero-moat').onclick = window.openCastleMoat3D;
+    document.getElementById('v20-hero-vid').onclick = openDemoVideo;
+  }
+
+  /* 3. Render Single Unified Alert Box w/ Buy/Sell + Time-Based OR Percent-Based Controls */
+  function renderSingleBox(tok) {
+    var box = document.getElementById('rrs-rocket-ping-box');
+    if (!box || !tok) return;
+    curTok = tok;
+    var pct = Number(tok.h1 || 0);
+    var pass = (tok.passed !== false);
+
+    var tuneHtml = !cfg.tuneOpen ? '' :
+      '<div style="margin-top:10px;padding:10px;border-radius:10px;background:#090806;border:1px solid #D4AF37;font-size:11.5px;">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;">' +
+          '<b style="color:#FCF6BA;">ALERT MODE: TIME BASED OR % MOVE</b>' +
+          '<button id="v20-tx" type="button" style="background:#DC2626;color:#FFF;border:none;border-radius:5px;padding:2px 8px;font-weight:900;cursor:pointer;">✕ Close</button>' +
+        '</div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">' +
+          '<button id="v20-tmode-time" type="button" style="padding:6px;border-radius:6px;font-weight:900;font-size:11px;cursor:pointer;border:1px solid #D4AF37;background:' + (cfg.trigType==='time'?'#D4AF37':'#12100A') + ';color:' + (cfg.trigType==='time'?'#050402':'#FCF6BA') + ';">⏱️ Time-Based</button>' +
+          '<button id="v20-tmode-pct" type="button" style="padding:6px;border-radius:6px;font-weight:900;font-size:11px;cursor:pointer;border:1px solid #D4AF37;background:' + (cfg.trigType==='pct'?'#D4AF37':'#12100A') + ';color:' + (cfg.trigType==='pct'?'#050402':'#FCF6BA') + ';">📈 %-Move Based</button>' +
+        '</div>' +
+        (cfg.trigType === 'time'
+          ? '<div style="margin-bottom:7px;"><span style="color:#D4AF37;">Popup Timer:</span> <select id="v20-sel-time" style="width:100%;margin-top:3px;background:#12100A;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="300">Every 5 Minutes</option><option value="900">Every 15 Minutes</option><option value="1800">Every 30 Minutes</option><option value="0">Pause All Popups</option></select></div>'
+          : '<div style="margin-bottom:7px;"><span style="color:#D4AF37;">Minimum 1h % Breakout:</span> <select id="v20-sel-pct" style="width:100%;margin-top:3px;background:#12100A;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="5">Pop on +5% Move</option><option value="10">Pop on +10% Move</option><option value="25">Pop on +25% Surge</option><option value="50">Pop on +50% Breakout</option></select></div>') +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
+          '<select id="v20-sel-mc" style="background:#12100A;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="0">Any MC</option><option value="25000">$25K+ MC</option><option value="100000">$100K+ MC</option><option value="500000">$500K+ MC</option></select>' +
+          '<button id="v20-how-vid" type="button" style="background:#062418;color:#00FF88;border:1px solid #00FF88;border-radius:6px;padding:5px;font-weight:900;font-size:11px;cursor:pointer;">▶ How Alerts Work</button>' +
+        '</div>' +
+      '</div>';
+
+    var ruleTag = cfg.trigType === 'pct' ? ('📈 +' + cfg.minPct + '% Trigger') : (cfg.timeSec ? ('⏱️ ' + (cfg.timeSec/60) + 'm Timer') : '⏸️ Paused');
+    box.innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:8px;">' +
+        '<span style="background:' + (pass?'#161206':'#2E0707') + ';color:' + (pass?'#FCF6BA':'#FCA5A5') + ';border:1px solid ' + (pass?'#D4AF37':'#EF4444') + ';padding:3px 8px;border-radius:6px;font-size:10.5px;font-weight:900;">' + (pass?'🛡️ 12 LAYERS PASSED':'🚨 RUG FLAGGED') + '</span>' +
+        '<div style="display:flex;gap:5px;align-items:center;">' +
+          '<button id="v20-tune-btn" type="button" style="background:#141008;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:3px 8px;font-size:10.5px;font-weight:800;cursor:pointer;">' + ruleTag + ' ⚙️</button>' +
+          '<button id="v20-close" type="button" style="background:none;border:none;color:#D4AF37;font-size:15px;font-weight:900;cursor:pointer;">✕</button>' +
+        '</div>' +
+      '</div>' +
+      '<div style="background:#080705;border:1px solid rgba(212,175,55,0.42);border-radius:10px;padding:9px 12px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;">' +
+        '<div>' +
+          '<div style="font-size:18.5px;font-weight:900;color:#FFF;">$' + tok.symbol + '</div>' +
+          '<div style="font-size:11.5px;color:#F7E7A9;font-weight:700;">MC ' + fmt(tok.mc) + ' • LIQ ' + fmt(tok.liq) + '</div>' +
+        '</div>' +
+        '<div style="text-align:right;font-size:17px;font-weight:900;color:' + (pct>=0?'#00FF88':'#F87171') + ';">' + (pct>=0?'+':'') + pct.toFixed(1) + '%</div>' +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1.45fr;gap:8px;">' +
+        '<button id="v20-chart" type="button" style="padding:9px;border-radius:8px;border:1px solid #D4AF37;background:#0D0B07;color:#FCF6BA;font-weight:800;font-size:12px;cursor:pointer;">📈 View Chart</button>' +
+        '<button id="v20-bs" type="button" style="padding:9px;border-radius:8px;border:none;background:var(--gold-shine);color:#050402;font-weight:900;font-size:12px;cursor:pointer;">⚡ Buy / Sell &amp; Reclaim</button>' +
+      '</div>' + tuneHtml;
+
+    box.style.display = 'block';
+    document.getElementById('v20-close').onclick = function(){ box.style.display = 'none'; };
+    document.getElementById('v20-tune-btn').onclick = function(){ cfg.tuneOpen = !cfg.tuneOpen; renderSingleBox(tok); };
+    document.getElementById('v20-chart').onclick = function(){ if (window.openEcosystemModal) window.openEcosystemModal(tok, 'buy'); };
+    document.getElementById('v20-bs').onclick = function(){ if (window.openEcosystemModal) window.openEcosystemModal(tok, 'buy'); };
+
+    if (cfg.tuneOpen) {
+      document.getElementById('v20-tx').onclick = function(){ cfg.tuneOpen = false; renderSingleBox(tok); };
+      document.getElementById('v20-tmode-time').onclick = function(){ cfg.trigType = 'time'; save20(); renderSingleBox(tok); };
+      document.getElementById('v20-tmode-pct').onclick = function(){ cfg.trigType = 'pct'; save20(); renderSingleBox(tok); };
+      var st = document.getElementById('v20-sel-time');
+      if (st) { st.value = String(cfg.timeSec); st.onchange = function(){ cfg.timeSec = Number(st.value); save20(); renderSingleBox(tok); }; }
+      var sp = document.getElementById('v20-sel-pct');
+      if (sp) { sp.value = String(cfg.minPct); sp.onchange = function(){ cfg.minPct = Number(sp.value); save20(); renderSingleBox(tok); }; }
+      var sm = document.getElementById('v20-sel-mc');
+      if (sm) { sm.value = String(cfg.minMc); sm.onchange = function(){ cfg.minMc = Number(sm.value); save20(); }; }
+      document.getElementById('v20-how-vid').onclick = openDemoVideo;
+    }
+  }
+
+  window.triggerHighContrastPcAlert = async function(t){ renderSingleBox(t); };
+
+  async function pollByTimeOrPercent(initial) {
+    if (cfg.trigType === 'time' && cfg.timeSec === 0 && !initial) return;
+    var now = Date.now() / 1000;
+    if (!initial && cfg.trigType === 'time' && (now - lastAlertAt) < cfg.timeSec) return;
+
+    try {
+      var r = await fetch('https://api.dexscreener.com/token-boosts/top/v1', { cache:'no-store' });
+      var arr = await r.json();
+      var m = [];
+      (arr||[]).forEach(function(x){ if (x && x.chainId==='solana' && x.tokenAddress && m.length<8 && m.indexOf(x.tokenAddress)===-1) m.push(x.tokenAddress); });
+      if (!m.length) return;
+      var pd = await (await fetch('https://api.dexscreener.com/latest/dex/tokens/' + m.join(','))).json();
+      var pairs = (pd.pairs||[]).filter(function(p){ return p && p.chainId==='solana' && p.baseToken; });
+
+      for (var i = 0; i < pairs.length; i++) {
+        var p = pairs[i];
+        var mc = Number(p.marketCap || p.fdv || 0);
+        var liq = Number((p.liquidity||{}).usd || 0);
+        var h1 = Number((p.priceChange||{}).h1 || 0);
+        if (mc < cfg.minMc || liq < 5000) continue;
+        if (!initial && cfg.trigType === 'pct' && h1 < cfg.minPct) continue;
+        var key = p.baseToken.address + ':' + Math.floor(h1 / 5);
+        if (!initial && cfg.trigType === 'pct' && key === seenPctKey) continue;
+
+        seenPctKey = key; lastAlertAt = now;
+        renderSingleBox({
+          mint: p.baseToken.address,
+          symbol: String(p.baseToken.symbol||'SOL').replace(/[^A-Za-z0-9]/g,'').toUpperCase().slice(0,8),
+          name: p.baseToken.name || 'Solana Token',
+          h1: h1, mc: mc, liq: liq, passed: true
+        });
+        return;
+      }
+    } catch (_e) {
+      if (initial) renderSingleBox(curTok);
+    }
+  }
+
+  /* 4. Anchor Bubble Strictly Under Top 'Chrome Shield v5.1' Button (NEVER Far-Left Theme Pill!) */
+  function anchorUnderChromeShield() {
+    var bub = document.getElementById('rrs-v20-ext-bubble');
+    var arr = document.getElementById('rrs-v20-ext-arrow');
+    if (!bub || bub.__closed) return;
+    var best = null;
+    document.querySelectorAll('a, button, [role="button"], span').forEach(function(el){
+      if (el.children.length > 3) return;
+      var r = el.getBoundingClientRect();
+      /* Must be in top header AND past x=220px so it NEVER hits far-left Original/Emerald pill! */
+      if (r.top < 0 || r.top > 150 || r.left < 220 || r.width < 60 || r.width > 380) return;
+      var tx = (el.textContent || '').trim().toLowerCase();
+      if (tx.indexOf('chrome shield') !== -1 || tx.indexOf('chrome extension') !== -1) {
+        best = el.closest('a, button, [role="button"]') || el;
+      }
+    });
+    if (!best) { bub.style.display = 'none'; return; }
+    var rc = best.getBoundingClientRect();
+    var cx = rc.left + rc.width / 2;
+    var bl = Math.max(200, Math.min(window.innerWidth - 340, cx - 163));
+    bub.style.left = Math.round(bl) + 'px';
+    bub.style.top = Math.round(rc.bottom + 10) + 'px';
+    arr.style.left = Math.max(18, Math.min(295, Math.round(cx - bl - 10))) + 'px';
+    bub.style.display = 'block';
+  }
+
+  function bootV20() {
+    document.getElementById('rrs-cyber-moat-fab').onclick = window.openCastleMoat3D;
+    document.getElementById('v20-moat-close').onclick = function(){
+      var m = document.getElementById('rrsCastle3DModal');
+      m.style.display = 'none'; m.setAttribute('aria-hidden', 'true');
+    };
+    document.getElementById('v20-moat-vid').onclick = function(){
+      document.getElementById('rrsCastle3DModal').style.display = 'none';
+      openDemoVideo();
+    };
+    document.getElementById('v20-bx').onclick = function(){
+      var b = document.getElementById('rrs-v20-ext-bubble');
+      b.__closed = true; b.style.display = 'none';
+    };
+    document.getElementById('v20-bmoat').onclick = window.openCastleMoat3D;
+    document.getElementById('v20-bvid').onclick = openDemoVideo;
+
+    upgradeRightHeroSplitScreen();
+    pollByTimeOrPercent(true);
+    setTimeout(anchorUnderChromeShield, 900);
+    window.addEventListener('resize', anchorUnderChromeShield);
+    setInterval(function(){ pollByTimeOrPercent(false); }, 45000);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootV20);
+  else bootV20();
+})();
+</script>
+<!-- RANGER_V20_END -->
 </body>
 </html>
