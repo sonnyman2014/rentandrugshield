@@ -2311,275 +2311,393 @@ body.rrs-mode-original {
 
 </style>
 <!-- RANGER_PIXEL_LOCK_V6_START -->
-<!-- RANGER_V8_SCREENFIT_ACTIVE -->
-<style id="ranger-v8-screenfit-css">
-  /* 1. Force Grid & Flex Containers to Allow Shrinking (Fixes Panel 1 Inner Box Blowout) */
+<!-- RANGER_V9_BLACKGOLD_ACTIVE_1795136453 -->
+<style id="ranger-v9-master-css">
+  /* A. Full-Screen Responsive Pop (Fills Wide Monitors Without Manual Zooming!) */
+  :root {
+    --bg-lux-black: #040406;
+    --bg-lux-onyx: #0A0A0F;
+    --lux-gold: #D4AF37;
+    --lux-gold-bright: #F5C542;
+    --lux-gold-dim: rgba(212, 175, 55, 0.36);
+    --lux-gray: #A1A1AA;
+    --lux-white: #F8FAFC;
+  }
+  @media (min-width: 1440px) {
+    html { font-size: 17.5px !important; }
+  }
+  @media (min-width: 1800px) {
+    html { font-size: 19px !important; }
+  }
+  main, .container, .main-container, .wrap, .wrapper, .hero-wrap, .grid-wrap,
+  [class*="container" i], [class*="max-w" i] {
+    max-width: min(96vw, 1680px) !important;
+  }
+
+  /* B. Slow Distracting Top Ticker Bar by 4x (Smooth, Calm Eye Speed + Pause on Hover) */
+  marquee, [class*="ticker" i], [class*="marquee" i], [id*="ticker" i],
+  [class*="ticker" i] *, [class*="marquee" i] * {
+    animation-duration: 78s !important;
+  }
+  [class*="ticker" i]:hover *, [class*="marquee" i]:hover * {
+    animation-play-state: paused !important;
+  }
+
+  /* C. Hide All Public GitHub Repo Links Immediately */
+  a[href*="github.com"] {
+    display: none !important;
+  }
+
+  /* D. Panel 1 & Panel 2 Inner Box Fit */
   main *, section *, article *, [id*="panel" i] *, [class*="panel" i] *, [class*="card" i] * {
     box-sizing: border-box !important;
     min-width: 0 !important;
   }
-  [id*="panel" i], [class*="panel" i], [class*="engine" i], [class*="card" i] {
+  [id*="panel" i], [class*="panel" i], [class*="card" i] {
     max-width: 100% !important;
     min-width: 0 !important;
     overflow-x: hidden !important;
-    box-sizing: border-box !important;
-  }
-  [id*="panel" i] code, [class*="panel" i] code, [class*="card" i] code,
-  [id*="panel" i] [class*="badge" i], [id*="panel" i] [class*="pill" i],
-  [id*="panel" i] [class*="fee" i], [id*="panel" i] [class*="ata" i],
-  [class*="panel" i] [class*="fee" i], [class*="panel" i] [class*="ata" i] {
-    max-width: 100% !important;
-    white-space: normal !important;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
-    flex-wrap: wrap !important;
   }
 
-  /* 2. Clamp ALL Existing & Custom Promo Modals to Fit 100% Inside Screen Height */
-  #ranger-v8-cinema-overlay {
+  /* E. TRUE LUXURY BLACK & 24K GOLD INSTITUTIONAL MODE (ZERO GREEN/BLUE/RAINBOW!) */
+  body.institutional-mode,
+  html[data-theme="institutional"] body,
+  body[data-ui-mode="institutional"],
+  #institutionalView, .institutional-view,
+  [id*="institutional" i], [class*="institutional-mode" i] {
+    background: #040406 !important;
+    background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08), transparent 55%) !important;
+    color: #F8FAFC !important;
+  }
+  body.institutional-mode section, body.institutional-mode article,
+  body.institutional-mode [class*="card" i], body.institutional-mode [class*="panel" i],
+  #institutionalView section, #institutionalView article,
+  #institutionalView [class*="card" i], #institutionalView [class*="panel" i],
+  [id*="institutional" i] [class*="card" i], [id*="institutional" i] [class*="panel" i] {
+    background: linear-gradient(180deg, #0B0B10 0%, #060609 100%) !important;
+    border: 1px solid rgba(212, 175, 55, 0.42) !important;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(245, 197, 66, 0.14) !important;
+    border-radius: 8px !important;
+    color: #F8FAFC !important;
+  }
+  body.institutional-mode h1, body.institutional-mode h2, body.institutional-mode h3,
+  #institutionalView h1, #institutionalView h2, #institutionalView h3,
+  [id*="institutional" i] h1, [id*="institutional" i] h2, [id*="institutional" i] h3 {
+    color: #F8FAFC !important;
+    letter-spacing: 0.02em !important;
+  }
+  body.institutional-mode strong, body.institutional-mode [class*="badge" i],
+  body.institutional-mode [class*="tag" i], body.institutional-mode [class*="pill" i],
+  #institutionalView strong, #institutionalView [class*="badge" i],
+  #institutionalView [class*="tag" i], #institutionalView [class*="pill" i],
+  [id*="institutional" i] [class*="badge" i], [id*="institutional" i] [class*="pill" i] {
+    color: #F5C542 !important;
+    border-color: rgba(212, 175, 55, 0.45) !important;
+    background-color: rgba(212, 175, 55, 0.09) !important;
+  }
+  body.institutional-mode p, body.institutional-mode small, body.institutional-mode label,
+  #institutionalView p, #institutionalView small, #institutionalView label {
+    color: #B4B8C2 !important;
+  }
+  body.institutional-mode input, body.institutional-mode select, body.institutional-mode textarea,
+  #institutionalView input, #institutionalView select,
+  [id*="institutional" i] input {
+    background: #050508 !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(212, 175, 55, 0.48) !important;
+    border-radius: 6px !important;
+  }
+  body.institutional-mode button, #institutionalView button, [id*="institutional" i] button {
+    background: linear-gradient(180deg, #F5C542 0%, #C99E27 100%) !important;
+    color: #050507 !important;
+    font-weight: 800 !important;
+    border: 1px solid #F5C542 !important;
+    border-radius: 6px !important;
+    min-height: 40px !important;
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.22) !important;
+    text-shadow: none !important;
+  }
+  body.institutional-mode button[class*="secondary" i],
+  #institutionalView button[class*="secondary" i] {
+    background: #12131A !important;
+    color: #F5C542 !important;
+    border: 1px solid rgba(212, 175, 55, 0.5) !important;
+  }
+
+  /* F. Cinema Video Lightbox — Guaranteed 100% Screen Fit + Sound Controls */
+  #ranger-v9-cinema-overlay {
     position: fixed !important;
     inset: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background: rgba(3, 7, 14, 0.92) !important;
+    background: rgba(2, 3, 6, 0.94) !important;
     z-index: 2147483646 !important;
     display: none;
     align-items: center !important;
     justify-content: center !important;
-    padding: 16px !important;
+    padding: 18px !important;
     box-sizing: border-box !important;
   }
-  #ranger-v8-cinema-box {
-    width: min(86vw, 860px, calc(68vh * 1.7778)) !important;
-    max-width: 86vw !important;
-    max-height: 84vh !important;
-    background: #071018 !important;
-    border: 1.5px solid #10B981 !important;
+  #ranger-v9-cinema-box {
+    width: min(88vw, 960px, calc(70vh * 1.7778)) !important;
+    max-height: 86vh !important;
+    background: #06070B !important;
+    border: 2px solid #D4AF37 !important;
     border-radius: 12px !important;
-    padding: 10px 14px 12px 14px !important;
+    padding: 12px 16px 14px 16px !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 8px !important;
-    overflow: hidden !important;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.9) !important;
+    gap: 10px !important;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.95) !important;
   }
-  #ranger-v8-cinema-video {
+  #ranger-v9-cinema-video {
     width: 100% !important;
-    height: auto !important;
     max-height: 68vh !important;
+    height: auto !important;
     aspect-ratio: 16 / 9 !important;
     object-fit: contain !important;
     background: #000 !important;
     border-radius: 8px !important;
     display: block !important;
-    margin: 0 auto !important;
-  }
-  [id*="promo" i][id*="modal" i] video, [id*="promo" i][id*="modal" i] iframe,
-  [class*="promo" i][class*="modal" i] video, [class*="promo" i][class*="modal" i] iframe,
-  dialog video, dialog iframe {
-    max-width: min(84vw, 860px) !important;
-    max-height: 68vh !important;
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-  }
-
-  /* 3. Institutional Slate Guard */
-  body.institutional-mode, [data-ui-mode="institutional"],
-  [id*="institutional" i], [class*="institutional" i] {
-    background-color: #090D16 !important;
-    color: #E5E7EB !important;
   }
 </style>
-<script id="ranger-v8-screenfit-js">
+<script id="ranger-v9-master-js">
 (function(){
-  /* Purge any stale Service Worker cache once so new layout renders immediately */
-  try {
-    if (localStorage.getItem('rrs_v8_sw_cleared') !== '1') {
-      localStorage.setItem('rrs_v8_sw_cleared', '1');
-      if ('caches' in window) {
-        caches.keys().then(function(ks){ ks.forEach(function(k){ caches.delete(k); }); });
-      }
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(rs){
-          rs.forEach(function(r){ r.update(); });
-        });
-      }
-    }
-  } catch (_e) {}
+  var VIDEO_SRC = '/promo/rent_rug_shield_promo_45s.mp4?v=1795136453';
 
-  function findEngineCard(keyword) {
-    var kw = keyword.toLowerCase();
-    var nodes = document.querySelectorAll('h1, h2, h3, h4, div, span, strong');
-    for (var i = 0; i < nodes.length; i++) {
-      var n = nodes[i];
-      if (n.children.length > 4) continue;
-      var t = (n.textContent || '').toLowerCase();
-      if (t.indexOf(kw) !== -1) {
-        var cur = n.parentElement;
-        var best = null;
-        while (cur && cur !== document.body && cur !== document.documentElement) {
-          var r = cur.getBoundingClientRect();
-          var st = window.getComputedStyle(cur);
-          if (r.width >= 260 && r.width <= window.innerWidth * 0.94 && (st.borderTopWidth !== '0px' || st.backgroundColor !== 'rgba(0, 0, 0, 0)' || st.borderRadius !== '0px')) {
-            best = cur;
-            if (r.height >= 200) break;
-          }
-          cur = cur.parentElement;
-        }
-        if (best) return best;
-      }
+  function stripEmojiText(s){
+    var out = '';
+    var arr = Array.from(s);
+    for (var i = 0; i < arr.length; i++) {
+      var cp = arr[i].codePointAt(0);
+      var isEm = (cp >= 0x1F300 && cp <= 0x1FAFF) || (cp >= 0x2600 && cp <= 0x27BF) || cp === 0xFE0F || cp === 0x200D;
+      if (!isEm) out += arr[i];
     }
-    return null;
+    return out.split('  ').join(' ');
   }
 
-  function clampCardChildren(card) {
-    if (!card) return;
-    card.style.setProperty('min-width', '0', 'important');
-    card.style.setProperty('max-width', '100%', 'important');
-    card.style.setProperty('overflow-x', 'hidden', 'important');
-    card.style.setProperty('box-sizing', 'border-box', 'important');
-    if (card.parentElement) {
-      card.parentElement.style.setProperty('min-width', '0', 'important');
+  function enforceBlackGoldOnNode(root){
+    if (!root) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var n;
+    while ((n = walker.nextNode())) {
+      var c = stripEmojiText(n.nodeValue || '');
+      if (c !== n.nodeValue) n.nodeValue = c;
     }
-
-    var cSt = window.getComputedStyle(card);
-    var padL = parseFloat(cSt.paddingLeft) || 16;
-    var padR = parseFloat(cSt.paddingRight) || 16;
-    var pRect = card.getBoundingClientRect();
-    if (pRect.width < 100) return;
-    var maxInnerW = Math.max(180, Math.floor(pRect.width - padL - padR - 4));
-
-    card.querySelectorAll('*').forEach(function(el) {
-      var tag = el.tagName.toLowerCase();
-      if (tag === 'svg' || tag === 'path' || tag === 'circle' || tag === 'rect') return;
-
-      el.style.setProperty('box-sizing', 'border-box', 'important');
-      el.style.setProperty('min-width', '0', 'important');
-      el.style.setProperty('max-width', '100%', 'important');
-
-      var st = window.getComputedStyle(el);
-      if (st.display.indexOf('flex') !== -1 && tag !== 'button') {
-        el.style.setProperty('flex-wrap', 'wrap', 'important');
-      }
-      if (tag !== 'button' && tag !== 'input') {
-        var txt = (el.textContent || '').trim();
-        if (st.whiteSpace === 'nowrap' || txt.indexOf('1st ATA') !== -1 || txt.indexOf('First ATA') !== -1 || txt.indexOf('89Sv5') !== -1 || txt.indexOf('2.0%') !== -1) {
-          el.style.setProperty('white-space', 'normal', 'important');
-          el.style.setProperty('overflow-wrap', 'anywhere', 'important');
-          el.style.setProperty('word-break', 'break-word', 'important');
-        }
-        /* Shrink any oversized callout box inside Panel 1 so it sits neatly inside */
-        if ((tag === 'div' || tag === 'p' || tag === 'section' || tag === 'span') && (txt.indexOf('1st ATA') !== -1 || txt.indexOf('First ATA') !== -1 || txt.indexOf('Lifetime Free') !== -1)) {
-          if (st.borderTopWidth !== '0px' || st.backgroundColor !== 'rgba(0, 0, 0, 0)') {
-            el.style.setProperty('width', '100%', 'important');
-            el.style.setProperty('max-width', maxInnerW + 'px', 'important');
-            el.style.setProperty('padding', '8px 12px', 'important');
-            el.style.setProperty('font-size', '13px', 'important');
-            el.style.setProperty('line-height', '1.38', 'important');
-            el.style.setProperty('margin-left', '0', 'important');
-            el.style.setProperty('margin-right', '0', 'important');
+    root.querySelectorAll('*').forEach(function(el){
+      var st = el.getAttribute('style') || '';
+      if (st) {
+        /* Replace inline green/cyan/purple accents inside Institutional view with Gold/Black */
+        if (st.indexOf('#00ff') !== -1 || st.indexOf('#10b981') !== -1 || st.indexOf('#059669') !== -1 || st.indexOf('rgb(16, 185, 129)') !== -1 || st.indexOf('#38bdf8') !== -1 || st.indexOf('#06b6d4') !== -1) {
+          el.style.setProperty('border-color', 'rgba(212, 175, 55, 0.45)', 'important');
+          if (el.tagName.toLowerCase() !== 'button') {
+            el.style.setProperty('color', '#F5C542', 'important');
           }
         }
-      }
-
-      var r = el.getBoundingClientRect();
-      if (r.width > maxInnerW + 2 || r.right > pRect.right - 8) {
-        el.style.setProperty('width', maxInnerW + 'px', 'important');
-        el.style.setProperty('max-width', maxInnerW + 'px', 'important');
       }
     });
   }
 
-  function ensureCinemaModal() {
-    var ov = document.getElementById('ranger-v8-cinema-overlay');
+  function ensureCinemaV9(){
+    var ov = document.getElementById('ranger-v9-cinema-overlay');
     if (ov) return ov;
     ov = document.createElement('div');
-    ov.id = 'ranger-v8-cinema-overlay';
+    ov.id = 'ranger-v9-cinema-overlay';
     ov.innerHTML =
-      '<div id="ranger-v8-cinema-box">' +
-        '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">' +
-          '<span style="color:#10B981;font-weight:800;font-size:14px;letter-spacing:0.03em;">SOLANA RENT & RUG SHIELD — 12-LAYER DEMO</span>' +
-          '<button id="ranger-v8-cinema-close" type="button" style="background:#EF4444;color:#fff;border:none;border-radius:6px;padding:5px 12px;font-weight:800;font-size:13px;cursor:pointer;">✕ CLOSE</button>' +
+      '<div id="ranger-v9-cinema-box">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">' +
+          '<span style="color:#F5C542;font-weight:800;font-size:15px;letter-spacing:0.03em;">SOLANA RENT & RUG SHIELD — 12-LAYER OVERVIEW</span>' +
+          '<div style="display:flex;align-items:center;gap:8px;">' +
+            '<button id="ranger-v9-mute-btn" type="button" style="background:#141824;color:#F5C542;border:1px solid #D4AF37;border-radius:6px;padding:6px 12px;font-weight:700;font-size:13px;cursor:pointer;">🔊 Sound ON (Click to Mute)</button>' +
+            '<button id="ranger-v9-close-btn" type="button" style="background:#DC2626;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-weight:800;font-size:13px;cursor:pointer;">✕ CLOSE</button>' +
+          '</div>' +
         '</div>' +
-        '<video id="ranger-v8-cinema-video" controls playsinline preload="metadata" src="/promo/rent_rug_shield_promo_45s.mp4"></video>' +
+        '<video id="ranger-v9-cinema-video" controls playsinline preload="auto" src="' + VIDEO_SRC + '"></video>' +
       '</div>';
     document.body.appendChild(ov);
 
-    function closeCinema() {
-      var v = document.getElementById('ranger-v8-cinema-video');
-      if (v) { try { v.pause(); } catch (_e) {} }
+    var vid = document.getElementById('ranger-v9-cinema-video');
+    var mbtn = document.getElementById('ranger-v9-mute-btn');
+    mbtn.addEventListener('click', function(){
+      vid.muted = !vid.muted;
+      mbtn.textContent = vid.muted ? '🔇 Sound Muted (Click to Unmute)' : '🔊 Sound ON (Click to Mute)';
+    });
+    function closeV9(){
+      try { vid.pause(); } catch (_e) {}
       ov.style.setProperty('display', 'none', 'important');
     }
-    ov.addEventListener('click', function(e){ if (e.target === ov) closeCinema(); });
-    document.getElementById('ranger-v8-cinema-close').addEventListener('click', closeCinema);
-    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeCinema(); });
+    document.getElementById('ranger-v9-close-btn').addEventListener('click', closeV9);
+    ov.addEventListener('click', function(e){ if (e.target === ov) closeV9(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeV9(); });
     return ov;
   }
 
-  function openScreenFitPromo(ev) {
-    if (ev) {
-      ev.preventDefault();
-      ev.stopImmediatePropagation();
-    }
-    /* Close any oversized legacy promo modal if open */
-    document.querySelectorAll('[id*="promo" i][id*="modal" i], [class*="promo" i][class*="modal" i]').forEach(function(m){
-      if (m.id !== 'ranger-v8-cinema-overlay') m.style.setProperty('display', 'none', 'important');
+  function openPromoWithSound(ev){
+    if (ev) { ev.preventDefault(); ev.stopImmediatePropagation(); }
+    document.querySelectorAll('video').forEach(function(v){
+      if (v.id !== 'ranger-v9-cinema-video') { try { v.pause(); v.muted = true; } catch (_e) {} }
     });
-    var ov = ensureCinemaModal();
+    document.querySelectorAll('[id*="promo" i][id*="modal" i], [class*="promo" i][class*="modal" i], #ranger-v8-cinema-overlay').forEach(function(m){
+      if (m.id !== 'ranger-v9-cinema-overlay') m.style.setProperty('display', 'none', 'important');
+    });
+    var ov = ensureCinemaV9();
     ov.style.setProperty('display', 'flex', 'important');
-    var v = document.getElementById('ranger-v8-cinema-video');
-    if (v) {
-      v.currentTime = 0;
-      var p = v.play();
-      if (p && p.catch) p.catch(function(){});
+    var vid = document.getElementById('ranger-v9-cinema-video');
+    var mbtn = document.getElementById('ranger-v9-mute-btn');
+    if (vid) {
+      if (vid.src.indexOf('1795136453') === -1) vid.src = VIDEO_SRC;
+      vid.currentTime = 0;
+      vid.muted = false;
+      vid.volume = 0.85;
+      if (mbtn) mbtn.textContent = '🔊 Sound ON (Click to Mute)';
+      var p = vid.play();
+      if (p && p.catch) {
+        p.catch(function(){
+          vid.muted = true;
+          if (mbtn) mbtn.textContent = '🔇 Click Here to Enable Music';
+          vid.play().catch(function(){});
+        });
+      }
     }
   }
 
-  function applyAllFixes() {
-    /* Hide bottom-left overlapping pill */
-    document.querySelectorAll('body *').forEach(function(el){
-      var st = window.getComputedStyle(el);
-      if (st.position === 'fixed') {
-        var r = el.getBoundingClientRect();
-        var tx = (el.textContent || '').trim().toLowerCase();
-        if (r.left < 150 && r.bottom > (window.innerHeight - 170) && r.width < 380 && tx.indexOf('12-layer shield live') !== -1) {
-          el.style.setProperty('display', 'none', 'important');
+  function openSafeTelegramModal(ev){
+    if (ev) { ev.preventDefault(); ev.stopImmediatePropagation(); }
+    var tm = document.getElementById('ranger-v9-tg-modal');
+    if (!tm) {
+      tm = document.createElement('div');
+      tm.id = 'ranger-v9-tg-modal';
+      tm.style.cssText = 'position:fixed;inset:0;background:rgba(2,4,8,0.9);z-index:2147483645;display:flex;align-items:center;justify-content:center;padding:16px;';
+      tm.innerHTML =
+        '<div style="max-width:460px;width:100%;background:#0A0C12;border:1.5px solid #D4AF37;border-radius:12px;padding:22px;color:#F8FAFC;font-family:sans-serif;">' +
+          '<h3 style="margin:0 0 10px 0;color:#F5C542;font-size:18px;">Live Rug & Rent Alerts</h3>' +
+          '<p style="margin:0 0 16px 0;color:#CBD5E1;font-size:14px;line-height:1.5;">Enable instant desktop & mobile pop-up alerts right from this browser, or follow live 12-Layer scan proofs on our official X feed <b>@SolRentClaim</b>.</p>' +
+          '<div style="display:flex;gap:10px;flex-wrap:wrap;">' +
+            '<button id="rv9-enable-push" type="button" style="flex:1;background:#F5C542;color:#050507;border:none;border-radius:6px;padding:10px 14px;font-weight:800;cursor:pointer;">Enable Live Pop-Ups</button>' +
+            '<a href="https://x.com/SolRentClaim" target="_blank" rel="noopener" style="flex:1;text-align:center;background:#141824;color:#F5C542;border:1px solid #D4AF37;border-radius:6px;padding:10px 14px;font-weight:700;text-decoration:none;">Open @SolRentClaim</a>' +
+          '</div>' +
+          '<button id="rv9-close-tg" type="button" style="margin-top:12px;width:100%;background:transparent;color:#9CA3AF;border:1px solid #27272A;border-radius:6px;padding:8px;cursor:pointer;">Close</button>' +
+        '</div>';
+      document.body.appendChild(tm);
+      document.getElementById('rv9-close-tg').onclick = function(){ tm.style.display = 'none'; };
+      tm.onclick = function(e){ if (e.target === tm) tm.style.display = 'none'; };
+      document.getElementById('rv9-enable-push').onclick = async function(){
+        if ('Notification' in window) {
+          var perm = await Notification.requestPermission();
+          if (perm === 'granted') new Notification('Solana Rent & Rug Shield', { body: 'Live 12-Layer Pop-Up Alerts Active!' });
+        }
+        tm.style.display = 'none';
+      };
+    }
+    tm.style.display = 'flex';
+  }
+
+  function applyV9All(){
+    /* 1. Update inline preview videos to clean V9 MP4 & unmute when clicked directly */
+    document.querySelectorAll('video').forEach(function(v){
+      if (v.id !== 'ranger-v9-cinema-video') {
+        var s = v.getAttribute('src') || '';
+        if (s.indexOf('promo') !== -1 && s.indexOf('1795136453') === -1) {
+          v.setAttribute('src', VIDEO_SRC);
+        }
+        if (!v.__rv9ClickSound) {
+          v.__rv9ClickSound = true;
+          v.addEventListener('click', openPromoWithSound, true);
         }
       }
     });
 
-    /* Clamp Panel 1 & Panel 2 inner boxes */
-    clampCardChildren(findEngineCard('sol rent collector'));
-    clampCardChildren(findEngineCard('dead coin burner'));
-    clampCardChildren(findEngineCard('anti-rug shield'));
-    clampCardChildren(findEngineCard('reclaimable sol rent'));
+    /* 2. Remove GitHub links, secure Telegram links, and deduplicate double Promo buttons */
+    var promoBtns = [];
+    document.querySelectorAll('a, button, [role="button"]').forEach(function(el){
+      var tx = (el.textContent || '').trim().toLowerCase();
+      var hr = (el.getAttribute('href') || '').trim().toLowerCase();
 
-    /* Intercept every Promo Video trigger so it ALWAYS opens inside the 68vh screen-fit player */
-    document.querySelectorAll('a, button, [role="button"]').forEach(function(b){
-      if (b.__rangerPromoV8) return;
-      var tx = (b.textContent || '').toLowerCase();
-      var hr = (b.getAttribute('href') || '').toLowerCase();
-      var oc = (b.getAttribute('onclick') || '').toLowerCase();
+      /* Hide ANY GitHub link */
+      if (hr.indexOf('github.com') !== -1 || tx === 'github') {
+        el.style.setProperty('display', 'none', 'important');
+        return;
+      }
+
+      /* Intercept ANY Telegram link so it NEVER opens Sunny's private Telegram Desktop */
+      if (hr.indexOf('t.me/') !== -1 || hr.indexOf('telegram') !== -1 || tx === 'telegram' || tx.indexOf('telegram') !== -1) {
+        if (el.id !== 'rv9-close-tg') {
+          if (el.tagName.toLowerCase() === 'a') el.setAttribute('href', '#alerts');
+          if (!el.__rv9TgSafe) {
+            el.__rv9TgSafe = true;
+            el.addEventListener('click', openSafeTelegramModal, true);
+          }
+        }
+      }
+
+      /* Block any button dumping user into browser edge:// or chrome:// app settings */
+      if (tx.indexOf('open app settings') !== -1 || hr.indexOf('settings') !== -1) {
+        el.style.setProperty('display', 'none', 'important');
+        return;
+      }
+
+      /* Ensure X / Twitter links always open in a NEW tab without leaving our website */
+      if (hr.indexOf('x.com/') !== -1 || hr.indexOf('twitter.com/') !== -1) {
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener noreferrer');
+      }
+
+      /* Collect duplicate Unmute Promo / Watch 45s Promo buttons */
       if (
-        (tx.indexOf('45s') !== -1 && (tx.indexOf('promo') !== -1 || tx.indexOf('watch') !== -1 || tx.indexOf('demo') !== -1 || tx.indexOf('video') !== -1)) ||
-        tx.indexOf('promo video') !== -1 ||
-        hr === '/promo' || hr === '/promo/' || hr.indexOf('/promo/index') !== -1 ||
-        oc.indexOf('promomodal') !== -1 || oc.indexOf('openpromo') !== -1
+        tx.indexOf('unmute promo') !== -1 ||
+        (tx.indexOf('45s') !== -1 && (tx.indexOf('promo') !== -1 || tx.indexOf('watch') !== -1 || tx.indexOf('demo') !== -1)) ||
+        hr === '/promo' || hr === '/promo/'
       ) {
-        b.__rangerPromoV8 = true;
-        b.addEventListener('click', openScreenFitPromo, true);
+        promoBtns.push(el);
       }
     });
+
+    /* Keep ONE clean Watch 45s Promo (With Sound) button per bar; hide redundant Unmute duplicate */
+    var keptVisiblePromo = 0;
+    promoBtns.forEach(function(btn){
+      var tx = (btn.textContent || '').trim().toLowerCase();
+      if (tx.indexOf('unmute promo') !== -1 && promoBtns.length > 1) {
+        btn.style.setProperty('display', 'none', 'important');
+        return;
+      }
+      if (!btn.__rv9PromoWired) {
+        btn.__rv9PromoWired = true;
+        btn.addEventListener('click', openPromoWithSound, true);
+      }
+      if (keptVisiblePromo === 0 && btn.offsetParent !== null) {
+        keptVisiblePromo += 1;
+      } else if (keptVisiblePromo >= 1 && tx.indexOf('45s') !== -1 && btn.closest('header') === null) {
+        /* Hide duplicate second Watch 45s button in the same hero block */
+        btn.style.setProperty('display', 'none', 'important');
+      }
+    });
+
+    /* 3. Enforce Black & Gold on Institutional containers */
+    document.querySelectorAll('#institutionalView, .institutional-view, [id*="institutional" i]').forEach(enforceBlackGoldOnNode);
+    if (document.body && (document.body.classList.contains('institutional-mode') || document.body.getAttribute('data-ui-mode') === 'institutional' || window.location.pathname.indexOf('institutional') !== -1)) {
+      document.body.classList.add('institutional-mode');
+      enforceBlackGoldOnNode(document.body);
+    }
+
+    /* 4. Fix any lingering '11-Layer' text on page to '12-Layer' */
+    var wlk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    var tn;
+    while ((tn = wlk.nextNode())) {
+      if (tn.nodeValue && tn.nodeValue.indexOf('11-Layer') !== -1) {
+        tn.nodeValue = tn.nodeValue.split('11-Layer').join('12-Layer');
+      }
+      if (tn.nodeValue && tn.nodeValue.indexOf('11-layer') !== -1) {
+        tn.nodeValue = tn.nodeValue.split('11-layer').join('12-layer');
+      }
+    }
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyAllFixes);
-  else applyAllFixes();
-  window.addEventListener('load', applyAllFixes);
-  window.addEventListener('resize', applyAllFixes);
-  setTimeout(applyAllFixes, 400);
-  setTimeout(applyAllFixes, 1200);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyV9All);
+  else applyV9All();
+  window.addEventListener('load', applyV9All);
+  document.addEventListener('click', function(){ setTimeout(applyV9All, 90); });
+  setTimeout(applyV9All, 500);
 })();
 </script>
 <!-- RANGER_PIXEL_LOCK_V6_END -->
