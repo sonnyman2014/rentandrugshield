@@ -16713,134 +16713,150 @@ window.submitVisitorFeedbackNow = async function(){
 </script>
 
 
-<!-- RRS_PANEL1_PRO_V1 -->
-<style id="rrs-panel1-pro-css">
+
+
+
+<!-- RRS_PANEL1_PRO_V2 -->
+<style id="rrs-panel1-pro-v2-css">
   .rrs-dual-panels-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 18px !important;
-    align-items: start !important;
+    align-items: stretch !important;
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
   @media (max-width: 980px) {
-    .rrs-dual-panels-grid {
-      grid-template-columns: minmax(0, 1fr) !important;
-    }
+    .rrs-dual-panels-grid { grid-template-columns: minmax(0, 1fr) !important; }
   }
-  .rrs-panel-card-pro {
+  .rrs-panel-card-pro, #rentShieldCard {
     min-width: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    overflow: hidden !important;
+    overflow-x: hidden !important;
+    padding: 18px !important;
+  }
+  .rrs-panel-card-pro *, #rentShieldCard * {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+  /* Fix unwrapped .card-header + nowrap #feeBadge blowing out Panel 1 & Panel 2 */
+  .rrs-panel-card-pro .card-header,
+  #rentShieldCard .card-header,
+  .service-card-head .card-header {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6px 10px !important;
+    margin-bottom: 8px !important;
+    width: 100% !important;
+  }
+  .rrs-panel-card-pro .card-title,
+  #rentShieldCard .card-title,
+  .service-card-head .card-title {
+    white-space: normal !important;
+    font-size: 1.05rem !important;
+    line-height: 1.3 !important;
+    min-width: 0 !important;
+  }
+  #feeBadge, .rrs-panel-card-pro .pill {
+    white-space: normal !important;
+    line-height: 1.35 !important;
+    font-size: 0.76rem !important;
+    padding: 4px 9px !important;
+    height: auto !important;
+    text-align: left !important;
     word-break: break-word !important;
   }
-  .rrs-panel-card-pro * {
-    box-sizing: border-box !important;
-    max-width: 100%;
-  }
-  .rrs-p1-allin-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 8px !important;
-    width: 100% !important;
-    margin: 10px 0 !important;
-  }
-  .rrs-p1-allin-grid > input {
-    grid-column: 1 / -1 !important;
+  #walletInput {
     width: 100% !important;
     min-width: 0 !important;
     height: 44px !important;
-    padding: 0 14px !important;
-    font-size: 13.5px !important;
-    border-radius: 9px !important;
+    margin-bottom: 8px !important;
   }
-  .rrs-p1-allin-grid > .rrs-p1-primary-btn {
-    grid-column: 1 / -1 !important;
-    width: 100% !important;
-    min-height: 44px !important;
-    font-size: 14px !important;
-    font-weight: 800 !important;
-    justify-content: center !important;
-    text-align: center !important;
-    white-space: nowrap !important;
-    border-radius: 9px !important;
-  }
-  .rrs-p1-allin-grid > button:not(.rrs-p1-primary-btn),
-  .rrs-p1-subrow > button,
-  .rrs-p1-subrow > a {
-    min-width: 0 !important;
-    width: 100% !important;
-    padding: 8px 8px !important;
-    font-size: 12px !important;
-    font-weight: 700 !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    text-align: center !important;
-    justify-content: center !important;
-    border-radius: 8px !important;
-  }
-  .rrs-p1-inputrow {
-    display: flex !important;
-    flex-wrap: wrap !important;
+  #rentShieldCard .service-actions-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 8px !important;
     width: 100% !important;
     margin-bottom: 8px !important;
   }
-  .rrs-p1-inputrow > input {
-    flex: 1 1 230px !important;
+  #rentShieldCard button {
     min-width: 0 !important;
-    height: 44px !important;
-    padding: 0 14px !important;
-    border-radius: 9px !important;
+    white-space: normal !important;
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+    padding: 9px 10px !important;
+    font-size: 13px !important;
   }
-  .rrs-p1-inputrow > .rrs-p1-primary-btn {
-    flex: 1 1 200px !important;
-    min-height: 44px !important;
-    font-weight: 800 !important;
-    font-size: 13.5px !important;
-    justify-content: center !important;
-    border-radius: 9px !important;
-  }
-  .rrs-p1-subrow {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 8px !important;
-    width: 100% !important;
-    margin-bottom: 10px !important;
-  }
-  @media (max-width: 520px) {
-    .rrs-p1-allin-grid, .rrs-p1-subrow {
-      grid-template-columns: minmax(0, 1fr) !important;
-    }
-  }
-  .rrs-p1-autobar {
+  #prop-autocollect-label {
     display: flex !important;
+    flex-wrap: wrap !important;
     align-items: center !important;
     justify-content: space-between !important;
-    gap: 10px !important;
-    flex-wrap: wrap !important;
+    gap: 6px 10px !important;
     width: 100% !important;
-    padding: 9px 12px !important;
-    border-radius: 9px !important;
-    margin-top: 6px !important;
+    padding: 8px 10px !important;
+    margin: 8px 0 !important;
+  }
+  /* Keep scan results table & Collect buttons flush inside Panel 1 */
+  #rentShieldCard table {
+    width: 100% !important;
+    table-layout: fixed !important;
+    font-size: 12px !important;
+  }
+  #rentShieldCard th, #rentShieldCard td {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    padding: 5px 6px !important;
   }
 </style>
-<script id="rrs-panel1-pro-js">
+<script id="rrs-panel1-pro-v2-js">
 (function() {
-  var FALLBACK_TREASURY = "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1";
-  if (!window.RRS_TREASURY_WALLET) window.RRS_TREASURY_WALLET = FALLBACK_TREASURY;
-  if (!window.TREASURY_WALLET) window.TREASURY_WALLET = FALLBACK_TREASURY;
-  if (!window.FEE_WALLET) window.FEE_WALLET = FALLBACK_TREASURY;
+  var LIVE_API_BASE = "https://soldier-indirect-amber-messaging.trycloudflare.com";
+  var TREASURY_WALLET = "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1";
+
+  window.RRS_TREASURY_WALLET = TREASURY_WALLET;
+  window.TREASURY_WALLET = TREASURY_WALLET;
+  window.FEE_WALLET = TREASURY_WALLET;
+  window.RRS_API_BASE = LIVE_API_BASE;
+
+  /* 1. Route every relative /api/... or stale *.trycloudflare.com/api/... call on GitHub Pages straight to LIVE_API_BASE */
+  var isPublicStatic = (location.hostname !== "127.0.0.1" && location.hostname !== "localhost");
+  if (isPublicStatic) {
+    window.getApiBase = function() { return LIVE_API_BASE; };
+    window.resolveRrsApiBase = function() { return LIVE_API_BASE; };
+    window.resolveApiBase = function() { return LIVE_API_BASE; };
+  }
+
+  if (!window.__RRS_V2_TUNNEL_ROUTER && typeof window.fetch === "function") {
+    window.__RRS_V2_TUNNEL_ROUTER = true;
+    var origFetch = window.fetch;
+    window.fetch = function(input, init) {
+      try {
+        var u = (typeof input === "string") ? input : ((input && input.url) || "");
+        if (isPublicStatic && u) {
+          if (u.charAt(0) === "/" && u.indexOf("/api/") === 0) {
+            input = LIVE_API_BASE + u;
+          } else if (u.indexOf(".trycloudflare.com/api/") !== -1 && u.indexOf(LIVE_API_BASE) !== 0) {
+            input = LIVE_API_BASE + u.substring(u.indexOf("/api/"));
+          } else if (u.indexOf("https://rentandrugshield.com/api/") === 0) {
+            input = LIVE_API_BASE + u.substring("https://rentandrugshield.com".length);
+          }
+        }
+      } catch (_e) {}
+      return origFetch.call(this, input, init);
+    };
+  }
 
   function findPanel(inc, exc) {
-    var els = document.querySelectorAll('h1, h2, h3, h4, div, span');
+    var els = document.querySelectorAll('h1, h2, h3, h4, .card-title, div, span');
     var h = null;
     for (var i = 0; i < els.length; i++) {
-      if (els[i].children.length <= 4 && (els[i].textContent || '').indexOf(inc) !== -1) {
+      if (els[i].children.length <= 3 && (els[i].textContent || '').indexOf(inc) !== -1) {
         h = els[i];
         break;
       }
@@ -16849,104 +16865,64 @@ window.submitVisitorFeedbackNow = async function(){
     var cur = h;
     while (cur && cur.parentElement && cur.parentElement !== document.body) {
       var p = cur.parentElement;
-      if ((p.textContent || '').indexOf(exc) !== -1) {
-        return { card: cur, grid: p, head: h };
-      }
+      if ((p.textContent || '').indexOf(exc) !== -1) return { card: cur, grid: p };
       cur = p;
     }
     return null;
   }
 
-  function polishPanel1() {
+  function enforcePanel1Fit() {
     var p1 = findPanel('Panel 1:', 'Panel 2:');
     var p2 = findPanel('Panel 2:', 'Panel 1:');
     if (p1 && p1.grid) p1.grid.classList.add('rrs-dual-panels-grid');
     if (p1 && p1.card) p1.card.classList.add('rrs-panel-card-pro');
     if (p2 && p2.card) p2.card.classList.add('rrs-panel-card-pro');
-    if (!p1 || !p1.card) return;
 
-    var card = p1.card;
+    var card = (p1 && p1.card) || document.getElementById('rentShieldCard');
+    if (!card) return;
 
-    /* 1. Fix broken "atomically routed to . Zero seed phrases." copy without touching inputs/buttons */
-    card.querySelectorAll('p, div, span, small').forEach(function(el) {
+    /* Keep #feeBadge concise so header never wraps into 3 lines */
+    var fb = document.getElementById('feeBadge');
+    if (fb && (fb.textContent || '').length > 34) {
+      fb.textContent = '1ST ATA FREE • 0% FEE';
+    }
+
+    /* Fix description copy cleanly */
+    card.querySelectorAll('.service-card-desc, p').forEach(function(el) {
       if (el.querySelector('input, button')) return;
       var tx = (el.textContent || '').trim();
-      if (tx.indexOf('atomically routed to') !== -1 && tx.length < 260) {
-        el.innerHTML = '<b style="color:#14f195;">1st Empty Account Lifetime Free</b> (0.0% Fee • Full ~0.00204 SOL Returned) • <b>98.0% Net SOL</b> Returned on ATA #2+ (2.0% Flat Fee) • Zero Seed Phrases.';
-        el.style.lineHeight = '1.45';
-        el.style.fontSize = '12.5px';
-        el.style.marginBottom = '10px';
+      if (tx.indexOf('atomically routed to') !== -1 || tx.indexOf('1st Empty Account Lifetime Free') !== -1) {
+        var cleanHtml = '<b style="color:#14f195;">1st Empty Account Free</b> (0% Fee • Full ~0.00204 SOL) • <b>98.5% Net SOL</b> on Repeat ATAs • Non-Custodial.';
+        if (el.innerHTML !== cleanHtml) el.innerHTML = cleanHtml;
       }
     });
 
-    /* 2. Deduplicate "Scan Rent & Burn Dead Coins" buttons while preserving click bindings */
-    var scanBtns = [];
-    card.querySelectorAll('button, a[role="button"]').forEach(function(b) {
-      var bt = (b.textContent || '').trim();
-      if (bt.indexOf('Scan Rent') !== -1 || bt.indexOf('Burn Dead Coins') !== -1) {
-        scanBtns.push(b);
-      }
-    });
-    if (scanBtns.length > 0) {
-      var mainBtn = scanBtns[0];
-      mainBtn.classList.add('rrs-p1-primary-btn');
-      if ((mainBtn.textContent || '').length > 28) {
-        mainBtn.textContent = '🔥 Scan & Reclaim SOL Rent';
-      }
-      for (var k = 1; k < scanBtns.length; k++) {
-        var dup = scanBtns[k];
-        if (!mainBtn.onclick && !mainBtn.id && (dup.onclick || dup.id)) {
-          (function(targetDup) {
-            mainBtn.addEventListener('click', function() { targetDup.click(); });
-          })(dup);
-        }
-        dup.style.setProperty('display', 'none', 'important');
+    /* Keep Primary Scan button & Burner button distinct (prevent duplicate "Scan Rent & Burn Dead Coins" label) */
+    var bScan = document.getElementById('scanWalletBtn');
+    if (bScan) {
+      bScan.style.setProperty('display', 'inline-flex', 'important');
+      bScan.style.justifyContent = 'center';
+      if ((bScan.textContent || '').trim() !== '🔍 Scan Rent (Free)') {
+        bScan.textContent = '🔍 Scan Rent (Free)';
       }
     }
-
-    /* 3. Lock Wallet Input + Helper Buttons inside Panel 1 box cleanly */
-    var wInput = card.querySelector('input[type="text"], input:not([type="checkbox"]):not([type="hidden"])');
-    if (wInput && wInput.parentElement) {
-      var row = wInput.parentElement;
-      var rowBtns = Array.from(row.querySelectorAll(':scope > button, :scope > a')).filter(function(b) {
-        return b.style.display !== 'none';
-      });
-      if (rowBtns.length >= 3) {
-        row.classList.add('rrs-p1-allin-grid');
-      } else {
-        row.classList.add('rrs-p1-inputrow');
-        var nextEl = row.nextElementSibling;
-        if (nextEl && nextEl.querySelectorAll('button').length >= 2 && (nextEl.textContent || '').indexOf('Auto-Collect') === -1) {
-          nextEl.classList.add('rrs-p1-subrow');
-        }
+    var bBurn = document.getElementById('burnerScanBtn');
+    if (bBurn) {
+      bBurn.style.setProperty('display', 'inline-flex', 'important');
+      bBurn.style.justifyContent = 'center';
+      if ((bBurn.textContent || '').indexOf('Scan Rent') !== -1 || (bBurn.textContent || '').length > 28) {
+        bBurn.textContent = '🔥 Burn Dead Dust';
       }
     }
-
-    /* 4. Shorten ultra-long helper chip labels so 3 columns fit every laptop screen */
-    card.querySelectorAll('button').forEach(function(b) {
-      var t = (b.textContent || '').trim();
-      if (t.indexOf('Test Verified Wallet') !== -1) b.textContent = '👀 Demo Wallet';
-    });
-
-    /* 5. Keep Auto-Collect OPT-IN row flush inside card */
-    card.querySelectorAll('div, label').forEach(function(d) {
-      var dt = (d.textContent || '').trim();
-      if (dt.indexOf('Auto-Collect & Burn SOL') !== -1 && d.children.length <= 5 && !d.querySelector('input[type="text"]')) {
-        d.classList.add('rrs-p1-autobar');
-      }
-    });
-
-    /* 6. Clean double "• •" separator in Trust links */
-    document.querySelectorAll('div, p, footer').forEach(function(f) {
-      if (f.children.length > 0 && f.children.length <= 8 && (f.textContent || '').indexOf('OpenAPI Docs') !== -1) {
-        f.innerHTML = f.innerHTML.replace(/•\s*•/g, '•');
-      }
-    });
+    var bTest = document.getElementById('testVerifiedSampleWalletBtn');
+    if (bTest && (bTest.textContent || '').length > 20) {
+      bTest.textContent = '👀 Demo Wallet';
+    }
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', polishPanel1);
-  else polishPanel1();
-  setTimeout(polishPanel1, 400);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', enforcePanel1Fit);
+  else enforcePanel1Fit();
+  [150, 500, 1200, 2500].forEach(function(ms) { setTimeout(enforcePanel1Fit, ms); });
 })();
 </script>
 
