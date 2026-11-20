@@ -2324,10 +2324,10 @@ body.rrs-mode-original {
     --lux-white: #F8FAFC;
   }
   @media (min-width: 1440px) {
-    html { font-size: 17.5px !important; }
+    html { font-size: 16px !important; }
   }
   @media (min-width: 1800px) {
-    html { font-size: 19px !important; }
+    html { font-size: 16px !important; }
   }
   main, .container, .main-container, .wrap, .wrapper, .hero-wrap, .grid-wrap,
   [class*="container" i], [class*="max-w" i] {
@@ -17965,5 +17965,113 @@ window.submitVisitorFeedbackNow = async function(){
 })();
 </script>
 <!-- RANGER_MOON_SWAP_V11_END -->
+<!-- RANGER_PIN_FIT_V12_START -->
+<style id="rrs-pin-screenfit-v12-css">
+  html, body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+  header, nav, .navbar, .header, .top-bar, .topbar,
+  [class*="header" i], [class*="navbar" i], [class*="topbar" i] {
+    max-width: 100vw !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    flex-wrap: wrap !important;
+    padding-left: 16px !important;
+    padding-right: 22px !important;
+    gap: 8px 10px !important;
+  }
+  #rrs-header-trust-links {
+    font-size: 11px !important;
+    gap: 8px !important;
+    margin-left: 4px !important;
+    flex-shrink: 1 !important;
+  }
+  /* Guarantee any Pin / Save to Taskbar button or floating badge stays inside screen */
+  [id*="pin" i], [class*="pin" i],
+  [id*="taskbar" i]:not(.rrs-top-modal-backdrop),
+  [class*="taskbar" i]:not(.rrs-top-modal-backdrop) {
+    max-width: calc(100vw - 36px) !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+  }
+</style>
+<script id="rrs-pin-screenfit-v12-js">
+(function(){
+  function clampPinInsideViewport() {
+    var vw = document.documentElement.clientWidth || window.innerWidth;
+    var safeRight = vw - 18;
+
+    /* 1. Ensure header/nav action groups wrap cleanly instead of pushing right off-screen */
+    document.querySelectorAll('header, nav, .navbar, .header, [class*="topbar" i]').forEach(function(barEl){
+      barEl.style.setProperty('max-width', vw + 'px', 'important');
+      barEl.style.setProperty('flex-wrap', 'wrap', 'important');
+      barEl.style.setProperty('box-sizing', 'border-box', 'important');
+      barEl.querySelectorAll('div, ul').forEach(function(grp){
+        var st = window.getComputedStyle(grp);
+        if (st.display.indexOf('flex') !== -1) {
+          grp.style.setProperty('flex-wrap', 'wrap', 'important');
+          grp.style.setProperty('max-width', '100%', 'important');
+        }
+      });
+    });
+
+    /* 2. Pull any off-screen Pin / Taskbar / Install button or fixed pill squarely onto screen */
+    document.querySelectorAll('button, a, [role="button"], div, aside').forEach(function(el){
+      if (el.classList && el.classList.contains('rrs-top-modal-backdrop')) return;
+      var st = window.getComputedStyle(el);
+      if (st.display === 'none' || st.visibility === 'hidden') return;
+
+      var txt = (el.textContent || '').trim().toLowerCase();
+      var idCls = ((el.id || '') + ' ' + (el.className || '')).toLowerCase();
+      var isPinEl = (
+        (txt.length > 0 && txt.length < 65 && (txt.indexOf('pin') !== -1 || txt.indexOf('taskbar') !== -1 || txt.indexOf('install app') !== -1)) ||
+        idCls.indexOf('taskbar') !== -1 || idCls.indexOf('pin-btn') !== -1 || idCls.indexOf('pinbtn') !== -1
+      );
+
+      var r = el.getBoundingClientRect();
+      if (r.width <= 0 || r.height <= 0) return;
+
+      if (st.position === 'fixed' || st.position === 'sticky' || st.position === 'absolute') {
+        if (isPinEl || r.right > safeRight) {
+          if (r.right > safeRight || parseFloat(st.right) < 14) {
+            el.style.setProperty('right', '22px', 'important');
+            el.style.setProperty('left', 'auto', 'important');
+            el.style.setProperty('transform', 'none', 'important');
+            el.style.setProperty('margin-right', '0px', 'important');
+            el.style.setProperty('max-width', (vw - 44) + 'px', 'important');
+          }
+          if (r.left < 10) {
+            el.style.setProperty('left', '16px', 'important');
+          }
+        }
+      } else if (isPinEl && r.right > safeRight) {
+        var par = el.parentElement;
+        if (par) {
+          par.style.setProperty('flex-wrap', 'wrap', 'important');
+          par.style.setProperty('justify-content', 'flex-end', 'important');
+          par.style.setProperty('max-width', '100%', 'important');
+          par.style.setProperty('padding-right', '18px', 'important');
+          par.style.setProperty('box-sizing', 'border-box', 'important');
+        }
+        el.style.setProperty('margin-right', '12px', 'important');
+        el.style.setProperty('transform', 'none', 'important');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', clampPinInsideViewport);
+  } else {
+    clampPinInsideViewport();
+  }
+  window.addEventListener('load', clampPinInsideViewport);
+  window.addEventListener('resize', clampPinInsideViewport);
+  setTimeout(clampPinInsideViewport, 250);
+  setTimeout(clampPinInsideViewport, 900);
+})();
+</script>
+<!-- RANGER_PIN_FIT_V12_END -->
 </body>
 </html>
