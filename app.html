@@ -18040,9 +18040,11 @@ window.submitVisitorFeedbackNow = async function(){
 </script>
 <!-- RANGER_V31_END -->
 
-<!-- RRS_HERO_AND_CORNER_CLEANUP_V3 -->
-<style id="rrs-clean-v3-css">
-  /* Kill all bottom-left & bottom-right floating corner widgets/icons */
+
+
+
+<!-- RRS_OPT1_LIVE_V4 -->
+<style id="rrs-opt1-v4-css">
   [id*="fab" i], [class*="fab" i],
   [id*="floating" i], [class*="floating" i],
   [id*="corner" i], [id*="chat-widget" i],
@@ -18053,162 +18055,266 @@ window.submitVisitorFeedbackNow = async function(){
     visibility: hidden !important;
     pointer-events: none !important;
   }
-  /* Prevent right-side Panel 2 overflow */
   *, *::before, *::after { box-sizing: border-box; }
-  body { overflow-x: hidden !important; }
+  html, body { overflow-x: hidden !important; max-width: 100vw; }
 
-  /* Compact 2-Column Hero Layout */
-  .rrs-v3-hero {
+  /* Option 1 Hero */
+  .rrs-opt1-hero {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 18px;
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: 22px;
     align-items: center;
-    background: linear-gradient(145deg, #09101d, #0d1729);
-    border: 1px solid rgba(255, 215, 0, 0.42);
+    background: linear-gradient(145deg, #080f1d, #0c1628);
+    border: 1.5px solid rgba(234, 179, 8, 0.68);
     border-radius: 14px;
-    padding: 18px 22px;
-    margin: 10px auto 16px auto;
+    padding: 22px 26px;
+    margin: 12px auto 14px auto;
     max-width: 1280px;
   }
-  @media (max-width: 900px) {
-    .rrs-v3-hero { grid-template-columns: 1fr; }
+  @media (max-width: 960px) {
+    .rrs-opt1-hero { grid-template-columns: 1fr; padding: 18px; }
   }
-  .rrs-v3-h1 {
-    margin: 0 0 8px 0;
-    font-size: clamp(20px, 2.2vw, 28px);
-    line-height: 1.2;
+  .rrs-opt1-h1 {
+    margin: 0 0 12px 0;
+    font-size: clamp(24px, 2.5vw, 34px);
+    line-height: 1.18;
+    font-weight: 800;
     color: #ffffff;
+    letter-spacing: -0.3px;
   }
-  .rrs-v3-h1 span { color: #14f195; }
-  .rrs-v3-who {
-    font-size: 13.5px;
-    color: #d1d5db;
-    margin: 0 0 10px 0;
-    line-height: 1.45;
-  }
-  .rrs-v3-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 10px 0;
-    display: grid;
-    gap: 6px;
-    font-size: 13px;
-    color: #e5e7eb;
-  }
-  .rrs-v3-list b { color: #ffd700; }
-  .rrs-v3-cta-note {
-    font-size: 12.5px;
+  .rrs-opt1-h1 span {
+    display: block;
     color: #14f195;
-    font-weight: 700;
   }
-  .rrs-v3-vbox {
-    background: #050811;
-    border: 1.5px solid #ffd700;
+  .rrs-opt1-who {
+    font-size: 15.5px;
+    line-height: 1.52;
+    color: #f3f4f6;
+    margin: 0 0 14px 0;
+  }
+  .rrs-opt1-who b, .rrs-opt1-list b {
+    color: #14f195;
+    font-weight: 800;
+  }
+  .rrs-opt1-list {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 0 0 14px 0;
+    display: grid;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 1.48;
+    color: #f3f4f6;
+  }
+  .rrs-opt1-cta {
+    font-size: 15px;
+    line-height: 1.4;
+    color: #14f195;
+    font-weight: 800;
+  }
+  .rrs-opt1-vframe {
+    background: #07231c;
+    border: 1.5px solid rgba(234, 179, 8, 0.65);
     border-radius: 12px;
-    padding: 10px;
+    padding: 12px;
   }
-  .rrs-v3-vtabs {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 8px;
+  .rrs-opt1-vtabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
   }
-  .rrs-v3-vbtn {
-    flex: 1;
-    background: #111a2e;
+  .rrs-opt1-tbtn {
+    background: #131e32;
     color: #e5e7eb;
-    border: 1px solid rgba(255,215,0,0.4);
-    border-radius: 7px;
-    padding: 6px 8px;
-    font-size: 11.5px;
-    font-weight: 700;
+    border: 1px solid rgba(234, 179, 8, 0.4);
+    border-radius: 8px;
+    padding: 9px 10px;
+    font-size: 13px;
+    font-weight: 800;
     cursor: pointer;
   }
-  .rrs-v3-vbtn.active {
-    background: #ffd700;
+  .rrs-opt1-tbtn.active {
+    background: #eab308;
     color: #060911;
+    border-color: #eab308;
   }
-  .rrs-v3-video {
+  .rrs-opt1-vid {
     width: 100%;
     aspect-ratio: 16 / 9;
-    max-height: 230px;
     border-radius: 8px;
-    background: #000;
+    background: #04070f;
     object-fit: cover;
     display: block;
   }
+
+  /* Sleek Leapfrog & Trader Intuition Bubbles */
+  .rrs-bubbles-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 1280px;
+    margin: 0 auto 18px auto;
+  }
+  @media (max-width: 900px) {
+    .rrs-bubbles-row { grid-template-columns: 1fr; }
+  }
+  .rrs-bubble {
+    background: rgba(12, 24, 42, 0.92);
+    border: 1px solid rgba(20, 241, 149, 0.45);
+    border-radius: 999px;
+    padding: 11px 20px;
+    font-size: 13.5px;
+    line-height: 1.42;
+    color: #e5e7eb;
+  }
+  @media (max-width: 700px) {
+    .rrs-bubble { border-radius: 14px; padding: 12px 16px; }
+  }
+  .rrs-bubble b { color: #eab308; }
+
+  /* Fix Panel 1 & Panel 2 Text/Fee Box Overflow & Clipping */
+  .rrs-fixed-panel {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .rrs-fixed-panel * {
+    white-space: normal !important;
+    text-overflow: unset !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .rrs-fixed-panel pre, .rrs-fixed-panel code {
+    white-space: pre-wrap !important;
+  }
 </style>
-<script id="rrs-clean-v3-js">
+<script id="rrs-opt1-v4-js">
 (function() {
-  var API_B = "https://soldier-indirect-amber-messaging.trycloudflare.com";
-  function nukeCornerClutter() {
+  var VPRE = ".";
+  var FALLBACK_API = "https://soldier-indirect-amber-messaging.trycloudflare.com";
+
+  function nukeCorner() {
     document.querySelectorAll('body *').forEach(function(el) {
-      if (el.closest && el.closest('.rrs-v3-hero')) return;
+      if (el.closest && el.closest('#rrs-opt1-root')) return;
       var cs = window.getComputedStyle(el);
       if (cs.position === 'fixed') {
         var b = parseFloat(cs.bottom);
         var r = parseFloat(cs.right);
         var l = parseFloat(cs.left);
         var h = el.offsetHeight || 0;
-        if ((!isNaN(b) && b < 140) && ((!isNaN(r) && r < 140) || (!isNaN(l) && l < 140))) {
-          if (h < 520) {
-            el.style.setProperty('display', 'none', 'important');
-          }
+        if ((!isNaN(b) && b < 150) && ((!isNaN(r) && r < 150) || (!isNaN(l) && l < 150))) {
+          if (h < 520) el.style.setProperty('display', 'none', 'important');
         }
       }
     });
   }
-  function upgradeHero() {
-    if (document.getElementById('rrs-v3-hero-root')) return;
-    var h1 = document.querySelector('h1');
-    if (!h1) return;
-    var oldHero = h1.closest('section, header, .hero, .hero-grid, .hero-wrap') || h1.parentElement;
-    if (!oldHero) return;
-    var memeSrc = (API_B ? API_B : '') + '/meme_castle.mp4';
-    var instSrc = (API_B ? API_B : '') + '/institutional_vault.mp4';
-    var wrap = document.createElement('section');
-    wrap.id = 'rrs-v3-hero-root';
-    wrap.className = 'rrs-v3-hero';
-    wrap.innerHTML =
-      '<div>' +
-        '<h1 class="rrs-v3-h1">Reclaim Trapped SOL Rent &amp; <span>Block 12-Layer Rugs Pre-Buy</span></h1>' +
-        '<p class="rrs-v3-who"><b>Who We Are:</b> 100% non-custodial Solana wallet defense &amp; rent recovery backed 24/7 by AI security agents and human lead engineers.</p>' +
-        '<ul class="rrs-v3-list">' +
-          '<li>🛡️ <b>Why Stay Protected With Us:</b> Sub-second 12-Layer checks catch Mint/Freeze traps, Token-2022 honeypots, fake LP &amp; dev bundles before you buy.</li>' +
-          '<li>💰 <b>1st Rent Claim 100% Free:</b> Close empty token accounts &amp; burn dead scam dust straight back to your wallet—zero private keys ever shared.</li>' +
-          '<li>🚨 <b>24/7 Alert Police:</b> Instant threat quarantine &amp; live latency monitoring keep shield defense at 100%.</li>' +
-        '</ul>' +
-        '<div class="rrs-v3-cta-note">▶ Watch our Castle Security Walkthrough on the right for full system details →</div>' +
-      '</div>' +
-      '<div class="rrs-v3-vbox">' +
-        '<div class="rrs-v3-vtabs">' +
-          '<button type="button" class="rrs-v3-vbtn active" id="rrs-btn-meme">⚔️ Castle Defense Video</button>' +
-          '<button type="button" class="rrs-v3-vbtn" id="rrs-btn-inst">🏛️ Institutional Vault</button>' +
+
+  function fixPanelsAndFees() {
+    document.querySelectorAll('h2, h3, div, span, header').forEach(function(el) {
+      var tx = (el.textContent || '').trim();
+      if (tx.indexOf('Panel 1:') !== -1 || tx.indexOf('Panel 2:') !== -1) {
+        var card = el.closest('section, article, .panel, .card, [class*="panel" i], [class*="card" i]') || el.parentElement;
+        if (card && !card.classList.contains('rrs-fixed-panel')) {
+          card.classList.add('rrs-fixed-panel');
+          if (card.parentElement) {
+            card.parentElement.style.setProperty('min-width', '0', 'important');
+            var pcs = window.getComputedStyle(card.parentElement);
+            if (pcs.display === 'grid') {
+              card.parentElement.style.setProperty(
+                'grid-template-columns',
+                'repeat(auto-fit, minmax(min(100%, 440px), 1fr))',
+                'important'
+              );
+            }
+          }
+          card.querySelectorAll('*').forEach(function(ch) {
+            var ccs = window.getComputedStyle(ch);
+            if (ccs.display === 'flex' || ccs.display === 'inline-flex') {
+              ch.style.setProperty('flex-wrap', 'wrap', 'important');
+              ch.style.setProperty('height', 'auto', 'important');
+            }
+            if (ccs.overflow === 'hidden' || ccs.overflowX === 'hidden') {
+              ch.style.setProperty('overflow', 'visible', 'important');
+            }
+          });
+        }
+      }
+    });
+  }
+
+  function mountOpt1() {
+    if (document.getElementById('rrs-opt1-root')) return;
+    var oldV3 = document.getElementById('rrs-v3-hero-root');
+    var anchor = oldV3;
+    if (!anchor) {
+      var h1 = document.querySelector('h1');
+      if (h1) anchor = h1.closest('section, header, .hero, .hero-grid, .hero-wrap') || h1.parentElement;
+    }
+    if (!anchor) return;
+
+    var memeUrl = VPRE + '/meme_castle.mp4';
+    var instUrl = VPRE + '/institutional_vault.mp4';
+
+    var root = document.createElement('div');
+    root.id = 'rrs-opt1-root';
+    root.innerHTML =
+      '<section class="rrs-opt1-hero">' +
+        '<div>' +
+          '<h1 class="rrs-opt1-h1">Reclaim Trapped SOL Rent &amp; <span>Block 12-Layer Rugs Pre-Buy</span></h1>' +
+          '<p class="rrs-opt1-who"><b>Who We Are:</b> 100% non-custodial Solana wallet defense &amp; rent recovery backed 24/7 by AI security agents and human lead engineers.</p>' +
+          '<ul class="rrs-opt1-list">' +
+            '<li>🛡️ <b>Why Stay Protected With Us:</b> Sub-second 12-Layer checks catch Mint/Freeze traps, Token-2022 honeypots, fake LP &amp; dev bundles before you buy.</li>' +
+            '<li>💰 <b>1st Rent Claim 100% Free:</b> Close empty token accounts and burn dead scam dust right back to your own wallet. There are zero private keys ever shared.</li>' +
+            '<li>🚨 <b>24/7 Alert Police &amp; Toolbar Extension:</b> Instant threat quarantine &amp; live latency monitoring keep shield defense at 100%.</li>' +
+          '</ul>' +
+          '<div class="rrs-opt1-cta">▶ Watch our Castle Security Walkthrough on the right for full system details →</div>' +
         '</div>' +
-        '<video id="rrs-hero-vid" class="rrs-v3-video" controls playsinline muted loop preload="metadata" src="' + memeSrc + '"></video>' +
+        '<div class="rrs-opt1-vframe">' +
+          '<div class="rrs-opt1-vtabs">' +
+            '<button type="button" class="rrs-opt1-tbtn active" id="rrs-t-meme">⚔️ Castle Defense Video</button>' +
+            '<button type="button" class="rrs-opt1-tbtn" id="rrs-t-inst">🏛️ Institutional Vault</button>' +
+          '</div>' +
+          '<video id="rrs-opt1-vid" class="rrs-opt1-vid" controls playsinline muted loop preload="metadata" src="' + memeUrl + '"></video>' +
+        '</div>' +
+      '</section>' +
+      '<div class="rrs-bubbles-row">' +
+        '<div class="rrs-bubble">🚀 <b>The AI Leapfrog:</b> Legacy scanners work like old copper landlines, updating static blacklists after wallets get drained. Like regions that jumped straight to mobile and satellite, we built directly on live 12-Layer AI.</div>' +
+        '<div class="rrs-bubble">🧠 <b>Trader Intuition Built In Free:</b> Most traders spend years taking losses to build market instincts. Our veteran trading &amp; engineering team built those live liquidity instincts straight into our AI and Chrome Toolbar Shield.</div>' +
       '</div>';
-    oldHero.parentNode.insertBefore(wrap, oldHero);
-    oldHero.style.setProperty('display', 'none', 'important');
-    var vid = document.getElementById('rrs-hero-vid');
-    var bm = document.getElementById('rrs-btn-meme');
-    var bi = document.getElementById('rrs-btn-inst');
+
+    anchor.parentNode.insertBefore(root, anchor);
+    anchor.style.setProperty('display', 'none', 'important');
+
+    var vid = document.getElementById('rrs-opt1-vid');
+    vid.onerror = function() {
+      if (FALLBACK_API && vid.src.indexOf(FALLBACK_API) === -1) {
+        vid.src = FALLBACK_API + '/meme_castle.mp4';
+      }
+    };
+    var bm = document.getElementById('rrs-t-meme');
+    var bi = document.getElementById('rrs-t-inst');
     bm.onclick = function() {
       bm.classList.add('active'); bi.classList.remove('active');
-      vid.src = memeSrc; vid.play().catch(function(){});
+      vid.src = memeUrl; vid.play().catch(function(){});
     };
     bi.onclick = function() {
       bi.classList.add('active'); bm.classList.remove('active');
-      vid.src = instSrc; vid.play().catch(function(){});
+      vid.src = instUrl; vid.play().catch(function(){});
     };
   }
-  function runAll() { upgradeHero(); nukeCornerClutter(); }
+
+  function boot() { mountOpt1(); fixPanelsAndFees(); nukeCorner(); }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runAll);
+    document.addEventListener('DOMContentLoaded', boot);
   } else {
-    runAll();
+    boot();
   }
-  setInterval(nukeCornerClutter, 1200);
+  setTimeout(fixPanelsAndFees, 600);
+  setInterval(nukeCorner, 1200);
 })();
 </script>
 
