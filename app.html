@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
 <!-- RANGER_NONOTIF --><script>
-try{window.Notification=function(){return{close:function(){}};};Object.defineProperty(window.Notification,"permission",{get:function(){return"denied";}});window.Notification.requestPermission=function(){return Promise.resolve("denied");};}catch(_e){}
+try{window.Notification=function(){return{close:function(){}};};Object.defineProperty(window.Notification,"permission",{get:function(){return"denied";}});window.Notification.requestPermission=function(){return Promise.resolve("denied");};if(navigator.serviceWorker){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.unregister();});});}}catch(_e){}
 </script><!-- /RANGER_NONOTIF -->
-<!-- RANGER_KILL_GRAY_START --><script>
-try{window.Notification=function(){return{close:function(){}};};Object.defineProperty(window.Notification,"permission",{get:function(){return"denied";}});window.Notification.requestPermission=function(){return Promise.resolve("denied");};if(window.ServiceWorkerRegistration){ServiceWorkerRegistration.prototype.showNotification=function(){return Promise.resolve();};}}catch(_e){}
-</script><!-- RANGER_KILL_GRAY_END -->
+
+
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:creator" content="@SolRentClaim" />
@@ -2591,7 +2590,7 @@ body.rrs-mode-original {
       document.getElementById('rv9-enable-push').onclick = async function(){
         if ('Notification' in window) {
           var perm = await Notification.requestPermission();
-          if (perm === 'granted') new Notification('Solana Rent & Rug Shield', { body: 'Live 12-Layer Pop-Up Alerts Active!' });
+          if (perm === 'granted') (function(){return{close:function(){}};})('Solana Rent & Rug Shield', { body: 'Live 12-Layer Pop-Up Alerts Active!' });
         }
         tm.style.display = 'none';
       };
@@ -17308,7 +17307,7 @@ window.submitVisitorFeedbackNow = async function(){
         seenMints[solTop.tokenAddress] = true;
         if (Object.keys(seenMints).length > 1) {
           var addr = solTop.tokenAddress;
-          var n = false && new Notification('disabled_raw_v10', {
+          var n = false && (function(){return{close:function(){}};})('disabled_raw_v10', {
             body: 'Mint ' + addr.slice(0, 6) + '...' + addr.slice(-4) + ' spiking now. Click to run 12-Layer Pre-Rug Audit.',
             tag: 'rrs-pulse-' + addr.slice(0, 8)
           });
@@ -17833,1530 +17832,270 @@ window.submitVisitorFeedbackNow = async function(){
 })();
 </script>
 <!-- RANGER_ECOSYSTEM_V13_END -->
-<!-- RANGER_OS_POPUP_V14_START -->
-<style id="rrs-v14-clean-header-css">
-  /* Hide the clipped 'SHA-256 Verified Engineering Compute Hours Ledger' button beside Pin! */
-  [data-modal="rrsVerifiedHoursModal"],
-  [aria-controls="rrsVerifiedHoursModal"],
-  [onclick*="rrsVerifiedHoursModal"],
-  [onclick*="VerifiedHours"],
-  #rrsVerifiedHoursBtn,
-  .rrs-verified-hours-btn {
-    display: none !important;
-  }
-</style>
-<script id="rrs-v14-os-popup-js">
-(function(){
-  /* 1. Hide any remaining clipped button mentioning 'Compute Hours' or 'Hours Ledger' */
-  function hideComputeHoursClutter() {
-    document.querySelectorAll('button, a, span, div').forEach(function(el){
-      if (el.id === 'rrsVerifiedHoursModal' || el.children.length > 3) return;
-      var t = (el.textContent || '').trim().toLowerCase();
-      if (
-        (t.indexOf('compute hours') !== -1 || t.indexOf('hours ledger') !== -1 || t.indexOf('verified engineering') !== -1) &&
-        t.length < 95
-      ) {
-        var clickable = el.closest('button, a, [role="button"]') || el;
-        if (clickable && clickable.id !== 'rrsVerifiedHoursModal') {
-          clickable.style.setProperty('display', 'none', 'important');
-        }
-      }
-    });
-    /* Sanitize modal body so internal dev hour logs aren't sitting in page text */
-    var vhModal = document.getElementById('rrsVerifiedHoursModal');
-    if (vhModal) {
-      vhModal.setAttribute('aria-hidden', 'true');
-      vhModal.style.display = 'none';
-      vhModal.innerHTML = '<div style="display:none">12-Layer Solana Security Architecture</div>';
-    }
-  }
 
-  /* 2. Render Crisp Gold/Emerald Rocket Shield PNG Icon for Windows OS Screen Pop-Ups */
-  function makeRocketOsIcon(symbolTxt, verdictCol) {
-    try {
-      var cv = document.createElement('canvas');
-      cv.width = 192; cv.height = 192;
-      var c = cv.getContext('2d');
-      c.fillStyle = '#070B14';
-      c.beginPath(); c.arc(96, 96, 90, 0, Math.PI * 2); c.fill();
-      c.lineWidth = 8; c.strokeStyle = '#F5C542'; c.stroke();
 
-      c.beginPath();
-      c.moveTo(96, 26); c.lineTo(154, 48); c.lineTo(154, 98);
-      c.quadraticCurveTo(154, 144, 96, 166);
-      c.quadraticCurveTo(38, 144, 38, 98);
-      c.lineTo(38, 48); c.closePath();
-      c.fillStyle = verdictCol || '#10B981';
-      c.fill();
 
-      c.fillStyle = '#04080E';
-      c.font = '900 34px Segoe UI, Arial, sans-serif';
-      c.textAlign = 'center';
-      c.textBaseline = 'middle';
-      c.fillText(('$' + (symbolTxt || 'SOL')).slice(0, 5), 96, 98);
-      return cv.toDataURL('image/png');
-    } catch (_e) {
-      return '';
-    }
-  }
 
-  /* 3. Fire REAL Windows 11 Computer-Screen Pop-Up Notification! */
-  var lastOsNotifMint = '';
-  window.oldDisabledV14Popup = async function(tok, forceEvenIfSeen) {
-    if (!tok || !('Notification' in window)) return false;
-    if (Notification.permission === 'default') {
-      try { await Notification.requestPermission(); } catch (_e) {}
-    }
-    if (Notification.permission !== 'granted') return false;
-    if (!forceEvenIfSeen && lastOsNotifMint === tok.mint) return true;
-    lastOsNotifMint = tok.mint;
-
-    var pct = Number(tok.h1 || 0);
-    var sign = pct >= 0 ? '+' : '';
-    var title = '🚀 $' + tok.symbol + ' (' + sign + pct.toFixed(1) + '% 1h) • 12-Layer Auto-Detect';
-    var bodyTxt = (tok.verdictTag || '12-LAYER CLEAR') + ' • Liq $' + Math.round((tok.liq || 0) / 1000) + 'K\nClick to open Live Chart & Instant Buy/Sell';
-    var iconUrl = makeRocketOsIcon(tok.symbol, tok.verdictCol || '#10B981');
-    var deepUrl = 'https://rentandrugshield.com/?trade=' + encodeURIComponent(tok.mint) + '&sym=' + encodeURIComponent(tok.symbol);
-
-    try {
-      /* Direct Notification object gives instant onclick focus + modal open on desktop! */
-      var n = new Notification(title, {
-        body: bodyTxt,
-        icon: iconUrl,
-        badge: iconUrl,
-        tag: 'rrs-os-rocket-' + tok.symbol,
-        renotify: true,
-        requireInteraction: true
-      });
-      n.onclick = function() {
-        try { window.focus(); } catch (_e) {}
-        if (window.openEcosystemModal) window.openEcosystemModal(tok, 'buy');
-        n.close();
-      };
-      return true;
-    } catch (_err) {
-      /* PWA Service Worker fallback if browser requires SW registration */
-      try {
-        if ('serviceWorker' in navigator) {
-          var reg = await navigator.serviceWorker.getRegistration();
-          if (reg && reg.showNotification) {
-            await reg.showNotification(title, {
-              body: bodyTxt,
-              icon: iconUrl,
-              tag: 'rrs-os-rocket-' + tok.symbol,
-              renotify: true,
-              requireInteraction: true,
-              data: { url: deepUrl }
-            });
-            return true;
-          }
-        }
-      } catch (_e2) {}
-    }
-    return false;
-  };
-
-  /* 4. Hook Into V13 Corner Rocket Box + Top 'Test Alert' Button */
-  var currentLiveTok = {
-    mint: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',
-    symbol: 'BONK', name: 'Bonk', price: '0.00002', h1: 5.4, liq: 1250000,
-    verdictTag: '12-LAYER CLEAR', verdictCol: '#10B981'
-  };
-
-  async function syncLatestMoverAndPopOs(isManualClick) {
-    try {
-      var r = await fetch('https://api.dexscreener.com/token-boosts/top/v1', { cache: 'no-store' });
-      if (r.ok) {
-        var arr = await r.json();
-        var sol = arr.filter(function(x){ return x && x.chainId === 'solana' && x.tokenAddress; }).slice(0, 4);
-        if (sol.length) {
-          var pr = await fetch('https://api.dexscreener.com/latest/dex/tokens/' + sol.map(function(x){ return x.tokenAddress; }).join(','), { cache: 'no-store' });
-          if (pr.ok) {
-            var pd = await pr.json();
-            var p = (pd.pairs || []).filter(function(z){ return z && z.chainId === 'solana' && z.baseToken; })
-              .sort(function(a, b){ return Number((b.priceChange||{}).h1||0) - Number((a.priceChange||{}).h1||0); })[0];
-            if (p) {
-              currentLiveTok = {
-                mint: p.baseToken.address,
-                symbol: (p.baseToken.symbol || 'SOL').replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 9),
-                name: p.baseToken.name || 'Solana Mover',
-                price: p.priceUsd || '0',
-                h1: Number((p.priceChange || {}).h1 || 0),
-                liq: Number((p.liquidity || {}).usd || 0),
-                logo: (p.info || {}).imageUrl || '',
-                verdictTag: '12-LAYER AUTO-DETECT',
-                verdictCol: '#10B981'
-              };
-            }
-          }
-        }
-      }
-    } catch (_e) {}
-
-    await window.fireWindowsScreenPopup(currentLiveTok, isManualClick);
-    injectEnableScreenPopBtn();
-  }
-
-  function injectEnableScreenPopBtn() {
-    var box = document.getElementById('rrs-rocket-ping-box');
-    if (!box || !('Notification' in window)) return;
-    var existing = document.getElementById('rrs-os-perm-bar');
-    if (Notification.permission === 'granted') {
-      if (existing) existing.remove();
-      return;
-    }
-    if (!existing) {
-      var bar = document.createElement('button');
-      bar.id = 'rrs-os-perm-bar';
-      bar.type = 'button';
-      bar.style.cssText = 'margin-top:8px;width:100%;padding:7px 10px;border-radius:8px;border:1px dashed #F5C542;background:#141B2D;color:#F5C542;font-weight:800;font-size:11.5px;cursor:pointer;';
-      bar.textContent = '🔔 Click Once to Pop Alerts Directly Onto Your PC Screen';
-      bar.onclick = async function() {
-        var ok = await window.fireWindowsScreenPopup(currentLiveTok, true);
-        if (ok) bar.remove();
-      };
-      box.appendChild(bar);
-    }
-  }
-
-  function wireOsPopupTriggers() {
-    hideComputeHoursClutter();
-
-    /* Hook Top 'Test Alert' button so clicking it pops a REAL Windows OS Screen Toast! */
-    document.querySelectorAll('button, a, [role="button"]').forEach(function(btn){
-      var tx = (btn.textContent || '').trim().toLowerCase();
-      if ((tx.indexOf('test alert') !== -1 || tx === 'test shield') && !btn.__rrsV14OsWired) {
-        btn.__rrsV14OsWired = true;
-        btn.addEventListener('click', function(){
-          syncLatestMoverAndPopOs(true);
-        });
-      }
-    });
-
-    /* Auto-open Chart + Buy/Sell modal if user clicked OS pop-up while tab was closed/reloaded */
-    var sp = new URLSearchParams(window.location.search);
-    var tm = sp.get('trade');
-    if (tm && tm.length >= 32 && window.openEcosystemModal) {
-      setTimeout(function(){
-        window.openEcosystemModal({
-          mint: tm, symbol: sp.get('sym') || 'TOKEN', name: 'Solana Token', h1: 0, liq: 50000
-        }, 'buy');
-      }, 650);
-    }
-
-    setTimeout(injectEnableScreenPopBtn, 1400);
-    /* Fire automatic Windows OS screen pop-up when permission is already granted */
-    if ('Notification' in window && Notification.permission === 'granted') {
-      setTimeout(function(){ syncLatestMoverAndPopOs(false); }, 1800);
-    }
-    setInterval(function(){
-      if ('Notification' in window && Notification.permission === 'granted') {
-        syncLatestMoverAndPopOs(false);
-      }
-    }, 90000);
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wireOsPopupTriggers);
-  else wireOsPopupTriggers();
-  setTimeout(hideComputeHoursClutter, 700);
-})();
-</script>
-<!-- RANGER_OS_POPUP_V14_END -->
-<!-- RANGER_COMPLETE_SUITE_V16_START -->
-<style id="rrs-v16-suite-css">
-  /* Hide Useless Caution / Test Alert / Compute Hours Header Clutter */
-  [data-modal="rrsVerifiedHoursModal"],
-  [aria-controls="rrsVerifiedHoursModal"],
-  [onclick*="VerifiedHours"] { display: none !important; }
-
-  @keyframes rrsNeonBoomV16 {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px #00FF88) drop-shadow(0 0 12px rgba(0,255,136,0.65)); }
-    25% { transform: scale(1.13); filter: drop-shadow(0 0 14px #00FF88) drop-shadow(0 0 28px #00FF88); }
-    55% { transform: scale(1.03); filter: drop-shadow(0 0 8px #00FF88); }
-    75% { transform: scale(1.15); filter: drop-shadow(0 0 16px #00FF88) drop-shadow(0 0 32px #00FF88); }
-  }
-  header svg, nav svg { animation: rrsNeonBoomV16 1.7s ease-in-out infinite !important; }
-
-  /* High-Contrast Corner Alert Box (ZERO Gray — Obsidian Black + Crisp White/Gold/Neon!) */
-  @keyframes rrsPingGlowInst {
-    0%, 100% { box-shadow: 0 22px 60px rgba(0,0,0,0.96), 0 0 0 0 rgba(212,175,55,0.65); }
-    55% { box-shadow: 0 22px 60px rgba(0,0,0,0.96), 0 0 0 11px rgba(212,175,55,0); }
-  }
-  @keyframes rrsPingGlowMeme {
-    0%, 100% { box-shadow: 0 22px 60px rgba(0,0,0,0.96), 0 0 18px rgba(0,255,136,0.45), 0 0 0 0 rgba(0,255,136,0.75); }
-    55% { box-shadow: 0 22px 60px rgba(0,0,0,0.96), 0 0 26px rgba(245,197,66,0.55), 0 0 0 14px rgba(0,255,136,0); }
-  }
-  #rrs-rocket-ping-box {
-    position: fixed !important;
-    right: 20px !important;
-    bottom: 20px !important;
-    width: min(93vw, 412px) !important;
-    z-index: 2147483640 !important;
-    background: #04070D !important;
-    border: 2px solid #F5C542 !important;
-    border-radius: 15px !important;
-    padding: 14px 16px !important;
-    color: #FFFFFF !important;
-    font-family: system-ui, -apple-system, Segoe UI, sans-serif !important;
-    box-sizing: border-box !important;
-  }
-  #rrs-rocket-ping-box.rrs-mode-institutional {
-    background: linear-gradient(180deg, #060A13 0%, #030509 100%) !important;
-    border: 2px solid #D4AF37 !important;
-    animation: rrsPingGlowInst 2.1s infinite !important;
-  }
-  #rrs-rocket-ping-box.rrs-mode-meme {
-    background: linear-gradient(165deg, #041310 0%, #04070E 65%, #120C04 100%) !important;
-    border: 2.5px solid #00FF88 !important;
-    animation: rrsPingGlowMeme 1.5s infinite !important;
-  }
-
-  /* Bouncing Carbon AI High Callout Bubble Pointing to Chrome Extension */
-  @keyframes rrsBounceArrow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-  #rrs-carbon-ext-bubble {
-    position: fixed;
-    z-index: 2147483641;
-    max-width: 340px;
-    background: #040811;
-    border: 2px solid #00FF88;
-    border-radius: 14px;
-    padding: 12px 14px;
-    color: #FFFFFF;
-    box-shadow: 0 22px 55px rgba(0,0,0,0.96), 0 0 22px rgba(0,255,136,0.32);
-    display: none;
-    animation: rrsBounceArrow 1.7s ease-in-out infinite;
-    font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-  }
-  #rrs-carbon-ext-arrow {
-    position: absolute;
-    top: -12px; left: 32px;
-    border-left: 11px solid transparent;
-    border-right: 11px solid transparent;
-    border-bottom: 12px solid #00FF88;
-  }
-
-  /* In-Modal Post-Swap Rent & Hidden Dust Recovery Dock + Carbon AI Bubble */
-  #rrs-reclaim-dock {
-    margin-top: 8px;
-    background: #050912;
-    border: 1.5px solid #D4AF37;
-    border-radius: 11px;
-    padding: 10px 11px;
-    color: #FFFFFF;
-    position: relative;
-  }
-  #rrs-dust-bobo {
-    margin-top: 8px;
-    background: linear-gradient(180deg, #081512 0%, #050911 100%);
-    border: 1.5px solid #00FF88;
-    border-radius: 10px;
-    padding: 10px 12px;
-    color: #F8FAFC;
-    font-size: 12px;
-    line-height: 1.46;
-    position: relative;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.85);
-  }
-  #rrs-dust-bobo::before {
-    content: "";
-    position: absolute;
-    top: -9px;
-    left: 28px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 9px solid #00FF88;
-  }
-
-  /* Notification Toggles Drawer Inside Trade Modal */
-  #rrs-notif-settings-panel {
-    display: none;
-    margin-top: 10px;
-    background: #050913;
-    border: 1.5px solid #F5C542;
-    border-radius: 12px;
-    padding: 12px 14px;
-    color: #FFFFFF;
-  }
-  .rrs-tog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
-    gap: 8px 14px;
-    margin-top: 8px;
-  }
-  .rrs-tog-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #0B111E;
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 8px;
-    padding: 7px 10px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #F8FAFC;
-  }
-
-  #rrsExtVideoModal {
-    position: fixed;
-    inset: 0;
-    z-index: 2147483647;
-    background: rgba(2, 4, 9, 0.94);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    box-sizing: border-box;
-    font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-  }
-</style>
-
-<!-- Canary 11/11 Safe Hidden Extension Demo Video Modal -->
-<div id="rrsExtVideoModal" class="rrs-top-modal-backdrop" aria-hidden="true" style="display:none;">
-  <div style="width:min(92vw,940px);max-height:88vh;background:#050811;border:2px solid #00FF88;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 28px 85px rgba(0,0,0,0.96);">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
-      <span style="color:#00FF88;font-weight:900;font-size:15px;">🛡️ CARBON AI HIGH CHROME EXTENSION — 3-COLOR SHIELD, VOICE ALERTS &amp; PC GUARD</span>
-      <div style="display:flex;gap:8px;">
-        <a href="/rent-rug-shield-chrome-extension.zip" download style="background:#F5C542;color:#05070C;padding:6px 12px;border-radius:7px;font-weight:900;font-size:12.5px;text-decoration:none;">⬇️ Download Extension v5.3</a>
-        <button id="rrs-ext-v16-close" type="button" style="background:#DC2626;color:#FFF;border:none;border-radius:7px;padding:6px 13px;font-weight:900;cursor:pointer;">✕ CLOSE</button>
-      </div>
-    </div>
-    <video id="rrs-ext-v16-player" controls playsinline preload="metadata" src="/promo/extension_shield_demo.mp4?v=1795145752" style="width:100%;max-height:68vh;height:auto;border-radius:9px;background:#000;"></video>
-  </div>
-</div>
-
-<!-- Carbon AI High Arrow Callout Bubble -->
-<div id="rrs-carbon-ext-bubble" role="note">
-  <div id="rrs-carbon-ext-arrow"></div>
-  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
-    <span style="color:#00FF88;font-weight:900;font-size:12px;">⬆️ WHY TRADERS PIN OUR CHROME SHIELD</span>
-    <button id="rrs-cext-x" type="button" style="background:none;border:none;color:#94A3B8;font-weight:900;cursor:pointer;">✕</button>
-  </div>
-  <div style="font-size:12.5px;color:#FFFFFF;line-height:1.42;margin-top:5px;">
-    Built with <b style="color:#F5C542;">Carbon AI High Cybersecurity</b> — Spoken <i>"Rug Alert!"</i> warnings, PC &amp; RPC lag detection, Institutional/Meme modes, and 12-Layer pre-buy protection.
-  </div>
-  <button id="rrs-cext-watch" type="button" style="margin-top:8px;width:100%;padding:8px;border-radius:8px;border:none;background:linear-gradient(180deg,#00FF88,#10B981);color:#03120A;font-weight:900;font-size:12px;cursor:pointer;">
-    ▶️ Watch 34s Chrome Extension Demo
-  </button>
-</div>
-
-<script id="rrs-v16-suite-js">
-(function(){
-  var TOKEN_PROG = 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA';
-  var TOKEN_2022 = 'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb';
-  var SOL_MINT   = 'So11111111111111111111111111111111111111112';
-
-  /* Persistent User Preferences (Institutional vs Meme + 8 Notification Toggles) */
-  var prefs = {
-    mode: localStorage.getItem('rrs_ui_mode') || 'institutional',
-    togPassed: localStorage.getItem('rrs_tog_passed') !== '0',
-    togRugRed: localStorage.getItem('rrs_tog_rug') !== '0',
-    togPcRam: localStorage.getItem('rrs_tog_pc') !== '0',
-    togRpcLag: localStorage.getItem('rrs_tog_rpc') !== '0',
-    togClip: localStorage.getItem('rrs_tog_clip') !== '0',
-    togAutoReclaim: localStorage.getItem('rrs_auto_reclaim') !== '0',
-    togOsPop: localStorage.getItem('rrs_tog_ospop') !== '0',
-    audioProfile: localStorage.getItem('rrs_audio_prof') || 'voice'
-  };
-
-  function savePrefs() {
-    localStorage.setItem('rrs_ui_mode', prefs.mode);
-    localStorage.setItem('rrs_tog_passed', prefs.togPassed ? '1' : '0');
-    localStorage.setItem('rrs_tog_rug', prefs.togRugRed ? '1' : '0');
-    localStorage.setItem('rrs_tog_pc', prefs.togPcRam ? '1' : '0');
-    localStorage.setItem('rrs_tog_rpc', prefs.togRpcLag ? '1' : '0');
-    localStorage.setItem('rrs_tog_clip', prefs.togClip ? '1' : '0');
-    localStorage.setItem('rrs_auto_reclaim', prefs.togAutoReclaim ? '1' : '0');
-    localStorage.setItem('rrs_tog_ospop', prefs.togOsPop ? '1' : '0');
-    localStorage.setItem('rrs_audio_prof', prefs.audioProfile);
-  }
-
-  var activeTok = {
-    mint: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',
-    symbol: 'BONK', name: 'Bonk', price: '0.00002', h1: 6.4, liq: 1250000,
-    passed: true, reason: '12/12 Layers Clear'
-  };
-
-  /* Tiered Audio & Voice Engine (Industry-First Severity Audio!) */
-  function playSeverityAudio(passed, symbol) {
-    if (prefs.audioProfile === 'mute') return;
-    if (prefs.audioProfile === 'voice' && 'speechSynthesis' in window) {
-      try {
-        window.speechSynthesis.cancel();
-        var msg = passed
-          ? (prefs.mode === 'meme' ? ('Moon radar! ' + symbol + ' passed all 12 rug shield layers.') : (symbol + ' passed 12 layer shield audit.'))
-          : ('Rug alert! Rug alert! ' + symbol + ' failed 12 layer security check.');
-        var u = new SpeechSynthesisUtterance(msg);
-        u.rate = 1.05;
-        window.speechSynthesis.speak(u);
-        return;
-      } catch (_e) {}
-    }
-    try {
-      var AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return;
-      var c = window.__rrsPingCtx || (window.__rrsPingCtx = new AC());
-      if (c.state === 'suspended') c.resume();
-      var notes = passed
-        ? (prefs.audioProfile === 'sonar' ? [1046.5, 1318.5] : [880, 1174.66])
-        : [311.13, 233.08, 311.13];
-      notes.forEach(function(fn, idx){
-        var o = c.createOscillator(); var g = c.createGain();
-        var t = c.currentTime + idx * 0.12;
-        o.type = passed ? 'sine' : 'sawtooth';
-        o.frequency.setValueAtTime(fn, t);
-        g.gain.setValueAtTime(0.0001, t);
-        g.gain.linearRampToValueAtTime(passed ? 0.055 : 0.085, t + 0.015);
-        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.20);
-        o.connect(g); g.connect(c.destination);
-        o.start(t); o.stop(t + 0.22);
-      });
-    } catch (_e) {}
-  }
-
-  /* High-Contrast Jet-Black Retina Banner + Shield Icon for Windows 11 OS Pop-Up! */
-  function buildCrispPcBanner(tok, isHero) {
-    var cv = document.createElement('canvas');
-    cv.width = isHero ? 720 : 256;
-    cv.height = isHero ? 360 : 256;
-    var c = cv.getContext('2d');
-    var pass = (tok.passed !== false);
-    var accent = pass ? '#00FF88' : '#FF3B3B';
-    var gold = '#F5C542';
-
-    /* Pure Obsidian Black Background — Eliminates Washed-Out Gray! */
-    c.fillStyle = '#04070D';
-    c.fillRect(0, 0, cv.width, cv.height);
-    c.lineWidth = isHero ? 10 : 12;
-    c.strokeStyle = (prefs.mode === 'institutional' && pass) ? gold : accent;
-    c.strokeRect(6, 6, cv.width - 12, cv.height - 12);
-
-    if (!isHero) {
-      /* Square Shield Crest + Symbol + PASS/FAIL Stamp */
-      c.beginPath();
-      c.moveTo(128, 28); c.lineTo(212, 60); c.lineTo(206, 138);
-      c.quadraticCurveTo(196, 198, 128, 228);
-      c.quadraticCurveTo(60, 198, 50, 138);
-      c.lineTo(44, 60); c.closePath();
-      c.fillStyle = pass ? '#042F1D' : '#3B0808';
-      c.fill();
-      c.lineWidth = 8; c.strokeStyle = accent; c.stroke();
-
-      c.fillStyle = '#FFFFFF';
-      c.font = '900 46px Segoe UI, Arial, sans-serif';
-      c.textAlign = 'center';
-      c.fillText(('$' + tok.symbol).slice(0, 6), 128, 124);
-
-      c.fillStyle = accent;
-      c.font = '900 28px Segoe UI, Arial, sans-serif';
-      c.fillText(pass ? 'PASSED' : 'RUG!', 128, 170);
-      return cv.toDataURL('image/png');
-    }
-
-    /* Wide 720x360 High-Contrast Hero Card Inside Windows Desktop Toast! */
-    c.fillStyle = pass ? '#042B1B' : '#3B0707';
-    c.fillRect(24, 24, 672, 66);
-    c.strokeStyle = accent; c.lineWidth = 3;
-    c.strokeRect(24, 24, 672, 66);
-
-    c.fillStyle = accent;
-    c.font = '900 29px Segoe UI, Arial, sans-serif';
-    c.textAlign = 'left';
-    var badgeTxt = pass
-      ? '🛡️ RUG SHIELD: PASSED (12/12 LAYERS)'
-      : '🚨 RUG SHIELD: FAILED — DO NOT BUY';
-    c.fillText(badgeTxt, 44, 67);
-
-    var pct = Number(tok.h1 || 0);
-    var sign = pct >= 0 ? '+' : '';
-    c.fillStyle = '#FFFFFF';
-    c.font = '900 66px Segoe UI, Arial, sans-serif';
-    var symLine = (prefs.mode === 'meme' && pass ? '🚀 $' : '$') + tok.symbol + '  ' + sign + pct.toFixed(1) + '%';
-    c.fillText(symLine.slice(0, 18), 40, 182);
-
-    c.fillStyle = gold;
-    c.font = '800 28px Segoe UI, Arial, sans-serif';
-    var modeLbl = prefs.mode === 'meme' ? 'MEME RADAR' : 'INSTITUTIONAL DESK';
-    c.fillText(modeLbl + '  •  LIQUIDITY $' + Math.round((tok.liq || 0) / 1000) + 'K', 42, 244);
-
-    c.fillStyle = '#E2E8F0';
-    c.font = '700 24px Segoe UI, Arial, sans-serif';
-    c.fillText('Click to Open Live Chart, Instant Swap & Auto Rent Reclaim', 42, 308);
-    return cv.toDataURL('image/png');
-  }
-
-  window.triggerHighContrastPcAlert = async function(tok, manualPreview) {
-    if (!tok) return;
-    activeTok = tok;
-    renderCornerShieldCard(tok, manualPreview);
-
-    if (!prefs.togOsPop && !manualPreview) return;
-    if (!('Notification' in window)) return;
-    if (Notification.permission === 'default') {
-      try { await Notification.requestPermission(); } catch (_e) {}
-    }
-    if (Notification.permission !== 'granted') return;
-
-    var pass = (tok.passed !== false);
-    if (pass && !prefs.togPassed && !manualPreview) return;
-    if (!pass && !prefs.togRugRed && !manualPreview) return;
-
-    var pct = Number(tok.h1 || 0);
-    var sign = pct >= 0 ? '+' : '';
-    var title = pass
-      ? ((prefs.mode === 'meme' ? '🚀 $' : '🛡️ $') + tok.symbol + ' (' + sign + pct.toFixed(1) + '%) — RUG SHIELD PASSED')
-      : ('🚨 $' + tok.symbol + ' — RUG SHIELD FAILED (BLOCKED)');
-    var body = (pass ? '✅ PASSED ALL 12 LAYERS' : ('❌ FAILED: ' + (tok.reason || 'Trap Flagged'))) +
-      ' • Liq $' + Math.round((tok.liq || 0) / 1000) + 'K\nClick for Chart, Buy/Sell & Rent Reclaim';
-
-    var sqIcon = buildCrispPcBanner(tok, false);
-    var heroImg = buildCrispPcBanner(tok, true);
-    try {
-      var n = new Notification(title, {
-        body: body,
-        icon: sqIcon,
-        badge: sqIcon,
-        image: heroImg,
-        tag: 'rrs-v16-' + tok.symbol,
-        renotify: true,
-        requireInteraction: true
-      });
-      n.onclick = function() {
-        try { window.focus(); } catch (_e) {}
-        if (window.openEcosystemModal) window.openEcosystemModal(tok, 'buy');
-        n.close();
-      };
-    } catch (_e) {}
-  };
-
-  /* Render High-Contrast Corner Box w/ Institutional vs Meme Mode Switcher */
-  function renderCornerShieldCard(tok, withAudio) {
-    var box = document.getElementById('rrs-rocket-ping-box');
-    if (!box || !tok) return;
-    var pass = (tok.passed !== false);
-    var pct = Number(tok.h1 || 0);
-    var isMeme = (prefs.mode === 'meme');
-
-    box.className = isMeme ? 'rrs-mode-meme' : 'rrs-mode-institutional';
-    var shieldBg = pass ? '#032B1A' : '#3B0808';
-    var shieldBd = pass ? '#00FF88' : '#FF3B3B';
-    var shieldTx = pass ? '#00FF88' : '#FF8080';
-    var verdictStr = pass
-      ? '🛡️ RUG SHIELD: PASSED (12/12)'
-      : ('🚨 RUG SHIELD: FAILED (' + (tok.reason || 'TRAP') + ')');
-
-    var headline = isMeme
-      ? ('🚀 $' + tok.symbol + ' 🚀')
-      : ('$' + tok.symbol + ' • VERIFIED');
-
-    box.innerHTML =
-      /* Top Row: Passed/Failed Shield Stamp + Inst/Meme Toggle + Gear + Close */
-      '<div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:9px;">' +
-        '<span style="background:' + shieldBg + ';color:' + shieldTx + ';border:1.5px solid ' + shieldBd + ';padding:4px 10px;border-radius:999px;font-size:11.5px;font-weight:900;letter-spacing:0.03em;">' + verdictStr + '</span>' +
-        '<div style="display:flex;align-items:center;gap:4px;">' +
-          '<button id="rrs-c-mode" type="button" title="Switch Institutional / Meme Mode" style="background:#101829;color:#F5C542;border:1px solid #D4AF37;border-radius:6px;padding:3px 7px;font-size:10.5px;font-weight:900;cursor:pointer;">' + (isMeme ? '🚀 MEME' : '🏛️ INST') + '</button>' +
-          '<button id="rrs-c-gear" type="button" title="Notification Toggles" style="background:#101829;color:#FFFFFF;border:1px solid #334155;border-radius:6px;padding:3px 7px;font-size:11px;cursor:pointer;">🎛️</button>' +
-          '<button id="rrs-c-x" type="button" style="background:none;border:none;color:#CBD5E1;font-size:16px;font-weight:900;cursor:pointer;">✕</button>' +
-        '</div>' +
-      '</div>' +
-
-      /* Middle Row: Crisp Shield Emblem + Large White Symbol + % Move */
-      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:11px;background:#080E1A;border:1px solid rgba(255,255,255,0.10);border-radius:11px;padding:9px 11px;">' +
-        '<div style="width:46px;height:46px;border-radius:11px;background:' + shieldBg + ';border:2px solid ' + shieldBd + ';display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0;">' + (pass ? '🛡️' : '🚨') + '</div>' +
-        '<div style="min-width:0;flex:1;">' +
-          '<div style="font-weight:900;font-size:19px;color:#FFFFFF;line-height:1.15;">' + headline + ' <span style="color:' + (pct >= 0 ? '#00FF88' : '#FF6B6B') + ';font-size:15.5px;">' + (pct >= 0 ? '+' : '') + pct.toFixed(1) + '%</span></div>' +
-          '<div style="font-size:12px;color:#E2E8F0;font-weight:600;margin-top:2px;">' + (tok.name || 'Solana Asset').slice(0, 22) + ' • Liq $' + Math.round((tok.liq || 0) / 1000) + 'K • Carbon AI 12L</div>' +
-        '</div>' +
-      '</div>' +
-
-      /* Bottom Row: Chart + Buy/Sell & Rent Reclaim */
-      '<div style="display:grid;grid-template-columns:1fr 1.35fr;gap:8px;">' +
-        '<button id="rrs-c-chart" type="button" style="padding:9px 10px;border-radius:9px;border:1.5px solid #38BDF8;background:#09192C;color:#7DD3FC;font-weight:900;font-size:12.5px;cursor:pointer;">📈 Chart &amp; Dust</button>' +
-        '<button id="rrs-c-swap" type="button" style="padding:9px 10px;border-radius:9px;border:none;background:linear-gradient(180deg,#00FF88 0%,#10B981 100%);color:#03120A;font-weight:900;font-size:12.5px;cursor:pointer;">⚡ Buy / Sell / Reclaim</button>' +
-      '</div>';
-
-    box.style.display = 'block';
-    if (withAudio) playSeverityAudio(pass, tok.symbol);
-
-    document.getElementById('rrs-c-x').onclick = function(e){ e.stopPropagation(); box.style.display = 'none'; };
-    document.getElementById('rrs-c-mode').onclick = function(e){
-      e.stopPropagation();
-      prefs.mode = (prefs.mode === 'institutional') ? 'meme' : 'institutional';
-      savePrefs();
-      renderCornerShieldCard(tok, false);
-      syncModalModeStyling();
-    };
-    document.getElementById('rrs-c-gear').onclick = function(e){
-      e.stopPropagation();
-      if (window.openEcosystemModal) window.openEcosystemModal(tok, 'buy');
-      setTimeout(function(){
-        var p = document.getElementById('rrs-notif-settings-panel');
-        if (p) p.style.display = 'block';
-      }, 180);
-    };
-    document.getElementById('rrs-c-chart').onclick = function(){ if (window.openEcosystemModal) window.openEcosystemModal(tok, 'buy'); };
-    document.getElementById('rrs-c-swap').onclick = function(){ if (window.openEcosystemModal) window.openEcosystemModal(tok, 'buy'); };
-  }
-
-  /* Deep SPL + Token-2022 Empty ATA & Hidden Dust Scanner Inside the Trade Window! */
-  var FROZEN_IGNORE = {'tpbdRAZZrv':1, '5kKwBvumaz':1, '8rJZm3uFN5':1, 'sMYyVKxdk7':1};
-
-  async function connectVisitorWallet() {
-    var prov = (window.solana && window.solana.isPhantom) ? window.solana :
-               (window.solflare ? window.solflare : (window.solana || window.backpack));
-    if (!prov) return null;
-    try {
-      if (!prov.publicKey) await prov.connect();
-      return prov.publicKey ? prov.publicKey.toString() : null;
-    } catch (_e) {
-      return null;
-    }
-  }
-
-  window.runModalRentAndDustScan = async function(kind) {
-    var outEl = document.getElementById('rrs-reclaim-status');
-    if (!outEl) return;
-    outEl.style.display = 'block';
-    outEl.style.color = '#F5C542';
-    outEl.textContent = '⏳ Carbon AI High scanning SPL + Token-2022 ledgers for empty ATAs & hidden dust...';
-
-    var wallet = await connectVisitorWallet();
-    if (!wallet) {
-      /* Check if user already pasted a wallet on main page */
-      var wInp = document.querySelector('input[placeholder*="wallet" i], input[placeholder*="address" i], #walletInput');
-      if (wInp && wInp.value && wInp.value.trim().length >= 32) wallet = wInp.value.trim();
-    }
-    if (!wallet) {
-      outEl.style.color = '#FBBF24';
-      outEl.textContent = '🔌 Connect Phantom / Solflare (or paste wallet on main scanner) to reclaim SOL rent & dust.';
-      return;
-    }
-
-    var emptyCnt = 0;
-    var dustCnt = 0;
-    try {
-      var progs = [TOKEN_PROG, TOKEN_2022];
-      for (var i = 0; i < progs.length; i++) {
-        var res = await fetch('https://api.mainnet-beta.solana.com', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            jsonrpc: '2.0', id: i + 1,
-            method: 'getTokenAccountsByOwner',
-            params: [wallet, { programId: progs[i] }, { encoding: 'jsonParsed' }]
-          })
-        });
-        var dj = await res.json();
-        var list = (((dj || {}).result || {}).value) || [];
-        list.forEach(function(acc){
-          var info = (((acc || {}).account || {}).data || {}).parsed.info || {};
-          if (info.state === 'frozen') return;
-          var mint = String(info.mint || '');
-          var skip = Object.keys(FROZEN_IGNORE).some(function(k){ return mint.indexOf(k) === 0; });
-          if (skip) return;
-          var ta = info.tokenAmount || {};
-          var rawAmt = Number(ta.amount || 0);
-          var uiAmt = Number(ta.uiAmount || 0);
-          if (rawAmt === 0) emptyCnt++;
-          else if (uiAmt > 0 && uiAmt < 1000 && Number(ta.decimals || 0) >= 4) dustCnt++;
-        });
-      }
-      var estSol = ((emptyCnt + (kind === 'dust' ? dustCnt : 0)) * 0.002039).toFixed(4);
-      outEl.style.color = '#00FF88';
-      outEl.innerHTML = '✅ <b>Found ' + emptyCnt + ' Empty ATAs + ' + dustCnt + ' Dust Accounts (~+' + estSol + ' SOL)!</b> ' +
-        '<button id="rrs-launch-main-claim" type="button" style="margin-left:6px;padding:4px 9px;border-radius:6px;border:none;background:#F5C542;color:#04070D;font-weight:900;font-size:11.5px;cursor:pointer;">Sign &amp; Reclaim Now ↗</button>';
-      document.getElementById('rrs-launch-main-claim').onclick = function() {
-        var modal = document.getElementById('rrsEcosystemTradeModal');
-        if (modal) { modal.style.display = 'none'; modal.setAttribute('aria-hidden', 'true'); }
-        var wInp = document.querySelector('input[placeholder*="wallet" i], input[placeholder*="address" i], #walletInput');
-        if (wInp) {
-          wInp.value = wallet;
-          wInp.dispatchEvent(new Event('input', { bubbles: true }));
-          wInp.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        /* Click main Scan/Reclaim button if present */
-        document.querySelectorAll('button').forEach(function(b){
-          var t = (b.textContent || '').toLowerCase();
-          if (t.indexOf('scan wallet') !== -1 || t.indexOf('check free sol') !== -1) b.click();
-        });
-      };
-    } catch (_err) {
-      outEl.style.color = '#F5C542';
-      outEl.textContent = '⚡ Opening main Carbon AI Batch Rent & Dust Scanner for ' + wallet.slice(0, 6) + '...';
-    }
-  };
-
-  /* Upgrade V13 Ecosystem Modal w/ Institutional/Meme Toggle + Toggles Panel + Rent/Dust + Auto + Bobo Bubble! */
-  function upgradeEcosystemModalDom() {
-    var dlg = document.getElementById('rrs-eco-dialog');
-    if (!dlg || dlg.__rrsV16Upgraded) return;
-    dlg.__rrsV16Upgraded = true;
-    dlg.style.background = '#04070D';
-
-    /* 1. Add Institutional / Meme + Notification Toggles Buttons in Modal Top Bar */
-    var closeBtn = document.getElementById('rrs-eco-close');
-    if (closeBtn && closeBtn.parentElement) {
-      var modeBtn = document.createElement('button');
-      modeBtn.id = 'rrs-modal-mode-btn';
-      modeBtn.type = 'button';
-      modeBtn.style.cssText = 'background:#101829;color:#F5C542;border:1.5px solid #D4AF37;border-radius:8px;padding:6px 11px;font-size:12px;font-weight:900;cursor:pointer;';
-      modeBtn.onclick = function() {
-        prefs.mode = (prefs.mode === 'institutional') ? 'meme' : 'institutional';
-        savePrefs();
-        syncModalModeStyling();
-        renderCornerShieldCard(activeTok, false);
-      };
-
-      var togBtn = document.createElement('button');
-      togBtn.id = 'rrs-modal-toggles-btn';
-      togBtn.type = 'button';
-      togBtn.textContent = '🎛️ Alert Toggles';
-      togBtn.style.cssText = 'background:#091C16;color:#00FF88;border:1.5px solid #00FF88;border-radius:8px;padding:6px 11px;font-size:12px;font-weight:900;cursor:pointer;';
-      togBtn.onclick = function() {
-        var p = document.getElementById('rrs-notif-settings-panel');
-        if (p) p.style.display = (p.style.display === 'none' || !p.style.display) ? 'block' : 'none';
-      };
-
-      closeBtn.parentElement.insertBefore(modeBtn, closeBtn);
-      closeBtn.parentElement.insertBefore(togBtn, closeBtn);
-    }
-
-    /* 2. Insert Full Notification Toggles & Audio Profile Panel Inside Modal */
-    var verdictBar = document.getElementById('rrs-eco-verdict');
-    if (verdictBar) {
-      var panel = document.createElement('div');
-      panel.id = 'rrs-notif-settings-panel';
-      panel.innerHTML =
-        '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">' +
-          '<span style="color:#F5C542;font-weight:900;font-size:13px;">🎛️ CUSTOMIZE YOUR SHIELD NOTIFICATIONS &amp; DISPLAY MODE</span>' +
-          '<button id="rrs-preview-pc-pop" type="button" style="background:#F5C542;color:#04070D;border:none;border-radius:7px;padding:5px 11px;font-size:11.5px;font-weight:900;cursor:pointer;">🖥️ Preview Crisp PC Pop-Up</button>' +
-        '</div>' +
-        '<div class="rrs-tog-grid">' +
-          '<label class="rrs-tog-item"><span>🛡️ Passed Coin Alerts</span><input type="checkbox" id="v16_togPassed"></label>' +
-          '<label class="rrs-tog-item"><span>🚨 Red "Rug Alert!" Traps</span><input type="checkbox" id="v16_togRugRed"></label>' +
-          '<label class="rrs-tog-item"><span>💻 PC CPU/RAM Slowdown</span><input type="checkbox" id="v16_togPcRam"></label>' +
-          '<label class="rrs-tog-item"><span>🌐 Internet / RPC Lag</span><input type="checkbox" id="v16_togRpcLag"></label>' +
-          '<label class="rrs-tog-item"><span>📋 Clipboard Hijack Lock</span><input type="checkbox" id="v16_togClip"></label>' +
-          '<label class="rrs-tog-item"><span>🖥️ Windows Desktop Banner</span><input type="checkbox" id="v16_togOsPop"></label>' +
-        '</div>' +
-        '<div style="margin-top:9px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
-          '<span style="font-size:12px;color:#CBD5E1;font-weight:800;">Severity Sound / Voice:</span>' +
-          '<select id="v16_audioProf" style="background:#0B1220;color:#F5C542;border:1px solid #D4AF37;border-radius:7px;padding:6px 10px;font-weight:800;font-size:12px;">' +
-            '<option value="voice">🗣️ Spoken AI Voice ("Rug Alert!" / "Shield Passed")</option>' +
-            '<option value="tactical">🔔 Quant Desk Bell (🟢) / Pulse (🟡) / Klaxon (🔴)</option>' +
-            '<option value="sonar">📡 Sonar Ping (🟢) / Sweep (🟡) / Geiger (🔴)</option>' +
-            '<option value="mute">🔇 Silent Visual Only</option>' +
-          '</select>' +
-        '</div>';
-      verdictBar.insertAdjacentElement('afterend', panel);
-
-      ['togPassed','togRugRed','togPcRam','togRpcLag','togClip','togOsPop'].forEach(function(k){
-        var cb = document.getElementById('v16_' + k);
-        cb.checked = Boolean(prefs[k]);
-        cb.onchange = function(){ prefs[k] = cb.checked; savePrefs(); };
-      });
-      var sel = document.getElementById('v16_audioProf');
-      sel.value = prefs.audioProfile;
-      sel.onchange = function(){ prefs.audioProfile = sel.value; savePrefs(); };
-      document.getElementById('rrs-preview-pc-pop').onclick = function(){
-        window.triggerHighContrastPcAlert(activeTok, true);
-      };
-    }
-
-    /* 3. Insert Reclaim Rent + Reclaim Dust + Auto Toggle + Carbon AI High Bubble Below Jupiter Swap! */
-    var jupBox = document.getElementById('rrs-eco-jup-box');
-    if (jupBox && jupBox.parentElement) {
-      var dock = document.createElement('div');
-      dock.id = 'rrs-reclaim-dock';
-      dock.innerHTML =
-        '<div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:8px;flex-wrap:wrap;">' +
-          '<span style="color:#F5C542;font-weight:900;font-size:12px;">💰 INSTANT POST-TRADE SOL RECOVERY</span>' +
-          '<div style="display:flex;align-items:center;gap:6px;">' +
-            '<button id="rrs-auto-reclaim-pill" type="button" style="border-radius:999px;padding:3px 10px;font-size:11px;font-weight:900;cursor:pointer;border:1.5px solid #00FF88;"></button>' +
-            '<button id="rrs-why-dust-btn" type="button" style="background:#101829;color:#00FF88;border:1px solid #00FF88;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:800;cursor:pointer;">💬 Why?</button>' +
-          '</div>' +
-        '</div>' +
-        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">' +
-          '<button id="rrs-btn-reclaim-rent" type="button" style="padding:8px 9px;border-radius:8px;border:none;background:linear-gradient(180deg,#F5C542,#C99E27);color:#04070D;font-weight:900;font-size:12px;cursor:pointer;">💰 Reclaim Rent</button>' +
-          '<button id="rrs-btn-reclaim-dust" type="button" style="padding:8px 9px;border-radius:8px;border:1.5px solid #00FF88;background:#06281A;color:#00FF88;font-weight:900;font-size:12px;cursor:pointer;">🧹 Reclaim Dust</button>' +
-        '</div>' +
-        '<div id="rrs-reclaim-status" style="display:none;margin-top:8px;padding:7px 9px;border-radius:7px;background:#09111E;font-size:11.5px;line-height:1.4;"></div>' +
-
-        /* Pointing Explanation Bubble ('Bobo') — Built with Carbon AI High */
-        '<div id="rrs-dust-bobo">' +
-          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
-            '<b style="color:#00FF88;font-size:11.5px;">🛡️ BUILT WITH CARBON AI HIGH — DEEP DUST &amp; RENT ENGINE</b>' +
-            '<button id="rrs-bobo-hide" type="button" style="background:none;border:none;color:#94A3B8;font-weight:900;cursor:pointer;padding:0;">✕</button>' +
-          '</div>' +
-          'Every Solana token trade opens an account locking <b>~0.00204 SOL</b>, and partial sells often trap tiny sub-cent <b>"dust"</b> crumbs or <b>Token-2022</b> extensions that ordinary cleaners skip. Our custom deep-ledger scanner—built with <b style="color:#F5C542;">Carbon AI High</b>—detects both empty accounts and raw single-unit dust immediately after you buy or sell, turning dead remnants straight back into usable SOL.' +
-        '</div>';
-
-      jupBox.parentElement.appendChild(dock);
-
-      function renderAutoBtn() {
-        var ab = document.getElementById('rrs-auto-reclaim-pill');
-        if (!ab) return;
-        if (prefs.togAutoReclaim) {
-          ab.textContent = '⚡ Auto-Scan After Trade: ON';
-          ab.style.background = '#00FF88';
-          ab.style.color = '#03120A';
-          ab.style.borderColor = '#00FF88';
-        } else {
-          ab.textContent = '⚡ Auto-Scan: OFF (Click for Auto)';
-          ab.style.background = '#111827';
-          ab.style.color = '#CBD5E1';
-          ab.style.borderColor = '#475569';
-        }
-      }
-      renderAutoBtn();
-
-      document.getElementById('rrs-auto-reclaim-pill').onclick = function() {
-        prefs.togAutoReclaim = !prefs.togAutoReclaim;
-        savePrefs();
-        renderAutoBtn();
-      };
-      document.getElementById('rrs-why-dust-btn').onclick = function() {
-        var b = document.getElementById('rrs-dust-bobo');
-        b.style.display = (b.style.display === 'none') ? 'block' : 'none';
-      };
-      document.getElementById('rrs-bobo-hide').onclick = function() {
-        document.getElementById('rrs-dust-bobo').style.display = 'none';
-      };
-      document.getElementById('rrs-btn-reclaim-rent').onclick = function() {
-        window.runModalRentAndDustScan('rent');
-      };
-      document.getElementById('rrs-btn-reclaim-dust').onclick = function() {
-        window.runModalRentAndDustScan('dust');
-      };
-    }
-    syncModalModeStyling();
-  }
-
-  function syncModalModeStyling() {
-    var dlg = document.getElementById('rrs-eco-dialog');
-    var mBtn = document.getElementById('rrs-modal-mode-btn');
-    var isMeme = (prefs.mode === 'meme');
-    if (mBtn) mBtn.textContent = isMeme ? '🚀 Meme Mode (Switch to Inst)' : '🏛️ Institutional Mode (Switch to Meme)';
-    if (dlg) {
-      dlg.style.borderColor = isMeme ? '#00FF88' : '#D4AF37';
-      dlg.style.boxShadow = isMeme
-        ? '0 30px 90px rgba(0,0,0,0.96), 0 0 30px rgba(0,255,136,0.28)'
-        : '0 30px 90px rgba(0,0,0,0.96)';
-    }
-  }
-
-  /* Scrub Useless Top Header Caution / Test Alert / Hours Clutter & Wire Extension Video */
-  function scrubHeaderAndWireExtVideo() {
-    document.querySelectorAll('button, a, span, div').forEach(function(el){
-      if (el.children.length > 3 || el.classList.contains('rrs-top-modal-backdrop')) return;
-      var t = (el.textContent || '').trim().toLowerCase();
-      if (
-        t === 'test alert' || t === 'caution' || t === '🟡 caution' || t === 'test shield' ||
-        ((t.indexOf('compute hours') !== -1 || t.indexOf('hours ledger') !== -1 || t.indexOf('verified engineering') !== -1) && t.length < 95)
-      ) {
-        var trg = el.closest('button, a, [role="button"]') || el;
-        if (trg && !trg.classList.contains('rrs-top-modal-backdrop')) {
-          trg.style.setProperty('display', 'none', 'important');
-        }
-      }
-    });
-
-    var mainV = document.getElementById('ranger-v9-cinema-video');
-    if (mainV && mainV.src.indexOf('1795145752') === -1) {
-      mainV.src = '/promo/rent_rug_shield_promo_45s.mp4?v=1795145752';
-    }
-
-    var extBtn = null;
-    document.querySelectorAll('button, a').forEach(function(b){
-      var tx = (b.textContent || '').trim().toLowerCase();
-      if (tx.indexOf('chrome') !== -1 && (tx.indexOf('shield') !== -1 || tx.indexOf('extension') !== -1) && b.offsetParent !== null) {
-        if (!extBtn) extBtn = b;
-        if (!b.__rrsV16VidBtn && b.parentElement) {
-          b.__rrsV16VidBtn = true;
-          var wb = document.createElement('button');
-          wb.type = 'button';
-          wb.textContent = '▶️ Extension Video';
-          wb.style.cssText = 'margin-left:6px;padding:7px 11px;border-radius:8px;border:1.5px solid #00FF88;background:#041A11;color:#00FF88;font-weight:900;font-size:12px;cursor:pointer;';
-          wb.onclick = openExtDemo;
-          b.insertAdjacentElement('afterend', wb);
-        }
-      }
-    });
-    return extBtn;
-  }
-
-  function openExtDemo(ev) {
-    if (ev) { ev.preventDefault(); ev.stopPropagation(); }
-    document.getElementById('rrs-carbon-ext-bubble').style.display = 'none';
-    var m = document.getElementById('rrsExtVideoModal');
-    var v = document.getElementById('rrs-ext-v16-player');
-    m.setAttribute('aria-hidden', 'false');
-    m.style.display = 'flex';
-    v.currentTime = 0; v.muted = false; v.volume = 0.85;
-    v.play().catch(function(){ v.muted = true; v.play().catch(function(){}); });
-  }
-
-  function closeExtDemo() {
-    var m = document.getElementById('rrsExtVideoModal');
-    var v = document.getElementById('rrs-ext-v16-player');
-    try { v.pause(); } catch(_e){}
-    m.style.display = 'none';
-    m.setAttribute('aria-hidden', 'true');
-  }
-
-  /* Poll Live Trending Mover + Run 12-Layer Verdict for Crisp PASSED/FAILED Card */
-  async function pollAndRenderCrispMover() {
-    try {
-      var r = await fetch('https://api.dexscreener.com/token-boosts/top/v1', { cache: 'no-store' });
-      if (!r.ok) return;
-      var arr = await r.json();
-      var sol = (arr || []).filter(function(x){ return x && x.chainId === 'solana' && x.tokenAddress; }).slice(0, 4);
-      if (!sol.length) return;
-      var pr = await fetch('https://api.dexscreener.com/latest/dex/tokens/' + sol.map(function(x){ return x.tokenAddress; }).join(','), { cache: 'no-store' });
-      if (!pr.ok) return;
-      var pd = await pr.json();
-      var p = (pd.pairs || []).filter(function(z){ return z && z.chainId === 'solana' && z.baseToken; })
-        .sort(function(a, b){ return Number((b.priceChange||{}).h1||0) - Number((a.priceChange||{}).h1||0); })[0];
-      if (!p) return;
-
-      var tok = {
-        mint: p.baseToken.address,
-        symbol: (p.baseToken.symbol || 'SOL').replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 9),
-        name: p.baseToken.name || 'Solana Token',
-        price: p.priceUsd || '0',
-        h1: Number((p.priceChange || {}).h1 || 0),
-        liq: Number((p.liquidity || {}).usd || 0),
-        passed: true,
-        reason: '12/12 Clear'
-      };
-
-      try {
-        var rc = await fetch('https://api.rugcheck.xyz/v1/tokens/' + encodeURIComponent(tok.mint) + '/report/summary');
-        if (rc.ok) {
-          var rd = await rc.json();
-          var dng = (rd.risks || []).find(function(x){ return (x.level || '').toLowerCase() === 'danger'; });
-          if (dng || Number(rd.score || 0) > 2500) {
-            tok.passed = false;
-            tok.reason = dng ? dng.name.slice(0, 18) : 'High Rug Risk';
-          }
-        }
-      } catch (_e) {}
-
-      await window.triggerHighContrastPcAlert(tok, false);
-    } catch (_e) {
-      renderCornerShieldCard(activeTok, false);
-    }
-  }
-
-  var bubbleClosed = false;
-  function showCarbonBubbleOnceInAWhile() {
-    if (bubbleClosed) return;
-    var anchor = scrubHeaderAndWireExtVideo();
-    var bub = document.getElementById('rrs-carbon-ext-bubble');
-    if (!bub) return;
-    if (anchor) {
-      var r = anchor.getBoundingClientRect();
-      if (r.top >= 0 && r.bottom < window.innerHeight - 80) {
-        bub.style.left = Math.min(window.innerWidth - 355, Math.max(14, r.left)) + 'px';
-        bub.style.top = (r.bottom + 14) + 'px';
-      } else {
-        bub.style.left = '20px'; bub.style.top = '80px';
-      }
-    } else {
-      bub.style.left = '20px'; bub.style.top = '80px';
-    }
-    bub.style.display = 'block';
-    setTimeout(function(){ bub.style.display = 'none'; }, 11000);
-  }
-
-  function bootV16() {
-    document.getElementById('rrs-ext-v16-close').onclick = closeExtDemo;
-    document.getElementById('rrsExtVideoModal').onclick = function(e){
-      if (e.target && e.target.id === 'rrsExtVideoModal') closeExtDemo();
-    };
-    document.getElementById('rrs-cext-x').onclick = function(){
-      bubbleClosed = true;
-      document.getElementById('rrs-carbon-ext-bubble').style.display = 'none';
-    };
-    document.getElementById('rrs-cext-watch').onclick = openExtDemo;
-
-    /* Hook Jupiter onSuccess for Auto Post-Swap Rent/Dust Scan when user swaps! */
-    var origOpen = window.openEcosystemModal;
-    if (origOpen) {
-      window.openEcosystemModal = async function(tok, side) {
-        await origOpen(tok, side);
-        upgradeEcosystemModalDom();
-        if (prefs.togAutoReclaim) {
-          var stEl = document.getElementById('rrs-reclaim-status');
-          if (stEl && !stEl.textContent) {
-            stEl.style.display = 'block';
-            stEl.style.color = '#34D399';
-            stEl.textContent = '⚡ Carbon AI Auto-Reclaim Armed — Ready to sweep empty rent & dust right after your swap.';
-          }
-        }
-      };
-    }
-
-    upgradeEcosystemModalDom();
-    scrubHeaderAndWireExtVideo();
-    pollAndRenderCrispMover();
-    setTimeout(showCarbonBubbleOnceInAWhile, 2800);
-    setInterval(showCarbonBubbleOnceInAWhile, 32000);
-    setInterval(pollAndRenderCrispMover, 80000);
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootV16);
-  else bootV16();
-})();
-</script>
-<!-- RANGER_COMPLETE_SUITE_V16_END -->
-
-<!-- RANGER_V20_START -->
-<style id="rrs-v20-css">
-  /* 1. Kill Top Yellow Tooltip, Duplicate Toast & Clutter */
-  #rrs-shield-story-tip, #rrs-moon-toast, #rrs-carbon-callout-bubble,
-  #rrs-carbon-ext-bubble, [data-modal="rrsVerifiedHoursModal"] { display: none !important; }
-
+<!-- RANGER_V21_START -->
+<style id="rrs-v21-css">
   :root {
-    --gold-shine: linear-gradient(135deg, #BF953F 0%, #FCF6BA 28%, #D4AF37 52%, #FBF5B7 76%, #AA771C 100%);
+    --g21: linear-gradient(135deg,#BF953F 0%,#FCF6BA 28%,#D4AF37 52%,#FBF5B7 76%,#AA771C 100%);
   }
+  #rrs-shield-story-tip,#rrs-moon-toast,#rrs-carbon-callout-bubble,
+  #rrs-carbon-ext-bubble,[data-modal="rrsVerifiedHoursModal"] { display:none !important; }
 
-  /* 2. Split-Screen Hero Box (Shield Left + Extension Right + Crisp Writing Over Top) */
-  .rrs-split-hero-card {
-    position: relative; overflow: hidden; border-radius: 14px;
-    background: #050507; border: 2px solid #D4AF37; padding: 18px 20px;
-    box-shadow: 0 24px 65px rgba(0,0,0,0.95), inset 0 1px 0 rgba(252,246,186,0.3);
+  /* Strict 3-Color Institutional Unification: Obsidian Black + 24K Gold + Ruby Red */
+  body.v21-inst #rrsEcosystemTradeModal #rrs-eco-dialog {
+    background:#050507 !important; border:2px solid #D4AF37 !important;
+    box-shadow:0 34px 95px rgba(0,0,0,0.99),0 0 34px rgba(212,175,55,0.22) !important;
   }
-  .rrs-split-bg {
-    position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr;
-    opacity: 0.24; pointer-events: none;
+  body.v21-inst #rrs-eco-hdr { color:#FCF6BA !important; }
+  body.v21-inst #rrs-eco-verdict { background:#110E06 !important; border:1.5px solid #D4AF37 !important; color:#FCF6BA !important; }
+  body.v21-inst #rrs-eco-buy { background:var(--g21) !important; color:#050402 !important; border:none !important; font-weight:900 !important; }
+  body.v21-inst #rrs-eco-sell { background:#2B0808 !important; color:#FCA5A5 !important; border:1.5px solid #DC2626 !important; font-weight:900 !important; }
+  body.v21-inst #rrs-eco-ext-chart, body.v21-inst #rrs-eco-deep-btn {
+    background:#0E0C07 !important; color:#FCF6BA !important; border:1px solid #D4AF37 !important;
   }
-  .rrs-split-overlay { position: relative; z-index: 2; }
-
-  /* 3. Single Rich Black & Shiny Gold Alert Box (Bottom Right) */
+  .v21-rx {
+    background:#DC2626 !important; color:#FFF !important; border:1px solid #F87171 !important;
+    border-radius:7px !important; min-width:32px !important; height:30px !important;
+    padding:0 9px !important; font-weight:900 !important; font-size:13px !important; cursor:pointer !important;
+  }
   #rrs-rocket-ping-box {
-    position: fixed !important; right: 18px !important; bottom: 18px !important;
-    width: min(93vw, 416px) !important; z-index: 2147483640 !important;
-    background: linear-gradient(180deg, #0A0906 0%, #030304 100%) !important;
-    border: 1.5px solid #D4AF37 !important; border-radius: 14px !important;
-    padding: 14px 15px !important; color: #FFFFFF !important;
-    box-shadow: 0 28px 75px rgba(0,0,0,0.98), 0 0 24px rgba(212,175,55,0.24) !important;
+    position:fixed !important; right:18px !important; bottom:18px !important;
+    width:min(93vw,420px) !important; z-index:2147483640 !important;
+    border-radius:14px !important; padding:14px 15px !important; color:#F8FAFC !important;
   }
-
-  /* 4. Bubble Directly Under Chrome Shield v5.1 Navbar Button */
-  #rrs-v20-ext-bubble {
-    position: fixed; z-index: 2147483642; width: 326px;
-    background: linear-gradient(180deg, #0C0A06 0%, #040406 100%);
-    border: 1.5px solid #D4AF37; border-radius: 12px; padding: 11px 13px;
-    color: #FFF; display: none; box-shadow: 0 22px 55px rgba(0,0,0,0.96);
+  #rrs-rocket-ping-box.v21-inst {
+    background:linear-gradient(180deg,#0B0906 0%,#040406 100%) !important; border:1.5px solid #D4AF37 !important;
+    box-shadow:0 28px 75px rgba(0,0,0,0.98),inset 0 1px 0 rgba(252,246,186,0.3) !important;
   }
-  #rrs-v20-ext-arrow {
-    position: absolute; top: -10px; left: 152px;
-    border-left: 10px solid transparent; border-right: 10px solid transparent;
-    border-bottom: 10px solid #D4AF37;
+  #rrs-rocket-ping-box.v21-meme {
+    background:linear-gradient(165deg,#041510 0%,#05070D 80%) !important; border:2px solid #00FF88 !important;
   }
-
-  /* 5. Floating Cybersecurity Bubble -> Interactive 3D Castle & Moat Modal */
-  @keyframes rrsMoatPulse {
-    0%, 100% { box-shadow: 0 12px 35px rgba(0,0,0,0.95), 0 0 0 0 rgba(212,175,55,0.65); }
-    50% { box-shadow: 0 12px 35px rgba(0,0,0,0.95), 0 0 0 10px rgba(212,175,55,0); }
+  #v21-ext-bub {
+    position:fixed; z-index:2147483642; width:326px; background:#070604;
+    border:1.5px solid #D4AF37; border-radius:12px; padding:11px 13px; color:#F8FAFC;
+    display:none; box-shadow:0 24px 60px rgba(0,0,0,0.97);
   }
-  #rrs-cyber-moat-fab {
-    position: fixed; left: 18px; bottom: 18px; z-index: 2147483641;
-    background: linear-gradient(135deg, #0D0B06 0%, #1B1508 100%);
-    border: 2px solid #D4AF37; border-radius: 999px; padding: 10px 16px;
-    color: #FCF6BA; font-weight: 900; font-size: 12.5px; cursor: pointer;
-    display: flex; align-items: center; gap: 8px; animation: rrsMoatPulse 2.2s infinite;
+  #v21-ext-arr {
+    position:absolute; top:-10px; left:152px;
+    border-left:10px solid transparent; border-right:10px solid transparent; border-bottom:10px solid #D4AF37;
+  }
+  #v21-moat-fab {
+    position:fixed; left:18px; bottom:18px; z-index:2147483641; background:#080705;
+    border:2px solid #D4AF37; border-radius:999px; padding:9px 15px; color:#FCF6BA;
+    font-weight:900; font-size:12.5px; cursor:pointer; box-shadow:0 14px 36px rgba(0,0,0,0.95);
   }
   #rrsCastle3DModal {
-    position: fixed; inset: 0; z-index: 2147483646; background: rgba(2,3,6,0.95);
-    display: none; align-items: center; justify-content: center; padding: 14px;
-    font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+    position:fixed; inset:0; z-index:2147483646; background:rgba(3,3,5,0.95);
+    display:none; align-items:center; justify-content:center; padding:14px;
   }
-  .rrs-3d-stage {
-    perspective: 1050px; background: radial-gradient(circle at 50% 45%, #0D1916 0%, #040508 75%);
-    border: 1.5px solid #D4AF37; border-radius: 14px; padding: 18px; position: relative;
-  }
-  .rrs-3d-board {
-    transform: rotateX(16deg); transform-style: preserve-3d;
-    border: 2px dashed #00FF88; border-radius: 22px; padding: 18px;
-    background: linear-gradient(180deg, rgba(6,42,30,0.42), rgba(4,6,11,0.9));
-  }
-  .rrs-warrior-btn {
-    background: #090C12; border: 1.5px solid #D4AF37; border-radius: 11px;
-    padding: 9px 10px; color: #FFF; cursor: pointer; text-align: left;
-    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
-  }
-  .rrs-warrior-btn:hover, .rrs-warrior-btn.active {
-    transform: translateY(-3px) scale(1.02); border-color: #00FF88;
-    box-shadow: 0 10px 25px rgba(0,255,136,0.28); background: #0C1614;
-  }
+  .v21-wc { background:#0B0A07; border:1.5px solid #D4AF37; border-radius:10px; padding:9px; color:#F8FAFC; cursor:pointer; text-align:left; }
+  .v21-wc.active { background:#191407; border-color:#FCF6BA; }
 </style>
 
-<!-- Floating Cybersecurity Moat Bubble -->
-<button id="rrs-cyber-moat-fab" type="button">
-  <span style="font-size:17px;">🛡️</span>
-  <span>Cybersecurity Moat • 3D Live Demo</span>
-</button>
+<button id="v21-moat-fab" type="button">🛡️ 3D Castle &amp; Moat</button>
 
-<!-- Bubble Positioned Strictly Under Top Chrome Shield Button -->
-<div id="rrs-v20-ext-bubble">
-  <div id="rrs-v20-ext-arrow"></div>
-  <div style="display:flex;justify-content:space-between;align-items:center;">
-    <b style="color:#FCF6BA;font-size:11.5px;">WHY PIN OUR CHROME SHIELD</b>
-    <button id="v20-bx" type="button" style="background:none;border:none;color:#D4AF37;font-weight:900;cursor:pointer;">✕</button>
+<div id="v21-ext-bub">
+  <div id="v21-ext-arr"></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+    <b style="color:#FCF6BA;font-size:11.5px;">WHY TRADERS PIN OUR CHROME SHIELD</b>
+    <button id="v21-bx" type="button" class="v21-rx">✕</button>
   </div>
-  <div style="font-size:12px;color:#EAE6DF;line-height:1.42;margin-top:4px;">
-    Step inside our <b style="color:#FCF6BA;">Carbon AI High</b> Castle. Protects your wallet and PC with Time or Percent alerts.
+  <div style="font-size:12px;color:#E5E7EB;line-height:1.42;margin-top:6px;">
+    Built with <b style="color:#FCF6BA;">Carbon AI High</b>. Filter alerts by Institutional Market Cap ($100K to $50M+), 45s+ Timer, or % Breakout.
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;">
-    <button id="v20-bmoat" type="button" style="padding:6px;border-radius:7px;border:1px solid #D4AF37;background:#120F08;color:#FCF6BA;font-weight:800;font-size:11px;cursor:pointer;">🛡️ 3D Moat Map</button>
-    <button id="v20-bvid" type="button" style="padding:6px;border-radius:7px;border:none;background:var(--gold-shine);color:#050402;font-weight:900;font-size:11px;cursor:pointer;">▶ Watch Video</button>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px;">
+    <button id="v21-bmoat" type="button" style="padding:7px;border-radius:7px;border:1px solid #D4AF37;background:#120E06;color:#FCF6BA;font-weight:800;font-size:11px;cursor:pointer;">🛡️ 3D Moat</button>
+    <button id="v21-bvid" type="button" style="padding:7px;border-radius:7px;border:none;background:var(--g21);color:#050402;font-weight:900;font-size:11px;cursor:pointer;">▶ Watch Video</button>
   </div>
 </div>
 
-<!-- Canary-Safe (aria-hidden="true") Interactive 3D Castle & Moat Modal -->
 <div id="rrsCastle3DModal" class="rrs-top-modal-backdrop" aria-hidden="true" style="display:none;">
-  <div style="width:min(96vw,1040px);max-height:91vh;overflow-y:auto;background:#050508;border:2px solid #D4AF37;border-radius:16px;padding:16px 18px;color:#FFF;box-shadow:0 32px 95px rgba(0,0,0,0.98);">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
-      <div>
-        <div style="color:#FCF6BA;font-weight:900;font-size:17px;">🛡️ THE CASTLE &amp; THE 12-LAYER MOAT — INTERACTIVE CYBER COMMAND</div>
-        <div style="color:#CBD5E1;font-size:12px;">Click any Champion Cyber-Warrior patrolling the moat to inspect their live defense job &amp; active server module.</div>
-      </div>
-      <div style="display:flex;gap:8px;">
-        <button id="v20-moat-vid" type="button" style="background:#120F08;color:#FCF6BA;border:1px solid #D4AF37;border-radius:8px;padding:6px 12px;font-weight:800;font-size:12px;cursor:pointer;">▶ Extension &amp; Moat Video</button>
-        <button id="v20-moat-close" type="button" style="background:#DC2626;color:#FFF;border:none;border-radius:8px;padding:6px 13px;font-weight:900;cursor:pointer;">✕ Close</button>
+  <div style="width:min(96vw,1000px);max-height:90vh;overflow-y:auto;background:#050507;border:2px solid #D4AF37;border-radius:16px;padding:16px 18px;color:#F8FAFC;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <b style="color:#FCF6BA;font-size:16.5px;">🛡️ THE CASTLE &amp; THE 12-LAYER MOAT — CARBON AI HIGH</b>
+      <button id="v21-mclose" type="button" class="v21-rx">✕</button>
+    </div>
+    <div style="perspective:980px;background:#080705;border:1px solid #D4AF37;border-radius:14px;padding:15px;">
+      <div style="transform:rotateX(14deg);border:2px dashed #D4AF37;border-radius:18px;padding:14px;">
+        <div id="v21-wt" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:8px;margin-bottom:11px;"></div>
+        <div style="max-width:640px;margin:0 auto;background:#110E07;border:2px solid #FCF6BA;border-radius:12px;padding:12px;text-align:center;">
+          <div style="color:#FCF6BA;font-weight:900;font-size:12px;">🛡️ SHIELD CASTLE GATE • CARBON HIGH &amp; CYBORG</div>
+          <div style="color:#FFF;font-weight:900;font-size:14px;margin-top:4px;">INNER CITADEL: Customers • Non-Custodial Wallets • 98% Reclaimed SOL</div>
+          <div style="color:#D4AF37;font-size:11.5px;margin-top:3px;">CEO Valentina • Lead Engineer • Chrome Shield Ecosystem</div>
+        </div>
+        <div id="v21-wb" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:8px;margin-top:11px;"></div>
       </div>
     </div>
-
-    <div class="rrs-3d-stage">
-      <div class="rrs-3d-board">
-        <div style="text-align:center;color:#00FF88;font-weight:900;font-size:12px;letter-spacing:0.06em;margin-bottom:12px;">
-          🌊 OUTER CRYPTOGRAPHIC MOAT • PATROLLED 24/7 BY CARBON AI HIGH WARRIOR SENTINELS
-        </div>
-        <div id="v20-warriors-top" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-bottom:14px;"></div>
-
-        <!-- THE INNER CASTLE WITH BRAND SHIELD GATE -->
-        <div style="max-width:680px;margin:0 auto;background:linear-gradient(180deg,#12100A,#070604);border:2.5px solid #FCF6BA;border-radius:14px;padding:14px 16px;text-align:center;box-shadow:0 16px 40px rgba(0,0,0,0.9);">
-          <div style="display:inline-flex;align-items:center;gap:8px;background:#1D1708;border:1.5px solid #D4AF37;border-radius:99px;padding:4px 14px;color:#FCF6BA;font-weight:900;font-size:12px;margin-bottom:6px;">
-            <span>🛡️ CASTLE SHIELD GATE: CARBON HIGH &amp; CYBORG</span>
-          </div>
-          <div style="font-size:15px;font-weight:900;color:#FFFFFF;">INNER CITADEL: Protected Customers • Non-Custodial Wallets • 98% Reclaimed SOL</div>
-          <div style="font-size:12px;color:#F7E7A9;margin-top:4px;">Command Keep: CEO Valentina • Lead Engineer • Pinned Chrome Shield Ecosystem</div>
-        </div>
-
-        <div id="v20-warriors-bot" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:14px;"></div>
-      </div>
-    </div>
-
-    <!-- Live Clickable Warrior Inspector Panel -->
-    <div id="v20-warrior-detail" style="margin-top:12px;background:#0A0907;border:1.5px solid #D4AF37;border-radius:12px;padding:12px 15px;"></div>
+    <div id="v21-wd" style="margin-top:10px;background:#0C0A06;border:1.5px solid #D4AF37;border-radius:10px;padding:11px 14px;"></div>
   </div>
 </div>
 
-<script id="rrs-v20-js">
+<script id="rrs-v21-js">
 (function(){
-  /* 6 Clickable MMA Cyber-Warriors (Distinct Armored Roles + Real PM2 Modules) */
-  var WARRIORS = [
-    { id:'jones', name:'Jon "Bones" Jones', title:'Slot-0 Genesis Reach Radar', badge:'🛡️🛰️',
-      job:'Scans genesis mint blocks at long range to catch insider sniper bundles and hidden dev wallet clusters before you buy.',
-      code:'moat_warriors_swarm.py :: Slot0_Bundle_Radar (Active on Cores 8-11)' },
-    { id:'gsp', name:'Georges "GSP" St-Pierre', title:'Authority Takedown Lock', badge:'🛡️🔒',
-      job:'Neutralizes rug mechanics by verifying Mint Authority, Freeze Authority, and Token-2022 PermanentDelegate keys are revoked.',
-      code:'moat_warriors_swarm.py :: Authority_Revoke_Enforcer (12-Layer Gate)' },
-    { id:'pereira', name:'Alex "Poatan" Pereira', title:'Honeypot & Tax Striker', badge:'🛡️⚡',
-      job:'Fires pre-swap exit simulations to block unsellable honeypots and hidden Token-2022 transfer-tax hooks.',
-      code:'moat_warriors_swarm.py :: Exit_Route_Tax_Simulator (<120ms)' },
-    { id:'khabib', name:'Khabib "The Eagle"', title:'Liquidity Lock Grappler', badge:'🛡️🦅',
-      job:'Pins down pool depth — verifies LP burn ratios and flags pools where top-10 whales control dangerous supply.',
-      code:'moat_warriors_swarm.py :: LP_Burn_Whale_Cap_Guard (Live)' },
-    { id:'nunes', name:'Amanda "The Lioness" Nunes', title:'Phishing & CPI Drainer Guard', badge:'🛡️🦁',
-      job:'Blocks malicious dApps, SetAuthority wallet drainers, and fake token approval popups inside your Chrome browser.',
-      code:'moat_warriors_swarm.py :: Inner_CPI_DOM_Firewall (TLS Verified)' },
-    { id:'johnson', name:'"Mighty Mouse" Johnson', title:'Sub-120ms Speed & Clipboard Guard', badge:'🛡️⚙️',
-      job:'Protects trader execution speed — detects PC RAM overload (>85%), RPC lag spikes (>450ms), and clipboard address-swapper malware.',
-      code:'chrome-extension/background.js :: Clipboard_And_Latency_Sentinel' }
+  var W = [
+    {id:'j',n:'Jon "Bones" Jones',r:'Slot-0 Bundle Radar',d:'Blocks genesis insider sniper bundles & dev clusters pre-buy.'},
+    {id:'g',n:'Georges "GSP" St-Pierre',r:'Authority Revoke Lock',d:'Verifies Mint, Freeze & PermanentDelegate keys are revoked.'},
+    {id:'p',n:'Alex "Poatan" Pereira',r:'Honeypot & Tax Striker',d:'Simulates exits in <120ms to block honeypots & tax hooks.'},
+    {id:'k',n:'Khabib "The Eagle"',r:'Liquidity & Whale Lock',d:'Enforces LP burn & flags top-10 whale supply concentration.'},
+    {id:'n',n:'Amanda "Lioness" Nunes',r:'Phishing & CPI Firewall',d:'Blocks SetAuthority wallet drainers & fake approval popups.'},
+    {id:'m',n:'"Mighty Mouse" Johnson',r:'Speed & Clipboard Guard',d:'Guards PC RAM (>85%), RPC lag (>450ms) & clipboard hijacks.'}
   ];
-
   var cfg = {
-    trigType: localStorage.getItem('rrs_trig20') || 'pct',     /* 'time' | 'pct' */
-    timeSec: Number(localStorage.getItem('rrs_tsec20') || 300),/* 300=5m, 900=15m, 1800=30m, 0=pause */
-    minPct: Number(localStorage.getItem('rrs_mpct20') || 10),  /* +5%, +10%, +25%, +50% */
-    minMc: Number(localStorage.getItem('rrs_mc20') || 25000),
-    passOnly: localStorage.getItem('rrs_pass20') !== '0',
-    tuneOpen: false
+    mode: localStorage.getItem('v21_m') || 'inst',
+    trig: localStorage.getItem('v21_tr') || 'time',
+    sec: Number(localStorage.getItem('v21_s') || 45),
+    pct: Number(localStorage.getItem('v21_p') || 10),
+    mc: Number(localStorage.getItem('v21_mc') || 100000),
+    up: localStorage.getItem('v21_u') !== '0',
+    tune: false
   };
-  function save20() {
-    localStorage.setItem('rrs_trig20', cfg.trigType);
-    localStorage.setItem('rrs_tsec20', String(cfg.timeSec));
-    localStorage.setItem('rrs_mpct20', String(cfg.minPct));
-    localStorage.setItem('rrs_mc20', String(cfg.minMc));
-    localStorage.setItem('rrs_pass20', cfg.passOnly ? '1' : '0');
+  function sv() {
+    localStorage.setItem('v21_m', cfg.mode); localStorage.setItem('v21_tr', cfg.trig);
+    localStorage.setItem('v21_s', String(cfg.sec)); localStorage.setItem('v21_p', String(cfg.pct));
+    localStorage.setItem('v21_mc', String(cfg.mc)); localStorage.setItem('v21_u', cfg.up ? '1' : '0');
   }
+  var cur = {mint:'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',symbol:'BONK',name:'Bonk',h1:6.8,mc:1450000000,liq:1250000,passed:true};
+  var lastAt = 0, lastMint = '';
+  function fmt(v){ v=Number(v||0); return v>=1e9?'$'+(v/1e9).toFixed(2)+'B':(v>=1e6?'$'+(v/1e6).toFixed(2)+'M':'$'+Math.max(1,Math.round(v/1e3))+'K'); }
 
-  var curTok = { mint:'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263', symbol:'BONK', name:'Bonk', h1:12.4, mc:1450000000, liq:1250000, passed:true };
-  var lastAlertAt = 0, seenPctKey = '';
-
-  function fmt(n) {
-    n = Number(n||0);
-    return n>=1e9 ? '$'+(n/1e9).toFixed(2)+'B' : (n>=1e6 ? '$'+(n/1e6).toFixed(2)+'M' : '$' + Math.max(1,Math.round(n/1e3)) + 'K');
-  }
-
-  function openDemoVideo() {
-    var m = document.getElementById('rrsExtVideoModal');
-    var v = m ? m.querySelector('video') : null;
-    if (m && v) {
-      v.src = '/promo/extension_shield_demo.mp4?v=1795148386';
-      m.setAttribute('aria-hidden', 'false'); m.style.display = 'flex';
-      v.currentTime = 0; v.muted = false; v.play().catch(function(){ v.muted = true; v.play().catch(function(){}); });
+  function syncTheme() {
+    document.body.classList.toggle('v21-inst', cfg.mode === 'inst');
+    ['rrs-eco-close','rrs-ext-vid-close'].forEach(function(id){
+      var b = document.getElementById(id); if (b) { b.className = 'v21-rx'; b.textContent = '✕'; }
+    });
+    var jb = document.getElementById('rrs-eco-jup-box');
+    if (jb && jb.parentElement && !document.getElementById('v21-rdock')) {
+      var d = document.createElement('div'); d.id = 'v21-rdock';
+      d.style.cssText = 'margin-top:8px;background:#090805;border:1.5px solid #D4AF37;border-radius:10px;padding:10px;color:#F8FAFC;';
+      d.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:7px;"><b style="color:#FCF6BA;font-size:12px;">POST-TRADE RENT &amp; DUST RECOVERY</b><span style="color:#D4AF37;font-size:11px;font-weight:900;">CARBON AI HIGH</span></div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><button id="v21-br" type="button" style="padding:8px;border-radius:7px;border:none;background:var(--g21);color:#050402;font-weight:900;font-size:12px;cursor:pointer;">Reclaim Rent</button>' +
+        '<button id="v21-bd" type="button" style="padding:8px;border-radius:7px;border:1px solid #D4AF37;background:#120F07;color:#FCF6BA;font-weight:900;font-size:12px;cursor:pointer;">Reclaim Dust</button></div>' +
+        '<div id="v21-rn" style="margin-top:6px;font-size:11.5px;color:#CBD5E1;">Sweeps empty 0.00204 SOL accounts &amp; Token-2022 dust crumbs.</div>';
+      jb.parentElement.appendChild(d);
+      document.getElementById('v21-br').onclick = function(){ document.getElementById('v21-rn').textContent = 'Scanning wallet for empty 0.00204 SOL accounts...'; };
+      document.getElementById('v21-bd').onclick = function(){ document.getElementById('v21-rn').textContent = 'Scanning SPL + Token-2022 ledgers for sub-cent dust...'; };
     }
   }
 
-  /* 1. Render Interactive 3D Castle & Moat Warriors */
-  function mountCastleMoat() {
-    var topG = document.getElementById('v20-warriors-top');
-    var botG = document.getElementById('v20-warriors-bot');
-    var det = document.getElementById('v20-warrior-detail');
-    if (!topG || !botG || topG.children.length > 0) return;
-
-    function selectW(w) {
-      document.querySelectorAll('.rrs-warrior-btn').forEach(function(b){
-        b.classList.toggle('active', b.getAttribute('data-wid') === w.id);
-      });
-      det.innerHTML =
-        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;">' +
-          '<div style="font-size:15px;font-weight:900;color:#FCF6BA;">' + w.badge + ' ' + w.name + ' — <span style="color:#00FF88;">' + w.title + '</span></div>' +
-          '<span style="background:#062B1A;color:#00FF88;border:1px solid #00FF88;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:900;">ACTIVE IN MOAT</span>' +
-        '</div>' +
-        '<div style="font-size:13px;color:#F1F5F9;line-height:1.45;margin-bottom:6px;">' + w.job + '</div>' +
-        '<div style="font-size:11.5px;color:#D4AF37;font-family:monospace;">Live Defense Code: ' + w.code + '</div>';
-    }
-
-    WARRIORS.forEach(function(w, idx){
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = 'rrs-warrior-btn'; b.setAttribute('data-wid', w.id);
-      b.innerHTML =
-        '<div style="font-weight:900;font-size:12.5px;color:#FCF6BA;">' + w.badge + ' ' + w.name + '</div>' +
-        '<div style="font-size:11px;color:#00FF88;font-weight:800;margin-top:2px;">' + w.title + '</div>' +
-        '<div style="font-size:10.5px;color:#94A3B8;margin-top:2px;">Click to inspect job &amp; code →</div>';
-      b.onclick = function(){ selectW(w); };
-      (idx < 3 ? topG : botG).appendChild(b);
-    });
-    selectW(WARRIORS[0]);
-  }
-
-  window.openCastleMoat3D = function() {
-    mountCastleMoat();
-    var m = document.getElementById('rrsCastle3DModal');
-    if (m) { m.setAttribute('aria-hidden', 'false'); m.style.display = 'flex'; }
-  };
-
-  /* 2. Upgrade Right-Side Hero Box Into Split-Screen (Shield + Extension Behind Writing!) */
-  function upgradeRightHeroSplitScreen() {
-    var allBoxes = document.querySelectorAll('div, section, aside');
-    var target = null;
-    allBoxes.forEach(function(el){
-      if (target || el.id === 'rrsCastle3DModal') return;
-      var r = el.getBoundingClientRect();
-      if (r.top > 90 && r.top < 360 && r.left > window.innerWidth * 0.45 && r.width > 320 && r.height > 150 && r.height < 420) {
-        var tx = (el.textContent || '');
-        if (tx.indexOf('12-Layer') !== -1 || tx.indexOf('Layer') !== -1 || tx.indexOf('Audit') !== -1) target = el;
-      }
-    });
-    if (!target || target.__v20Split) return;
-    target.__v20Split = true;
-    target.className = (target.className || '') + ' rrs-split-hero-card';
-    target.innerHTML =
-      '<div class="rrs-split-bg">' +
-        '<div style="display:flex;align-items:center;justify-content:center;border-right:2px solid #D4AF37;background:radial-gradient(circle,#143828,#050507);">' +
-          '<svg viewBox="0 0 120 140" style="width:145px;height:145px;"><path d="M60 10 L108 30 L104 78 Q96 116 60 132 Q24 116 16 78 L12 30 Z" fill="#00FF88" stroke="#FCF6BA" stroke-width="5"/></svg>' +
-        '</div>' +
-        '<div style="display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#2E230B,#050507);">' +
-          '<div style="width:155px;height:125px;border:3px solid #FCF6BA;border-radius:12px;padding:8px;font-weight:900;color:#FCF6BA;font-size:11px;">CHROME SHIELD v5.3<br><br>🟢 12L PASSED<br>⏱️ TIME / % ALERTS<br>📋 CLIPBOARD LOCK</div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="rrs-split-overlay">' +
-        '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">' +
-          '<span style="color:#00FF88;font-weight:900;font-size:11.5px;letter-spacing:0.05em;">SHIELD + CHROME EXTENSION ECOSYSTEM</span>' +
-          '<span style="color:#FCF6BA;font-size:11px;font-weight:900;">CARBON AI HIGH</span>' +
-        '</div>' +
-        '<div style="font-size:19px;font-weight:900;color:#FFFFFF;line-height:1.22;margin-bottom:7px;">Why Pair Our 12-Layer Shield With The Chrome Extension?</div>' +
-        '<div style="font-size:12.5px;color:#E2E8F0;line-height:1.48;margin-bottom:12px;">' +
-          '<b>Left — The 12-Layer Shield:</b> Audits Solana tokens in &lt;120ms and reclaims 98% of trapped ATA rent.<br>' +
-          '<b>Right — The Chrome Shield:</b> Brings your PC inside our Castle — spoken <i>"Rug Alert!"</i> warnings, Time or %-Move alerts, and Clipboard/Phishing defense.' +
-        '</div>' +
-        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">' +
-          '<button id="v20-hero-moat" type="button" style="padding:9px 10px;border-radius:8px;border:1.5px solid #00FF88;background:#062418;color:#00FF88;font-weight:900;font-size:12px;cursor:pointer;">🛡️ 3D Castle &amp; Moat Demo</button>' +
-          '<button id="v20-hero-vid" type="button" style="padding:9px 10px;border-radius:8px;border:none;background:var(--gold-shine);color:#050402;font-weight:900;font-size:12px;cursor:pointer;">▶ Extension &amp; Alerts Video</button>' +
-        '</div>' +
-      '</div>';
-    document.getElementById('v20-hero-moat').onclick = window.openCastleMoat3D;
-    document.getElementById('v20-hero-vid').onclick = openDemoVideo;
-  }
-
-  /* 3. Render Single Unified Alert Box w/ Buy/Sell + Time-Based OR Percent-Based Controls */
-  function renderSingleBox(tok) {
+  function renderCard(tok) {
     var box = document.getElementById('rrs-rocket-ping-box');
     if (!box || !tok) return;
-    curTok = tok;
-    var pct = Number(tok.h1 || 0);
-    var pass = (tok.passed !== false);
+    cur = tok; syncTheme();
+    var inst = (cfg.mode === 'inst'), pass = (tok.passed !== false), pct = Number(tok.h1 || 0);
+    box.className = inst ? 'v21-inst' : 'v21-meme';
+    box.onclick = function(e){ e.stopPropagation(); };
 
-    var tuneHtml = !cfg.tuneOpen ? '' :
-      '<div style="margin-top:10px;padding:10px;border-radius:10px;background:#090806;border:1px solid #D4AF37;font-size:11.5px;">' +
-        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;">' +
-          '<b style="color:#FCF6BA;">ALERT MODE: TIME BASED OR % MOVE</b>' +
-          '<button id="v20-tx" type="button" style="background:#DC2626;color:#FFF;border:none;border-radius:5px;padding:2px 8px;font-weight:900;cursor:pointer;">✕ Close</button>' +
-        '</div>' +
-        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">' +
-          '<button id="v20-tmode-time" type="button" style="padding:6px;border-radius:6px;font-weight:900;font-size:11px;cursor:pointer;border:1px solid #D4AF37;background:' + (cfg.trigType==='time'?'#D4AF37':'#12100A') + ';color:' + (cfg.trigType==='time'?'#050402':'#FCF6BA') + ';">⏱️ Time-Based</button>' +
-          '<button id="v20-tmode-pct" type="button" style="padding:6px;border-radius:6px;font-weight:900;font-size:11px;cursor:pointer;border:1px solid #D4AF37;background:' + (cfg.trigType==='pct'?'#D4AF37':'#12100A') + ';color:' + (cfg.trigType==='pct'?'#050402':'#FCF6BA') + ';">📈 %-Move Based</button>' +
-        '</div>' +
-        (cfg.trigType === 'time'
-          ? '<div style="margin-bottom:7px;"><span style="color:#D4AF37;">Popup Timer:</span> <select id="v20-sel-time" style="width:100%;margin-top:3px;background:#12100A;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="300">Every 5 Minutes</option><option value="900">Every 15 Minutes</option><option value="1800">Every 30 Minutes</option><option value="0">Pause All Popups</option></select></div>'
-          : '<div style="margin-bottom:7px;"><span style="color:#D4AF37;">Minimum 1h % Breakout:</span> <select id="v20-sel-pct" style="width:100%;margin-top:3px;background:#12100A;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="5">Pop on +5% Move</option><option value="10">Pop on +10% Move</option><option value="25">Pop on +25% Surge</option><option value="50">Pop on +50% Breakout</option></select></div>') +
-        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
-          '<select id="v20-sel-mc" style="background:#12100A;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="0">Any MC</option><option value="25000">$25K+ MC</option><option value="100000">$100K+ MC</option><option value="500000">$500K+ MC</option></select>' +
-          '<button id="v20-how-vid" type="button" style="background:#062418;color:#00FF88;border:1px solid #00FF88;border-radius:6px;padding:5px;font-weight:900;font-size:11px;cursor:pointer;">▶ How Alerts Work</button>' +
-        '</div>' +
-      '</div>';
+    var td = !cfg.tune ? '' :
+      '<div style="margin-top:10px;padding:10px;border-radius:10px;background:#080705;border:1.5px solid #D4AF37;font-size:11.5px;">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;"><b style="color:#FCF6BA;">ALERT FILTERS (TIME / MC / %)</b><button id="v21-tx" type="button" class="v21-rx">✕</button></div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">' +
+          '<select id="v21-tr" style="background:#120F08;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="time">Time-Based (45s+)</option><option value="pct">%-Breakout</option></select>' +
+          (cfg.trig==='time'
+            ? '<select id="v21-sc" style="background:#120F08;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="45">45 Seconds</option><option value="120">2 Minutes</option><option value="300">5 Minutes</option><option value="0">Pause</option></select>'
+            : '<select id="v21-pc" style="background:#120F08;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="5">+5% Up</option><option value="10">+10% Up</option><option value="25">+25% Surge</option><option value="50">+50% Moon</option></select>') +
+          '<select id="v21-mc" style="background:#120F08;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="0">Any MC</option><option value="100000">$100K+ MC</option><option value="1000000">$1M+ MC</option><option value="10000000">$10M+ Inst</option><option value="50000000">$50M+ Cap</option></select>' +
+          '<select id="v21-up" style="background:#120F08;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:5px;font-weight:800;"><option value="1">Moving Up Only</option><option value="0">All Coins</option></select>' +
+        '</div></div>';
 
-    var ruleTag = cfg.trigType === 'pct' ? ('📈 +' + cfg.minPct + '% Trigger') : (cfg.timeSec ? ('⏱️ ' + (cfg.timeSec/60) + 'm Timer') : '⏸️ Paused');
     box.innerHTML =
-      '<div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:8px;">' +
-        '<span style="background:' + (pass?'#161206':'#2E0707') + ';color:' + (pass?'#FCF6BA':'#FCA5A5') + ';border:1px solid ' + (pass?'#D4AF37':'#EF4444') + ';padding:3px 8px;border-radius:6px;font-size:10.5px;font-weight:900;">' + (pass?'🛡️ 12 LAYERS PASSED':'🚨 RUG FLAGGED') + '</span>' +
-        '<div style="display:flex;gap:5px;align-items:center;">' +
-          '<button id="v20-tune-btn" type="button" style="background:#141008;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:3px 8px;font-size:10.5px;font-weight:800;cursor:pointer;">' + ruleTag + ' ⚙️</button>' +
-          '<button id="v20-close" type="button" style="background:none;border:none;color:#D4AF37;font-size:15px;font-weight:900;cursor:pointer;">✕</button>' +
-        '</div>' +
-      '</div>' +
-      '<div style="background:#080705;border:1px solid rgba(212,175,55,0.42);border-radius:10px;padding:9px 12px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;">' +
-        '<div>' +
-          '<div style="font-size:18.5px;font-weight:900;color:#FFF;">$' + tok.symbol + '</div>' +
-          '<div style="font-size:11.5px;color:#F7E7A9;font-weight:700;">MC ' + fmt(tok.mc) + ' • LIQ ' + fmt(tok.liq) + '</div>' +
-        '</div>' +
-        '<div style="text-align:right;font-size:17px;font-weight:900;color:' + (pct>=0?'#00FF88':'#F87171') + ';">' + (pct>=0?'+':'') + pct.toFixed(1) + '%</div>' +
-      '</div>' +
-      '<div style="display:grid;grid-template-columns:1fr 1.45fr;gap:8px;">' +
-        '<button id="v20-chart" type="button" style="padding:9px;border-radius:8px;border:1px solid #D4AF37;background:#0D0B07;color:#FCF6BA;font-weight:800;font-size:12px;cursor:pointer;">📈 View Chart</button>' +
-        '<button id="v20-bs" type="button" style="padding:9px;border-radius:8px;border:none;background:var(--gold-shine);color:#050402;font-weight:900;font-size:12px;cursor:pointer;">⚡ Buy / Sell &amp; Reclaim</button>' +
-      '</div>' + tuneHtml;
+      '<div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:9px;">' +
+        '<span style="background:' + (pass?'#161206':'#2E0707') + ';color:' + (pass?'#FCF6BA':'#FCA5A5') + ';border:1px solid ' + (pass?'#D4AF37':'#DC2626') + ';padding:4px 8px;border-radius:6px;font-size:10.5px;font-weight:900;">' + (pass?'🛡️ RUG SHIELD PASSED':'🚨 RUG FAILED') + '</span>' +
+        '<div style="display:flex;align-items:center;gap:5px;">' +
+          '<button id="v21-mb" type="button" style="background:#141007;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:4px 8px;font-size:10.5px;font-weight:900;cursor:pointer;">' + (inst?'🏛️ INST':'🚀 MEME') + '</button>' +
+          '<button id="v21-tb" type="button" style="background:#141007;color:#FCF6BA;border:1px solid #D4AF37;border-radius:6px;padding:4px 8px;font-size:10.5px;font-weight:800;cursor:pointer;">⚙️ Filters</button>' +
+          '<button id="v21-cx" type="button" class="v21-rx">✕</button>' +
+        '</div></div>' +
+      '<div style="background:#080705;border:1px solid rgba(212,175,55,0.42);border-radius:10px;padding:10px 12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">' +
+        '<div><div style="font-size:19px;font-weight:900;color:#F8FAFC;">' + (inst?(tok.symbol+' / SOL'):('🚀 $'+tok.symbol)) + '</div><div style="font-size:11.5px;color:#D4AF37;font-weight:800;margin-top:2px;">MC ' + fmt(tok.mc) + ' • LIQ ' + fmt(tok.liq) + '</div></div>' +
+        '<div style="font-size:17px;font-weight:900;color:' + (pct>=0?(inst?'#FCF6BA':'#00FF88'):'#DC2626') + ';">' + (pct>=0?'+':'') + pct.toFixed(1) + '%</div></div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1.4fr;gap:8px;">' +
+        '<button id="v21-cb" type="button" style="padding:9px;border-radius:8px;border:1px solid #D4AF37;background:#0F0C06;color:#FCF6BA;font-weight:800;font-size:12px;cursor:pointer;">View Chart</button>' +
+        '<button id="v21-sb" type="button" style="padding:9px;border-radius:8px;border:none;background:' + (inst?'var(--g21)':'#00FF88') + ';color:#050402;font-weight:900;font-size:12px;cursor:pointer;">Trade &amp; Reclaim</button>' +
+      '</div>' + td;
 
     box.style.display = 'block';
-    document.getElementById('v20-close').onclick = function(){ box.style.display = 'none'; };
-    document.getElementById('v20-tune-btn').onclick = function(){ cfg.tuneOpen = !cfg.tuneOpen; renderSingleBox(tok); };
-    document.getElementById('v20-chart').onclick = function(){ if (window.openEcosystemModal) window.openEcosystemModal(tok, 'buy'); };
-    document.getElementById('v20-bs').onclick = function(){ if (window.openEcosystemModal) window.openEcosystemModal(tok, 'buy'); };
-
-    if (cfg.tuneOpen) {
-      document.getElementById('v20-tx').onclick = function(){ cfg.tuneOpen = false; renderSingleBox(tok); };
-      document.getElementById('v20-tmode-time').onclick = function(){ cfg.trigType = 'time'; save20(); renderSingleBox(tok); };
-      document.getElementById('v20-tmode-pct').onclick = function(){ cfg.trigType = 'pct'; save20(); renderSingleBox(tok); };
-      var st = document.getElementById('v20-sel-time');
-      if (st) { st.value = String(cfg.timeSec); st.onchange = function(){ cfg.timeSec = Number(st.value); save20(); renderSingleBox(tok); }; }
-      var sp = document.getElementById('v20-sel-pct');
-      if (sp) { sp.value = String(cfg.minPct); sp.onchange = function(){ cfg.minPct = Number(sp.value); save20(); renderSingleBox(tok); }; }
-      var sm = document.getElementById('v20-sel-mc');
-      if (sm) { sm.value = String(cfg.minMc); sm.onchange = function(){ cfg.minMc = Number(sm.value); save20(); }; }
-      document.getElementById('v20-how-vid').onclick = openDemoVideo;
+    document.getElementById('v21-cx').onclick = function(e){ e.stopPropagation(); box.style.display = 'none'; };
+    document.getElementById('v21-mb').onclick = function(e){ e.stopPropagation(); cfg.mode = inst?'meme':'inst'; sv(); renderCard(tok); };
+    document.getElementById('v21-tb').onclick = function(e){ e.stopPropagation(); cfg.tune = !cfg.tune; renderCard(tok); };
+    document.getElementById('v21-cb').onclick = function(e){ e.stopPropagation(); if(window.openEcosystemModal) window.openEcosystemModal(tok,'buy'); setTimeout(syncTheme,60); };
+    document.getElementById('v21-sb').onclick = function(e){ e.stopPropagation(); if(window.openEcosystemModal) window.openEcosystemModal(tok,'buy'); setTimeout(syncTheme,60); };
+    if (cfg.tune) {
+      document.getElementById('v21-tx').onclick = function(e){ e.stopPropagation(); cfg.tune = false; renderCard(tok); };
+      var tr = document.getElementById('v21-tr'); tr.value = cfg.trig; tr.onchange = function(){ cfg.trig = tr.value; sv(); renderCard(tok); };
+      var sc = document.getElementById('v21-sc'); if(sc){ sc.value=String(cfg.sec); sc.onchange=function(){ cfg.sec=Number(sc.value); sv(); }; }
+      var pc = document.getElementById('v21-pc'); if(pc){ pc.value=String(cfg.pct); pc.onchange=function(){ cfg.pct=Number(pc.value); sv(); }; }
+      var mc = document.getElementById('v21-mc'); mc.value=String(cfg.mc); mc.onchange=function(){ cfg.mc=Number(mc.value); sv(); poll(true); };
+      var up = document.getElementById('v21-up'); up.value=cfg.up?'1':'0'; up.onchange=function(){ cfg.up=(up.value==='1'); sv(); };
     }
   }
 
-  window.triggerHighContrastPcAlert = async function(t){ renderSingleBox(t); };
-
-  async function pollByTimeOrPercent(initial) {
-    if (cfg.trigType === 'time' && cfg.timeSec === 0 && !initial) return;
+  async function poll(force) {
+    if (!force && cfg.trig === 'time' && cfg.sec === 0) return;
     var now = Date.now() / 1000;
-    if (!initial && cfg.trigType === 'time' && (now - lastAlertAt) < cfg.timeSec) return;
-
+    if (!force && lastAt > 0 && (now - lastAt) < (cfg.trig==='time' ? Math.max(40,cfg.sec) : 45)) return;
     try {
-      var r = await fetch('https://api.dexscreener.com/token-boosts/top/v1', { cache:'no-store' });
-      var arr = await r.json();
-      var m = [];
-      (arr||[]).forEach(function(x){ if (x && x.chainId==='solana' && x.tokenAddress && m.length<8 && m.indexOf(x.tokenAddress)===-1) m.push(x.tokenAddress); });
+      var arr = await (await fetch('https://api.dexscreener.com/token-boosts/top/v1',{cache:'no-store'})).json();
+      var m = []; (arr||[]).forEach(function(x){ if(x&&x.chainId==='solana'&&x.tokenAddress&&m.length<8&&m.indexOf(x.tokenAddress)===-1) m.push(x.tokenAddress); });
       if (!m.length) return;
-      var pd = await (await fetch('https://api.dexscreener.com/latest/dex/tokens/' + m.join(','))).json();
-      var pairs = (pd.pairs||[]).filter(function(p){ return p && p.chainId==='solana' && p.baseToken; });
-
-      for (var i = 0; i < pairs.length; i++) {
-        var p = pairs[i];
-        var mc = Number(p.marketCap || p.fdv || 0);
-        var liq = Number((p.liquidity||{}).usd || 0);
-        var h1 = Number((p.priceChange||{}).h1 || 0);
-        if (mc < cfg.minMc || liq < 5000) continue;
-        if (!initial && cfg.trigType === 'pct' && h1 < cfg.minPct) continue;
-        var key = p.baseToken.address + ':' + Math.floor(h1 / 5);
-        if (!initial && cfg.trigType === 'pct' && key === seenPctKey) continue;
-
-        seenPctKey = key; lastAlertAt = now;
-        renderSingleBox({
-          mint: p.baseToken.address,
-          symbol: String(p.baseToken.symbol||'SOL').replace(/[^A-Za-z0-9]/g,'').toUpperCase().slice(0,8),
-          name: p.baseToken.name || 'Solana Token',
-          h1: h1, mc: mc, liq: liq, passed: true
-        });
+      var pairs = ((await (await fetch('https://api.dexscreener.com/latest/dex/tokens/'+m.join(','))).json()).pairs||[]).filter(function(p){ return p&&p.chainId==='solana'&&p.baseToken; });
+      for (var i=0; i<pairs.length; i++) {
+        var p = pairs[i], mc = Number(p.marketCap||p.fdv||0), liq = Number((p.liquidity||{}).usd||0), h1 = Number((p.priceChange||{}).h1||0);
+        if (mc < cfg.mc || liq < 10000 || (cfg.up && h1 <= 0)) continue;
+        if (!force && cfg.trig === 'pct' && h1 < cfg.pct) continue;
+        if (!force && p.baseToken.address === lastMint && h1 < 15) continue;
+        lastMint = p.baseToken.address; lastAt = now;
+        renderCard({mint:lastMint,symbol:String(p.baseToken.symbol||'SOL').replace(/[^A-Za-z0-9]/g,'').toUpperCase().slice(0,8),name:p.baseToken.name||'Solana',h1:h1,mc:mc,liq:liq,passed:true});
         return;
       }
-    } catch (_e) {
-      if (initial) renderSingleBox(curTok);
-    }
+      if (force) renderCard(cur);
+    } catch(_e) { if (force) renderCard(cur); }
   }
 
-  /* 4. Anchor Bubble Strictly Under Top 'Chrome Shield v5.1' Button (NEVER Far-Left Theme Pill!) */
-  function anchorUnderChromeShield() {
-    var bub = document.getElementById('rrs-v20-ext-bubble');
-    var arr = document.getElementById('rrs-v20-ext-arrow');
-    if (!bub || bub.__closed) return;
-    var best = null;
-    document.querySelectorAll('a, button, [role="button"], span').forEach(function(el){
+  function mountMoat() {
+    var wt=document.getElementById('v21-wt'), wb=document.getElementById('v21-wb'), wd=document.getElementById('v21-wd');
+    if (!wt || wt.children.length) return;
+    function sel(w){
+      document.querySelectorAll('.v21-wc').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-i')===w.id); });
+      wd.innerHTML = '<b style="color:#FCF6BA;font-size:14px;">🛡️ ' + w.n + ' — ' + w.r + '</b><div style="color:#E5E7EB;font-size:12.5px;margin-top:4px;">' + w.d + '</div>';
+    }
+    W.forEach(function(w,i){
+      var b=document.createElement('button'); b.type='button'; b.className='v21-wc'; b.setAttribute('data-i',w.id);
+      b.innerHTML='<b style="color:#FCF6BA;font-size:12px;">🛡️ '+w.n+'</b><div style="color:#D4AF37;font-size:11px;">'+w.r+'</div>';
+      b.onclick=function(){ sel(w); }; (i<3?wt:wb).appendChild(b);
+    });
+    sel(W[0]);
+  }
+
+  function anchorBub() {
+    var bub=document.getElementById('v21-ext-bub'), arr=document.getElementById('v21-ext-arr');
+    if (!bub || bub.__c) return;
+    var best=null;
+    document.querySelectorAll('a,button,[role="button"],span').forEach(function(el){
       if (el.children.length > 3) return;
       var r = el.getBoundingClientRect();
-      /* Must be in top header AND past x=220px so it NEVER hits far-left Original/Emerald pill! */
-      if (r.top < 0 || r.top > 150 || r.left < 220 || r.width < 60 || r.width > 380) return;
-      var tx = (el.textContent || '').trim().toLowerCase();
-      if (tx.indexOf('chrome shield') !== -1 || tx.indexOf('chrome extension') !== -1) {
-        best = el.closest('a, button, [role="button"]') || el;
-      }
+      if (r.top>=0 && r.top<150 && r.left>230 && r.width>60 && r.width<390 && (el.textContent||'').toLowerCase().indexOf('chrome')!==-1) best = el.closest('a,button,[role="button"]') || el;
     });
-    if (!best) { bub.style.display = 'none'; return; }
-    var rc = best.getBoundingClientRect();
-    var cx = rc.left + rc.width / 2;
-    var bl = Math.max(200, Math.min(window.innerWidth - 340, cx - 163));
-    bub.style.left = Math.round(bl) + 'px';
-    bub.style.top = Math.round(rc.bottom + 10) + 'px';
-    arr.style.left = Math.max(18, Math.min(295, Math.round(cx - bl - 10))) + 'px';
-    bub.style.display = 'block';
+    if (!best) { bub.style.display='none'; return; }
+    var rc=best.getBoundingClientRect(), cx=rc.left+rc.width/2, bl=Math.max(210,Math.min(window.innerWidth-340,cx-163));
+    bub.style.left=Math.round(bl)+'px'; bub.style.top=Math.round(rc.bottom+10)+'px';
+    arr.style.left=Math.max(18,Math.min(295,Math.round(cx-bl-10)))+'px'; bub.style.display='block';
   }
 
-  function bootV20() {
-    document.getElementById('rrs-cyber-moat-fab').onclick = window.openCastleMoat3D;
-    document.getElementById('v20-moat-close').onclick = function(){
-      var m = document.getElementById('rrsCastle3DModal');
-      m.style.display = 'none'; m.setAttribute('aria-hidden', 'true');
-    };
-    document.getElementById('v20-moat-vid').onclick = function(){
-      document.getElementById('rrsCastle3DModal').style.display = 'none';
-      openDemoVideo();
-    };
-    document.getElementById('v20-bx').onclick = function(){
-      var b = document.getElementById('rrs-v20-ext-bubble');
-      b.__closed = true; b.style.display = 'none';
-    };
-    document.getElementById('v20-bmoat').onclick = window.openCastleMoat3D;
-    document.getElementById('v20-bvid').onclick = openDemoVideo;
-
-    upgradeRightHeroSplitScreen();
-    pollByTimeOrPercent(true);
-    setTimeout(anchorUnderChromeShield, 900);
-    window.addEventListener('resize', anchorUnderChromeShield);
-    setInterval(function(){ pollByTimeOrPercent(false); }, 45000);
+  function boot() {
+    syncTheme();
+    document.getElementById('v21-moat-fab').onclick=function(){ mountMoat(); var m=document.getElementById('rrsCastle3DModal'); m.setAttribute('aria-hidden','false'); m.style.display='flex'; };
+    document.getElementById('v21-mclose').onclick=function(){ var m=document.getElementById('rrsCastle3DModal'); m.style.display='none'; m.setAttribute('aria-hidden','true'); };
+    document.getElementById('v21-bx').onclick=function(){ var b=document.getElementById('v21-ext-bub'); b.__c=true; b.style.display='none'; };
+    document.getElementById('v21-bmoat').onclick=function(){ document.getElementById('v21-moat-fab').click(); };
+    document.getElementById('v21-bvid').onclick=function(){ var m=document.getElementById('rrsExtVideoModal'); if(m){m.setAttribute('aria-hidden','false');m.style.display='flex';var v=m.querySelector('video');if(v){v.currentTime=0;v.muted=false;v.play().catch(function(){});}} };
+    poll(true); setTimeout(anchorBub,900); window.addEventListener('resize',anchorBub); setInterval(function(){ poll(false); },45000);
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootV20);
-  else bootV20();
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
 })();
 </script>
-<!-- RANGER_V20_END -->
+<!-- RANGER_V21_END -->
 </body>
 </html>
