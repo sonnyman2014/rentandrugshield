@@ -75,3 +75,7 @@ staging_meme_vs_institution.html
 !/CWS_READY.zip
 !/icon192.png
 !/icon512.png
+*.sqlite
+*.db
+.env*
+*.tmp
