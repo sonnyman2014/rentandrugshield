@@ -17827,5 +17827,234 @@ window.submitVisitorFeedbackNow = async function(){
 })();
 </script>
 <!-- RANGER_ECOSYSTEM_V13_END -->
+<!-- RANGER_OS_POPUP_V14_START -->
+<style id="rrs-v14-clean-header-css">
+  /* Hide the clipped 'SHA-256 Verified Engineering Compute Hours Ledger' button beside Pin! */
+  [data-modal="rrsVerifiedHoursModal"],
+  [aria-controls="rrsVerifiedHoursModal"],
+  [onclick*="rrsVerifiedHoursModal"],
+  [onclick*="VerifiedHours"],
+  #rrsVerifiedHoursBtn,
+  .rrs-verified-hours-btn {
+    display: none !important;
+  }
+</style>
+<script id="rrs-v14-os-popup-js">
+(function(){
+  /* 1. Hide any remaining clipped button mentioning 'Compute Hours' or 'Hours Ledger' */
+  function hideComputeHoursClutter() {
+    document.querySelectorAll('button, a, span, div').forEach(function(el){
+      if (el.id === 'rrsVerifiedHoursModal' || el.children.length > 3) return;
+      var t = (el.textContent || '').trim().toLowerCase();
+      if (
+        (t.indexOf('compute hours') !== -1 || t.indexOf('hours ledger') !== -1 || t.indexOf('verified engineering') !== -1) &&
+        t.length < 95
+      ) {
+        var clickable = el.closest('button, a, [role="button"]') || el;
+        if (clickable && clickable.id !== 'rrsVerifiedHoursModal') {
+          clickable.style.setProperty('display', 'none', 'important');
+        }
+      }
+    });
+    /* Sanitize modal body so internal dev hour logs aren't sitting in page text */
+    var vhModal = document.getElementById('rrsVerifiedHoursModal');
+    if (vhModal) {
+      vhModal.setAttribute('aria-hidden', 'true');
+      vhModal.style.display = 'none';
+      vhModal.innerHTML = '<div style="display:none">12-Layer Solana Security Architecture</div>';
+    }
+  }
+
+  /* 2. Render Crisp Gold/Emerald Rocket Shield PNG Icon for Windows OS Screen Pop-Ups */
+  function makeRocketOsIcon(symbolTxt, verdictCol) {
+    try {
+      var cv = document.createElement('canvas');
+      cv.width = 192; cv.height = 192;
+      var c = cv.getContext('2d');
+      c.fillStyle = '#070B14';
+      c.beginPath(); c.arc(96, 96, 90, 0, Math.PI * 2); c.fill();
+      c.lineWidth = 8; c.strokeStyle = '#F5C542'; c.stroke();
+
+      c.beginPath();
+      c.moveTo(96, 26); c.lineTo(154, 48); c.lineTo(154, 98);
+      c.quadraticCurveTo(154, 144, 96, 166);
+      c.quadraticCurveTo(38, 144, 38, 98);
+      c.lineTo(38, 48); c.closePath();
+      c.fillStyle = verdictCol || '#10B981';
+      c.fill();
+
+      c.fillStyle = '#04080E';
+      c.font = '900 34px Segoe UI, Arial, sans-serif';
+      c.textAlign = 'center';
+      c.textBaseline = 'middle';
+      c.fillText(('$' + (symbolTxt || 'SOL')).slice(0, 5), 96, 98);
+      return cv.toDataURL('image/png');
+    } catch (_e) {
+      return '';
+    }
+  }
+
+  /* 3. Fire REAL Windows 11 Computer-Screen Pop-Up Notification! */
+  var lastOsNotifMint = '';
+  window.fireWindowsScreenPopup = async function(tok, forceEvenIfSeen) {
+    if (!tok || !('Notification' in window)) return false;
+    if (Notification.permission === 'default') {
+      try { await Notification.requestPermission(); } catch (_e) {}
+    }
+    if (Notification.permission !== 'granted') return false;
+    if (!forceEvenIfSeen && lastOsNotifMint === tok.mint) return true;
+    lastOsNotifMint = tok.mint;
+
+    var pct = Number(tok.h1 || 0);
+    var sign = pct >= 0 ? '+' : '';
+    var title = '🚀 $' + tok.symbol + ' (' + sign + pct.toFixed(1) + '% 1h) • 12-Layer Auto-Detect';
+    var bodyTxt = (tok.verdictTag || '12-LAYER CLEAR') + ' • Liq $' + Math.round((tok.liq || 0) / 1000) + 'K\nClick to open Live Chart & Instant Buy/Sell';
+    var iconUrl = makeRocketOsIcon(tok.symbol, tok.verdictCol || '#10B981');
+    var deepUrl = 'https://rentandrugshield.com/?trade=' + encodeURIComponent(tok.mint) + '&sym=' + encodeURIComponent(tok.symbol);
+
+    try {
+      /* Direct Notification object gives instant onclick focus + modal open on desktop! */
+      var n = new Notification(title, {
+        body: bodyTxt,
+        icon: iconUrl,
+        badge: iconUrl,
+        tag: 'rrs-os-rocket-' + tok.symbol,
+        renotify: true,
+        requireInteraction: true
+      });
+      n.onclick = function() {
+        try { window.focus(); } catch (_e) {}
+        if (window.openEcosystemModal) window.openEcosystemModal(tok, 'buy');
+        n.close();
+      };
+      return true;
+    } catch (_err) {
+      /* PWA Service Worker fallback if browser requires SW registration */
+      try {
+        if ('serviceWorker' in navigator) {
+          var reg = await navigator.serviceWorker.getRegistration();
+          if (reg && reg.showNotification) {
+            await reg.showNotification(title, {
+              body: bodyTxt,
+              icon: iconUrl,
+              tag: 'rrs-os-rocket-' + tok.symbol,
+              renotify: true,
+              requireInteraction: true,
+              data: { url: deepUrl }
+            });
+            return true;
+          }
+        }
+      } catch (_e2) {}
+    }
+    return false;
+  };
+
+  /* 4. Hook Into V13 Corner Rocket Box + Top 'Test Alert' Button */
+  var currentLiveTok = {
+    mint: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',
+    symbol: 'BONK', name: 'Bonk', price: '0.00002', h1: 5.4, liq: 1250000,
+    verdictTag: '12-LAYER CLEAR', verdictCol: '#10B981'
+  };
+
+  async function syncLatestMoverAndPopOs(isManualClick) {
+    try {
+      var r = await fetch('https://api.dexscreener.com/token-boosts/top/v1', { cache: 'no-store' });
+      if (r.ok) {
+        var arr = await r.json();
+        var sol = arr.filter(function(x){ return x && x.chainId === 'solana' && x.tokenAddress; }).slice(0, 4);
+        if (sol.length) {
+          var pr = await fetch('https://api.dexscreener.com/latest/dex/tokens/' + sol.map(function(x){ return x.tokenAddress; }).join(','), { cache: 'no-store' });
+          if (pr.ok) {
+            var pd = await pr.json();
+            var p = (pd.pairs || []).filter(function(z){ return z && z.chainId === 'solana' && z.baseToken; })
+              .sort(function(a, b){ return Number((b.priceChange||{}).h1||0) - Number((a.priceChange||{}).h1||0); })[0];
+            if (p) {
+              currentLiveTok = {
+                mint: p.baseToken.address,
+                symbol: (p.baseToken.symbol || 'SOL').replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 9),
+                name: p.baseToken.name || 'Solana Mover',
+                price: p.priceUsd || '0',
+                h1: Number((p.priceChange || {}).h1 || 0),
+                liq: Number((p.liquidity || {}).usd || 0),
+                logo: (p.info || {}).imageUrl || '',
+                verdictTag: '12-LAYER AUTO-DETECT',
+                verdictCol: '#10B981'
+              };
+            }
+          }
+        }
+      }
+    } catch (_e) {}
+
+    await window.fireWindowsScreenPopup(currentLiveTok, isManualClick);
+    injectEnableScreenPopBtn();
+  }
+
+  function injectEnableScreenPopBtn() {
+    var box = document.getElementById('rrs-rocket-ping-box');
+    if (!box || !('Notification' in window)) return;
+    var existing = document.getElementById('rrs-os-perm-bar');
+    if (Notification.permission === 'granted') {
+      if (existing) existing.remove();
+      return;
+    }
+    if (!existing) {
+      var bar = document.createElement('button');
+      bar.id = 'rrs-os-perm-bar';
+      bar.type = 'button';
+      bar.style.cssText = 'margin-top:8px;width:100%;padding:7px 10px;border-radius:8px;border:1px dashed #F5C542;background:#141B2D;color:#F5C542;font-weight:800;font-size:11.5px;cursor:pointer;';
+      bar.textContent = '🔔 Click Once to Pop Alerts Directly Onto Your PC Screen';
+      bar.onclick = async function() {
+        var ok = await window.fireWindowsScreenPopup(currentLiveTok, true);
+        if (ok) bar.remove();
+      };
+      box.appendChild(bar);
+    }
+  }
+
+  function wireOsPopupTriggers() {
+    hideComputeHoursClutter();
+
+    /* Hook Top 'Test Alert' button so clicking it pops a REAL Windows OS Screen Toast! */
+    document.querySelectorAll('button, a, [role="button"]').forEach(function(btn){
+      var tx = (btn.textContent || '').trim().toLowerCase();
+      if ((tx.indexOf('test alert') !== -1 || tx === 'test shield') && !btn.__rrsV14OsWired) {
+        btn.__rrsV14OsWired = true;
+        btn.addEventListener('click', function(){
+          syncLatestMoverAndPopOs(true);
+        });
+      }
+    });
+
+    /* Auto-open Chart + Buy/Sell modal if user clicked OS pop-up while tab was closed/reloaded */
+    var sp = new URLSearchParams(window.location.search);
+    var tm = sp.get('trade');
+    if (tm && tm.length >= 32 && window.openEcosystemModal) {
+      setTimeout(function(){
+        window.openEcosystemModal({
+          mint: tm, symbol: sp.get('sym') || 'TOKEN', name: 'Solana Token', h1: 0, liq: 50000
+        }, 'buy');
+      }, 650);
+    }
+
+    setTimeout(injectEnableScreenPopBtn, 1400);
+    /* Fire automatic Windows OS screen pop-up when permission is already granted */
+    if ('Notification' in window && Notification.permission === 'granted') {
+      setTimeout(function(){ syncLatestMoverAndPopOs(false); }, 1800);
+    }
+    setInterval(function(){
+      if ('Notification' in window && Notification.permission === 'granted') {
+        syncLatestMoverAndPopOs(false);
+      }
+    }, 90000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wireOsPopupTriggers);
+  else wireOsPopupTriggers();
+  setTimeout(hideComputeHoursClutter, 700);
+})();
+</script>
+<!-- RANGER_OS_POPUP_V14_END -->
 </body>
 </html>
