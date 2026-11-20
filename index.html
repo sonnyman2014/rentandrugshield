@@ -18049,415 +18049,59 @@ window.submitVisitorFeedbackNow = async function(){
 
 
 
-<!-- RRS_SURGICAL_V5 -->
-<style id="rrs-surgical-v5-css">
-  /* Hide ONLY small bottom-corner floating badge, never top banners */
-  #rrs-floating-badge, .rrs-floating-badge,
-  #shield-corner-fab, .shield-corner-fab {
+
+
+
+<!-- RRS_HONESTY_SURGICAL_V3 -->
+<style id="rrs-honesty-surgical-v3-css">
+  /* 1. ONLY fix the overflowing top-right pill inside #rentShieldCard — NEVER touch page grids or move boxes */
+  #rentShieldCard .card-header {
+    flex-wrap: wrap !important;
+    gap: 6px 8px !important;
+  }
+  #rentShieldCard .card-title,
+  #rentShieldCard #feeBadge {
+    white-space: normal !important;
+    max-width: 100% !important;
+    line-height: 1.35 !important;
+  }
+
+  /* 2. Hide Mobile-App Deep-Link Payment Buttons on Desktop PC (Show ONLY on Phone/Mobile) */
+  html.rrs-desktop-pc .rrs-mobile-only-paybtn {
     display: none !important;
   }
 
-  /* Prevent single-word orphan wraps on headings & paragraphs */
-  h1, h2, h3, .hero-title { text-wrap: balance; }
-  p, li { text-wrap: pretty; }
-
-  /* Left Hero 12-Point Spec Grid & Buttons */
-  .rrs-v5-points {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 7px 14px;
-    margin: 10px 0 12px 0;
-    padding: 0;
-    list-style: none;
-    font-size: 13px;
-    line-height: 1.38;
-    color: #e5e7eb;
-  }
-  @media (max-width: 820px) {
-    .rrs-v5-points { grid-template-columns: 1fr; }
-  }
-  .rrs-v5-points li {
-    padding-left: 16px;
-    position: relative;
-  }
-  .rrs-v5-points li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--rrs-accent, #14f195);
-    font-weight: 900;
-  }
-  .rrs-v5-points b {
-    color: var(--rrs-accent, #14f195);
-    font-weight: 700;
-  }
-  .rrs-v5-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 8px;
-  }
-  .rrs-v5-btn-main {
-    background: var(--rrs-accent, #14f195);
-    color: #05080f;
-    font-weight: 800;
-    font-size: 13px;
-    padding: 9px 15px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .rrs-v5-btn-sec {
-    background: rgba(20, 241, 149, 0.1);
-    color: var(--rrs-accent, #14f195);
-    border: 1.5px solid var(--rrs-accent, #14f195);
-    font-weight: 800;
-    font-size: 13px;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  /* Right Video + Info Dual Panel */
-  .rrs-v5-vbar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-  .rrs-v5-vtab {
-    background: #0c1422;
-    color: #d1d5db;
-    border: 1px solid var(--rrs-accent, #14f195);
-    border-radius: 7px;
-    padding: 6px 8px;
+  /* 3. Honesty Mandate Box inside Pass Checkout Modal */
+  .rrs-honesty-box {
+    margin: 10px 0;
+    padding: 9px 12px;
+    border-radius: 9px;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(20, 241, 149, 0.42);
     font-size: 12px;
-    font-weight: 800;
+    line-height: 1.42;
+    color: #E2E8F0;
+    text-align: left;
+  }
+  .rrs-honesty-box label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
     cursor: pointer;
+    font-weight: 700;
+    color: #F8FAFC;
+    margin-top: 5px;
   }
-  .rrs-v5-vtab.active {
-    background: var(--rrs-accent, #14f195);
-    color: #05080f;
-  }
-  .rrs-v5-specsheet {
-    display: none;
-    background: #070d18;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 8px;
-    padding: 12px 14px;
-    font-size: 12.5px;
-    line-height: 1.45;
-    color: #e5e7eb;
-    max-height: 270px;
-    overflow-y: auto;
-  }
-  .rrs-v5-specsheet b { color: var(--rrs-accent, #14f195); }
-
-  /* DEFAULT MODE: Cohesive Neon Emerald Borders Across Hero + Panel 1 + Panel 2 */
-  html:not(.rrs-inst-active) { --rrs-accent: #14f195; }
-  html:not(.rrs-inst-active) .rrs-themed-box {
-    border-color: rgba(20, 241, 149, 0.65) !important;
-    box-shadow: 0 0 18px rgba(20, 241, 149, 0.08) !important;
-  }
-
-  /* INSTITUTIONAL MODE: Pure Obsidian + 24K Gold + Platinum (ZERO GREEN) */
-  html.rrs-inst-active { --rrs-accent: #d4af37; }
-  html.rrs-inst-active body { background-color: #050608 !important; }
-  html.rrs-inst-active .rrs-themed-box {
-    border-color: rgba(212, 175, 55, 0.78) !important;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.1) !important;
-    background-color: #090b10 !important;
-  }
-  html.rrs-inst-active [style*="#14f195" i],
-  html.rrs-inst-active [style*="#10b981" i],
-  html.rrs-inst-active [style*="rgb(20, 241, 149)" i] {
-    color: #d4af37 !important;
-    border-color: rgba(212, 175, 55, 0.7) !important;
-  }
-  html.rrs-inst-active .rrs-v5-btn-sec {
-    background: rgba(212, 175, 55, 0.12) !important;
+  .rrs-honesty-box input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    accent-color: #14F195;
+    cursor: pointer;
+    flex-shrink: 0;
   }
 </style>
-<script id="rrs-surgical-v5-js">
-(function() {
-  var ORIG_INST_VID = "/promo/rent_rug_shield_promo_45s.mp4?v=1795125762";
-  var CASTLE_VID = "./meme_castle.mp4";
-  var CASTLE_POSTER = "./castle_poster.png";
-
-  function glueLastWords(el) {
-    if (!el || el.children.length > 0) return;
-    var t = (el.textContent || '').trim();
-    if (t.split(/\s+/).length >= 4) {
-      el.textContent = t.replace(/\s+(\S+)$/, '\u00A0$1');
-    }
-  }
-
-  function detectInstMode() {
-    var b = document.body;
-    var h = document.documentElement;
-    var cls = ((b ? b.className : '') + ' ' + h.className).toLowerCase();
-    var dm = ((b && b.getAttribute('data-mode')) || h.getAttribute('data-mode') || '').toLowerCase();
-    var dt = ((b && b.getAttribute('data-theme')) || h.getAttribute('data-theme') || '').toLowerCase();
-    return cls.indexOf('inst') !== -1 || dm.indexOf('inst') !== -1 || dt.indexOf('inst') !== -1;
-  }
-
-  function syncModeColorsAndVideo() {
-    var isInst = detectInstMode();
-    document.documentElement.classList.toggle('rrs-inst-active', isInst);
-    var v = document.querySelector('video[data-rrs-hero-vid="1"]');
-    if (v) {
-      var want = isInst ? ORIG_INST_VID : CASTLE_VID;
-      if ((v.getAttribute('data-cur-mode') || '') !== (isInst ? 'inst' : 'meme')) {
-        v.setAttribute('data-cur-mode', isInst ? 'inst' : 'meme');
-        v.src = want;
-        if (!isInst) v.poster = CASTLE_POSTER;
-        else v.removeAttribute('poster');
-        v.load();
-      }
-    }
-  }
-
-  function applySurgicalFixes() {
-    /* 1. Fix Panel 1 leaf subtitle pill ONLY (never parent wrapper) */
-    document.querySelectorAll('div, span, p').forEach(function(el) {
-      if (el.children.length === 0) {
-        var tx = (el.textContent || '').trim();
-        if (tx.indexOf('SPL & Token-2022 Empty Account Recovery') === 0) {
-          el.style.whiteSpace = 'normal';
-          el.style.height = 'auto';
-          el.style.lineHeight = '1.4';
-          el.style.padding = '6px 12px';
-          el.style.display = 'block';
-          glueLastWords(el);
-        }
-      }
-    });
-
-    /* 2. Tag Panel 1 & Panel 2 cards for uniform border theming */
-    document.querySelectorAll('h2, h3, div, span').forEach(function(el) {
-      if (el.children.length <= 2) {
-        var tx = (el.textContent || '').trim();
-        if (tx.indexOf('Panel 1: SOL Rent') === 0 || tx.indexOf('Panel 2:') === 0) {
-          var box = el.closest('section, article, [class*="panel" i], [class*="card" i]');
-          if (box && box !== document.body && box.tagName !== 'MAIN') {
-            box.classList.add('rrs-themed-box');
-          }
-        }
-      }
-    });
-
-    /* 3. Upgrade Left Hero Box & Right Video Panel in-place */
-    var heroHeading = null;
-    document.querySelectorAll('h1, h2, .hero-title, div').forEach(function(el) {
-      if (!heroHeading && el.children.length <= 2) {
-        var tx = (el.textContent || '').trim();
-        if (tx.indexOf('Reclaim Trapped SOL Rent') === 0 && tx.length < 95) {
-          heroHeading = el;
-        }
-      }
-    });
-
-    if (heroHeading && !heroHeading.getAttribute('data-v5-done')) {
-      heroHeading.setAttribute('data-v5-done', '1');
-      heroHeading.innerHTML = 'Reclaim Trapped SOL Rent &amp; Block 12-Layer Rugs&nbsp;Pre-Buy';
-      heroHeading.style.fontSize = 'clamp(21px, 2.05vw, 28px)';
-      heroHeading.style.lineHeight = '1.22';
-
-      var leftBox = heroHeading.parentElement;
-      if (leftBox) {
-        leftBox.classList.add('rrs-themed-box');
-        Array.from(leftBox.children).forEach(function(ch) {
-          if (ch !== heroHeading) ch.style.display = 'none';
-        });
-        var infoWrap = document.createElement('div');
-        infoWrap.innerHTML =
-          '<ul class="rrs-v5-points">' +
-            '<li><b>1st Rent Claim 100% Free:</b> Recover ~0.00204 SOL per empty ATA with transparent flat pricing&nbsp;after.</li>' +
-            '<li><b>12-Layer Sub-Second Audit:</b> Blocks Mint/Freeze authorities, Token-2022 hooks, fake LP &amp; dev&nbsp;bundles.</li>' +
-            '<li><b>Powered by Gemini 4 Carbon:</b> Next-gen AI reasoning paired with live Solana RPC byte&nbsp;verification.</li>' +
-            '<li><b>The AI Leapfrog Advantage:</b> Skips slow static-blacklist scanners straight to real-time predictive&nbsp;defense.</li>' +
-            '<li><b>Veteran Trader Intuition:</b> Years of live market &amp; liquidity instincts built into our AI for&nbsp;free.</li>' +
-            '<li><b>100% Non-Custodial Safety:</b> Read-only previews &amp; client-side wallet signing. Zero private keys&nbsp;shared.</li>' +
-            '<li><b>Chrome Toolbar Shield:</b> Top-bar extension with custom toggles for layer updates, latency &amp; rug&nbsp;alerts.</li>' +
-            '<li><b>AI Agent Ready (MCP + x402):</b> ToolSDK &amp; TensorBlock verified JSON-RPC endpoint for autonomous&nbsp;bots.</li>' +
-            '<li><b>Dead Scam Dust Burner:</b> Incinerates worthless airdrop traps and reclaims locked account&nbsp;rent.</li>' +
-            '<li><b>24/7 Castle &amp; Moat Police:</b> Continuous perimeter watch with instant Solscan on-chain&nbsp;receipts.</li>' +
-          '</ul>' +
-          '<div class="rrs-v5-actions">' +
-            '<button type="button" class="rrs-v5-btn-main" id="rrs-play-castle-btn">▶ Watch Walkthrough Video (Highly&nbsp;Recommended)</button>' +
-            '<a href="./shield-center.html" class="rrs-v5-btn-sec">🧩 Chrome Shield Extension &amp;&nbsp;Toggles</a>' +
-          '</div>';
-        leftBox.appendChild(infoWrap);
-      }
-    }
-
-    /* 4. Enhance Right Video Box with Castle Video + Full Specs Tab */
-    var vid = document.querySelector('video');
-    if (vid && !vid.getAttribute('data-rrs-hero-vid')) {
-      vid.setAttribute('data-rrs-hero-vid', '1');
-      var rBox = vid.parentElement;
-      if (rBox) {
-        rBox.classList.add('rrs-themed-box');
-        var bar = document.createElement('div');
-        bar.className = 'rrs-v5-vbar';
-        bar.innerHTML =
-          '<button type="button" class="rrs-v5-vtab active" id="rrs-vt-vid">🎬 Castle Defense Video</button>' +
-          '<button type="button" class="rrs-v5-vtab" id="rrs-vt-spec">📋 12-Layer, Fees &amp; AI Specs</button>';
-        var spec = document.createElement('div');
-        spec.className = 'rrs-v5-specsheet';
-        spec.id = 'rrs-v5-spec-box';
-        spec.innerHTML =
-          '<div><b>Why Traders, Devs &amp; AI Agents Choose Us:</b></div>' +
-          '<p style="margin:6px 0;">• <b>Transparent Fees:</b> 1st rent claim is 100% free (~0.00204 SOL recovered per closed empty account). Zero hidden drains; Phantom/Solflare simulates exact +SOL gain before signing.</p>' +
-          '<p style="margin:6px 0;">• <b>12-Layer vs. Legacy Scanners:</b> Competitors check cached blacklists after rugs happen. Our Gemini 4 Carbon + live RPC engine audits Mint/Freeze, LP burn/lock, creator funding clusters, and Token-2022 transfer hooks pre-buy in &lt;500ms.</p>' +
-          '<p style="margin:6px 0;">• <b>Castle &amp; Moat Architecture:</b> Chrome Toolbar Extension + 24/7 Alert Police monitor latency and quarantine threats automatically while MCP/x402 serves autonomous trading agents.</p>';
-        rBox.insertBefore(bar, vid);
-        rBox.appendChild(spec);
-
-        var bVid = document.getElementById('rrs-vt-vid');
-        var bSpec = document.getElementById('rrs-vt-spec');
-        bVid.onclick = function() {
-          bVid.classList.add('active'); bSpec.classList.remove('active');
-          spec.style.display = 'none'; vid.style.display = 'block';
-        };
-        bSpec.onclick = function() {
-          bSpec.classList.add('active'); bVid.classList.remove('active');
-          vid.pause(); vid.style.display = 'none'; spec.style.display = 'block';
-        };
-        var playBtn = document.getElementById('rrs-play-castle-btn');
-        if (playBtn) {
-          playBtn.onclick = function() {
-            bVid.click();
-            vid.muted = false;
-            vid.play().catch(function(){});
-          };
-        }
-      }
-    }
-
-    /* 5. Fix orphan single words on standalone short paragraphs */
-    document.querySelectorAll('p, h2, h3').forEach(glueLastWords);
-    syncModeColorsAndVideo();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applySurgicalFixes);
-  } else {
-    applySurgicalFixes();
-  }
-  document.addEventListener('click', function() {
-    setTimeout(syncModeColorsAndVideo, 80);
-  });
-  setInterval(syncModeColorsAndVideo, 1500);
-})();
-</script>
-
-
-
-
-
-<!-- RRS_PANEL1_PRO_V2 -->
-<style id="rrs-panel1-pro-v2-css">
-  .rrs-dual-panels-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 18px !important;
-    align-items: stretch !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  @media (max-width: 980px) {
-    .rrs-dual-panels-grid { grid-template-columns: minmax(0, 1fr) !important; }
-  }
-  .rrs-panel-card-pro, #rentShieldCard {
-    min-width: 0 !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-    padding: 18px !important;
-  }
-  .rrs-panel-card-pro *, #rentShieldCard * {
-    box-sizing: border-box !important;
-    max-width: 100% !important;
-  }
-  /* Fix unwrapped .card-header + nowrap #feeBadge blowing out Panel 1 & Panel 2 */
-  .rrs-panel-card-pro .card-header,
-  #rentShieldCard .card-header,
-  .service-card-head .card-header {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 6px 10px !important;
-    margin-bottom: 8px !important;
-    width: 100% !important;
-  }
-  .rrs-panel-card-pro .card-title,
-  #rentShieldCard .card-title,
-  .service-card-head .card-title {
-    white-space: normal !important;
-    font-size: 1.05rem !important;
-    line-height: 1.3 !important;
-    min-width: 0 !important;
-  }
-  #feeBadge, .rrs-panel-card-pro .pill {
-    white-space: normal !important;
-    line-height: 1.35 !important;
-    font-size: 0.76rem !important;
-    padding: 4px 9px !important;
-    height: auto !important;
-    text-align: left !important;
-    word-break: break-word !important;
-  }
-  #walletInput {
-    width: 100% !important;
-    min-width: 0 !important;
-    height: 44px !important;
-    margin-bottom: 8px !important;
-  }
-  #rentShieldCard .service-actions-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 8px !important;
-    width: 100% !important;
-    margin-bottom: 8px !important;
-  }
-  #rentShieldCard button {
-    min-width: 0 !important;
-    white-space: normal !important;
-    line-height: 1.25 !important;
-    word-break: break-word !important;
-    padding: 9px 10px !important;
-    font-size: 13px !important;
-  }
-  #prop-autocollect-label {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 6px 10px !important;
-    width: 100% !important;
-    padding: 8px 10px !important;
-    margin: 8px 0 !important;
-  }
-  /* Keep scan results table & Collect buttons flush inside Panel 1 */
-  #rentShieldCard table {
-    width: 100% !important;
-    table-layout: fixed !important;
-    font-size: 12px !important;
-  }
-  #rentShieldCard th, #rentShieldCard td {
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    padding: 5px 6px !important;
-  }
-</style>
-<script id="rrs-panel1-pro-v2-js">
+<script id="rrs-honesty-surgical-v3-js">
 (function() {
   var LIVE_API_BASE = "https://soldier-indirect-amber-messaging.trycloudflare.com";
   var TREASURY_WALLET = "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1";
@@ -18465,24 +18109,31 @@ window.submitVisitorFeedbackNow = async function(){
   window.RRS_TREASURY_WALLET = TREASURY_WALLET;
   window.TREASURY_WALLET = TREASURY_WALLET;
   window.FEE_WALLET = TREASURY_WALLET;
+  window.PASS_TREASURY_PUBKEY = TREASURY_WALLET;
+  window.TREASURY_ADDR = TREASURY_WALLET;
   window.RRS_API_BASE = LIVE_API_BASE;
 
-  /* 1. Route every relative /api/... or stale *.trycloudflare.com/api/... call on GitHub Pages straight to LIVE_API_BASE */
+  /* Detect Desktop PC vs Phone/Mobile */
+  var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || "");
+  if (!isMobileDevice) {
+    document.documentElement.classList.add("rrs-desktop-pc");
+  }
+
+  /* Route /api/* calls from static GitHub Pages straight to verified Cloudflare Tunnel */
   var isPublicStatic = (location.hostname !== "127.0.0.1" && location.hostname !== "localhost");
   if (isPublicStatic) {
     window.getApiBase = function() { return LIVE_API_BASE; };
     window.resolveRrsApiBase = function() { return LIVE_API_BASE; };
     window.resolveApiBase = function() { return LIVE_API_BASE; };
   }
-
-  if (!window.__RRS_V2_TUNNEL_ROUTER && typeof window.fetch === "function") {
-    window.__RRS_V2_TUNNEL_ROUTER = true;
-    var origFetch = window.fetch;
+  if (!window.__RRS_V3_FETCH_ROUTER && typeof window.fetch === "function") {
+    window.__RRS_V3_FETCH_ROUTER = true;
+    var _origFetch = window.fetch;
     window.fetch = function(input, init) {
       try {
         var u = (typeof input === "string") ? input : ((input && input.url) || "");
         if (isPublicStatic && u) {
-          if (u.charAt(0) === "/" && u.indexOf("/api/") === 0) {
+          if (u.indexOf("/api/") === 0) {
             input = LIVE_API_BASE + u;
           } else if (u.indexOf(".trycloudflare.com/api/") !== -1 && u.indexOf(LIVE_API_BASE) !== 0) {
             input = LIVE_API_BASE + u.substring(u.indexOf("/api/"));
@@ -18491,81 +18142,211 @@ window.submitVisitorFeedbackNow = async function(){
           }
         }
       } catch (_e) {}
-      return origFetch.call(this, input, init);
+      return _origFetch.call(this, input, init);
     };
   }
 
-  function findPanel(inc, exc) {
-    var els = document.querySelectorAll('h1, h2, h3, h4, .card-title, div, span');
-    var h = null;
-    for (var i = 0; i < els.length; i++) {
-      if (els[i].children.length <= 3 && (els[i].textContent || '').indexOf(inc) !== -1) {
-        h = els[i];
-        break;
+  /* Reliable Browser Wallet Payment Fallback (works even if CDN solanaWeb3 is slow/blocked) */
+  async function triggerDesktopSolanaPassPay(modalRoot) {
+    var provider = (window.phantom && window.phantom.solana) || window.solana || window.solflare;
+    var statusNode = modalRoot ? modalRoot.querySelector('[id*="Status" i], [id*="status" i], .chk-status') : null;
+    function setMsg(html, isErr) {
+      if (statusNode) {
+        statusNode.innerHTML = html;
+        statusNode.style.color = isErr ? "#F87171" : "#14F195";
       }
     }
-    if (!h) return null;
-    var cur = h;
-    while (cur && cur.parentElement && cur.parentElement !== document.body) {
-      var p = cur.parentElement;
-      if ((p.textContent || '').indexOf(exc) !== -1) return { card: cur, grid: p };
-      cur = p;
+    if (!provider) {
+      setMsg("⚠️ No desktop Solana wallet detected. Unlock Phantom/Solflare in Chrome or use Card / QR below.", true);
+      return;
     }
-    return null;
+    try {
+      setMsg("⏳ Connecting to browser wallet...", false);
+      var resp = await provider.connect();
+      var payer = (resp && resp.publicKey ? resp.publicKey.toString() : (provider.publicKey ? provider.publicKey.toString() : ""));
+      if (!payer) throw new Error("Wallet locked — please unlock Phantom/Solflare and click again.");
+
+      /* Read selected tier & currency from modal text */
+      var mText = (modalRoot ? modalRoot.innerText : "") || "";
+      var plan = "24h";
+      if (mText.indexOf("30-Day Trader Pro") !== -1 || mText.indexOf("$19.99") !== -1) plan = "30d_trader";
+      if (mText.indexOf("Quant Desk") !== -1 || mText.indexOf("$49.99") !== -1) plan = "30d_quant";
+      if (mText.indexOf("Enterprise") !== -1 || mText.indexOf("$499") !== -1) plan = "enterprise";
+
+      var cur = "SOL";
+      if (modalRoot) {
+        modalRoot.querySelectorAll("button").forEach(function(b) {
+          var t = (b.textContent || "").trim();
+          if (t === "Pay in USDC" && (b.classList.contains("active") || b.getAttribute("aria-pressed") === "true" || (b.style.background || "").indexOf("rgb") !== -1 && (b.style.opacity || "1") === "1" && b.dataset.selected === "1")) {
+            cur = "USDC";
+          }
+        });
+      }
+
+      setMsg("⚡ Building verified non-custodial pass transaction on Helius Mainnet...", false);
+      var apiBase = isPublicStatic ? LIVE_API_BASE : "";
+      var bRes = await fetch(apiBase + "/api/build-pass-tx", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ wallet: payer, payer: payer, plan: plan, tier: plan, currency: cur, token: cur })
+      });
+      var bJson = await bRes.json();
+      var txB64 = bJson.transaction || bJson.tx_base64 || bJson.serialized_tx;
+      if (!bJson.ok || !txB64) throw new Error(bJson.error || "Could not build pass transaction");
+
+      var rawBytes = Uint8Array.from(atob(txB64), function(c) { return c.charCodeAt(0); });
+      var sw3 = window.solanaWeb3;
+      if (!sw3) throw new Error("Solana Web3 SDK still loading — wait 1s and click again.");
+      var txObj;
+      try {
+        txObj = sw3.VersionedTransaction.deserialize(rawBytes);
+      } catch (_ve) {
+        txObj = sw3.Transaction.from(rawBytes);
+      }
+      setMsg("👛 Approve payment in your Phantom/Solflare popup...", false);
+      var signed = await provider.signAndSendTransaction(txObj);
+      var sig = signed && (signed.signature || signed);
+      setMsg("✅ Payment Sent! Verifying on-chain TX <code>" + String(sig).slice(0, 8) + "…</code>", false);
+      await fetch(apiBase + "/api/verify-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ wallet: payer, tx_sig: sig, signature: sig, plan: plan, tier: plan })
+      });
+      setMsg("🛡️ Pass Unlocked! Unlimited 12-Layer Shield Active (Cancel Anytime • Auto-Billing OFF).", false);
+    } catch (err) {
+      setMsg("⚠️ " + (err && err.message ? err.message : String(err)), true);
+    }
   }
 
-  function enforcePanel1Fit() {
-    var p1 = findPanel('Panel 1:', 'Panel 2:');
-    var p2 = findPanel('Panel 2:', 'Panel 1:');
-    if (p1 && p1.grid) p1.grid.classList.add('rrs-dual-panels-grid');
-    if (p1 && p1.card) p1.card.classList.add('rrs-panel-card-pro');
-    if (p2 && p2.card) p2.card.classList.add('rrs-panel-card-pro');
-
-    var card = (p1 && p1.card) || document.getElementById('rentShieldCard');
-    if (!card) return;
-
-    /* Keep #feeBadge concise so header never wraps into 3 lines */
-    var fb = document.getElementById('feeBadge');
-    if (fb && (fb.textContent || '').length > 34) {
-      fb.textContent = '1ST ATA FREE • 0% FEE';
-    }
-
-    /* Fix description copy cleanly */
-    card.querySelectorAll('.service-card-desc, p').forEach(function(el) {
-      if (el.querySelector('input, button')) return;
-      var tx = (el.textContent || '').trim();
-      if (tx.indexOf('atomically routed to') !== -1 || tx.indexOf('1st Empty Account Lifetime Free') !== -1) {
-        var cleanHtml = '<b style="color:#14f195;">1st Empty Account Free</b> (0% Fee • Full ~0.00204 SOL) • <b>98.5% Net SOL</b> on Repeat ATAs • Non-Custodial.';
-        if (el.innerHTML !== cleanHtml) el.innerHTML = cleanHtml;
+  function enhanceModalsAndHonesty() {
+    /* A. Tag Mobile-Only wallet buttons inside Checkout Modal so they hide on Desktop PC */
+    document.querySelectorAll("button, a").forEach(function(el) {
+      var tx = (el.textContent || "").trim();
+      if (tx.indexOf("Connect Phantom Mobile") !== -1 || tx.indexOf("Connect Solflare Mobile") !== -1) {
+        el.classList.add("rrs-mobile-only-paybtn");
       }
     });
 
-    /* Keep Primary Scan button & Burner button distinct (prevent duplicate "Scan Rent & Burn Dead Coins" label) */
-    var bScan = document.getElementById('scanWalletBtn');
-    if (bScan) {
-      bScan.style.setProperty('display', 'inline-flex', 'important');
-      bScan.style.justifyContent = 'center';
-      if ((bScan.textContent || '').trim() !== '🔍 Scan Rent (Free)') {
-        bScan.textContent = '🔍 Scan Rent (Free)';
+    /* B. Populate any blank Treasury Address readout inside Checkout Modal */
+    document.querySelectorAll("div, span, code, input").forEach(function(el) {
+      var prev = el.previousElementSibling;
+      if (prev && (prev.textContent || "").indexOf("Treasury Address") !== -1) {
+        if (el.tagName === "INPUT" && !el.value) el.value = TREASURY_WALLET;
+        else if (el.children.length === 0 && !(el.textContent || "").trim()) el.textContent = TREASURY_WALLET;
       }
-    }
-    var bBurn = document.getElementById('burnerScanBtn');
-    if (bBurn) {
-      bBurn.style.setProperty('display', 'inline-flex', 'important');
-      bBurn.style.justifyContent = 'center';
-      if ((bBurn.textContent || '').indexOf('Scan Rent') !== -1 || (bBurn.textContent || '').length > 28) {
-        bBurn.textContent = '🔥 Burn Dead Dust';
+      if (el.children.length === 0 && (el.textContent || "").trim() === "Treasury Address") {
+        var nxt = el.nextElementSibling;
+        if (nxt) {
+          var codeBox = nxt.querySelector("code, span, input") || nxt;
+          if (codeBox.tagName === "INPUT" && !codeBox.value) codeBox.value = TREASURY_WALLET;
+          else if (codeBox.children.length === 0 && !(codeBox.textContent || "").trim()) codeBox.textContent = TREASURY_WALLET;
+        }
       }
-    }
-    var bTest = document.getElementById('testVerifiedSampleWalletBtn');
-    if (bTest && (bTest.textContent || '').length > 20) {
-      bTest.textContent = '👀 Demo Wallet';
+    });
+
+    /* C. Inject Cancel Anytime + Unchecked Auto-Billing Tickbox (Honesty Mandate) into Checkout Modal */
+    document.querySelectorAll("div, p, span").forEach(function(el) {
+      if (el.children.length <= 3) {
+        var t = (el.textContent || "").trim();
+        if ((t.indexOf("auto-billing") !== -1 || t.indexOf("Trench Pass ($1.99)") !== -1) && !el.closest(".rrs-honesty-box")) {
+          var modalCard = el.closest('[id*="Modal" i], [id*="modal" i], [class*="modal" i]');
+          if (modalCard && !modalCard.querySelector(".rrs-honesty-box")) {
+            /* Update subtitle to include Cancel Anytime */
+            modalCard.querySelectorAll("p, div, small").forEach(function(sub) {
+              if (sub.children.length === 0 && (sub.textContent || "").indexOf("auto-billing") !== -1) {
+                sub.textContent = sub.textContent.replace(/\$0 auto-billing/gi, "Cancel Anytime • Honesty Policy");
+              }
+            });
+            var hBox = document.createElement("div");
+            hBox.className = "rrs-honesty-box";
+            hBox.innerHTML =
+              '<div style="color:#14F195;font-weight:800;">🛡️ Honesty Mandate • Cancel Anytime • 24h Full Trench Access</div>' +
+              '<label>' +
+                '<input type="checkbox" id="rrs-optin-autobill-chk" />' +
+                '<span>Optional Auto-Billing Renewal (<b>OFF by default</b> — unlike other sites, we NEVER auto-bill unless you tick this box)</span>' +
+              '</label>';
+            /* Insert cleanly above the QR / Exact Amount section or at bottom of payment buttons */
+            var anchor = null;
+            modalCard.querySelectorAll("div, button").forEach(function(cand) {
+              var ct = (cand.textContent || "").trim();
+              if (!anchor && (ct.indexOf("Exact Amount to Send") === 0 || ct.indexOf("Ready to pay") !== -1)) {
+                anchor = cand;
+              }
+            });
+            if (anchor && anchor.parentElement) anchor.parentElement.insertBefore(hBox, anchor);
+            else modalCard.appendChild(hBox);
+          }
+        }
+      }
+    });
+
+    /* D. Ensure "Pay in SOL" & "Pay with Browser Wallet" always respond on Desktop PC */
+    document.querySelectorAll("button").forEach(function(btn) {
+      var bt = (btn.textContent || "").trim();
+      if ((bt === "Pay in SOL" || bt.indexOf("Pay with Browser Wallet") !== -1 || bt.indexOf("Pay with Connected Wallet") !== -1) && !btn.dataset.rrsPayWired) {
+        btn.dataset.rrsPayWired = "1";
+        btn.addEventListener("click", function() {
+          var modalCard = btn.closest('[id*="Modal" i], [id*="modal" i], [class*="modal" i]') || btn.parentElement.parentElement;
+          /* If user clicked "Pay in SOL" tab on desktop, also trigger wallet connect/pay if no native handler opened a popup within 350ms */
+          if (bt === "Pay in SOL") {
+            setTimeout(function() {
+              var payBtn = null;
+              if (modalCard) {
+                modalCard.querySelectorAll("button").forEach(function(b2) {
+                  var t2 = (b2.textContent || "").trim();
+                  if (t2.indexOf("Pay with Browser Wallet") !== -1 || t2.indexOf("Pay with Connected Wallet") !== -1) payBtn = b2;
+                });
+              }
+              if (payBtn && payBtn !== btn) payBtn.click();
+              else triggerDesktopSolanaPassPay(modalCard);
+            }, 180);
+          } else {
+            /* Backup handler if built-in click silently bailed */
+            setTimeout(function() {
+              var st = modalCard ? modalCard.innerText : "";
+              if (st.indexOf("Approve") === -1 && st.indexOf("Connecting") === -1 && st.indexOf("Opening") === -1) {
+                triggerDesktopSolanaPassPay(modalCard);
+              }
+            }, 400);
+          }
+        });
+      }
+    });
+
+    /* E. Keep Panel 1 top & bottom buttons distinct without moving them */
+    var bBurn = document.getElementById("burnerScanBtn");
+    if (bBurn && (bBurn.textContent || "").indexOf("Scan Rent") !== -1) {
+      bBurn.textContent = "🔥 Scan Burnable Dust Tokens";
     }
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', enforcePanel1Fit);
-  else enforcePanel1Fit();
-  [150, 500, 1200, 2500].forEach(function(ms) { setTimeout(enforcePanel1Fit, ms); });
+  /* F. True Wallet Disconnect (Honesty Mandate: revokes provider session + clears storage) */
+  var origDisc = window.disconnectAndClearWallet;
+  window.disconnectAndClearWallet = async function() {
+    try {
+      if (typeof origDisc === "function") origDisc();
+    } catch (_e) {}
+    try {
+      if (window.phantom && window.phantom.solana && window.phantom.solana.disconnect) await window.phantom.solana.disconnect();
+      if (window.solana && window.solana.disconnect) await window.solana.disconnect();
+      if (window.solflare && window.solflare.disconnect) await window.solflare.disconnect();
+    } catch (_e2) {}
+    try {
+      ["connectedWallet", "walletAddress", "rrs_wallet", "solana_wallet"].forEach(function(k) {
+        localStorage.removeItem(k);
+        sessionStorage.removeItem(k);
+      });
+    } catch (_e3) {}
+    var wi = document.getElementById("walletInput");
+    if (wi) wi.value = "";
+    var fb = document.getElementById("feeBadge");
+    if (fb) fb.textContent = "🔒 Wallet Truly Disconnected (Honesty Mandate: 0 Permissions Retained)";
+  };
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", enhanceModalsAndHonesty);
+  else enhanceModalsAndHonesty();
+  document.addEventListener("click", function() { setTimeout(enhanceModalsAndHonesty, 120); });
+  [300, 1000].forEach(function(ms) { setTimeout(enhanceModalsAndHonesty, ms); });
 })();
 </script>
 
