@@ -18216,8 +18216,8 @@ window.submitVisitorFeedbackNow = async function(){
   function fixPanelsAndFees() {
     document.querySelectorAll('h2, h3, div, span, header').forEach(function(el) {
       var tx = (el.textContent || '').trim();
-      if (tx.indexOf('Panel 1:') !== -1 || tx.indexOf('Panel 2:') !== -1) {
-        var card = el.closest('section, article, .panel, .card, [class*="panel" i], [class*="card" i]') || el.parentElement;
+      if (tx.indexOf('Panel 1:') !== -1 || tx.indexOf('Panel 2:') !== -1 || tx.indexOf('0.00204') !== -1) {
+        var card = (el.parentElement && el.parentElement.parentElement) || el.parentElement;
         if (card && !card.classList.contains('rrs-fixed-panel')) {
           card.classList.add('rrs-fixed-panel');
           if (card.parentElement) {
@@ -18313,7 +18313,7 @@ window.submitVisitorFeedbackNow = async function(){
   } else {
     boot();
   }
-  setTimeout(fixPanelsAndFees, 600);
+  setInterval(fixPanelsAndFees, 1000);
   setInterval(nukeCorner, 1200);
 })();
 </script>
