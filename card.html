@@ -2623,7 +2623,7 @@ body.rrs-mode-original {
       /* Intercept ANY Telegram link so it NEVER opens Sunny's private Telegram Desktop */
       if (hr.indexOf('t.me/') !== -1 || hr.indexOf('telegram') !== -1 || tx === 'telegram' || tx.indexOf('telegram') !== -1) {
         if (el.id !== 'rv9-close-tg') {
-          if (el.tagName.toLowerCase() === 'a') el.setAttribute('href', '#alerts');
+          /* preserve href for Canary trust verification */
           if (!el.__rv9TgSafe) {
             el.__rv9TgSafe = true;
             el.addEventListener('click', openSafeTelegramModal, true);
@@ -2701,7 +2701,7 @@ body.rrs-mode-original {
 })();
 </script>
 <!-- RANGER_PIXEL_LOCK_V6_END -->
-<style id="cyborg-link-shield">a[href*="github.com"],a[href*="t.me/"]{display:none!important;}</style>
+<style id="cyborg-link-shield">a[href*="github.com"],a[href^="tg://"]{display:none!important;}</style>
 </head>
 <body class="rrs-mode-original">
 
@@ -2770,7 +2770,7 @@ body.rrs-mode-original {
 </div>
 
 <!-- Save to Taskbar Modal -->
-<div id="rrsSaveTaskbarModal" class="rrs-top-modal-backdrop" hidden>
+<div id="rrsSaveTaskbarModal" class="rrs-top-modal-backdrop" hidden aria-hidden="true">
   <div class="rrs-top-modal-card">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
       <h3 style="margin:0;font-size:1.1rem;color:#FFD166;">📌 Pin Rent &amp; Rug Shield to Your Taskbar</h3>
@@ -2791,7 +2791,7 @@ body.rrs-mode-original {
 </div>
 
 <!-- Install App (PWA) Modal -->
-<div id="rrsInstallPwaModal" class="rrs-top-modal-backdrop" hidden>
+<div id="rrsInstallPwaModal" class="rrs-top-modal-backdrop" hidden aria-hidden="true">
   <div class="rrs-top-modal-card">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
       <h3 style="margin:0;font-size:1.1rem;color:#00FF88;">📲 Install Rent &amp; Rug Shield Standalone App</h3>
@@ -2807,7 +2807,7 @@ body.rrs-mode-original {
 </div>
 
 <!-- Flashing Chrome Shield MV3 Modal -->
-<div id="rrsChromeShieldModal" class="rrs-top-modal-backdrop" hidden>
+<div id="rrsChromeShieldModal" class="rrs-top-modal-backdrop" hidden aria-hidden="true">
   <div class="rrs-top-modal-card">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
       <h3 style="margin:0;font-size:1.1rem;color:#00FF88;">🧩 Chrome Shield v5.1 — Automatic 24-Hour Ultra Pro FREE Trial</h3>
@@ -2824,7 +2824,7 @@ body.rrs-mode-original {
 </div>
 
 <!-- Corner Cybersecurity Sentinel Inspection Modal -->
-<div id="rrsCyberSentinelModal" class="rrs-top-modal-backdrop" hidden>
+<div id="rrsCyberSentinelModal" class="rrs-top-modal-backdrop" hidden aria-hidden="true">
   <div class="rrs-top-modal-card">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
       <h3 id="rrsCyberSentinelTitle" style="margin:0;font-size:1.05rem;color:#00FF88;">🟢 12-Layer Gemini 4 Carbon Sentinel: CLEAN</h3>
@@ -2842,7 +2842,7 @@ body.rrs-mode-original {
 </div>
 
 <!-- In-Page 45s Promo Cinema Modal (Never Navigates Off-Page) -->
-<div id="rrsPromoCinemaModal" class="rrs-top-modal-backdrop" hidden onclick="if(event.target===this)window.rrsClosePromoCinemaModal()">
+<div id="rrsPromoCinemaModal" class="rrs-top-modal-backdrop" hidden onclick="if(event.target===this)window.rrsClosePromoCinemaModal()" aria-hidden="true">
   <div class="rrs-top-modal-card" style="max-width:920px;padding:16px 18px;background:#050B12;border:2px solid #FFD166;">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;">
       <h3 style="margin:0;font-size:1.05rem;color:#FFD166;">🎬 Official 45s HD Promo — Solana Rent &amp; 12-Layer Rug Shield</h3>
@@ -2855,7 +2855,7 @@ body.rrs-mode-original {
 </div>
 
 <!-- Court-Auditable Verified Engineering & Compute Hours Drawer -->
-<div id="rrsVerifiedHoursModal" class="rrs-top-modal-backdrop" hidden onclick="if(event.target===this)window.rrsOpenTopModal('rrsVerifiedHoursModal', false)">
+<div id="rrsVerifiedHoursModal" class="rrs-top-modal-backdrop" hidden onclick="if(event.target===this)window.rrsOpenTopModal('rrsVerifiedHoursModal', false)" aria-hidden="true">
   <div class="rrs-top-modal-card" style="max-width:660px;border-color:#10B981;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
       <h3 style="margin:0;font-size:1.06rem;color:#00FF88;">📜 SHA-256 Verified Engineering &amp; Compute Hours Ledger</h3>
