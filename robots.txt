@@ -1,68 +1,22 @@
-# Solana Rent & Rug Shield — Search & AI Discovery Crawler Policy
-# Canonical Sitemap & 11-Layer Solana Token Safety Audit Index
-
-User-agent: Twitterbot
+User-agent: *
 Allow: /
-Allow: /og-shield-v3.png
-Allow: /og-card-v2.png
-Allow: /audit/
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: TelegramBot
-Allow: /
-
-User-agent: Discordbot
-Allow: /
-
-User-agent: Googlebot
-Allow: /
-Allow: /audit/
-Allow: /mcp
-Allow: /.well-known/
-
-User-agent: Bingbot
-Allow: /
-Allow: /audit/
-Allow: /mcp
-Allow: /.well-known/
-
-User-agent: DuckDuckBot
-Allow: /
-Allow: /audit/
-Allow: /mcp
-Allow: /.well-known/
-
-User-agent: OAI-SearchBot
-Allow: /
-Allow: /audit/
-Allow: /mcp
-Allow: /.well-known/
-
-User-agent: PerplexityBot
-Allow: /
-Allow: /audit/
-Allow: /mcp
-Allow: /.well-known/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /openapi-public.json
 
 User-agent: GPTBot
 Allow: /
-Allow: /audit/
-Allow: /mcp
-Allow: /.well-known/
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
 
 User-agent: ClaudeBot
 Allow: /
-Allow: /audit/
-Allow: /mcp
-Allow: /.well-known/
 
-User-agent: *
+User-agent: Google-Extended
 Allow: /
-Allow: /audit/
-Allow: /mcp
-Allow: /.well-known/
 
 Sitemap: https://rentandrugshield.com/sitemap.xml
-Host: https://rentandrugshield.com

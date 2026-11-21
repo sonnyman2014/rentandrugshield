@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Enterprise B2B Solana Rug &amp; Shield API ($500/mo) | Rent &amp; Rug Shield</title>
-  <meta name="description" content="Institutional $500/mo B2B Solana 11-Layer Rug &amp; Honeypot Scoring API, /audit/&lt;mint&gt; feeds, native MCP server integration, 100+ RPS throughput, and 99.95% SLA." />
+  <meta name="description" content="Institutional $500/mo B2B Solana 12-Layer Rug &amp; Honeypot Scoring API, /audit/&lt;mint&gt; feeds, native MCP server integration, 100+ RPS throughput, and 99.95% SLA." />
   <link rel="canonical" href="https://rentandrugshield.com/enterprise-api.html" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Enterprise B2B Solana Rug &amp; Shield API ($500/mo) | Rent &amp; Rug Shield" />
-  <meta property="og:description" content="Sub-120ms 11-Layer Solana token security scoring, /audit/&lt;mint&gt; feeds, MCP integration, and 99.95% SLA for wallets, sniper bots, and AI agents." />
+  <meta property="og:description" content="Sub-120ms 12-Layer Solana token security scoring, /audit/&lt;mint&gt; feeds, MCP integration, and 99.95% SLA for wallets, sniper bots, and AI agents." />
   <meta property="og:url" content="https://rentandrugshield.com/enterprise-api.html" />
   <meta property="og:image" content="https://rentandrugshield.com/og-shield-v3.png?v=20261118dex6" />
   <meta property="og:image:secure_url" content="https://rentandrugshield.com/og-shield-v3.png?v=20261118dex6" />
@@ -24,7 +24,7 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Solana Rent & Rug Shield Enterprise B2B API",
-    "description": "High-throughput 11-Layer Solana token anti-rug scoring API, live /audit/<mint> feeds, wallet ATA rent recovery endpoints, and MCP server integration with 99.95% SLA.",
+    "description": "High-throughput 12-Layer Solana token anti-rug scoring API, live /audit/<mint> feeds, wallet ATA rent recovery endpoints, and MCP server integration with 99.95% SLA.",
     "brand": { "@type": "Brand", "name": "Solana Rent & Rug Shield" },
     "offers": {
       "@type": "Offer",
@@ -263,22 +263,50 @@
 <link id="dynamic-favicon" rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=20261119dex6" />
 <link rel="shortcut icon" href="/favicon.ico?v=20261119dex6" />
 <link id="dynamic-apple-icon" rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20261119dex6" />
+<style id="rrs-enterprise-obsidian-gold-css">
+    :root {
+      --bg: #05070B !important;
+      --card: #090D16 !important;
+      --card-alt: #060910 !important;
+      --border: rgba(255, 208, 0, 0.38) !important;
+      --gold: #FFD000 !important;
+    }
+    body {
+      background: radial-gradient(circle at 50% 0%, #101624 0%, #05070B 75%) !important;
+      background-color: #05070B !important;
+      color: #FFFFFF !important;
+    }
+    .topbar {
+      background: #05070B !important;
+      border-bottom: 1.5px solid rgba(255, 208, 0, 0.45) !important;
+    }
+    .hero, .card {
+      background: linear-gradient(180deg, #0C111C 0%, #05070B 100%) !important;
+      border: 1.5px solid rgba(255, 208, 0, 0.42) !important;
+    }
+    .price-big { color: #FFD000 !important; }
+    .btn-emerald, .nav-pill-cta {
+      background: linear-gradient(90deg, #D4AF37 0%, #FFD000 55%, #FFE45E 100%) !important;
+      border-color: #FFD000 !important;
+      color: #05070B !important;
+      font-weight: 900 !important;
+    }
+    .feature-list li { color: #FFFFFF !important; }
+    </style>
 </head>
 <body>
   <header class="topbar">
-    <div class="topbar-inner">
-      <a href="/" class="brand">
-        <img src="/dex6-official-shield-192.png?v=20261119dex6" alt="Solana Rent &amp; Rug Shield" style="width:34px;height:34px;border-radius:9px;border:1.5px solid #10B981;" />
-        <span>Solana <span style="color:#10B981;">Rent &amp; Rug Shield</span> • Enterprise API</span>
+    <div class="topbar-inner" style="max-width:1360px;">
+      <a href="/" class="brand" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;">
+        <img id="headerBrandCrestImg" src="/assets/rr_badge_exact.jpg" alt="SOLANA RENT &amp; RUG SHIELD" style="height:44px;width:auto;object-fit:contain;" />
+        <span style="font-weight:900;font-size:1.05rem;color:#FFFFFF;"><span style="color:#FFD000;">SOLANA</span> RENT &amp; RUG SHIELD</span>
       </a>
-      <div id="rrsEnterpriseNavControls" class="rrs-onpage-nav-bar" aria-label="View Navigation"><button type="button" id="entNavBackBtn" class="rrs-nav-ctrl-btn" onclick="window.rrsNavAction('back')">← Back</button><a href="/" id="entNavHomeBtn" class="rrs-nav-ctrl-btn rrs-nav-ctrl-home" onclick="window.rrsNavAction('home');return false;">🏠 Home</a><button type="button" id="entNavForwardBtn" class="rrs-nav-ctrl-btn" onclick="window.rrsNavAction('forward')">Forward →</button></div>
-      <nav class="nav-links" aria-label="Enterprise Navigation">
-        <a href="/" class="nav-pill">🛡️ Live Scanner</a>
-        <a href="/app.html" class="nav-pill">📱 Mobile App</a>
-        <a href="/audit" class="nav-pill">📊 /audit/&lt;mint&gt; Hub</a>
-        <a href="/mcp.json" class="nav-pill">🤖 MCP Manifest</a>
-        <a href="#enterprise-onboarding" class="nav-pill nav-pill-cta">⚡ Activate $500/mo API</a>
-      
+      <nav class="nav-links" aria-label="Enterprise Navigation" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <span id="rrsHeaderSolPricePill" style="display:inline-flex;align-items:center;padding:5px 11px;border-radius:999px;background:rgba(255,208,0,0.12);border:1px solid #FFD000;color:#FFD000;font-family:'JetBrains Mono',monospace;font-size:0.79rem;font-weight:800;">SOL $70.43 (+3.3%)</span>
+        <a href="/?ui=original" class="nav-pill" style="border-color:rgba(255,208,0,0.45);color:#FFFFFF;">Emerald</a>
+        <a href="/?ui=institutional" class="nav-pill" style="border-color:#FFD000;color:#FFD000;">Institutional</a>
+        <a href="/?ui=institutional#chrome-extension" class="nav-pill" style="border-color:#FFD000;color:#FFD000;">🧩 Chrome v5.1 Extension</a>
+        <a href="#enterprise-onboarding" class="nav-pill nav-pill-cta">Connect Wallet</a>
         <a class="nav-pill" href="https://x.com/SolRentClaim" target="_blank" rel="noopener noreferrer">𝕏 (Twitter)</a>
         <a class="nav-pill" href="https://t.me/Bigmoonbag50bot" target="_blank" rel="noopener noreferrer">Telegram</a>
         <a class="nav-pill" href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -294,9 +322,9 @@
         <span class="badge badge-cyan">SUB-120MS HELIUS MAINNET</span>
         <span class="badge badge-gold">MCP + REST + WEBHOOKS • 99.95% SLA</span>
       </div>
-      <h1>High-Throughput 11-Layer <button type="button" id="entHeroLayer11InfoBtn" class="rrs-layer11-info-btn" title="We launched at 10 layers and already shipped Layer 11 (Block-0 Sybil Cluster Defense) live at $0 extra cost during active passes." aria-label="11-Layer Upgrade Info">ⓘ</button> Solana Rug &amp; Shield Scoring for Wallets, Trading Bots &amp; AI Agents</h1>
+      <h1>High-Throughput 12-Layer <button type="button" id="entHeroLayer11InfoBtn" class="rrs-layer11-info-btn" title="We launched at 10 layers and already shipped Layer 11 (Block-0 Sybil Cluster Defense) live at $0 extra cost during active passes." aria-label="12-Layer Upgrade Info">ⓘ</button> Solana Rug &amp; Shield Scoring for Wallets, Trading Bots &amp; AI Agents</h1>
       <p style="margin:0; font-size:1.02rem; color:var(--muted); max-width:920px;">
-        Protect automated swap routers, Telegram trading terminals, non-custodial wallets, and autonomous MCP agents before execution. Screen any Solana SPL or Token-2022 launch across all 11 adaptive pre-buy security layers in under 120ms.
+        Protect automated swap routers, Telegram trading terminals, non-custodial wallets, and autonomous MCP agents before execution. Screen any Solana SPL or Token-2022 launch across all 12 adaptive pre-buy security layers in under 120ms.
       </p>
 
       <div class="price-banner">
@@ -325,7 +353,7 @@
           <div class="kpi-lbl">Dedicated Burst Throughput</div>
         </div>
         <div class="kpi-box">
-          <div class="kpi-val jb-mono">11-Layer <button type="button" id="entKpiLayer11InfoBtn" class="rrs-layer11-info-btn" title="We launched at 10 layers and already shipped Layer 11 (Block-0 Sybil Cluster Defense) live at $0 extra cost during active passes." aria-label="11-Layer Upgrade Info">ⓘ</button></div>
+          <div class="kpi-val jb-mono">12-Layer <button type="button" id="entKpiLayer11InfoBtn" class="rrs-layer11-info-btn" title="We launched at 10 layers and already shipped Layer 11 (Block-0 Sybil Cluster Defense) live at $0 extra cost during active passes." aria-label="12-Layer Upgrade Info">ⓘ</button></div>
           <div class="kpi-lbl">LP Burn, Authorities, Bundles &amp; CPI Sim</div>
         </div>
         <div class="kpi-box">
@@ -337,7 +365,7 @@
 
         <section id="institutional-api-tiers" aria-label="Institutional API &amp; Pass Tiers" style="margin:0 0 24px 0;">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-        <h2 style="font-size:1.18rem; font-weight:800; color:#F8FAFC; margin:0;">Institutional Pass &amp; API Pricing Ladder ($19.99 / $49.99 / $99 / $500)</h2>
+        <h2 style="font-size:1.18rem; font-weight:800; color:#F8FAFC; margin:0;">Institutional Pass &amp; API Pricing Ladder (0% Free / $19.99 / $99 / $500)</h2>
         <span style="font-size:0.84rem; font-weight:700; color:#6EE7B7;">New layers included free during active pass, $0 auto-billing</span>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(235px, 1fr)); gap:14px; margin-bottom:10px;">
@@ -347,7 +375,7 @@
             <h3 style="margin:4px 0; font-size:1.08rem; color:#F8FAFC;">30-Day Trader Pro</h3>
             <div class="jb-mono" style="font-size:1.5rem; font-weight:800; color:#38BDF8;">$19.99/mo <span style="font-size:0.82rem; color:#94A3B8; font-weight:500;">(Reg. <s>$39.99/mo</s>)</span></div>
             <ul class="feature-list" style="margin-top:8px;">
-              <li>✅ <b>Unlimited Web &amp; Telegram</b> 11-Layer Scans</li>
+              <li>✅ <b>Unlimited Web &amp; Telegram</b> 12-Layer Scans</li>
               <li>✅ <b>0% Rent Claim Fee</b> during active pass</li>
               <li>✅ Layer 11 Block-0 Sybil Cluster Defense included</li>
             </ul>
@@ -363,7 +391,7 @@
             <ul class="feature-list" style="margin-top:8px;">
               <li>✅ <b>15,000 API calls/mo</b> + Real-Time Rug Webhooks</li>
               <li>✅ Instant <code class="jb-mono">X-API-Key</code> + <code class="jb-mono">x402</code> compatibility</li>
-              <li>✅ Unlimited Web &amp; Telegram 11-Layer Audits</li>
+              <li>✅ Unlimited Web &amp; Telegram 12-Layer Audits</li>
             </ul>
           </div>
           <a href="/?checkout_tier=ultra_pro_4999" id="entBtnTier4999" style="margin-top:10px; display:block; text-align:center; padding:9px 12px; border-radius:8px; border:1.5px solid #FACC15; background:rgba(234,179,8,0.20); color:#FEF9C3; font-weight:800; text-decoration:none;">Activate $49.99/mo Sniper API →</a>
@@ -389,7 +417,7 @@
             <h3 style="margin:4px 0; font-size:1.08rem; color:#F8FAFC;">Enterprise Unlimited API</h3>
             <div class="jb-mono" style="font-size:1.5rem; font-weight:800; color:#14F195;">$500/mo <span style="font-size:0.82rem; color:#94A3B8; font-weight:500;">(Reg. <s>$999/mo</s>)</span></div>
             <ul class="feature-list" style="margin-top:8px;">
-              <li>✅ <b>Unlimited 100+ RPS</b> 11-Layer Scoring &amp; 99.95% SLA</li>
+              <li>✅ <b>Unlimited 100+ RPS</b> 12-Layer Scoring &amp; 99.95% SLA</li>
               <li>✅ Dedicated MCP Server &amp; <code class="jb-mono">/audit/&lt;mint&gt;</code> feeds</li>
               <li>✅ Custom rule thresholds &amp; priority engineering</li>
             </ul>
@@ -398,17 +426,17 @@
         </div>
       </div>
       <div style="font-size:0.84rem; color:#CBD5E1; text-align:center;">
-        Micro-scan &amp; starter options preserved: <a href="/" style="color:#6EE7B7; font-weight:700;">1st Scan Free &amp; 0% 1st Claim (2,039,280 lamports) • $0.10 Extra Single Scan (Reg. $0.99) • $1.99 24h Trench Pass (Reg. $4.99)</a>
+        Micro-scan &amp; starter options preserved: <a href="/" style="color:#6EE7B7; font-weight:700;">1st Scan Free &amp; 0% 1st Claim (2,039,280 lamports) • $19.99/mo 30-Day Trader Pro (Unlimited Web/TG Scans) • $99/mo Quant Desk (<120ms SLA)</a>
       </div>
     </section>
 
     
-    <section id="institutional-11-layer-spec" aria-label="11-Layer Institutional Security Specification" style="margin:0 0 24px 0;">
+    <section id="institutional-12-layer-spec" aria-label="12-Layer Institutional Security Specification" style="margin:0 0 24px 0;">
       <div class="card" style="border:1.5px solid rgba(20,241,149,0.55); background:linear-gradient(165deg, rgba(9,18,34,0.98), rgba(6,28,28,0.88));">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
           <div>
             <div style="font-size:0.78rem; font-weight:800; color:#6EE7B7; letter-spacing:0.04em; text-transform:uppercase;">CARBON CYBERSECURITY CERTIFIED • 14,640H (7.32 WORK-YEARS) R&amp;D</div>
-            <h2 style="margin:4px 0 0; font-size:1.25rem; color:#F8FAFC;">Full 11-Layer Institutional Pre-Buy Specification <button type="button" id="entSpecLayer11InfoBtn" class="rrs-layer11-info-btn" title="We launched at 10 layers and already shipped Layer 11 (Block-0 Sybil Cluster Defense) live at $0 extra cost during active passes." aria-label="11-Layer Upgrade Info">ⓘ</button></h2>
+            <h2 style="margin:4px 0 0; font-size:1.25rem; color:#F8FAFC;">Full 12-Layer Institutional Pre-Buy Specification <button type="button" id="entSpecLayer11InfoBtn" class="rrs-layer11-info-btn" title="We launched at 10 layers and already shipped Layer 11 (Block-0 Sybil Cluster Defense) live at $0 extra cost during active passes." aria-label="12-Layer Upgrade Info">ⓘ</button></h2>
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <a href="mailto:enterprise@rentandrugshield.com" id="entSpecMailEnterpriseBtn" class="nav-pill" style="border-color:#14F195; color:#6EE7B7;">✉️ enterprise@rentandrugshield.com</a>
@@ -449,7 +477,7 @@
 
     <section class="grid-3" aria-label="Enterprise B2B Capabilities">
       <div class="card" style="border-color:rgba(16,185,129,0.45);">
-        <h3 style="color:#6EE7B7; font-size:1.05rem;">🛡️ 11-Layer Adaptive Pre-Buy Rug &amp; Honeypot Engine</h3>
+        <h3 style="color:#6EE7B7; font-size:1.05rem;">🛡️ 12-Layer Adaptive Pre-Buy Rug &amp; Honeypot Engine</h3>
         <ul class="feature-list">
           <li>✅ Live Jupiter sell-side honeypot &amp; slippage trap simulation</li>
           <li>✅ Canonical PumpSwap / Raydium LP burn &amp; lock verification</li>
@@ -523,7 +551,7 @@
 }
 
 # Exposed Enterprise MCP Tools:
-# - audit_solana_token (mint -> 0-100 score + 11-layer adaptive breakdown)
+# - audit_solana_token (mint -> 0-100 score + 12-layer adaptive breakdown)
 # - scan_solana_wallet_rent     (wallet -> reclaimable SPL / T-2022 ATAs)
 # - build_close_account_tx      (non-custodial 0x09 CloseAccount batch)</pre>
       </div>
@@ -695,7 +723,7 @@
   </script>
 
 <script id="rrs-0x107-telemetry-and-nav-js">
-/* Solana Rent & Rug Shield - 11-Layer Info Popover, View Navigation & Button Click Telemetry */
+/* Solana Rent & Rug Shield - 12-Layer Info Popover, View Navigation & Button Click Telemetry */
 (function () {
   if (window.__RRS_0X107_TELEMETRY_LOADED) return;
   window.__RRS_0X107_TELEMETRY_LOADED = true;
@@ -843,7 +871,7 @@
     pop = document.createElement("div");
     pop.id = "rrsLayer11GlobalPopover";
     pop.setAttribute("role", "dialog");
-    pop.setAttribute("aria-label", "11-Layer Defense Upgrade Notice");
+    pop.setAttribute("aria-label", "12-Layer Defense Upgrade Notice");
     pop.innerHTML =
       '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">' +
       '<span style="font-size:12px;font-weight:900;color:#14F195;letter-spacing:0.02em;">🛡️ LAYER 11 SHIPPED LIVE • $0 EXTRA</span>' +
@@ -995,7 +1023,7 @@
         '<a href="/" class="rrs-nav-ctrl-btn rrs-nav-ctrl-home" id="modalNavHome_' + modalIds[i] + '" onclick="window.rrsNavAction(\'home\');return false;">🏠 Home</a>' +
         '<button type="button" class="rrs-nav-ctrl-btn" id="modalNavFwd_' + modalIds[i] + '" onclick="window.rrsNavAction(\'forward\')">Forward →</button>' +
         "</div>" +
-        '<span style="font-size:11px;color:#6EE7B7;font-weight:700;">11-Layer Shield</span>';
+        '<span style="font-size:11px;color:#6EE7B7;font-weight:700;">12-Layer Shield</span>';
       inner.insertBefore(strip, inner.firstChild);
     }
   }
@@ -1062,5 +1090,14 @@
 })();
 
 </script>
+<script id="rrs-ent-sol-pill-js">
+    fetch("/api/live-market-ticker?t=" + Date.now(), {cache:"no-store"}).then(function(r){return r.json();}).then(function(d){
+      var p = document.getElementById("rrsHeaderSolPricePill");
+      if (p && d && d.sol && d.sol.price_usd) {
+        var c = Number(d.sol.change_24h || 0);
+        p.textContent = "SOL $" + Number(d.sol.price_usd).toFixed(2) + " (" + (c>=0?"+":"") + c.toFixed(1) + "%)";
+      }
+    }).catch(function(){});
+    </script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Solana Rent & Rug Shield | Public AI Agent Discovery API",
+    "version": "5.1.0",
+    "description": "Read-only Helius Mainnet 12-Layer Solana token rug audit and 0x09 rent recovery discovery endpoint for autonomous AI agents, MCP clients, and trading desks."
+  },
+  "servers": [
+    {
+      "url": "https://rentandrugshield.com"
+    }
+  ],
+  "paths": {
+    "/api/scan-token": {
+      "post": {
+        "summary": "Run 12-Layer Forensic Rug & Inner-CPI Drainer Audit on a Solana Mint",
+        "externalDocs": {
+          "url": "https://rentandrugshield.com"
+        }
+      }
+    },
+    "/api/scan-wallet": {
+      "post": {
+        "summary": "Read-Only 0x09 Reclaimable SOL Rent Discovery (Zero Wallet Connect)",
+        "externalDocs": {
+          "url": "https://rentandrugshield.com"
+        }
+      }
+    }
+  }
+}

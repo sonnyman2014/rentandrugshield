@@ -1,0 +1,12 @@
+{
+  "name": "Solana Rent & Rug Shield",
+  "url": "https://rentandrugshield.com",
+  "llms_txt": "https://rentandrugshield.com/llms.txt",
+  "openapi": "https://rentandrugshield.com/openapi-public.json",
+  "capabilities": [
+    "solana_rent_reclaim_0x09",
+    "12_layer_rug_audit",
+    "kamikaze_cpi_sandbox",
+    "chrome_extension_v5_1"
+  ]
+}

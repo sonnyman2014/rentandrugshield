@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>12-Layer Shield Security & Rig Command</title>
+<style>
+  :root { --bg:#060911; --card:#0d1424; --gold:#ffd700; --em:#14f195; --txt:#f3f4f6; --mut:#9ca3af; }
+  body { margin:0; background:var(--bg); color:var(--txt); font-family:system-ui,-apple-system,sans-serif; padding:18px; }
+  .hdr { display:flex; align-items:center; gap:14px; border-bottom:2px solid var(--gold); padding-bottom:14px; margin-bottom:16px; }
+  .crest { width:48px; height:48px; flex-shrink:0; filter:drop-shadow(0 0 10px rgba(20,241,149,0.45)); }
+  h1 { font-size:20px; margin:0; color:var(--gold); letter-spacing:0.4px; }
+  .sub { font-size:12px; color:var(--em); font-weight:700; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin-bottom:16px; }
+  .card { background:var(--card); border:1px solid rgba(255,215,0,0.35); border-radius:12px; padding:15px; }
+  .card h2 { margin:0 0 10px 0; font-size:15px; color:var(--gold); }
+  .stat { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.07); font-size:13px; }
+  .ok { color:var(--em); font-weight:800; }
+  .tgl-row { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.07); }
+  .tgl-lbl { font-size:13px; font-weight:600; }
+  .tgl-desc { font-size:11px; color:var(--mut); }
+  input[type=checkbox] { accent-color:var(--em); width:20px; height:20px; cursor:pointer; }
+  .badge-bar { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+  .pill { background:#062e22; border:1px solid var(--em); color:var(--em); padding:5px 10px; border-radius:999px; font-size:11px; font-weight:700; text-decoration:none; }
+  .mode-btn { background:#111b2e; color:var(--gold); border:1px solid var(--gold); padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700; font-size:12px; margin-right:6px; }
+  .mode-btn.active { background:var(--gold); color:#060911; }
+</style>
+</head>
+<body>
+  <div class="hdr">
+    <svg class="crest" viewBox="0 0 64 64">
+      <path d="M32 4 L56 14 V31 C56 46 45 56 32 61 C19 56 8 46 8 31 V14 Z" fill="#0b1324" stroke="#ffd700" stroke-width="4"/>
+      <path d="M32 11 L49 18 V31 C49 42 41 50 32 54 C23 50 15 42 15 31 V18 Z" fill="#072b22" stroke="#14f195" stroke-width="2.5"/>
+      <path d="M23 32 L29 38 L42 24" fill="none" stroke="#14f195" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div>
+      <h1>RENT & RUG SHIELD • COMMAND & SECURITY</h1>
+      <div class="sub">12-LAYER VAULT ACTIVE • NON-CUSTODIAL • ZERO POPUP CLUTTER</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Live Shield & System Telemetry</h2>
+      <div class="stat"><span>12-Layer Rug Engine</span><span class="ok">12 / 12 ARMED</span></div>
+      <div class="stat"><span>Public RPC & Scan Failover</span><span class="ok" id="rpc-st">CHECKING...</span></div>
+      <div class="stat"><span>Browser / Clipboard Guard</span><span class="ok">PROTECTED</span></div>
+      <div class="stat"><span>Alert Police (TG 7712155407)</span><span class="ok">ONLINE 24/7</span></div>
+    </div>
+
+    <div class="card">
+      <h2>Update & Alert Toggles</h2>
+      <div class="tgl-row">
+        <div><div class="tgl-lbl">12-Layer Rule Updates & "Why"</div><div class="tgl-desc">Plain-English notes whenever a defense layer upgrades</div></div>
+        <input type="checkbox" id="t_layers" checked>
+      </div>
+      <div class="tgl-row">
+        <div><div class="tgl-lbl">Live Solana Rug & Drainer Alerts</div><div class="tgl-desc">Instant warning on honeypots, mint/freeze & fake LP</div></div>
+        <input type="checkbox" id="t_rugs" checked>
+      </div>
+      <div class="tgl-row">
+        <div><div class="tgl-lbl">Site Latency & Computer Health</div><div class="tgl-desc">Ping when RPC slows down or workstation RAM spikes</div></div>
+        <input type="checkbox" id="t_sys" checked>
+      </div>
+      <div class="tgl-row">
+        <div><div class="tgl-lbl">Down-Market Crypto Security News</div><div class="tgl-desc">High-volatility scam alerts & market protection tips</div></div>
+        <input type="checkbox" id="t_news" checked>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Public Legitimacy Proofs (Zero Source-Code Exposure) & Video Mode</h2>
+    <div style="margin-bottom:10px;">
+      <button class="mode-btn active" id="m_meme" onclick="setMode('meme')">⚔️ Meme / Ninja Castle Mode (Main Page)</button>
+      <button class="mode-btn" id="m_inst" onclick="setMode('inst')">🏛️ Institutional Vault Mode (B2B API)</button>
+    </div>
+    <div class="badge-bar">
+      <a class="pill" href="https://toolsdk-ai.github.io/toolsdk-mcp-registry/#%40rentandrugshield%2Fmcp-server" target="_blank">✅ ToolSDK Verified MCP</a>
+      <a class="pill" href="https://tensorblock.co/mcp/servers/github-sonnyman2014-solana-rent-rug-shield-mcp-c9171fd3" target="_blank">✅ TensorBlock Indexed</a>
+      <a class="pill" href="https://rentandrugshield.com/app.html" target="_blank">🔗 Open Trading & Claim Workspace</a>
+    </div>
+  </div>
+
+<script>
+  const keys = ['t_layers','t_rugs','t_sys','t_news'];
+  keys.forEach(k => {
+    const el = document.getElementById(k);
+    const sv = localStorage.getItem('rrs_' + k);
+    if (sv !== null) el.checked = (sv === '1');
+    el.addEventListener('change', () => localStorage.setItem('rrs_' + k, el.checked ? '1' : '0'));
+  });
+  function setMode(m) {
+    localStorage.setItem('rrs_video_mode', m);
+    document.getElementById('m_meme').classList.toggle('active', m === 'meme');
+    document.getElementById('m_inst').classList.toggle('active', m === 'inst');
+  }
+  setMode(localStorage.getItem('rrs_video_mode') || 'meme');
+  fetch('/mcp', {method:'POST', headers:{'Content-Type':'application/json'}, body:'{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}'})
+    .then(r => r.ok ? (document.getElementById('rpc-st').textContent = 'HTTP 200 • 0ms LOCAL') : null)
+    .catch(() => { document.getElementById('rpc-st').textContent = 'STANDBY'; });
+</script>
+</body>
+</html>

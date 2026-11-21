@@ -79,3 +79,22 @@ staging_meme_vs_institution.html
 *.db
 .env*
 *.tmp
+
+# Confidential IP Vault & Internal Marketing War Room (Keep Strictly Local)
+/LEGAL_IP_VAULT/
+LEGAL_IP_VAULT/
+/marketing_war_room/
+marketing_war_room/
+/staged_previews/
+/promo_castle_bubbled_preview.mp4
+/front_shield_sample_1_on_x_preview.jpg
+/assets/castle_promo_master_UNTOUCHED_ORIG.mp4
+
+# Public OpenAPI, Extension v5.1 Zips & Hosted Social OG Cards
+!/openapi-public.json
+!/SolanaRentRugShield_Chrome_Extension_v51.zip
+!/SolanaRentRugShield_Chrome_Extension.zip
+!/rentshield-chrome-extension.zip
+!/rent-rug-shield-chrome-extension.zip
+!/assets/social/
+!/assets/social/*.png
