@@ -98,3 +98,5 @@ marketing_war_room/
 !/rent-rug-shield-chrome-extension.zip
 !/assets/social/
 !/assets/social/*.png
+!/live_intel_feed.json
+!/static/live_intel_feed.json
