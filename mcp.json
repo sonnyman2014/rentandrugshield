@@ -16,7 +16,7 @@
     "2024-11-05"
   ],
   "endpoint": "https://rentandrugshield.com/mcp",
-  "liveStreamableHttpEndpoint": "https://arena-adsl-camps-quantum.trycloudflare.com/mcp",
+  "liveStreamableHttpEndpoint": "https://dairy-mine-venture-uri.trycloudflare.com/mcp",
   "discovery": {
     "mcp": "https://rentandrugshield.com/.well-known/mcp.json",
     "serverCard": "https://rentandrugshield.com/.well-known/mcp/server-card.json",
