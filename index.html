@@ -3810,7 +3810,7 @@ body.rrs-mode-institutional #rrsInstPricingScrollBtn {
 <style id="rrsStep2HudAndCharterCss">
   /* High-Contrast Smoked-Black + Emerald/White Video HUD Plate (preserves inline display:none at 17.8-20.0s) */
   body .rrs-vault-hud-overlay {
-    background: linear-gradient(180deg, rgba(2, 6, 10, 0.92) 0%, , 13, 19, 0.89) 100%) !important;
+    background: linear-gradient(180deg, rgba(2, 6, 10, 0.92) 0%, rgba(7, 13, 19, 0.89) 100%) !important;
     border: 1.5px solid rgba(20, 241, 149, 0.78) !important;
     border-left: 5px solid #14F195 !important;
     border-radius: 12px !important;
@@ -3909,6 +3909,23 @@ body.rrs-mode-institutional #rrsInstPricingScrollBtn {
     text-transform: uppercase;
   }
 </style>
+<style>
+/* RRS_V3_FULLFRAME_CONTAIN_SHIELD_OVERRIDE */
+html body #retailVaultCoverGate,
+html body #rrsVaultCoverGate {
+  padding: 0 !important;
+  background: #05070B !important;
+}
+html body #retailVaultCoverGate .rrs-vault-exact-badge,
+html body #rrsVaultCoverGate .rrs-vault-exact-badge {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  border-radius: inherit !important;
+}
+</style>
 </head>
 <body class="rrs-mode-original">
 <header role="banner" style="display:block!important;"><nav id="rrs-official-verify-links" style="display:flex!important;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;padding:6px 12px;font-size:12px;background:#070b14;border-bottom:1px solid #1e293b;"><a href="https://x.com/RentRugShield" target="_blank" rel="noopener" style="display:inline-block!important;visibility:visible!important;color:#10b981;text-decoration:none;">Official X</a><a href="https://t.me/RentAndRugShieldBot" target="_blank" rel="noopener" style="display:inline-block!important;visibility:visible!important;color:#10b981;text-decoration:none;">Telegram</a><a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener" style="display:inline-block!important;visibility:visible!important;color:#10b981;text-decoration:none;">GitHub</a><a href="/openapi.json" style="display:inline-block!important;visibility:visible!important;color:#fbbf24;text-decoration:none;">OpenAPI Docs</a></nav></header>
@@ -3923,17 +3940,16 @@ body.rrs-mode-institutional #rrsInstPricingScrollBtn {
       </span>
     </a>
 
-    <!-- Right Header: Live SOL Price Pill, Emerald | Institutional Switch, Chrome v5.1 Extension, Gold Connect Wallet -->
-    <div class="rrs-top-actions" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-      <span id="rrsHeaderSolPricePill" class="rrs-sol-pill" style="display:inline-flex;align-items:center;padding:5px 11px;border-radius:999px;background:rgba(255,208,0,0.12);border:1px solid #FFD000;color:#FFD000;font-family:'JetBrains Mono',monospace;font-size:0.80rem;font-weight:800;white-space:nowrap;">SOL $70.43 (+3.3%)</span>
-
-      <div class="rrs-mode-pill" role="group" aria-label="Emerald or Institutional Theme Switch" style="display:inline-flex;align-items:center;background:#0B101B;border:1px solid rgba(255,208,0,0.45);border-radius:999px;padding:2px;">
-        <button type="button" id="btnSwitchOriginalUi" class="rrs-mode-btn active" aria-pressed="true" onclick="window.rrsSelectUiMode('original')" style="padding:4px 10px;border-radius:999px;border:none;font-size:0.78rem;font-weight:800;cursor:pointer;">Emerald</button>
-        <span style="color:rgba(255,208,0,0.55);font-weight:800;font-size:0.76rem;padding:0 2px;">|</span>
-        <button type="button" id="btnSwitchInstUi" class="rrs-mode-btn" aria-pressed="false" onclick="window.rrsSelectUiMode('institutional')" style="padding:4px 10px;border-radius:999px;border:none;font-size:0.78rem;font-weight:800;cursor:pointer;">Institutional</button>
+    <!-- Right Header: Emerald Mode | Institutional Mode Switch, Chrome v5.1 Extension, Gold Connect Wallet -->
+    <div class="rrs-top-actions" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div class="rrs-mode-switch-wrap" style="display:inline-flex;flex-direction:column;align-items:center;gap:2px;">
+        <div class="rrs-mode-pill" role="group" aria-label="Switch Site Layout: Emerald Mode or Institutional Mode" style="display:inline-flex;align-items:center;background:#0B101B;border:1px solid rgba(255,208,0,0.52);border-radius:999px;padding:2px;">
+          <button type="button" id="btnSwitchOriginalUi" class="rrs-mode-btn active" aria-pressed="true" onclick="window.rrsSelectUiMode('original')" style="padding:4px 11px;border-radius:999px;border:none;font-size:0.78rem;font-weight:800;cursor:pointer;">Emerald Mode</button>
+          <span style="color:rgba(255,208,0,0.55);font-weight:800;font-size:0.76rem;padding:0 3px;">|</span>
+          <button type="button" id="btnSwitchInstUi" class="rrs-mode-btn" aria-pressed="false" onclick="window.rrsSelectUiMode('institutional')" style="padding:4px 11px;border-radius:999px;border:none;font-size:0.78rem;font-weight:800;cursor:pointer;">Institutional Mode</button>
+        </div>
+        <span class="rrs-mode-subcaption" style="font-size:9.5px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#94A3B8;line-height:1;">Switch Site Layout</span>
       </div>
-
-      <button type="button" id="btnTopTestAlert" class="rrs-act-btn" style="padding:6px 11px;border-radius:8px;border:1px solid rgba(255,208,0,0.55);color:#FFD000;background:rgba(255,208,0,0.08);font-size:0.80rem;font-weight:800;cursor:pointer;" onclick="window.rrsCycleTestAlert()">⚡ Test Alert</button>
 
       <button type="button" id="btnAddChromeShieldTop" class="rrs-act-btn chrome-flash" style="padding:6px 12px;border-radius:8px;border:1.5px solid #FFD000;color:#FFD000;background:rgba(255,208,0,0.10);font-size:0.80rem;font-weight:800;cursor:pointer;" onclick="window.rrsOpenChromeShieldModal(true)">🧩 Chrome v5.1 Extension</button>
 
@@ -4448,7 +4464,7 @@ body.rrs-mode-institutional #rrsInstPricingScrollBtn {
     <!-- CLEAN HERO HEADLINE + GOLD VIDEO CALLOUT BAR (ZERO GREEN/BLUE SUB-HEADLINE BULLET BOXES) -->
     <div class="rrs-hero-singleline-wrap">
       <h1 class="inst-headline inst-headline-single">Reclaim Trapped <span style="color:#FFD000;">SOL Rent</span> &amp; Block <span style="color:#FFD000;">12-Layer Rugs</span></h1>
-      <div id="rrsVideoPulseCalloutBar" class="rrs-video-callout-strip" onclick="document.getElementById('instWidescreenVaultSection') && document.getElementById('instWidescreenVaultSection').scrollIntoView({behavior:'smooth'}); window.rrsPlayVaultByPrefix && window.rrsPlayVaultByPrefix('inst');" style="cursor:pointer;margin:10px auto 12px auto;">⚡ 30-DAY FREE PRO EXTENSION TRIAL • WATCH OUR 34s CARBON AI VAULT TOUR BELOW ⚡</div>
+      <div id="rrsVideoPulseCalloutBar" class="rrs-video-callout-strip" role="group" onclick="document.getElementById('instWidescreenVaultSection') && document.getElementById('instWidescreenVaultSection').scrollIntoView({behavior:'smooth'}); window.rrsPlayVaultByPrefix && window.rrsPlayVaultByPrefix('inst');" style="cursor:pointer;margin:10px auto 12px auto;">⚡ <span id="rrsCalloutOpenTrialSpan" role="button" tabindex="0" onclick="event.stopPropagation(); if(window.rrsOpenTrialModal) window.rrsOpenTrialModal();" style="text-decoration:underline;text-underline-offset:3px;cursor:pointer;">30-DAY FREE PRO EXTENSION TRIAL</span> • WATCH OUR 34s CARBON AI VAULT TOUR BELOW ⚡</div>
     </div>
 
     <!-- ROW 1: TWO STREAMLINED INSTITUTIONAL SPEED CARDS ("BINGO BANGO" PRO SPEED) -->
@@ -4537,7 +4553,7 @@ body.rrs-mode-institutional #rrsInstPricingScrollBtn {
           <ul class="rrs-pitch-list" style="color:#FFFFFF;">
             <li style="display:flex;align-items:flex-start;gap:8px;color:#FFFFFF;">
               <span style="color:#FFD000;font-weight:900;">✓</span>
-              <span><strong style="color:#FFD000;">Carbon High Cybersecurity:</strong> <strong>88.2% SEC-Bench Pro</strong> • <strong>0.0% Prompt-Injection Breach Rate</strong> • &lt;120ms pre-buy firewall &amp; @x402/svm API.</span>
+              <span><strong style="color:#FFD000;">12-Layer On-Chain Anti-Rug Engine:</strong> <strong>Mint/Freeze Locks, LP Burn &amp; Token-2022 Hook Audit</strong> • <strong>Live Jupiter Sell-Side Honeypot Quotes</strong> • &lt;120ms pre-buy firewall &amp; @x402/svm API.</span>
             </li>
             <li style="display:flex;align-items:flex-start;gap:8px;color:#FFFFFF;">
               <span style="color:#FFD000;font-weight:900;">✓</span>
@@ -4565,12 +4581,14 @@ body.rrs-mode-institutional #rrsInstPricingScrollBtn {
       <!-- RIGHT 50% CARD: 34s Castle Video With 24K-Gold Vault Gate, Clean Audio Toggle & Plain Closing Frame -->
       <div class="rrs-5050-half-card rrs-5050-video-card" id="instCastleVaultPlayerCard">
         <div class="rrs-5050-video-stage" id="rrsVaultViewport">
-          <button type="button" id="btnAudioInstVaultVideo" class="rrs-audio-subtle-btn" onclick="event.stopPropagation(); window.rrsToggleVaultAudioByPrefix('inst')" title="Toggle Subtle Audio">
-            🔊
-          </button>
-          <button type="button" id="btnPauseVaultVideo" class="rrs-pause-top-right-btn" onclick="event.stopPropagation(); window.rrsToggleVaultPauseByPrefix('inst')">
-            ⏸
-          </button>
+                    <div class="rrs-hud-controls-dock">
+            <button type="button" id="btnAudioInstVaultVideo" class="rrs-audio-subtle-btn" onclick="event.stopPropagation(); window.rrsToggleVaultAudioByPrefix('inst')" title="Toggle Subtle Audio" aria-label="Toggle Video Audio">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+            </button>
+            <button type="button" id="btnPauseVaultVideo" class="rrs-pause-top-right-btn" data-role="pause-video-to-read" aria-label="PAUSE VIDEO TO READ" onclick="event.stopPropagation(); window.rrsToggleVaultPauseByPrefix('inst')">
+              ⏸ PAUSE VIDEO TO READ
+            </button>
+          </div>
 
           <div id="rrsVaultCoverGate" class="rrs-vault-cover-gate" onclick="event.stopPropagation(); window.rrsPlayVaultByPrefix('inst')">
             <img id="rrsVaultGoldenBadgeImg" src="/assets/rr_badge_exact.jpg" alt="RENT &amp; RUG SHIELD • 12-LAYER VAULT • 1ST RENT CLAIM 100% FREE" class="rrs-vault-exact-badge" />
@@ -4580,16 +4598,39 @@ body.rrs-mode-institutional #rrsInstPricingScrollBtn {
           </div>
 
           <video id="rrsVaultMasterVideo" playsinline muted preload="auto" poster="/assets/rr_badge_exact.jpg">
-            <source src="/assets/castle_promo_smooth_growl.mp4?v=1795295867" type="video/mp4" />
+            <source src="/assets/castle_promo_4k_uhd.mp4?v=25768" type="video/mp4" />
           </video>
 
-          <div id="rrsVaultSkyOverlay" class="rrs-vault-hud-overlay hud-scene-0" aria-live="polite" style="display:none;">
-            <div id="rrsSkySceneTitle" class="rrs-hud-header">🛡️ SACRIFICIAL CANARY AGENTS &amp; ZERO-SPAM CHROME v5.1</div>
-            <ul id="rrsSkySceneBullets" class="rrs-hud-bullets">
-              <li>• Canary Scouts absorb drainer traps before your wallet connects</li>
-              <li>• Veteran-Trader Toggles: %, Seconds, MC, Liq &amp; Keyword News</li>
-              <li>• Silent until YOUR exact filters hit, zero sponsor pop-up spam</li>
-            </ul>
+          <div id="rrsVaultSkyOverlay" class="rrs-vault-hud-overlay rrs-perimeter-hud hud-scene-0" aria-live="polite" style="display:none;">
+            <!-- TOP STATUS BAR / SCENE 4 TOP CENTER BANNER -->
+            <div id="instHudTopBar" class="rrs-perim-glass rrs-perim-top">
+              <span class="rrs-perim-live-dot" aria-hidden="true"></span>
+              <span id="instHudTopTag" class="rrs-perim-top-tag">LAYER 01-12 ACTIVE DEFENSE · PRE-EXECUTION SANDBOX (&lt;120ms)</span>
+            </div>
+
+            <!-- OUTER LEFT & RIGHT ARCHITECTURAL SPEC CALLOUTS (CENTER 60% UNOBSTRUCTED) -->
+            <div class="rrs-perim-mid-row">
+              <aside id="instHudLeftCol" class="rrs-perim-glass rrs-perim-side rrs-perim-left">
+                <div id="instHudLeftKicker" class="rrs-perim-kicker">ISOLATED HELIUS SANDBOX</div>
+                <ul id="instHudLeftList" class="rrs-perim-list"></ul>
+              </aside>
+
+              <aside id="instHudRightCol" class="rrs-perim-glass rrs-perim-side rrs-perim-right">
+                <div id="instHudRightKicker" class="rrs-perim-kicker">PAYLOAD TERMINATION</div>
+                <ul id="instHudRightList" class="rrs-perim-list"></ul>
+              </aside>
+            </div>
+
+            <!-- LOWER-THIRD NARRATIVE STRIP / SCENE 4 ATTENTION BAR -->
+            <div id="instHudBottomStrip" class="rrs-perim-glass rrs-perim-bottom">
+              <div class="rrs-perim-bottom-inner">
+                <div id="rrsSkySceneTitle" class="rrs-perim-headline">SELF-SACRIFICING CANARY AI AGENTS</div>
+                <div id="instHudBottomMeta" class="rrs-perim-meta">SCENE 01 / 04 · SANDBOXED &lt;120ms</div>
+              </div>
+              <div class="rrs-perim-progress-track" aria-hidden="true">
+                <div id="instHudProgressFill" class="rrs-perim-progress-fill"></div>
+              </div>
+            </div>
           </div>
 
           <div id="instClosingFrameOverlay" class="rrs-closing-frame-layer" style="display:none;">
@@ -4941,18 +4982,18 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
           <h1 id="topMainTitle" class="rrs-brand-h1" style="margin:0; font-size:1.16rem; font-weight:900; color:#F8FAFC; letter-spacing:0.01em;">
             <span style="color:#FFD000;">SOLANA</span> <span id="i18nMainHeadline" style="color:#FFFFFF;">RENT &amp; RUG SHIELD</span>
           </h1>
-          <div id="top-wallet-status" style="font-size:0.78rem; color:#FFD000; font-weight:700;">12-LAYER CARBON VAULT • <a id="verifiedOnChainHeaderBadge" href="https://solscan.io/account/" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; text-decoration:underline;">Verified Solscan Proof</a></div>
+          <div id="top-wallet-status" style="font-size:0.78rem; color:#FFD000; font-weight:700;">12-LAYER CARBON VAULT • <a id="verifiedOnChainHeaderBadge" href="https://solscan.io/account/89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; text-decoration:underline;">Verified Solscan Proof</a></div>
         </div>
       </div>
     </div>
       </div>
     </div>
     <nav id="centeredPrimaryNavBar" class="rrs-centered-nav" aria-label="Primary Navigation">
-      <span class="rrs-wrc-stack"><a href="#rentShieldCard">Wallet Rent Claim</a><button type="button" id="rrsInteractiveDemoPill" data-telemetry-id="nav_interactive_demo_pill" aria-label="Play the interactive mouse-cursor walkthrough demo" title="Watch the cursor walk you through every box" onclick="if(window.rrsLaunchInteractiveDemo){window.rrsLaunchInteractiveDemo('nav_pill');}"><span class="rrs-demo-dot" aria-hidden="true"></span>🎬 Interactive Demo</button></span>
+      <button type="button" id="rrsNavJumpRentReclaimBtn" class="rrs-cta-nav-pill rrs-cta-nav-emerald" onclick="return window.rrsJumpAndPulseInput('rent', event);">⚡ Rent Reclaim</button>
+      <button type="button" id="rrsNavJumpRugShieldBtn" class="rrs-cta-nav-pill rrs-cta-nav-gold" onclick="return window.rrsJumpAndPulseInput('rug', event);">🛡️ 12-Layer Rug Shield</button>
+      <button type="button" id="rrsInteractiveDemoPill" data-telemetry-id="nav_interactive_demo_pill" aria-label="Play the interactive mouse-cursor walkthrough demo" title="Watch the cursor walk you through every box" onclick="if(window.rrsLaunchInteractiveDemo){window.rrsLaunchInteractiveDemo('nav_pill');}"><span class="rrs-demo-dot" aria-hidden="true"></span>🎬 Interactive Demo</button>
       <span class="rrs-nav-sep" aria-hidden="true">•</span>
-      <a href="#rugShieldCard">12-Layer Rug Shield</a>
-      <span class="rrs-nav-sep" aria-hidden="true">•</span>
-      <a href="#affiliate30PctEngineBar" id="topAffiliateNavBtn" class="rrs-nav-aff-hi" onclick="if(typeof window.jumpToAffiliate30Engine==='function'){window.jumpToAffiliate30Engine(); return false;}">💰 Earn 30% Affiliate</a>
+      <a href="/affiliates.html" id="topAffiliateNavBtn" class="rrs-nav-aff-hi" onclick="if(typeof window.jumpToAffiliate30Engine==='function'){return window.jumpToAffiliate30Engine(event);}">💰 Earn 30% Affiliate</a>
       <span class="rrs-nav-sep" aria-hidden="true">•</span>
       <a href="#idx-annual-vault-card">🏆 Annual SOL Raffle</a>
       <span class="rrs-nav-sep" aria-hidden="true">•</span>
@@ -5034,7 +5075,7 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
           <ul class="rrs-pitch-list" style="color:#F8FAFC;">
             <li style="display:flex;align-items:flex-start;gap:8px;">
               <span style="color:#10B981;font-weight:900;">✓</span>
-              <span><strong style="color:#6EE7B7;">Veteran Trader + Carbon High AI:</strong> 12-Layer cybersecurity (<strong>88.2% SEC-Bench Pro</strong> • <strong>0.0% Prompt-Injection Breach Rate</strong>) with precision trader toggle switches.</span>
+              <span><strong style="color:#6EE7B7;">Veteran Trader + Carbon High AI:</strong> 12-Layer On-Chain Token &amp; Anti-Rug Audit (<strong>Mint/Freeze Locks</strong> • <strong>LP Burn Proof, Token-2022 Hooks &amp; Block-0 Sybil Detection</strong>) with precision trader toggle switches.</span>
             </li>
             <li style="display:flex;align-items:flex-start;gap:8px;">
               <span style="color:#10B981;font-weight:900;">✓</span>
@@ -5062,13 +5103,14 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
       <!-- RIGHT 50% CARD: 34s Castle Video With 24K-Gold Vault Gate, Clean Audio Toggle & Plain Closing Frame -->
       <div class="rrs-5050-half-card rrs-5050-video-card" id="retailCastleVaultPlayerCard">
         <div class="rrs-5050-video-stage" id="retailVaultViewport">
-          <!-- Subtle Institutional Audio Toggle (🔊 / 🔇) + Top-Right Pause Button -->
-          <button type="button" id="btnAudioRetailVaultVideo" class="rrs-audio-subtle-btn" onclick="event.stopPropagation(); window.rrsToggleVaultAudioByPrefix('retail')" title="Toggle Subtle Audio">
-            🔊
-          </button>
-          <button type="button" id="btnPauseRetailVaultVideo" class="rrs-pause-top-right-btn" onclick="event.stopPropagation(); window.rrsToggleVaultPauseByPrefix('retail')">
-            ⏸
-          </button>
+                    <div class="rrs-hud-controls-dock">
+            <button type="button" id="btnAudioRetailVaultVideo" class="rrs-audio-subtle-btn" onclick="event.stopPropagation(); window.rrsToggleVaultAudioByPrefix('retail')" title="Toggle Subtle Audio" aria-label="Toggle Video Audio">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+            </button>
+            <button type="button" id="btnPauseRetailVaultVideo" class="rrs-pause-top-right-btn" data-role="pause-video-to-read" aria-label="PAUSE VIDEO TO READ" onclick="event.stopPropagation(); window.rrsToggleVaultPauseByPrefix('retail')">
+              ⏸ PAUSE VIDEO TO READ
+            </button>
+          </div>
 
           <!-- Idle Cover Gate: Centered rr_badge_exact.jpg (max-height 74%) + Bold ▶ PLAY VIDEO -->
           <div id="retailVaultCoverGate" class="rrs-vault-cover-gate" onclick="event.stopPropagation(); window.rrsPlayVaultByPrefix('retail')">
@@ -5080,17 +5122,39 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
 
           <!-- Master 34.05s Castle Video (Arcade Synth Muted by Default for Institutional Calm) -->
           <video id="retailVaultMasterVideo" playsinline muted preload="auto" poster="/assets/rr_badge_exact.jpg">
-            <source src="/assets/castle_promo_smooth_growl.mp4?v=1795295867" type="video/mp4" />
+            <source src="/assets/castle_promo_4k_uhd.mp4?v=25768" type="video/mp4" />
           </video>
 
-          <!-- Frameless Larger HUD Callout Stack (Hidden Whenever Gold Shield Is Visible & Hidden on Closing Frame) -->
-          <div id="retailVaultSkyOverlay" class="rrs-vault-hud-overlay hud-scene-0" aria-live="polite" style="display:none;">
-            <div id="retailSkySceneTitle" class="rrs-hud-header">🛡️ SACRIFICIAL CANARY AGENTS &amp; ZERO-SPAM CHROME v5.1</div>
-            <ul id="retailSkySceneBullets" class="rrs-hud-bullets">
-              <li>• Canary Scouts absorb drainer traps before your wallet connects</li>
-              <li>• Veteran-Trader Toggles: %, Seconds, MC, Liq &amp; Keyword News</li>
-              <li>• Silent until YOUR exact filters hit, zero sponsor pop-up spam</li>
-            </ul>
+          <div id="retailVaultSkyOverlay" class="rrs-vault-hud-overlay rrs-perimeter-hud hud-scene-0" aria-live="polite" style="display:none;">
+            <!-- TOP STATUS BAR / SCENE 4 TOP CENTER BANNER -->
+            <div id="retailHudTopBar" class="rrs-perim-glass rrs-perim-top">
+              <span class="rrs-perim-live-dot" aria-hidden="true"></span>
+              <span id="retailHudTopTag" class="rrs-perim-top-tag">LAYER 01-12 ACTIVE DEFENSE · PRE-EXECUTION SANDBOX (&lt;120ms)</span>
+            </div>
+
+            <!-- OUTER LEFT & RIGHT ARCHITECTURAL SPEC CALLOUTS (CENTER 60% UNOBSTRUCTED) -->
+            <div class="rrs-perim-mid-row">
+              <aside id="retailHudLeftCol" class="rrs-perim-glass rrs-perim-side rrs-perim-left">
+                <div id="retailHudLeftKicker" class="rrs-perim-kicker">ISOLATED HELIUS SANDBOX</div>
+                <ul id="retailHudLeftList" class="rrs-perim-list"></ul>
+              </aside>
+
+              <aside id="retailHudRightCol" class="rrs-perim-glass rrs-perim-side rrs-perim-right">
+                <div id="retailHudRightKicker" class="rrs-perim-kicker">PAYLOAD TERMINATION</div>
+                <ul id="retailHudRightList" class="rrs-perim-list"></ul>
+              </aside>
+            </div>
+
+            <!-- LOWER-THIRD NARRATIVE STRIP / SCENE 4 ATTENTION BAR -->
+            <div id="retailHudBottomStrip" class="rrs-perim-glass rrs-perim-bottom">
+              <div class="rrs-perim-bottom-inner">
+                <div id="retailSkySceneTitle" class="rrs-perim-headline">SELF-SACRIFICING CANARY AI AGENTS</div>
+                <div id="retailHudBottomMeta" class="rrs-perim-meta">SCENE 01 / 04 · SANDBOXED &lt;120ms</div>
+              </div>
+              <div class="rrs-perim-progress-track" aria-hidden="true">
+                <div id="retailHudProgressFill" class="rrs-perim-progress-fill"></div>
+              </div>
+            </div>
           </div>
 
           <!-- Plain Closing Frame (30.5s to 34.05s: Unobstructed Doberman & Ninja + Carbon Flag + Layer 13 Teaser) -->
@@ -5595,7 +5659,7 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
                 </tr>
                 <tr style="border-bottom:1px solid #1E293B;">
                   <td style="padding:7px; color:#F59E0B;" class="jb-mono live-wallet-pst-cell">Nov 17, 06:44 PM PST</td>
-                  <td style="padding:7px;"><a href="https://solscan.io/account/" target="_blank" rel="noopener noreferrer" class="jb-mono" style="color:#F8FAFC; font-weight:600; text-decoration:none;">89Sv...nKK1</a> <span style="color:#CBD5E1; font-size:0.80rem;">(Treasury)</span></td>
+                  <td style="padding:7px;"><a href="https://solscan.io/account/89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1" target="_blank" rel="noopener noreferrer" class="jb-mono" style="color:#F8FAFC; font-weight:600; text-decoration:none;">89Sv...nKK1</a> <span style="color:#CBD5E1; font-size:0.80rem;">(Treasury)</span></td>
                   <td style="padding:7px; color:#10B981; font-weight:600;" class="jb-mono">+0.1915 SOL (125 ATAs)</td>
                   <td style="padding:7px;"><a href="https://solscan.io/tx/265HB7xEduMWffhvKHyE8SqKTUGFMebC97ZNPtK2NC3mrZSayRiMnrDJ6QZH8wedkr34HvmKAfSRNNz82DNQmNvd" target="_blank" rel="noopener noreferrer" style="color:#10B981; font-weight:600; text-decoration:underline;">Solscan TX ↗</a></td>
                 </tr>
@@ -6507,7 +6571,7 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
     });
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/sw.js?v=25767", { updateViaCache: "none" }).catch(() => {});
+        navigator.serviceWorker.register("/sw.js?v=25768", { updateViaCache: "none" }).catch(() => {});
       });
     }
 
@@ -9105,11 +9169,18 @@ if (audit.safe_to_buy) await executeJupiterSwap(mint);</div>
         let hitPaywall402 = false;
         let paywallData402 = null;
         try {
-          const srvRes = await fetch("/api/scan-token", {
+          const _isLb = (location.hostname === "localhost" || location.hostname === "127.0.0.1");
+          const _nowMs = Date.now();
+          if (window.__rrsActiveScanTok && window.__rrsActiveScanTok.mint === m && (_nowMs - window.__rrsActiveScanTok.ts) < 900) {
+            return await window.__rrsActiveScanTok.promise;
+          }
+          const _fetchPromise = fetch("/api/scan-token", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({mint: m, user_initiated: !isAutoInit, device_hash: window.__RRS_DEVICE_HASH || ""})
+            body: JSON.stringify(Object.assign({mint: m, user_initiated: !isAutoInit, device_hash: window.__RRS_DEVICE_HASH || ""}, _isLb ? {demo: true, is_sample_test: true, is_operator: true} : {}))
           });
+          window.__rrsActiveScanTok = { mint: m, ts: _nowMs, promise: _fetchPromise };
+          const srvRes = await _fetchPromise;
           if (srvRes && srvRes.status === 402) {
             hitPaywall402 = true;
             paywallData402 = await srvRes.json().catch(() => null);
@@ -11738,7 +11809,7 @@ window.addEventListener('DOMContentLoaded', function() {
   };
   if ("serviceWorker" in navigator){
     window.addEventListener("load", function(){
-      navigator.serviceWorker.register("/sw.js?v=25767", { updateViaCache: "none" }).catch(function(){});
+      navigator.serviceWorker.register("/sw.js?v=25768", { updateViaCache: "none" }).catch(function(){});
     });
   }
 
@@ -12604,7 +12675,7 @@ window.submitVisitorFeedbackNow = async function(){
 
   if ("serviceWorker" in navigator){
     window.addEventListener("load", function(){
-      navigator.serviceWorker.register("/sw.js?v=25767", { updateViaCache: "none" }).then(function(reg){
+      navigator.serviceWorker.register("/sw.js?v=25768", { updateViaCache: "none" }).then(function(reg){
         if (reg && reg.update) reg.update().catch(function(){});
       }).catch(function(){});
     });
@@ -15600,7 +15671,7 @@ window.submitVisitorFeedbackNow = async function(){
     if (assetRaw) _chkState.asset = String(assetRaw).toUpperCase() === "USDC" ? "USDC" : "SOL";
 
     var modal = document.getElementById("liveCheckoutModal");
-    if (modal) modal.style.display = "flex";
+    if (modal) { modal.removeAttribute("hidden"); modal.setAttribute("aria-hidden", "false"); modal.style.display = "flex"; }
     renderCheckoutModalState();
 
     var prov = detectInjectedSolanaWallet();
@@ -15946,7 +16017,10 @@ window.submitVisitorFeedbackNow = async function(){
     var qW = (params.get("wallet") || params.get("w") || "").trim();
     var qAutoClaim = params.get("auto_claim") === "1" || params.get("autoclaim") === "1";
 
-    /* v315: disabled DOMContentLoaded setTimeout modal auto-open; user must click trigger explicitly */
+    /* v315: only open checkout modal when explicit ?checkout_tier= deep-link is navigated */
+    if (cTier && typeof window.openLiveCheckout === "function") {
+      window.openLiveCheckout(cTier, params.get("asset") || "SOL");
+    }
 
     if (false && qW){
       if (typeof window.scanWallet === "function"){
@@ -16657,18 +16731,22 @@ window.submitVisitorFeedbackNow = async function(){
   };
   window.shareOnX = window.shareReclaimedSolOnX;
 
-  window.jumpToAffiliate30Engine = function(){
-    var bar = document.getElementById("affiliate30PctEngineBar");
-    if (bar){
+  window.jumpToAffiliate30Engine = function(ev){
+    var bar = document.getElementById("affiliate30PctEngineBar") || document.getElementById("instAffiliate30Bar");
+    if (bar && bar.offsetParent !== null){
+      if (ev && ev.preventDefault) ev.preventDefault();
       bar.scrollIntoView({ behavior: "smooth", block: "center" });
       bar.style.boxShadow = "0 0 0 2px #14F195, 0 0 24px rgba(20, 241, 149, 0.45)";
       setTimeout(function(){ bar.style.boxShadow = ""; }, 2200);
+      var inp = document.getElementById("affRefWalletGenInp") || document.getElementById("instAffRefWalletGenInp");
+      var w = detectUserWalletForShare();
+      if (inp && w && !inp.value) inp.value = w;
+      if (inp) setTimeout(function(){ try { inp.focus({ preventScroll: true }); } catch(_e){} }, 350);
+      return false;
     }
-    var inp = document.getElementById("affRefWalletGenInp");
-    var w = detectUserWalletForShare();
-    if (inp && w && !inp.value) inp.value = w;
-    if (w) window.copyAffiliateLink30Pct();
-    else if (inp) setTimeout(function(){ inp.focus(); }, 350);
+    if (ev && ev.preventDefault) ev.preventDefault();
+    window.location.href = "/affiliates.html";
+    return false;
   };
   // 4. 30% ?ref=<Wallet> Affiliate Link Generator
   window.copyAffiliateLink30Pct = async function(){
@@ -16756,7 +16834,7 @@ window.submitVisitorFeedbackNow = async function(){
       ".rrs-layer11-info-btn{display:inline-flex;align-items:center;justify-content:center;width:21px;height:21px;margin-left:6px;padding:0;border-radius:999px;border:1.5px solid #14F195;background:rgba(20,241,149,0.16);color:#6EE7B7;font-size:12.5px;font-weight:900;line-height:1;cursor:pointer;vertical-align:middle;transition:all .16s ease;box-shadow:0 0 8px rgba(20,241,149,0.22);}",
       ".rrs-layer11-info-btn:hover,.rrs-layer11-info-btn:focus{background:#14F195;color:#022C22;transform:scale(1.07);outline:none;}",
       "#rrsLayer11GlobalPopover{display:none;position:fixed;z-index:2147483000;width:min(340px,calc(100vw - 24px));background:linear-gradient(165deg,#071628,#042F2E);border:1.5px solid #14F195;border-radius:12px;padding:12px 14px;color:#F8FAFC;font-size:13px;line-height:1.48;box-shadow:0 18px 44px rgba(0,0,0,0.88);}",
-      "#rrsLayer11GlobalPopover.rrs-open{display:block;}",
+      "#rrsLayer11GlobalPopover.rrs-open{display:block !important;visibility:visible !important;opacity:1 !important;}",
       "#rrsIndexQuickNav,#rrsAppOnPageNavBar,.rrs-onpage-nav-bar{display:none !important;align-items:center;gap:6px;flex-wrap:wrap;padding:4px 8px;border-radius:10px;background:rgba(9,16,29,0.9);border:1px solid rgba(56,189,248,0.38);}",
       ".rrs-nav-ctrl-btn{display:inline-flex;align-items:center;gap:4px;min-height:30px;padding:4px 10px;border-radius:7px;border:1px solid #334155;background:#0F172A;color:#E2E8F0;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .15s ease;line-height:1.2;}",
       ".rrs-nav-ctrl-btn:hover{border-color:#14F195;color:#6EE7B7;background:#0B192E;}",
@@ -16900,6 +16978,7 @@ window.submitVisitorFeedbackNow = async function(){
       cBtn.addEventListener("click", function (ev) {
         ev.stopPropagation();
         pop.classList.remove("rrs-open");
+        pop._pinnedByClick = false;
       });
     }
     document.addEventListener("click", function (ev) {
@@ -16907,20 +16986,27 @@ window.submitVisitorFeedbackNow = async function(){
       var t = ev.target;
       if (pop.contains(t) || (t && t.closest && t.closest(".rrs-layer11-info-btn"))) return;
       pop.classList.remove("rrs-open");
+      pop._pinnedByClick = false;
     });
     document.addEventListener("keydown", function (ev) {
-      if (ev.key === "Escape") pop.classList.remove("rrs-open");
+      if (ev.key === "Escape") { pop.classList.remove("rrs-open"); pop._pinnedByClick = false; }
     });
     return pop;
   }
 
   window.rrsShowLayer11Popover = function (anchorEl, toggleMode) {
     var pop = ensurePopoverDom();
-    if (toggleMode && pop.classList.contains("rrs-open") && pop._anchor === anchorEl) {
+    if (!toggleMode && pop._anchor !== anchorEl) {
+      pop._pinnedByClick = false;
+    }
+    if (toggleMode && pop.classList.contains("rrs-open") && pop._anchor === anchorEl && pop._pinnedByClick) {
       pop.classList.remove("rrs-open");
+      pop._pinnedByClick = false;
       return;
     }
     pop._anchor = anchorEl;
+    if (toggleMode) pop._pinnedByClick = true;
+    pop.removeAttribute("hidden");
     pop.classList.add("rrs-open");
     if (anchorEl && anchorEl.getBoundingClientRect) {
       var rect = anchorEl.getBoundingClientRect();
@@ -18194,7 +18280,7 @@ window.submitVisitorFeedbackNow = async function(){
 <script id="rrs-v315-modal-guard-js">
 (function(){
   var MODAL_SEL = '.modal, .modal-backdrop, [role="dialog"], #periodic90sPingsBubble, #smart25sPingToast';
-  var _userInteracted = false;
+  var _userInteracted = /[?&]checkout_tier=/i.test(window.location.search || "");
 
   function markUserClick(){ _userInteracted = true; }
   window.addEventListener("pointerdown", markUserClick, true);
@@ -18258,8 +18344,13 @@ window.submitVisitorFeedbackNow = async function(){
   }
 
   function enforceInitialClosedState(){
+    var keepChkOpen = /[?&]checkout_tier=/i.test(window.location.search || "");
     var nodes = document.querySelectorAll(MODAL_SEL);
     for (var i = 0; i < nodes.length; i++){
+      if (keepChkOpen && nodes[i].id === "liveCheckoutModal") {
+        bindModalElement(nodes[i]);
+        continue;
+      }
       window.rrsHideModalEl(nodes[i]);
       bindModalElement(nodes[i]);
     }
@@ -18279,7 +18370,16 @@ window.submitVisitorFeedbackNow = async function(){
 
   enforceInitialClosedState();
   document.addEventListener("DOMContentLoaded", enforceInitialClosedState);
-  window.addEventListener("pageshow", function(){ _userInteracted = false; enforceInitialClosedState(); });
+  window.addEventListener("pageshow", function(){
+    var hasDeepTier = /[?&]checkout_tier=/i.test(window.location.search || "");
+    _userInteracted = hasDeepTier;
+    if (!hasDeepTier) {
+      enforceInitialClosedState();
+    } else if (typeof window.openLiveCheckout === "function") {
+      var qp = new URLSearchParams(window.location.search);
+      window.openLiveCheckout(qp.get("checkout_tier"), qp.get("asset") || "SOL");
+    }
+  });
 })();
 </script>
 
@@ -19837,21 +19937,24 @@ window.submitVisitorFeedbackNow = async function(){
         '</div>' +
       '</div>';
 
+    var isLoopbackW = (location.hostname === "localhost" || location.hostname === "127.0.0.1");
     var minWait = new Promise(function(res) { setTimeout(res, 420); });
-    var apiReq = fetch("/api/reclaim-fee-quote", {
+    var apiReq = fetch("/api/scan-wallet", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ wallet: targetAddr, ref: "" })
-    }).then(function(r) { return r.json(); }).catch(function() { return null; });
+      body: JSON.stringify({ wallet: targetAddr, user_initiated: true, is_sample_test: isLoopbackW })
+    }).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; });
 
     Promise.all([minWait, apiReq]).then(function(arr) {
       var d = arr[1];
-      if (d) {
-        var cnt = Number(d.rows_total != null ? d.rows_total : (d.accounts != null ? d.accounts : (Array.isArray(d.rows) ? d.rows.length : 0))) || 0;
-        var netSol = Number(d.user_net_lamports || d.total_rent_lamports || 0) / 1e9;
+      if (d && d.ok) {
+        var emptyCnt = Number(d.empty_count != null ? d.empty_count : (Array.isArray(d.empty_reclaimable) ? d.empty_reclaimable.length : 0)) || 0;
+        var dustCnt = Number(d.dust_count != null ? d.dust_count : (Array.isArray(d.dust_reclaimable) ? d.dust_reclaimable.length : 0)) || 0;
+        var cnt = emptyCnt + dustCnt;
+        var netSol = Number(d.total_reclaimable_sol != null ? d.total_reclaimable_sol : (d.free_sol || 0)) || 0;
         var splEl = document.getElementById("rrsDsSplAtas" + sfx);
         var valEl = document.getElementById("rrsRentSolVal" + sfx);
-        if (splEl) splEl.textContent = cnt > 0 ? (cnt + " Reclaimable ATAs Ready") : "0 Empty ATAs (Wallet Clean)";
+        if (splEl) splEl.textContent = cnt > 0 ? (emptyCnt + " Empty + " + dustCnt + " Burnable ATAs Ready") : "0 Empty ATAs (Wallet Clean)";
         if (valEl) valEl.innerHTML = 'Reclaimable SOL: <strong style="color:' + accentCol + ';">' + netSol.toFixed(6) + ' SOL</strong> (' + cnt + ' ATAs)';
       }
       finishState();
@@ -19979,9 +20082,6 @@ window.submitVisitorFeedbackNow = async function(){
             ev.preventDefault();
             return;
           }
-          setTimeout(function() {
-            window.rrsTriggerRentDropSheet(wi ? wi.value : "", "retailRentDropSheet", document.getElementById("scanWalletBtn"));
-          }, 20);
         }, true);
       }
     });
@@ -19997,9 +20097,6 @@ window.submitVisitorFeedbackNow = async function(){
             ev.preventDefault();
             return;
           }
-          setTimeout(function() {
-            window.rrsTriggerShieldDropSheet(mi ? mi.value : "", "retailRugDropSheet", document.getElementById("scanTokenBtn"));
-          }, 20);
         }, true);
       }
     });
@@ -20007,81 +20104,173 @@ window.submitVisitorFeedbackNow = async function(){
   bindAllScannerDropSheets();
   document.addEventListener("DOMContentLoaded", bindAllScannerDropSheets);
 
-  // --- 7. 34-Second Castle Video Players (Zero Text Over Gold Crest + Plain Closing Frame 30.5s-34.05s + Clean Audio) ---
+  // --- 7. 34-Second Institutional Perimeter HUD & 4-Scene Technical Controller ---
   var CASTLE_SCENES = [
-      {
-        idx: 0,
-        start: 0.0,
-        end: 9.8,
-        pulsePause: false,
-        title: "⚡ LEAPFROG ARCHITECTURE & 24/7 LIVE ENGINEER",
-        bullets: [
-          "▸ Dedicated Helius gRPC: Zero public lag, 5/5 Wallet Quorum & 0% 1st Claim Fee",
-          "▸ Relentless Velocity: Jumped 10 to 12 Forensic Layers; Layer 13 ships FREE",
-          "▸ 24/7 On-Call Security Engineer: Live human + AI mainnet incident watch"
-        ]
-      },
-      {
-        idx: 1,
-        start: 9.8,
-        end: 17.8,
-        pulsePause: true,
-        title: "🥷 KAMIKAZE AI AGENTS & 12-LAYER RUG FIREWALL",
-        bullets: [
-          "▸ Kamikaze AI Micro-Agents: Sacrificial sandboxes detonate drainers before signing",
-          "▸ Layers 1 to 8: Blocks Mint/Freeze traps, Honeypot taxes & Inner-CPI hijacks",
-          "▸ Layers 9 to 12: Intercepts Sybil clusters, fake .pump LPs & Slot-0 bundles"
-        ]
-      },
-      {
-        idx: 2,
-        start: 20.0,
-        end: 25.2,
-        pulsePause: true,
-        title: "🧠 CARBON HIGH AI CYBERSECURITY & RENT VAULT",
-        bullets: [
-          "▸ Why Carbon High AI: 99.4% zero-day drainer recall & sub-ms bytecode audits",
-          "▸ Pure 0x09 Rent Recovery: Reclaims ~0.002039 SOL per empty account safely",
-          "▸ Verifiable Code Truth: On-chain Solscan receipts + SHA-256 build attestation"
-        ]
-      },
-      {
-        idx: 3,
-        start: 25.2,
-        end: 30.5,
-        pulsePause: false,
-        title: "🧩 CHROME EXTENSION v5.1 • 30-YR TRADER INTUITION",
-        bullets: [
-          "▸ Custom Extension Toggles: Turn notices ON for live upgrades & direct feedback",
-          "▸ Boardroom to Trading Desk: 30 years of unteachable veteran screen intuition",
-          "▸ Honesty Mandate: Optional Auto-Billing (Default OFF) & Sunday AI Ethics Audit"
-        ]
-      }
-    ];
+    {
+      idx: 9,
+      sceneNum: 0,
+      start: 0.0,
+      end: 4.15,
+      isClearShield: true,
+      topTag: "", headline: "", bottomMeta: "", leftKicker: "", leftSpecs: [], rightKicker: "", rightSpecs: []
+    },
+    {
+      idx: 0,
+      sceneNum: 1,
+      start: 4.15,
+      end: 12.95,
+      isEndCard: false,
+      isDogSightline: false,
+      isClearShield: false,
+      pulsePause: false,
+      topTag: "LAYER 7–12 PRE-EXECUTION DEFENSE · ZERO BLIND SIGNING",
+      headline: "SELF-SACRIFICING CANARY AI · EXPENDABLE CLONES TAKE THE HIT FIRST",
+      bottomMeta: "SCENE 01 / 04",
+      leftKicker: "EXPENDABLE CANARY CLONES",
+      leftSpecs: [
+        "• Disposable Canary Clones Step Into Hostile Contracts Before Your Wallet Connects",
+        "• Absorbs Hidden Inner-CPI Drains, SetAuthority Traps & Sell-Side Honeypots in RAM"
+      ],
+      rightKicker: "<120ms RAM CONTAINMENT",
+      rightSpecs: [
+        "• Hostile Threats Neutralized in <120ms — Zero Private Keys, Zero Live Wallet Exposure"
+      ]
+    },
+    {
+      idx: 10,
+      sceneNum: 1,
+      start: 12.95,
+      end: 13.35,
+      isClearShield: true,
+      topTag: "", headline: "", bottomMeta: "", leftKicker: "", leftSpecs: [], rightKicker: "", rightSpecs: []
+    },
+    {
+      idx: 1,
+      sceneNum: 2,
+      start: 13.35,
+      end: 20.70,
+      isEndCard: false,
+      isDogSightline: false,
+      isClearShield: false,
+      pulsePause: false,
+      topTag: "NON-CUSTODIAL · ZERO APPROVE / SETAUTHORITY",
+      headline: "TRUE 0x09 EXTRACTION & HONESTY POLICY",
+      bottomMeta: "SCENE 02 / 04",
+      leftKicker: "PURE 0x09 EXTRACTION",
+      leftSpecs: [
+        "NATIVE 0x09: CloseAccount reclaims ~0.002039 SOL per empty SPL, Token-2022 & dead rug account.",
+        "NON-CUSTODIAL: Zero Approve(), Zero SetAuthority() & verifiable Explorer TX proof."
+      ],
+      rightKicker: "THE HONESTY POLICY",
+      rightSpecs: [
+        "1ST CLAIM FREE: 100% FREE (0.0% Fee — Keep 100% of Your SOL)",
+        "REPEAT SWEEPS: Flat 2.0% Fee (98.0% Net SOL Returned to You)",
+        "30-DAY TRIAL: Zero Card Trap · Zero Auto-Billing"
+      ]
+    },
+    {
+      idx: 11,
+      sceneNum: 2,
+      start: 20.70,
+      end: 25.65,
+      isClearShield: true,
+      topTag: "", headline: "", bottomMeta: "", leftKicker: "", leftSpecs: [], rightKicker: "", rightSpecs: []
+    },
+    {
+      idx: 2,
+      sceneNum: 3,
+      start: 25.65,
+      end: 30.35,
+      isEndCard: false,
+      isDogSightline: false,
+      isClearShield: false,
+      pulsePause: false,
+      topTag: "HUMAN + AI COMMAND · MAINNET TELEMETRY",
+      headline: "24/7 LIVE ENGINEER & CHROME FIREWALL v5.1",
+      bottomMeta: "SCENE 03 / 04",
+      leftKicker: "LIVE ENGINEER & EXPLORER",
+      leftSpecs: [
+        "24/7 ENGINEER: On-Call Live Lead Quant & Security Engineer + autonomous Sentinels.",
+        "LIVE EXPLORER: Verifies >=95% LP Burn, Mint/Freeze Revoke & Jupiter Honeypot Quotes."
+      ],
+      rightKicker: "CHROME FIREWALL v5.1",
+      rightSpecs: [
+        "PRE-SWAP HUD: Overlays <120ms PASS/BLOCK Scores (0-100) on DexScreener, Jupiter, Photon & Pump.fun.",
+        "SYBIL SHIELD: Layer-11 Detector (<=20% Block-0) + Wash-Trade Filter."
+      ]
+    },
+    {
+      idx: 12,
+      sceneNum: 3,
+      start: 30.35,
+      end: 30.70,
+      isClearShield: true,
+      topTag: "", headline: "", bottomMeta: "", leftKicker: "", leftSpecs: [], rightKicker: "", rightSpecs: []
+    },
+    {
+      idx: 3,
+      sceneNum: 4,
+      start: 30.70,
+      end: 36.35,
+      isEndCard: true,
+      isDogSightline: false,
+      isClearShield: false,
+      pulsePause: false,
+      topTag: "SOLANA RENT & RUG SHIELD · WALLET FIREWALL",
+      headline: "WHY TRADERS CHOOSE US · TIERS & LAYER 13",
+      bottomMeta: "SCENE 04 / 04",
+      leftKicker: "WHY TRADERS CHOOSE US",
+      leftSpecs: [
+        "• 898+ Verified Founder Engineering Hours",
+        "• 24/7 On-Call Live Lead Engineer Support",
+        "• 100% Read-Only Audits & 0x09 Sweeps",
+        "• 0% Free 1st Claim · Zero Auto-Billing"
+      ],
+      rightKicker: "ECOSYSTEM & TIERS",
+      rightSpecs: [
+        "• Rent & 12-Layer Explorer + Chrome v5.1",
+        "• $0 Free · $19.99 Pro · $99 Quant · $500 API",
+        "• 30% Atomic Partner Split (?ref=)"
+      ]
+    },
+    {
+      idx: 13,
+      sceneNum: 4,
+      start: 36.35,
+      end: 36.65,
+      isClearShield: true,
+      topTag: "", headline: "", bottomMeta: "", leftKicker: "", leftSpecs: [], rightKicker: "", rightSpecs: []
+    },
+    {
+      idx: 4,
+      sceneNum: 4,
+      start: 36.65,
+      end: 38.95,
+      isEndCard: true,
+      isDogSightline: true,
+      isClearShield: false,
+      pulsePause: false,
+      topTag: "SOLANA RENT & RUG SHIELD · ARMED 24/7",
+      headline: "1ST CLAIM 100% FREE · rentandrugshield.com",
+      bottomMeta: "⚡ LAYER 13 AI",
+      leftKicker: "",
+      leftSpecs: [],
+      rightKicker: "",
+      rightSpecs: []
+    },
+    {
+      idx: 14,
+      sceneNum: 4,
+      start: 38.95,
+      end: 48.0,
+      isClearShield: true,
+      topTag: "", headline: "", bottomMeta: "", leftKicker: "", leftSpecs: [], rightKicker: "", rightSpecs: []
+    }
+  ];
 
-  // Subtle Ambient Chord (Replaces any cheesy arcade synth track when user toggles 🔊 ON)
   var ambientCtx = null;
   var ambientNodes = [];
-  function startSubtleInstitutionalPad() {
-    try {
-      var AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return;
-      ambientCtx = ambientCtx || new AC();
-      if (ambientCtx.state === "suspended") ambientCtx.resume();
-      stopSubtleInstitutionalPad();
-      [110.0, 164.81, 220.0].forEach(function(freq) {
-        var osc = ambientCtx.createOscillator();
-        var gain = ambientCtx.createGain();
-        osc.type = "sine";
-        osc.frequency.value = freq;
-        gain.gain.value = 0.014;
-        osc.connect(gain);
-        gain.connect(ambientCtx.destination);
-        osc.start();
-        ambientNodes.push({ osc: osc, gain: gain });
-      });
-    } catch (_e) {}
-  }
+  function startSubtleInstitutionalPad() {}
   function stopSubtleInstitutionalPad() {
     ambientNodes.forEach(function(n) {
       try { n.osc.stop(); n.osc.disconnect(); } catch (_e) {}
@@ -20091,114 +20280,228 @@ window.submitVisitorFeedbackNow = async function(){
 
   var vaultControllers = {};
 
+  var SVG_SPEAKER_MUTED = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
+  var SVG_SPEAKER_ON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>';
+
   function escHud(s) {
     return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
+  function syncGlobalFloatingPillGuard() {
+    var hidePill = false;
+    [["rrsVaultMasterVideo", "rrsVaultSkyOverlay"], ["retailVaultMasterVideo", "retailVaultSkyOverlay"]].forEach(function(pair) {
+      var vid = document.getElementById(pair[0]);
+      var el = document.getElementById(pair[1]);
+      if (vid && !vid.paused && !vid.ended && el && el.style.display === "block" && el.offsetParent !== null) {
+        hidePill = true;
+      }
+    });
+    document.body.classList.toggle("rrs-vault-hud-active", hidePill);
+  }
+  window.addEventListener("scroll", syncGlobalFloatingPillGuard, { passive: true });
+  window.addEventListener("resize", syncGlobalFloatingPillGuard, { passive: true });
+  setTimeout(syncGlobalFloatingPillGuard, 250);
+
+  // Highlight technical opcodes, metrics, percentages & prices in JetBrains Mono while keeping copy 100% verbatim
+  function formatHudSpecHtml(rawText, isEndCard) {
+    var safe = escHud(rawText);
+    if (!isEndCard) {
+      var colonIdx = safe.indexOf(":");
+      if (colonIdx > 0 && colonIdx <= 34 && /^[A-Z0-9\s\-+%/.]+$/.test(safe.slice(0, colonIdx))) {
+        safe = '<strong class="rrs-hud-lead-gold">' + safe.slice(0, colonIdx + 1) + '</strong>' + safe.slice(colonIdx + 1);
+      }
+    }
+    safe = safe.replace(
+      /(0x09 CloseAccount|0x09|Approve\(\)|SetAuthority\(\)|Token-2022|Inner-CPI|Slot-0|Layer-11|Block-0|PASS\/BLOCK|&lt;120ms|&gt;=95%|&lt;=20%|~0\.002039 SOL|\(\?ref=\)|v5\.1|\$500|\$19\.99|\$99|\$0|898\+|24\/7|100%|98\.0%|30%|2\.0%|0\.0%|0%|\(0-100\))/g,
+      '<code class="rrs-hud-mono-token">$1</code>'
+    );
+    return '<li class="rrs-perim-item' + (isEndCard ? ' is-endcard-item' : '') + '">' + safe + '</li>';
+  }
+
   function setupSingleVaultPlayer(prefix, cfg) {
     var video = document.getElementById(cfg.videoId);
-    if (!video || video.__rrsBoundV53) return;
-    video.__rrsBoundV53 = true;
+    if (!video || video.__rrsBoundV60) return;
+    video.__rrsBoundV60 = true;
 
     var gate = document.getElementById(cfg.gateId);
     var pauseBtn = document.getElementById(cfg.pauseBtnId);
     var audioBtn = document.getElementById(cfg.audioBtnId);
-    var titleEl = document.getElementById(cfg.titleId);
-    var bulletsEl = document.getElementById(cfg.bulletsId);
     var skyWrap = document.getElementById(cfg.overlayId);
     var closingWrap = document.getElementById(cfg.closingId);
     var postActions = document.getElementById(cfg.postActionsId);
 
+    var topBarEl = document.getElementById(prefix + "HudTopBar");
+    var topTagEl = document.getElementById(prefix + "HudTopTag");
+    var leftKickerEl = document.getElementById(prefix + "HudLeftKicker");
+    var leftListEl = document.getElementById(prefix + "HudLeftList");
+    var rightKickerEl = document.getElementById(prefix + "HudRightKicker");
+    var rightListEl = document.getElementById(prefix + "HudRightList");
+    var bottomStripEl = document.getElementById(prefix + "HudBottomStrip");
+    var headlineEl = document.getElementById(cfg.titleId);
+    var bottomMetaEl = document.getElementById(prefix + "HudBottomMeta");
+    var progressFillEl = document.getElementById(prefix + "HudProgressFill");
+
     var started = false;
-    var ambientOn = false;
     var lastSceneIdx = -1;
 
-    // Keep native MP4 arcade synth track muted so it NEVER sounds like a cheesy computer game!
     video.muted = true;
 
+    function syncPauseBtnLabel() {
+      if (!pauseBtn) return;
+      if (!started) {
+        pauseBtn.textContent = "⏸ PAUSE VIDEO TO READ";
+        pauseBtn.classList.remove("is-paused");
+        return;
+      }
+      if (video.ended) {
+        pauseBtn.textContent = "↻ REPLAY VIDEO";
+        pauseBtn.classList.remove("is-paused");
+      } else if (video.paused) {
+        pauseBtn.textContent = "▶ RESUME VIDEO";
+        pauseBtn.classList.add("is-paused");
+      } else {
+        pauseBtn.textContent = "⏸ PAUSE VIDEO TO READ";
+        pauseBtn.classList.remove("is-paused");
+      }
+    }
+
     function syncCaption(t) {
+      if (!started && t > 0.04) {
+        started = true;
+        if (gate) {
+          gate.classList.add("rrs-gate-splitting");
+          gate.style.display = "none";
+        }
+      }
       if (!started) return;
 
-      // 1) 17.8s to 20.0s: 24K-Gold RENT & RUG SHIELD 12-LAYER VAULT Crest is on screen -> ZERO HUD TEXT!
-      if (t >= 17.8 && t < 20.0) {
-        if (skyWrap) skyWrap.style.display = "none";
-        if (closingWrap) { closingWrap.classList.remove("show-closing"); closingWrap.style.display = "none"; }
-        if (pauseBtn) pauseBtn.classList.remove("rrs-pulse-pause");
-        return;
+      if (closingWrap) {
+        closingWrap.classList.remove("show-closing");
+        closingWrap.style.display = "none";
       }
 
-      // 2) 30.5s to 34.05s: Plain Closing Frame (Unobstructed Ranger & Chappie + Carbon Flag + Layer 13 Teaser)
-      if (t >= 30.5) {
-        if (skyWrap) skyWrap.style.display = "none";
-        if (closingWrap) { closingWrap.classList.add("show-closing"); closingWrap.style.display = "flex"; }
-        if (pauseBtn) pauseBtn.classList.remove("rrs-pulse-pause");
-        return;
+      var dur = (video.duration && isFinite(video.duration) && video.duration > 0) ? video.duration : 43.046;
+      if (progressFillEl) {
+        var pct = Math.max(0, Math.min(100, (t / dur) * 100));
+        progressFillEl.style.width = pct.toFixed(1) + "%";
       }
 
-      // 3) Active HUD Scenes (0-10s, 10-17.8s, 20-24s, 24-30.5s)
-      if (closingWrap) { closingWrap.classList.remove("show-closing"); closingWrap.style.display = "none"; }
-      var chosen = null;
+      var chosen = CASTLE_SCENES[CASTLE_SCENES.length - 1];
       for (var i = 0; i < CASTLE_SCENES.length; i++) {
         if (t >= CASTLE_SCENES[i].start && t < CASTLE_SCENES[i].end) {
           chosen = CASTLE_SCENES[i];
           break;
         }
       }
-      if (!chosen) {
-        if (skyWrap) skyWrap.style.display = "none";
-        return;
+
+      if (skyWrap && skyWrap.style.display !== "block") {
+        skyWrap.style.display = "block";
       }
-      if (skyWrap) skyWrap.style.display = "block";
+      syncGlobalFloatingPillGuard();
+
       if (chosen.idx !== lastSceneIdx) {
         lastSceneIdx = chosen.idx;
-        if (titleEl) titleEl.textContent = chosen.title;
-        if (bulletsEl) {
-          bulletsEl.innerHTML = chosen.bullets.map(function(b) {
-            var sep = b.indexOf(":");
-            if (sep > 0 && sep < 42) {
-              return '<li><span class="rrs-hud-lead">' + escHud(b.slice(0, sep + 1)) + '</span> <span class="rrs-hud-detail">' + escHud(b.slice(sep + 1).trim()) + '</span></li>';
+        if (chosen.isClearShield) {
+          if (skyWrap) {
+            skyWrap.classList.add("is-hud-clear-shield");
+            skyWrap.style.setProperty("opacity", "0", "important");
+          }
+        } else {
+          var applySceneDom = function() {
+            if (skyWrap) {
+              skyWrap.className = "rrs-vault-hud-overlay rrs-perimeter-hud hud-scene-" + chosen.idx + (chosen.isEndCard ? " is-scene-endcard" : "") + (chosen.isDogSightline ? " is-dog-sightline" : "") + " is-hud-fading";
+              skyWrap.style.setProperty("opacity", "0", "important");
             }
-            return '<li><span class="rrs-hud-detail">' + escHud(b) + '</span></li>';
-          }).join("");
-        }
-        if (skyWrap) {
-          skyWrap.className = "rrs-vault-hud-overlay hud-scene-" + chosen.idx;
+            if (topBarEl) {
+              topBarEl.classList.toggle("is-top-center-banner", !!chosen.isEndCard);
+            }
+            if (topTagEl) {
+              topTagEl.textContent = chosen.topTag;
+            }
+            if (!chosen.isDogSightline) {
+              if (leftKickerEl) leftKickerEl.textContent = chosen.leftKicker;
+              if (leftListEl) {
+                leftListEl.innerHTML = chosen.leftSpecs.map(function(s) {
+                  return formatHudSpecHtml(s, !!chosen.isEndCard);
+                }).join("");
+              }
+              if (rightKickerEl) rightKickerEl.textContent = chosen.rightKicker;
+              if (rightListEl) {
+                rightListEl.innerHTML = chosen.rightSpecs.map(function(s) {
+                  return formatHudSpecHtml(s, !!chosen.isEndCard);
+                }).join("");
+              }
+            }
+            if (bottomStripEl) {
+              bottomStripEl.classList.toggle("is-layer13-attention-bar", !!chosen.isDogSightline);
+            }
+            if (headlineEl) {
+              headlineEl.textContent = chosen.headline;
+            }
+            if (bottomMetaEl) {
+              bottomMetaEl.textContent = chosen.bottomMeta || "";
+              bottomMetaEl.style.display = chosen.bottomMeta ? "inline-flex" : "none";
+            }
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() {
+                if (skyWrap && !chosen.isClearShield) {
+                  skyWrap.classList.remove("is-hud-fading");
+                  skyWrap.style.setProperty("opacity", "1", "important");
+                }
+              });
+            });
+          };
+          applySceneDom();
         }
       }
-      if (pauseBtn) {
-        pauseBtn.classList.toggle("rrs-pulse-pause", !!chosen.pulsePause && !video.paused);
-      }
+      syncPauseBtnLabel();
     }
 
     function playNow() {
-      // Never pop open any modal! Close any stray legacy cinema overlays immediately
       var v9ov = document.getElementById("ranger-v9-cinema-overlay");
       if (v9ov) v9ov.style.setProperty("display", "none", "important");
       var pcm = document.getElementById("rrsPromoCinemaModal");
       if (pcm) pcm.style.display = "none";
 
-      started = true;
-      if (gate) {
-        gate.classList.add("rrs-gate-splitting");
-        setTimeout(function() { gate.style.display = "none"; }, 340);
+      var viewportEl = video.closest(".rrs-5050-video-stage");
+      if (viewportEl && viewportEl.getBoundingClientRect) {
+        var r = viewportEl.getBoundingClientRect();
+        if (r.top < -60 || r.bottom > (window.innerHeight + 80)) {
+          viewportEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
       }
+
+      started = true;
+      if (viewportEl) viewportEl.classList.add("rrs-stage-playing");
+      if (gate) {
+        gate.classList.remove("rrs-ended-pure-shield");
+        gate.classList.add("rrs-gate-splitting");
+        setTimeout(function() { if (started) gate.style.display = "none"; }, 280);
+      }
+      setTimeout(syncGlobalFloatingPillGuard, 60);
       if (postActions) postActions.classList.remove("show");
 
       stopSubtleInstitutionalPad();
-      ambientOn = false;
-      video.muted = false; // Restore original Goldflow soundtrack + end-clip Doberman growl
-      video.volume = 1.0;
-      if (audioBtn) audioBtn.textContent = "🔊";
+      video.muted = false;
+      video.volume = 0.85;
+      if (audioBtn) audioBtn.innerHTML = SVG_SPEAKER_ON;
       video.defaultPlaybackRate = 1.0;
       video.playbackRate = 1.0;
-      if (video.ended) video.currentTime = 0;
+      if (video.ended) {
+        video.currentTime = 0;
+        lastSceneIdx = -1;
+      }
       syncCaption(video.currentTime || 0);
-      video.play().catch(function() {
+      video.play().then(function() {
+        syncPauseBtnLabel();
+      }).catch(function() {
         video.muted = true;
-        if (audioBtn) audioBtn.textContent = "🔇";
-        video.play().catch(function() {});
+        if (audioBtn) audioBtn.innerHTML = SVG_SPEAKER_MUTED;
+        video.play().then(function() {
+          syncPauseBtnLabel();
+        }).catch(function() {});
       });
-      if (pauseBtn) pauseBtn.textContent = "⏸";
+      syncPauseBtnLabel();
     }
 
     function replayNow() {
@@ -20214,18 +20517,20 @@ window.submitVisitorFeedbackNow = async function(){
         return;
       }
       if (video.paused || video.ended) {
-        if (video.ended) video.currentTime = 0;
+        if (video.ended) {
+          video.currentTime = 0;
+          lastSceneIdx = -1;
+        }
         video.playbackRate = 1.0;
-        video.play().catch(function() {});
+        video.play().then(function() {
+          syncPauseBtnLabel();
+        }).catch(function() {});
         stopSubtleInstitutionalPad();
-        if (pauseBtn) pauseBtn.textContent = "⏸";
+        syncPauseBtnLabel();
       } else {
         video.pause();
         stopSubtleInstitutionalPad();
-        if (pauseBtn) {
-          pauseBtn.classList.remove("rrs-pulse-pause");
-          pauseBtn.textContent = "▶";
-        }
+        syncPauseBtnLabel();
       }
     }
 
@@ -20233,12 +20538,35 @@ window.submitVisitorFeedbackNow = async function(){
       stopSubtleInstitutionalPad();
       video.muted = !video.muted;
       if (!video.muted) {
-        video.volume = 1.0;
+        video.volume = 0.85;
         if (video.paused && started && !video.ended) video.play().catch(function() {});
       }
-      if (audioBtn) audioBtn.textContent = video.muted ? "🔊" : "🔊";
+      if (audioBtn) audioBtn.innerHTML = video.muted ? SVG_SPEAKER_MUTED : SVG_SPEAKER_ON;
     }
 
+    function resetToCoverGate() {
+      started = false;
+      lastSceneIdx = -1;
+      var vpEl = video.closest(".rrs-5050-video-stage");
+      if (vpEl) vpEl.classList.remove("rrs-stage-playing");
+      if (skyWrap) skyWrap.style.display = "none";
+      if (closingWrap) { closingWrap.classList.remove("show-closing"); closingWrap.style.display = "none"; }
+      if (gate) {
+        gate.classList.remove("rrs-gate-splitting", "rrs-ended-pure-shield");
+        gate.style.display = "";
+        gate.style.opacity = "1";
+      }
+      video.currentTime = 0;
+      syncGlobalFloatingPillGuard();
+      syncPauseBtnLabel();
+    }
+
+    video.addEventListener("click", function(ev) {
+      if (started) {
+        ev.stopPropagation();
+        togglePause();
+      }
+    });
     video.defaultPlaybackRate = 1.0;
     video.playbackRate = 1.0;
     video.addEventListener("loadedmetadata", function() {
@@ -20248,6 +20576,8 @@ window.submitVisitorFeedbackNow = async function(){
     video.addEventListener("ratechange", function() {
       if (Math.abs(video.playbackRate - 1.0) > 0.01) video.playbackRate = 1.0;
     });
+    video.addEventListener("play", function() { syncPauseBtnLabel(); syncGlobalFloatingPillGuard(); });
+    video.addEventListener("pause", function() { syncPauseBtnLabel(); syncGlobalFloatingPillGuard(); });
     video.addEventListener("timeupdate", function() {
       syncCaption(video.currentTime || 0);
     });
@@ -20256,20 +20586,17 @@ window.submitVisitorFeedbackNow = async function(){
     });
     video.addEventListener("ended", function() {
       stopSubtleInstitutionalPad();
-      if (skyWrap) skyWrap.style.display = "none";
-      if (closingWrap) { closingWrap.classList.add("show-closing"); closingWrap.style.display = "flex"; }
-      if (postActions) postActions.classList.add("show");
-      if (pauseBtn) {
-        pauseBtn.classList.remove("rrs-pulse-pause");
-        pauseBtn.textContent = "↻";
-      }
+      syncCaption(42.5);
+      syncPauseBtnLabel();
     });
 
     vaultControllers[prefix] = {
       play: playNow,
       replay: replayNow,
       togglePause: togglePause,
-      toggleAudio: toggleAudio
+      toggleAudio: toggleAudio,
+      resetToCoverGate: resetToCoverGate,
+      syncCaption: syncCaption
     };
   }
 
@@ -20280,7 +20607,7 @@ window.submitVisitorFeedbackNow = async function(){
       pauseBtnId: "btnPauseVaultVideo",
       audioBtnId: "btnAudioInstVaultVideo",
       titleId: "rrsSkySceneTitle",
-      bulletsId: "rrsSkySceneBullets",
+      bulletsId: "instHudLeftList",
       overlayId: "rrsVaultSkyOverlay",
       closingId: "instClosingFrameOverlay",
       postActionsId: "instPostVideoActions"
@@ -20291,7 +20618,7 @@ window.submitVisitorFeedbackNow = async function(){
       pauseBtnId: "btnPauseRetailVaultVideo",
       audioBtnId: "btnAudioRetailVaultVideo",
       titleId: "retailSkySceneTitle",
-      bulletsId: "retailSkySceneBullets",
+      bulletsId: "retailHudLeftList",
       overlayId: "retailVaultSkyOverlay",
       closingId: "retailClosingFrameOverlay",
       postActionsId: "retailPostVideoActions"
@@ -20366,7 +20693,7 @@ window.submitVisitorFeedbackNow = async function(){
             if (ev.target && ev.target.closest && ev.target.closest("a, button")) return;
             var symEl = secondTd ? secondTd.querySelector("strong, a") : null;
             var symTxt = symEl ? (symEl.textContent || "RUNNER").trim() : "RUNNER";
-            window.rrsOpenWhaleGateModal(symTxt, mintMatch || "2Tngp2726ch31597ac7pump");
+            window.rrsOpenWhaleGateModal(symTxt, mintMatch || "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr");
           });
         }
       });
@@ -20409,7 +20736,8 @@ window.submitVisitorFeedbackNow = async function(){
       var badge = String(it.badge || badgeMap[it.kind] || "LIVE INTEL").replace(/[🟢🔵🟣]/g, "");
       var isCoin = (it.kind === "coin");
       var rightTag = isCoin ? "Verified On-Chain ↗" : "Open ↗";
-      var verifyUrl = isCoin && it.mint ? ("https://solscan.io/token/" + encodeURIComponent(it.mint)) : (it.url || "https://solscan.io");
+      var hasValidMint = isCoin && it.mint && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(String(it.mint).trim());
+      var verifyUrl = hasValidMint ? ("https://solscan.io/token/" + encodeURIComponent(String(it.mint).trim())) : (it.url || "https://solscan.io/account/89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1");
       return (
         '<a href="' + escHtml(verifyUrl) + '" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;justify-content:space-between;padding:12px 14px;border-radius:10px;background:#05070B;border:1px solid rgba(255,208,0,0.42);text-decoration:none;color:#FFFFFF;">' +
           '<div>' +
@@ -20466,7 +20794,7 @@ window.submitVisitorFeedbackNow = async function(){
             badge: "12-LAYER SHIELDED RUNNER",
             title: "$PUNANI (+252.9% Runner) • 12/12 Layers Passed",
             sub: "Solscan & DexScreener Verified",
-            mint: "2Tngp2726ch31597ac7pump",
+            mint: "",
             url: "https://solscan.io/account/89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1"
           }
         ];
@@ -20919,7 +21247,7 @@ window.submitVisitorFeedbackNow = async function(){
   setInterval(syncModeThemeClasses, 600);
   document.addEventListener("click", function() { setTimeout(syncModeThemeClasses, 80); });
 
-  // 2. Video Upgrade: Unmuted Audio + Dynamic Volume Envelope + 5 Seconds on Dog -> Return to Shield Crest!
+  // 2. Video Upgrade: Unmuted Audio + Dynamic Volume Envelope + 2 Seconds at End -> Return to Full-Screen Shield!
   function attachDogToShieldReturn(videoId, gateId, closingId, pauseBtnId) {
     var vid = document.getElementById(videoId);
     if (!vid || vid.dataset.rrsDogShieldBound) return;
@@ -20928,31 +21256,44 @@ window.submitVisitorFeedbackNow = async function(){
 
     vid.addEventListener("play", function() {
       if (shieldTimer) { clearTimeout(shieldTimer); shieldTimer = null; }
+      var vpPlay = vid.closest(".rrs-5050-video-stage");
+      if (vpPlay) vpPlay.classList.add("rrs-stage-playing");
+      var gPlay = document.getElementById(gateId);
+      if (gPlay) gPlay.classList.remove("rrs-ended-pure-shield");
     });
     vid.addEventListener("timeupdate", function() {
-      // Backup dynamic smoothing in case browser cached old MP4: gentle music 0-26s, full Dog Growl 26-34s!
       if (!vid.muted) {
-        var ct = vid.currentTime || 0;
-        vid.volume = (ct < 26.0) ? 0.58 : 1.0;
+        vid.volume = 0.85;
       }
     });
     vid.addEventListener("ended", function() {
       if (shieldTimer) clearTimeout(shieldTimer);
-      // Hold 5.0 seconds on the Doberman closing frame, then smoothly restore the Shield Crest Gate!
       shieldTimer = setTimeout(function() {
         if (!vid.paused && !vid.ended) return;
+        var pfx = (videoId === "rrsVaultMasterVideo") ? "inst" : "retail";
+        var vpEnd = vid.closest(".rrs-5050-video-stage");
+        if (vpEnd) vpEnd.classList.remove("rrs-stage-playing");
         var gate = document.getElementById(gateId);
         var closing = document.getElementById(closingId);
+        var postAct = document.getElementById(pfx === "inst" ? "instPostVideoActions" : "retailPostVideoActions");
         var pbtn = document.getElementById(pauseBtnId);
+        var sky = document.getElementById(pfx === "inst" ? "rrsVaultSkyOverlay" : "retailVaultSkyOverlay");
         if (closing) { closing.classList.remove("show-closing"); closing.style.display = "none"; }
+        if (postAct) postAct.classList.remove("show");
+        if (sky) sky.style.display = "none";
+        document.body.classList.remove("rrs-vault-hud-active");
         if (gate) {
           gate.classList.remove("rrs-gate-splitting");
+          gate.classList.add("rrs-ended-pure-shield");
           gate.style.display = "";
           gate.style.opacity = "1";
         }
         vid.currentTime = 0;
-        if (pbtn) pbtn.textContent = "▶";
-      }, 5000);
+        if (pbtn) {
+          pbtn.classList.remove("is-paused");
+          pbtn.textContent = "⏸ PAUSE VIDEO TO READ";
+        }
+      }, 2000);
     });
   }
 
@@ -20972,10 +21313,16 @@ window.submitVisitorFeedbackNow = async function(){
         rentBtn.className = "rrs-rent-jump-pill";
         rentBtn.innerHTML = "💎 SOL Rent Reclaim ↓";
         rentBtn.onclick = function() {
-          var target = Array.from(document.querySelectorAll("h2, h3, h4, div, section")).find(function(n) {
-            return /Panel A:\s*SOL Rent Recovery|Wallet Rent Recovery|SOL Rent Recovery & Dead/i.test(n.textContent || "") && n.offsetHeight > 20 && n.offsetHeight < 500;
-          });
-          if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
+          var instView = document.getElementById("rrsViewInstitutional");
+          var isInstMode = document.body.classList.contains("rrs-mode-institutional") || (instView && instView.offsetParent !== null);
+          var target = isInstMode
+            ? (document.getElementById("instRentEngineCard") || document.getElementById("instWalletInput"))
+            : (document.getElementById("rentShieldCard") || document.getElementById("walletInput"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "center" });
+            var inp = document.getElementById(isInstMode ? "instWalletInput" : "walletInput");
+            if (inp) setTimeout(function() { try { inp.focus({ preventScroll: true }); } catch (_e) {} }, 350);
+          }
         };
         rugJump.insertAdjacentElement("afterend", rentBtn);
       }
@@ -21022,6 +21369,7 @@ window.submitVisitorFeedbackNow = async function(){
 
     // 3D.Populate any empty on-page Honesty Mandate / Honesty Policy container automatically
     document.querySelectorAll("div, section").forEach(function(sec) {
+      if (sec.closest && sec.closest(".rrs-perimeter-hud, .rrs-5050-video-stage, .rrs-vault-hud-overlay")) return;
       var htxt = (sec.textContent || "").trim();
       if (/Honesty Policy|Honesty Mandate|Honesty Pledge/i.test(htxt) && htxt.length < 95 && !sec.dataset.rrsFilled) {
         sec.dataset.rrsFilled = "1";
@@ -21160,7 +21508,7 @@ window.submitVisitorFeedbackNow = async function(){
     var txt = ((btn.innerText || btn.textContent || "") + " " + (btn.getAttribute("aria-label") || "")).replace(/\s+/g, " ").trim();
     var isPaidOrClaim = /(\$19\.99|\$99|\$500|subscribe\s*pro|buy\s*pro|quant\s*plan|enterprise|claim\s*(my\s*)?sol|0x09|reclaim\s*now)/i.test(txt);
     if (isPaidOrClaim) return;
-    if (/(free\s*trial|30[-\s]*day\s*(free\s*)?trial|0%\s*free\s*starter|start\s*free|activate\s*trial|try\s*free)/i.test(txt)) {
+    if (/(free\s*(pro\s*)?trial|30[-\s]*day\s*(free\s*)?(pro\s*)?trial|0%\s*free\s*starter|start\s*free|activate\s*trial|try\s*free)/i.test(txt)) {
       ev.preventDefault(); ev.stopPropagation();
       if (ev.stopImmediatePropagation) ev.stopImmediatePropagation();
       window.rrsOpenTrialModal();
@@ -21179,5 +21527,517 @@ window.submitVisitorFeedbackNow = async function(){
 })();
 </script>
 <!-- RRS_WALKTHROUGH_MASTER_END -->
+
+<!-- RRS_INSTITUTIONAL_PERIMETER_HUD_V6_START -->
+<style id="rrsInstitutionalPerimeterHudV6Css">
+  /* 0. Prevent Floating Page Pills From Overlapping Active Video Perimeter HUD */
+  html body.rrs-vault-hud-active .rrs-honesty-tag-floating {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(16px) !important;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease !important;
+  }
+
+  /* 1. Side-by-Side Split Layout (Left Pitch Card + Right 4K Video Stage on Same Row — Nothing Pushed Underneath!) */
+  html body #rrsHeroPromoVideoSection.rrs-compact-5050-showcase,
+  html body #instWidescreenVaultSection.rrs-compact-5050-showcase {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr) !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+  html body #rrsRetailLeftDiffCard,
+  html body #instExecArchitectureCard {
+    grid-column: auto !important;
+    order: 1 !important;
+    min-height: 450px !important;
+  }
+  html body #retailCastleVaultPlayerCard,
+  html body #instCastleVaultPlayerCard {
+    grid-column: auto !important;
+    order: 2 !important;
+    width: 100% !important;
+    min-height: 450px !important;
+    border-radius: 14px !important;
+    border: 1.5px solid rgba(255, 208, 0, 0.52) !important;
+    background: #05070B !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.90) !important;
+    overflow: hidden !important;
+  }
+  html body #retailVaultViewport,
+  html body #rrsVaultViewport {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 450px !important;
+    aspect-ratio: auto !important;
+    background: #05070B !important;
+    overflow: hidden !important;
+  }
+  html body #retailVaultViewport video,
+  html body #rrsVaultViewport video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+  html body #retailVaultCoverGate,
+  html body #rrsVaultCoverGate {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding-top: 0 !important;
+    padding-bottom: 28px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+    background: radial-gradient(circle at 50% 42%, #0E131D 0%, #05070B 72%) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+  html body #retailVaultCoverGate.rrs-ended-pure-shield,
+  html body #rrsVaultCoverGate.rrs-ended-pure-shield {
+    padding-bottom: 0 !important;
+  }
+  html body #retailVaultCoverGate .rrs-vault-exact-badge,
+  html body #rrsVaultCoverGate .rrs-vault-exact-badge {
+    height: 84% !important;
+    max-height: 84% !important;
+    width: auto !important;
+    max-width: 92% !important;
+    object-fit: contain !important;
+    display: block !important;
+    filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.9)) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  html body #retailVaultCoverGate.rrs-ended-pure-shield .rrs-vault-exact-badge,
+  html body #rrsVaultCoverGate.rrs-ended-pure-shield .rrs-vault-exact-badge {
+    height: 86% !important;
+    max-height: 86% !important;
+  }
+  html body #retailVaultViewport:not(.rrs-stage-playing) .rrs-hud-controls-dock,
+  html body #rrsVaultViewport:not(.rrs-stage-playing) .rrs-hud-controls-dock {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  html body #retailVaultCoverGate.rrs-ended-pure-shield .rrs-gold-play-lower-btn,
+  html body #rrsVaultCoverGate.rrs-ended-pure-shield .rrs-gold-play-lower-btn {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.22s ease !important;
+  }
+  html body #retailVaultCoverGate.rrs-ended-pure-shield:hover .rrs-gold-play-lower-btn,
+  html body #rrsVaultCoverGate.rrs-ended-pure-shield:hover .rrs-gold-play-lower-btn {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* 2. Top-Right Controls Dock */
+  html body #retailVaultViewport .rrs-hud-controls-dock,
+  html body #rrsVaultViewport .rrs-hud-controls-dock {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 32 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    pointer-events: auto !important;
+  }
+  html body #retailVaultViewport #btnAudioRetailVaultVideo,
+  html body #rrsViewInstitutional #rrsVaultViewport #btnAudioInstVaultVideo,
+  html body #rrsVaultViewport #btnAudioInstVaultVideo {
+    position: static !important;
+    width: 34px !important;
+    min-width: 34px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    border-radius: 8px !important;
+    background: linear-gradient(90deg, rgba(5, 7, 11, 0.72), rgba(5, 7, 11, 0.48)) !important;
+    background-image: linear-gradient(90deg, rgba(5, 7, 11, 0.72), rgba(5, 7, 11, 0.48)) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    border: 1px solid rgba(255, 208, 0, 0.45) !important;
+    color: #FFD000 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.85) !important;
+  }
+  html body #retailVaultViewport #btnPauseRetailVaultVideo,
+  html body.rrs-mode-institutional #rrsViewInstitutional #rrsVaultViewport #btnPauseVaultVideo,
+  html body #rrsViewInstitutional #rrsVaultViewport #btnPauseVaultVideo,
+  html body #rrsVaultViewport #btnPauseVaultVideo {
+    position: static !important;
+    width: auto !important;
+    min-width: max-content !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    padding: 0 12px !important;
+    border-radius: 8px !important;
+    background: linear-gradient(90deg, rgba(5, 7, 11, 0.76), rgba(5, 7, 11, 0.50)) !important;
+    background-image: linear-gradient(90deg, rgba(5, 7, 11, 0.76), rgba(5, 7, 11, 0.50)) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    border: 1.5px solid #FFD000 !important;
+    color: #FFD000 !important;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.88) !important;
+  }
+
+  /* 3. Perimeter HUD Container */
+  html body #rrsVaultSkyOverlay.rrs-perimeter-hud,
+  html body #retailVaultSkyOverlay.rrs-perimeter-hud,
+  html body .rrs-vault-hud-overlay.rrs-perimeter-hud {
+    position: absolute !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    z-index: 22 !important;
+    pointer-events: none !important;
+  }
+
+  /* 4. V2 Screen-Filling Translucent Smoked-Obsidian Glass & Smooth 0.5s Crossfades */
+  html body .rrs-vault-hud-overlay.rrs-perimeter-hud {
+    opacity: 1;
+    transition: opacity 0.38s ease-in-out !important;
+  }
+  html body #rrsVaultSkyOverlay.rrs-perimeter-hud,
+  html body #retailVaultSkyOverlay.rrs-perimeter-hud {
+    transition: opacity 0.38s ease-in-out !important;
+  }
+  html body #rrsVaultSkyOverlay.is-hud-fading,
+  html body #retailVaultSkyOverlay.is-hud-fading,
+  html body #rrsVaultSkyOverlay.is-hud-clear-shield,
+  html body #retailVaultSkyOverlay.is-hud-clear-shield,
+  html body .rrs-vault-hud-overlay.rrs-perimeter-hud.is-hud-fading,
+  html body .rrs-vault-hud-overlay.rrs-perimeter-hud.is-hud-clear-shield {
+    opacity: 0 !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-glass {
+    background: linear-gradient(180deg, rgba(6, 9, 15, 0.48) 0%, rgba(6, 9, 15, 0.42) 100%) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
+    border: 2px solid rgba(255, 208, 0, 0.82) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.52) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 5. Top Telemetry Header Bar (Leaves Top-Right Speaker/Pause Controls Clear) */
+  html body .rrs-perimeter-hud .rrs-perim-top {
+    position: absolute !important;
+    top: 12px !important;
+    left: 14px !important;
+    right: auto !important;
+    max-width: calc(100% - 110px) !important;
+    padding: 9px 16px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-top.is-top-center-banner {
+    left: 14px !important;
+    transform: none !important;
+    max-width: calc(100% - 110px) !important;
+    width: auto !important;
+    padding: 9px 16px !important;
+    justify-content: flex-start !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-live-dot {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background: #10B981 !important;
+    box-shadow: 0 0 10px #10B981 !important;
+    flex-shrink: 0 !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-top-tag {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+    font-size: clamp(12.5px, 1.02vw, 14.5px) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1.2 !important;
+    color: #FFD000 !important;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.98), 0 1px 4px rgba(0, 0, 0, 0.98) !important;
+    white-space: nowrap !important;
+  }
+
+  /* 6. Wide Full-Frame Smoked-Glass Spec Grid (~96% Viewport Width, Background Castle Visible Through Glass!) */
+  html body .rrs-perimeter-hud .rrs-perim-mid-row {
+    position: absolute !important;
+    top: 58px !important;
+    bottom: 78px !important;
+    left: 14px !important;
+    right: 14px !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    box-sizing: border-box !important;
+    pointer-events: none !important;
+    opacity: 1 !important;
+    transition: opacity 0.5s ease-in-out !important;
+  }
+  html body .rrs-perimeter-hud.is-dog-sightline .rrs-perim-mid-row {
+    opacity: 0 !important;
+    display: none !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-side {
+    width: calc(50% - 7px) !important;
+    max-width: calc(50% - 7px) !important;
+    padding: 16px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    background: linear-gradient(180deg, rgba(6, 9, 15, 0.45) 0%, rgba(6, 9, 15, 0.40) 100%) !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-right {
+    background: linear-gradient(180deg, rgba(6, 9, 15, 0.45) 0%, rgba(6, 9, 15, 0.40) 100%) !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-kicker {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+    font-size: clamp(13.5px, 1.05vw, 15.5px) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1.25 !important;
+    color: #FFD000 !important;
+    text-transform: uppercase !important;
+    padding-bottom: 8px !important;
+    margin: 0 !important;
+    border-bottom: 2px solid rgba(16, 185, 129, 0.55) !important;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.98), 0 1px 4px rgba(0, 0, 0, 0.98) !important;
+    white-space: nowrap !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-list {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 11px !important;
+    background: transparent !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-list li.rrs-perim-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    font-size: clamp(15.5px, 1.15vw, 18.2px) !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.01em !important;
+    color: #FFFFFF !important;
+    text-shadow: 0 3px 16px rgba(0, 0, 0, 0.98), 0 1px 5px rgba(0, 0, 0, 0.98) !important;
+  }
+  html body .rrs-perimeter-hud .rrs-hud-lead-gold {
+    color: #FFD000 !important;
+    font-weight: 800 !important;
+  }
+  html body .rrs-perimeter-hud .rrs-hud-mono-token {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+    font-size: 0.93em !important;
+    font-weight: 800 !important;
+    color: #10B981 !important;
+    white-space: nowrap !important;
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.98) !important;
+  }
+
+  /* 7. Bold Lower-Third Headline & Doberman Sightline CTA Bar */
+  html body .rrs-perimeter-hud .rrs-perim-bottom {
+    position: absolute !important;
+    bottom: 12px !important;
+    left: 14px !important;
+    right: 14px !important;
+    padding: 13px 18px !important;
+    overflow: hidden !important;
+    background: linear-gradient(180deg, rgba(6, 9, 15, 0.50) 0%, rgba(6, 9, 15, 0.44) 100%) !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-bottom-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-headline {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    font-size: clamp(14px, 1.12vw, 18px) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.24 !important;
+    color: #FFD000 !important;
+    text-shadow: 0 3px 16px rgba(0, 0, 0, 0.98), 0 1px 5px rgba(0, 0, 0, 0.98) !important;
+    margin: 0 !important;
+    white-space: normal !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-meta {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+    font-size: clamp(12px, 0.92vw, 13.5px) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    color: #10B981 !important;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.98) !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-progress-track {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 4px !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-progress-fill {
+    height: 100% !important;
+    width: 0%;
+    background: linear-gradient(90deg, #FFD000 0%, #10B981 100%) !important;
+    transition: width 0.2s linear !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-bottom.is-layer13-attention-bar {
+    padding: 16px 20px !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 24px rgba(16, 185, 129, 0.32) !important;
+  }
+  html body .rrs-perimeter-hud .rrs-perim-bottom.is-layer13-attention-bar .rrs-perim-headline {
+    font-size: clamp(18.5px, 1.44vw, 23.5px) !important;
+    color: #FFD000 !important;
+  }
+
+  @media (max-width: 980px) {
+    html body #rrsHeroPromoVideoSection.rrs-compact-5050-showcase,
+    html body #instWidescreenVaultSection.rrs-compact-5050-showcase {
+      grid-template-columns: 1fr !important;
+    }
+    html body .rrs-perimeter-hud .rrs-perim-list li.rrs-perim-item {
+      font-size: 14px !important;
+    }
+  }
+</style>
+<!-- RRS_INSTITUTIONAL_PERIMETER_HUD_V6_END -->
+
+
+<!-- RRS_STANDOUT_NAV_PILLS_AND_PULSE -->
+<style>
+  html body .rrs-cta-nav-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 7px 15px !important;
+    border-radius: 999px !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 0.85rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.01em !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    transition: transform 0.14s ease, box-shadow 0.16s ease !important;
+  }
+  html body .rrs-cta-nav-pill:hover {
+    transform: translateY(-1px) scale(1.02) !important;
+  }
+  html body .rrs-cta-nav-emerald {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
+    color: #03120B !important;
+    border: 1.5px solid #34D399 !important;
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.45) !important;
+  }
+  html body .rrs-cta-nav-gold {
+    background: linear-gradient(135deg, #FFD000 0%, #F59E0B 100%) !important;
+    color: #06090F !important;
+    border: 1.5px solid #FDE68A !important;
+    box-shadow: 0 0 16px rgba(255, 208, 0, 0.48) !important;
+  }
+  @keyframes rrsInputFocusPulseEmerald {
+    0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.95), 0 0 24px rgba(16, 185, 129, 0.85); border-color: #10B981 !important; }
+    50%  { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.35), 0 0 32px rgba(52, 211, 153, 0.95); border-color: #34D399 !important; }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.0); }
+  }
+  @keyframes rrsInputFocusPulseGold {
+    0%   { box-shadow: 0 0 0 0 rgba(255, 208, 0, 0.95), 0 0 24px rgba(255, 208, 0, 0.85); border-color: #FFD000 !important; }
+    50%  { box-shadow: 0 0 0 6px rgba(255, 208, 0, 0.35), 0 0 32px rgba(253, 230, 138, 0.95); border-color: #FDE68A !important; }
+    100% { box-shadow: 0 0 0 0 rgba(255, 208, 0, 0.0); }
+  }
+  html body input.rrs-pulse-emerald-1500 {
+    animation: rrsInputFocusPulseEmerald 1.5s ease-out 1 !important;
+    outline: 2px solid #10B981 !important;
+  }
+  html body input.rrs-pulse-gold-1500 {
+    animation: rrsInputFocusPulseGold 1.5s ease-out 1 !important;
+    outline: 2px solid #FFD000 !important;
+  }
+</style>
+<script>
+  window.rrsJumpAndPulseInput = function(kind, ev) {
+    if (ev && ev.preventDefault) ev.preventDefault();
+    var instView = document.getElementById("rrsViewInstitutional");
+    var isInst = document.body.classList.contains("rrs-mode-institutional") || (instView && instView.offsetParent !== null);
+    var cardEl = null;
+    var inputEl = null;
+    var pulseCls = kind === "rug" ? "rrs-pulse-gold-1500" : "rrs-pulse-emerald-1500";
+    if (kind === "rug") {
+      inputEl = document.getElementById(isInst ? "instMintInput" : "mintInput");
+      cardEl = isInst
+        ? (inputEl ? inputEl.closest("section, .card, div") : document.getElementById("instScanMintBtn"))
+        : document.getElementById("rugShieldCard");
+    } else {
+      inputEl = document.getElementById(isInst ? "instWalletInput" : "walletInput");
+      cardEl = isInst
+        ? (document.getElementById("instRentEngineCard") || (inputEl && inputEl.closest("section, .card, div")))
+        : document.getElementById("rentShieldCard");
+    }
+    var scrollTarget = cardEl || inputEl;
+    if (scrollTarget && scrollTarget.scrollIntoView) {
+      scrollTarget.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    if (inputEl) {
+      inputEl.classList.remove("rrs-pulse-emerald-1500", "rrs-pulse-gold-1500");
+      void inputEl.offsetWidth;
+      inputEl.classList.add(pulseCls);
+      try { inputEl.focus({ preventScroll: true }); } catch (_e) { try { inputEl.focus(); } catch (_e2) {} }
+      setTimeout(function() {
+        try { inputEl.focus({ preventScroll: true }); } catch (_e3) {}
+      }, 380);
+      setTimeout(function() {
+        inputEl.classList.remove(pulseCls);
+      }, 1550);
+    }
+    return false;
+  };
+</script>
+
 </body>
 </html>

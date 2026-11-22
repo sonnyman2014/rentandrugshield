@@ -1,5 +1,5 @@
-/* Rent & Rug Shield - PWA Service Worker v25767 (Pre-Launch Surgical Polish: Single Header, Badge Separation & Shadow 403) */
-const CACHE_NAME = 'rent-shield-v25767-prelaunch';
+/* Rent & Rug Shield - PWA Service Worker v25768 (Pre-Launch Surgical Polish: Single Header, Badge Separation & Shadow 403) */
+const CACHE_NAME = 'rent-shield-v25768-castlev3';
 self.addEventListener('install', () => { self.skipWaiting(); });
 self.addEventListener('activate', (event) => {
   event.waitUntil(
