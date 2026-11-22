@@ -734,7 +734,7 @@
         slot: 'VIDEO 02 · 28S 60FPS',
         shortTitle: 'Native 0x09 Rent & Honesty',
         title: 'Native 0x09 Rent Recovery & 100% Free First Claim Policy',
-        desc: 'Live account-table sweep reclaiming stranded 2,039,280 lamport ATAs (+0.00203928 SOL each) via pure SPL CloseAccount (0x09) — 1st claim 100% FREE, zero blind burns.',
+        desc: 'Live account-table sweep reclaiming stranded 2,039,280 lamport ATAs (+0.00203928 SOL each) via pure SPL CloseAccount (0x09) - 1st claim 100% FREE, zero blind burns.',
         src16x9: '/assets/promo_arsenal/02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S.mp4',
         src9x16: '/assets/promo_arsenal/02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S_VERTICAL_9x16.mp4',
         poster: '/assets/social/og-zero-pct-rent-recovery-v51.png',
@@ -776,6 +776,66 @@
         poster: '/assets/social/og-retail-emerald-hero-v51.png',
         liveVerified: true,
         hasDedicatedVertical: false
+      },
+      {
+        index: 6,
+        slot: 'VIDEO 06 · 22S 60FPS',
+        shortTitle: 'Live Rug Dodged: HYPE -96%',
+        title: 'Live Rug Dodged: HYPE -96% Honey-Trap Blocked Pre-Sign',
+        desc: 'Forensic replay of our 12-Layer adaptive firewall catching HYPE liquidity drain & inner-CPI authority mutation before a single lamport could be signed.',
+        src16x9: '/assets/promo_arsenal/06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S.mp4',
+        src9x16: '/assets/promo_arsenal/06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S_VERTICAL_9x16.mp4',
+        poster: '/assets/social/og-12layer-rug-radar-v51.png',
+        liveVerified: true,
+        hasDedicatedVertical: true
+      },
+      {
+        index: 7,
+        slot: 'VIDEO 07 · 25S 60FPS',
+        shortTitle: 'Verified Runners: CLAUDIA & SNOWBALL',
+        title: 'Verified Clean Runners: CLAUDIA (+203%) & SNOWBALL (+1,464%)',
+        desc: 'Side-by-side proof that institutional safety does not block real alpha - clean mint/freeze authorities, locked LP, and verified organic dispersion.',
+        src16x9: '/assets/promo_arsenal/07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S.mp4',
+        src9x16: '/assets/promo_arsenal/07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S_VERTICAL_9x16.mp4',
+        poster: '/assets/social/og-retail-emerald-hero-v51.png',
+        liveVerified: true,
+        hasDedicatedVertical: true
+      },
+      {
+        index: 8,
+        slot: 'VIDEO 08 · 20S 60FPS',
+        shortTitle: 'Read-Only 0x09 SOL Walkthrough',
+        title: 'Read-Only Wallet Rent Scan & Native 0x09 CloseAccount Walkthrough',
+        desc: 'Zero seed phrases, zero private keys, zero blind approvals - paste any public Solana address to locate ~0.002039 SOL per empty ATA (0% 1st claim up to 25 ATAs, 98.0% net SOL repeat).',
+        src16x9: '/assets/promo_arsenal/08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S.mp4',
+        src9x16: '/assets/promo_arsenal/08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S_VERTICAL_9x16.mp4',
+        poster: '/assets/social/og-honesty-mandate-v51.png',
+        liveVerified: true,
+        hasDedicatedVertical: true
+      },
+      {
+        index: 9,
+        slot: 'VIDEO 09 · 25S 60FPS',
+        shortTitle: 'Chrome Ext v5.1 DexScreener Overlay',
+        title: 'Chrome Extension v5.1 Live DexScreener & Birdeye HUD Overlay',
+        desc: '30-Day Free Beta HUD injecting real-time 12-Layer PASS/BLOCK telemetry directly onto DexScreener, Pump.fun, Birdeye, Axiom, and BullX.',
+        src16x9: '/assets/promo_arsenal/09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S.mp4',
+        src9x16: '/assets/promo_arsenal/09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S_VERTICAL_9x16.mp4',
+        poster: '/assets/social/og-chrome-ext-v51.png',
+        liveVerified: true,
+        hasDedicatedVertical: true
+      },
+      {
+        index: 10,
+        slot: 'VIDEO 10 · 24S 60FPS',
+        shortTitle: 'Layer 11 Block-0 Jito Sybil Radar',
+        title: 'Layer 11 Block-0 Jito Bundle & Dispersed Sybil Cartel Radar',
+        desc: 'Exposing slot-0 sniper bundles and 2-hop funder cartels in under 120ms before retail buyers step into coordinated exit liquidity.',
+        src16x9: '/assets/promo_arsenal/10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S.mp4',
+        src9x16: '/assets/promo_arsenal/10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S_VERTICAL_9x16.mp4',
+        poster: '/assets/social/og-12layer-rug-radar-v51.png',
+        liveVerified: true,
+        hasDedicatedVertical: true
       }
     ];
 
@@ -811,7 +871,7 @@
       activeAspect = aspect || activeAspect;
 
       const targetUrl = getTrackUrl(item, activeAspect);
-      spotlightBadge.textContent = `MASTER 0${item.index} · ${activeAspect === '9x16' ? '9:16 VERTICAL' : '16:9 WIDESCREEN'}`;
+      spotlightBadge.textContent = `MASTER ${String(item.index).padStart(2, '0')} · ${activeAspect === '9x16' ? '9:16 VERTICAL' : '16:9 WIDESCREEN'}`;
       spotlightTitle.textContent = item.title;
       spotlightWrap.classList.toggle('vertical-mode', activeAspect === '9x16');
       if (activeAspect === '9x16' && item.poster9x16) {
@@ -830,7 +890,7 @@
         const playPromise = spotlightVideo.play();
         if (playPromise && typeof playPromise.catch === 'function') {
           playPromise.catch(() => {
-            showToast(`Loaded ${item.shortTitle} — press Play on player controls.`);
+            showToast(`Loaded ${item.shortTitle} - press Play on player controls.`);
           });
         }
       }
@@ -850,10 +910,10 @@
 
     spotlightVideo.addEventListener('error', () => {
       if (sequentialMode && activeTrackIndex + 1 < ARSENAL_VIDEOS.length) {
-        showToast(`Slot 0${activeTrackIndex} still finalizing in render pipeline — advancing to next master...`);
+        showToast(`Slot ${String(activeTrackIndex).padStart(2, '0')} still finalizing in render pipeline - advancing to next master...`);
         loadIntoSpotlight(activeTrackIndex + 1, activeAspect, true);
       } else {
-        showToast(`Master 0${activeTrackIndex} is queued in /assets/promo_arsenal/ — ready automatically as soon as encode completes.`);
+        showToast(`Master ${String(activeTrackIndex).padStart(2, '0')} is queued in /assets/promo_arsenal/ - ready automatically as soon as encode completes.`);
       }
     });
 
@@ -867,7 +927,7 @@
         chip.type = 'button';
         chip.className = 'track-chip' + (item.index === activeTrackIndex ? ' active' : '');
         chip.innerHTML = `
-          <span class="tc-num">MASTER 0${item.index}</span>
+          <span class="tc-num">MASTER ${String(item.index).padStart(2, '0')}</span>
           <span class="tc-name">${item.shortTitle}</span>
         `;
         chip.addEventListener('click', () => {
@@ -893,7 +953,7 @@
             <p class="vc-desc">${item.desc}</p>
           </div>
 
-          <div class="aspect-tabs" role="tablist" aria-label="Format selector for Master 0${item.index}">
+          <div class="aspect-tabs" role="tablist" aria-label="Format selector for Master ${String(item.index).padStart(2, '0')}">
             <button type="button" class="aspect-tab active" data-card="${item.index}" data-aspect="16x9">
               16:9 Widescreen
             </button>
