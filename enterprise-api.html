@@ -631,7 +631,7 @@
           if (j && j.api_base) API_BASE = String(j.api_base).replace(/\/+$/, "");
         }
       } catch (_e){}
-      if (!API_BASE) API_BASE = "https://soldier-indirect-amber-messaging.trycloudflare.com";
+      if (!API_BASE) API_BASE = "https://arena-adsl-camps-quantum.trycloudflare.com";
       return API_BASE;
     }
 
@@ -833,7 +833,7 @@
           }
         }
       } catch (_e) {}
-      _apiBaseCache = "https://soldier-indirect-amber-messaging.trycloudflare.com";
+      _apiBaseCache = "https://arena-adsl-camps-quantum.trycloudflare.com";
       return _apiBaseCache + "/api/telemetry/click";
     }
     _apiBaseCache = "";
@@ -1099,7 +1099,7 @@
 
 </script>
 <script id="rrs-ent-sol-pill-js">
-    fetch("/api/live-market-ticker?t=" + Date.now(), {cache:"no-store"}).then(function(r){return r.json();}).then(function(d){
+    (window.API_BASE ? Promise.resolve(window.API_BASE) : fetch("/live_endpoint.json?t=" + Date.now(), {cache:"no-store"}).then(function(r){return r.ok?r.json():{};}).then(function(j){return (j&&j.api_base)||"";}).catch(function(){return "";})).then(function(b){ return fetch((b||"") + "/api/live-market-ticker?t=" + Date.now(), {cache:"no-store"}); }).then(function(r){return r.json();}).then(function(d){
       var p = document.getElementById("rrsHeaderSolPricePill");
       if (p && d && d.sol && d.sol.price_usd) {
         var c = Number(d.sol.change_24h || 0);
