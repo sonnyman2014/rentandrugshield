@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#060b14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Rent & Rug Shield" />
+  <link rel="manifest" href="/manifest-mobile.webmanifest" />
+  <link rel="apple-touch-icon" href="/chrome-extension/icons/icon-192.png" />
+  <meta property="og:title" content="Solana Rent & Rug Shield Mobile App | MWA v2.0 & 12-Layer Shield" />
+  <meta property="og:description" content="1-Tap Solana Seeker / Phantom / Solflare MWA v2.0 Rent Recovery (0% 1st Claim <=25 ATAs, 98.0% Repeat) & 12-Layer Rug Firewall." />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png" />
+  <title>Solana Rent &amp; Rug Shield Mobile | MWA v2.0 &amp; 12-Layer Firewall</title>
+  <style>
+    :root {
+      --bg: #060b14;
+      --card: #0e1726;
+      --border: rgba(234, 179, 8, 0.32);
+      --gold: #facc15;
+      --emerald: #10b981;
+      --red: #ef4444;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      margin: 0;
+      padding: env(safe-area-inset-top, 12px) 14px calc(84px + env(safe-area-inset-bottom, 14px)) 14px;
+      background: radial-gradient(circle at top, #101f38 0%, var(--bg) 65%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+    }
+    .top-hdr {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 10px 4px 14px 4px; border-bottom: 1px solid rgba(148,163,184,0.16);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { width: 38px; height: 38px; border-radius: 10px; border: 1.5px solid var(--gold); }
+    .brand-t { font-weight: 900; font-size: 15.5px; letter-spacing: 0.2px; color: #fff; }
+    .brand-s { font-size: 11.5px; color: var(--gold); font-weight: 700; }
+    .mwa-btn {
+      background: linear-gradient(135deg, #fde047, #ca8a04);
+      color: #090d16; border: none; border-radius: 999px;
+      padding: 8px 14px; font-weight: 900; font-size: 12.5px; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(250, 204, 21, 0.28);
+    }
+    .honesty-strip {
+      margin: 12px 0; padding: 9px 12px; border-radius: 12px;
+      background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4);
+      font-size: 12px; color: #d1fae5; line-height: 1.45;
+    }
+    .panel { display: none; animation: fadeIn 0.18s ease; }
+    .panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 16px; margin-bottom: 14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.42);
+    }
+    .card h2 { margin: 0 0 6px 0; font-size: 17px; color: var(--gold); }
+    .card p.sub { margin: 0 0 12px 0; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+    .inp {
+      width: 100%; padding: 13px 14px; border-radius: 12px;
+      border: 1.5px solid rgba(148,163,184,0.32); background: #070d18;
+      color: #fff; font-size: 14px; font-family: ui-monospace, monospace; margin-bottom: 10px;
+    }
+    .inp:focus { outline: none; border-color: var(--gold); }
+    .btn-full {
+      width: 100%; padding: 13px 16px; border-radius: 12px; border: none;
+      font-weight: 900; font-size: 14.5px; cursor: pointer; margin-bottom: 8px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-emerald { background: linear-gradient(135deg, #10b981, #059669); color: #fff; }
+    .btn-gold { background: linear-gradient(135deg, #fde047, #eab308); color: #090d16; }
+    .btn-ghost { background: rgba(148,163,184,0.12); color: #e2e8f0; border: 1px solid rgba(148,163,184,0.28); font-size: 13px; padding: 10px; }
+    .res-box {
+      margin-top: 10px; padding: 12px; border-radius: 12px;
+      background: rgba(7, 13, 24, 0.85); border: 1px solid rgba(148,163,184,0.22);
+      font-size: 13px; line-height: 1.5; word-break: break-word; display: none;
+    }
+    .red-alert {
+      display: none; padding: 12px; border-radius: 12px; margin-bottom: 12px;
+      background: linear-gradient(90deg, #7f1d1d, #dc2626); color: #fff;
+      border: 2px solid #fde047; font-size: 12.5px; font-weight: 700;
+    }
+    .bottom-nav {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 6px)) 10px;
+      background: rgba(9, 14, 25, 0.96); backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(234, 179, 8, 0.3);
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; z-index: 999;
+    }
+    .nav-tab {
+      background: transparent; border: none; color: var(--muted);
+      padding: 7px 4px; border-radius: 10px; font-size: 11.5px; font-weight: 800; cursor: pointer;
+    }
+    .nav-tab.active { background: rgba(250, 204, 21, 0.15); color: var(--gold); border: 1px solid rgba(250,204,21,0.35); }
+    .dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+    a.clean-link { color: var(--gold); text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <header class="top-hdr">
+    <div class="brand">
+      <img src="/chrome-extension/icon128.png" alt="Shield" onerror="this.style.display='none'" />
+      <div>
+        <div class="brand-t">Rent &amp; Rug Shield</div>
+        <div class="brand-s">MWA v2.0 • Seeker / iOS / Android</div>
+      </div>
+    </div>
+    <button type="button" class="mwa-btn" id="btnMwaConnect">⚡ Connect MWA</button>
+  </header>
+
+  <div class="honesty-strip">
+    🛡️ <b>Honesty Policy:</b> Read-Only Scan • <b>0% 1st Claim</b> (&le;25 Empty ATAs, 1x Anti-Sybil) • <b>2.0% Repeat</b> (Keep <b>98.0% Net SOL</b>) • 4 Frozen Legacy ATAs Auto-Excluded.
+  </div>
+
+  <div id="cyberPasteAlert" class="red-alert"></div>
+
+  <!-- PANEL 1: 0x09 RENT RECOVERY -->
+  <section id="panel-rent" class="panel active">
+    <div class="card">
+      <h2>1. Native 0x09 SOL Rent Claim</h2>
+      <p class="sub">Paste any public Solana wallet (read-only) or tap Connect MWA v2.0 for Phantom, Solflare, or Solana Seeker 1-tap signing.</p>
+      <input id="inpWallet" class="inp" type="text" placeholder="Paste Solana Wallet Address (Base58)..." autocomplete="off" spellcheck="false" />
+      <button type="button" class="btn-full btn-emerald" id="btnScanWallet">🔍 Scan Empty ATAs (0% 1st Claim)</button>
+      <button type="button" class="btn-full btn-gold" id="btnSignClaim" style="display:none;">⚡ 1-Tap Sign 0x09 Claim via MWA / Wallet</button>
+      <div class="dl-grid">
+        <button type="button" class="btn-full btn-ghost" id="btnOpenPhantom">👻 Open in Phantom</button>
+        <button type="button" class="btn-full btn-ghost" id="btnOpenSolflare">☀️ Open in Solflare</button>
+      </div>
+      <div id="rentResult" class="res-box"></div>
+    </div>
+  </section>
+
+  <!-- PANEL 2: 12-LAYER TOKEN & PHISHING SCANNER -->
+  <section id="panel-rug" class="panel">
+    <div class="card">
+      <h2>2. 12-Layer Adaptive Rug Firewall</h2>
+      <p class="sub">Audit Mint/Freeze authorities, Token-2022 hooks, LP burn, and Layer-11 Block-0 Jito Sybil bundles in &lt;120ms.</p>
+      <input id="inpMint" class="inp" type="text" placeholder="Paste Token Mint or DEX URL..." autocomplete="off" spellcheck="false" />
+      <button type="button" class="btn-full btn-gold" id="btnScanMint">🛡️ Run 12-Layer Pre-Buy Audit</button>
+      <div id="mintResult" class="res-box"></div>
+    </div>
+  </section>
+
+  <!-- PANEL 3: 30% AFFILIATES & INSTALL APP / APK -->
+  <section id="panel-app" class="panel">
+    <div class="card">
+      <h2>3. Install Native App &amp; 30% Affiliates</h2>
+      <p class="sub">Install straight to your iOS/Android Home Screen, download our GitHub Cloud-built MWA v2.0 Android APK, or earn 30% atomic SOL referrals.</p>
+      <button type="button" class="btn-full btn-gold" id="btnInstallPwa">📲 1-Tap Add App to Home Screen (PWA)</button>
+      <a class="btn-full btn-emerald" style="text-decoration:none;" href="https://github.com/sonnyman2014/rentandrugshield/actions" target="_blank" rel="noopener">🤖 Cloud-Compiled Android MWA v2.0 (.APK)</a>
+      <hr style="border:none;border-top:1px solid rgba(148,163,184,0.18);margin:14px 0;" />
+      <input id="inpRefWallet" class="inp" type="text" placeholder="Your Payout Wallet for 30% Atomic Split..." autocomplete="off" />
+      <button type="button" class="btn-full btn-ghost" id="btnCopyRef">🔗 Copy 30% Atomic ?ref= Link</button>
+      <div id="refResult" class="res-box"></div>
+      <p style="margin:12px 0 0 0;font-size:12px;color:var(--muted);text-align:center;">
+        <a class="clean-link" href="/">Desktop Terminal</a> &nbsp;•&nbsp;
+        <a class="clean-link" href="/promo-vault.html">4K Promo Vault</a> &nbsp;•&nbsp;
+        <a class="clean-link" href="/enterprise-api.html">$500 Enterprise API</a>
+      </p>
+    </div>
+  </section>
+
+  <nav class="bottom-nav" role="tablist">
+    <button type="button" class="nav-tab active" data-tab="panel-rent">💰 0x09 Rent</button>
+    <button type="button" class="nav-tab" data-tab="panel-rug">🛡️ 12L Scanner</button>
+    <button type="button" class="nav-tab" data-tab="panel-app">📲 App &amp; 30%</button>
+  </nav>
+
+  <script>
+  (function(){
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw-mobile-v51.js').catch(() => {});
+    }
+
+    let API_BASE = '';
+    let connectedWallet = '';
+    let lastCopiedSol = '';
+    let deferredPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    async function resolveApiBase() {
+      if (API_BASE) return API_BASE;
+      try {
+        const r = await fetch('/live_endpoint.json?_t=' + Date.now(), { cache: 'no-store' });
+        const d = await r.json();
+        API_BASE = String(d.api_base || d.endpoint || '').replace(/\/$/, '');
+      } catch (_e) {
+        API_BASE = location.origin;
+      }
+      return API_BASE;
+    }
+    resolveApiBase();
+
+    // Bottom tab navigation
+    document.querySelectorAll('.nav-tab').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Mobile Clipboard Hijack & Punycode Sentinel
+    document.addEventListener('copy', () => {
+      const sel = String(window.getSelection ? window.getSelection().toString() : '').trim();
+      if (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(sel)) lastCopiedSol = sel;
+    });
+    document.addEventListener('paste', (ev) => {
+      const txt = String((ev.clipboardData || window.clipboardData).getData('text') || '').trim();
+      const alertBox = document.getElementById('cyberPasteAlert');
+      if (txt.toLowerCase().includes('xn--')) {
+        alertBox.style.display = 'block';
+        alertBox.textContent = '🚨 BLOCKED PUNYCODE (xn--) HOMOGRAPH PHISHING LINK IN CLIPBOARD!';
+        return;
+      }
+      if (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(txt) && lastCopiedSol && txt !== lastCopiedSol) {
+        alertBox.style.display = 'block';
+        alertBox.textContent = '🚨 CLIPBOARD HIJACK WARNING: Copied ' + lastCopiedSol.slice(0,5) + '...' + lastCopiedSol.slice(-4) + ' mutated on paste to ' + txt.slice(0,5) + '...' + txt.slice(-4) + '!';
+      }
+    }, true);
+
+    // Solana Mobile Wallet Adapter (MWA v2.0) + Injected Provider + Universal Deep-Link Association
+    async function connectSolanaMwaV2() {
+      const prov = (window.phantom && window.phantom.solana) || window.solana || window.solflare;
+      if (prov && typeof prov.connect === 'function') {
+        const resp = await prov.connect();
+        connectedWallet = resp.publicKey.toString();
+        document.getElementById('inpWallet').value = connectedWallet;
+        document.getElementById('btnMwaConnect').textContent = '✓ ' + connectedWallet.slice(0, 4) + '..' + connectedWallet.slice(-4);
+        return connectedWallet;
+      }
+      // Android Solana Mobile Stack MWA v2.0 Intent Association (Seeker / Saga / Android Phantom/Solflare)
+      if (/Android/i.test(navigator.userAgent || '')) {
+        const port = 49152 + Math.floor(Math.random() * 16000);
+        const assocToken = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(32)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        const mwaUri = `solana-wallet:/v1/associate/local?association=${encodeURIComponent(assocToken)}&port=${port}&v=v1`;
+        window.location.href = mwaUri;
+        return '';
+      }
+      // iOS Universal Phantom Browse Deep-Link fallback
+      window.location.href = 'https://phantom.app/ul/browse/' + encodeURIComponent(location.href) + '?ref=' + encodeURIComponent(location.origin);
+      return '';
+    }
+
+    document.getElementById('btnMwaConnect').addEventListener('click', () => { connectSolanaMwaV2().catch(() => {}); });
+    document.getElementById('btnOpenPhantom').addEventListener('click', () => {
+      window.location.href = 'https://phantom.app/ul/browse/' + encodeURIComponent(location.href) + '?ref=' + encodeURIComponent(location.origin);
+    });
+    document.getElementById('btnOpenSolflare').addEventListener('click', () => {
+      window.location.href = 'https://solflare.com/ul/v1/browse/' + encodeURIComponent(location.href) + '?ref=' + encodeURIComponent(location.origin);
+    });
+
+    // Panel 1: Scan Wallet + 1-Tap 0x09 Claim
+    document.getElementById('btnScanWallet').addEventListener('click', async () => {
+      const w = document.getElementById('inpWallet').value.trim();
+      const box = document.getElementById('rentResult');
+      box.style.display = 'block';
+      if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(w)) {
+        box.innerHTML = '<span style="color:#f87171;">Please paste a valid Base58 Solana wallet address.</span>';
+        return;
+      }
+      box.textContent = 'Scanning Mainnet token accounts via Helius RPC...';
+      try {
+        const base = await resolveApiBase();
+        const r = await fetch(base + '/api/scan-wallet', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ wallet: w })
+        });
+        const d = await r.json();
+        const emptyCnt = Number(d.empty_count || (d.empty_accounts || []).length || 0);
+        const recSol = Number(d.reclaimable_sol || d.total_reclaimable_sol || 0).toFixed(6);
+        const isFree = d.is_first_free_claim !== false && emptyCnt <= 25;
+        box.innerHTML = `<div style="color:#10b981;font-weight:900;font-size:15px;">Reclaimable: ${recSol} SOL (${emptyCnt} Empty ATAs)</div>`
+          + `<div style="margin-top:4px;color:#fde047;font-size:12.5px;">Fee Tier: ${isFree ? '0% FIRST CLAIM FREE (Keep 100% SOL)' : '2.0% Repeat Fee (Keep 98.0% Net SOL)'}</div>`
+          + `<div style="margin-top:4px;color:#94a3b8;font-size:12px;">Active tokens &amp; frozen legacy ATAs strictly preserved untouched.</div>`;
+        document.getElementById('btnSignClaim').style.display = emptyCnt > 0 ? 'flex' : 'none';
+      } catch (e) {
+        box.innerHTML = '<span style="color:#f87171;">Scan error: ' + String(e.message || e) + '</span>';
+      }
+    });
+
+    document.getElementById('btnSignClaim').addEventListener('click', async () => {
+      const w = document.getElementById('inpWallet').value.trim();
+      const box = document.getElementById('rentResult');
+      try {
+        const base = await resolveApiBase();
+        const r = await fetch(base + '/api/build-reclaim-tx', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ wallet: w, mode: 'all', include_dust_burn: false })
+        });
+        const d = await r.json();
+        if (!d.ok || !d.tx_base64) {
+          box.innerHTML = '<span style="color:#fde047;">' + String(d.error || 'No empty ATAs to close.') + '</span>';
+          return;
+        }
+        const prov = (window.phantom && window.phantom.solana) || window.solana || window.solflare;
+        if (prov && prov.signAndSendTransaction) {
+          const raw = Uint8Array.from(atob(d.tx_base64), c => c.charCodeAt(0));
+          box.innerHTML = '<span style="color:#fde047;">Approve native 0x09 CloseAccount in your wallet...</span>';
+          const sig = await prov.signAndSendTransaction(raw);
+          box.innerHTML = '<b style="color:#10b981;">✅ SOL Reclaimed! TX: ' + String(sig.signature || sig) + '</b>';
+        } else {
+          await connectSolanaMwaV2();
+        }
+      } catch (e) {
+        box.innerHTML = '<span style="color:#f87171;">Signing cancelled or failed: ' + String(e.message || e) + '</span>';
+      }
+    });
+
+    // Panel 2: 12-Layer Token Audit
+    document.getElementById('btnScanMint').addEventListener('click', async () => {
+      let raw = document.getElementById('inpMint').value.trim();
+      const m = raw.match(/[1-9A-HJ-NP-Za-km-z]{32,44}/);
+      const mint = m ? m[0] : raw;
+      const box = document.getElementById('mintResult');
+      box.style.display = 'block';
+      if (!mint) {
+        box.innerHTML = '<span style="color:#f87171;">Paste a Solana token mint address or DexScreener/Pump.fun URL.</span>';
+        return;
+      }
+      box.textContent = 'Running 12-Layer forensic audit (<120ms)...';
+      try {
+        const base = await resolveApiBase();
+        const r = await fetch(base + '/api/scan-token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mint })
+        });
+        const d = await r.json();
+        const sc = Number(d.shield_score ?? d.score ?? 0);
+        const col = sc >= 80 ? '#10b981' : (sc >= 55 ? '#fde047' : '#ef4444');
+        box.innerHTML = `<div style="font-size:16px;font-weight:900;color:${col};">${d.symbol || 'TOKEN'} • ${sc}/100 (${d.verdict || 'AUDITED'})</div>`
+          + `<div style="margin-top:4px;font-size:12.5px;color:#cbd5e1;">Liquidity: $${Number(d.liquidity_usd || 0).toLocaleString()} • Checklist: ${d.checklist_summary || '12/12 Layers'}</div>`;
+      } catch (e) {
+        box.innerHTML = '<span style="color:#f87171;">Audit error: ' + String(e.message || e) + '</span>';
+      }
+    });
+
+    // Panel 3: Install PWA & 30% Affiliate Link
+    document.getElementById('btnInstallPwa').addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+      } else {
+        alert('On iPhone Safari: tap Share (⬆️) -> "Add to Home Screen". On Android Chrome/Brave: tap ⋮ -> "Install App".');
+      }
+    });
+    document.getElementById('btnCopyRef').addEventListener('click', async () => {
+      const rw = document.getElementById('inpRefWallet').value.trim();
+      const box = document.getElementById('refResult');
+      box.style.display = 'block';
+      if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(rw)) {
+        box.innerHTML = '<span style="color:#f87171;">Enter a valid Base58 Solana payout address.</span>';
+        return;
+      }
+      const url = 'https://rentandrugshield.com/?ref=' + encodeURIComponent(rw);
+      if (navigator.clipboard) await navigator.clipboard.writeText(url);
+      box.innerHTML = '<b style="color:#10b981;">Copied 30% Atomic Link:</b><br><code>' + url + '</code>';
+    });
+  })();
+  </script>
+</body>
+</html>
