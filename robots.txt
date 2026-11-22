@@ -20,3 +20,4 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://rentandrugshield.com/sitemap.xml
+Disallow: /assets/studio_showcase/

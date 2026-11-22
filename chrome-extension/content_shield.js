@@ -1019,5 +1019,186 @@
     } catch (_e) {}
   }, true);
 
+
+
+  /* === RRS v5.1 SECURITY UPGRADE: CLIPBOARD HIJACK, VANITY-POISONING & HOMOGRAPH/TYPOSQUAT SENTINEL === */
+  const RRS_SOL_PUBKEY_RX = /\b[1-9A-HJ-NP-Za-km-z]{32,44}\b/g;
+  const RRS_PROTECTED_DOMAINS = [
+    'pump.fun',
+    'jup.ag',
+    'dexscreener.com',
+    'photon-sol.tinyastro.io',
+    'photon-sol.io',
+    'bullx.io',
+    'rentandrugshield.com'
+  ];
+  let _rrsLastCopiedSolAddr = '';
+  let _rrsLastCopiedAt = 0;
+  let _rrsRecentTrustedAddrs = new Set();
+  let _rrsRecentDustPoisoners = new Set();
+
+  function _rrsLevDistance(a, b) {
+    if (a === b) return 0;
+    const m = a.length, n = b.length;
+    if (Math.abs(m - n) > 2) return 99;
+    const dp = Array.from({ length: m + 1 }, (_, i) => [i]);
+    for (let j = 1; j <= n; j++) dp[0][j] = j;
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+      }
+    }
+    return dp[m][n];
+  }
+
+  function _rrsNormalizeConfusables(h) {
+    return String(h || '').toLowerCase()
+      .replace(/rn/g, 'm')
+      .replace(/1/g, 'l')
+      .replace(/0/g, 'o')
+      .replace(/-/g, '');
+  }
+
+  function _rrsCheckHostPhishing(rawHost) {
+    const host = String(rawHost || '').toLowerCase().replace(/^www\./, '').trim();
+    if (!host) return null;
+    if (RRS_PROTECTED_DOMAINS.some(d => host === d || host.endsWith('.' + d))) {
+      return null;
+    }
+    if (host.includes('xn--')) {
+      return {
+        kind: 'PUNYCODE_IDN_HOMOGRAPH',
+        spoofed: host,
+        canonical: 'rentandrugshield.com',
+        reason: 'Blocked IDN Punycode (xn--) lookalike domain commonly used in Solana wallet-drainer phishing.'
+      };
+    }
+    const hostBase = host.split('.')[0];
+    for (const canon of RRS_PROTECTED_DOMAINS) {
+      const canonBase = canon.split('.')[0];
+      const distFull = _rrsLevDistance(host, canon);
+      const distBase = _rrsLevDistance(hostBase, canonBase);
+      const confMatch = _rrsNormalizeConfusables(hostBase) === _rrsNormalizeConfusables(canonBase) && host !== canon;
+      if ((distFull === 1) || (canonBase.length >= 5 && distBase === 1) || confMatch) {
+        return {
+          kind: 'DEX_TYPOSQUAT_CLONE',
+          spoofed: host,
+          canonical: canon,
+          reason: `Detected 1-character typosquat / homograph clone of official ${canon}.`
+        };
+      }
+    }
+    return null;
+  }
+
+  function _rrsShowCriticalRedAlert(title, detail, canonicalDomain) {
+    try {
+      const existing = document.getElementById('rrs-v51-red-cyber-shield');
+      if (existing) existing.remove();
+      const bar = document.createElement('div');
+      bar.id = 'rrs-v51-red-cyber-shield';
+      bar.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:2147483647;background:linear-gradient(90deg,#7f1d1d,#dc2626,#7f1d1d);color:#fff;padding:14px 20px;font-family:Inter,Segoe UI,sans-serif;box-shadow:0 8px 32px rgba(220,38,38,0.65);border-bottom:3px solid #fde047;display:flex;align-items:center;justify-content:space-between;gap:16px;';
+      const safeHref = canonicalDomain ? ('https://' + canonicalDomain) : 'https://rentandrugshield.com';
+      bar.innerHTML = '<div style="display:flex;flex-direction:column;gap:3px;">'
+        + '<strong style="font-size:15px;letter-spacing:0.3px;">🚨 RENT & RUG SHIELD v5.1 CRITICAL SECURITY BLOCK: ' + escapeHtml(title) + '</strong>'
+        + '<span style="font-size:13px;color:#fee2e2;">' + escapeHtml(detail) + '</span>'
+        + '</div>'
+        + '<div style="display:flex;gap:8px;align-items:center;flex-shrink:0;">'
+        + (canonicalDomain ? ('<a href="' + safeHref + '" style="background:#fde047;color:#111827;font-weight:800;padding:7px 13px;border-radius:8px;text-decoration:none;font-size:12.5px;">Go to Official ' + escapeHtml(canonicalDomain) + '</a>') : '')
+        + '<button id="rrs-v51-dismiss-red" type="button" style="background:rgba(0,0,0,0.35);color:#fff;border:1px solid rgba(255,255,255,0.4);padding:6px 11px;border-radius:8px;cursor:pointer;font-size:12px;">Dismiss</button>'
+        + '</div>';
+      document.documentElement.appendChild(bar);
+      const btn = document.getElementById('rrs-v51-dismiss-red');
+      if (btn) btn.onclick = () => bar.remove();
+    } catch (_e) {}
+  }
+
+  // 1) Check current hostname & outbound link clicks for Punycode / 1-char DEX typosquats
+  try {
+    const hostHit = _rrsCheckHostPhishing(location.hostname);
+    if (hostHit) {
+      _rrsShowCriticalRedAlert('Phishing Domain Blocked (' + hostHit.spoofed + ')', hostHit.reason, hostHit.canonical);
+      chrome.runtime.sendMessage({
+        type: 'RRS_CYBER_THREAT_DETECTED',
+        threat: { id: 'PHISH-' + Date.now(), kind: hostHit.kind, title: 'Blocked DEX Phishing Clone: ' + hostHit.spoofed, detail: hostHit.reason, action_url: 'https://' + hostHit.canonical }
+      });
+    }
+    document.addEventListener('click', (ev) => {
+      const a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+      if (!a) return;
+      try {
+        const u = new URL(a.href, location.href);
+        const linkHit = _rrsCheckHostPhishing(u.hostname);
+        if (linkHit) {
+          ev.preventDefault();
+          ev.stopPropagation();
+          _rrsShowCriticalRedAlert('Blocked Phishing Link (' + linkHit.spoofed + ')', linkHit.reason, linkHit.canonical);
+        }
+      } catch (_uErr) {}
+    }, true);
+  } catch (_phErr) {}
+
+  // 2) Harvest visible trusted addresses & $0-dust vanity poisoners on explorer / wallet pages
+  function _rrsIndexPageAddresses() {
+    try {
+      const bodyTxt = (document.body && document.body.innerText) ? document.body.innerText.slice(0, 80000) : '';
+      const matches = bodyTxt.match(RRS_SOL_PUBKEY_RX) || [];
+      for (const addr of matches.slice(0, 120)) {
+        if (BASE_QUOTE_MINTS.has(addr)) continue;
+        _rrsRecentTrustedAddrs.add(addr);
+      }
+    } catch (_e) {}
+  }
+  setTimeout(_rrsIndexPageAddresses, 1800);
+
+  // 3) Clipboard Hijack (Clipper Trojan Mutation) & First-4/Last-4 Vanity Dust Poisoning Sentinel
+  document.addEventListener('copy', () => {
+    try {
+      const sel = String(window.getSelection ? window.getSelection().toString() : '').trim();
+      const m = sel.match(/^[1-9A-HJ-NP-Za-km-z]{32,44}$/);
+      if (m) {
+        _rrsLastCopiedSolAddr = m[0];
+        _rrsLastCopiedAt = Date.now();
+        _rrsRecentTrustedAddrs.add(m[0]);
+      }
+    } catch (_e) {}
+  }, true);
+
+  document.addEventListener('paste', (ev) => {
+    try {
+      const pasted = String((ev.clipboardData || window.clipboardData).getData('text') || '').trim();
+      const m = pasted.match(/^[1-9A-HJ-NP-Za-km-z]{32,44}$/);
+      if (!m) return;
+      const pAddr = m[0];
+
+      // Check A: Clipper Trojan Address Swap (copied Solana pubkey mutated on paste within 10m!)
+      if (_rrsLastCopiedSolAddr && (Date.now() - _rrsLastCopiedAt < 600000) && pAddr !== _rrsLastCopiedSolAddr) {
+        const msg = 'CLIPBOARD HIJACK DETECTED! You copied ' + _rrsLastCopiedSolAddr.slice(0, 6) + '...' + _rrsLastCopiedSolAddr.slice(-6)
+          + ' but clipboard pasted ' + pAddr.slice(0, 6) + '...' + pAddr.slice(-6) + '! DO NOT SIGN OR SEND SOL!';
+        _rrsShowCriticalRedAlert('Clipboard Clipper Trojan Hijack!', msg, '');
+        chrome.runtime.sendMessage({
+          type: 'RRS_CYBER_THREAT_DETECTED',
+          threat: { id: 'CLIPPER-' + Date.now(), kind: 'CLIPBOARD_PUBKEY_MUTATION', title: 'CRITICAL: Clipboard Address Hijack Blocked!', detail: msg, action_url: 'https://rentandrugshield.com/?cyber_inspect=1' }
+        });
+        return;
+      }
+
+      // Check B: First-4 + Last-4 $0-Dust Vanity Address Poisoning Match
+      for (const known of _rrsRecentTrustedAddrs) {
+        if (known !== pAddr && known.slice(0, 4) === pAddr.slice(0, 4) && known.slice(-4) === pAddr.slice(-4)) {
+          const vMsg = 'VANITY DUST POISONING ALERT! Pasted address ' + pAddr.slice(0, 6) + '...' + pAddr.slice(-6)
+            + ' mimics first/last 4 chars of recent wallet ' + known.slice(0, 6) + '...' + known.slice(-6) + ' ($0-dust impersonator)!';
+          _rrsShowCriticalRedAlert('Vanity Address Dust-Poisoning Detected!', vMsg, '');
+          chrome.runtime.sendMessage({
+            type: 'RRS_CYBER_THREAT_DETECTED',
+            threat: { id: 'VANITY-' + Date.now(), kind: 'VANITY_DUST_POISONING', title: 'CRITICAL: Vanity Dust Poisoner Detected!', detail: vMsg, action_url: 'https://rentandrugshield.com/?cyber_inspect=1' }
+          });
+          break;
+        }
+      }
+    } catch (_e) {}
+  }, true);
+
   setTimeout(scanDomForDrainerPayloads, 1200);
 })();

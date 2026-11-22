@@ -2,9 +2,8 @@
 
 const API_ENDPOINTS = [
   'http://127.0.0.1:8088',
-  'https://soldier-indirect-amber-messaging.trycloudflare.com',
-  'https://rentandrugshield.com',
-  'http://127.0.0.1:8088'
+  'https://api.rentandrugshield.com',
+  'https://rentandrugshield.com'
 ];
 
 const PREFS_STORAGE_KEY = 'rrs_alert_prefs_v42';
@@ -16,6 +15,9 @@ const DEFAULT_ALERT_PREFS = {
   topBannerAlert: true,
   block0SybilAutoWarn: true,
   whaleLpRugAlert: true,
+  dex6BotBuyEnabled: true,
+  caughtRugsEnabled: true,
+  breakingNewsEnabled: true,
   mcFloor: 25000,
   liqFloor: 10000,
   timeWindow: '15m',

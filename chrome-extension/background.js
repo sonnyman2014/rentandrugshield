@@ -33,16 +33,54 @@ async function isMintRecentlyAlerted(mintOrSym) {
 }
 
 
+const SEEN_ALERT_IDS_KEY = 'rrs_seen_alert_ids_v51';
+const seenAlertIdsMem = new Map();
+
+async function isAlertIdRecentlySeen(rawId) {
+  if (!rawId) return false;
+  const key = String(rawId).trim();
+  const now = Date.now();
+  if (seenAlertIdsMem.has(key) && (now - seenAlertIdsMem.get(key) < SEEN_MINTS_TTL_MS)) {
+    return true;
+  }
+  return new Promise((resolve) => {
+    chrome.storage.local.get([SEEN_ALERT_IDS_KEY], (res) => {
+      const map = (res && res[SEEN_ALERT_IDS_KEY]) || {};
+      if (map[key] && (now - map[key] < SEEN_MINTS_TTL_MS)) {
+        seenAlertIdsMem.set(key, map[key]);
+        resolve(true);
+      } else {
+        seenAlertIdsMem.set(key, now);
+        map[key] = now;
+        const keys = Object.keys(map);
+        if (keys.length > 200) {
+          keys.slice(0, keys.length - 200).forEach((k) => {
+            delete map[k];
+            seenAlertIdsMem.delete(k);
+          });
+        }
+        for (const k of Object.keys(map)) {
+          if (now - map[k] >= SEEN_MINTS_TTL_MS) {
+            delete map[k];
+            seenAlertIdsMem.delete(k);
+          }
+        }
+        chrome.storage.local.set({ [SEEN_ALERT_IDS_KEY]: map }, () => resolve(false));
+      }
+    });
+  });
+}
+
 const API_ENDPOINTS = [
   'http://127.0.0.1:8088',
-  'https://toner-ctrl-carrier-limitation.trycloudflare.com',
+  'https://api.rentandrugshield.com',
   'https://rentandrugshield.com'
 ];
 
-// Quick tunnels rotate: resolve the current live API base from the public manifest.
+// Resolve any rotating live API base from the public manifest after checking local 127.0.0.1:8088 and api.rentandrugshield.com.
 const LIVE_ENDPOINT_MANIFEST_URL = 'https://rentandrugshield.com/live_endpoint.json';
 const LIVE_ENDPOINT_TTL_MS = 10 * 60 * 1000;
-const LIVE_BASE_ALLOWED_RX = /^https:\/\/(?:[a-z0-9-]+\.trycloudflare\.com|rentandrugshield\.com)$/i;
+const LIVE_BASE_ALLOWED_RX = /^(?:http:\/\/127\.0\.0\.1:8088|https:\/\/(?:api\.rentandrugshield\.com|rentandrugshield\.com|[a-z0-9-]+\.trycloudflare\.com))$/i;
 let liveApiBase = '';
 let liveApiBaseTs = 0;
 
@@ -77,6 +115,9 @@ const DEFAULT_ALERT_PREFS = {
   topBannerAlert: true,
   block0SybilAutoWarn: true,
   whaleLpRugAlert: true,
+  dex6BotBuyEnabled: true,
+  caughtRugsEnabled: true,
+  breakingNewsEnabled: true,
   mcFloor: 25000,
   liqFloor: 10000,
   timeWindow: '15m',
@@ -221,11 +262,11 @@ function enrichScanResult(mint, raw) {
 }
 
 async function getOrderedEndpoints() {
-  const list = [];
-  const live = await resolveLiveApiBase();
-  if (preferredApiBase && (API_ENDPOINTS.indexOf(preferredApiBase) !== -1 || preferredApiBase === live)) {
+  const list = ['http://127.0.0.1:8088', 'https://api.rentandrugshield.com'];
+  if (preferredApiBase && list.indexOf(preferredApiBase) === -1 && LIVE_BASE_ALLOWED_RX.test(preferredApiBase)) {
     list.push(preferredApiBase);
   }
+  const live = await resolveLiveApiBase();
   if (live && list.indexOf(live) === -1) list.push(live);
   for (const b of API_ENDPOINTS) {
     if (list.indexOf(b) === -1) list.push(b);
@@ -813,20 +854,7 @@ if (chrome.tabs) {
   });
 }
 
-if (chrome.notifications) {
-  chrome.notifications.onClicked.addListener(() => {
-    const target = (currentThreat && currentThreat.action_url) || 'https://rentandrugshield.com/?cyber_inspect=1';
-    chrome.tabs.create({ url: target });
-  });
-  chrome.notifications.onButtonClicked.addListener((_notifId, btnIdx) => {
-    if (btnIdx === 1) {
-      chrome.tabs.create({ url: 'https://rentandrugshield.com/#reclaim' });
-    } else {
-      const target = (currentThreat && currentThreat.action_url) || 'https://rentandrugshield.com/?cyber_inspect=1';
-      chrome.tabs.create({ url: target });
-    }
-  });
-}
+// Notification click routing is handled centrally via notifUrlMemory + NOTIF_URL_MAP_KEY below.
 
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (!msg || !msg.type) return false;
@@ -1007,59 +1035,56 @@ async function fireRealPopupToast(opts) {
     url: targetUrl
   });
 
-  // 2. Native Chrome / Windows OS Notification Toast (with automatic data-URI icon fallback)
+  // 2. Native Chrome / Windows OS Notification Toast (mapped notifId -> targetUrl)
   if (chrome.notifications && chrome.notifications.create) {
     const resolvedIcon = (chrome.runtime && chrome.runtime.getURL) ? chrome.runtime.getURL('icon128.png') : 'icon128.png';
     const nOpts = {
       type: 'basic',
       iconUrl: resolvedIcon,
       title: String(opts.title).slice(0, 96),
-      message: String(opts.message || 'Click to open ↗').slice(0, 190),
-      priority: 2,
-      requireInteraction: opts.severity === 'CRITICAL',
-      silent: false,
-      buttons: [
-        { title: opts.kind === 'coin' || opts.kind === 'rug' ? '🛡️ Open 12-Layer Scan ↗' : '📰 Read Full Article ↗' },
-        { title: '⚡ Reclaim 0% 1st ATA SOL' }
-      ]
+      message: String(opts.message || 'Click to open token audit or report').slice(0, 190),
+      requireInteraction: false,
+      priority: 2
     };
     chrome.notifications.create(notifId, nOpts, () => {
       if (chrome.runtime.lastError) {
-        nOpts.iconUrl = FALLBACK_ICON_DATA_URI;
-        chrome.notifications.create(notifId + '_fb', nOpts, () => { void chrome.runtime.lastError; });
+        const fbOpts = Object.assign({}, nOpts, { iconUrl: FALLBACK_ICON_DATA_URI });
         rememberNotifUrl(notifId + '_fb', targetUrl);
+        chrome.notifications.create(notifId + '_fb', fbOpts, () => { void chrome.runtime.lastError; });
       }
     });
   }
   return { ok: true, notifId, url: targetUrl };
 }
 
+function openMappedNotifTarget(notifId) {
+  try {
+    if (chrome.notifications && chrome.notifications.clear && notifId) {
+      chrome.notifications.clear(notifId, () => { void chrome.runtime.lastError; });
+    }
+  } catch (_e) {}
+  if (notifId && notifUrlMemory.has(notifId)) {
+    chrome.tabs.create({ url: notifUrlMemory.get(notifId) });
+    return;
+  }
+  chrome.storage.local.get([NOTIF_URL_MAP_KEY], (res) => {
+    const m = (res && res[NOTIF_URL_MAP_KEY]) || {};
+    const fallbackUrl = (currentThreat && currentThreat.action_url) || 'https://rentandrugshield.com/';
+    const dest = (notifId && m[notifId]) ? m[notifId] : fallbackUrl;
+    chrome.tabs.create({ url: dest });
+  });
+}
+
 if (chrome.notifications) {
   chrome.notifications.onClicked.addListener((notifId) => {
-    if (notifUrlMemory.has(notifId)) {
-      chrome.tabs.create({ url: notifUrlMemory.get(notifId) });
-      return;
-    }
-    chrome.storage.local.get([NOTIF_URL_MAP_KEY], (res) => {
-      const m = (res && res[NOTIF_URL_MAP_KEY]) || {};
-      if (m[notifId]) {
-        chrome.tabs.create({ url: m[notifId] });
-      }
-    });
+    openMappedNotifTarget(notifId);
   });
   chrome.notifications.onButtonClicked.addListener((notifId, btnIdx) => {
     if (btnIdx === 1) {
       chrome.tabs.create({ url: 'https://rentandrugshield.com/reclaim-sol/' });
       return;
     }
-    if (notifUrlMemory.has(notifId)) {
-      chrome.tabs.create({ url: notifUrlMemory.get(notifId) });
-      return;
-    }
-    chrome.storage.local.get([NOTIF_URL_MAP_KEY], (res) => {
-      const m = (res && res[NOTIF_URL_MAP_KEY]) || {};
-      if (m[notifId]) chrome.tabs.create({ url: m[notifId] });
-    });
+    openMappedNotifTarget(notifId);
   });
 }
 
@@ -1434,20 +1459,32 @@ async function runSystemAndRpcLatencyDiagnostic() {
   return latestSystemDiagnostics;
 }
 
-// Wrap fireRealPopupToast with Strict 3-Minute Anti-Spam Cooldown + Snooze / Quiet Mode
+// Wrap fireRealPopupToast with Strict 3-Minute Anti-Spam Cooldown + Snooze / Quiet Mode + Category & ID Dedup
 const _origFireRealPopupToast = typeof fireRealPopupToast === 'function' ? fireRealPopupToast : null;
 if (_origFireRealPopupToast) {
   fireRealPopupToast = async function(opts) {
     if (!opts || !opts.title) return { ok: false, throttled: true };
     const isCritical = (opts.severity === 'CRITICAL' || opts.bypassCooldown === true);
+    const prefs = await getStoredAlertPrefs();
     const st = await new Promise((r) => chrome.storage.local.get(['rrs_quiet_snooze_until', 'rrs_toast_cooldown_sec', 'rrs_dex6_bot_buy_enabled'], r));
     const now = Date.now();
     const snoozeUntil = Number((st && st.rrs_quiet_snooze_until) || 0);
     if (!isCritical && snoozeUntil > now) {
       return { ok: false, snoozed: true };
     }
-    if (opts.kind === 'dex6_bot_buy' && st && st.rrs_dex6_bot_buy_enabled === false) {
+    const kind = String(opts.kind || 'coin').toLowerCase();
+    if ((kind === 'dex6_bot_buy' || kind === 'coin') && (prefs.dex6BotBuyEnabled === false || (st && st.rrs_dex6_bot_buy_enabled === false))) {
       return { ok: false, botBuyDisabled: true };
+    }
+    if (kind === 'rug' && !isCritical && prefs.caughtRugsEnabled === false) {
+      return { ok: false, caughtRugsDisabled: true };
+    }
+    if ((kind === 'ai' || kind === 'crypto' || kind === 'world' || kind === 'news') && prefs.breakingNewsEnabled === false) {
+      return { ok: false, breakingNewsDisabled: true };
+    }
+    if (opts.dedupId) {
+      const seenAlready = await isAlertIdRecentlySeen(opts.dedupId);
+      if (seenAlready) return { ok: false, deduplicated: true };
     }
     const cooldownMs = Math.max(30, Number((st && st.rrs_toast_cooldown_sec) || 180)) * 1000;
     if (!isCritical && (now - lastNonCriticalToastTs < cooldownMs)) {
@@ -1497,11 +1534,18 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   }
   if (msg.type === 'RRS_SET_VETERAN_TOGGLES') {
     const update = {};
-    if (typeof msg.dex6BotBuyEnabled === 'boolean') update.rrs_dex6_bot_buy_enabled = msg.dex6BotBuyEnabled;
+    const prefPatch = {};
+    if (typeof msg.dex6BotBuyEnabled === 'boolean') {
+      update.rrs_dex6_bot_buy_enabled = msg.dex6BotBuyEnabled;
+      prefPatch.dex6BotBuyEnabled = msg.dex6BotBuyEnabled;
+    }
+    if (typeof msg.caughtRugsEnabled === 'boolean') prefPatch.caughtRugsEnabled = msg.caughtRugsEnabled;
+    if (typeof msg.breakingNewsEnabled === 'boolean') prefPatch.breakingNewsEnabled = msg.breakingNewsEnabled;
+    if (typeof msg.systemLatencyGuard === 'boolean') prefPatch.systemLatencyGuard = msg.systemLatencyGuard;
     if (msg.cooldownSec != null) update.rrs_toast_cooldown_sec = Number(msg.cooldownSec);
     chrome.storage.local.set(update, () => {
-      if (typeof msg.systemLatencyGuard === 'boolean') {
-        saveStoredAlertPrefs({ systemLatencyGuard: msg.systemLatencyGuard });
+      if (Object.keys(prefPatch).length > 0) {
+        saveStoredAlertPrefs(prefPatch);
       }
       sendResponse({ ok: true });
     });
@@ -1512,42 +1556,125 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
 // === RRS_V51_PRELAUNCH_SURGICAL_UPGRADE_END ===
 
 // === RRS_LIVE_POPUP_BOOSTER_START ===
-(function rrsLiveDesktopPopupBridge() {
-  const RRS_ICON = chrome.runtime.getURL("icon128.png");
-  const ENDPOINTS = ["http://localhost:8088/api/alerts", "http://localhost:8088/api/live-shield-feed", "https://rentandrugshield.com/api/alerts"];
-  function fireNotice(id, title, message) {
-    if (!chrome || !chrome.notifications) return;
-    chrome.notifications.create(id || ("rrs_" + Date.now()), {
-      type: "basic", iconUrl: RRS_ICON, title: title, message: message, priority: 2
-    }, function() { void chrome.runtime.lastError; });
-  }
-  async function pollNow(isBoot) {
-    for (const url of ENDPOINTS) {
+async function injectToastOverlayIntoOpenTabs() {
+  if (!chrome.scripting || !chrome.scripting.executeScript || !chrome.tabs || !chrome.tabs.query) return;
+  try {
+    const tabs = await chrome.tabs.query({});
+    for (const tb of (tabs || [])) {
+      if (!tb || !tb.id) continue;
+      if (tb.url && !/^https?:\/\//i.test(tb.url)) continue;
       try {
-        const r = await fetch(url, { cache: "no-store" });
+        await chrome.scripting.executeScript({
+          target: { tabId: tb.id },
+          files: ['toast_overlay.js']
+        });
+      } catch (_tabErr) {
+        // Silently catch restricted chrome://, edge://, chromewebstore, or unpermitted tab errors
+      }
+    }
+  } catch (_e) {}
+}
+
+async function fireArmedConfirmationBubble(triggerSource) {
+  await injectToastOverlayIntoOpenTabs();
+  const notifId = 'rrs_v51_armed_' + String(triggerSource || 'boot') + '_' + Date.now();
+  const targetUrl = 'https://rentandrugshield.com/?v=5.1';
+  const title = 'Solana Rent & Rug Shield v5.1 Active';
+  const message = 'Live 12-Layer, DEX-6 Runner & News Alerts Armed';
+  rememberNotifUrl(notifId, targetUrl);
+  broadcastToastToActiveTabs({
+    id: notifId,
+    kind: 'coin',
+    severity: 'INFO',
+    badge: '🛡️ RENT & RUG SHIELD v5.1 ACTIVE',
+    title,
+    message,
+    url: targetUrl
+  });
+  if (chrome.notifications && chrome.notifications.create) {
+    chrome.notifications.create(notifId, {
+      type: 'basic',
+      iconUrl: chrome.runtime.getURL('icon128.png'),
+      title,
+      message,
+      requireInteraction: false,
+      priority: 2
+    }, () => {
+      if (chrome.runtime.lastError) {
+        rememberNotifUrl(notifId + '_fb', targetUrl);
+        chrome.notifications.create(notifId + '_fb', {
+          type: 'basic',
+          iconUrl: FALLBACK_ICON_DATA_URI,
+          title,
+          message,
+          requireInteraction: false,
+          priority: 2
+        }, () => { void chrome.runtime.lastError; });
+      }
+    });
+  }
+}
+
+(function rrsLiveDesktopPopupBridge() {
+  function buildItemTargetUrl(top, apiBase) {
+    const rootBase = (apiBase && /^https?:\/\//i.test(apiBase)) ? apiBase : 'https://rentandrugshield.com';
+    if (top && top.action_url && /^https?:\/\//i.test(top.action_url)) return top.action_url;
+    if (top && top.url && /^https?:\/\//i.test(top.url)) return top.url;
+    if (top && top.mint) {
+      return rootBase.replace(/\/+$/, '') + '/?mint=' + encodeURIComponent(String(top.mint)) + '&cyber_inspect=1';
+    }
+    return 'https://rentandrugshield.com/';
+  }
+
+  async function pollNow() {
+    const bases = await getOrderedEndpoints();
+    for (const base of bases) {
+      try {
+        const ctrl = new AbortController();
+        const tm = setTimeout(() => ctrl.abort(), 3500);
+        const r = await fetch(base + '/api/cyber-threat-feed', { cache: 'no-store', signal: ctrl.signal });
+        clearTimeout(tm);
         if (!r.ok) continue;
         const d = await r.json();
-        const items = d.alerts || d.blocks || d.events || d.feed || (Array.isArray(d) ? d : []);
-        if (items.length > 0) {
+        const items = d.advisories || d.alerts || d.blocks || d.events || d.feed || (d.active_threat ? [d.active_threat] : []);
+        if (Array.isArray(items) && items.length > 0) {
           const top = items[0];
-          const topId = String(top.id || top.mint || top.tx || top.title || JSON.stringify(top).slice(0,48));
-          const st = await chrome.storage.local.get(["rrs_last_popped_id"]);
-          if (isBoot || st.rrs_last_popped_id !== topId) {
-            await chrome.storage.local.set({ rrs_last_popped_id: topId });
-            fireNotice("rrs_" + Date.now(), "🛡️ Rent & Rug Shield: " + (top.symbol || top.token || "Live Alert"), String(top.reason || top.message || "12-Layer Helius Guard Active").slice(0, 150));
+          const topId = String(top.id || top.mint || top.title || JSON.stringify(top).slice(0, 48));
+          const seen = await isAlertIdRecentlySeen('FEED:' + topId);
+          if (!seen && typeof fireRealPopupToast === 'function') {
+            const targetUrl = buildItemTargetUrl(top, base);
+            const isCrit = String(top.severity || '').toUpperCase() === 'CRITICAL';
+            await fireRealPopupToast({
+              id: 'rrs_feed_' + Date.now(),
+              dedupId: 'FEED_TOAST:' + topId,
+              kind: isCrit ? 'rug' : (top.kind || 'coin'),
+              severity: isCrit ? 'CRITICAL' : 'INFO',
+              badge: isCrit ? '🔴 12-LAYER THREAT ALERT' : '🛡️ RENT & RUG SHIELD v5.1 LIVE',
+              title: 'Rent & Rug Shield: ' + String(top.symbol || top.title || '12-Layer Live Sentinel').slice(0, 84),
+              message: String(top.detail || top.reason || top.message || '12-Layer On-Chain Anti-Rug Guard Armed').slice(0, 175),
+              url: targetUrl
+            });
           }
           return;
         }
       } catch (_e) {}
     }
-    if (isBoot) fireNotice("rrs_boot_" + Date.now(), "🛡️ Rent & Rug Shield v5.1 Active", "Connected to localhost:8088 live 12-Layer feed.");
   }
-  chrome.runtime.onInstalled.addListener(() => pollNow(true));
-  chrome.runtime.onStartup.addListener(() => pollNow(true));
+
+  chrome.runtime.onInstalled.addListener((details) => {
+    const reason = (details && details.reason) || 'install';
+    fireArmedConfirmationBubble(reason);
+    setTimeout(pollNow, 2000);
+  });
+  chrome.runtime.onStartup.addListener(() => {
+    fireArmedConfirmationBubble('startup');
+    setTimeout(pollNow, 2000);
+  });
   if (chrome.alarms) {
-    chrome.alarms.create("rrs_fast_popup_poll", { periodInMinutes: 0.5 });
-    chrome.alarms.onAlarm.addListener((a) => { if (a && a.name === "rrs_fast_popup_poll") pollNow(false); });
+    chrome.alarms.create('rrs_fast_popup_poll', { periodInMinutes: 0.5 });
+    chrome.alarms.onAlarm.addListener((a) => {
+      if (a && a.name === 'rrs_fast_popup_poll') pollNow();
+    });
   }
-  setTimeout(() => pollNow(true), 1000);
 })();
 // === RRS_LIVE_POPUP_BOOSTER_END ===
