@@ -1,9 +1,9 @@
 {
-  "ts": "2026-11-21 14:10:52",
+  "ts": "2026-11-22 09:59:27",
   "command": "Carbon High & Cyborg",
   "tls_verified": true,
   "feed_latency_ms": 999,
-  "ext_sha256": "2835796ab4ec",
+  "ext_sha256": "9e0c13dd8677",
   "warriors": {
     "jones": {
       "status": "PATROLLING",

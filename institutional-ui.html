@@ -12878,7 +12878,7 @@ window.submitVisitorFeedbackNow = async function(){
       + '<div style="background:rgba(30,27,75,0.55); border:1.5px solid #c084fc; border-radius:9px; padding:10px;">'
       + '  <div style="font-weight:900; color:#e9d5ff; font-size: 13.5px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">'
       + '    <span>🧩 Option 2: Pin Toolbar Extension Next to Phantom</span>'
-      + '    <span style="font-size: 13.5px; color:#fde047; border:1px solid #fde047; padding:1px 5px; border-radius:4px;">MV3 v4.1</span>'
+      + '    <span style="font-size: 13.5px; color:#fde047; border:1px solid #fde047; padding:1px 5px; border-radius:4px;">MV3 v5.1</span>'
       + '  </div>'
       + '  <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:7px;">'
       + '    <a id="dlChromeShieldZipBtn" href="/CWS_READY_SolanaRentRugShield_MV3.zip" download="CWS_READY_SolanaRentRugShield_MV3.zip" style="display:flex; align-items:center; justify-content:center; padding:8px 6px; border-radius:7px; background:linear-gradient(90deg,#7c3aed,#2563eb); color:#ffffff; font-weight:900; font-size: 13.5px; text-align:center; text-decoration:none; border:1.5px solid #c084fc;">📦 1. Download MV3 (.zip)</a>'
@@ -13354,7 +13354,7 @@ window.submitVisitorFeedbackNow = async function(){
   })();
   </script>
 
-<!-- CHOICE A UNLOCK MODAL (10c SINGLE AUDIT REG 99c, $19.99 DAY PASS REG $4.99, $19.99/mo MONTHLY REG $39.99) -->
+<!-- CHOICE A UNLOCK MODAL (0% 1ST CLAIM, 2.0% REPEAT, $19.99/mo TRADER PRO) -->
 <div class="modal" id="singleAudit2cModal" onclick="if(event.target===this)closeSingleAudit2cModal()" style="display: none; position:fixed; inset:0; background:rgba(2,6,23,0.88); z-index:100075; align-items:center; justify-content:center; padding:12px; backdrop-filter:blur(5px);" role="dialog" aria-modal="true" aria-hidden="true" hidden>
   <div style="width:94vw; max-width:430px; background:#0E1626; border:2px solid #10B981; border-radius:14px; padding:16px; color:#F8FAFC; box-sizing:border-box; box-shadow:0 18px 50px rgba(0,0,0,0.95);">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
@@ -13746,7 +13746,7 @@ window.submitVisitorFeedbackNow = async function(){
   window.getTripleLockDeviceHash();
 
   // -------------------------------------------------------------------------
-  // 2. Fetch Interceptor: Attach X-Device-Hash, 10c Credit Token & Pass Token
+  // 2. Fetch Interceptor: Attach X-Device-Hash, Pro Credit Token & Pass Token
   //    + Capture Wallet Net Worth & Free SOL Telemetry
   // -------------------------------------------------------------------------
   window.__RRS_LAST_WALLET_META = {
@@ -13907,7 +13907,7 @@ window.submitVisitorFeedbackNow = async function(){
       + '  <div style="font-size:0.95rem;font-weight:800;color:#FDE047;margin-bottom:6px;">Free 12-Layer Adaptive Token Audit Used: Forensic Whale &amp; Wash Layers Locked</div>'
       + '  <p style="font-size:0.92rem;color:#F8FAFC;margin-bottom:12px;line-height:1.55;">Your first 12-Layer Adaptive Token Audit is free. Unlock unlimited 12-Layer Web & Telegram scans with 30-Day Trader Pro ($19.99/mo) or Quant Desk ($99/mo). Regular price is $39.99 per audit. Need full day or monthly access? Pick our recommended 30-Day Trader Pro for $19.99 (Reg. $4.99) or unlock 30-Day Trader Pro for $19.99/mo (Reg. $39.99/mo).</p>'
       + '  <div style="display:flex;flex-direction:column;gap:8px;">'
-      + '    <button type="button" data-telemetry-btn="paywall_unlock_10c_intro" onclick="' + (surface === "app" ? "openAppSingleAudit2cModal()" : "openSingleAudit2cModal()") + '" style="width:100%;padding:11px 12px;border-radius:9px;border:1.5px solid #FDE047;background:linear-gradient(90deg,#10B981,#FDE047);color:#022C22;font-size:0.90rem;font-weight:800;cursor:pointer;">'
+      + '    <button type="button" data-telemetry-btn="paywall_unlock_pro" onclick="' + (surface === "app" ? "openAppSingleAudit2cModal()" : "openSingleAudit2cModal()") + '" style="width:100%;padding:11px 12px;border-radius:9px;border:1.5px solid #FDE047;background:linear-gradient(90deg,#10B981,#FDE047);color:#022C22;font-size:0.90rem;font-weight:800;cursor:pointer;">'
       + '      Extra Single 12-Layer Adaptive Token Audit: <span class="mono-price">$19.99/mo Pro</span> for 30 days (regularly <span class="mono-price">$39.99</span>)'
       + '    </button>'
       + '    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:8px;">'
@@ -15562,11 +15562,11 @@ window.submitVisitorFeedbackNow = async function(){
   window.openInstantBuyBubble = function(tier){ window.openLiveCheckout(tier, "SOL"); };
   window.closeInstantBuyBubble = window.closeLiveCheckoutModal;
   window.executeInstantPhantomPassIndex = function(solAmt, lbl){
-    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) ? "trader_pro_1999" : "day_199";
+    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) "trader_pro_1999";
     window.openLiveCheckout(tk, "SOL");
   };
   window.buyProPass = function(solAmt, lbl){
-    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) ? "trader_pro_1999" : "day_199";
+    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) "trader_pro_1999";
     window.openLiveCheckout(tk, "SOL");
   };
 
@@ -19053,7 +19053,7 @@ window.submitVisitorFeedbackNow = async function(){
       var ul = document.createElement("ul");
       ul.className = "rrs-hero-bullets-v4";
       ul.innerHTML =
-        '<li><b>1st Rent Claim 100% Free:</b> Recover ~0.00204 SOL per empty ATA (98.5% net&nbsp;after).</li>' +
+        '<li><b>1st Rent Claim 100% Free:</b> Recover ~0.00204 SOL per empty ATA (98.0% net&nbsp;after).</li>' +
         '<li><b>#1 Chrome Toolbar Shield:</b> Blocks rugs in &lt;120ms pre-buy with layer &amp; latency&nbsp;toggles.</li>' +
         '<li><b>24/7 Wizard Engineer On Call:</b> Human lead engineer + live Python AI agent&nbsp;swarm.</li>' +
         '<li><b>Powered by Gemini 4 Carbon:</b> Frontier AI paired with Helius Mainnet byte&nbsp;checks.</li>' +
