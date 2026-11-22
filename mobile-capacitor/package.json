@@ -1,0 +1,15 @@
+{
+  "name": "solana-rent-rug-shield-mobile",
+  "version": "5.1.0",
+  "private": true,
+  "description": "Solana Rent & Rug Shield Native Android/iOS Wrapper with Solana Mobile Wallet Adapter (MWA v2.0)",
+  "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
+    "@solana-mobile/mobile-wallet-adapter-protocol": "^2.1.2",
+    "@solana-mobile/mobile-wallet-adapter-protocol-web3js": "^2.1.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2"
+  }
+}

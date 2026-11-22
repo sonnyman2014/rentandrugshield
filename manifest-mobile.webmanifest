@@ -1,13 +1,15 @@
 {
-  "name": "Solana Rent & Rug Shield (12-Layer + MWA v2.0)",
+  "name": "Solana Rent & Rug Shield Mobile (v5.1 — MWA v2.0 & 12-Layer)",
   "short_name": "Rent&RugShield",
-  "description": "Reclaim empty Solana ATA rent (0% 1st claim <=25 ATAs, 98.0% net SOL repeat) & block rugs pre-buy in <120ms with Solana Mobile Wallet Adapter v2.0.",
+  "description": "Reclaim empty Solana ATA rent (0% 1st claim <=25 ATAs, 4-lock anti-Sybil, 2.0% repeat = 98.0% net SOL) & block rugs pre-buy in <120ms with Solana MWA v2.0 + Share-Target Scanner.",
+  "id": "/mobile.html",
   "start_url": "/mobile.html?source=pwa",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#060b14",
   "theme_color": "#eab308",
+  "categories": ["finance", "security", "utilities"],
   "icons": [
     {
       "src": "/chrome-extension/icon48.png",
@@ -31,6 +33,39 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "share_target": {
+    "action": "/mobile.html",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "share_title",
+      "text": "share_text",
+      "url": "share_url"
+    }
+  },
+  "shortcuts": [
+    {
+      "name": "0x09 Free 1st Rent Claim",
+      "short_name": "0x09 Rent",
+      "description": "Scan & reclaim empty Solana ATAs (0% 1st claim <=25 ATAs)",
+      "url": "/mobile.html?tab=rent",
+      "icons": [{ "src": "/chrome-extension/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "12-Layer Rug Scanner",
+      "short_name": "12L Scanner",
+      "description": "Pre-buy 12-Layer Solana token & LP safety audit in <120ms",
+      "url": "/mobile.html?tab=rug",
+      "icons": [{ "src": "/chrome-extension/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Whale Precipice Radar",
+      "short_name": "Whale Radar",
+      "description": "High-conviction Whale_Precipice_Radar (>=85 score) mobile push alerts",
+      "url": "/mobile.html?tab=whale",
+      "icons": [{ "src": "/chrome-extension/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     }
   ]
 }

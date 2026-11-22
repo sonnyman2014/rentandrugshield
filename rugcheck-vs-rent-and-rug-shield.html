@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>RugCheck vs Rent &amp; Rug Shield (2026): &lt;120ms 12-Layer Inner-CPI &amp; Jito Firewall Compared</title>
+<meta name="description" content="Technical benchmark of RugCheck.xyz static metadata checks vs Solana Rent &amp; Rug Shield&#x27;s &lt;120ms 12-Layer sacrificial canary inner-CPI simulation, Block-0 Jito Sybil gate, and 0% 1st claim 0x09 SOL rent recovery."/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+<link rel="canonical" href="https://rentandrugshield.com/rugcheck-vs-rent-and-rug-shield.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="Solana Rent &amp; Rug Shield"/>
+<meta property="og:title" content="RugCheck vs Rent &amp; Rug Shield (2026): &lt;120ms 12-Layer Inner-CPI &amp; Jito Firewall Compared"/>
+<meta property="og:description" content="Technical benchmark of RugCheck.xyz static metadata checks vs Solana Rent &amp; Rug Shield&#x27;s &lt;120ms 12-Layer sacrificial canary inner-CPI simulation, Block-0 Jito Sybil gate, and 0% 1st claim 0x09 SOL rent recovery."/>
+<meta property="og:url" content="https://rentandrugshield.com/rugcheck-vs-rent-and-rug-shield.html"/>
+<meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="RugCheck vs Rent &amp; Rug Shield (2026): &lt;120ms 12-Layer Inner-CPI &amp; Jito Firewall Compared"/>
+<meta name="twitter:description" content="Technical benchmark of RugCheck.xyz static metadata checks vs Solana Rent &amp; Rug Shield&#x27;s &lt;120ms 12-Layer sacrificial canary inner-CPI simulation, Block-0 Jito Sybil gate, and 0% 1st claim 0x09 SOL rent recovery."/>
+<meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png"/>
+<style>*{box-sizing:border-box}
+body{margin:0;background:#040a0f;color:#eef6fb;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.64}
+a{color:#14F195;text-decoration:none}
+a:hover{text-decoration:underline}
+.topbar{background:#061019;border-bottom:1px solid rgba(20,241,149,.28);padding:14px 20px;position:sticky;top:0;z-index:20}
+.topbar-in{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:900;font-size:1.05rem;color:#fff;letter-spacing:.02em}
+.brand span{color:#14F195}
+.navlinks{display:flex;flex-wrap:wrap;gap:14px;font-size:.9rem;font-weight:700}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 64px}
+.crumbs{font-size:.84rem;color:#94a3b8;margin-bottom:14px}
+.crumbs a{color:#14F195}
+.card{background:#07131c;border:1.5px solid rgba(20,241,149,.42);border-radius:16px;padding:26px;margin-bottom:22px}
+.gold-card{background:#090c10;border:1.5px solid rgba(245,197,66,.55);border-radius:16px;padding:24px;margin-bottom:22px}
+.badge{display:inline-block;padding:5px 12px;border-radius:999px;background:rgba(20,241,149,.13);border:1px solid #14F195;color:#14F195;font-size:.77rem;font-weight:800;letter-spacing:.05em;margin-bottom:10px}
+h1{color:#fff;font-size:1.95rem;line-height:1.22;margin:6px 0 12px}
+h2{color:#14F195;font-size:1.32rem;margin:24px 0 10px}
+h3{color:#F5C542;font-size:1.06rem;margin:16px 0 6px}
+p,li{color:#d7e6f2;font-size:.99rem}
+code{background:#03080d;border:1px solid rgba(20,241,149,.25);padding:2px 6px;border-radius:6px;color:#14F195;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.89em;word-break:break-all}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin:18px 0}
+.stat{background:#040b11;border:1px solid rgba(255,255,255,.11);border-radius:12px;padding:14px}
+.stat .k{font-size:.76rem;color:#94a3b8;text-transform:uppercase;font-weight:800;letter-spacing:.04em}
+.stat .v{font-size:1.18rem;color:#fff;font-weight:900;margin-top:4px}
+.stat .s{font-size:.82rem;color:#9fb3c8;margin-top:4px}
+.tbl-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.93rem}
+th,td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.1);text-align:left;vertical-align:top}
+th{color:#F5C542;font-weight:800;background:#040b11}
+td.us{color:#14F195;font-weight:700}
+details{background:#040b11;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 15px;margin:10px 0}
+summary{cursor:pointer;font-weight:800;color:#F5C542}
+details p{margin:10px 0 2px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+a.btn-em{display:inline-block;padding:12px 20px;border-radius:10px;background:#14F195;color:#02120b;font-weight:900;text-decoration:none}
+a.btn-gold{display:inline-block;padding:12px 20px;border-radius:10px;background:rgba(245,197,66,.14);border:1.5px solid #F5C542;color:#F5C542;font-weight:800;text-decoration:none}
+a.btn-ghost{display:inline-block;padding:12px 18px;border-radius:10px;background:#040b11;border:1px solid rgba(255,255,255,.18);color:#eef6fb;font-weight:700;text-decoration:none}
+.chk{padding-left:20px}
+.chk li{margin:7px 0}
+.ftr{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:20px;font-size:.87rem;color:#94a3b8;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}</style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Solana Rent & Rug Shield","applicationCategory":"FinanceApplication","operatingSystem":"Web, Chrome MV3, Solana Seeker MWA v2.0, Solana Mainnet","url":"https://rentandrugshield.com/rugcheck-vs-rent-and-rug-shield.html","description":"Technical benchmark of RugCheck.xyz static metadata checks vs Solana Rent & Rug Shield's <120ms 12-Layer sacrificial canary inner-CPI simulation, Block-0 Jito Sybil gate, and 0% 1st claim 0x09 SOL rent recovery.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"0% platform fee on your 1st empty ATA claim (up to 25 ATAs, 100% of locked SOL returned); 2.0% flat atomic on-chain fee on repeat claims (98.0% net SOL returned directly to your wallet); 30% instant same-transaction on-chain ?ref= affiliate split."}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why can a token pass basic authority checks on RugCheck and still fail to sell?","acceptedAnswer":{"@type":"Answer","text":"Because conditional Token-2022 TransferHooks, asymmetric CLMM/DLMM WSOL bin pulls, or 2-hop insider supply dumps operate without needing MintAuthority or FreezeAuthority."}},{"@type":"Question","name":"Can trading bots call Rent & Rug Shield automatically before every swap?","acceptedAnswer":{"@type":"Answer","text":"Yes, via POST /api/v1/shield-check (/openapi-public.json and /llms.txt) in under 120ms."}},{"@type":"Question","name":"Does Rent & Rug Shield charge to run read-only token or wallet scans?","acceptedAnswer":{"@type":"Answer","text":"Public read-only scans are free, and your first <=25 empty-ATA rent claim carries a 0% platform fee."}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rentandrugshield.com/"},{"@type":"ListItem","position":2,"name":"RugCheck.xyz vs Solana Rent & Rug Shield: Static Metadata vs <120ms 12-Layer Canary Firewall","item":"https://rentandrugshield.com/rugcheck-vs-rent-and-rug-shield.html"}]}]</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="/" data-ref>SOLANA <span>RENT &amp; RUG SHIELD</span></a>
+    <nav class="navlinks">
+      <a href="/" data-ref>Read-Only Wallet &amp; Token Scanner</a>
+      <a href="/app#reclaim" data-ref>0% 1st Rent Claim</a>
+      <a href="/guides/">All 532 Guides</a>
+      <a href="/audits/">961 Token Audits</a>
+      <a href="/affiliates.html">30% ?ref= Split</a>
+      <a href="/enterprise-api.html">Bot &amp; Agent API</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/guides/">Security Guides</a> &rsaquo; <span>RugCheck.xyz vs Solana Rent &amp; Rug Shield: Static Metadata vs &lt;120ms 12-Layer Canary Firewall</span></div>
+  <article class="card">
+    <span class="badge">HEAD-TO-HEAD BENCHMARK • RUGCHECK VS RENT &amp; RUG SHIELD</span>
+    <h1>RugCheck.xyz vs Solana Rent &amp; Rug Shield: Static Metadata vs &lt;120ms 12-Layer Canary Firewall</h1>
+    <p>RugCheck.xyz helped educate early Solana traders on basic MintAuthority and LP checks, but modern rug studios engineer tokens specifically to show &#x27;Good&#x27; on static metadata checkers while hiding conditional Token-2022 TransferHooks, 2-hop post-graduation sniper cartels, Slot-0 Jito genesis bundles, and inner-CPI wallet drainers. Solana Rent &amp; Rug Shield pairs &lt;120ms 12-Layer live simulation with built-in 0x09 SOL rent recovery.</p>
+    <p><strong>100% Read-Only First:</strong> Paste any public Base58 Solana wallet or token mint address (100% read-only, zero wallet pop-ups) to inspect locked 0x09 empty-ATA SOL deposits or run a sub-120ms 12-Layer rug firewall check.</p>
+    <div class="cta-row">
+      <a class="btn-em" href="https://rentandrugshield.com/app#reclaim" data-ref>Scan Wallet 0x09 Rent (0% 1st Claim &lt;=25 ATAs)</a>
+      <a class="btn-gold" href="https://rentandrugshield.com/app" data-ref>Run &lt;120ms 12-Layer Token Scan</a>
+      <a class="btn-ghost" href="https://rentandrugshield.com/affiliates.html">Get 30% Atomic ?ref= Link</a>
+    </div>
+
+    <div class="grid">
+      <div class="stat"><div class="k">1st Empty ATA Claim</div><div class="v">0% Fee</div><div class="s">Up to 25 ATAs (100.0% SOL returned)</div></div>
+      <div class="stat"><div class="k">Repeat Sweep Rate</div><div class="v">2.0% Atomic</div><div class="s">98.0% net SOL settled same-block</div></div>
+      <div class="stat"><div class="k">12-Layer Rug Firewall</div><div class="v">&lt;120ms</div><div class="s">Sacrificial inner-CPI + Jito Sybil gate</div></div>
+      <div class="stat"><div class="k">On-Chain Referral</div><div class="v">30% Split</div><div class="s">Instant atomic payout via ?ref=</div></div>
+    </div>
+
+    <h2>1. Why &#x27;Green&#x27; Static Metadata Tokens Still Rug Retail Traders</h2>
+    <p>A deployer can renounce MintAuthority and FreezeAuthority and burn Raydium LP while quietly buying 55% of supply across 18 2-hop burner wallets in a Slot-0 Jito tip bundle or embedding a conditional Token-2022 TransferHook. Static header snapshots mark the mint clean; Layers 05, 10, 11, and 12 catch the trap.</p>
+    <h2>2. Sacrificial Canary Inner-CPI Simulation &amp; Live Jupiter Sell Quotes (&lt;120ms)</h2>
+    <p>Layer 04 tests live two-way Jupiter exit solvency against current pool reserves, while Layer 12 simulates nested Cross-Program Invocations to expose hidden SystemProgram::Transfer, Approve, and SetAuthority drainers in under 120ms.</p>
+    <h2>3. Block-0 Jito Bundle &amp; 2-Hop Non-CEX Funder Cartel Detection</h2>
+    <p>Rent &amp; Rug Shield traces 1-hop and 2-hop upstream SOL funders (exempting known Coinbase, Binance, Kraken, OKX, and Bybit hot wallets) plus &gt;=4 uniform-slice sniper clusters holding &gt;=6.0% combined supply.</p>
+    <h2>4. Built-In 0x09 SOL Rent Recovery (Missing Completely From RugCheck)</h2>
+    <p>RugCheck cannot recover your locked ATA SOL deposits. Rent &amp; Rug Shield includes read-only 0x09 empty-ATA recovery right beside the scanner: 0% fee on your 1st claim (&lt;=25 ATAs) and 2.0% atomic repeat fee (98.0% net SOL).</p>
+
+    <h2>Structured Forensic Comparison &amp; Verification Matrix</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Security &amp; Utility Layer</th><th>Solana Rent &amp; Rug Shield</th><th>RugCheck.xyz</th></tr></thead>
+        <tbody>
+        <tr><td>Scan Latency</td><td class="us">&lt;120ms Fast-Path Live RPC + Cache</td><td>Multi-Second / Cached Snapshot</td></tr>
+        <tr><td>Sacrificial Inner-CPI Canary</td><td class="us">Layer 12 Full Nested CPI Inspection</td><td>Not Included</td></tr>
+        <tr><td>Live Jupiter Sell-Side Quote Sim</td><td class="us">Layer 04 Two-Way Exit Solvency</td><td>Static Pool Header Only</td></tr>
+        <tr><td>Slot-0 Jito &amp; 2-Hop Sybil Cartel</td><td class="us">Layers 10 &amp; 11 (&gt;=6.0% Cartel Veto)</td><td>Limited Single-Hop View</td></tr>
+        <tr><td>Spoofed .pump Vanity Pool Guard</td><td class="us">Layer 09 Canonical Graduation Check</td><td>Partial</td></tr>
+        <tr><td>0x09 Empty ATA SOL Rent Reclaim</td><td class="us">0% 1st Claim (&lt;=25 ATAs); 2.0% Repeat (98.0% Net)</td><td>Not Offered</td></tr>
+        <tr><td>AI Agent / Bot OpenAPI &amp; TG Bot</td><td class="us">/api/v1/shield-check + @Bigmoonbag50bot</td><td>Rate-Limited Web API</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Actionable Verification Checklist</h2>
+    <ul class="chk">
+      <li>Run every contract mint through https://rentandrugshield.com/app (&lt;120ms) right before swapping.</li>
+      <li>Check Layers 10 &amp; 11 for Slot-0 Jito bundles and 2-hop uniform-slice sniper cartels.</li>
+      <li>Verify Layer 04 live sell quote depth and Layer 05/06 Token-2022 extension cleanliness.</li>
+      <li>Reclaim locked 0x09 SOL deposits from past trades at 0% fee on your first &lt;=25 empty ATAs.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>Why can a token pass basic authority checks on RugCheck and still fail to sell?</summary><p>Because conditional Token-2022 TransferHooks, asymmetric CLMM/DLMM WSOL bin pulls, or 2-hop insider supply dumps operate without needing MintAuthority or FreezeAuthority.</p></details>
+    <details><summary>Can trading bots call Rent &amp; Rug Shield automatically before every swap?</summary><p>Yes, via POST /api/v1/shield-check (/openapi-public.json and /llms.txt) in under 120ms.</p></details>
+    <details><summary>Does Rent &amp; Rug Shield charge to run read-only token or wallet scans?</summary><p>Public read-only scans are free, and your first &lt;=25 empty-ATA rent claim carries a 0% platform fee.</p></details>
+  </article>
+
+  <div class="gold-card">
+    <h2>Flagship Solana Security &amp; 0x09 Rent Pillars</h2>
+    <p>
+      <a href="/how-to-reclaim-solana-rent.html" data-ref>How to Reclaim Solana Rent (0x09)</a> •
+      <a href="/token-2022-transfer-hook-scanner.html" data-ref>Token-2022 TransferHook Scanner</a> •
+      <a href="/sol-incinerator-vs-rent-and-rug-shield.html" data-ref>Sol Incinerator vs Rent &amp; Rug Shield</a> •
+      <a href="/rugcheck-vs-rent-and-rug-shield.html" data-ref>RugCheck vs Rent &amp; Rug Shield</a> •
+      <a href="/solana-clipboard-hijack-and-punycode-protection.html" data-ref>Clipboard Hijack &amp; Punycode Defense</a> •
+      <a href="/worlds-first-12-layer-solana-rug-shield.html" data-ref>12-Layer Architecture</a>
+    </p>
+    <p><strong>Related Long-Tail Dossiers:</strong> <a href="/guides/compare-bundlecheck-solana-read-only-privacy-and-non-custodial-signing.html">BundleCheck vs Solana Rent &amp; Rug Shield: Zero-Popup Read-Only Base58 Lookup vs Forced Wallet Connect</a> • <a href="/guides/keystone-3-pro-airgapped-inner-cpi-approve-setauthority-drainer-shield.html">Keystone 3 Pro Air-Gapped Guide: Blocking Inner-CPI Approve &amp; SetAuthority Drainers (Layer 12)</a> • <a href="/guides/checklist-pump-fun-bonding-curve-tokens-whale-concentration-and-2hop-sybil-screen.html">Pump.fun Bonding-Curve Mints - Top-10 Whale Concentration &amp; 2-Hop Sybil Screening</a> • <a href="/guides/">Browse All 532 Guides &rarr;</a></p>
+    <p><strong>Live Mainnet 12-Layer Token Audits:</strong> <a href="/audits/13GDJQsTCgdcXgZ43GyjVpabmvpUc7WMVpQUJGWKpump.html"><code>13GDJQ...pump</code> Audit</a> • <a href="/audits/13qebRhFyiB32FH9b1YYTgh8RW4VvmNEbi79eG28pump.html"><code>13qebR...pump</code> Audit</a> • <a href="/audits/14hfjVTAPr5JCP8Dv4uYJWnzBhME2LrRfJwxYxSJpump.html"><code>14hfjV...pump</code> Audit</a> • <a href="/audits/21gTqV8npvfxUP65Hj68SC7nQhnpMowFWGBinZtSpump.html"><code>21gTqV...pump</code> Audit</a> • <a href="/audits/22EQG83ZbQJFgk3YYbYCfkHfdcMgZecJbowwRaQ4pump.html"><code>22EQG8...pump</code> Audit</a> • <a href="/audits/">All 961 Audits &rarr;</a></p>
+  </div>
+
+  <footer class="ftr">
+    <div>Solana Rent &amp; Rug Shield • Non-Custodial Read-Only Security • 0% 1st Claim (&lt;=25 ATAs) • 2.0% Repeat (98.0% Net SOL) • Auto-Billing OFF by Default</div>
+    <div>
+      <a href="https://rentandrugshield.com/" data-ref>Scanner</a> •
+      <a href="https://x.com/SolRentClaim" target="_blank" rel="noopener">X / Twitter</a> •
+      <a href="https://t.me/Bigmoonbag50bot" target="_blank" rel="noopener">@Bigmoonbag50bot</a> •
+      <a href="/affiliates.html">Affiliates</a> •
+      <a href="/openapi-public.json">OpenAPI</a> •
+      <a href="/llms.txt">llms.txt</a> •
+      <a href="/privacy.html">Privacy</a> •
+      <a href="/terms.html">Terms</a>
+    </div>
+  </footer>
+</main>
+<script>(function(){try{var q=new URLSearchParams(location.search),r=q.get('ref');if(!r||!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(r))return;document.querySelectorAll('a[data-ref]').forEach(function(a){var u=new URL(a.getAttribute('href'),location.origin);u.searchParams.set('ref',r);a.setAttribute('href',u.pathname+u.search+u.hash);});}catch(e){}})();</script>
+</body>
+</html>

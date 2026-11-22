@@ -1,1144 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#06090F" />
-  <title>Executive Promo Vault | Solana Rent &amp; Rug Shield (60fps Masters)</title>
-  <meta name="description" content="Executive 60fps Promo Arsenal &amp; Screening Room for Solana Rent &amp; Rug Shield: 4K UHD Castle Master, 12-Layer On-Chain Firewall (<120ms), Native 0x09 Rent Recovery, Chrome Extension v51, 30% Atomic Affiliate Engine, and Sacrificial Canary AI." />
-  <link rel="canonical" href="https://rentandrugshield.com/promo-vault.html" />
-  <link rel="stylesheet" href="/static/fonts/fonts.css" />
-  <style>
-    :root {
-      --obsidian: #06090F;
-      --obsidian-2: #0B111E;
-      --obsidian-card: rgba(9, 14, 24, 0.88);
-      --gold: #FFD000;
-      --gold-dim: rgba(255, 208, 0, 0.36);
-      --emerald: #10B981;
-      --emerald-bright: #34D399;
-      --emerald-dim: rgba(16, 185, 129, 0.34);
-      --text: #F8FAFC;
-      --muted: #94A3B8;
-      --slate: #CBD5E1;
-    }
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    html, body {
-      margin: 0;
-      padding: 0;
-      background:
-        radial-gradient(circle at 15% 0%, rgba(255, 208, 0, 0.08), transparent 40%),
-        radial-gradient(circle at 85% 8%, rgba(16, 185, 129, 0.09), transparent 42%),
-        var(--obsidian);
-      color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.5;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
-    a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-    /* Sticky Institutional Topbar */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 950;
-      background: rgba(6, 9, 15, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--gold-dim);
-      padding: 12px 22px;
-    }
-    .topbar-inner {
-      max-width: 1360px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .brand-lockup {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none !important;
-    }
-    /* Official Wingless Emblem: Strictly uncropped 16:9 object-fit: contain */
-    .official-badge-frame {
-      width: 112px;
-      height: 63px;
-      aspect-ratio: 16 / 9;
-      border-radius: 8px;
-      border: 1.5px solid rgba(255, 208, 0, 0.68);
-      background: #06090F;
-      overflow: hidden;
-      flex-shrink: 0;
-      box-shadow: 0 0 18px rgba(255, 208, 0, 0.22);
-    }
-    .official-badge-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-    .brand-titles {
-      display: flex;
-      flex-direction: column;
-    }
-    .brand-titles strong {
-      font-size: 16px;
-      font-weight: 900;
-      color: #FFFFFF;
-      letter-spacing: -0.01em;
-    }
-    .brand-titles span {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.05em;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .nav-btn {
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 12.5px;
-      font-weight: 800;
-      color: var(--slate);
-      background: rgba(15, 23, 42, 0.75);
-      border: 1px solid rgba(148, 163, 184, 0.28);
-      transition: all 0.16s ease;
-    }
-    .nav-btn:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-    .nav-btn-primary {
-      background: linear-gradient(90deg, #FFD000, #F59E0B);
-      color: #06090F !important;
-      border-color: #FFD000;
-      font-weight: 900;
-    }
-
-    .container {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 28px 20px 88px;
-    }
-
-    /* Executive Hero Banner */
-    .hero-deck {
-      background: linear-gradient(165deg, rgba(11, 17, 30, 0.94) 0%, rgba(6, 9, 15, 0.96) 100%);
-      border: 1.5px solid var(--gold-dim);
-      border-radius: 20px;
-      padding: 28px 32px;
-      margin-bottom: 28px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 208, 0, 0.22);
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 28px;
-      align-items: center;
-    }
-    @media (max-width: 860px) {
-      .hero-deck {
-        grid-template-columns: 1fr;
-      }
-    }
-    .hero-emblem-showcase {
-      width: 240px;
-      height: 135px;
-      aspect-ratio: 16 / 9;
-      border-radius: 12px;
-      border: 1.5px solid var(--gold);
-      background: #06090F;
-      overflow: hidden;
-      box-shadow: 0 0 32px rgba(255, 208, 0, 0.24);
-    }
-    .hero-emblem-showcase img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 13px;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.14);
-      border: 1px solid var(--emerald-dim);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--emerald-bright);
-      margin-bottom: 10px;
-    }
-    .hero-deck h1 {
-      margin: 0 0 10px;
-      font-size: clamp(26px, 3.2vw, 38px);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: var(--gold);
-    }
-    .hero-deck p {
-      margin: 0 0 18px;
-      color: var(--slate);
-      font-size: 15.5px;
-      max-width: 880px;
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-    .btn-gold {
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 12px 22px;
-      border-radius: 12px;
-      border: 1.5px solid #FFD000;
-      background: linear-gradient(135deg, #FFD000 0%, #F59E0B 100%);
-      color: #06090F;
-      font-family: 'Inter', sans-serif;
-      font-size: 14.5px;
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      box-shadow: 0 8px 24px rgba(255, 208, 0, 0.26);
-      transition: transform 0.14s ease, box-shadow 0.14s ease;
-    }
-    .btn-gold:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 28px rgba(255, 208, 0, 0.38);
-    }
-    .btn-emerald {
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border-radius: 12px;
-      border: 1.5px solid var(--emerald);
-      background: rgba(16, 185, 129, 0.16);
-      color: var(--emerald-bright);
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 800;
-      transition: all 0.14s ease;
-    }
-    .btn-emerald:hover {
-      background: rgba(16, 185, 129, 0.26);
-    }
-    .btn-ghost {
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(148, 163, 184, 0.34);
-      background: rgba(15, 23, 42, 0.72);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
-      font-weight: 700;
-    }
-    .btn-ghost:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    /* Cinema Spotlight Theater */
-    .theater-shell {
-      background: linear-gradient(180deg, rgba(10, 15, 28, 0.95) 0%, rgba(5, 8, 14, 0.98) 100%);
-      border: 1.5px solid rgba(16, 185, 129, 0.42);
-      border-radius: 20px;
-      padding: 24px;
-      margin-bottom: 34px;
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75);
-    }
-    .theater-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-    .now-playing-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .np-pill {
-      padding: 5px 12px;
-      border-radius: 999px;
-      background: rgba(255, 208, 0, 0.16);
-      border: 1px solid var(--gold);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--gold);
-    }
-    .np-title {
-      font-size: 19px;
-      font-weight: 900;
-      color: #FFFFFF;
-    }
-    .theater-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .stage-viewport {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #030509;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 208, 0, 0.25);
-      padding: 12px;
-      min-height: 420px;
-    }
-    .stage-video-wrap {
-      width: 100%;
-      max-width: 1060px;
-      aspect-ratio: 16 / 9;
-      background: #000;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
-      transition: max-width 0.22s ease;
-    }
-    .stage-video-wrap.vertical-mode {
-      max-width: 370px;
-      aspect-ratio: 9 / 16;
-    }
-    .stage-video-wrap video {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: contain;
-      background: #000;
-    }
-    .playlist-strip {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 8px;
-      margin-top: 16px;
-    }
-    @media (max-width: 980px) {
-      .playlist-strip {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (max-width: 560px) {
-      .playlist-strip {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    .track-chip {
-      cursor: pointer;
-      text-align: left;
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: rgba(15, 23, 42, 0.72);
-      border: 1px solid rgba(148, 163, 184, 0.22);
-      color: var(--slate);
-      font-family: 'Inter', sans-serif;
-      transition: all 0.15s ease;
-    }
-    .track-chip:hover {
-      border-color: var(--gold-dim);
-      color: #FFF;
-    }
-    .track-chip.active {
-      background: rgba(255, 208, 0, 0.14);
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-    .track-chip .tc-num {
-      display: block;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--emerald-bright);
-    }
-    .track-chip .tc-name {
-      display: block;
-      font-size: 12.5px;
-      font-weight: 800;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-top: 2px;
-    }
-
-    /* Section Header */
-    .section-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 12px 0 20px;
-    }
-    .section-head h2 {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 900;
-      color: var(--gold);
-    }
-    .section-head span {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      color: var(--emerald-bright);
-    }
-
-    /* 6-Card Promo Arsenal Grid */
-    .arsenal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 24px;
-    }
-    @media (max-width: 480px) {
-      .arsenal-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    .vault-card {
-      background: var(--obsidian-card);
-      border: 1.5px solid rgba(255, 208, 0, 0.30);
-      border-radius: 18px;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 16px;
-      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.6);
-      transition: border-color 0.18s ease;
-    }
-    .vault-card:hover {
-      border-color: var(--gold);
-    }
-    .vc-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .vc-slot {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 7px;
-      background: rgba(255, 208, 0, 0.14);
-      border: 1px solid rgba(255, 208, 0, 0.48);
-      color: var(--gold);
-    }
-    .vc-status {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11.5px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.16);
-      border: 1px solid rgba(16, 185, 129, 0.55);
-      color: var(--emerald-bright);
-    }
-    .vc-status.armed {
-      background: rgba(255, 208, 0, 0.12);
-      border-color: rgba(255, 208, 0, 0.45);
-      color: #FDE68A;
-    }
-    .vc-title {
-      margin: 10px 0 6px;
-      font-size: 20px;
-      font-weight: 900;
-      color: #FFFFFF;
-      line-height: 1.25;
-    }
-    .vc-desc {
-      margin: 0;
-      font-size: 14px;
-      color: var(--slate);
-      line-height: 1.48;
-    }
-
-    /* 16:9 vs 9:16 Aspect Toggle Tabs */
-    .aspect-tabs {
-      display: flex;
-      gap: 8px;
-      background: rgba(6, 9, 15, 0.85);
-      padding: 5px;
-      border-radius: 11px;
-      border: 1px solid rgba(148, 163, 184, 0.22);
-    }
-    .aspect-tab {
-      flex: 1;
-      cursor: pointer;
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12.5px;
-      font-weight: 800;
-      transition: all 0.15s ease;
-    }
-    .aspect-tab.active {
-      background: linear-gradient(90deg, rgba(255, 208, 0, 0.22), rgba(16, 185, 129, 0.20));
-      color: var(--gold);
-      border: 1px solid rgba(255, 208, 0, 0.55);
-    }
-
-    .vc-player-frame {
-      width: 100%;
-      background: #030509;
-      border-radius: 12px;
-      border: 1px solid rgba(148, 163, 184, 0.22);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      aspect-ratio: 16 / 9;
-    }
-    .vc-player-frame.is-vertical {
-      aspect-ratio: 9 / 16;
-      max-height: 440px;
-      width: auto;
-      margin: 0 auto;
-    }
-    .vc-player-frame video {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      background: #000;
-    }
-
-    .vc-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .vc-btn {
-      flex: 1;
-      min-width: 130px;
-      cursor: pointer;
-      text-align: center;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 800;
-      text-decoration: none !important;
-      transition: all 0.15s ease;
-    }
-    .vc-btn-screen {
-      background: rgba(16, 185, 129, 0.18);
-      border: 1px solid var(--emerald);
-      color: var(--emerald-bright);
-    }
-    .vc-btn-screen:hover {
-      background: rgba(16, 185, 129, 0.30);
-    }
-    .vc-btn-dl {
-      background: rgba(255, 208, 0, 0.14);
-      border: 1px solid rgba(255, 208, 0, 0.55);
-      color: var(--gold);
-    }
-    .vc-btn-dl:hover {
-      background: rgba(255, 208, 0, 0.26);
-    }
-
-    .toast-banner {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 1200;
-      padding: 13px 20px;
-      border-radius: 12px;
-      background: rgba(6, 9, 15, 0.96);
-      border: 1.5px solid var(--gold);
-      color: var(--gold);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      font-weight: 700;
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.8);
-      display: none;
-    }
-    .footer-note {
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255, 208, 0, 0.20);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Solana Rent &amp; Rug Shield v5.1 — Official 4K Video &amp; Comparison Vault</title>
+<link rel="canonical" href="https://rentandrugshield.com/promo-vault.html" />
+<style>
+  body { margin:0; padding:22px 24px 60px; background:#060b14; color:#f8fafc; font-family:system-ui,-apple-system,sans-serif; }
+  .topbar { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #1e293b; padding-bottom:14px; margin-bottom:20px; }
+  .btn { padding:9px 15px; border-radius:8px; font-weight:900; text-decoration:none; font-size:13.5px; background:#10b981; color:#04101f; }
+  h1 { margin:0 0 6px; font-size:24px; color:#facc15; }
+  h2 { margin:28px 0 12px; font-size:18px; color:#38bdf8; border-bottom:1px solid #1e293b; padding-bottom:8px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:14px; }
+  .grid-vert { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; }
+  .card { background:#0e1726; border:1px solid rgba(234,179,8,0.28); border-radius:12px; padding:12px; }
+  .meta { display:flex; justify-content:space-between; gap:8px; font-size:12px; margin-bottom:8px; color:#e2e8f0; word-break:break-word; }
+  .meta span { color:#facc15; white-space:nowrap; font-family:monospace; }
+  .links { margin-top:8px; font-size:12px; color:#64748b; }
+  .links a { color:#34d399; text-decoration:none; font-weight:700; }
+</style>
 </head>
 <body>
-
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a href="/" class="brand-lockup">
-        <div class="official-badge-frame">
-          <img src="/assets/rr_badge_exact.jpg" alt="Solana Rent &amp; Rug Shield Official 12-Layer Vault Badge" />
-        </div>
-        <div class="brand-titles">
-          <strong>SOLANA RENT &amp; RUG SHIELD</strong>
-          <span>EXECUTIVE PROMO VAULT · 60FPS BROADCAST ARSENAL</span>
-        </div>
-      </a>
-      <nav class="nav-links">
-        <a href="/" class="nav-btn">Home</a>
-        <a href="/app.html" class="nav-btn nav-btn-primary">Launch 12-Layer Scanner</a>
-        <a href="/ad-kit.html" class="nav-btn">Organic Ad Kit</a>
-        <a href="/affiliates.html" class="nav-btn">30% Affiliates</a>
-      <a href="/mobile.html" class="nav-btn">📱 Mobile App (MWA v2)</a>
-      </nav>
+  <div class="topbar">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a class="btn" href="/">← Back to Live Scanner Terminal</a>
+      <a class="btn" style="background:#facc15;" href="/mobile.html">📱 Mobile MWA v2.0 Simulator &amp; APK</a>
+      <a class="btn" style="background:#38bdf8;" href="/guides/index.html">📚 532 Security &amp; Comparison Guides</a>
     </div>
-  </header>
+    <div style="font-size:13px;color:#94a3b8;">0% 1st Rent Claim (&le;25 ATAs) • 2.0% Repeat (98.0% Net SOL) • &lt;120ms 12→16 Layer Living Shield</div>
+  </div>
+  <h1>🛡️ Solana Rent &amp; Rug Shield v5.1 — 4K Promo Arsenal (00–20) &amp; Proof Matrix</h1>
+  <p style="color:#cbd5e1;margin:0 0 18px;font-size:14px;">Shareable 4K widescreen videos, 9:16 vertical reels, and 5-style competitor comparison infographics. Append <code>?ref=YOUR_SOL_WALLET</code> to earn an instant 30% atomic on-chain SOL split.</p>
 
-  <main class="container">
-    <!-- HERO SCREENING ROOM BANNER -->
-    <section class="hero-deck">
-      <div class="hero-emblem-showcase">
-        <img src="/assets/rr_badge_exact.jpg" alt="Official Wingless 12-Layer Vault Crest" />
-      </div>
-      <div>
-        <div class="hero-kicker">
-          <span>●</span>
-          <span>1080p60 &amp; 4K UHD MASTERS · -16 LUFS NORMALIZED AUDIO · 16:9 + 9:16 REELS</span>
-        </div>
-        <h1>Executive Promo Screening Room</h1>
-        <p>
-          Full broadcast-grade promotional arsenal for <strong>Solana Rent &amp; Rug Shield</strong>. Screen the 4K Castle Master and Videos 1–5 sequentially with one click, toggle instantaneously between <strong>16:9 Widescreen</strong> and <strong>9:16 Vertical</strong> cuts, or download direct MP4 masters for X, YouTube Shorts, Reels, TikTok, and institutional partner decks.
-        </p>
-        <div class="hero-actions">
-          <button type="button" class="btn-gold" id="btnPlayAll16x9">
-            ▶ Play All Sequentially (16:9)
-          </button>
-          <button type="button" class="btn-emerald" id="btnPlayAll9x16">
-            ▶ Play Vertical Reels (9:16)
-          </button>
-          <button type="button" class="btn-ghost" id="btnCopyVaultUrl">
-            ⧉ Copy Screening Room Link
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- CINEMA SPOTLIGHT THEATER -->
-    <section class="theater-shell" aria-label="Cinema Spotlight Screening Player">
-      <div class="theater-top">
-        <div class="now-playing-info">
-          <span class="np-pill" id="spotlightBadge">MASTER 01 · 16:9 WIDESCREEN</span>
-          <span class="np-title" id="spotlightTitle">Inside the 12-Layer On-Chain Firewall (&lt;120ms)</span>
-        </div>
-        <div class="theater-controls">
-          <button type="button" class="btn-ghost" id="btnPrevTrack">⏮ Prev</button>
-          <button type="button" class="btn-ghost" id="btnToggleSpotlightAspect">⇄ Switch 16:9 / 9:16</button>
-          <button type="button" class="btn-ghost" id="btnNextTrack">Next ⏭</button>
-          <a class="btn-emerald" id="btnSpotlightDownload" href="/assets/promo_arsenal/01_12_LAYER_FIREWALL_DEEP_DIVE_30S.mp4" download>
-            ⬇ Download Active MP4
-          </a>
-        </div>
-      </div>
-
-      <div class="stage-viewport">
-        <div class="stage-video-wrap" id="spotlightWrap">
-          <video
-            id="spotlightVideo"
-            controls
-            playsinline
-            preload="metadata"
-            poster="/assets/social/og-12-layer-kamikaze-ai-v51.png"
-            src="/assets/promo_arsenal/01_12_LAYER_FIREWALL_DEEP_DIVE_30S.mp4"
-          ></video>
-        </div>
-      </div>
-
-      <div class="playlist-strip" id="playlistStrip"></div>
-    </section>
-
-    <!-- INDIVIDUAL VIDEO CARDS (VIDEO 0 + VIDEOS 1-5) -->
-    <div class="section-head">
-      <h2>Complete Broadcast Arsenal (Video 0 – Video 5)</h2>
-      <span id="arsenalCounterLabel">16:9 HORIZONTAL + 9:16 VERTICAL MASTER SLOTS</span>
+  <h2>🏰 Widescreen Showcase &amp; Feature Deep-Dives (Videos 00–20)</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="meta"><strong>00B_RENT_RUG_SHIELD_45S_BOLD_EDITION.mp4</strong><span>2.90 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/00B_RENT_RUG_SHIELD_45S_BOLD_EDITION.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/00B_RENT_RUG_SHIELD_45S_BOLD_EDITION.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/00B_RENT_RUG_SHIELD_45S_BOLD_EDITION.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>00_CASTLE_MASTER_1080P_SMOOTH_34S.mp4</strong><span>40.35 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/00_CASTLE_MASTER_1080P_SMOOTH_34S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/00_CASTLE_MASTER_1080P_SMOOTH_34S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/00_CASTLE_MASTER_1080P_SMOOTH_34S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>00_CASTLE_MASTER_4K_UHD_34S.mp4</strong><span>56.69 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/00_CASTLE_MASTER_4K_UHD_34S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/00_CASTLE_MASTER_4K_UHD_34S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/00_CASTLE_MASTER_4K_UHD_34S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>00_CASTLE_MASTER_V3_4K_WEB_FASTSTART.mp4</strong><span>56.69 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/00_CASTLE_MASTER_V3_4K_WEB_FASTSTART.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/00_CASTLE_MASTER_V3_4K_WEB_FASTSTART.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/00_CASTLE_MASTER_V3_4K_WEB_FASTSTART.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>00_CASTLE_MASTER_V3_FULL_SHIELD_4K.mp4</strong><span>204.15 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/00_CASTLE_MASTER_V3_FULL_SHIELD_4K.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/00_CASTLE_MASTER_V3_FULL_SHIELD_4K.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/00_CASTLE_MASTER_V3_FULL_SHIELD_4K.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>01_12_LAYER_FIREWALL_DEEP_DIVE_30S.mp4</strong><span>17.54 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/01_12_LAYER_FIREWALL_DEEP_DIVE_30S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/01_12_LAYER_FIREWALL_DEEP_DIVE_30S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/01_12_LAYER_FIREWALL_DEEP_DIVE_30S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S.mp4</strong><span>45.85 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>03_CHROME_EXT_V51_EXPLORER_LIVE_ENGINEER_30S.mp4</strong><span>30.94 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/03_CHROME_EXT_V51_EXPLORER_LIVE_ENGINEER_30S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/03_CHROME_EXT_V51_EXPLORER_LIVE_ENGINEER_30S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/03_CHROME_EXT_V51_EXPLORER_LIVE_ENGINEER_30S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>04_30PCT_ATOMIC_AFFILIATE_ENGINE_26S.mp4</strong><span>17.90 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/04_30PCT_ATOMIC_AFFILIATE_ENGINE_26S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/04_30PCT_ATOMIC_AFFILIATE_ENGINE_26S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/04_30PCT_ATOMIC_AFFILIATE_ENGINE_26S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>05_WHY_US_SACRIFICIAL_CANARY_FLAGSHIP_32S.mp4</strong><span>44.03 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/05_WHY_US_SACRIFICIAL_CANARY_FLAGSHIP_32S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/05_WHY_US_SACRIFICIAL_CANARY_FLAGSHIP_32S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/05_WHY_US_SACRIFICIAL_CANARY_FLAGSHIP_32S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S.mp4</strong><span>46.45 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S.mp4</strong><span>48.89 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S.mp4</strong><span>47.28 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S.mp4</strong><span>53.82 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S.mp4</strong><span>50.14 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>11_CLIPBOARD_HIJACK_AND_VANITY_POISON_SENTINEL_24S.mp4</strong><span>6.79 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/11_CLIPBOARD_HIJACK_AND_VANITY_POISON_SENTINEL_24S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/11_CLIPBOARD_HIJACK_AND_VANITY_POISON_SENTINEL_24S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/11_CLIPBOARD_HIJACK_AND_VANITY_POISON_SENTINEL_24S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>12_PUNYCODE_DEX_PHISHING_HOMOGRAPH_BLOCKER_24S.mp4</strong><span>6.82 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/12_PUNYCODE_DEX_PHISHING_HOMOGRAPH_BLOCKER_24S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/12_PUNYCODE_DEX_PHISHING_HOMOGRAPH_BLOCKER_24S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/12_PUNYCODE_DEX_PHISHING_HOMOGRAPH_BLOCKER_24S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>13_HONEST_0PCT_FIRST_CLAIM_ANTI_SYBIL_VAULT_24S.mp4</strong><span>6.73 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/13_HONEST_0PCT_FIRST_CLAIM_ANTI_SYBIL_VAULT_24S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/13_HONEST_0PCT_FIRST_CLAIM_ANTI_SYBIL_VAULT_24S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/13_HONEST_0PCT_FIRST_CLAIM_ANTI_SYBIL_VAULT_24S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>14_LAYER13_PRECIPICE_WHALE_ROTATION_RADAR_25S.mp4</strong><span>7.11 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/14_LAYER13_PRECIPICE_WHALE_ROTATION_RADAR_25S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/14_LAYER13_PRECIPICE_WHALE_ROTATION_RADAR_25S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/14_LAYER13_PRECIPICE_WHALE_ROTATION_RADAR_25S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>15_INSTITUTIONAL_ENTERPRISE_API_AND_500_DESK_25S.mp4</strong><span>7.10 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/15_INSTITUTIONAL_ENTERPRISE_API_AND_500_DESK_25S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/15_INSTITUTIONAL_ENTERPRISE_API_AND_500_DESK_25S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/15_INSTITUTIONAL_ENTERPRISE_API_AND_500_DESK_25S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>16_LIVING_SHIELD_EVOLUTION_12_TO_16_LAYERS_24S.mp4</strong><span>0.91 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/16_LIVING_SHIELD_EVOLUTION_12_TO_16_LAYERS_24S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/16_LIVING_SHIELD_EVOLUTION_12_TO_16_LAYERS_24S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/16_LIVING_SHIELD_EVOLUTION_12_TO_16_LAYERS_24S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>17_STYLE_A_WHITE_24KGOLD_INSTITUTIONAL_FINTECH_24S.mp4</strong><span>0.76 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/17_STYLE_A_WHITE_24KGOLD_INSTITUTIONAL_FINTECH_24S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/17_STYLE_A_WHITE_24KGOLD_INSTITUTIONAL_FINTECH_24S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/17_STYLE_A_WHITE_24KGOLD_INSTITUTIONAL_FINTECH_24S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>18_STYLE_B_SPLIT_SCREEN_LIVE_TERMINAL_BATTLE_24S.mp4</strong><span>0.70 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/18_STYLE_B_SPLIT_SCREEN_LIVE_TERMINAL_BATTLE_24S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/18_STYLE_B_SPLIT_SCREEN_LIVE_TERMINAL_BATTLE_24S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/18_STYLE_B_SPLIT_SCREEN_LIVE_TERMINAL_BATTLE_24S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>19_LAYER16_POST_ENTRY_BYTECODE_MUTATION_SENTINEL_24S.mp4</strong><span>1.15 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/19_LAYER16_POST_ENTRY_BYTECODE_MUTATION_SENTINEL_24S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/19_LAYER16_POST_ENTRY_BYTECODE_MUTATION_SENTINEL_24S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/19_LAYER16_POST_ENTRY_BYTECODE_MUTATION_SENTINEL_24S.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>20_STYLE_E_SEEKER_MOBILE_MWA_KINETIC_REEL_24S.mp4</strong><span>0.59 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/20_STYLE_E_SEEKER_MOBILE_MWA_KINETIC_REEL_24S.mp4#t=0.5" style="width:100%;height:210px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/20_STYLE_E_SEEKER_MOBILE_MWA_KINETIC_REEL_24S.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/20_STYLE_E_SEEKER_MOBILE_MWA_KINETIC_REEL_24S.mp4" download>⬇ Download MP4</a></div>
     </div>
+  </div>
 
-    <section class="arsenal-grid" id="arsenalGrid"></section>
+  <h2>📊 Shareable Comparison Infographics &amp; 5-Style Proof Cards (31)</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="meta"><strong>hero_4k_arctic_platinum_emerald_vault.jpg</strong><span>0.69 MB</span></div>
+      <a href="/assets/infographics/hero_4k_arctic_platinum_emerald_vault.jpg" target="_blank"><img loading="lazy" src="/assets/infographics/hero_4k_arctic_platinum_emerald_vault.jpg" alt="hero_4k_arctic_platinum_emerald_vault.jpg" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/hero_4k_arctic_platinum_emerald_vault.jpg" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/hero_4k_arctic_platinum_emerald_vault.jpg" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>hero_4k_sacrificial_canary_chamber.jpg</strong><span>0.73 MB</span></div>
+      <a href="/assets/infographics/hero_4k_sacrificial_canary_chamber.jpg" target="_blank"><img loading="lazy" src="/assets/infographics/hero_4k_sacrificial_canary_chamber.jpg" alt="hero_4k_sacrificial_canary_chamber.jpg" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/hero_4k_sacrificial_canary_chamber.jpg" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/hero_4k_sacrificial_canary_chamber.jpg" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>hero_4k_style_a_white_24kgold_fintech.jpg</strong><span>0.52 MB</span></div>
+      <a href="/assets/infographics/hero_4k_style_a_white_24kgold_fintech.jpg" target="_blank"><img loading="lazy" src="/assets/infographics/hero_4k_style_a_white_24kgold_fintech.jpg" alt="hero_4k_style_a_white_24kgold_fintech.jpg" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/hero_4k_style_a_white_24kgold_fintech.jpg" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/hero_4k_style_a_white_24kgold_fintech.jpg" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>hero_4k_style_b_split_terminal_battle.jpg</strong><span>0.89 MB</span></div>
+      <a href="/assets/infographics/hero_4k_style_b_split_terminal_battle.jpg" target="_blank"><img loading="lazy" src="/assets/infographics/hero_4k_style_b_split_terminal_battle.jpg" alt="hero_4k_style_b_split_terminal_battle.jpg" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/hero_4k_style_b_split_terminal_battle.jpg" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/hero_4k_style_b_split_terminal_battle.jpg" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>hero_4k_whale_precipice_naval_sonar.jpg</strong><span>0.74 MB</span></div>
+      <a href="/assets/infographics/hero_4k_whale_precipice_naval_sonar.jpg" target="_blank"><img loading="lazy" src="/assets/infographics/hero_4k_whale_precipice_naval_sonar.jpg" alt="hero_4k_whale_precipice_naval_sonar.jpg" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/hero_4k_whale_precipice_naval_sonar.jpg" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/hero_4k_whale_precipice_naval_sonar.jpg" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_A_institutional_fintech_1080x1350.png</strong><span>0.16 MB</span></div>
+      <a href="/assets/infographics/style_A_institutional_fintech_1080x1350.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_A_institutional_fintech_1080x1350.png" alt="style_A_institutional_fintech_1080x1350.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_A_institutional_fintech_1080x1350.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_A_institutional_fintech_1080x1350.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_A_institutional_fintech_1200x675.png</strong><span>0.12 MB</span></div>
+      <a href="/assets/infographics/style_A_institutional_fintech_1200x675.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_A_institutional_fintech_1200x675.png" alt="style_A_institutional_fintech_1200x675.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_A_institutional_fintech_1200x675.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_A_institutional_fintech_1200x675.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_B_split_terminal_battle_1080x1350.png</strong><span>0.11 MB</span></div>
+      <a href="/assets/infographics/style_B_split_terminal_battle_1080x1350.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_B_split_terminal_battle_1080x1350.png" alt="style_B_split_terminal_battle_1080x1350.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_B_split_terminal_battle_1080x1350.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_B_split_terminal_battle_1080x1350.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_B_split_terminal_battle_1200x675.png</strong><span>0.11 MB</span></div>
+      <a href="/assets/infographics/style_B_split_terminal_battle_1200x675.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_B_split_terminal_battle_1200x675.png" alt="style_B_split_terminal_battle_1200x675.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_B_split_terminal_battle_1200x675.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_B_split_terminal_battle_1200x675.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_C_evolving_shield_16_1080x1350.png</strong><span>0.12 MB</span></div>
+      <a href="/assets/infographics/style_C_evolving_shield_16_1080x1350.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_C_evolving_shield_16_1080x1350.png" alt="style_C_evolving_shield_16_1080x1350.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_C_evolving_shield_16_1080x1350.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_C_evolving_shield_16_1080x1350.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_C_evolving_shield_16_1200x675.png</strong><span>0.09 MB</span></div>
+      <a href="/assets/infographics/style_C_evolving_shield_16_1200x675.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_C_evolving_shield_16_1200x675.png" alt="style_C_evolving_shield_16_1200x675.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_C_evolving_shield_16_1200x675.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_C_evolving_shield_16_1200x675.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D1_master_platform_matrix_1080x1350.png</strong><span>0.11 MB</span></div>
+      <a href="/assets/infographics/style_D_D1_master_platform_matrix_1080x1350.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D1_master_platform_matrix_1080x1350.png" alt="style_D_D1_master_platform_matrix_1080x1350.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D1_master_platform_matrix_1080x1350.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D1_master_platform_matrix_1080x1350.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D1_master_platform_matrix_1200x675.png</strong><span>0.10 MB</span></div>
+      <a href="/assets/infographics/style_D_D1_master_platform_matrix_1200x675.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D1_master_platform_matrix_1200x675.png" alt="style_D_D1_master_platform_matrix_1200x675.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D1_master_platform_matrix_1200x675.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D1_master_platform_matrix_1200x675.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D2_sol_rent_retention_proof_1080x1350.png</strong><span>0.12 MB</span></div>
+      <a href="/assets/infographics/style_D_D2_sol_rent_retention_proof_1080x1350.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D2_sol_rent_retention_proof_1080x1350.png" alt="style_D_D2_sol_rent_retention_proof_1080x1350.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D2_sol_rent_retention_proof_1080x1350.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D2_sol_rent_retention_proof_1080x1350.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D2_sol_rent_retention_proof_1200x675.png</strong><span>0.07 MB</span></div>
+      <a href="/assets/infographics/style_D_D2_sol_rent_retention_proof_1200x675.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D2_sol_rent_retention_proof_1200x675.png" alt="style_D_D2_sol_rent_retention_proof_1200x675.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D2_sol_rent_retention_proof_1200x675.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D2_sol_rent_retention_proof_1200x675.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D3_presign_cpi_vs_static_scanners_1080x1350.png</strong><span>0.12 MB</span></div>
+      <a href="/assets/infographics/style_D_D3_presign_cpi_vs_static_scanners_1080x1350.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D3_presign_cpi_vs_static_scanners_1080x1350.png" alt="style_D_D3_presign_cpi_vs_static_scanners_1080x1350.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D3_presign_cpi_vs_static_scanners_1080x1350.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D3_presign_cpi_vs_static_scanners_1080x1350.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D3_presign_cpi_vs_static_scanners_1200x675.png</strong><span>0.10 MB</span></div>
+      <a href="/assets/infographics/style_D_D3_presign_cpi_vs_static_scanners_1200x675.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D3_presign_cpi_vs_static_scanners_1200x675.png" alt="style_D_D3_presign_cpi_vs_static_scanners_1200x675.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D3_presign_cpi_vs_static_scanners_1200x675.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D3_presign_cpi_vs_static_scanners_1200x675.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D4_clipboard_punycode_perimeter_1080x1350.png</strong><span>0.13 MB</span></div>
+      <a href="/assets/infographics/style_D_D4_clipboard_punycode_perimeter_1080x1350.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D4_clipboard_punycode_perimeter_1080x1350.png" alt="style_D_D4_clipboard_punycode_perimeter_1080x1350.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D4_clipboard_punycode_perimeter_1080x1350.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D4_clipboard_punycode_perimeter_1080x1350.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D4_clipboard_punycode_perimeter_1200x675.png</strong><span>0.10 MB</span></div>
+      <a href="/assets/infographics/style_D_D4_clipboard_punycode_perimeter_1200x675.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D4_clipboard_punycode_perimeter_1200x675.png" alt="style_D_D4_clipboard_punycode_perimeter_1200x675.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D4_clipboard_punycode_perimeter_1200x675.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D4_clipboard_punycode_perimeter_1200x675.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D5_atomic_affiliate_split_1080x1350.png</strong><span>0.11 MB</span></div>
+      <a href="/assets/infographics/style_D_D5_atomic_affiliate_split_1080x1350.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D5_atomic_affiliate_split_1080x1350.png" alt="style_D_D5_atomic_affiliate_split_1080x1350.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D5_atomic_affiliate_split_1080x1350.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D5_atomic_affiliate_split_1080x1350.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D5_atomic_affiliate_split_1200x675.png</strong><span>0.10 MB</span></div>
+      <a href="/assets/infographics/style_D_D5_atomic_affiliate_split_1200x675.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D5_atomic_affiliate_split_1200x675.png" alt="style_D_D5_atomic_affiliate_split_1200x675.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D5_atomic_affiliate_split_1200x675.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D5_atomic_affiliate_split_1200x675.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D6_canonical_tiers_and_roi_1080x1350.png</strong><span>0.13 MB</span></div>
+      <a href="/assets/infographics/style_D_D6_canonical_tiers_and_roi_1080x1350.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D6_canonical_tiers_and_roi_1080x1350.png" alt="style_D_D6_canonical_tiers_and_roi_1080x1350.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D6_canonical_tiers_and_roi_1080x1350.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D6_canonical_tiers_and_roi_1080x1350.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_D_D6_canonical_tiers_and_roi_1200x675.png</strong><span>0.11 MB</span></div>
+      <a href="/assets/infographics/style_D_D6_canonical_tiers_and_roi_1200x675.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_D_D6_canonical_tiers_and_roi_1200x675.png" alt="style_D_D6_canonical_tiers_and_roi_1200x675.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_D_D6_canonical_tiers_and_roi_1200x675.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_D_D6_canonical_tiers_and_roi_1200x675.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_E_kinetic_trench_9x16_1080x1920.png</strong><span>0.14 MB</span></div>
+      <a href="/assets/infographics/style_E_kinetic_trench_9x16_1080x1920.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_E_kinetic_trench_9x16_1080x1920.png" alt="style_E_kinetic_trench_9x16_1080x1920.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_E_kinetic_trench_9x16_1080x1920.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_E_kinetic_trench_9x16_1080x1920.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_E_kinetic_trench_poster_1080x1350.png</strong><span>0.12 MB</span></div>
+      <a href="/assets/infographics/style_E_kinetic_trench_poster_1080x1350.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_E_kinetic_trench_poster_1080x1350.png" alt="style_E_kinetic_trench_poster_1080x1350.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_E_kinetic_trench_poster_1080x1350.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_E_kinetic_trench_poster_1080x1350.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>style_E_kinetic_trench_poster_1200x675.png</strong><span>0.10 MB</span></div>
+      <a href="/assets/infographics/style_E_kinetic_trench_poster_1200x675.png" target="_blank"><img loading="lazy" src="/assets/infographics/style_E_kinetic_trench_poster_1200x675.png" alt="style_E_kinetic_trench_poster_1200x675.png" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/style_E_kinetic_trench_poster_1200x675.png" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/style_E_kinetic_trench_poster_1200x675.png" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>thumb_01_sol_recovered_emerald_vault_1795385505955.jpg</strong><span>0.61 MB</span></div>
+      <a href="/assets/infographics/thumb_01_sol_recovered_emerald_vault_1795385505955.jpg" target="_blank"><img loading="lazy" src="/assets/infographics/thumb_01_sol_recovered_emerald_vault_1795385505955.jpg" alt="thumb_01_sol_recovered_emerald_vault_1795385505955.jpg" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/thumb_01_sol_recovered_emerald_vault_1795385505955.jpg" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/thumb_01_sol_recovered_emerald_vault_1795385505955.jpg" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>thumb_01_sol_recovered_emerald_vault_1795385547721.jpg</strong><span>0.71 MB</span></div>
+      <a href="/assets/infographics/thumb_01_sol_recovered_emerald_vault_1795385547721.jpg" target="_blank"><img loading="lazy" src="/assets/infographics/thumb_01_sol_recovered_emerald_vault_1795385547721.jpg" alt="thumb_01_sol_recovered_emerald_vault_1795385547721.jpg" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/thumb_01_sol_recovered_emerald_vault_1795385547721.jpg" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/thumb_01_sol_recovered_emerald_vault_1795385547721.jpg" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>thumb_02_12layer_canary_laser_shield_1795385514118.jpg</strong><span>0.79 MB</span></div>
+      <a href="/assets/infographics/thumb_02_12layer_canary_laser_shield_1795385514118.jpg" target="_blank"><img loading="lazy" src="/assets/infographics/thumb_02_12layer_canary_laser_shield_1795385514118.jpg" alt="thumb_02_12layer_canary_laser_shield_1795385514118.jpg" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/thumb_02_12layer_canary_laser_shield_1795385514118.jpg" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/thumb_02_12layer_canary_laser_shield_1795385514118.jpg" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>thumb_03_mobile_seeker_one_tap_glow_1795385522536.jpg</strong><span>0.71 MB</span></div>
+      <a href="/assets/infographics/thumb_03_mobile_seeker_one_tap_glow_1795385522536.jpg" target="_blank"><img loading="lazy" src="/assets/infographics/thumb_03_mobile_seeker_one_tap_glow_1795385522536.jpg" alt="thumb_03_mobile_seeker_one_tap_glow_1795385522536.jpg" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/thumb_03_mobile_seeker_one_tap_glow_1795385522536.jpg" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/thumb_03_mobile_seeker_one_tap_glow_1795385522536.jpg" download>⬇ Download</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>thumb_04_dex_chart_sniper_radar_1795385531128.jpg</strong><span>0.55 MB</span></div>
+      <a href="/assets/infographics/thumb_04_dex_chart_sniper_radar_1795385531128.jpg" target="_blank"><img loading="lazy" src="/assets/infographics/thumb_04_dex_chart_sniper_radar_1795385531128.jpg" alt="thumb_04_dex_chart_sniper_radar_1795385531128.jpg" style="width:100%;height:220px;object-fit:contain;background:#090d16;border-radius:8px;" /></a>
+      <div class="links"><a href="/assets/infographics/thumb_04_dex_chart_sniper_radar_1795385531128.jpg" target="_blank">🔍 View Full Size</a> | <a href="/assets/infographics/thumb_04_dex_chart_sniper_radar_1795385531128.jpg" download>⬇ Download</a></div>
+    </div>
+  </div>
 
-    <footer class="footer-note">
-      <span>Solana Rent &amp; Rug Shield · Non-Custodial Native <code>0x09</code> Rent Recovery &amp; 12-Layer On-Chain Firewall</span>
-      <span>⚡ Layer 13 Predictive Mempool &amp; Deployer DNA AI Coming Soon</span>
-    </footer>
-  </main>
-
-  <div class="toast-banner" id="vaultToast" role="status" aria-live="polite"></div>
-
-  <script>
-    const ARSENAL_VIDEOS = [
-      {
-        index: 0,
-        slot: 'VIDEO 00 · 34S 4K MASTER',
-        shortTitle: '4K Castle Master',
-        title: '4K UHD Castle Master & Institutional Perimeter HUD',
-        desc: 'Flagship 34-second cyber-fortress & vault master with perimeter institutional telemetry, -16 LUFS leveled soundtrack, and official 12-Layer Vault crest.',
-        src16x9: '/assets/promo_arsenal/00_CASTLE_MASTER_4K_UHD_34S.mp4',
-        alt4k16x9: '/assets/castle_promo_4k_uhd.mp4',
-        arsenal16x9: '/assets/promo_arsenal/00_CASTLE_MASTER_4K_UHD_34S.mp4',
-        src9x16: '/assets/promo_arsenal/00_CASTLE_MASTER_4K_UHD_34S.mp4',
-        poster: '/assets/social/og-institutional-24k-gold-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: false
-      },
-      {
-        index: 1,
-        slot: 'VIDEO 01 · 30S 60FPS',
-        shortTitle: '12-Layer Firewall (<120ms)',
-        title: 'Inside the 12-Layer On-Chain Firewall (<120ms)',
-        desc: 'Deep dive across L1–L3 SPL/Token-2022 bytecode locks, L4–L6 raw 752B Raydium V4 & 341B CPMM binary proof, L7–L9 Sacrificial Canary CPI Sandbox, and L10–L12 Anti-Cabal + Layer 13 AI teaser.',
-        src16x9: '/assets/promo_arsenal/01_12_LAYER_FIREWALL_DEEP_DIVE_30S.mp4',
-        src9x16: '/assets/promo_arsenal/01_12_LAYER_FIREWALL_DEEP_DIVE_30S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-12-layer-kamikaze-ai-v51.png',
-        poster9x16: '/assets/promo_arsenal/poster_01_9x16.jpg',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 2,
-        slot: 'VIDEO 02 · 28S 60FPS',
-        shortTitle: 'Native 0x09 Rent & Honesty',
-        title: 'Native 0x09 Rent Recovery & 100% Free First Claim Policy',
-        desc: 'Live account-table sweep reclaiming stranded 2,039,280 lamport ATAs (+0.00203928 SOL each) via pure SPL CloseAccount (0x09) - 1st claim 100% FREE, zero blind burns.',
-        src16x9: '/assets/promo_arsenal/02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S.mp4',
-        src9x16: '/assets/promo_arsenal/02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-zero-pct-rent-recovery-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 3,
-        slot: 'VIDEO 03 · 30S 60FPS',
-        shortTitle: 'Chrome Ext v51 Live HUD',
-        title: 'Chrome Extension v51 Explorer & Real-Time DEX Shield HUD',
-        desc: 'Split-screen live DEX terminal simulation snapping 94/100 PASS vs 11/100 INNER-CPI DRAINER alerts directly onto token charts before wallet connection.',
-        src16x9: '/assets/promo_arsenal/03_CHROME_EXT_V51_EXPLORER_LIVE_ENGINEER_30S.mp4',
-        src9x16: '/assets/promo_arsenal/03_CHROME_EXT_V51_EXPLORER_LIVE_ENGINEER_30S.mp4',
-        poster: '/assets/social/og-chrome-extension-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: false
-      },
-      {
-        index: 4,
-        slot: 'VIDEO 04 · 26S 60FPS',
-        shortTitle: '30% Atomic Affiliate Engine',
-        title: '30% Atomic On-Chain Affiliate Engine & Recurring Desk Yield',
-        desc: 'Cryptographic ?ref=WALLET attribution & live 24K-Gold yield calculator scaling from 10 referrals to 250 institutional desk seats with instant SOL settlement.',
-        src16x9: '/assets/promo_arsenal/04_30PCT_ATOMIC_AFFILIATE_ENGINE_26S.mp4',
-        src9x16: '/assets/promo_arsenal/04_30PCT_ATOMIC_AFFILIATE_ENGINE_26S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-honesty-mandate-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 5,
-        slot: 'VIDEO 05 · 32S 60FPS',
-        shortTitle: 'Why Us: Canary AI Flagship',
-        title: 'Why Us: Self-Sacrificing Canary AI Flagship Spot',
-        desc: 'High-impact 32-second flagship spot culminating in the guardian lockup, official wingless 12-Layer Vault emblem, and Layer 13 Predictive Mempool & Deployer DNA AI.',
-        src16x9: '/assets/promo_arsenal/05_WHY_US_SACRIFICIAL_CANARY_FLAGSHIP_32S.mp4',
-        src9x16: '/assets/promo_arsenal/05_WHY_US_SACRIFICIAL_CANARY_FLAGSHIP_32S.mp4',
-        poster: '/assets/social/og-retail-emerald-hero-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: false
-      },
-      {
-        index: 6,
-        slot: 'VIDEO 06 · 22S 60FPS',
-        shortTitle: 'Live Rug Dodged: HYPE -96%',
-        title: 'Live Rug Dodged: HYPE -96% Honey-Trap Blocked Pre-Sign',
-        desc: 'Forensic replay of our 12-Layer adaptive firewall catching HYPE liquidity drain & inner-CPI authority mutation before a single lamport could be signed.',
-        src16x9: '/assets/promo_arsenal/06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S.mp4',
-        src9x16: '/assets/promo_arsenal/06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-12layer-rug-radar-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 7,
-        slot: 'VIDEO 07 · 25S 60FPS',
-        shortTitle: 'Verified Runners: CLAUDIA & SNOWBALL',
-        title: 'Verified Clean Runners: CLAUDIA (+203%) & SNOWBALL (+1,464%)',
-        desc: 'Side-by-side proof that institutional safety does not block real alpha - clean mint/freeze authorities, locked LP, and verified organic dispersion.',
-        src16x9: '/assets/promo_arsenal/07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S.mp4',
-        src9x16: '/assets/promo_arsenal/07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-retail-emerald-hero-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 8,
-        slot: 'VIDEO 08 · 20S 60FPS',
-        shortTitle: 'Read-Only 0x09 SOL Walkthrough',
-        title: 'Read-Only Wallet Rent Scan & Native 0x09 CloseAccount Walkthrough',
-        desc: 'Zero seed phrases, zero private keys, zero blind approvals - paste any public Solana address to locate ~0.002039 SOL per empty ATA (0% 1st claim up to 25 ATAs, 98.0% net SOL repeat).',
-        src16x9: '/assets/promo_arsenal/08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S.mp4',
-        src9x16: '/assets/promo_arsenal/08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-honesty-mandate-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 9,
-        slot: 'VIDEO 09 · 25S 60FPS',
-        shortTitle: 'Chrome Ext v5.1 DexScreener Overlay',
-        title: 'Chrome Extension v5.1 Live DexScreener & Birdeye HUD Overlay',
-        desc: '30-Day Free Beta HUD injecting real-time 12-Layer PASS/BLOCK telemetry directly onto DexScreener, Pump.fun, Birdeye, Axiom, and BullX.',
-        src16x9: '/assets/promo_arsenal/09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S.mp4',
-        src9x16: '/assets/promo_arsenal/09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-chrome-ext-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 10,
-        slot: 'VIDEO 10 · 24S 60FPS',
-        shortTitle: 'Layer 11 Block-0 Jito Sybil Radar',
-        title: 'Layer 11 Block-0 Jito Bundle & Dispersed Sybil Cartel Radar',
-        desc: 'Exposing slot-0 sniper bundles and 2-hop funder cartels in under 120ms before retail buyers step into coordinated exit liquidity.',
-        src16x9: '/assets/promo_arsenal/10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S.mp4',
-        src9x16: '/assets/promo_arsenal/10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-12layer-rug-radar-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 11,
-        slot: 'VIDEO 11 · 24S 4K',
-        shortTitle: 'Clipboard & Vanity Poison Sentinel',
-        title: 'Chrome Ext v5.1: Clipboard Hijack & $0-Dust Vanity Poisoning Sentinel',
-        desc: 'Blocks clipper trojan pubkey swaps on paste and flags first-4/last-4 $0-dust vanity impersonators in <5ms before you sign.',
-        src16x9: '/assets/promo_arsenal/11_CLIPBOARD_HIJACK_AND_VANITY_POISON_SENTINEL_24S.mp4',
-        src9x16: '/assets/promo_arsenal/11_CLIPBOARD_HIJACK_AND_VANITY_POISON_SENTINEL_24S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-chrome-extension-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 12,
-        slot: 'VIDEO 12 · 24S 4K',
-        shortTitle: 'Punycode & DEX Typosquat Blocker',
-        title: 'Zero-Day Homograph (xn--) & 1-Char DEX Typosquat Phishing Blocker',
-        desc: 'Intercepts IDN punycode and 1-character typosquat clones of Pump.fun, Jup.ag, DexScreener, Photon, BullX, and Rent & Rug Shield.',
-        src16x9: '/assets/promo_arsenal/12_PUNYCODE_DEX_PHISHING_HOMOGRAPH_BLOCKER_24S.mp4',
-        src9x16: '/assets/promo_arsenal/12_PUNYCODE_DEX_PHISHING_HOMOGRAPH_BLOCKER_24S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-12-layer-kamikaze-ai-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 13,
-        slot: 'VIDEO 13 · 24S 4K',
-        shortTitle: '0% 1st Claim & 4-Lock Anti-Sybil',
-        title: 'Honesty Mandate: 0% 1st Claim (<=25 ATAs) & 4-Lock Anti-Sybil Vault',
-        desc: 'Keep 100% of recovered SOL on Claim #1 (up to 25 empty ATAs) and 98.0% net SOL on repeat claims with 4-layer anti-Sybil protection.',
-        src16x9: '/assets/promo_arsenal/13_HONEST_0PCT_FIRST_CLAIM_ANTI_SYBIL_VAULT_24S.mp4',
-        src9x16: '/assets/promo_arsenal/13_HONEST_0PCT_FIRST_CLAIM_ANTI_SYBIL_VAULT_24S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-zero-pct-rent-recovery-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 14,
-        slot: 'VIDEO 14 · 25S 4K',
-        shortTitle: 'Layer 13 Precipice & Cartel Radar',
-        title: 'Layer 13 R&D: 2-Hop Sniper Cartel Veto & Multi-Clip Whale Accumulation',
-        desc: 'Exposes >=6.0% 2-hop dispersed funder cartels while scoring multi-clip whale DCA and circadian session handoffs.',
-        src16x9: '/assets/promo_arsenal/14_LAYER13_PRECIPICE_WHALE_ROTATION_RADAR_25S.mp4',
-        src9x16: '/assets/promo_arsenal/14_LAYER13_PRECIPICE_WHALE_ROTATION_RADAR_25S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-honesty-mandate-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      },
-      {
-        index: 15,
-        slot: 'VIDEO 15 · 25S 4K',
-        shortTitle: 'Institutional API & 30% Affiliates',
-        title: 'Institutional 24K Gold Desk API ($19.99 / $99 / $500) & 30% Affiliates',
-        desc: 'Sub-120ms REST, MCP & x402 pre-buy rug firewall for sniper bots and funds, paired with instant 30% atomic ?ref=WALLET revenue splits.',
-        src16x9: '/assets/promo_arsenal/15_INSTITUTIONAL_ENTERPRISE_API_AND_500_DESK_25S.mp4',
-        src9x16: '/assets/promo_arsenal/15_INSTITUTIONAL_ENTERPRISE_API_AND_500_DESK_25S_VERTICAL_9x16.mp4',
-        poster: '/assets/social/og-institutional-24k-gold-v51.png',
-        liveVerified: true,
-        hasDedicatedVertical: true
-      }
-    ];
-
-    let activeTrackIndex = 1;
-    let activeAspect = '16x9';
-    let sequentialMode = false;
-
-    const spotlightVideo = document.getElementById('spotlightVideo');
-    const spotlightWrap = document.getElementById('spotlightWrap');
-    const spotlightBadge = document.getElementById('spotlightBadge');
-    const spotlightTitle = document.getElementById('spotlightTitle');
-    const btnSpotlightDownload = document.getElementById('btnSpotlightDownload');
-    const playlistStrip = document.getElementById('playlistStrip');
-    const arsenalGrid = document.getElementById('arsenalGrid');
-    const toastEl = document.getElementById('vaultToast');
-
-    function showToast(msg) {
-      toastEl.textContent = msg;
-      toastEl.style.display = 'block';
-      clearTimeout(window.__vaultToastTimer);
-      window.__vaultToastTimer = setTimeout(() => {
-        toastEl.style.display = 'none';
-      }, 3400);
-    }
-
-    function getTrackUrl(item, aspect) {
-      return aspect === '9x16' ? item.src9x16 : item.src16x9;
-    }
-
-    function loadIntoSpotlight(idx, aspect, autoPlay) {
-      const item = ARSENAL_VIDEOS[idx] || ARSENAL_VIDEOS[0];
-      activeTrackIndex = item.index;
-      activeAspect = aspect || activeAspect;
-
-      const targetUrl = getTrackUrl(item, activeAspect);
-      spotlightBadge.textContent = `MASTER ${String(item.index).padStart(2, '0')} · ${activeAspect === '9x16' ? '9:16 VERTICAL' : '16:9 WIDESCREEN'}`;
-      spotlightTitle.textContent = item.title;
-      spotlightWrap.classList.toggle('vertical-mode', activeAspect === '9x16');
-      if (activeAspect === '9x16' && item.poster9x16) {
-        spotlightVideo.poster = item.poster9x16;
-      } else {
-        spotlightVideo.poster = item.poster;
-      }
-      spotlightVideo.src = targetUrl;
-      btnSpotlightDownload.href = targetUrl;
-
-      document.querySelectorAll('.track-chip').forEach((chip, cIdx) => {
-        chip.classList.toggle('active', cIdx === activeTrackIndex);
-      });
-
-      if (autoPlay) {
-        const playPromise = spotlightVideo.play();
-        if (playPromise && typeof playPromise.catch === 'function') {
-          playPromise.catch(() => {
-            showToast(`Loaded ${item.shortTitle} - press Play on player controls.`);
-          });
-        }
-      }
-    }
-
-    // Sequential playlist auto-advance; if an upcoming render slot is still finalizing, advance cleanly
-    spotlightVideo.addEventListener('ended', () => {
-      if (!sequentialMode) return;
-      const nextIdx = activeTrackIndex + 1;
-      if (nextIdx < ARSENAL_VIDEOS.length) {
-        loadIntoSpotlight(nextIdx, activeAspect, true);
-      } else {
-        sequentialMode = false;
-        showToast('Sequential Arsenal Screening Complete.');
-      }
-    });
-
-    spotlightVideo.addEventListener('error', () => {
-      if (sequentialMode && activeTrackIndex + 1 < ARSENAL_VIDEOS.length) {
-        showToast(`Slot ${String(activeTrackIndex).padStart(2, '0')} still finalizing in render pipeline - advancing to next master...`);
-        loadIntoSpotlight(activeTrackIndex + 1, activeAspect, true);
-      } else {
-        showToast(`Master ${String(activeTrackIndex).padStart(2, '0')} is queued in /assets/promo_arsenal/ - ready automatically as soon as encode completes.`);
-      }
-    });
-
-    function renderPlaylistAndCards() {
-      playlistStrip.innerHTML = '';
-      arsenalGrid.innerHTML = '';
-
-      ARSENAL_VIDEOS.forEach((item) => {
-        // 1. Playlist Chip
-        const chip = document.createElement('button');
-        chip.type = 'button';
-        chip.className = 'track-chip' + (item.index === activeTrackIndex ? ' active' : '');
-        chip.innerHTML = `
-          <span class="tc-num">MASTER ${String(item.index).padStart(2, '0')}</span>
-          <span class="tc-name">${item.shortTitle}</span>
-        `;
-        chip.addEventListener('click', () => {
-          sequentialMode = false;
-          loadIntoSpotlight(item.index, activeAspect, true);
-        });
-        playlistStrip.appendChild(chip);
-
-        // 2. Vault Card
-        const card = document.createElement('article');
-        card.className = 'vault-card';
-        card.id = `vault-card-${item.index}`;
-        const statusClass = item.liveVerified ? 'vc-status' : 'vc-status armed';
-        const statusText = item.liveVerified ? '● LIVE 60FPS MASTER' : '⚡ ARSENAL SLOT READY';
-
-        card.innerHTML = `
-          <div>
-            <div class="vc-top">
-              <span class="vc-slot">${item.slot}</span>
-              <span class="${statusClass}" id="vc-status-${item.index}">${statusText}</span>
-            </div>
-            <h3 class="vc-title">${item.title}</h3>
-            <p class="vc-desc">${item.desc}</p>
-          </div>
-
-          <div class="aspect-tabs" role="tablist" aria-label="Format selector for Master ${String(item.index).padStart(2, '0')}">
-            <button type="button" class="aspect-tab active" data-card="${item.index}" data-aspect="16x9">
-              16:9 Widescreen
-            </button>
-            <button type="button" class="aspect-tab" data-card="${item.index}" data-aspect="9x16">
-              9:16 Vertical ${item.hasDedicatedVertical ? '' : '(Master)'}
-            </button>
-          </div>
-
-          <div class="vc-player-frame" id="vc-frame-${item.index}">
-            <video
-              id="vc-video-${item.index}"
-              controls
-              playsinline
-              preload="none"
-              poster="${item.poster}"
-              ${item.liveVerified ? `src="${item.src16x9}"` : `data-pending-src="${item.src16x9}"`}
-            ></video>
-          </div>
-
-          <div class="vc-actions">
-            <button type="button" class="vc-btn vc-btn-screen" data-screen-idx="${item.index}">
-              ▶ Screen in Theater
-            </button>
-            <a class="vc-btn vc-btn-dl" id="vc-dl-${item.index}" href="${item.src16x9}" download>
-              ⬇ Download 16:9 MP4
-            </a>
-          </div>
-        `;
-        arsenalGrid.appendChild(card);
-
-        // Wire lazy src attach when clicking inline video on queued slots 2-5 so initial page load has 0 404s
-        const vidEl = card.querySelector(`#vc-video-${item.index}`);
-        vidEl.addEventListener('play', () => {
-          if (!vidEl.getAttribute('src') && vidEl.dataset.pendingSrc) {
-            vidEl.src = vidEl.dataset.pendingSrc;
-          }
-        });
-      });
-
-      // Wire 16:9 / 9:16 Toggle Tabs on every card
-      document.querySelectorAll('.aspect-tab').forEach((tabBtn) => {
-        tabBtn.addEventListener('click', () => {
-          const cIdx = Number(tabBtn.dataset.card);
-          const asp = tabBtn.dataset.aspect;
-          const item = ARSENAL_VIDEOS[cIdx];
-          const cardEl = document.getElementById(`vault-card-${cIdx}`);
-          cardEl.querySelectorAll('.aspect-tab').forEach((b) => b.classList.toggle('active', b === tabBtn));
-
-          const frameEl = document.getElementById(`vc-frame-${cIdx}`);
-          const vidEl = document.getElementById(`vc-video-${cIdx}`);
-          const dlEl = document.getElementById(`vc-dl-${cIdx}`);
-          const nextUrl = getTrackUrl(item, asp);
-
-          frameEl.classList.toggle('is-vertical', asp === '9x16');
-          vidEl.poster = (asp === '9x16' && item.poster9x16) ? item.poster9x16 : item.poster;
-          vidEl.pause();
-          if (item.liveVerified) {
-            vidEl.src = nextUrl;
-          } else {
-            vidEl.removeAttribute('src');
-            vidEl.dataset.pendingSrc = nextUrl;
-            vidEl.load();
-          }
-          dlEl.href = nextUrl;
-          dlEl.textContent = asp === '9x16' ? '⬇ Download 9:16 MP4' : '⬇ Download 16:9 MP4';
-        });
-      });
-
-      // Wire Screen in Theater buttons
-      document.querySelectorAll('[data-screen-idx]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const cIdx = Number(btn.dataset.screenIdx);
-          const cardEl = document.getElementById(`vault-card-${cIdx}`);
-          const activeTab = cardEl.querySelector('.aspect-tab.active');
-          const asp = activeTab ? activeTab.dataset.aspect : '16x9';
-          sequentialMode = false;
-          loadIntoSpotlight(cIdx, asp, true);
-          window.scrollTo({ top: 180, behavior: 'smooth' });
-        });
-      });
-    }
-
-    // Master Controls
-    document.getElementById('btnPlayAll16x9').addEventListener('click', () => {
-      sequentialMode = true;
-      loadIntoSpotlight(0, '16x9', true);
-      showToast('Playing All Masters Sequentially (16:9 Widescreen)...');
-    });
-
-    document.getElementById('btnPlayAll9x16').addEventListener('click', () => {
-      sequentialMode = true;
-      loadIntoSpotlight(1, '9x16', true);
-      showToast('Playing Vertical Reel Arsenal (9:16)...');
-    });
-
-    document.getElementById('btnPrevTrack').addEventListener('click', () => {
-      const prev = (activeTrackIndex - 1 + ARSENAL_VIDEOS.length) % ARSENAL_VIDEOS.length;
-      loadIntoSpotlight(prev, activeAspect, true);
-    });
-
-    document.getElementById('btnNextTrack').addEventListener('click', () => {
-      const next = (activeTrackIndex + 1) % ARSENAL_VIDEOS.length;
-      loadIntoSpotlight(next, activeAspect, true);
-    });
-
-    document.getElementById('btnToggleSpotlightAspect').addEventListener('click', () => {
-      const nextAsp = activeAspect === '16x9' ? '9x16' : '16x9';
-      loadIntoSpotlight(activeTrackIndex, nextAsp, false);
-      showToast(`Switched Spotlight Player to ${nextAsp === '9x16' ? '9:16 Vertical' : '16:9 Widescreen'}`);
-    });
-
-    document.getElementById('btnCopyVaultUrl').addEventListener('click', async () => {
-      const shareUrl = window.location.href;
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(shareUrl);
-        }
-        showToast('Copied Executive Promo Vault link to clipboard!');
-      } catch (_e) {
-        showToast('Screening URL: ' + shareUrl);
-      }
-    });
-
-    renderPlaylistAndCards();
-  </script>
+  <h2>📱 Vertical 9:16 Reels / Shorts / TikTok Cuts (18)</h2>
+  <div class="grid-vert">
+    <div class="card">
+      <div class="meta"><strong>01_12_LAYER_FIREWALL_DEEP_DIVE_30S_VERTICAL_9x16.mp4</strong><span>19.69 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/01_12_LAYER_FIREWALL_DEEP_DIVE_30S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/01_12_LAYER_FIREWALL_DEEP_DIVE_30S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/01_12_LAYER_FIREWALL_DEEP_DIVE_30S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S_VERTICAL_9x16.mp4</strong><span>42.02 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/02_NATIVE_0X09_RENT_AND_HONESTY_POLICY_28S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>04_30PCT_ATOMIC_AFFILIATE_ENGINE_26S_VERTICAL_9x16.mp4</strong><span>19.81 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/04_30PCT_ATOMIC_AFFILIATE_ENGINE_26S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/04_30PCT_ATOMIC_AFFILIATE_ENGINE_26S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/04_30PCT_ATOMIC_AFFILIATE_ENGINE_26S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S_VERTICAL_9x16.mp4</strong><span>16.74 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/06_LIVE_RUG_DODGED_HYPE_MINUS_96PCT_22S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S_VERTICAL_9x16.mp4</strong><span>17.33 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/07_VERIFIED_RUNNERS_CLAUDIA_203PCT_SNOWBALL_1464PCT_25S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S_VERTICAL_9x16.mp4</strong><span>16.94 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/08_READONLY_0X09_SOL_SCAN_WALKTHROUGH_20S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S_VERTICAL_9x16.mp4</strong><span>19.15 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/09_CHROME_EXT_V51_DEXSCREENER_LIVE_OVERLAY_25S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S_VERTICAL_9x16.mp4</strong><span>18.06 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/10_LAYER11_BLOCK0_JITO_SYBIL_RADAR_24S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>11_CLIPBOARD_HIJACK_AND_VANITY_POISON_SENTINEL_24S_VERTICAL_9x16.mp4</strong><span>4.03 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/11_CLIPBOARD_HIJACK_AND_VANITY_POISON_SENTINEL_24S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/11_CLIPBOARD_HIJACK_AND_VANITY_POISON_SENTINEL_24S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/11_CLIPBOARD_HIJACK_AND_VANITY_POISON_SENTINEL_24S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>12_PUNYCODE_DEX_PHISHING_HOMOGRAPH_BLOCKER_24S_VERTICAL_9x16.mp4</strong><span>4.17 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/12_PUNYCODE_DEX_PHISHING_HOMOGRAPH_BLOCKER_24S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/12_PUNYCODE_DEX_PHISHING_HOMOGRAPH_BLOCKER_24S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/12_PUNYCODE_DEX_PHISHING_HOMOGRAPH_BLOCKER_24S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>13_HONEST_0PCT_FIRST_CLAIM_ANTI_SYBIL_VAULT_24S_VERTICAL_9x16.mp4</strong><span>4.18 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/13_HONEST_0PCT_FIRST_CLAIM_ANTI_SYBIL_VAULT_24S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/13_HONEST_0PCT_FIRST_CLAIM_ANTI_SYBIL_VAULT_24S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/13_HONEST_0PCT_FIRST_CLAIM_ANTI_SYBIL_VAULT_24S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>14_LAYER13_PRECIPICE_WHALE_ROTATION_RADAR_25S_VERTICAL_9x16.mp4</strong><span>4.40 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/14_LAYER13_PRECIPICE_WHALE_ROTATION_RADAR_25S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/14_LAYER13_PRECIPICE_WHALE_ROTATION_RADAR_25S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/14_LAYER13_PRECIPICE_WHALE_ROTATION_RADAR_25S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>15_INSTITUTIONAL_ENTERPRISE_API_AND_500_DESK_25S_VERTICAL_9x16.mp4</strong><span>4.35 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/15_INSTITUTIONAL_ENTERPRISE_API_AND_500_DESK_25S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/15_INSTITUTIONAL_ENTERPRISE_API_AND_500_DESK_25S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/15_INSTITUTIONAL_ENTERPRISE_API_AND_500_DESK_25S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>16_LIVING_SHIELD_EVOLUTION_12_TO_16_LAYERS_24S_VERTICAL_9x16.mp4</strong><span>0.87 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/16_LIVING_SHIELD_EVOLUTION_12_TO_16_LAYERS_24S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/16_LIVING_SHIELD_EVOLUTION_12_TO_16_LAYERS_24S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/16_LIVING_SHIELD_EVOLUTION_12_TO_16_LAYERS_24S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>17_STYLE_A_WHITE_24KGOLD_INSTITUTIONAL_FINTECH_24S_VERTICAL_9x16.mp4</strong><span>0.73 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/17_STYLE_A_WHITE_24KGOLD_INSTITUTIONAL_FINTECH_24S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/17_STYLE_A_WHITE_24KGOLD_INSTITUTIONAL_FINTECH_24S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/17_STYLE_A_WHITE_24KGOLD_INSTITUTIONAL_FINTECH_24S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>18_STYLE_B_SPLIT_SCREEN_LIVE_TERMINAL_BATTLE_24S_VERTICAL_9x16.mp4</strong><span>0.63 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/18_STYLE_B_SPLIT_SCREEN_LIVE_TERMINAL_BATTLE_24S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/18_STYLE_B_SPLIT_SCREEN_LIVE_TERMINAL_BATTLE_24S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/18_STYLE_B_SPLIT_SCREEN_LIVE_TERMINAL_BATTLE_24S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>19_LAYER16_POST_ENTRY_BYTECODE_MUTATION_SENTINEL_24S_VERTICAL_9x16.mp4</strong><span>1.02 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/19_LAYER16_POST_ENTRY_BYTECODE_MUTATION_SENTINEL_24S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/19_LAYER16_POST_ENTRY_BYTECODE_MUTATION_SENTINEL_24S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/19_LAYER16_POST_ENTRY_BYTECODE_MUTATION_SENTINEL_24S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div><div class="card">
+      <div class="meta"><strong>20_STYLE_E_SEEKER_MOBILE_MWA_KINETIC_REEL_24S_VERTICAL_9x16.mp4</strong><span>0.97 MB</span></div>
+      <video controls preload="metadata" src="/assets/promo_arsenal/20_STYLE_E_SEEKER_MOBILE_MWA_KINETIC_REEL_24S_VERTICAL_9x16.mp4#t=0.5" style="width:100%;height:340px;object-fit:contain;background:#050811;border-radius:8px;"></video>
+      <div class="links"><a href="/assets/promo_arsenal/20_STYLE_E_SEEKER_MOBILE_MWA_KINETIC_REEL_24S_VERTICAL_9x16.mp4" target="_blank">▶ Open Fullscreen</a> | <a href="/assets/promo_arsenal/20_STYLE_E_SEEKER_MOBILE_MWA_KINETIC_REEL_24S_VERTICAL_9x16.mp4" download>⬇ Download MP4</a></div>
+    </div>
+  </div>
 </body>
 </html>

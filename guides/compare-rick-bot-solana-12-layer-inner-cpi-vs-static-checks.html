@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Rent &amp; Rug Shield vs Rick Bot Solana: Sub-120ms 12-Layer Inner-CPI Canary vs Static Metadata Flags | Solana Security</title>
+<meta name="description" content="Forensic Solana comparison of Rent &amp; Rug Shield vs Rick Bot Solana (Sub-120ms 12-Layer Inner-CPI Canary vs Static Metadata Flags). Compare 0% 1st empty-ATA claim (&lt;=25 ATAs) &amp; 2.0% repeat (98.0% net SOL) vs No 0x09 rent reclaim, plus &lt;120ms 12-Layer inner-CPI &amp; Block-0 Jito Sybil defense."/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+<link rel="canonical" href="https://rentandrugshield.com/guides/compare-rick-bot-solana-12-layer-inner-cpi-vs-static-checks.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="Solana Rent &amp; Rug Shield"/>
+<meta property="og:title" content="Rent &amp; Rug Shield vs Rick Bot Solana: Sub-120ms 12-Layer Inner-CPI Canary vs Static Metadata Flags | Solana Security"/>
+<meta property="og:description" content="Forensic Solana comparison of Rent &amp; Rug Shield vs Rick Bot Solana (Sub-120ms 12-Layer Inner-CPI Canary vs Static Metadata Flags). Compare 0% 1st empty-ATA claim (&lt;=25 ATAs) &amp; 2.0% repeat (98.0% net SOL) vs No 0x09 rent reclaim, plus &lt;120ms 12-Layer inner-CPI &amp; Block-0 Jito Sybil defense."/>
+<meta property="og:url" content="https://rentandrugshield.com/guides/compare-rick-bot-solana-12-layer-inner-cpi-vs-static-checks.html"/>
+<meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Rent &amp; Rug Shield vs Rick Bot Solana: Sub-120ms 12-Layer Inner-CPI Canary vs Static Metadata Flags | Solana Security"/>
+<meta name="twitter:description" content="Forensic Solana comparison of Rent &amp; Rug Shield vs Rick Bot Solana (Sub-120ms 12-Layer Inner-CPI Canary vs Static Metadata Flags). Compare 0% 1st empty-ATA claim (&lt;=25 ATAs) &amp; 2.0% repeat (98.0% net SOL) vs No 0x09 rent reclaim, plus &lt;120ms 12-Layer inner-CPI &amp; Block-0 Jito Sybil defense."/>
+<meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png"/>
+<style>*{box-sizing:border-box}
+body{margin:0;background:#040a0f;color:#eef6fb;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.64}
+a{color:#14F195;text-decoration:none}
+a:hover{text-decoration:underline}
+.topbar{background:#061019;border-bottom:1px solid rgba(20,241,149,.28);padding:14px 20px;position:sticky;top:0;z-index:20}
+.topbar-in{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:900;font-size:1.05rem;color:#fff;letter-spacing:.02em}
+.brand span{color:#14F195}
+.navlinks{display:flex;flex-wrap:wrap;gap:14px;font-size:.9rem;font-weight:700}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 64px}
+.crumbs{font-size:.84rem;color:#94a3b8;margin-bottom:14px}
+.crumbs a{color:#14F195}
+.card{background:#07131c;border:1.5px solid rgba(20,241,149,.42);border-radius:16px;padding:26px;margin-bottom:22px}
+.gold-card{background:#090c10;border:1.5px solid rgba(245,197,66,.55);border-radius:16px;padding:24px;margin-bottom:22px}
+.badge{display:inline-block;padding:5px 12px;border-radius:999px;background:rgba(20,241,149,.13);border:1px solid #14F195;color:#14F195;font-size:.77rem;font-weight:800;letter-spacing:.05em;margin-bottom:10px}
+h1{color:#fff;font-size:1.95rem;line-height:1.22;margin:6px 0 12px}
+h2{color:#14F195;font-size:1.32rem;margin:24px 0 10px}
+h3{color:#F5C542;font-size:1.06rem;margin:16px 0 6px}
+p,li{color:#d7e6f2;font-size:.99rem}
+code{background:#03080d;border:1px solid rgba(20,241,149,.25);padding:2px 6px;border-radius:6px;color:#14F195;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.89em;word-break:break-all}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin:18px 0}
+.stat{background:#040b11;border:1px solid rgba(255,255,255,.11);border-radius:12px;padding:14px}
+.stat .k{font-size:.76rem;color:#94a3b8;text-transform:uppercase;font-weight:800;letter-spacing:.04em}
+.stat .v{font-size:1.18rem;color:#fff;font-weight:900;margin-top:4px}
+.stat .s{font-size:.82rem;color:#9fb3c8;margin-top:4px}
+.tbl-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.93rem}
+th,td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.1);text-align:left;vertical-align:top}
+th{color:#F5C542;font-weight:800;background:#040b11}
+td.us{color:#14F195;font-weight:700}
+details{background:#040b11;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 15px;margin:10px 0}
+summary{cursor:pointer;font-weight:800;color:#F5C542}
+details p{margin:10px 0 2px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+a.btn-em{display:inline-block;padding:12px 20px;border-radius:10px;background:#14F195;color:#02120b;font-weight:900;text-decoration:none}
+a.btn-gold{display:inline-block;padding:12px 20px;border-radius:10px;background:rgba(245,197,66,.14);border:1.5px solid #F5C542;color:#F5C542;font-weight:800;text-decoration:none}
+a.btn-ghost{display:inline-block;padding:12px 18px;border-radius:10px;background:#040b11;border:1px solid rgba(255,255,255,.18);color:#eef6fb;font-weight:700;text-decoration:none}
+.chk{padding-left:20px}
+.chk li{margin:7px 0}
+.ftr{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:20px;font-size:.87rem;color:#94a3b8;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}</style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Solana Rent & Rug Shield","applicationCategory":"FinanceApplication","operatingSystem":"Web, Chrome MV3, Solana Seeker MWA v2.0, Solana Mainnet","url":"https://rentandrugshield.com/guides/compare-rick-bot-solana-12-layer-inner-cpi-vs-static-checks.html","description":"Forensic Solana comparison of Rent & Rug Shield vs Rick Bot Solana (Sub-120ms 12-Layer Inner-CPI Canary vs Static Metadata Flags). Compare 0% 1st empty-ATA claim (<=25 ATAs) & 2.0% repeat (98.0% net SOL) vs No 0x09 rent reclaim, plus <120ms 12-Layer inner-CPI & Block-0 Jito Sybil defense.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"0% platform fee on your 1st empty ATA claim (up to 25 ATAs, 100% of locked SOL returned); 2.0% flat atomic on-chain fee on repeat claims (98.0% net SOL returned directly to your wallet); 30% instant same-transaction on-chain ?ref= affiliate split."}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much more SOL do I keep using Rent & Rug Shield vs Rick Bot Solana?","acceptedAnswer":{"@type":"Answer","text":"Your first claim up to 25 empty ATAs is 0% fee (100% SOL returned), and repeat claims are a flat 2.0% atomic fee (98.0% net SOL kept), outperforming Rick Bot Solana (No 0x09 rent reclaim) while adding full 12-Layer rug defense."}},{"@type":"Question","name":"Does Rent & Rug Shield require connecting my wallet just to compare against Rick Bot Solana?","acceptedAnswer":{"@type":"Answer","text":"No. Every wallet rent scan and 12-Layer token audit runs 100% read-only from any public Base58 address."}},{"@type":"Question","name":"Why combine a 12-Layer rug scanner with an 0x09 SOL rent recovery tool?","acceptedAnswer":{"@type":"Answer","text":"Closing empty ATAs recovers locked SOL from past trades, while scanning mints in <120ms before swapping prevents buying honeypots that create dead ATAs in the first place."}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rentandrugshield.com/"},{"@type":"ListItem","position":2,"name":"Solana Security & 0x09 Guides","item":"https://rentandrugshield.com/guides/"},{"@type":"ListItem","position":3,"name":"Rick Bot Solana vs Solana Rent & Rug Shield: Sub-120ms 12-Layer Inner-CPI Canary vs Static Metadata Flags","item":"https://rentandrugshield.com/guides/compare-rick-bot-solana-12-layer-inner-cpi-vs-static-checks.html"}]}]</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="/" data-ref>SOLANA <span>RENT &amp; RUG SHIELD</span></a>
+    <nav class="navlinks">
+      <a href="/" data-ref>Read-Only Wallet &amp; Token Scanner</a>
+      <a href="/app#reclaim" data-ref>0% 1st Rent Claim</a>
+      <a href="/guides/">All 532 Guides</a>
+      <a href="/audits/">961 Token Audits</a>
+      <a href="/affiliates.html">30% ?ref= Split</a>
+      <a href="/enterprise-api.html">Bot &amp; Agent API</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/guides/">Security Guides</a> &rsaquo; <span>Rick Bot Solana vs Solana Rent &amp; Rug Shield: Sub-120ms 12-Layer Inner-CPI Canary vs Static Metadata Flags</span></div>
+  <article class="card">
+    <span class="badge">ARCHITECTURE &amp; LATENCY BENCHMARK</span>
+    <h1>Rick Bot Solana vs Solana Rent &amp; Rug Shield: Sub-120ms 12-Layer Inner-CPI Canary vs Static Metadata Flags</h1>
+    <p>Active Solana traders evaluating Rick Bot Solana against Solana Rent &amp; Rug Shield need verifiable on-chain math rather than marketing slogans. While Rick Bot Solana operates with no 0x09 rent reclaim and social ticker card without token-2022 hook simulation, Rent &amp; Rug Shield unifies 100% read-only 0x09 SOL rent recovery (0% fee on your 1st claim up to 25 empty ATAs; 2.0% atomic fee on repeat claims returning 98.0% net SOL) with a sub-120ms 12-Layer pre-buy rug and sacrificial inner-CPI drainer firewall.</p>
+    <p><strong>100% Read-Only First:</strong> Paste any public Base58 Solana wallet or token mint address (100% read-only, zero wallet pop-ups) to inspect locked 0x09 empty-ATA SOL deposits or run a sub-120ms 12-Layer rug firewall check.</p>
+    <div class="cta-row">
+      <a class="btn-em" href="https://rentandrugshield.com/app#reclaim" data-ref>Scan Wallet 0x09 Rent (0% 1st Claim &lt;=25 ATAs)</a>
+      <a class="btn-gold" href="https://rentandrugshield.com/app" data-ref>Run &lt;120ms 12-Layer Token Scan</a>
+      <a class="btn-ghost" href="https://rentandrugshield.com/affiliates.html">Get 30% Atomic ?ref= Link</a>
+    </div>
+
+    <div class="grid">
+      <div class="stat"><div class="k">1st Empty ATA Claim</div><div class="v">0% Fee</div><div class="s">Up to 25 ATAs (100.0% SOL returned)</div></div>
+      <div class="stat"><div class="k">Repeat Sweep Rate</div><div class="v">2.0% Atomic</div><div class="s">98.0% net SOL settled same-block</div></div>
+      <div class="stat"><div class="k">12-Layer Rug Firewall</div><div class="v">&lt;120ms</div><div class="s">Sacrificial inner-CPI + Jito Sybil gate</div></div>
+      <div class="stat"><div class="k">On-Chain Referral</div><div class="v">30% Split</div><div class="s">Instant atomic payout via ?ref=</div></div>
+    </div>
+
+    <h2>1. Net SOL Payout Math: Rent &amp; Rug Shield vs Rick Bot Solana</h2>
+    <p>Every standard SPL Tokenkeg Associated Token Account (ATA) locks exactly 2,039,280 lamports (0.00203928 SOL) of refundable state deposit. On a 25-account first cleanup (~0.050982 SOL), Rent &amp; Rug Shield charges 0% platform fee so 100% of your SOL returns to your wallet. On subsequent sweeps (e.g., 150 empty ATAs = 0.305892 SOL), our flat 2.0% atomic fee returns 0.299774 SOL (98.0% net) inside the exact transaction you sign, compared with Rick Bot Solana (No 0x09 rent reclaim).</p>
+    <h2>2. Pre-Buy Defense: &lt;120ms 12-Layer Canary vs Rick Bot Solana</h2>
+    <p>Rick Bot Solana coverage profile: Social ticker card without Token-2022 hook simulation. By contrast, Rent &amp; Rug Shield executes all 12 canonical layers in under 120ms on Helius RPC fast-paths, combining Mint/Freeze authority checks, Token-2022 PermanentDelegate and TransferHook bytecode inspection, Jupiter two-way exit simulation, Slot-0 Jito bundle detection, 2-hop Sybil funder clustering, and sacrificial canary inner-CPI drainer simulation.</p>
+    <h2>3. Read-Only Privacy &amp; Non-Custodial Execution (Group chat command)</h2>
+    <p>Where Rick Bot Solana relies on group chat command, Rent &amp; Rug Shield enforces strict two-stage isolation: Stage 1 is 100% read-only via pasted Base58 address with zero wallet extension pop-ups. Stage 2 builds transparent native SPL Token CloseAccount (0x09) batches (&lt;=25 ATAs per 1,232-byte packet) while automatically skipping creator-frozen Token-2022 accounts so batches never revert.</p>
+    <h2>4. 30% Atomic Same-Transaction ?ref= Split &amp; AI Agent Readiness</h2>
+    <p>Append ?ref=&lt;YourBase58Wallet&gt; to any https://rentandrugshield.com link: whenever a referred trader executes a 2.0% repeat claim, 30% of that protocol fee routes atomically on-chain to your wallet in the same Solana block with zero custodial thresholds. Trading bots and AI agents can also query /api/v1/shield-check, /openapi-public.json, and /llms.txt directly.</p>
+
+    <h2>Structured Forensic Comparison &amp; Verification Matrix</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Evaluation Dimension</th><th>Solana Rent &amp; Rug Shield</th><th>Rick Bot Solana</th></tr></thead>
+        <tbody>
+        <tr><td>1st Empty ATA Claim (&lt;=25 ATAs)</td><td class="us">0% Fee (100.0% SOL Returned)</td><td>No 0x09 rent reclaim</td></tr>
+        <tr><td>Repeat ATA Claim Fee</td><td class="us">2.0% Atomic Fee (98.0% Net SOL)</td><td>No 0x09 rent reclaim</td></tr>
+        <tr><td>Pre-Buy 12-Layer Firewall</td><td class="us">&lt;120ms 12-Layer + Sacrificial Inner-CPI Canary</td><td>Social ticker card without Token-2022 hook simulation</td></tr>
+        <tr><td>Block-0 Jito &amp; 2-Hop Sybil Gate</td><td class="us">Built-In (Hard Veto &gt;=6.0% Cartel)</td><td>Not Integrated Together</td></tr>
+        <tr><td>Wallet Inspection UX</td><td class="us">100% Read-Only Public Base58 Paste</td><td>Group chat command</td></tr>
+        <tr><td>Affiliate / Referral Split</td><td class="us">30% Same-Tx Atomic On-Chain ?ref=</td><td>Custodial or Unavailable</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Actionable Verification Checklist</h2>
+    <ul class="chk">
+      <li>Paste your public Solana wallet Base58 address on rentandrugshield.com with zero wallet pop-up.</li>
+      <li>Review exact zero-balance Tokenkeg (2,039,280 lamports) and closable Token-2022 ATAs vs quarantined frozen ATAs.</li>
+      <li>Claim your first batch (&lt;=25 empty ATAs) at 0% fee (100% SOL returned) and verify on Solscan.</li>
+      <li>Before buying any new DEX token, paste the mint into the 12-Layer scanner to block TransferHooks &amp; Jito traps.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>How much more SOL do I keep using Rent &amp; Rug Shield vs Rick Bot Solana?</summary><p>Your first claim up to 25 empty ATAs is 0% fee (100% SOL returned), and repeat claims are a flat 2.0% atomic fee (98.0% net SOL kept), outperforming Rick Bot Solana (No 0x09 rent reclaim) while adding full 12-Layer rug defense.</p></details>
+    <details><summary>Does Rent &amp; Rug Shield require connecting my wallet just to compare against Rick Bot Solana?</summary><p>No. Every wallet rent scan and 12-Layer token audit runs 100% read-only from any public Base58 address.</p></details>
+    <details><summary>Why combine a 12-Layer rug scanner with an 0x09 SOL rent recovery tool?</summary><p>Closing empty ATAs recovers locked SOL from past trades, while scanning mints in &lt;120ms before swapping prevents buying honeypots that create dead ATAs in the first place.</p></details>
+  </article>
+
+  <div class="gold-card">
+    <h2>Flagship Solana Security &amp; 0x09 Rent Pillars</h2>
+    <p>
+      <a href="/how-to-reclaim-solana-rent.html" data-ref>How to Reclaim Solana Rent (0x09)</a> •
+      <a href="/token-2022-transfer-hook-scanner.html" data-ref>Token-2022 TransferHook Scanner</a> •
+      <a href="/sol-incinerator-vs-rent-and-rug-shield.html" data-ref>Sol Incinerator vs Rent &amp; Rug Shield</a> •
+      <a href="/rugcheck-vs-rent-and-rug-shield.html" data-ref>RugCheck vs Rent &amp; Rug Shield</a> •
+      <a href="/solana-clipboard-hijack-and-punycode-protection.html" data-ref>Clipboard Hijack &amp; Punycode Defense</a> •
+      <a href="/worlds-first-12-layer-solana-rug-shield.html" data-ref>12-Layer Architecture</a>
+    </p>
+    <p><strong>Related Long-Tail Dossiers:</strong> <a href="/guides/compare-rick-bot-solana-token-2022-hook-and-delegate-detection.html">Rick Bot Solana vs Solana Rent &amp; Rug Shield: Token-2022 PermanentDelegate, TransferHook &amp; Frozen ATA Handling</a> • <a href="/guides/compare-phanes-bot-solana-read-only-privacy-and-non-custodial-signing.html">Phanes Telegram Bot vs Solana Rent &amp; Rug Shield: Zero-Popup Read-Only Base58 Lookup vs Forced Wallet Connect</a> • <a href="/guides/compare-step-finance-account-close-fee-math-and-net-sol-payout.html">Step Finance Close Tool vs Solana Rent &amp; Rug Shield: 0% 1st Claim &amp; 2.0% Repeat Fee Math vs Competitor Cuts</a> • <a href="/guides/">Browse All 532 Guides &rarr;</a></p>
+    <p><strong>Live Mainnet 12-Layer Token Audits:</strong> <a href="/audits/5KDGLvBvzodhyEDSEuubegkSxXhsyaLXGeSLDTkV9DYF.html"><code>5KDGLv...9DYF</code> Audit</a> • <a href="/audits/5LjgTfbPEdYhTkjC3bcghJbfq5kQcnaAJT4AarLJpump.html"><code>5LjgTf...pump</code> Audit</a> • <a href="/audits/5MzYUa4z7ZtJEWAyj6pcCmhky8NVS1PLa9NFGEQcpump.html"><code>5MzYUa...pump</code> Audit</a> • <a href="/audits/5NpasotyhQuZ77BooKxdcrgyufzSoS53Y91dWg8Gpump.html"><code>5Npaso...pump</code> Audit</a> • <a href="/audits/5QcxzQiUUDSj1mhjFd7YatSSJDeeTc7gMxm4EyBQpump.html"><code>5QcxzQ...pump</code> Audit</a> • <a href="/audits/">All 961 Audits &rarr;</a></p>
+  </div>
+
+  <footer class="ftr">
+    <div>Solana Rent &amp; Rug Shield • Non-Custodial Read-Only Security • 0% 1st Claim (&lt;=25 ATAs) • 2.0% Repeat (98.0% Net SOL) • Auto-Billing OFF by Default</div>
+    <div>
+      <a href="https://rentandrugshield.com/" data-ref>Scanner</a> •
+      <a href="https://x.com/SolRentClaim" target="_blank" rel="noopener">X / Twitter</a> •
+      <a href="https://t.me/Bigmoonbag50bot" target="_blank" rel="noopener">@Bigmoonbag50bot</a> •
+      <a href="/affiliates.html">Affiliates</a> •
+      <a href="/openapi-public.json">OpenAPI</a> •
+      <a href="/llms.txt">llms.txt</a> •
+      <a href="/privacy.html">Privacy</a> •
+      <a href="/terms.html">Terms</a>
+    </div>
+  </footer>
+</main>
+<script>(function(){try{var q=new URLSearchParams(location.search),r=q.get('ref');if(!r||!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(r))return;document.querySelectorAll('a[data-ref]').forEach(function(a){var u=new URL(a.getAttribute('href'),location.origin);u.searchParams.set('ref',r);a.setAttribute('href',u.pathname+u.search+u.hash);});}catch(e){}})();</script>
+</body>
+</html>
