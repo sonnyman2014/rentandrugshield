@@ -28779,10 +28779,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
       renderSheetResult(fastData, mint, nowMs() - t0, "PublicNode Fast Guard");
     }, 185);
 
-    // Leg 1: Local/Origin /api/scan-token (22ms local / ~90ms edge)
+    // Leg 1: Local/Tunnel /api/scan-token (uses window.BACKEND_TUNNEL_BASE on GitHub Pages so 0 HTTP 405 errors!)
     try {
+      var apiBase = (typeof window.BACKEND_TUNNEL_BASE === "string" && window.BACKEND_TUNNEL_BASE) ? window.BACKEND_TUNNEL_BASE : "";
       var xhrApi = new XMLHttpRequest();
-      xhrApi.open("POST", "/api/scan-token", true);
+      xhrApi.open("POST", apiBase + "/api/scan-token", true);
       xhrApi.timeout = 2400;
       xhrApi.setRequestHeader("Content-Type", "application/json");
       xhrApi.onreadystatechange = function() {
