@@ -5906,10 +5906,22 @@ html body #rrsVaultCoverGate .rrs-vault-exact-badge {
     align-items: center; justify-content: center; padding: 14px;
   }
   .rrs-modal-card {
-    width: 100%; max-width: 630px; max-height: 91vh; overflow-y: auto;
+    position: relative;
+    width: min(94vw, 640px) !important; max-width: 640px !important; max-height: 91vh; overflow-y: auto;
     background: linear-gradient(180deg, #050c12 0%, #08151d 100%);
-    border: 1.5px solid #14F195; border-radius: 16px; padding: 20px 22px; color: #FFFFFF;
+    border: 1.5px solid #14F195; border-radius: 16px; padding: 22px 22px 20px 22px; color: #FFFFFF;
     box-shadow: 0 24px 60px rgba(0,0,0,0.95); font-family: 'Inter', system-ui, sans-serif;
+  }
+  .rrs-modal-corner-close {
+    position: absolute; top: 14px; right: 14px; z-index: 6;
+    white-space: nowrap; flex-shrink: 0;
+    background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.34);
+    color: #FFFFFF; border-radius: 8px; padding: 6px 13px;
+    cursor: pointer; font-weight: 800; font-size: 13px; line-height: 1.15;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .rrs-modal-corner-close:hover {
+    background: rgba(20,241,149,0.20); border-color: #14F195; color: #14F195;
   }
   body.rrs-is-inst .rrs-modal-card {
     background: linear-gradient(180deg, #070603 0%, #120e05 100%);
@@ -6864,6 +6876,13 @@ html body #rrsVaultCoverGate .rrs-vault-exact-badge {
       <p id="choiceAHumanCopyText" style="margin:4px 0 16px;color:#FFFFFF;font-size:18px;font-weight:700;line-height:1.45;">
         1st empty ATA rent claim is <span style="color:#FFD000;">100% Free (0.0% fee, full 2,039,280 lamports)</span> • Repeat cleanups carry a <span style="color:#FFD000;">2.0% fee (98.0% Net SOL to you)</span>.
       </p>
+      <div id="rrsInstProHonestyBanner" style="margin:0 0 16px 0;padding:11px 15px;border-radius:10px;background:rgba(255,208,0,0.08);border:1.5px solid rgba(255,208,0,0.52);border-left:4px solid #FFD000;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div style="font-size:0.9rem;line-height:1.45;color:#F8FAFC;flex:1;min-width:260px;">
+          <strong style="color:#FFD000;">🛡️ Part of Our Honesty Mandate — Optional Auto-Billing (Default OFF):</strong>
+          From Amazon to local gyms, <strong>42% of people</strong> get billed for forgotten subscriptions (<strong>$1,600 to $2,400+/yr wasted</strong>). We never auto-bill behind your back.
+        </div>
+        <button type="button" onclick="window.rrsOpenHonestyPledge()" style="flex-shrink:0;padding:6px 14px;border-radius:999px;border:1px solid #FFD000;background:rgba(255,208,0,0.16);color:#FFD000;font-size:0.82rem;font-weight:800;cursor:pointer;white-space:nowrap;">Read Full Pledge ↗</button>
+      </div>
 
       <div class="choice-a-grid-4">
         <!-- COL 1: 0% Free Starter -->
@@ -7536,7 +7555,7 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
 
           <!-- Master 34.05s Castle Video (Arcade Synth Muted by Default for Institutional Calm) -->
           <video id="retailVaultMasterVideo" controls playsinline preload="metadata" poster="/assets/social/og-retail-emerald-hero-v51.png">
-            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=retail52" type="video/mp4" />
+            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=retail_orig_fit2" type="video/mp4" />
           </video>
 
           <div id="retailVaultSkyOverlay" class="rrs-vault-hud-overlay rrs-perimeter-hud hud-scene-0" aria-live="polite" style="display:none;">
@@ -7744,6 +7763,13 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
           💎 Transparent Non-Custodial Pricing Tiers <span style="color:#10B981;">(Zero Auto-Billing)</span>
         </h2>
         <span style="font-size:0.82rem;font-weight:800;color:#FFD000;">SOL • USDC • Card • Deduct From Recovered Rent</span>
+      </div>
+      <div id="rrsRetailProHonestyBanner" style="margin:0 0 12px 0;padding:10px 14px;border-radius:10px;background:rgba(20,241,149,0.09);border:1.5px solid rgba(20,241,149,0.52);border-left:4px solid #14F195;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div style="font-size:0.86rem;line-height:1.45;color:#EAF6FF;flex:1;min-width:260px;">
+          <strong style="color:#14F195;">🛡️ Part of Our Honesty Mandate — Optional Auto-Billing (Default OFF):</strong>
+          From Amazon to local gyms, <strong>42% of people</strong> get billed for forgotten subscriptions (<strong>$1,600 to $2,400+/yr wasted</strong>). We never auto-bill behind your back.
+        </div>
+        <button type="button" onclick="window.rrsOpenHonestyPledge()" style="flex-shrink:0;padding:6px 13px;border-radius:999px;border:1px solid #14F195;background:rgba(20,241,149,0.16);color:#14F195;font-size:0.8rem;font-weight:800;cursor:pointer;white-space:nowrap;">Read Full Pledge ↗</button>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:12px;">
         <div style="background:#050B14;border:1px solid rgba(16,185,129,0.45);border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
@@ -20085,26 +20111,61 @@ window.submitVisitorFeedbackNow = async function(){
   var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || "");
   if (!isMobileDevice) document.documentElement.classList.add("rrs-desktop-pc");
 
+  function currentLiveApiBase() {
+    var b = (window.BACKEND_TUNNEL_BASE && window.BACKEND_TUNNEL_BASE.indexOf("http") === 0) ? window.BACKEND_TUNNEL_BASE : LIVE_API_BASE;
+    return String(b).replace(/\/+$/, "");
+  }
   var isPublicStatic = (location.hostname !== "127.0.0.1" && location.hostname !== "localhost");
   if (isPublicStatic) {
-    window.getApiBase = function() { return LIVE_API_BASE; };
-    window.resolveRrsApiBase = function() { return LIVE_API_BASE; };
-    window.resolveApiBase = function() { return LIVE_API_BASE; };
+    window.getApiBase = currentLiveApiBase;
+    window.resolveRrsApiBase = currentLiveApiBase;
+    window.resolveApiBase = currentLiveApiBase;
   }
 
   if (!window.__RRS_V4_FETCH_ROUTER && typeof window.fetch === "function") {
     window.__RRS_V4_FETCH_ROUTER = true;
     var _origFetch = window.fetch;
-    window.fetch = function(input, init) {
+    async function refreshTunnelBaseFromRaw() {
+      try {
+        var r = await _origFetch("https://raw.githubusercontent.com/sonnyman2014/rentandrugshield/main/live_endpoint.json?t=" + Date.now(), { cache: "no-store" });
+        if (r && r.ok) {
+          var j = await r.json();
+          var cand = (j && (j.api_base || j.tunnel_url || j.backend_url || "")).replace(/\/+$/, "");
+          if (cand && cand.indexOf("https://") === 0) {
+            LIVE_API_BASE = cand;
+            window.BACKEND_TUNNEL_BASE = cand;
+            window.RRS_API_BASE = cand;
+            return cand;
+          }
+        }
+      } catch (_e) {}
+      return null;
+    }
+    window.fetch = async function(input, init) {
+      var apiPath = null;
       try {
         var u = (typeof input === "string") ? input : ((input && input.url) || "");
         if (isPublicStatic && u) {
-          if (u.indexOf("/api/") === 0) input = LIVE_API_BASE + u;
-          else if (u.indexOf(".trycloudflare.com/api/") !== -1 && u.indexOf(LIVE_API_BASE) !== 0) input = LIVE_API_BASE + u.substring(u.indexOf("/api/"));
-          else if (u.indexOf("https://rentandrugshield.com/api/") === 0) input = LIVE_API_BASE + u.substring("https://rentandrugshield.com".length);
+          var base = currentLiveApiBase();
+          if (u.indexOf("/api/") === 0) { apiPath = u; input = base + u; }
+          else if (u.indexOf(".trycloudflare.com/api/") !== -1) { apiPath = u.substring(u.indexOf("/api/")); input = base + apiPath; }
+          else if (u.indexOf("https://rentandrugshield.com/api/") === 0) { apiPath = u.substring("https://rentandrugshield.com".length); input = base + apiPath; }
         }
       } catch (_e) {}
-      return _origFetch.call(this, input, init);
+      try {
+        var resp = await _origFetch.call(this, input, init);
+        if (apiPath && resp && (resp.status === 502 || resp.status === 503 || resp.status === 530)) {
+          var fresh = await refreshTunnelBaseFromRaw();
+          if (fresh) return _origFetch.call(this, fresh + apiPath, init);
+        }
+        return resp;
+      } catch (err) {
+        if (apiPath) {
+          var fresh2 = await refreshTunnelBaseFromRaw();
+          if (fresh2) return _origFetch.call(this, fresh2 + apiPath, init);
+        }
+        throw err;
+      }
     };
   }
 
@@ -20176,6 +20237,7 @@ window.submitVisitorFeedbackNow = async function(){
     document.querySelectorAll("div, p, span").forEach(function(el) {
       if (el.children.length <= 3) {
         var t = (el.textContent || "").trim();
+        if (el.closest("#rrsHonestyTrialModal") || el.closest("#rrsHonestyPledgeModal")) return;
         if ((t.indexOf("auto-billing") !== -1 || t.indexOf("Trench Pass ($19.99)") !== -1) && !el.closest(".rrs-honesty-box")) {
           var modalCard = el.closest('[id*="Modal" i], [id*="modal" i], [class*="modal" i]');
           if (modalCard && !document.querySelector(".rrs-honesty-box")) {
@@ -21665,11 +21727,11 @@ window.submitVisitorFeedbackNow = async function(){
 </button>
 
 <!-- POPUP 1: 30-DAY FREE TRIAL (OPTIONAL AUTO-BILLING + STATS + AUTO-CONNECT + BING) -->
-<div id="rrsHonestyTrialModal" class="rrs-modal-backdrop-l1" role="dialog" aria-modal="true" aria-hidden="true" hidden style="display:none;">
+<div id="rrsHonestyTrialModal" class="rrs-modal-backdrop-l1" role="dialog" aria-modal="true" aria-hidden="true" hidden style="display:none;" onclick="if(event.target===this)window.rrsCloseTrialModal()">
   <div class="rrs-modal-card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-      <span style="color:#14F195;font-weight:900;font-size:18px;">🛡️ Start 30-Day Free Trial ($0 Today)</span>
-      <button type="button" onclick="window.rrsCloseTrialModal()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;padding:5px 12px;cursor:pointer;font-weight:800;">✕ Close</button>
+    <button type="button" class="rrs-modal-corner-close" onclick="window.rrsCloseTrialModal()" aria-label="Close modal">✕ Close</button>
+    <div style="padding-right:100px;margin-bottom:12px;">
+      <span style="color:#14F195;font-weight:900;font-size:18px;line-height:1.3;display:block;">🛡️ Start 30-Day Free Trial ($0 Today)</span>
     </div>
 
     <div class="rrs-pledge-item">
@@ -21733,11 +21795,11 @@ window.submitVisitorFeedbackNow = async function(){
 </div>
 
 <!-- POPUP 2 (NESTED POP-UP): FULL HONESTY PLEDGE + ZERO-KNOWLEDGE CODE PROOF -->
-<div id="rrsHonestyPledgeModal" class="rrs-modal-backdrop-l2" role="dialog" aria-modal="true" aria-hidden="true" hidden style="display:none;">
+<div id="rrsHonestyPledgeModal" class="rrs-modal-backdrop-l2" role="dialog" aria-modal="true" aria-hidden="true" hidden style="display:none;" onclick="if(event.target===this)window.rrsCloseHonestyPledge()">
   <div class="rrs-modal-card" style="max-width:640px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-      <span style="color:#14F195;font-weight:900;font-size:18.5px;">⚖️ Official Honesty Mandate &amp; Ecosystem Pledge</span>
-      <button type="button" onclick="window.rrsCloseHonestyPledge()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;padding:5px 12px;cursor:pointer;font-weight:800;">✕ Close</button>
+    <button type="button" class="rrs-modal-corner-close" onclick="window.rrsCloseHonestyPledge()" aria-label="Close Honesty Mandate and Pledge">✕ Close</button>
+    <div style="padding-right:100px;margin-bottom:14px;">
+      <span id="rrsHonestyPledgeTitle" style="color:#14F195;font-weight:900;font-size:18.5px;line-height:1.3;display:block;">⚖️ Official Honesty Mandate &amp; Ecosystem Pledge</span>
     </div>
     <div class="rrs-pledge-item">
       <strong style="color:#14F195;">1. Optional Auto-Billing (Starting Status: OFF) &amp; Real Consumer Data:</strong><br/>
@@ -21921,7 +21983,7 @@ window.submitVisitorFeedbackNow = async function(){
 
     // 3D.Populate any empty on-page Honesty Mandate / Honesty Policy container automatically
     document.querySelectorAll("div, section").forEach(function(sec) {
-      if (sec.closest && sec.closest(".rrs-perimeter-hud, .rrs-5050-video-stage, .rrs-vault-hud-overlay")) return;
+      if (sec.closest && sec.closest("#rrsHonestyTrialModal, #rrsHonestyPledgeModal, .rrs-modal-card, .rrs-honesty-box, .rrs-perimeter-hud, .rrs-5050-video-stage, .rrs-vault-hud-overlay")) return;
       var htxt = (sec.textContent || "").trim();
       if (/Honesty Policy|Honesty Mandate|Honesty Pledge/i.test(htxt) && htxt.length < 95 && !sec.dataset.rrsFilled) {
         sec.dataset.rrsFilled = "1";
