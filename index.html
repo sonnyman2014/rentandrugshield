@@ -35,36 +35,113 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://rentandrugshield.com/#organization",
+      "name": "Solana Rent & Rug Shield",
+      "alternateName": [
+        "SOL Rent & Rug Shield",
+        "Rent & Rug Shield"
+      ],
+      "url": "https://rentandrugshield.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://rentandrugshield.com/favicon.png",
+        "width": 64,
+        "height": 64
+      },
+      "image": "https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png?v=25770",
+      "sameAs": [
+        "https://github.com/sonnyman2014/rentandrugshield",
+        "https://x.com/SolRentClaim"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "security and customer support",
+        "email": "security@rentandrugshield.com",
+        "url": "https://rentandrugshield.com/"
+      },
+      "knowsAbout": [
+        "Solana Blockchain Web3 Security",
+        "SPL Token 0x09 CloseAccount SOL Rent Recovery",
+        "Token-2022 Permanent Delegate and Transfer Hook Auditing",
+        "12-Layer Pre-Buy Anti-Rug Firewall",
+        "Solana Honeypot and Liquidity Pool Burn Verification"
+      ],
+      "disambiguatingDescription": "Official non-custodial Solana Web3 security organization operating rentandrugshield.com for native 0x09 CloseAccount SOL rent recovery and 12-Layer Pre-Buy Anti-Rug Firewall token auditing. Strictly cryptocurrency blockchain security software with zero affiliation to household carpet cleaning, Rug Doctor, or residential apartment rent."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rentandrugshield.com/#website",
+      "name": "Solana Rent & Rug Shield",
+      "alternateName": "SOL Rent & Rug Shield | 0x09 CloseAccount SOL Rent Recovery & 12-Layer Pre-Buy Anti-Rug Firewall",
+      "url": "https://rentandrugshield.com/",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": "https://rentandrugshield.com/#organization"
+      },
+      "sameAs": [
+        "https://github.com/sonnyman2014/rentandrugshield",
+        "https://x.com/SolRentClaim"
+      ],
+      "description": "Non-custodial Solana Web3 security utility for native 0x09 CloseAccount SOL rent recovery (0% 1st Claim Free, 98.0% Net SOL on repeat claims) and 12-Layer Pre-Buy Anti-Rug Firewall token mint security auditing."
+    },
+    {
       "@type": [
         "SoftwareApplication",
         "WebApplication"
       ],
       "@id": "https://rentandrugshield.com/#software",
-      "name": "Solana Rent & Rug Shield | Reclaim Free SOL from Empty Token Accounts & 12-Layer Adaptive Token Scanner",
+      "name": "Solana Rent & Rug Shield",
       "alternateName": [
-        "Solana Rent & Rug Shield",
-        "SOL Rent & Rug Shield"
+        "SOL Rent & Rug Shield",
+        "Solana 0x09 CloseAccount SOL Rent Recovery & 12-Layer Pre-Buy Anti-Rug Firewall"
       ],
       "url": "https://rentandrugshield.com/",
+      "isPartOf": {
+        "@id": "https://rentandrugshield.com/#website"
+      },
+      "author": {
+        "@id": "https://rentandrugshield.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://rentandrugshield.com/#organization"
+      },
+      "sameAs": [
+        "https://github.com/sonnyman2014/rentandrugshield",
+        "https://x.com/SolRentClaim"
+      ],
       "applicationCategory": "FinanceApplication",
-      "applicationSubCategory": "Solana Blockchain SPL & Token-2022 Rent Recovery and 12-Layer Token Security Scanner",
-      "operatingSystem": "Web, Chrome, Brave, iOS, Android, Phantom, Solflare, Backpack",
-      "description": "Solana Rent & Rug Shield | Reclaim Free SOL from Empty Token Accounts & 12-Layer Adaptive Token Scanner. Non-custodial Solana blockchain SPL and Token-2022 rent recovery (0% first claim fee) and pre-buy rug scanner. Distinct from physical carpet or rug cleaner rentals such as Rug Doctor. Your first 12-Layer Adaptive Token Audit is free. Unlock unlimited 12-Layer Web & Telegram scans with 30-Day Trader Pro ($19.99/mo) or Quant Desk ($99/mo). Regular price is $39.99 per audit. Need full day or monthly access? Pick our recommended 30-Day Trader Pro for $19.99 (Reg. $4.99) or unlock 30-Day Trader Pro for $19.99/mo (Reg. $39.99/mo).",
-      "disambiguatingDescription": "Official Solana blockchain cryptocurrency wallet rent recovery (0x09 CloseAccount), dead scam token burner (BurnChecked), and 12-Layer pre-buy token security scanner at rentandrugshield.com. Distinct from physical carpet cleaning, Rug Doctor machine rentals, or apartment tenant rental insurance.",
+      "applicationSubCategory": "Solana Web3 Security: 0x09 CloseAccount SOL Rent Recovery & 12-Layer Pre-Buy Anti-Rug Firewall",
+      "operatingSystem": "Web, Chrome, Brave, iOS, Android, Solana MWA 2.0, Phantom, Solflare, Backpack",
+      "description": "Non-custodial Solana Web3 security application combining native SPL & Token-2022 0x09 CloseAccount SOL Rent Recovery (0% 1st Claim Free, 98.0% Net SOL on repeat claims) with a sub-120ms 12-Layer Pre-Buy Anti-Rug Firewall. Distinct from physical carpet cleaners or residential rent services.",
+      "disambiguatingDescription": "Official Solana blockchain cryptocurrency wallet rent recovery (0x09 CloseAccount), dead scam token burner (BurnChecked), and 12-Layer Pre-Buy Anti-Rug Firewall at rentandrugshield.com. Distinct from physical carpet cleaning, Rug Doctor machine rentals, or apartment tenant rental insurance.",
+      "featureList": [
+        "Native Solana SPL & Token-2022 0x09 CloseAccount SOL Rent Recovery (~0.00203928 SOL per empty ATA)",
+        "0% 1st Claim Free (Keep 100% Net SOL) and 98.0% Net SOL on Repeat Claims (2.0% service fee)",
+        "12-Layer Pre-Buy Anti-Rug Firewall (<120ms Mint/Freeze, Token-2022 Permanent Delegate & Transfer Hook, LP Burn, Slot-0 Bundle & Inner-CPI Drainer inspection)",
+        "100% Read-Only Public Solana Address Scanning with Zero Seed Phrases or Private Keys"
+      ],
       "offers": [
         {
           "@type": "Offer",
-          "name": "First 12-Layer Adaptive Token Audit & First Wallet Rent Claim",
+          "name": "1st SOL Rent Recovery Claim (0% Fee) & 1st 12-Layer Pre-Buy Anti-Rug Firewall Scan",
           "price": "0.00",
           "priceCurrency": "USD",
-          "description": "Free first 12-Layer Adaptive Token Audit and 0% fee on first SOL rent recovery claim (2.0% on repeat cleanups, 25% cheaper than Sol Incinerator)."
+          "description": "0% fee on 1st SOL rent claim (keep 100% SOL; 98.0% Net SOL on repeat claims) plus free 1st 12-Layer Pre-Buy Anti-Rug Firewall token audit."
         },
         {
           "@type": "Offer",
-          "name": "30-Day Trader Pro",
+          "name": "30-Day Trader Pro Pass",
           "price": "19.99",
           "priceCurrency": "USD",
-          "description": "$19.99/mo Launch (Reg. $39.99/mo, Unlimited Web/TG, No API Key)."
+          "description": "Unlimited 12-Layer Web & Telegram Pre-Buy Anti-Rug Firewall scans for 30 days."
+        },
+        {
+          "@type": "Offer",
+          "name": "Quant Desk API Tier",
+          "price": "99.00",
+          "priceCurrency": "USD",
+          "description": "High-throughput 12-Layer Pre-Buy Anti-Rug Firewall REST & MCP API access."
         }
       ]
     },
@@ -77,15 +154,15 @@
           "name": "Is Solana Rent & Rug Shield affiliated with Rug Doctor or physical carpet cleaner rentals?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Solana Rent & Rug Shield is a non-custodial Solana blockchain Web3 utility for reclaiming locked SOL from empty SPL and Token-2022 token accounts and scanning crypto tokens across 12 security layers. It has zero affiliation with Rug Doctor, physical rug cleaners, or real estate rentals."
+            "text": "No. Solana Rent & Rug Shield is a non-custodial Solana blockchain Web3 security utility for reclaiming locked SOL via 0x09 CloseAccount instructions and auditing tokens across a 12-Layer Pre-Buy Anti-Rug Firewall. It has zero affiliation with Rug Doctor, physical rug cleaners, or real estate rentals."
           }
         },
         {
           "@type": "Question",
-          "name": "How much does Solana Rent & Rug Shield cost?",
+          "name": "What are the Solana Rent & Rug Shield fees?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "First Claim 0.0% Fee Forever vs Sol Incinerator 2.0%, ClaimFreeSOL 3.0%, SolCleaner 5.0%, RefundYourSol 15.0% (repeat cleanups are 2.0%). Your first 12-Layer Adaptive Token Audit is free. Unlock unlimited 12-Layer Web & Telegram scans with 30-Day Trader Pro ($19.99/mo) or Quant Desk ($99/mo). Regular price is $39.99 per audit. Need full day or monthly access? Pick our recommended 30-Day Trader Pro for $19.99 (Reg. $4.99) or unlock 30-Day Trader Pro for $19.99/mo (Reg. $39.99/mo)."
+            "text": "All read-only wallet and token scans are free. Your 1st SOL rent claim is 0% fee (keep 100% Net SOL), and repeat rent claims return 98.0% Net SOL to your wallet (2.0% repeat service fee). Unlimited 12-Layer Pre-Buy Anti-Rug Firewall passes start at $19.99/mo for 30-Day Trader Pro."
           }
         },
         {
@@ -93,7 +170,7 @@
           "name": "How does non-custodial Solana SPL 0x09 CloseAccount rent recovery work?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Every empty SPL or Token-2022 Associated Token Account locks roughly 0.00203928 SOL on chain. Our scanner builds a standard unsigned CloseAccount transaction that you sign locally in Phantom, Solflare, or Backpack without ever sharing private keys or seed phrases."
+            "text": "Every empty SPL or Token-2022 Associated Token Account locks roughly 0.00203928 SOL on-chain. Our scanner builds a transparent unsigned 0x09 CloseAccount transaction that you inspect and sign locally in Phantom, Solflare, or Backpack without ever sharing private keys or seed phrases."
           }
         }
       ]
@@ -117,77 +194,7 @@
   <meta name="keywords" content="Solana rent recovery, SPL CloseAccount 0x09, Token-2022 rent reclaim, Sol Incinerator alternative, Solana 12-layer mint security scanner, read-only Solana explorer" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://rentandrugshield.com/sitemap.xml" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": [
-        "SoftwareApplication",
-        "WebApplication"
-      ],
-      "@id": "https://rentandrugshield.com/#software",
-      "name": "Solana Rent & Rug Shield | Reclaim Free SOL from Empty Token Accounts & 12-Layer Adaptive Token Scanner",
-      "alternateName": [
-        "Solana Rent & Rug Shield",
-        "SOL Rent & Rug Shield"
-      ],
-      "url": "https://rentandrugshield.com/",
-      "applicationCategory": "FinanceApplication",
-      "applicationSubCategory": "Solana Blockchain SPL & Token-2022 Rent Recovery and 12-Layer Token Security Scanner",
-      "operatingSystem": "Web, Chrome, Brave, iOS, Android, Phantom, Solflare, Backpack",
-      "description": "Solana Rent & Rug Shield | Reclaim Free SOL from Empty Token Accounts & 12-Layer Adaptive Token Scanner. Non-custodial Solana blockchain SPL and Token-2022 rent recovery (0% first claim fee) and pre-buy rug scanner. Distinct from physical carpet or rug cleaner rentals such as Rug Doctor. Your first 12-Layer Adaptive Token Audit is free. Unlock unlimited 12-Layer Web & Telegram scans with 30-Day Trader Pro ($19.99/mo) or Quant Desk ($99/mo). Regular price is $39.99 per audit. Need full day or monthly access? Pick our recommended 30-Day Trader Pro for $19.99 (Reg. $4.99) or unlock 30-Day Trader Pro for $19.99/mo (Reg. $39.99/mo).",
-      "disambiguatingDescription": "Official Solana blockchain cryptocurrency wallet rent recovery (0x09 CloseAccount), dead scam token burner (BurnChecked), and 12-Layer pre-buy token security scanner at rentandrugshield.com. Distinct from physical carpet cleaning, Rug Doctor machine rentals, or apartment tenant rental insurance.",
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "First 12-Layer Adaptive Token Audit & First Wallet Rent Claim",
-          "price": "0.00",
-          "priceCurrency": "USD",
-          "description": "Free first 12-Layer Adaptive Token Audit and 0% fee on first SOL rent recovery claim (2.0% on repeat cleanups, 25% cheaper than Sol Incinerator)."
-        },
-        {
-          "@type": "Offer",
-          "name": "30-Day Trader Pro",
-          "price": "19.99",
-          "priceCurrency": "USD",
-          "description": "$19.99/mo Launch (Reg. $39.99/mo, Unlimited Web/TG, No API Key)."
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://rentandrugshield.com/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Is Solana Rent & Rug Shield affiliated with Rug Doctor or physical carpet cleaner rentals?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. Solana Rent & Rug Shield is a non-custodial Solana blockchain Web3 utility for reclaiming locked SOL from empty SPL and Token-2022 token accounts and scanning crypto tokens across 12 security layers. It has zero affiliation with Rug Doctor, physical rug cleaners, or real estate rentals."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How much does Solana Rent & Rug Shield cost?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "First Claim 0.0% Fee Forever vs Sol Incinerator 2.0%, ClaimFreeSOL 3.0%, SolCleaner 5.0%, RefundYourSol 15.0% (repeat cleanups are 2.0%). Your first 12-Layer Adaptive Token Audit is free. Unlock unlimited 12-Layer Web & Telegram scans with 30-Day Trader Pro ($19.99/mo) or Quant Desk ($99/mo). Regular price is $39.99 per audit. Need full day or monthly access? Pick our recommended 30-Day Trader Pro for $19.99 (Reg. $4.99) or unlock 30-Day Trader Pro for $19.99/mo (Reg. $39.99/mo)."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How does non-custodial Solana SPL 0x09 CloseAccount rent recovery work?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Every empty SPL or Token-2022 Associated Token Account locks roughly 0.00203928 SOL on chain. Our scanner builds a standard unsigned CloseAccount transaction that you sign locally in Phantom, Solflare, or Backpack without ever sharing private keys or seed phrases."
-          }
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  
   <script>
     // UNIVERSAL WALLET DEEPLINK FALLBACK (Edge / Mobile / In-App Browsers)
     window.openUniversalWalletDeepLink = function(providerName) {
@@ -1069,7 +1076,19 @@
   "name": "SOL Rent & Rug Shield",
   "url": "https://rentandrugshield.com/",
   "disambiguatingDescription": "Official Solana (SOL) cryptocurrency utility at rentandrugshield.com for reclaiming SPL token account rent (~0.002039 SOL per empty account), burning dead meme tokens (SOL Incinerator alternative), and running 12-Layer Adaptive Pre-Buy Anti-Rug-Pull security audits powered by Google Gemini 4 Carbon. Not related to real estate tenant software or household carpet/rug protection.",
-  "knowsAbout": ["Solana", "SPL Token Rent Recovery", "SOL Incinerator", "Burn Solana Tokens", "Crypto Rug Pull Detection", "Gemini 4 Carbon"]
+  "knowsAbout": [
+    "Solana",
+    "SPL Token Rent Recovery",
+    "SOL Incinerator",
+    "Burn Solana Tokens",
+    "Crypto Rug Pull Detection",
+    "Gemini 4 Carbon"
+  ],
+  "@id": "https://rentandrugshield.com/#organization",
+  "sameAs": [
+    "https://github.com/sonnyman2014/rentandrugshield",
+    "https://x.com/SolRentClaim"
+  ]
 }
 </script>
 <!-- END_AI_DISAMBIGUATION -->
