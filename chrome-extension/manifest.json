@@ -4,7 +4,7 @@
   "short_name": "Rent & Rug Shield",
   "version": "5.3.0",
   "version_name": "5.3",
-  "description": "12-Layer Gemini 4 Carbon Shield v5.3: Carbon Black #020408 Notice Bubbles, Dark Control Filters, 3-State Sentinel & 0% 1st ATA SOL Claim.",
+  "description": "12-Layer Solana Pre-Buy Security v5.3: 12-Layer Live Chart Badges, Clipboard & Fake-Wallet Guard, Market Presets & 0% 1st ATA SOL Claim.",
   "homepage_url": "https://rentandrugshield.com",
   "permissions": [
     "activeTab",
@@ -12,7 +12,6 @@
     "notifications",
     "alarms",
     "tabs",
-    "tts",
     "scripting"
   ],
   "host_permissions": [
@@ -23,7 +22,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Solana Rent & Rug Shield v5.3 | Carbon Black 12-Layer Sentinel",
+    "default_title": "Solana Rent & Rug Shield v5.3 | 12-Layer Live Chart Badges & Wallet Guard",
     "default_icon": {
       "16": "icon16.png",
       "32": "icon32.png",

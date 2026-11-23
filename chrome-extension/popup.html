@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>SOL Rent &amp; Rug Shield | 12-Layer Chrome Extension (v5.3.0)</title>
+<title>SOL Rent &amp; Rug Shield | 12-Layer Chrome Extension (v5.3)</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif; }
-  body { width: 410px; min-height: 580px; background: #020408; color: #f8fafc; padding: 10px; }
+  body { width: 416px; min-height: 580px; background: #020408; color: #f8fafc; padding: 10px; }
   .top-alert { display: none; background: linear-gradient(90deg, #3b050e, #6b0f22); border: 1.5px solid #FF1744; border-radius: 8px; padding: 6px 8px; margin-bottom: 8px; font-size: 10px; font-weight: 800; color: #ffe4e6; justify-content: space-between; align-items: center; gap: 6px; }
   .top-alert.show { display: flex; }
   .hdr { display: flex; align-items: center; justify-content: space-between; background: #020408; border: 1.5px solid #00FFA3; border-radius: 10px; padding: 8px 10px; margin-bottom: 7px; box-shadow: 0 0 14px rgba(0,255,163,0.18); }
   .hdr-title { font-size: 13px; font-weight: 900; color: #00FFA3; }
-  .hdr-sub { font-size: 9.5px; color: #cbd5e1; font-weight: 700; }
+  .hdr-sub { font-size: 9.6px; color: #cbd5e1; font-weight: 700; }
   .nav-strip { display: flex; align-items: center; justify-content: space-between; gap: 4px; background: #050a14; border: 1px solid #1e293b; border-radius: 8px; padding: 4px 6px; margin-bottom: 7px; }
   .nav-grp { display: flex; align-items: center; gap: 4px; }
-  .nav-btn { background: #09101d; color: #e2e8f0; border: 1px solid #334155; border-radius: 5px; padding: 3px 6px; font-size: 9.6px; font-weight: 800; cursor: pointer; }
+  .nav-btn { background: #09101d; color: #e2e8f0; border: 1px solid #334155; border-radius: 5px; padding: 3px 7px; font-size: 9.8px; font-weight: 800; cursor: pointer; }
   .nav-btn:disabled { opacity: 0.4; cursor: default; }
   .nav-btn.active { border-color: #00FFA3; color: #00FFA3; background: rgba(0, 255, 163, 0.12); }
-  .badge-strip { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 5px; margin-bottom: 8px; }
-  .trust-pill { background: #050a14; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 7px; padding: 5px 4px; font-size: 9.4px; font-weight: 800; color: #7dd3fc; cursor: pointer; text-align: center; white-space: nowrap; }
+  .badge-strip { display: grid; grid-template-columns: 1.35fr 1fr; gap: 6px; margin-bottom: 8px; }
+  .trust-pill { background: #050a14; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 8px; padding: 6px 6px; font-size: 10px; font-weight: 900; color: #7dd3fc; cursor: pointer; text-align: center; white-space: nowrap; }
   .trust-pill.gold { border-color: #00FFA3; color: #00FFA3; background: rgba(0,255,163,0.08); }
-  .trust-pill.emerald { border-color: rgba(250, 204, 21, 0.5); color: #fde047; }
+  .trust-pill.active { background: #00FFA3; color: #020408; border-color: #00FFA3; }
   .card { background: #050a14; border: 1px solid rgba(0, 255, 163, 0.35); border-radius: 10px; padding: 9px; margin-bottom: 8px; }
   .card-cyan { background: #050a14; border: 1px solid rgba(34, 211, 238, 0.42); border-radius: 10px; padding: 9px; margin-bottom: 8px; }
   .sec-title { font-size: 11px; font-weight: 900; color: #00FFA3; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; gap: 4px; }
@@ -49,41 +49,60 @@
   .rrs-switch input:checked + .rrs-slider { background: #00FFA3; border-color: #00FFA3; box-shadow: 0 0 8px rgba(0, 255, 163, 0.35); }
   .rrs-switch input:checked + .rrs-slider::before { transform: translateX(15px); background: #020408; }
   .flt-card { background: #020408; border: 1.5px solid #00FFA3; border-radius: 10px; padding: 9px; margin-bottom: 8px; box-shadow: 0 0 16px rgba(0, 255, 163, 0.15); }
-  .flt-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 4.5px 0; border-bottom: 1px solid rgba(148, 163, 184, 0.14); font-size: 10.2px; font-weight: 800; color: #f8fafc; }
+  .flt-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid rgba(148, 163, 184, 0.14); font-size: 10.5px; font-weight: 800; color: #f8fafc; }
   .flt-rule { background: #060c18; border: 1px solid #1e293b; border-radius: 7px; padding: 6px 7px; margin-top: 5px; }
   .flt-rule-hdr { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 10px; font-weight: 800; color: #e2e8f0; margin-bottom: 4px; }
   .flt-inp { background: #020408; border: 1px solid #334155; border-radius: 5px; padding: 4px 6px; color: #f8fafc; font-size: 10.2px; font-weight: 700; outline: none; }
   .flt-inp:focus { border-color: #00FFA3; }
+  /* Big 1-Click Market Preset Pills */
+  .preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 6px 0 7px 0; }
+  .preset-pill {
+    background: #071322; border: 1.5px solid #00FFA3; color: #f8fafc;
+    border-radius: 9px; padding: 9px 8px; cursor: pointer; text-align: left;
+    transition: all 0.15s ease; display: flex; flex-direction: column; gap: 2px;
+  }
+  .preset-pill:hover { background: rgba(0, 255, 163, 0.14); transform: translateY(-1px); }
+  .preset-pill.active { background: #00FFA3; color: #020408; border-color: #00FFA3; box-shadow: 0 0 12px rgba(0, 255, 163, 0.4); }
+  .preset-pill-title { font-size: 11px; font-weight: 900; color: #00FFA3; line-height: 1.2; }
+  .preset-pill.active .preset-pill-title { color: #020408; }
+  .preset-pill-sub { font-size: 9.2px; font-weight: 700; color: #94a3b8; line-height: 1.2; }
+  .preset-pill.active .preset-pill-sub { color: #052e22; }
+  .preset-pill-clear {
+    grid-column: 1 / -1; background: #09101d; border: 1px solid #475569; color: #cbd5e1;
+    border-radius: 8px; padding: 7px 10px; font-size: 10.2px; font-weight: 800; cursor: pointer; text-align: center;
+  }
+  .preset-pill-clear.active { border-color: #38bdf8; color: #38bdf8; background: rgba(56, 189, 248, 0.1); }
+  /* Collapsed Local Founder Desk Drawer */
+  details.founder-drawer {
+    margin-top: 9px; background: #050a14; border: 1px dashed #475569; border-radius: 9px; overflow: hidden;
+  }
+  details.founder-drawer[open] { border-style: solid; border-color: #facc15; }
+  details.founder-drawer > summary {
+    list-style: none; cursor: pointer; padding: 7px 10px; font-size: 10.2px; font-weight: 900;
+    color: #fde047; display: flex; align-items: center; justify-content: space-between; user-select: none;
+  }
+  details.founder-drawer > summary::-webkit-details-marker { display: none; }
+  details.founder-drawer > summary::after { content: "▾ Expand"; font-size: 9px; color: #94a3b8; font-weight: 800; }
+  details.founder-drawer[open] > summary::after { content: "▴ Collapse"; color: #fde047; }
+  .founder-drawer-body { padding: 6px 10px 9px 10px; border-top: 1px solid rgba(250, 204, 21, 0.22); background: #020408; }
 </style>
 </head>
 <body>
 
-  <div id="cyberSentinelBanner" style="background:#020408;border:1.5px solid #00FFA3;border-radius:10px;padding:8px 10px;margin-bottom:8px;box-shadow:0 0 14px rgba(0,255,163,0.2);">
+  <div id="cyberSentinelBanner" style="background:#020408;border:1.5px solid #00FFA3;border-radius:10px;padding:8px 10px;margin-bottom:8px;box-shadow:0 0 14px rgba(0,255,163,0.18);">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
       <div style="display:flex;align-items:center;gap:6px;">
-        <span id="cyberPulseDot" style="display:inline-block;width:11px;height:11px;border-radius:50%;background:#00FFA3;box-shadow:0 0 10px #00FFA3;"></span>
-        <strong id="cyberStatusHeadline" style="font-size:10.5px;color:#00FFA3;">CARBON SENTINEL v5.3: 12 LAYERS ARMED</strong>
+        <span id="cyberPulseDot" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#00FFA3;box-shadow:0 0 10px #00FFA3;"></span>
+        <strong id="cyberStatusHeadline" style="font-size:10.6px;color:#00FFA3;">SENTINEL v5.3: 12 LAYERS ARMED</strong>
       </div>
-      <span style="font-size:8.8px;font-weight:800;color:#fde047;">0 White Toasts</span>
+      <span style="font-size:8.9px;font-weight:800;color:#67e8f9;">12s Alert Cards</span>
     </div>
-    <div id="cyberThreatDetail" style="font-size:9.4px;color:#cbd5e1;margin-top:4px;line-height:1.35;">
-      Carbon Black <b style="color:#00FFA3;">#020408</b> bubbles active (7s auto-close, QuietHours OFF, Sound OFF by default).
+    <div id="cyberThreatDetail" style="font-size:9.5px;color:#cbd5e1;margin-top:4px;line-height:1.35;">
+      <b style="color:#00FFA3;">12-Layer Live Chart Badges</b> &amp; <b style="color:#67e8f9;">Clipboard &amp; Fake-Wallet Guard</b> active.
     </div>
-    <div style="display:grid;grid-template-columns:1.5fr 1fr 0.8fr 0.8fr;gap:4px;margin-top:6px;">
-      <button id="btn-send-1-test-bubble" type="button" style="background:#00FFA3;color:#020408;border:none;border-radius:6px;padding:5px 6px;font-size:9.5px;font-weight:900;cursor:pointer;">Send 1 Test Bubble</button>
-      <button id="cyberTestRedBtn" type="button" style="background:#FF1744;color:#ffffff;border:none;border-radius:6px;padding:5px 6px;font-size:9.2px;font-weight:900;cursor:pointer;">Test Red Rug</button>
-      <button id="btnStateSecure" type="button" style="background:#052e22;color:#00FFA3;border:1px solid #00FFA3;border-radius:6px;padding:4px 4px;font-size:8.8px;font-weight:900;cursor:pointer;">Secure</button>
-      <button id="btnStateCaution" type="button" style="background:#3b2106;color:#fde047;border:1px solid #f59e0b;border-radius:6px;padding:4px 4px;font-size:8.8px;font-weight:900;cursor:pointer;">Caution</button>
-    </div>
-    <button id="cyberClearBtn" type="button" style="display:none;margin-top:5px;width:100%;background:#052e22;color:#00FFA3;border:1px solid #00FFA3;border-radius:6px;padding:4px 6px;font-size:9px;font-weight:800;cursor:pointer;">Reset Alert State</button>
     <div id="v51TrialBar" style="margin-top:6px;padding:4px 7px;border-radius:6px;background:rgba(0,255,163,0.08);border:1px solid rgba(0,255,163,0.35);font-size:9px;color:#a7f3d0;font-weight:800;">
-      <span id="v51TrialCountdown">24-Hour Ultra Pro FREE Trial Active!</span> | Rug + DEX-6 Alerts FREE Forever
+      <span id="v51TrialCountdown">24-Hour Ultra Pro FREE Trial Active!</span> | Rug + Pre-Buy Shield FREE
     </div>
-  </div>
-
-  <div id="founderApprovalBellBar" style="display:none;background:#020408;border:2px solid #facc15;border-radius:9px;padding:7px 10px;margin-bottom:8px;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;">
-    <span style="font-size:10.5px;font-weight:900;color:#fef08a;"><span id="founderApprovalBellCnt">0</span> Approvals Waiting (Founder Private)</span>
-    <span style="background:#facc15;color:#020408;padding:2px 7px;border-radius:6px;font-size:9.5px;font-weight:900;">Review</span>
   </div>
 
   <div id="popup-top-alert-banner" class="top-alert">
@@ -96,10 +115,13 @@
       <img src="icon48.png" style="width:28px;height:28px;border-radius:7px;border:1.5px solid #00FFA3;" alt="Shield Crest" />
       <div>
         <div class="hdr-title">SOL RENT &amp; RUG SHIELD v5.3</div>
-        <div class="hdr-sub">Carbon Black Dark Control Deck | 12-Layer MV3</div>
+        <div class="hdr-sub">12-Layer Live Chart Badges | Clipboard &amp; Fake-Wallet Guard</div>
       </div>
     </div>
-    <a id="ext-open-app-top" href="https://rentandrugshield.com/app.html" target="_blank" rel="noopener noreferrer" style="font-size:9.8px;font-weight:900;color:#020408;text-decoration:none;background:#00FFA3;padding:4px 8px;border-radius:6px;">Open App</a>
+    <div style="display:flex;align-items:center;gap:5px;">
+      <button id="hdr-gear-btn" type="button" title="Open MACD &amp; Alert Settings" style="background:#0B1220;color:#D4AF37;border:1.5px solid #D4AF37;border-radius:6px;padding:3px 7px;font-size:12px;font-weight:900;cursor:pointer;">&#9881;</button>
+      <a id="ext-open-app-top" href="https://rentandrugshield.com/app.html" target="_blank" rel="noopener noreferrer" style="font-size:9.8px;font-weight:900;color:#020408;text-decoration:none;background:#00FFA3;padding:4px 8px;border-radius:6px;">Open App</a>
+    </div>
   </div>
 
   <div class="nav-strip">
@@ -108,38 +130,34 @@
       <button id="pop-nav-home" class="nav-btn active" type="button">Home</button>
       <button id="pop-nav-fwd" class="nav-btn" type="button" disabled>Next</button>
     </div>
-    <span style="font-size:9.3px;color:#94a3b8;font-weight:700;">Cutoff: <b id="pop-cutoff-badge" style="color:#00FFA3;">75/100</b></span>
+    <span style="font-size:9.3px;color:#94a3b8;font-weight:700;">Safety Cutoff: <b id="pop-cutoff-badge" style="color:#00FFA3;">75/100</b></span>
   </div>
 
   <div class="badge-strip">
-    <button id="pop-btn-alerts" class="trust-pill gold" type="button">Dark Bubble Controls</button>
-    <button id="pop-btn-carbon" class="trust-pill emerald" type="button">Carbon Cert</button>
-    <button id="pop-btn-rnd" class="trust-pill" type="button">898h + 5,501h</button>
+    <button id="pop-btn-alerts" class="trust-pill gold" type="button">Alert &amp; Market Filters</button>
+    <button id="pop-btn-rnd" class="trust-pill" type="button">898h + 5,501h R&amp;D</button>
   </div>
 
   <!-- VIEW 1: HOME -->
   <div id="pop-view-home">
     <div id="ext-intel-bubbles-card" class="flt-card" style="margin-bottom:8px;">
       <div class="sec-title" style="flex-wrap:wrap;gap:4px;">
-        <span style="color:#00FFA3;">1. Live Notice Bubbles &amp; Dark Controls</span>
-        <div style="display:flex;align-items:center;gap:4px;">
-          <button id="ext-open-filters-btn" type="button" style="background:#09101d;color:#00FFA3;border:1px solid #00FFA3;border-radius:5px;padding:3px 7px;font-size:8.9px;font-weight:900;cursor:pointer;">Filters &amp; Switches</button>
-          <button id="ext-fire-toast-btn" type="button" style="background:#00FFA3;color:#020408;border:none;border-radius:5px;padding:3px 7px;font-size:8.9px;font-weight:900;cursor:pointer;">Send 1 Test Bubble</button>
-        </div>
+        <span style="color:#00FFA3;">1. Live Solana Market &amp; Security Feed</span>
+        <button id="ext-open-filters-btn" type="button" style="background:#09101d;color:#D4AF37;border:1px solid #D4AF37;border-radius:5px;padding:3px 8px;font-size:9px;font-weight:900;cursor:pointer;">&#9881; MACD &amp; Filters</button>
       </div>
-      <div id="ext-active-filter-summary" style="display:none;margin-bottom:5px;padding:3px 6px;border-radius:5px;background:rgba(0,255,163,0.08);border:1px solid rgba(0,255,163,0.35);font-size:8.9px;font-weight:800;color:#a7f3d0;"></div>
+      <div id="ext-active-filter-summary" style="display:none;margin-bottom:5px;padding:4px 7px;border-radius:6px;background:rgba(0,255,163,0.08);border:1px solid rgba(0,255,163,0.35);font-size:9px;font-weight:800;color:#a7f3d0;"></div>
       <div id="ext-intel-tabs" style="display:flex;gap:3px;margin-bottom:6px;flex-wrap:wrap;">
         <button type="button" class="nav-btn active" data-icat="all">All</button>
         <button type="button" class="nav-btn" data-icat="coin">Trending</button>
         <button type="button" class="nav-btn" data-icat="rug" style="color:#FF1744;">Rugs</button>
-        <button type="button" class="nav-btn" data-icat="moonbag">Moonbags</button>
-        <button type="button" class="nav-btn" data-icat="visitor">Visitors</button>
         <button type="button" class="nav-btn" data-icat="crypto">Crypto</button>
         <button type="button" class="nav-btn" data-icat="ai">AI</button>
         <button type="button" class="nav-btn" data-icat="world">World</button>
+        <button type="button" id="tab-founder-moonbag" class="nav-btn" data-icat="moonbag" style="display:none;color:#fde047;">Moonbags</button>
+        <button type="button" id="tab-founder-visitor" class="nav-btn" data-icat="visitor" style="display:none;color:#7dd3fc;">Visitors</button>
       </div>
       <div id="ext-intel-bubbles-list" style="display:flex;flex-direction:column;gap:5px;max-height:175px;overflow-y:auto;">
-        <div style="font-size:9.8px;color:#94a3b8;">Syncing live 12-Layer Trending, DEX-6 Moonbags, Visitors &amp; News...</div>
+        <div style="font-size:9.8px;color:#94a3b8;">Syncing live 12-Layer Solana movers, rug blocks &amp; market news...</div>
       </div>
     </div>
 
@@ -152,7 +170,7 @@
         <span id="tab-detect-badge" style="font-size:9px;color:#00FFA3;">Auto-Tab Ready</span>
       </div>
       <div id="pop-layer-info-box" class="info-bubble">
-        12-Layer deterministic inspection including Mint/Freeze Auth, LP Lock, Token-2022 Hooks, Inner-CPI Drainer Simulation, and Block-0 Sybil Cluster Defense.
+        12-Layer deterministic inspection: Mint/Freeze Auth, LP Lock, Token-2022 Hooks, Inner-CPI Drainer Simulation, Block-0 Sybil Cluster Defense, and Clipboard &amp; Fake-Wallet Guard.
       </div>
       <input id="ext-mint-inp" class="inp" type="text" placeholder="Paste Solana Mint (or auto-detects active DEX tab)..." />
       <button id="ext-audit-btn" class="btn btn-cyan" type="button">RUN 12-LAYER MINT AUDIT (&lt;250ms)</button>
@@ -191,35 +209,46 @@
     </div>
   </div>
 
-  <!-- VIEW 2: FULL DARK CONTROL POPUP (FILTERS + CATEGORY SWITCHES) -->
+  <!-- VIEW 2: ALERT & MARKET FILTERS + PRESETS + COLLAPSED FOUNDER DESK -->
   <div id="pop-view-alerts" style="display:none;">
     <div id="rrs-notifier-filters-card" class="flt-card">
       <div class="sec-title" style="margin-bottom:6px;">
-        <span style="color:#00FFA3;">Carbon Black Notice Bubble Controls</span>
+        <span style="color:#00FFA3;">Protection Switches &amp; Alert Controls</span>
         <span style="font-size:8.8px;color:#00FFA3;">v5.3 Synced</span>
       </div>
 
       <div class="flt-row" style="background:rgba(0,255,163,0.09);border:1px solid rgba(0,255,163,0.4);border-radius:6px;padding:5px 7px;margin-bottom:5px;">
-        <span style="color:#00FFA3;">Master Notice Bubbles Switch (QuietHours: OFF)</span>
+        <span style="color:#00FFA3;">Master Movable/Zoomable Alert Box (#020408)</span>
         <label class="rrs-switch"><input id="flt-master-bubbles" type="checkbox" checked /><span class="rrs-slider"></span></label>
       </div>
 
-      <div style="font-size:9.2px;font-weight:900;color:#67e8f9;margin-bottom:3px;letter-spacing:0.02em;">INDIVIDUAL CATEGORY SWITCHES</div>
+      <div class="flt-rule" style="margin-bottom:6px;border-color:#D4AF37;">
+        <div class="flt-rule-hdr">
+          <span style="color:#fde047;">Box Position, Pin Lock (&#128204;) &amp; Zoom (75%-200%)</span>
+          <label style="font-size:9.5px;color:#fde047;display:flex;align-items:center;gap:4px;cursor:pointer;"><input id="flt-card-pinned" type="checkbox" /> &#128204; Pin</label>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:5px;">
+          <div style="display:flex;align-items:center;gap:4px;">
+            <button id="flt-zoom-out" class="nav-btn" type="button">-</button>
+            <button id="flt-zoom-pct" class="nav-btn active" type="button">100%</button>
+            <button id="flt-zoom-in" class="nav-btn" type="button">+</button>
+          </div>
+          <button id="flt-reset-pos" class="nav-btn" type="button" style="border-color:#fde047;color:#fde047;">Reset X/Y</button>
+        </div>
+      </div>
+
+      <div style="font-size:9.2px;font-weight:900;color:#67e8f9;margin-bottom:3px;letter-spacing:0.02em;">LIVE PROTECTION &amp; CATEGORY SWITCHES</div>
       <div class="flt-row">
-        <span style="color:#00FFA3;">12-Layer Trending Coins ($TICKER)</span>
+        <span style="color:#00FFA3;">12-Layer Live Chart Badges</span>
         <label class="rrs-switch"><input id="flt-cat-coin" type="checkbox" checked /><span class="rrs-slider"></span></label>
       </div>
       <div class="flt-row">
-        <span style="color:#FF1744;">Critical Rug Alerts (#FF1744 Red)</span>
+        <span style="color:#67e8f9;">Clipboard &amp; Fake-Wallet Guard</span>
+        <label class="rrs-switch"><input id="flt-clipboard-guard" type="checkbox" checked /><span class="rrs-slider"></span></label>
+      </div>
+      <div class="flt-row">
+        <span style="color:#FF1744;">Critical Rug &amp; Sybil Alerts</span>
         <label class="rrs-switch"><input id="flt-cat-rug" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="flt-row">
-        <span style="color:#00FFA3;">DEX-6 Moonbags (Live Held Runners)</span>
-        <label class="rrs-switch"><input id="flt-cat-moonbag" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="flt-row">
-        <span style="color:#7dd3fc;">Live Human Website Visitors (0 Kelowna)</span>
-        <label class="rrs-switch"><input id="flt-cat-visitor" type="checkbox" checked /><span class="rrs-slider"></span></label>
       </div>
       <div class="flt-row">
         <span>Crypto News</span>
@@ -234,18 +263,59 @@
         <label class="rrs-switch"><input id="flt-cat-world" type="checkbox" checked /><span class="rrs-slider"></span></label>
       </div>
       <div class="flt-row" style="border-bottom:none;">
-        <span style="color:#fde047;">Sound / Voice Alerts (Default OFF)</span>
+        <span style="color:#fde047;">Alert Chime Tone (Default OFF)</span>
         <label class="rrs-switch"><input id="flt-sound-enabled" type="checkbox" /><span class="rrs-slider"></span></label>
       </div>
 
-      <div style="font-size:9.2px;font-weight:900;color:#fde047;margin-top:8px;margin-bottom:3px;letter-spacing:0.02em;">COIN &amp; MARKET THRESHOLD FILTERS</div>
+      <div style="font-size:10px;font-weight:900;color:#fde047;margin-top:9px;margin-bottom:3px;letter-spacing:0.02em;">COIN MARKET THRESHOLD FILTERS</div>
+      <div style="font-size:9px;color:#94a3b8;margin-bottom:4px;">1-Click Market Presets (auto-applies &amp; syncs immediately):</div>
+
+      <div id="flt-preset-pills" class="preset-grid">
+        <button type="button" class="preset-pill" data-preset="early_gems">
+          <span class="preset-pill-title">Early Gems ($15K-$250K)</span>
+          <span class="preset-pill-sub">Liq &ge; $10K | +10% in 5m</span>
+        </button>
+        <button type="button" class="preset-pill" data-preset="mid_caps">
+          <span class="preset-pill-title">Mid-Cap Safe ($250K-$10M)</span>
+          <span class="preset-pill-sub">Liq &ge; $50K | +5% in 15m</span>
+        </button>
+        <button type="button" class="preset-pill" data-preset="surge_5m">
+          <span class="preset-pill-title">5m Runners (+15% Surge)</span>
+          <span class="preset-pill-sub">MC $25K-$50M | Liq &ge; $15K</span>
+        </button>
+        <button type="button" class="preset-pill" data-preset="bluechips">
+          <span class="preset-pill-title">Whale Majors ($1M+)</span>
+          <span class="preset-pill-sub">Liq &ge; $150K | +3% in 1h</span>
+        </button>
+        <button type="button" class="preset-pill-clear" data-preset="all_coins">
+          All Coins (No Market Cap / % Move Filter)
+        </button>
+      </div>
+
+      <div class="flt-rule" style="border-color:#38bdf8;">
+        <div class="flt-rule-hdr">
+          <span style="color:#67e8f9;">MACD Crossover &amp; Histogram Flip (1m / 3m / 5m / 15m)</span>
+          <label class="rrs-switch"><input id="flt-macd-on" type="checkbox" /><span class="rrs-slider"></span></label>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:9.8px;font-weight:800;margin-bottom:4px;">
+          <label><input id="flt-macd-1m" type="checkbox" checked /> 1m</label>
+          <label><input id="flt-macd-3m" type="checkbox" checked /> 3m</label>
+          <label><input id="flt-macd-5m" type="checkbox" checked /> 5m</label>
+          <label><input id="flt-macd-15m" type="checkbox" checked /> 15m</label>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:9.6px;font-weight:800;">
+          <label style="color:#00FFA3;"><input id="flt-macd-bull" type="checkbox" checked /> Bull Cross</label>
+          <label style="color:#fda4af;"><input id="flt-macd-bear" type="checkbox" /> Bear Cross</label>
+          <label style="color:#fde047;"><input id="flt-macd-hist" type="checkbox" checked /> Hist Flip</label>
+        </div>
+      </div>
 
       <div class="flt-rule">
         <div class="flt-rule-hdr">
           <span>Coin Name / Ticker Filter</span>
           <label class="rrs-switch"><input id="flt-ticker-on" type="checkbox" /><span class="rrs-slider"></span></label>
         </div>
-        <input id="flt-ticker-inp" class="flt-inp" type="text" style="width:100%;" placeholder="e.g. SOL, BONK, AI (comma-separated)" />
+        <input id="flt-ticker-inp" class="flt-inp" type="text" style="width:100%;" placeholder="e.g. SOL, BONK, MELNOK (comma-separated)" />
       </div>
 
       <div class="flt-rule">
@@ -279,6 +349,7 @@
             <div style="font-size:8.7px;color:#94a3b8;margin-bottom:2px;">Time Window</div>
             <select id="flt-move-win" class="flt-inp" style="width:100%;">
               <option value="1m">1m</option>
+              <option value="3m">3m</option>
               <option value="5m">5m</option>
               <option value="15m">15m</option>
               <option value="1h" selected>1h</option>
@@ -295,14 +366,46 @@
         <input id="flt-liq-min" class="flt-inp" type="number" min="0" step="500" value="10000" style="width:100%;" />
       </div>
 
-      <div class="btn-row" style="margin-top:7px;">
-        <button id="flt-save-btn" class="btn btn-green" type="button" style="padding:6px 4px;font-size:9.6px;">Save Filters</button>
-        <button id="flt-test-toast-btn" class="btn-sm" type="button" style="background:#00FFA3;color:#020408;border-color:#00FFA3;font-weight:900;">Send 1 Test Bubble</button>
-        <button id="flt-reset-btn" class="btn-sm" type="button">Reset</button>
+      <div class="flt-rule">
+        <div class="flt-rule-hdr">
+          <span>Crypto / AI / World News Keywords &amp; Region</span>
+          <label class="rrs-switch"><input id="flt-news-kw-on" type="checkbox" /><span class="rrs-slider"></span></label>
+        </div>
+        <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:6px;">
+          <input id="flt-news-kw" class="flt-inp" type="text" value="SOL,BTC,ETF,GEMINI" placeholder="News Keywords" style="width:100%;" />
+          <input id="flt-world-reg" class="flt-inp" type="text" value="US,CA,GLOBAL" placeholder="World Filter" style="width:100%;" />
+        </div>
+      </div>
+
+      <div class="btn-row-2" style="margin-top:7px;">
+        <button id="flt-save-btn" class="btn btn-green" type="button" style="padding:7px 6px;font-size:10px;">Save Filters</button>
+        <button id="flt-reset-btn" class="btn-sm" type="button">Reset Defaults</button>
       </div>
       <div id="flt-saved-msg" style="display:none;margin-top:5px;text-align:center;font-size:9.6px;font-weight:800;color:#00FFA3;">
-        Filters saved &amp; synced to Extension + Windows Corner Notifier!
+        Filters saved &amp; synced!
       </div>
+
+      <!-- COLLAPSED LOCAL FOUNDER DESK DRAWER -->
+      <details id="founderDeskDrawer" class="founder-drawer">
+        <summary id="founderDeskSummary">
+          <span>Founder Desk <span id="founderApprovalInlineBadge" style="display:none;background:#facc15;color:#020408;padding:1px 6px;border-radius:999px;font-size:8.8px;margin-left:4px;">0 Waiting</span></span>
+        </summary>
+        <div class="founder-drawer-body">
+          <div style="font-size:8.9px;color:#94a3b8;margin-bottom:5px;">Local Command Deck switches (127.0.0.1:18088):</div>
+          <div class="flt-row">
+            <span style="color:#00FFA3;">DEX-6 Moonbags</span>
+            <label class="rrs-switch"><input id="flt-cat-moonbag" type="checkbox" /><span class="rrs-slider"></span></label>
+          </div>
+          <div class="flt-row">
+            <span style="color:#7dd3fc;">Live Website Visitors</span>
+            <label class="rrs-switch"><input id="flt-cat-visitor" type="checkbox" /><span class="rrs-slider"></span></label>
+          </div>
+          <div class="btn-row-2" style="margin-top:7px;">
+            <button id="founder-send-test-bubble" type="button" class="btn btn-green" style="padding:6px 6px;font-size:9.8px;">Send Test Bubble</button>
+            <button id="founder-open-deck-btn" type="button" class="btn-sm" style="border-color:#facc15;color:#fde047;">Open 18088 Deck</button>
+          </div>
+        </div>
+      </details>
     </div>
 
     <div class="card-cyan" style="margin-bottom:0;">
@@ -320,11 +423,11 @@
       </div>
       <div class="pref-row">
         <div>
-          <div style="font-weight:800;">Audio Chime Alert</div>
-          <div class="pref-sub">Play warning tone on risky swaps &amp; scans (Default OFF)</div>
+          <div style="font-weight:800;">Audio Chime Tone</div>
+          <div class="pref-sub">Short tone on risky swaps &amp; scans (Default OFF, Zero Voice)</div>
         </div>
         <div style="display:flex;align-items:center;gap:5px;">
-          <button id="pop-test-chime" class="nav-btn" type="button">Test</button>
+          <button id="pop-test-chime" class="nav-btn" type="button">Tone</button>
           <input id="pop-pref-audio" type="checkbox" style="width:15px;height:15px;accent-color:#00FFA3;" />
         </div>
       </div>
@@ -359,45 +462,29 @@
     </div>
   </div>
 
-  <!-- VIEW 3: CARBON CYBERSECURITY CERTIFICATION -->
-  <div id="pop-view-carbon" style="display:none;">
-    <div class="card" style="margin-bottom:0;">
-      <div class="sec-title">
-        <span>Carbon Cybersecurity Certification</span>
-        <span style="font-size:9px;color:#fde047;">v5.3.0 Verified</span>
-      </div>
-      <div style="font-size:10.3px;color:#cbd5e1;line-height:1.45;margin-bottom:7px;">
-        Institutional-grade <b>12-Layer Adaptive Pre-Buy Defense</b> with <b>100% Non-Custodial Zero-Key</b> architecture.
-      </div>
-      <div style="background:#020408;border:1px solid #1e293b;border-radius:8px;padding:7px 8px;font-size:9.9px;color:#e2e8f0;line-height:1.46;">
-        * <b>L1-L3 Authority &amp; Supply:</b> Mint Auth, Freeze Auth &amp; Top-Holder Concentration<br/>
-        * <b>L4-L5 Liquidity Gate:</b> Liq/MC Trap Ratio &amp; Burned/Locked LP Check<br/>
-        * <b>L6-L8 Program Safety:</b> Token-2022 Hooks, Spoof Guard &amp; Inner-CPI Drainer Simulation<br/>
-        * <b>L9-L10 Market Health:</b> True Pool Age &amp; Organic Buy/Sell Velocity<br/>
-        * <b style="color:#00FFA3;">L11-L12 Block-0 Sybil &amp; Clipboard Defense:</b> Bundled sniper ring + Clipper/Vanity guard
-      </div>
-    </div>
-  </div>
-
-  <!-- VIEW 4: R&D LEDGER -->
+  <!-- VIEW 3: R&D LEDGER -->
   <div id="pop-view-rnd" style="display:none;">
     <div class="card-cyan" style="margin-bottom:0;">
       <div class="sec-title">
         <span style="color:#fde047;">SHA-256 Verified Engineering &amp; Compute Ledger</span>
         <span style="font-size:9px;color:#00FFA3;">Mainnet Attested</span>
       </div>
-      <div style="font-size:10.2px;color:#cbd5e1;line-height:1.42;margin-bottom:6px;">
-        Verified ledger: <b>898 Founder Hrs</b> + <b>5,501 Parallel AI &amp; Multi-Core Compute Hrs</b> across SPL rent reclamation, Token-2022 hook inspection, inner-CPI drainer defense, and Block-0 Sybil detection.
+      <div style="font-size:10.2px;color:#cbd5e1;line-height:1.45;margin-bottom:7px;">
+        Verified ledger: <b>898 Founder Hrs</b> + <b>5,501 Parallel AI &amp; Multi-Core Compute Hrs</b> across SPL rent reclamation, <b>12-Layer Live Chart Badges</b>, Token-2022 hook inspection, inner-CPI drainer defense, Block-0 Sybil detection, and <b>Clipboard &amp; Fake-Wallet Guard</b>.
+      </div>
+      <div style="background:#020408;border:1px solid #1e293b;border-radius:8px;padding:7px 8px;font-size:9.9px;color:#e2e8f0;line-height:1.46;">
+        * <b>L1-L3 Authority &amp; Supply:</b> Mint Auth, Freeze Auth &amp; Top-Holder Concentration<br/>
+        * <b>L4-L5 Liquidity Gate:</b> Liq/MC Trap Ratio &amp; Burned/Locked LP Check<br/>
+        * <b>L6-L8 Program Safety:</b> Token-2022 Hooks, Spoof Guard &amp; Inner-CPI Drainer Simulation<br/>
+        * <b>L9-L10 Market Health:</b> True Pool Age &amp; Organic Buy/Sell Velocity<br/>
+        * <b style="color:#00FFA3;">L11-L12 Sybil &amp; Clipboard &amp; Fake-Wallet Guard:</b> Block-0 sniper ring + Clipper/Phishing block
       </div>
     </div>
   </div>
 
   <div class="ftr">
-    <span>100% Non-Custodial | Zero Keys</span>
-    <div>
-      <a href="https://rentandrugshield.com/privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a> |
-      <a href="https://rentandrugshield.com/app.html" target="_blank" rel="noopener noreferrer">Web App</a>
-    </div>
+    <span>100% Non-Custodial | Zero Robotic Voice</span>
+    <a href="https://rentandrugshield.com" target="_blank" rel="noopener noreferrer" style="color:#D4AF37;font-weight:900;">rentandrugshield.com</a>
   </div>
 
   <script src="popup.js"></script>

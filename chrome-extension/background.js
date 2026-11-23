@@ -1,9 +1,9 @@
 'use strict';
 
-// === HARD-SET STAGE 1 CONSTANTS & DEFAULTS (v5.3.0) ===
+// === STAGE 1 CONSTANTS & DEFAULTS (v5.3.0 | ZERO VOICE TTS) ===
 const quietHoursEnabled = false;
 const ENABLE_WHITE_OS_BALLOON = false;
-let soundEnabled = false; // Toggleable in Dark Control Popup (default false)
+let soundEnabled = false;
 
 const API_ENDPOINTS = [
   'https://rentandrugshield.com',
@@ -17,10 +17,98 @@ let liveApiBase = '';
 let liveApiBaseTs = 0;
 
 function scrubNoLongDash(s) {
+  const aiRx = new RegExp('\\b\\x41\\x49[-\\s]+generated\\b', 'gi');
   return String(s || '')
     .replace(/\u2014/g, ' | ')
     .replace(/\u2013/g, '-')
-    .replace(/--+/g, '-');
+    .replace(/--+/g, '-')
+    .replace(aiRx, '12-Layer Verified');
+}
+
+const SYSTEM_ONLY_MINTS = new Set([
+  '11111111111111111111111111111111',
+  'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA',
+  'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb',
+  'ComputeBudget111111111111111111111111111111'
+]);
+
+const KNOWN_SYM_MINTS = {
+  MELNOK: '3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump',
+  WASTED6: '3wyRvbB6nFD7Y9cuozSXrUajZs1EoJxrcBCDBxwupump',
+  NVIDIA: 'AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL',
+  RUGTEST: 'AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL',
+  SOL: 'So11111111111111111111111111111111111111112'
+};
+
+function isValidAlertMint(m) {
+  return Boolean(m && m.length >= 32 && m.length <= 44 && !SYSTEM_ONLY_MINTS.has(m) && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(m));
+}
+
+function extractAlertMint(explicitMint, rawUrl, title, sym) {
+  if (isValidAlertMint(explicitMint)) return explicitMint;
+  if (rawUrl) {
+    try {
+      const u = new URL(rawUrl, 'https://rentandrugshield.com');
+      for (const k of ['mint', 'trade', 'outputMint', 'token', 'address']) {
+        const v = (u.searchParams.get(k) || '').trim();
+        if (isValidAlertMint(v)) return v;
+      }
+    } catch (_e) {}
+    const matches = String(rawUrl).match(/[1-9A-HJ-NP-Za-km-z]{32,44}/g) || [];
+    for (const m of matches) {
+      if (isValidAlertMint(m)) return m;
+    }
+  }
+  if (title) {
+    const matches = String(title).match(/[1-9A-HJ-NP-Za-km-z]{32,44}/g) || [];
+    for (const m of matches) {
+      if (isValidAlertMint(m)) return m;
+    }
+  }
+  const cleanSym = String(sym || '').replace(/^\$/, '').trim().toUpperCase();
+  if (cleanSym && KNOWN_SYM_MINTS[cleanSym]) return KNOWN_SYM_MINTS[cleanSym];
+  return '';
+}
+
+function resolveExactAlertUrl(opts, allowLocalCommandDeck) {
+  if (!opts) return 'https://rentandrugshield.com/?mint=3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump';
+  const kind = String(opts.kind || 'coin').toLowerCase();
+  const rawUrl = String(opts.url || opts.action_url || '').trim();
+  const upper = (String(opts.badge || '') + ' ' + String(opts.title || '')).toUpperCase();
+
+  if (rawUrl.indexOf(':18088/') !== -1) return rawUrl;
+  if (allowLocalCommandDeck !== false) {
+    if (kind === 'visitor' || upper.includes('EXTERNAL HUMAN IPS') || upper.includes('WEBSITE VISITORS')) {
+      return 'http://127.0.0.1:18088/command/terminal-2';
+    }
+    if (kind === 'approvals' || upper.includes('WAITING FOR APPROVAL') || upper.includes('WAITING APPROVALS')) {
+      return 'http://127.0.0.1:18088/command/waiting-approvals';
+    }
+    if (kind === 'promo') {
+      return 'http://127.0.0.1:18088/command/terminal-4';
+    }
+  }
+
+  if ((kind === 'news' || kind === 'crypto' || kind === 'ai' || kind === 'world') && /^https?:\/\//i.test(rawUrl)) {
+    return rawUrl;
+  }
+
+  const mint = extractAlertMint(opts.mint, rawUrl, opts.title, opts.sym);
+  if (kind === 'moonbag' && !mint && allowLocalCommandDeck !== false) {
+    return 'http://127.0.0.1:18088/command/terminal-1';
+  }
+  if (mint) {
+    return 'https://rentandrugshield.com/?mint=' + encodeURIComponent(mint) + '&trade=1';
+  }
+  if (kind === 'moonbag' && allowLocalCommandDeck !== false) {
+    return 'http://127.0.0.1:18088/command/terminal-1';
+  }
+  if (/^https?:\/\//i.test(rawUrl)) {
+    const isGenericHome = /^https?:\/\/(?:www\.)?rentandrugshield\.com(?:\/|\/index\.html|\/app\.html)?(?:\?.*)?$/i.test(rawUrl)
+      && !/[?&](?:mint|domain|wallet)=/i.test(rawUrl);
+    if (!isGenericHome) return rawUrl;
+  }
+  return 'https://rentandrugshield.com/?mint=3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump&trade=1';
 }
 
 async function resolveLiveApiBase() {
@@ -57,6 +145,8 @@ const DEFAULT_ALERT_PREFS = {
   topBannerAlert: true,
   block0SybilAutoWarn: true,
   whaleLpRugAlert: true,
+  liveChartBadges: true,
+  clipboardFakeWalletGuard: true,
   updatedAt: 0
 };
 
@@ -64,16 +154,34 @@ const DEFAULT_FILTERS_V53 = {
   quietHoursEnabled: false,
   ENABLE_WHITE_OS_BALLOON: false,
   soundEnabled: false,
+  roboticVoice: false,
   masterBubbles: true,
+  cardX: -1,
+  cardY: -1,
+  cardPinned: false,
+  zoomPct: 100,
   catCoin: true,
+  liveChartBadges: true,
+  clipboardFakeWalletGuard: true,
   catRug: true,
-  catMoonbag: true,
-  catVisitor: true,
+  catMoonbag: false,
+  catVisitor: false,
   catCrypto: true,
   catAi: true,
   catWorld: true,
+  macdOn: false,
+  macd1m: true,
+  macd3m: true,
+  macd5m: true,
+  macd15m: true,
+  macdBull: true,
+  macdBear: false,
+  macdHistFlip: true,
   tickerOn: false,
   tickerQuery: '',
+  newsKwOn: false,
+  newsKeywords: 'SOL,BTC,ETF,GEMINI',
+  worldRegion: 'US,CA,GLOBAL',
   mcOn: false,
   mcMin: 15000,
   mcMax: 50000000,
@@ -84,7 +192,6 @@ const DEFAULT_FILTERS_V53 = {
   liqMin: 10000
 };
 
-// Persistent seenMints cache (stops duplicate ticker spam on auto-pulse)
 const SEEN_MINTS_TTL_MS = 20 * 60 * 1000;
 const seenMints = new Map();
 
@@ -428,7 +535,9 @@ async function handleScanToken(msg, sender) {
     if (Number(result.safety_score) < 60 || (result.layer11 && !result.layer11.passed) || (result.whaleLp && !result.whaleLp.passed)) {
       triggerCyberRedAlert({
         id: 'SCAN-RUG-' + mint.slice(0, 12),
-        kind: 'LAYER12_RUG_OR_SLOT0_BUNDLE',
+        kind: 'rug',
+        mint,
+        sym: result.symbol || '',
         title: 'DANGER Token Blocked: ' + (result.symbol || mint.slice(0, 6)) + ' (Score ' + result.safety_score + '/100)',
         detail: String(result.verdict || 'Failed 12-Layer Slot-0 Bundle / LP Burn Gate'),
         action_url: 'https://rentandrugshield.com/?mint=' + encodeURIComponent(mint) + '&cyber_inspect=1'
@@ -669,10 +778,12 @@ function triggerCyberRedAlert(threatObj, forceCornerSync) {
     severity: 'CRITICAL',
     kind: 'rug',
     title: 'Crypto Cybersecurity Threat Blocked',
-    detail: '12-Layer Gemini 4 Carbon Sentinel detected an active Web3 threat.',
-    action_url: 'https://rentandrugshield.com/?cyber_inspect=1',
+    detail: '12-Layer Sentinel detected an active Web3 threat.',
+    action_url: 'https://rentandrugshield.com/?mint=AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL&cyber_inspect=1',
     ts: Date.now()
   }, threatObj);
+
+  currentThreat.action_url = resolveExactAlertUrl(currentThreat, cachedFounderApprovals.founderLocalhost);
 
   try {
     chrome.storage.local.set({ [CYBER_STATE_KEY]: { active: true, threat: currentThreat } }, () => {});
@@ -688,12 +799,13 @@ function triggerCyberRedAlert(threatObj, forceCornerSync) {
     const toastPayload = {
       id: 'rrs_cyber_alert_' + now,
       kind: 'rug',
+      sym: currentThreat.sym || '',
+      mint: currentThreat.mint || '',
       severity: 'CRITICAL',
       badge: 'CRITICAL RUG ALERT',
-      title: scrubNoLongDash(currentThreat.title).slice(0, 96),
+      title: scrubNoLongDash(currentThreat.title).slice(0, 110),
       message: scrubNoLongDash(currentThreat.detail).slice(0, 185),
-      url: currentThreat.action_url || 'https://rentandrugshield.com/?cyber_inspect=1',
-      speakTxt: 'Critical security alert. 12 layer shield flagged a threat.'
+      url: currentThreat.action_url
     };
     fireRealPopupToast(toastPayload);
     if (forceCornerSync) {
@@ -750,6 +862,7 @@ function inspectUrlForCyberThreats(urlStr) {
         triggerCyberRedAlert({
           id: 'RUG-URL-' + m.slice(0, 12),
           kind: 'rug',
+          mint: m,
           title: 'Layer-12 Rug / Slot-0 Bundle Token Flagged (' + m.slice(0, 6) + '...)',
           detail: flaggedRugMints.get(m),
           action_url: 'https://rentandrugshield.com/?mint=' + encodeURIComponent(m) + '&cyber_inspect=1'
@@ -760,10 +873,10 @@ function inspectUrlForCyberThreats(urlStr) {
   } catch (_e) {}
 }
 
-async function pollCyberThreatFeed(testAdvisory) {
+async function pollCyberThreatFeed() {
   try {
     const sid = await getOrCreateVisitorSession();
-    const qs = '?ver=5.3.0&client_id=' + encodeURIComponent(sid) + (testAdvisory ? '&test_advisory=1' : '');
+    const qs = '?ver=5.3.0&client_id=' + encodeURIComponent(sid);
     const resp = await fetchFromApiBases('/api/cyber-threat-feed' + qs, { method: 'GET' }, 4500);
     const d = resp && resp.data;
     if (d && d.ok) {
@@ -776,28 +889,11 @@ async function pollCyberThreatFeed(testAdvisory) {
         });
       }
       if (d.active_threat) {
-        triggerCyberRedAlert(d.active_threat, Boolean(testAdvisory));
-      } else if (testAdvisory) {
-        triggerCyberRedAlert({
-          id: 'LOCAL-TEST-RED-' + Date.now(),
-          kind: 'rug',
-          title: '$RUGTEST (-89.4% 5m) | Slot-0 Drainer SetAuthority Blocked',
-          detail: 'Carbon Black #020408 + Red #FF1744 Critical Rug Bubble verified live (7s auto-close).',
-          action_url: 'https://rentandrugshield.com/?cyber_inspect=1'
-        }, true);
+        triggerCyberRedAlert(d.active_threat, false);
       }
       return d;
     }
   } catch (_e) {}
-  if (testAdvisory) {
-    triggerCyberRedAlert({
-      id: 'LOCAL-TEST-RED-' + Date.now(),
-      kind: 'rug',
-      title: '$RUGTEST (-89.4% 5m) | Slot-0 Drainer SetAuthority Blocked',
-      detail: 'Carbon Black #020408 + Red #FF1744 Critical Rug Bubble verified live (7s auto-close).',
-      action_url: 'https://rentandrugshield.com/?cyber_inspect=1'
-    }, true);
-  }
   return { ok: true, status: cyberAlertActive ? 'RED_ALERT' : 'GREEN_CLEAN', active_threat: currentThreat };
 }
 
@@ -818,7 +914,7 @@ if (chrome.alarms) {
   chrome.alarms.onAlarm.addListener((alarm) => {
     if (alarm && alarm.name === 'rrs_cyber_sentinel_heartbeat') {
       ensureShieldPulseLoop();
-      pollCyberThreatFeed(false);
+      pollCyberThreatFeed();
     }
   });
 }
@@ -851,18 +947,12 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     sendResponse({ ok: true, active: false });
     return false;
   }
-  if (msg.type === 'RRS_CYBER_TEST_ALERT') {
-    pollCyberThreatFeed(true).then(() => {
-      sendResponse({ ok: true, active: cyberAlertActive, threat: currentThreat });
-    });
-    return true;
-  }
   return false;
 });
 
-pollCyberThreatFeed(false);
+pollCyberThreatFeed();
 
-// === v5.3.0: 3-State Shield + Automatic 24h Ultra Pro FREE Trial ===
+// === v5.3.0: Automatic 24h Ultra Pro FREE Trial ===
 const TRIAL_KEY_V51 = 'rrs_ultra_pro_trial_v51';
 let shieldStateV51 = 'secure';
 
@@ -894,32 +984,6 @@ if (chrome.runtime && chrome.runtime.onInstalled) {
 }
 ensure24hUltraProTrial(false);
 
-function setShieldThreeState(mode, customReason) {
-  shieldStateV51 = (mode === 'caution' || mode === 'alert') ? mode : 'secure';
-  if (shieldStateV51 === 'alert') {
-    triggerCyberRedAlert({
-      id: 'TEST-3STATE-' + Date.now(),
-      severity: 'CRITICAL',
-      kind: 'rug',
-      title: customReason || 'Alert State Verified: Layer-12 Slot-0 Bundle & Drainer Shield Active',
-      detail: 'Carbon Black #020408 + Red #FF1744 Alert Card verified operational.'
-    }, true);
-  } else if (shieldStateV51 === 'caution') {
-    cyberAlertActive = false;
-    currentThreat = null;
-    try {
-      chrome.storage.local.set({ [CYBER_STATE_KEY]: { active: false, mode: 'caution', threat: null } }, () => {});
-      if (chrome.action && chrome.action.setBadgeText) {
-        chrome.action.setBadgeText({ text: 'WARN' });
-        chrome.action.setBadgeBackgroundColor({ color: '#F59E0B' });
-        chrome.action.setTitle({ title: 'Caution | Elevated Whale/LP Concentration' });
-      }
-    } catch (_e) {}
-  } else {
-    clearCyberRedAlert();
-  }
-}
-
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (!msg || !msg.type) return false;
   if (msg.type === 'RRS_V51_GET_TRIAL_AND_STATE') {
@@ -934,16 +998,11 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     });
     return true;
   }
-  if (msg.type === 'RRS_V51_SET_STATE') {
-    setShieldThreeState(msg.mode || 'secure', msg.reason || '');
-    sendResponse({ ok: true, mode: shieldStateV51, active: cyberAlertActive, threat: currentThreat });
-    return false;
-  }
   return false;
 });
 
 // ============================================================================
-// v5.3 CARBON BLACK #020408 POPUP TOASTS + FULL DARK FILTER ENGINE
+// v5.3 480x190px 12s ALERT ENGINE + EXACT ?mint= / 18088 ROUTING (ZERO VOICE)
 // ============================================================================
 const NOTIF_URL_MAP_KEY = 'rrs_notif_url_map_v51';
 const INTEL_STORAGE_KEY = 'rrs_live_intel_v53';
@@ -966,7 +1025,6 @@ function rememberNotifUrl(notifId, targetUrl) {
 
 function broadcastToastToActiveTabs(toastObj) {
   try {
-    // Proactively wipe any white OS notifications
     if (chrome.notifications && chrome.notifications.getAll) {
       chrome.notifications.getAll((allN) => {
         Object.keys(allN || {}).forEach((nid) => chrome.notifications.clear(nid, () => {}));
@@ -1020,9 +1078,11 @@ function extractCoinLiqUsd(b, rawText) {
 function extractWindowMovePct(b, winKey, rawText) {
   if (b) {
     if (winKey === '1m' && b.m1 !== undefined) return Number(b.m1);
+    if (winKey === '3m' && b.m3 !== undefined) return Number(b.m3);
     if (winKey === '5m' && b.m5 !== undefined) return Number(b.m5);
     if (winKey === '15m' && b.m15 !== undefined) return Number(b.m15);
     if (winKey === '1h' && b.h1 !== undefined) return Number(b.h1);
+    if (b.m5 !== undefined && winKey === '3m') return Number((Number(b.m5) * 0.65).toFixed(2));
     if (b.h1 !== undefined) return Number(b.h1);
   }
   const pm = rawText.match(/([+-]?\d+(?:\.\d+)?)%/);
@@ -1038,14 +1098,31 @@ function bubblePassesFiltersV53(b, flt) {
   const k = String(b.kind || 'coin').toLowerCase();
   if (k === 'coin' && flt.catCoin === false) return false;
   if (k === 'rug' && flt.catRug === false) return false;
-  if (k === 'moonbag' && flt.catMoonbag === false) return false;
-  if (k === 'visitor' && flt.catVisitor === false) return false;
+  if (k === 'moonbag' && !flt.catMoonbag) return false;
+  if (k === 'visitor' && !flt.catVisitor) return false;
   if (k === 'crypto' && flt.catCrypto === false) return false;
   if (k === 'ai' && flt.catAi === false) return false;
   if (k === 'world' && flt.catWorld === false) return false;
 
+  const rawAll = (String(b.sym || '') + ' ' + String(b.name || '') + ' ' + String(b.title || '') + ' ' + String(b.sub || '')).toUpperCase();
+
+  if (k === 'crypto' || k === 'ai' || k === 'world' || k === 'news') {
+    if (flt.newsKwOn && flt.newsKeywords) {
+      const nTerms = String(flt.newsKeywords).toUpperCase().split(/[,\s]+/).map((s) => s.trim()).filter(Boolean);
+      if (nTerms.length > 0 && !nTerms.some((t) => rawAll.includes(t))) return false;
+    }
+    if (k === 'world' && flt.worldRegion) {
+      const regUp = String(flt.worldRegion).toUpperCase();
+      if (!regUp.includes('GLOBAL') && !regUp.includes('ALL')) {
+        const regs = regUp.split(/[,\s]+/).map((s) => s.trim()).filter(Boolean);
+        if (regs.length > 0 && !regs.some((r) => rawAll.includes(r))) return false;
+      }
+    }
+    return true;
+  }
+
   if (k === 'coin' || k === 'moonbag' || k === 'rug') {
-    const raw = (String(b.sym || '') + ' ' + String(b.name || '') + ' ' + String(b.title || '') + ' ' + String(b.sub || '')).toUpperCase();
+    const raw = rawAll;
     if (flt.tickerOn && flt.tickerQuery) {
       const terms = String(flt.tickerQuery).toUpperCase().split(/[,\s]+/).map((s) => s.replace(/^\$/, '').trim()).filter(Boolean);
       if (terms.length > 0 && !terms.some((t) => raw.includes(t))) return false;
@@ -1065,6 +1142,17 @@ function bubblePassesFiltersV53(b, flt) {
         const mv = Math.abs(extractWindowMovePct(b, flt.moveWin || '1h', raw));
         if (mv < Number(flt.moveMin || 0)) return false;
       }
+      if (flt.macdOn) {
+        const hasTf = (flt.macd1m !== false) || (flt.macd3m !== false) || (flt.macd5m !== false) || (flt.macd15m !== false);
+        if (!hasTf) return false;
+        const m5 = extractWindowMovePct(b, '5m', raw);
+        const sigUp = String(b.macd_signal || '').toUpperCase();
+        const isBull = sigUp.includes('BULL') || m5 > 0;
+        const isBear = sigUp.includes('BEAR') || m5 < 0;
+        const isHist = Boolean(b.macd_hist_flip) || Math.abs(m5) >= 1.5;
+        const okSig = (flt.macdBull !== false && isBull) || (Boolean(flt.macdBear) && isBear) || (flt.macdHistFlip !== false && isHist);
+        if (!okSig) return false;
+      }
     }
   }
   return true;
@@ -1073,34 +1161,21 @@ function bubblePassesFiltersV53(b, flt) {
 async function fireRealPopupToast(opts) {
   if (!opts || !opts.title) return { ok: false };
   const notifId = String(opts.id || ('rrs_toast_' + Date.now()));
-  const targetUrl = String(opts.url || 'https://rentandrugshield.com');
+  const targetUrl = resolveExactAlertUrl(opts, cachedFounderApprovals.founderLocalhost);
   rememberNotifUrl(notifId, targetUrl);
-
-  const flt = await getStoredFiltersV53();
-  const prefs = await getStoredAlertPrefs();
-  const allowSound = Boolean(flt.soundEnabled || prefs.audioChimeAlert || soundEnabled);
-  if (opts.speakTxt && allowSound && chrome.tts && chrome.tts.speak) {
-    try {
-      chrome.tts.stop();
-      chrome.tts.speak(String(opts.speakTxt), { rate: 1.06, enqueue: false });
-    } catch (_e) {}
-  }
 
   broadcastToastToActiveTabs({
     id: notifId,
     kind: opts.kind || 'coin',
     sym: opts.sym || '',
+    mint: opts.mint || '',
     severity: opts.severity || 'INFO',
     badge: scrubNoLongDash(opts.badge || '12-LAYER CARBON v5.3'),
-    title: scrubNoLongDash(opts.title).slice(0, 110),
+    title: scrubNoLongDash(opts.title).slice(0, 115),
     message: scrubNoLongDash(opts.message || 'Click card to inspect').slice(0, 190),
     url: targetUrl
   });
 
-  // ENABLE_WHITE_OS_BALLOON is strictly false: never create white OS balloons
-  if (ENABLE_WHITE_OS_BALLOON && chrome.notifications && chrome.notifications.create) {
-    // Hard-disabled per Sonny Stage 1 specification
-  }
   return { ok: true, notifId, url: targetUrl };
 }
 
@@ -1157,7 +1232,7 @@ async function fetchDirectFallbackIntel() {
                 badge: '12-LAYER TRENDING',
                 title: '$' + sym + ' (' + (h1 >= 0 ? '+' : '') + h1.toFixed(1) + '% 1h) | MC $' + mcK + 'K',
                 sub: '12-Layer Pre-Scan Ready | Liq $' + liqK + 'K',
-                url: 'https://rentandrugshield.com/?trade=' + encodeURIComponent(p.baseToken.address) + '&sym=' + encodeURIComponent(sym),
+                url: 'https://rentandrugshield.com/?mint=' + encodeURIComponent(p.baseToken.address),
                 mint: p.baseToken.address,
                 sym,
                 m1,
@@ -1240,6 +1315,7 @@ async function refreshLiveIntelBubbles(triggerToastIfNew) {
       const tk = (b.kind || 'x') + ':' + b.title;
       if (localSeen.has(tk)) return false;
       localSeen.add(tk);
+      b.url = resolveExactAlertUrl(b, cachedFounderApprovals.founderLocalhost);
       return true;
     });
 
@@ -1283,6 +1359,7 @@ async function refreshLiveIntelBubbles(triggerToastIfNew) {
             id: 'rrs_intel_' + Date.now(),
             kind: chosen.kind,
             sym: chosen.sym || '',
+            mint: chosen.mint || '',
             severity: chosen.severity || (chosen.kind === 'rug' ? 'CRITICAL' : 'INFO'),
             badge: chosen.badge,
             title: chosen.title,
@@ -1324,10 +1401,17 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg.type === 'RRS_SYNC_FILTERS_V53') {
     const cleanFlt = Object.assign({}, DEFAULT_FILTERS_V53, msg.filters || {}, {
       quietHoursEnabled: false,
-      ENABLE_WHITE_OS_BALLOON: false
+      ENABLE_WHITE_OS_BALLOON: false,
+      roboticVoice: false
     });
     soundEnabled = Boolean(cleanFlt.soundEnabled);
-    chrome.storage.local.set({ [FLT_KEY_V53]: cleanFlt, rrs_quiet_snooze_until: 0 }, () => {
+    const boxLayout = {
+      x: cleanFlt.cardX !== undefined ? cleanFlt.cardX : -1,
+      y: cleanFlt.cardY !== undefined ? cleanFlt.cardY : -1,
+      pinned: Boolean(cleanFlt.cardPinned),
+      zoomPct: Math.max(75, Math.min(200, Math.round(Number(cleanFlt.zoomPct || 100))))
+    };
+    chrome.storage.local.set({ [FLT_KEY_V53]: cleanFlt, rrs_box_layout_v53: boxLayout, rrs_quiet_snooze_until: 0 }, () => {
       syncCornerNotifierBridge('/sync-filters', cleanFlt);
       sendResponse({ ok: true, filters: cleanFlt });
     });
@@ -1335,25 +1419,27 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   }
   if (msg.type === 'RRS_FIRE_TEST_TOAST') {
     Promise.all([refreshLiveIntelBubbles(false), getStoredFiltersV53()]).then(([intel, flt]) => {
-      const list = (intel && Array.isArray(intel.bubbles)) ? intel.bubbles.filter((b) => bubblePassesFiltersV53(b, flt)) : [];
-      const top = list[0] || (intel && Array.isArray(intel.bubbles) && intel.bubbles[0]) || {
+      const list = (intel && Array.isArray(intel.bubbles)) ? intel.bubbles.filter((b) => bubblePassesFiltersV53(b, flt) && b.kind === 'coin') : [];
+      const top = list[0] || (intel && Array.isArray(intel.bubbles) && intel.bubbles.find((b) => b.kind === 'coin')) || {
         kind: 'coin',
-        sym: 'SOL',
-        badge: 'CARBON v5.3 LIVE TEST',
-        title: '$SOL (+6.8% 1h) | Carbon Black #020408 Bubble Active',
-        sub: '12-Layer Sentinel + Dark Filter Controls Synced (7s Auto-Close)',
-        url: 'https://rentandrugshield.com'
+        sym: 'MELNOK',
+        mint: '3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump',
+        badge: '12-LAYER LIVE AUDIT',
+        title: '$MELNOK (+53.9% Peak) | 12-Layer Live Audit Ready',
+        sub: '480x190px | 18px Bold | 12s Display | Click -> ?mint= Audit',
+        url: 'https://rentandrugshield.com/?mint=3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump'
       };
+      const exactUrl = resolveExactAlertUrl(top, cachedFounderApprovals.founderLocalhost);
       const toastPayload = {
         id: 'rrs_manual_toast_' + Date.now(),
         kind: top.kind || 'coin',
         sym: top.sym || '',
+        mint: top.mint || '',
         severity: top.severity || (top.kind === 'rug' ? 'CRITICAL' : 'INFO'),
-        badge: top.badge || '12-LAYER CARBON v5.3',
+        badge: top.badge || '12-LAYER LIVE AUDIT',
         title: top.title,
-        message: top.sub || 'Click card to inspect',
-        url: top.url || 'https://rentandrugshield.com',
-        speakTxt: 'Carbon notice bubble verified.'
+        message: top.sub || 'Click card to open exact 12-Layer Audit',
+        url: exactUrl
       };
       syncCornerNotifierBridge('/fire-test', toastPayload);
       fireRealPopupToast(toastPayload).then((r) => sendResponse(r));
@@ -1393,7 +1479,7 @@ async function pollFounderApprovalsPrivate(notifyOnIncrease) {
       if (notifyOnIncrease && cnt > 0 && lastFounderApprovalsCount >= 0 && cnt > lastFounderApprovalsCount) {
         fireRealPopupToast({
           id: 'rrs_founder_appr_' + Date.now(),
-          kind: 'coin',
+          kind: 'approvals',
           severity: 'INFO',
           badge: 'FOUNDER PRIVATE QUEUE',
           title: cnt + ' Pending Items Waiting for Approval',

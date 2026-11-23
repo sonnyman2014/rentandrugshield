@@ -9,11 +9,14 @@
 
   const DEFAULT_ALERT_PREFS = {
     riskCutoff: 75,
-    audioChimeAlert: true,
+    audioChimeAlert: false,
     topBannerAlert: true,
     block0SybilAutoWarn: true,
-    whaleLpRugAlert: true
+    whaleLpRugAlert: true,
+    liveChartBadges: true,
+    clipboardFakeWalletGuard: true
   };
+  window.__RRS_CLIPBOARD_GUARD_ENABLED__ = true;
 
   const BASE_QUOTE_MINTS = new Set([
     'So11111111111111111111111111111111111111112',
@@ -586,6 +589,9 @@
     if (ban) ban.checked = Boolean(currentPrefs.topBannerAlert);
     if (syb) syb.checked = Boolean(currentPrefs.block0SybilAutoWarn);
     if (whl) whl.checked = Boolean(currentPrefs.whaleLpRugAlert);
+    window.__RRS_CLIPBOARD_GUARD_ENABLED__ = currentPrefs.clipboardFakeWalletGuard !== false;
+    const fRoot = document.getElementById('rrs-floating-shield-root');
+    if (fRoot) fRoot.style.display = (currentPrefs.liveChartBadges === false) ? 'none' : '';
   }
 
   function wireUIEvents() {
@@ -1002,6 +1008,7 @@
   }
 
   document.addEventListener('paste', (ev) => {
+    if (window.__RRS_CLIPBOARD_GUARD_ENABLED__ === false) return;
     try {
       const pasted = (ev.clipboardData || window.clipboardData).getData('text') || '';
       if (DRAINER_RX.test(pasted)) {
@@ -1167,6 +1174,7 @@
   }, true);
 
   document.addEventListener('paste', (ev) => {
+    if (window.__RRS_CLIPBOARD_GUARD_ENABLED__ === false) return;
     try {
       const pasted = String((ev.clipboardData || window.clipboardData).getData('text') || '').trim();
       const m = pasted.match(/^[1-9A-HJ-NP-Za-km-z]{32,44}$/);
