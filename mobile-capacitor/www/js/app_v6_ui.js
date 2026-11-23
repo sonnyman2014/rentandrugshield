@@ -937,6 +937,11 @@
     if (drawer) drawer.classList.add('open');
     haptic('light');
 
+    const pol = document.permissionsPolicy || document.featurePolicy;
+    if (pol && typeof pol.allowsFeature === 'function' && !pol.allowsFeature('camera')) {
+      if (status) status.textContent = 'Camera blocked by document policy | Upload a QR image or tap Test QR Payload below.';
+      return;
+    }
     if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== 'function') {
       if (status) status.textContent = 'Camera stream unavailable in headless browser | Use Scan QR Image or Test QR Payload below.';
       return;
