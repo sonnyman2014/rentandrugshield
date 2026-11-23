@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solana 12層 Token-2022 ハニーポット・PermanentDelegate・凍結権限 監査ガイド | Rent &amp; Rug Shield</title>
-  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
+  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#020408" />
   <link rel="canonical" href="https://rentandrugshield.com/ja/token-2022-honeypot-freeze-authority-audit-guide.html" />
@@ -20,13 +20,13 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
   <meta property="og:title" content="Solana 12層 Token-2022 ハニーポット・PermanentDelegate・凍結権限 監査ガイド" />
-  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
+  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09." />
   <meta property="og:url" content="https://rentandrugshield.com/ja/token-2022-honeypot-freeze-authority-audit-guide.html" />
   <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:title" content="Solana 12層 Token-2022 ハニーポット・PermanentDelegate・凍結権限 監査ガイド" />
-  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
+  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09." />
   <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "Solana 12層 Token-2022 ハニーポット・PermanentDelegate・凍結権限 監査ガイド", "description": "Solana Token-2022 の危険な拡張機能 (PermanentDelegate による資産没収、TransferHook 売却拒否、100% 送金税、FreezeAuthority 凍結、Slot-0 バンドル) を 120ms 未満で検知する技術ガイド。", "inLanguage": "ja", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://rentandrugshield.com/ja/token-2022-honeypot-freeze-authority-audit-guide.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "author": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "publisher": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "logo": {"@type": "ImageObject", "url": "https://rentandrugshield.com/favicon.png"}, "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Token-2022 の PermanentDelegate とは何ですか?", "acceptedAnswer": {"@type": "Answer", "text": "Read-only Solana audit & rent check (0 wallet connect needed). Native SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4%-5%)."}}, {"@type": "Question", "name": "凍結されたスキャム口座が 1 つあると他の空口座の SOL も回収できませんか?", "acceptedAnswer": {"@type": "Answer", "text": "いいえ。Rent & Rug Shield は凍結口座を自動的にスキップ・隔離するため、残りの正常な空口座のレントはエラーなしで即座に回収できます。"}}, {"@type": "Question", "name": "12層トークン監査は無料で使えますか?", "acceptedAnswer": {"@type": "Answer", "text": "はい。rentandrugshield.com に任意の Mint アドレスを入力するだけで無料で高速監査を実行できます。"}}]}]}</script>
   <style>
