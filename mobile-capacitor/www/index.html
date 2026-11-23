@@ -476,6 +476,59 @@
       color: var(--gold-bright);
     }
 
+    /* Luxury 24K-Gold & Emerald Pill-Switch Filter Settings */
+    .rrs-pill-lbl {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px 4px 6px;
+      min-height: 32px;
+      border-radius: 999px;
+      background: #060e1b;
+      border: 1px solid rgba(212, 175, 55, 0.34);
+      font-size: 0.76em;
+      font-weight: 800;
+      color: #E2E8F0;
+      cursor: pointer;
+      max-width: 100%;
+    }
+    .rrs-pill-chk {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 32px;
+      height: 18px;
+      margin: 0;
+      border-radius: 999px;
+      background: #111c2d;
+      border: 1.5px solid rgba(148, 163, 184, 0.45);
+      position: relative;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.16s ease, border-color 0.16s ease;
+    }
+    .rrs-pill-chk::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #94A3B8;
+      transition: transform 0.16s ease, background 0.16s ease;
+    }
+    .rrs-pill-chk:checked {
+      background: rgba(0, 255, 163, 0.18);
+      border-color: var(--gold);
+    }
+    .rrs-pill-chk:checked::after {
+      transform: translateX(13px);
+      background: var(--gold-bright);
+    }
+    html[data-native-apk="1"] .rrs-web-only-apk-card {
+      display: none !important;
+    }
+
     .rrs-rpc-row {
       display: flex;
       align-items: center;
@@ -621,10 +674,11 @@
     <main class="rrs-phone-shell" id="rrsPhoneShell">
       <header class="rrs-top-bar">
         <div class="rrs-brand">
-          <div class="rrs-brand-emblem" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L4 5.5V11.5C4 16.8 7.4 21.3 12 22.5C16.6 21.3 20 16.8 20 11.5V5.5L12 2Z" fill="#042f20" stroke="#00FFA3" stroke-width="2"/>
-              <path d="M9 12.2L11.1 14.3L15.4 9.8" stroke="#D4AF37" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <div class="rrs-brand-emblem" aria-hidden="true" style="border-color:#FFD400;box-shadow:0 0 10px rgba(255,212,0,0.28);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M12 1.4L3.2 5.0V11.4C3.2 17.2 6.9 21.8 12 23.0C17.1 21.8 20.8 17.2 20.8 11.4V5.0L12 1.4Z" fill="#020408" stroke="#FFD400" stroke-width="2.1"/>
+              <polygon points="12,5.0 13.3,6.6 12,8.2 10.7,6.6" fill="#FFD400"/>
+              <path d="M8.5 13.0L10.9 15.4L15.8 10.2" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <div class="rrs-brand-txt">
@@ -752,6 +806,10 @@
                 <button type="button" class="rrs-btn rrs-btn-emerald" id="btnSwapJupiter">Jupiter v6 Swap</button>
                 <button type="button" class="rrs-btn rrs-btn-gold" id="btnSwapRaydium">Raydium V4 Swap</button>
               </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;margin-top:6px;padding-top:6px;border-top:1px solid rgba(212,175,55,0.22);">
+                <code id="safeSwapDeepLink" style="font-size:0.72em;color:#D4AF37;word-break:break-all;">?mint=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263&amp;trade=1</code>
+                <button type="button" class="rrs-mini-btn gold" id="btnCopySafeSwapLink">Copy Safe Swap Link</button>
+              </div>
               <div id="swapExecFeedback" class="rrs-subcard" style="display:none;"></div>
             </div>
           </div>
@@ -763,10 +821,26 @@
         <!-- ================================================================ -->
         <section id="screen-radar" class="rrs-screen" aria-label="MACD and Market Radar">
           <div class="rrs-card emerald-rim">
-            <h2 class="rrs-h2">3. Live MACD &amp; Catalyst Radar</h2>
+            <h2 class="rrs-h2">3. Movable MACD &amp; Whale Radar</h2>
             <p class="rrs-lead">
-              Customizable <code>1m/3m/5m/15m</code> MACD Bull/Bear crossover + Histogram flip scanner with Market Cap, Liquidity, <code>% Move</code>, Coin Name, and Keyword/World News filters.
+              Movable &amp; zoomable <code>1m/3m/5m/15m</code> MACD Bull/Bear crossover + Whale Precipice flow radar with Luxury Pill-Switch filters, Market Cap, Liquidity, <code>% Move</code>, Ticker, and World News.
             </p>
+
+            <div class="rrs-subcard" style="margin-top:0;margin-bottom:8px;border-color:rgba(212,175,55,0.38);">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;">
+                <strong style="font-size:0.78em;color:#FFD400;">Movable / Zoomable MACD + Whale Chart</strong>
+                <span id="macdChartHudLabel" class="rrs-pill" style="border-color:#D4AF37;color:#F3CF55;">Zoom 1.0x | Pan 0</span>
+              </div>
+              <canvas id="macdWhaleRadarCanvas" class="rrs-canvas-preview" width="680" height="184" style="touch-action:none;cursor:grab;"></canvas>
+              <div class="rrs-chip-row" style="margin:4px 0 0 0;">
+                <button type="button" class="rrs-chip" id="btnRadarPanLeft">&lt; Pan</button>
+                <button type="button" class="rrs-chip" id="btnRadarPanRight">Pan &gt;</button>
+                <button type="button" class="rrs-chip active" data-radar-zoom="1">1.0x</button>
+                <button type="button" class="rrs-chip" data-radar-zoom="1.5">1.5x</button>
+                <button type="button" class="rrs-chip" data-radar-zoom="2">2.0x</button>
+                <button type="button" class="rrs-chip gold" id="btnRadarCenter">Reset View</button>
+              </div>
+            </div>
 
             <div style="font-size:0.76em;font-weight:800;color:#D4AF37;">MACD Timeframe:</div>
             <div class="rrs-chip-row" id="macdTfBar">
@@ -805,9 +879,10 @@
             </label>
 
             <div class="rrs-chip-row" style="align-items:center;">
-              <label style="font-size:0.78em;font-weight:700;"><input id="chkCatCrypto" type="checkbox" checked /> Crypto</label>
-              <label style="font-size:0.78em;font-weight:700;"><input id="chkCatAi" type="checkbox" checked /> AI News</label>
-              <label style="font-size:0.78em;font-weight:700;"><input id="chkCatWorld" type="checkbox" checked /> World News</label>
+              <label class="rrs-pill-lbl"><input id="chkCatCrypto" class="rrs-pill-chk" type="checkbox" checked /><span>Crypto</span></label>
+              <label class="rrs-pill-lbl"><input id="chkCatAi" class="rrs-pill-chk" type="checkbox" checked /><span>AI News</span></label>
+              <label class="rrs-pill-lbl"><input id="chkCatWorld" class="rrs-pill-chk" type="checkbox" checked /><span>World News</span></label>
+              <label class="rrs-pill-lbl"><input id="chkWhaleFlow" class="rrs-pill-chk" type="checkbox" checked /><span>Whale Overlay</span></label>
               <button type="button" class="rrs-mini-btn gold" id="btnResetRadarFilters">Reset Filters</button>
             </div>
 
@@ -964,8 +1039,9 @@
               </div>
 
               <div class="rrs-chip-row" style="margin-top:8px;">
-                <label style="font-size:0.8em;font-weight:700;"><input id="chkHudHaptics" type="checkbox" checked /> Haptic Feedback</label>
-                <label style="font-size:0.8em;font-weight:700;"><input id="chkHudDirectRpc" type="checkbox" /> Direct Offline RPC</label>
+                <label class="rrs-pill-lbl"><input id="chkHudHaptics" class="rrs-pill-chk" type="checkbox" checked /><span>Haptic Feedback</span></label>
+                <label class="rrs-pill-lbl"><input id="chkHudDirectRpc" class="rrs-pill-chk" type="checkbox" /><span>Direct Offline RPC</span></label>
+                <label class="rrs-pill-lbl"><input id="chkHudCyberGuard" class="rrs-pill-chk" type="checkbox" checked /><span>Clipboard Shield</span></label>
               </div>
 
               <input id="inpHudCustomRpc" class="rrs-inp" type="url" value="" placeholder="Optional Custom Helius / Private RPC URL..." style="margin-top:6px;" />
@@ -974,6 +1050,13 @@
                 <button type="button" class="rrs-btn rrs-btn-gold" id="btnSyncSettingsNow">Sync Settings</button>
               </div>
               <div id="hudSyncStatus" style="font-size:0.74em;color:#94A3B8;margin-top:6px;"></div>
+            </div>
+
+            <div class="rrs-subcard rrs-web-only-apk-card" style="border-color:rgba(212,175,55,0.45);">
+              <strong style="color:#FFD400;font-size:0.86em;">Native Android MWA v6.0 .APK Installer</strong>
+              <p class="rrs-lead" style="margin:4px 0 8px 0;">Signed v1/v2/v3 standalone APK for Solana Seeker, Saga &amp; Android 8.0+.</p>
+              <a class="rrs-btn rrs-btn-emerald" id="btnMobileApkV6" href="/downloads/SolanaRentRugShield-v6.0-dAppStore.apk" download="SolanaRentRugShield-v6.0-dAppStore.apk">Download v6.0 dAppStore .APK</a>
+              <a class="rrs-btn rrs-btn-ghost" id="btnMobileApkV53Fallback" href="/downloads/SolanaRentRugShield-v5.3-MWA.apk" download="SolanaRentRugShield-v5.3-MWA.apk" style="margin-bottom:0;">Fallback: Download v5.3 MWA .APK</a>
             </div>
           </div>
           <div class="rrs-foot-brand">rentandrugshield.com</div>
@@ -1028,8 +1111,11 @@
               <button type="button" class="rrs-chip" id="btnDeskQrPwa">Mobile Web PWA QR</button>
             </div>
             <code id="deskQrUrlText" style="display:block;font-size:12px;color:#00FFA3;word-break:break-all;margin:8px 0 12px 0;">https://rentandrugshield.com/downloads/SolanaRentRugShield-v6.0-dAppStore.apk</code>
-            <a class="rrs-btn rrs-btn-emerald" href="/downloads/SolanaRentRugShield-v6.0-dAppStore.apk" download="SolanaRentRugShield-v6.0-dAppStore.apk">
+            <a class="rrs-btn rrs-btn-emerald" id="btnDeskApkV6" href="/downloads/SolanaRentRugShield-v6.0-dAppStore.apk" download="SolanaRentRugShield-v6.0-dAppStore.apk">
               Download SolanaRentRugShield-v6.0-dAppStore.apk
+            </a>
+            <a class="rrs-btn rrs-btn-ghost" id="btnDeskApkV53Fallback" href="/downloads/SolanaRentRugShield-v5.3-MWA.apk" download="SolanaRentRugShield-v5.3-MWA.apk" style="margin-bottom:0;font-size:12.5px;">
+              Legacy Fallback: SolanaRentRugShield-v5.3-MWA.apk
             </a>
           </div>
         </div>

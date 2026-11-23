@@ -48,21 +48,21 @@ release:
   files:
     - purpose: install
       uri: ./SolanaRentRugShield-v6.0-dAppStore.apk
-      sha256: b855be01b36e951d32ab51f4e687df229aa99551a7bf16dbdae3829bd3be02b0
+      sha256: d751052b3c5c859d07f2dc9e9f537f654cbc25ba1a86920afa6485615428c7f5
   catalog:
     en-US:
       name: Solana Rent & Rug Shield
       short_description: 0% 1st SOL Rent Sweeper, Sub-120ms 12-Layer + QR Rug Scanner & MACD Radar
       long_description: |
         Standalone 6-Screen Native Solana Mobile Security & Rent Recovery Suite (v6.0.0) built with Solana Mobile Wallet Adapter v2.0 for Solana Seeker, Saga, Phantom, Solflare, and Backpack.
-        1. Rent Sweeper: Read-only wallet scan + 1-tap 0% First Claim (keep 100% SOL) and 98.0% Net Repeat batch SPL 0x09 CloseAccount recovery with strict frozen Token-2022 quarantine and clean SOL saved receipt cards.
-        2. 12-Layer + QR Rug Scanner: Sub-120ms token audit, phone camera QR scanner, and 1-tap Jupiter v6 / Raydium V4 Buy & Sell execution drawer.
-        3. MACD & Market Radar: Customizable 1m/3m/5m/15m MACD Bull/Bear crossover and Histogram flip alerts with Market Cap, Liquidity, % Move, Ticker, and World News filters.
+        1. 0% 1st Claim Rent Reclaimer: Read-only wallet scan + 1-tap 0% First Claim (keep 100% SOL) and 98.0% Net Repeat batch SPL 0x09 CloseAccount recovery with strict frozen Token-2022 quarantine and SOL saved receipt cards.
+        2. 12-Layer Anti-Rug Scanner + Safe Swap Router: Sub-120ms token audit, phone camera QR scanner, and instant ?mint=&trade=1 Jupiter v6 / Raydium V4 Safe Swap execution drawer.
+        3. Movable / Zoomable MACD + Whale Radar: Interactive zoom/pan 1m/3m/5m/15m MACD Bull/Bear crossover and Whale Precipice flow radar with Luxury Pill-Switch filters.
         4. Phone Cyber Shield: Mobile clipboard-hijack guard, $0 vanity-dust address poison detector, and xn-- Punycode phishing scanner.
-        5. 30% Partner Vault: Instant ?ref=WALLET atomic 30% on-chain commission link and shareable proof-card generator.
-        6. System & Latency HUD: Live Solana Mainnet TPS, PublicNode + Solana Mainnet + Helius failover latency, $0.00 auto-billing status, and 100%-175% eye-friendly font zoom.
-      new_in_version: Standalone v6.0 6-screen native release with cached MWA v2.0 multi-wallet auth, Camera QR scanner, 1m/3m/5m/15m MACD radar, Phone Cyber Shield, 30% Partner Vault, and 100%-175% font zoom.
-      saga_features: Native Solana Mobile Wallet Adapter v2.0 Seed Vault session caching, Android System Share-Target 12-Layer scanner, and haptic tactical feedback.
+        5. Wallet Proof Card & 30% Partner Vault: Instant ?ref=WALLET atomic 30% on-chain commission link and shareable 1200x630 proof card generator.
+        6. System & Latency HUD: Live Solana Mainnet TPS, PublicNode + Solana Mainnet + Helius failover latency, $0.00 auto-billing status, Luxury Pill-Switch settings, and 100%-175% font zoom.
+      new_in_version: Standalone v6.0 6-screen native release with 96.5% Yellow-Gold Shield icon, Movable/Zoomable MACD + Whale Radar, Luxury Pill-Switch filters, instant ?mint=&trade=1 Safe Swap Router, and cached MWA v2.0 auth.
+      saga_features: Native Solana Mobile Wallet Adapter v2.0 Seed Vault session caching, Android System Share-Target + ?mint=&trade=1 Safe Swap Router, and haptic tactical feedback.
 
 solana_mobile_dapp_publisher_portal:
   google_store_package: com.rentandrugshield.mobile

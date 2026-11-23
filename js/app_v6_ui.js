@@ -869,7 +869,26 @@
         gate.textContent = '12-Layer Shield Warning (' + lastScannedScore + '/100 < 85) | Review Rug Risks Before Swapping';
       }
     }
+    const deepEl = byId('safeSwapDeepLink');
+    if (deepEl) {
+      deepEl.textContent = '?mint=' + lastScannedMint + '&trade=1';
+    }
     updateSwapQuotePreview();
+  }
+
+  async function routeSafeSwap(rawMint, autoTrade) {
+    const m = extractMintFromAnyInput(rawMint);
+    if (!m) return false;
+    switchScreen('screen-scanner', true);
+    await run12LayerMintAudit(m, autoTrade ? 'Safe Swap Router' : 'Share-Target');
+    if (autoTrade) {
+      const dr = byId('tradeExecDrawer');
+      if (dr) {
+        dr.classList.add('open');
+        try { dr.scrollIntoView({ behavior: 'instant', block: 'nearest' }); } catch (_e) {}
+      }
+    }
+    return true;
   }
 
   function setSwapSide(side) {
@@ -937,6 +956,11 @@
     if (drawer) drawer.classList.add('open');
     haptic('light');
 
+    const pol = document.permissionsPolicy || document.featurePolicy;
+    if (pol && typeof pol.allowsFeature === 'function' && !pol.allowsFeature('camera')) {
+      if (status) status.textContent = 'Camera blocked by document policy | Upload a QR image or tap Test QR Payload below.';
+      return;
+    }
     if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== 'function') {
       if (status) status.textContent = 'Camera stream unavailable in headless browser | Use Scan QR Image or Test QR Payload below.';
       return;
@@ -1037,6 +1061,7 @@
       liq: 18450000,
       pctMove: 14.8,
       category: 'crypto',
+      whaleTag: '+$1.84M Whale Accum',
       news: 'Solana Seeker mobile burn volume surges across Jupiter DEX routes',
       tfSeries: {
         '1m': [10, 10.1, 10.0, 10.2, 10.5, 10.9, 11.4, 11.9],
@@ -1054,6 +1079,7 @@
       liq: 24100000,
       pctMove: 9.6,
       category: 'ai',
+      whaleTag: '+$2.40M Institutional Inflow',
       news: 'Decentralized GPU AI inference cluster demand hits Q4 record',
       tfSeries: {
         '1m': [7.0, 6.9, 7.0, 7.1, 7.3, 7.5, 7.8, 8.1],
@@ -1071,6 +1097,7 @@
       liq: 31200000,
       pctMove: 6.4,
       category: 'crypto',
+      whaleTag: '+$1.15M Smart Money',
       news: 'Jupiter v6 mobile routing hits sub-200ms execution on Solana Mainnet',
       tfSeries: {
         '1m': [1.02, 1.01, 1.00, 1.01, 1.03, 1.05, 1.07, 1.09],
@@ -1088,6 +1115,7 @@
       liq: 14900000,
       pctMove: -5.2,
       category: 'world',
+      whaleTag: '-$640K Whale Precipice',
       news: 'Global FX & Treasury yield volatility spikes ahead of Fed macro print',
       tfSeries: {
         '1m': [0.46, 0.46, 0.45, 0.44, 0.43, 0.42, 0.41, 0.40],
@@ -1105,6 +1133,7 @@
       liq: 29400000,
       pctMove: 11.2,
       category: 'world',
+      whaleTag: '+$920K Whale Sweep',
       news: 'Global retail liquidity inflows lift major Solana Spot pairs',
       tfSeries: {
         '1m': [2.20, 2.18, 2.19, 2.24, 2.29, 2.34, 2.39, 2.45],
@@ -1115,6 +1144,151 @@
       forcedFlags: { bullCross: true, histFlipUp: true }
     }
   ];
+
+
+  let radarChartZoom = 1.0;
+  let radarChartPan = 0;
+  let radarDragActive = false;
+  let radarDragStartX = 0;
+  let radarDragStartPan = 0;
+
+  function renderMacdWhaleChart(matchedItems, primaryTf) {
+    const canvas = byId('macdWhaleRadarCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+
+    ctx.fillStyle = '#020408';
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle grid
+    ctx.strokeStyle = 'rgba(148, 163, 184, 0.14)';
+    ctx.lineWidth = 1;
+    for (let gx = 48; gx < W; gx += 76) {
+      ctx.beginPath(); ctx.moveTo(gx, 12); ctx.lineTo(gx, H - 22); ctx.stroke();
+    }
+    const zeroY = Math.round(H * 0.56);
+    ctx.strokeStyle = 'rgba(212, 175, 55, 0.35)';
+    ctx.beginPath(); ctx.moveTo(16, zeroY); ctx.lineTo(W - 16, zeroY); ctx.stroke();
+
+    const focus = (matchedItems && matchedItems.length) ? matchedItems[0] : BASE_RADAR_ITEMS[0];
+    const basePts = (focus.tfSeries && focus.tfSeries[primaryTf]) ? focus.tfSeries[primaryTf] : [10, 10.1, 10.0, 10.2, 10.5, 10.9, 11.4, 11.9];
+    // Interpolate 24 smooth candles so pan/zoom reveals rich granular bars
+    const dense = [];
+    for (let i = 0; i < basePts.length - 1; i++) {
+      const a = basePts[i];
+      const b = basePts[i + 1];
+      dense.push(a);
+      dense.push(a + (b - a) * 0.33);
+      dense.push(a + (b - a) * 0.66);
+    }
+    dense.push(basePts[basePts.length - 1]);
+
+    const emaFast = computeEma(dense, 5);
+    const emaSlow = computeEma(dense, 11);
+    const macdArr = emaFast.map(function (v, idx) { return v - emaSlow[idx]; });
+    const sigArr = computeEma(macdArr, 4);
+    const histArr = macdArr.map(function (v, idx) { return v - sigArr[idx]; });
+
+    const totalN = dense.length;
+    const visCount = Math.max(8, Math.round(totalN / radarChartZoom));
+    const maxOffset = Math.max(0, totalN - visCount);
+    radarChartPan = Math.max(-maxOffset, Math.min(0, radarChartPan));
+    const startIdx = Math.max(0, Math.min(maxOffset, maxOffset + radarChartPan));
+    const endIdx = Math.min(totalN, startIdx + visCount);
+
+    const sliceMacd = macdArr.slice(startIdx, endIdx);
+    const sliceSig = sigArr.slice(startIdx, endIdx);
+    const sliceHist = histArr.slice(startIdx, endIdx);
+
+    let maxAbs = 0.0001;
+    for (let i = 0; i < sliceMacd.length; i++) {
+      maxAbs = Math.max(maxAbs, Math.abs(sliceMacd[i]), Math.abs(sliceSig[i]), Math.abs(sliceHist[i]) * 1.4);
+    }
+
+    const padX = 24;
+    const usableW = W - padX * 2;
+    const stepX = sliceMacd.length > 1 ? (usableW / (sliceMacd.length - 1)) : usableW;
+    const ampY = (H * 0.36) / maxAbs;
+
+    // Histogram bars
+    const barW = Math.max(6, Math.min(20, stepX * 0.52));
+    for (let i = 0; i < sliceHist.length; i++) {
+      const x = padX + i * stepX;
+      const hVal = sliceHist[i] * ampY * 1.25;
+      ctx.fillStyle = hVal >= 0 ? 'rgba(0, 255, 163, 0.38)' : 'rgba(255, 77, 109, 0.42)';
+      if (hVal >= 0) {
+        ctx.fillRect(x - barW / 2, zeroY - hVal, barW, Math.max(2, hVal));
+      } else {
+        ctx.fillRect(x - barW / 2, zeroY, barW, Math.max(2, -hVal));
+      }
+    }
+
+    // Signal line (#D4AF37 Gold)
+    ctx.strokeStyle = '#D4AF37';
+    ctx.lineWidth = 2.4;
+    ctx.beginPath();
+    for (let i = 0; i < sliceSig.length; i++) {
+      const x = padX + i * stepX;
+      const y = zeroY - sliceSig[i] * ampY;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // MACD line (#00FFA3 Emerald)
+    ctx.strokeStyle = '#00FFA3';
+    ctx.lineWidth = 3.0;
+    ctx.beginPath();
+    for (let i = 0; i < sliceMacd.length; i++) {
+      const x = padX + i * stepX;
+      const y = zeroY - sliceMacd[i] * ampY;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // Whale Precipice overlay markers
+    const showWhale = !byId('chkWhaleFlow') || byId('chkWhaleFlow').checked;
+    if (showWhale && sliceMacd.length >= 3) {
+      const wx = padX + (sliceMacd.length - 2) * stepX;
+      const wy = zeroY - sliceMacd[sliceMacd.length - 2] * ampY;
+      const isPos = String(focus.whaleTag || '+').indexOf('-') !== 0;
+      ctx.fillStyle = isPos ? '#FFD400' : '#FF4D6D';
+      ctx.beginPath();
+      ctx.arc(wx, wy, 5.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.font = '800 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText((focus.symbol || '$SOL') + ' ' + (focus.whaleTag || 'Whale Flow'), W - 18, 24);
+      ctx.textAlign = 'left';
+    }
+
+    ctx.fillStyle = '#F8FAFC';
+    ctx.font = '800 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+    ctx.fillText(focus.symbol + ' MACD (' + primaryTf + ') | Emerald=MACD  Gold=Signal', 18, 24);
+    ctx.fillStyle = '#94A3B8';
+    ctx.font = '700 11.5px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+    ctx.fillText('Drag chart to pan | Window [' + (startIdx + 1) + '..' + endIdx + '/' + totalN + '] | rentandrugshield.com', 18, H - 7);
+
+    const hudLbl = byId('macdChartHudLabel');
+    if (hudLbl) {
+      hudLbl.textContent = 'Zoom ' + radarChartZoom.toFixed(1) + 'x | Pan ' + radarChartPan;
+    }
+  }
+
+  function setRadarZoomPan(zoomVal, panDelta, resetAll) {
+    if (resetAll) {
+      radarChartZoom = 1.0;
+      radarChartPan = 0;
+    } else {
+      if (zoomVal != null) radarChartZoom = Math.max(1.0, Math.min(3.0, Number(zoomVal) || 1.0));
+      if (panDelta != null) radarChartPan = Math.round(radarChartPan + Number(panDelta));
+    }
+    document.querySelectorAll('[data-radar-zoom]').forEach(function (b) {
+      b.classList.toggle('active', Math.abs(Number(b.getAttribute('data-radar-zoom')) - radarChartZoom) < 0.05);
+    });
+    renderRadarFeed();
+  }
 
   function renderRadarFeed() {
     const listEl = byId('radarFeedList');
@@ -1161,6 +1335,7 @@
       summaryEl.textContent = 'Showing ' + matched.length + '/' + BASE_RADAR_ITEMS.length
         + ' Signals | TF: ' + activeTfs.join('/') + ' | Mode: ' + sigMode.toUpperCase();
     }
+    renderMacdWhaleChart(matched, primaryTf);
 
     if (!matched.length) {
       listEl.innerHTML = '<div class="rrs-subcard" style="color:#94A3B8;">0 signals match current filters. Tap Reset Filters to widen scan.</div>';
@@ -1179,7 +1354,7 @@
         + '<span class="rrs-pill" style="border-color:' + badgeCol + ';color:' + badgeCol + ';">MACD ' + escHtml(primaryTf) + ' ' + (isBull ? 'BULL CROSS' : 'BEAR CROSS') + ' | ' + histLabel + '</span>'
         + '</div>'
         + '<div style="font-size:0.78rem;color:#CBD5E1;margin-top:5px;">'
-        + 'MCap: <b>$' + (item.mcap / 1e6).toFixed(1) + 'M</b> | Liq: <b>$' + (item.liq / 1e6).toFixed(2) + 'M</b> | Cat: <b>' + escHtml(item.category.toUpperCase()) + '</b>'
+        + 'MCap: <b>$' + (item.mcap / 1e6).toFixed(1) + 'M</b> | Liq: <b>$' + (item.liq / 1e6).toFixed(2) + 'M</b> | Cat: <b>' + escHtml(item.category.toUpperCase()) + '</b>' + (item.whaleTag ? (' | <span style="color:#FFD400;font-weight:800;">' + escHtml(item.whaleTag) + '</span>') : '')
         + '</div>'
         + '<div style="font-size:0.77rem;color:#94A3B8;margin-top:4px;">News: ' + escHtml(item.news) + '</div>'
         + '<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;">'
@@ -1199,8 +1374,7 @@
     listEl.querySelectorAll('[data-radar-trade]').forEach(function (b) {
       b.addEventListener('click', function () {
         const m = b.getAttribute('data-radar-trade');
-        switchScreen('screen-scanner');
-        run12LayerMintAudit(m, 'MACD Trade');
+        routeSafeSwap(m, true);
       });
     });
   }
@@ -1643,6 +1817,8 @@
         if (byId('fltCoinName')) byId('fltCoinName').value = '';
         if (byId('fltKeywordNews')) byId('fltKeywordNews').value = '';
         if (byId('chkCatCrypto')) byId('chkCatCrypto').checked = true;
+        if (byId('chkWhaleFlow')) byId('chkWhaleFlow').checked = true;
+        radarChartZoom = 1.0; radarChartPan = 0;
         if (byId('chkCatAi')) byId('chkCatAi').checked = true;
         if (byId('chkCatWorld')) byId('chkCatWorld').checked = true;
         settings.macdSignal = 'all';
@@ -1825,15 +2001,79 @@
     };
     if (tabMap[tabQ]) switchScreen(tabMap[tabQ], true);
 
+    // Movable / Zoomable MACD + Whale Chart Controls
+    const btnPanL = byId('btnRadarPanLeft');
+    const btnPanR = byId('btnRadarPanRight');
+    const btnCenter = byId('btnRadarCenter');
+    if (btnPanL) btnPanL.addEventListener('click', function () { haptic('light'); setRadarZoomPan(null, -3, false); });
+    if (btnPanR) btnPanR.addEventListener('click', function () { haptic('light'); setRadarZoomPan(null, 3, false); });
+    if (btnCenter) btnCenter.addEventListener('click', function () { haptic('light'); setRadarZoomPan(1.0, 0, true); });
+    document.querySelectorAll('[data-radar-zoom]').forEach(function (zb) {
+      zb.addEventListener('click', function () {
+        haptic('light');
+        setRadarZoomPan(Number(zb.getAttribute('data-radar-zoom')), 0, false);
+      });
+    });
+    const chkWhale = byId('chkWhaleFlow');
+    if (chkWhale) chkWhale.addEventListener('change', renderRadarFeed);
+    const macdCanvas = byId('macdWhaleRadarCanvas');
+    if (macdCanvas) {
+      macdCanvas.addEventListener('pointerdown', function (ev) {
+        radarDragActive = true;
+        radarDragStartX = ev.clientX;
+        radarDragStartPan = radarChartPan;
+        macdCanvas.style.cursor = 'grabbing';
+      });
+      window.addEventListener('pointermove', function (ev) {
+        if (!radarDragActive) return;
+        const dx = ev.clientX - radarDragStartX;
+        const stepShift = Math.round(-dx / 24);
+        if (radarChartPan !== radarDragStartPan + stepShift) {
+          radarChartPan = radarDragStartPan + stepShift;
+          renderRadarFeed();
+        }
+      });
+      window.addEventListener('pointerup', function () {
+        if (radarDragActive) {
+          radarDragActive = false;
+          macdCanvas.style.cursor = 'grab';
+        }
+      });
+    }
+
+    // Copy ?mint=&trade=1 Safe Swap Link
+    const btnCopySafe = byId('btnCopySafeSwapLink');
+    if (btnCopySafe) {
+      btnCopySafe.addEventListener('click', async function () {
+        haptic('light');
+        const fullUrl = 'https://rentandrugshield.com/mobile.html?mint=' + encodeURIComponent(lastScannedMint) + '&trade=1';
+        try { if (navigator.clipboard) await navigator.clipboard.writeText(fullUrl); } catch (_e) {}
+        btnCopySafe.textContent = 'Copied ?mint=&trade=1!';
+        setTimeout(function () { btnCopySafe.textContent = 'Copy Safe Swap Link'; }, 1600);
+      });
+    }
+
+    // Luxury Pill-Switch Cyber Guard toggle
+    const chkCyber = byId('chkHudCyberGuard');
+    if (chkCyber) {
+      chkCyber.checked = settings.cyberAutoGuard !== false;
+      chkCyber.addEventListener('change', function () {
+        settings.cyberAutoGuard = chkCyber.checked;
+        saveSettings();
+      });
+    }
+
+    const wantTrade = ['1', 'true', 'yes'].indexOf((qs.get('trade') || '').toLowerCase()) !== -1;
     const sharePayload = [qs.get('share_url') || '', qs.get('share_text') || '', qs.get('mint') || ''].join(' ').trim();
     if (sharePayload) {
       const m = extractMintFromAnyInput(sharePayload);
       if (m) {
-        switchScreen('screen-scanner', true);
-        run12LayerMintAudit(m, 'Share-Target');
+        if (qs.get('side')) setSwapSide(qs.get('side'));
+        routeSafeSwap(m, wantTrade);
       }
     }
 
+    renderRadarFeed();
     saveSettings();
   }
 
@@ -1845,6 +2085,9 @@
     applyFontZoom: applyFontZoom,
     runSweeperScan: runSweeperScan,
     run12LayerMintAudit: run12LayerMintAudit,
+    routeSafeSwap: routeSafeSwap,
+    setRadarZoomPan: setRadarZoomPan,
+    getRadarChartState: function () { return { zoom: radarChartZoom, pan: radarChartPan }; },
     renderRadarFeed: renderRadarFeed,
     evaluateClipboardGuard: evaluateClipboardGuard,
     evaluateVanityDustPoison: evaluateVanityDustPoison,

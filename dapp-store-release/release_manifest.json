@@ -1,0 +1,116 @@
+{
+  "schema": "solana-dapp-store-release-manifest/v1",
+  "generated_pst": "2026-11-23 10:35:38 AM PST",
+  "package_id": "com.rentandrugshield.mobile",
+  "app_name": "Solana Rent & Rug Shield",
+  "version_name": "6.0.0",
+  "version_code": 600,
+  "min_sdk": 26,
+  "target_sdk": 34,
+  "compile_sdk": 34,
+  "signing": {
+    "v1_jar_rsa": true,
+    "v2_apk_sig_scheme": true,
+    "v3_apk_sig_scheme": true,
+    "cert_sha256": "101505422a4f3c0932bf6d188ea24a5b90f36cac031efb1ef1f305ebfbd8a27a",
+    "zip_testzip_clean": true
+  },
+  "icon_spec": {
+    "uri": "./media/icon_512x512.png",
+    "dimensions": "512x512",
+    "theme": "96.5% Yellow-Gold & Jet Black Shield",
+    "bleed_px": "494x494",
+    "bleed_pct": 96.48,
+    "bytes": 60217,
+    "sha256": "f0c81ccd9467f1950800f79b0fe38006a3e74eabcd57b009856e9b1b3b73a4e4",
+    "c2pa_bytes": 0
+  },
+  "banner_spec": {
+    "uri": "./media/feature_graphic_1200x600.png",
+    "dimensions": "1200x600",
+    "bytes": 117020,
+    "sha256": "8107fdbff586d4fb11c7ad05190a3215ba9838ac46db58cdfd0af157d33f1d41",
+    "c2pa_bytes": 0
+  },
+  "apk": {
+    "uri": "./SolanaRentRugShield-v6.0-dAppStore.apk",
+    "public_download_url": "https://rentandrugshield.com/downloads/SolanaRentRugShield-v6.0-dAppStore.apk",
+    "legacy_fallback_url": "https://rentandrugshield.com/downloads/SolanaRentRugShield-v5.3-MWA.apk",
+    "bytes": 440544,
+    "sha256": "d751052b3c5c859d07f2dc9e9f537f654cbc25ba1a86920afa6485615428c7f5"
+  },
+  "promo_video": {
+    "uri": "./media/promo_reel_30s_1080x1920.mp4",
+    "dimensions": "1080x1920",
+    "duration_sec": 30.0,
+    "bytes": 4290470,
+    "sha256": "6ac43e7946666dcc4d6af1cc0eab108dbae3e4100d4675aed55ae38b82368b88",
+    "c2pa_bytes": 0
+  },
+  "screenshots_1080p": [
+    {
+      "uri": "./media/screenshots/01_tab1_rent_sweeper_scan.png",
+      "dimensions": "1080x2400",
+      "bytes": 411406,
+      "sha256": "aca1dea1e2f5007f8c4764f7978076a0b2a470dd3006449a60165fd75eb67de0",
+      "c2pa_bytes": 0
+    },
+    {
+      "uri": "./media/screenshots/02_tab1_mwa_v2_wallet_sheet.png",
+      "dimensions": "1080x2400",
+      "bytes": 277195,
+      "sha256": "458ea6a266e60df0c37ae3ff4a67c0d36439d718360cc7dc9f3b1954c2043918",
+      "c2pa_bytes": 0
+    },
+    {
+      "uri": "./media/screenshots/03_tab2_12layer_qr_rug_scanner.png",
+      "dimensions": "1080x2400",
+      "bytes": 336274,
+      "sha256": "a78f0beb565f637f76572fe286d57d354981ab6d20e2336c092d6c08cf1595ca",
+      "c2pa_bytes": 0
+    },
+    {
+      "uri": "./media/screenshots/04_tab2_jupiter_raydium_trade_drawer.png",
+      "dimensions": "1080x2400",
+      "bytes": 280460,
+      "sha256": "1dad759a9f323dafe42a18f23bd8cb9edc20f58a37d48795791998217951e526",
+      "c2pa_bytes": 0
+    },
+    {
+      "uri": "./media/screenshots/05_tab3_macd_market_radar.png",
+      "dimensions": "1080x2400",
+      "bytes": 280740,
+      "sha256": "ebf90261800debff3cb4194a15a3cfa153a9b91a143f4bc7d38eaa908a1e5eae",
+      "c2pa_bytes": 0
+    },
+    {
+      "uri": "./media/screenshots/06_tab4_phone_cyber_shield.png",
+      "dimensions": "1080x2400",
+      "bytes": 262467,
+      "sha256": "111cb6e51ccd1af0a9ebd83ba8e8a69923c0046cf975c6d17dc677f45a33a882",
+      "c2pa_bytes": 0
+    },
+    {
+      "uri": "./media/screenshots/07_tab5_30pct_partner_vault.png",
+      "dimensions": "1080x2400",
+      "bytes": 398756,
+      "sha256": "32060120294e1cf50ff0f4a603cc0ad5765dd9886dfa7f771ba8ca1f784c7bd9",
+      "c2pa_bytes": 0
+    },
+    {
+      "uri": "./media/screenshots/08_tab6_system_latency_hud_zoom.png",
+      "dimensions": "1080x2400",
+      "bytes": 287153,
+      "sha256": "20382d855855fd86b47ae857e80a4430ce1549fab9a91789a4348a33b66fe447",
+      "c2pa_bytes": 0
+    }
+  ],
+  "screens_verified": [
+    "1: 0% 1st Claim Rent Reclaimer",
+    "2: 12-Layer Anti-Rug Scanner",
+    "3: Live Movable/Zoomable MACD + Whale Radar",
+    "4: Luxury Pill-Switch Filter Settings & Phone Cyber Shield",
+    "5: Instant ?mint=&trade=1 Safe Swap Router & 30% Partner Vault",
+    "6: Wallet Proof Card & Vault Guard + Multi-RPC Latency HUD"
+  ]
+}
