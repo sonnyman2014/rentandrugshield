@@ -592,7 +592,7 @@
             <button id="btnScanWallet" class="btn-gold" type="button">立即只读查租金</button>
           </div>
           <!-- RRS_LOC_DEMO_V1_START --><div style="margin:8px 0;"><button id="btnTryLiveDemoWallet" type="button" onclick="window.rrsLocRunDemoWallet()" style="width:100%;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.20),rgba(212,175,55,0.16));color:#00FFA3;font-weight:900;font-size:13.5px;cursor:pointer;">⚡ Try Live Demo Wallet ($109.85 Locked SOL - 0 Wallet Connect · 一键实测主网 $109.85 真实待退租金)</button></div><!-- RRS_LOC_DEMO_V1_END -->
-                    <div class="sample-row">
+                              <div class="sample-row">
             <span class="sample-lbl">一键实测主网真实战壕钱包:</span>
             <button id="btnSampleWallet1" class="btn-ghost" type="button" data-wallet="MfDuWeqSHEqTFVYZ7LoexgAK9dxk7cy4DFJWjWMGVWa">实测 Raydium 钱包 #1 (71个空账户)</button>
             <button id="btnSampleWallet2" class="btn-ghost" type="button" data-wallet="Ex1mYTgfnxACnoGTnWqYRJRNjr8pciHnWxWnVLH8pWf2">实测高频战壕钱包 #2 (70个空账户)</button>
@@ -612,7 +612,7 @@
             <button id="btnScanToken" class="btn-emerald" type="button">12层安全预检</button>
           </div>
           <!-- RRS_LOC_DEMO_V1_START --><div style="margin:8px 0;"><button id="btnTestLive12LayerAudit" type="button" onclick="window.rrsLocRunDemoToken()" style="width:100%;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #F5D061;background:linear-gradient(90deg,rgba(212,175,55,0.20),rgba(56,189,248,0.16));color:#FDE68A;font-weight:900;font-size:13.5px;cursor:pointer;">⚡ Test Live 12-Layer Token Audit (一键毫秒级实测 12层防貔貅合约预检)</button></div><!-- RRS_LOC_DEMO_V1_END -->
-                    <div class="sample-row">
+                              <div class="sample-row">
             <span class="sample-lbl">一键实测主网热门代币合约:</span>
             <button id="btnSampleBonk" class="btn-ghost" type="button" data-mint="DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263">实测 $BONK (12/12 安全)</button>
             <button id="btnSampleWif" class="btn-ghost" type="button" data-mint="EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm">实测 $WIF (SPL 蓝筹)</button>
@@ -1115,7 +1115,7 @@
   window.rrsLocShareX = function(addr, atas, sol, usd) {
     var ref = (addr && addr.length >= 32 && addr !== DEMO_W) ? addr : "YOUR_SOL_WALLET";
     var u = "https://rentandrugshield.com/zh/?ref=" + encodeURIComponent(ref);
-    var txt = "Scanned Solana wallet on @SolRentClaim: " + atas + " empty token accounts = +" + Number(sol||0).toFixed(4) + " SOL ($" + Number(usd||0).toFixed(2) + ") locked rent! 1st Claim 100% FREE (0% fee) + 30% referral SOL:\n" + u;
+    var txt = "Scanned Solana wallet on @SolRentClaim: " + atas + " empty token accounts = +" + Number(sol||0).toFixed(4) + " SOL ($" + Number(usd||0).toFixed(2) + ") locked rent! 1st Claim 100% FREE (0% fee) + 30% referral SOL: " + u;
     window.open("https://x.com/intent/tweet?text=" + encodeURIComponent(txt), "_blank", "noopener,noreferrer");
   };
   window.rrsLocFocusWallet = function() {
