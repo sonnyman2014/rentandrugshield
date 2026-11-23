@@ -592,7 +592,7 @@
             <button id="btnScanWallet" class="btn-gold" type="button">眠っている SOL を無料診断</button>
           </div>
           <!-- RRS_LOC_DEMO_V1_START --><div style="margin:8px 0;"><button id="btnTryLiveDemoWallet" type="button" onclick="window.rrsLocRunDemoWallet()" style="width:100%;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.20),rgba(212,175,55,0.16));color:#00FFA3;font-weight:900;font-size:13.5px;cursor:pointer;">⚡ Try Live Demo Wallet ($109.85 Locked SOL - 0 Wallet Connect · 実測ウォレット即時スキャン)</button></div><!-- RRS_LOC_DEMO_V1_END -->
-          <div class="sample-row">
+                    <div class="sample-row">
             <span class="sample-lbl">ワンクリック実測サンプルウォレット:</span>
             <button id="btnSampleWallet1" class="btn-ghost" type="button" data-wallet="MfDuWeqSHEqTFVYZ7LoexgAK9dxk7cy4DFJWjWMGVWa">実測ウォレット #1 (71 空口座)</button>
             <button id="btnSampleWallet2" class="btn-ghost" type="button" data-wallet="Ex1mYTgfnxACnoGTnWqYRJRNjr8pciHnWxWnVLH8pWf2">実測ウォレット #2 (70 空口座)</button>
@@ -612,7 +612,7 @@
             <button id="btnScanToken" class="btn-emerald" type="button">12層セキュリティ診断</button>
           </div>
           <!-- RRS_LOC_DEMO_V1_START --><div style="margin:8px 0;"><button id="btnTestLive12LayerAudit" type="button" onclick="window.rrsLocRunDemoToken()" style="width:100%;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #F5D061;background:linear-gradient(90deg,rgba(212,175,55,0.20),rgba(56,189,248,0.16));color:#FDE68A;font-weight:900;font-size:13.5px;cursor:pointer;">⚡ Test Live 12-Layer Token Audit (12層ラグプル監査を即時テスト)</button></div><!-- RRS_LOC_DEMO_V1_END -->
-          <div class="sample-row">
+                    <div class="sample-row">
             <span class="sample-lbl">ワンクリック実測トークン監査:</span>
             <button id="btnSampleBonk" class="btn-ghost" type="button" data-mint="DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263">$BONK を監査 (12/12 安全)</button>
             <button id="btnSampleWif" class="btn-ghost" type="button" data-mint="EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm">$WIF を監査 (SPL 認証済)</button>
@@ -1122,32 +1122,32 @@
     var wi = document.getElementById("walletInput");
     if (wi) { wi.value = ""; wi.focus(); }
   };
-  window.rrsLocRunDemoWallet = async function() {
+  window.rrsLocRunDemoWallet = function() {
     var wi = document.getElementById("walletInput");
+    var sb = document.getElementById("btnScanWallet");
     if (wi) wi.value = DEMO_W;
-    await runWalletScan(DEMO_W);
-    var box = document.getElementById("walletResult");
-    if (box && !document.getElementById("locDemoOwnPrompt")) {
-      var d = document.createElement("div");
-      d.id = "locDemoOwnPrompt";
-      d.style.cssText = "margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(0,255,163,0.12);border:1.5px solid #00FFA3;";
-      d.innerHTML = '<div style="font-size:13px;font-weight:800;color:#F8FAFC;margin-bottom:7px;">🎯 メインネット高速スキャン完了！上の欄にご自身のSolanaウォレットを貼り付けて、初回手数料 0% (完全無料) でSOLを回収しましょう！</div>'
-        + '<button type="button" onclick="window.rrsLocFocusWallet()" style="width:100%;padding:8px 12px;border:none;border-radius:8px;background:#00FFA3;color:#021810;font-weight:900;cursor:pointer;">📋 デモを消去して自分のウォレットを貼り付ける (初回 0% 無料)</button>';
-      box.appendChild(d);
-    }
+    if (sb) sb.click();
   };
-  window.rrsLocRunDemoToken = async function() {
+  window.rrsLocRunDemoToken = function() {
     var mi = document.getElementById("mintInput");
+    var tb = document.getElementById("btnScanToken");
     if (mi) mi.value = DEMO_M;
-    await runTokenScan(DEMO_M);
+    if (tb) tb.click();
   };
-  // Observe #walletResult so EVERY wallet scan renders the 1-click Share My Locked SOL Receipt on X + Earn 30% ?ref= button
   var wr = document.getElementById("walletResult");
   if (wr && typeof MutationObserver !== "undefined") {
     new MutationObserver(function(){
       if (wr.querySelector("#btnClaimRedirect") && !wr.querySelector("#btnLocViralShareX")) {
         var wi = document.getElementById("walletInput");
         var wAddr = (wi && wi.value ? wi.value.trim() : "");
+        if (wAddr === DEMO_W && !wr.querySelector("#locDemoOwnPrompt")) {
+          var d = document.createElement("div");
+          d.id = "locDemoOwnPrompt";
+          d.style.cssText = "margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(0,255,163,0.12);border:1.5px solid #00FFA3;";
+          d.innerHTML = '<div style="font-size:13px;font-weight:800;color:#F8FAFC;margin-bottom:7px;">🎯 メインネット高速スキャン完了！上の欄にご自身のSolanaウォレットを貼り付けて、初回手数料 0% (完全無料) でSOLを回収しましょう！</div>'
+            + '<button type="button" onclick="window.rrsLocFocusWallet()" style="width:100%;padding:8px 12px;border:none;border-radius:8px;background:#00FFA3;color:#021810;font-weight:900;cursor:pointer;">📋 デモを消去して自分のウォレットを貼り付ける (初回 0% 無料)</button>';
+          wr.appendChild(d);
+        }
         var kpis = wr.querySelectorAll(".kpi-val");
         var atas = kpis.length > 0 ? parseInt(kpis[0].textContent || "0", 10) || 0 : 0;
         var solMatch = (wr.textContent || "").match(/\+([0-9.]+)\s*SOL/);
