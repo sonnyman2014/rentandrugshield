@@ -42,18 +42,18 @@
     "lamports": 0,
     "atomicBalance": 0,
     "uiBalance": 0.0,
-    "slot": 471068938,
+    "slot": 472927679,
     "rpcChecked": true
   },
   "singleScanUsdcAtomic": 100000,
   "singleScanSol": 0.00134,
   "singleScanLamports": 1340000,
-  "freePingsLimit": 2,
-  "freePingsIncluded": 2,
+  "freePingsLimit": 1,
+  "freePingsIncluded": 1,
   "baseUrl": "https://rentandrugshield.com",
-  "liveGatewayUrl": "https://banner-modify-topics-move.trycloudflare.com",
+  "liveGatewayUrl": "https://answered-honor-victory-blake.trycloudflare.com",
   "mcpEndpoint": "https://rentandrugshield.com/mcp",
-  "liveMcpEndpoint": "https://banner-modify-topics-move.trycloudflare.com/mcp",
+  "liveMcpEndpoint": "https://answered-honor-victory-blake.trycloudflare.com/mcp",
   "mcpDiscoveryUrl": "https://rentandrugshield.com/.well-known/mcp.json",
   "wwwAuthenticate": "x402 sdk=\"@x402/svm\", network=\"solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\", treasury=\"89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1\", treasury_usdc_ata=\"BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8\", usdc_mint=\"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\", option_b_usdc_atomic=\"100000\", option_b_sol=\"0.00134\", option_a_sol=\"0.026\"",
   "supportedHeaders": [
@@ -103,13 +103,13 @@
   },
   "resources": [
     "https://rentandrugshield.com/mcp",
-    "https://banner-modify-topics-move.trycloudflare.com/mcp",
+    "https://answered-honor-victory-blake.trycloudflare.com/mcp",
     "https://rentandrugshield.com/api/v1/shield-check",
     "https://rentandrugshield.com/api/v1/simulate-tx",
     "https://rentandrugshield.com/api/v1/scan-wallet",
-    "https://banner-modify-topics-move.trycloudflare.com/api/v1/shield-check",
-    "https://banner-modify-topics-move.trycloudflare.com/api/v1/simulate-tx",
-    "https://banner-modify-topics-move.trycloudflare.com/api/v1/scan-wallet"
+    "https://answered-honor-victory-blake.trycloudflare.com/api/v1/shield-check",
+    "https://answered-honor-victory-blake.trycloudflare.com/api/v1/simulate-tx",
+    "https://answered-honor-victory-blake.trycloudflare.com/api/v1/scan-wallet"
   ],
   "endpoints": [
     {
@@ -117,23 +117,27 @@
       "method": "POST",
       "transport": "streamable-http",
       "url": "https://rentandrugshield.com/mcp",
-      "liveUrl": "https://banner-modify-topics-move.trycloudflare.com/mcp",
+      "liveUrl": "https://answered-honor-victory-blake.trycloudflare.com/mcp",
       "description": "Zero-install Streamable HTTP MCP JSON-RPC 2.0 endpoint (tools/list free, tools/call 2 free pings then x402)."
     },
     {
       "path": "/api/v1/shield-check",
       "method": "POST",
-      "tool": "audit_solana_token",
+      "tool": "audit_solana_token_12_layer",
+      "aliases": [
+        "audit_solana_token",
+        "audit_solana_token_10_layer"
+      ],
       "url": "https://rentandrugshield.com/api/v1/shield-check",
-      "liveUrl": "https://banner-modify-topics-move.trycloudflare.com/api/v1/shield-check",
-      "description": "Sub-120ms 11-layer Solana SPL & Token-2022 pre-buy anti-rug safety gate."
+      "liveUrl": "https://answered-honor-victory-blake.trycloudflare.com/api/v1/shield-check",
+      "description": "Sub-120ms 12-layer Solana SPL & Token-2022 pre-buy anti-rug safety gate."
     },
     {
       "path": "/api/v1/simulate-tx",
       "method": "POST",
       "tool": "simulate_solana_tx_drain",
       "url": "https://rentandrugshield.com/api/v1/simulate-tx",
-      "liveUrl": "https://banner-modify-topics-move.trycloudflare.com/api/v1/simulate-tx",
+      "liveUrl": "https://answered-honor-victory-blake.trycloudflare.com/api/v1/simulate-tx",
       "description": "Layer-9 Inner-CPI transaction drainer & authority hijack simulator."
     },
     {
@@ -141,7 +145,7 @@
       "method": "POST",
       "tool": "scan_wallet_unclaimed_sol",
       "url": "https://rentandrugshield.com/api/v1/scan-wallet",
-      "liveUrl": "https://banner-modify-topics-move.trycloudflare.com/api/v1/scan-wallet",
+      "liveUrl": "https://answered-honor-victory-blake.trycloudflare.com/api/v1/scan-wallet",
       "description": "Read-only Solana wallet unclaimed ATA & Token-2022 SOL rent scanner."
     }
   ],
@@ -795,53 +799,5 @@
       "maxTimeoutSeconds": 300,
       "description": "Enterprise Unlimited API: $500/mo (Reg. $999/mo) - New layers included free during active pass, $0 auto-billing"
     }
-  ],
-  "institutionalPricingLadder": {
-    "guarantee": "New layers included free during active pass, $0 auto-billing",
-    "affiliateSplit": "30% zero-custody ?ref=<SolanaWallet> on-chain split",
-    "tiers": [
-      {
-        "id": "single_10c",
-        "name": "Extra Single Scan",
-        "usd": 0.1,
-        "regularUsd": 0.99,
-        "usdcAtomic": "100000"
-      },
-      {
-        "id": "day_199",
-        "name": "24h Trench Pass",
-        "usd": 1.99,
-        "regularUsd": 4.99,
-        "usdcAtomic": "1990000"
-      },
-      {
-        "id": "trader_pro_1999",
-        "name": "30-Day Trader Pro (Unlimited Web/TG, No API Key)",
-        "usd": 19.99,
-        "regularUsd": 39.99,
-        "usdcAtomic": "19990000"
-      },
-      {
-        "id": "ultra_pro_4999",
-        "name": "30-Day Ultra Pro + Sniper Bot API (15,000 calls/mo + Rug Webhooks)",
-        "usd": 49.99,
-        "regularUsd": 99.0,
-        "usdcAtomic": "49990000"
-      },
-      {
-        "id": "quant_desk_99",
-        "name": "30-Day Quant Desk Pro API (100,000 calls/mo, <120ms Priority + Batch Sybil)",
-        "usd": 99.0,
-        "regularUsd": 199.0,
-        "usdcAtomic": "99000000"
-      },
-      {
-        "id": "enterprise_500",
-        "name": "Enterprise Unlimited API",
-        "usd": 500.0,
-        "regularUsd": 999.0,
-        "usdcAtomic": "500000000"
-      }
-    ]
-  }
+  ]
 }

@@ -13,7 +13,7 @@
     "io.github.sonnyman2014/solana-rent-rug-shield-mcp"
   ],
   "title": "Solana Rent & Rug Shield MCP Gateway",
-  "description": "Solana pre-buy 11-layer token rug audit (<120ms), Layer-9 Inner-CPI transaction drain simulator, and read-only unclaimed ATA SOL rent scanner via zero-install Streamable HTTP MCP and native Solana x402 auto-pay.",
+  "description": "Solana pre-buy 12-layer token rug audit (<120ms), Layer-9 Inner-CPI transaction drain simulator, and read-only unclaimed ATA SOL rent scanner via zero-install Streamable HTTP MCP and native Solana x402 auto-pay.",
   "version": "1.0.0",
   "websiteUrl": "https://rentandrugshield.com",
   "repository": {
@@ -29,16 +29,16 @@
   "url": "https://rentandrugshield.com/mcp",
   "endpoint": "https://rentandrugshield.com/mcp",
   "externalAgentInteropTest": {
-    "title": "MCP & Solana x402 External Agent Interop Test (Free 10¢ SOL Rebate for Independent Agent Test Runs)",
+    "title": "MCP & Solana x402 External Agent Interop Test (Free 10\u00a2 SOL Rebate for Independent Agent Test Runs)",
     "status": "OPEN",
     "siteUrl": "https://rentandrugshield.com",
     "llmsTxtUrl": "https://rentandrugshield.com/llms.txt",
     "discussionsUrl": "https://github.com/sonnyman2014/rentandrugshield/discussions",
-    "feedbackEndpoint": "https://banner-modify-topics-move.trycloudflare.com/api/feedback",
+    "feedbackEndpoint": "https://answered-honor-victory-blake.trycloudflare.com/api/feedback",
     "instructions": "Independent AI agents testing https://rentandrugshield.com (/mcp, /api/scan-token, /api/scan-wallet, and Solana x402 / 10c Mainnet checkout) can submit their Mainnet TX signature, agent User-Agent, and feedback to POST /api/feedback or GitHub Discussions for a Free 10c SOL Rebate."
   },
   "mcpEndpoint": "https://rentandrugshield.com/mcp",
-  "liveStreamableHttpEndpoint": "https://banner-modify-topics-move.trycloudflare.com/mcp",
+  "liveStreamableHttpEndpoint": "https://answered-honor-victory-blake.trycloudflare.com/mcp",
   "remotes": [
     {
       "type": "streamable-http",
@@ -46,14 +46,14 @@
     },
     {
       "type": "streamable-http",
-      "url": "https://banner-modify-topics-move.trycloudflare.com/mcp"
+      "url": "https://answered-honor-victory-blake.trycloudflare.com/mcp"
     }
   ],
   "endpoints": {
     "streamableHttp": "https://rentandrugshield.com/mcp",
-    "liveStreamableHttp": "https://banner-modify-topics-move.trycloudflare.com/mcp",
+    "liveStreamableHttp": "https://answered-honor-victory-blake.trycloudflare.com/mcp",
     "sse": "https://rentandrugshield.com/mcp",
-    "liveSse": "https://banner-modify-topics-move.trycloudflare.com/mcp",
+    "liveSse": "https://answered-honor-victory-blake.trycloudflare.com/mcp",
     "x402Discovery": "https://rentandrugshield.com/.well-known/x402",
     "mcpDiscovery": "https://rentandrugshield.com/.well-known/mcp.json"
   },
@@ -72,14 +72,18 @@
   "authentication": {
     "type": "x402",
     "optional": true,
-    "freeTierPings": 2,
+    "freeTierPings": 1,
     "discoveryUrl": "https://rentandrugshield.com/.well-known/x402"
   },
   "tools": [
     {
-      "name": "audit_solana_token",
-      "title": "Solana 11-Layer Adaptive Pre-Buy Token Anti-Rug Audit (<120ms)",
-      "description": "<120ms pre-buy 11-layer Solana token safety gate over persistent keep-alive connections. Audits mint/freeze authorities, Token-2022 extensions (transfer fee, permanent delegate, transfer hook, default frozen), LP lock/burn status, top holder cluster concentration, exit liquidity solvency, Layer-8/9 Inner-CPI rent traps, pool age, and orderflow velocity. Includes 2 free pings and Solana x402 auto-upgrade.",
+      "name": "audit_solana_token_12_layer",
+      "aliases": [
+        "audit_solana_token_10_layer",
+        "audit_solana_token"
+      ],
+      "title": "Solana 12-Layer Adaptive Pre-Buy Token Anti-Rug Audit (<120ms)",
+      "description": "<120ms pre-buy 12-layer Solana token safety gate over persistent keep-alive connections. Audits mint/freeze authorities, Token-2022 extensions (transfer fee, permanent delegate, transfer hook, default frozen), LP lock/burn status, top holder cluster concentration, exit liquidity solvency, Layer-8/9 Inner-CPI rent traps, pool age, orderflow velocity, Layer-11 Sybil clusters, and Layer-12 Slot-0 bundles. Backward-compatible alias: audit_solana_token_10_layer.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -114,7 +118,52 @@
         "additionalProperties": false
       },
       "annotations": {
-        "title": "11-Layer Solana Token Rug & Token-2022 Audit",
+        "title": "12-Layer Solana Token Rug & Token-2022 Audit",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "audit_solana_token",
+      "title": "Solana 12-Layer Adaptive Pre-Buy Token Anti-Rug Audit (<120ms)",
+      "description": "<120ms pre-buy 12-layer Solana token safety gate over persistent keep-alive connections. Audits mint/freeze authorities, Token-2022 extensions (transfer fee, permanent delegate, transfer hook, default frozen), LP lock/burn status, top holder cluster concentration, exit liquidity solvency, Layer-8/9 Inner-CPI rent traps, pool age, and orderflow velocity. Includes 2 free pings and Solana x402 auto-upgrade.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "mint": {
+            "type": "string",
+            "description": "Solana SPL or Token-2022 token mint address (base58) to audit pre-buy."
+          },
+          "pool_address": {
+            "type": "string",
+            "description": "Optional DEX liquidity pool or pair address (base58)."
+          },
+          "wallet": {
+            "type": "string",
+            "description": "Optional buyer Solana wallet public key (base58)."
+          },
+          "payment_signature": {
+            "type": "string",
+            "description": "Optional confirmed Solana transaction signature paying 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1 (0.026 SOL Option A or 0.00134 SOL Option B)."
+          },
+          "pro_pass_token": {
+            "type": "string",
+            "description": "Optional X-Pro-Pass-Token from Option A ($1.99 / 0.026 SOL Unlimited Pro Pass)."
+          },
+          "x_payment": {
+            "type": "string",
+            "description": "Optional base64 or JSON Solana x402 payment payload (X-Payment / PAYMENT-SIGNATURE) for automatic HTTP 402 settlement."
+          }
+        },
+        "required": [
+          "mint"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "12-Layer Solana Token Rug & Token-2022 Audit",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -250,7 +299,7 @@
     "treasury": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
     "usdcMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     "treasuryUsdcAta": "BDFbaZumRyR2ceQfQqVdSXXDbJCDpEgAqgrmiUp92Hp8",
-    "freePingsLimit": 2,
+    "freePingsLimit": 1,
     "supportedHeaders": [
       "X-Payment",
       "PAYMENT-SIGNATURE",
@@ -910,54 +959,6 @@
         "mimeType": "application/json",
         "maxTimeoutSeconds": 300,
         "description": "Enterprise Unlimited API: $500/mo (Reg. $999/mo) - New layers included free during active pass, $0 auto-billing"
-      }
-    ]
-  },
-  "institutionalPricingLadder": {
-    "guarantee": "New layers included free during active pass, $0 auto-billing",
-    "affiliateSplit": "30% zero-custody ?ref=<SolanaWallet> on-chain split",
-    "tiers": [
-      {
-        "id": "single_10c",
-        "name": "Extra Single Scan",
-        "usd": 0.1,
-        "regularUsd": 0.99,
-        "usdcAtomic": "100000"
-      },
-      {
-        "id": "day_199",
-        "name": "24h Trench Pass",
-        "usd": 1.99,
-        "regularUsd": 4.99,
-        "usdcAtomic": "1990000"
-      },
-      {
-        "id": "trader_pro_1999",
-        "name": "30-Day Trader Pro (Unlimited Web/TG, No API Key)",
-        "usd": 19.99,
-        "regularUsd": 39.99,
-        "usdcAtomic": "19990000"
-      },
-      {
-        "id": "ultra_pro_4999",
-        "name": "30-Day Ultra Pro + Sniper Bot API (15,000 calls/mo + Rug Webhooks)",
-        "usd": 49.99,
-        "regularUsd": 99.0,
-        "usdcAtomic": "49990000"
-      },
-      {
-        "id": "quant_desk_99",
-        "name": "30-Day Quant Desk Pro API (100,000 calls/mo, <120ms Priority + Batch Sybil)",
-        "usd": 99.0,
-        "regularUsd": 199.0,
-        "usdcAtomic": "99000000"
-      },
-      {
-        "id": "enterprise_500",
-        "name": "Enterprise Unlimited API",
-        "usd": 500.0,
-        "regularUsd": 999.0,
-        "usdcAtomic": "500000000"
       }
     ]
   }

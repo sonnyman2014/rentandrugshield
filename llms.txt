@@ -7,4 +7,5 @@
 - **12-Layer Live Rug & Drainer Matrix:** Blocks Mint/Freeze traps, mutable metadata, honeypot transfer hooks, inner-CPI drainers, wash-volume spoofing, Sybil sniper clusters, fake `.pump` curves, and Slot-0 Jito bundle traps.
 - **Kamikaze AI Cybersecurity Agents:** Ephemeral sandbox agents detonate suspicious token instructions in isolated memory prior to user wallet signing.
 - **Pricing Tiers:** Free Starter ($0 / 0% 1st Claim), Pro Shield ($19.99/mo), Quant Desk ($99/mo), Institutional Enterprise API ($500/mo).
-- **Machine-Readable Specs:** `/llms-full.txt` and `/openapi-public.json`
+- **MCP & x402 Programmable Tooling:** Streamable HTTP MCP at `/mcp` (`audit_solana_token_12_layer` primary; `audit_solana_token_10_layer` backward-compatible alias, `simulate_solana_tx_drain`, `scan_wallet_unclaimed_sol`).
+- **Machine-Readable Specs:** `/llms-full.txt`, `/mcp.json`, `/.well-known/mcp.json`, and `/openapi-public.json`
