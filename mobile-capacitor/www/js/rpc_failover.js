@@ -166,7 +166,9 @@
   class SolanaMultiRpcEngine {
     constructor(config) {
       const cfg = config || {};
-      this.primaryApiBase = String(cfg.primaryApiBase || LIVE_TUNNEL_API).replace(/\/+$/, '');
+      const isSameOriginBackend = !cfg.primaryApiBase && typeof location !== 'undefined' && location.port === '8088';
+      const defaultBase = isSameOriginBackend ? location.origin : LIVE_TUNNEL_API;
+      this.primaryApiBase = String(cfg.primaryApiBase || defaultBase).replace(/\/+$/, '');
       this.forceDirectRpc = Boolean(
         cfg.forceDirectRpc !== undefined
           ? cfg.forceDirectRpc
@@ -194,7 +196,9 @@
 
       this.endpoints = [];
       this._initEndpoints(cfg.endpoints || DEFAULT_RPC_ENDPOINTS, savedCustom);
-      if (!cfg.primaryApiBase && typeof window !== 'undefined') {
+      if (isSameOriginBackend) {
+        this.setPrimaryApiBase(location.origin);
+      } else if (!cfg.primaryApiBase && typeof window !== 'undefined') {
         this._liveSyncPromise = this._syncLiveEndpointJson();
       }
     }
