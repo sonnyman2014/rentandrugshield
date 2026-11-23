@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pump.fun・PumpSwap・Raydium トレーダー向け ロックされた SOL レント安全回収ガイド | Rent &amp; Rug Shield</title>
+  <meta name="description" content="Pump.fun、PumpSwap、Raydium、Jupiter、GMGN、Phantom を利用する Solana トレーダーが、売却済みミームコインの空口座から初回手数料 0% で SOL を安全に取り戻す手順。" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#020408" />
+  <link rel="canonical" href="https://rentandrugshield.com/ja/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="en" href="https://rentandrugshield.com/en/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://rentandrugshield.com/zh/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="hi-IN" href="https://rentandrugshield.com/in/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="en-IN" href="https://rentandrugshield.com/in/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="ja" href="https://rentandrugshield.com/ja/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="ko" href="https://rentandrugshield.com/ko/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="x-default" href="https://rentandrugshield.com/en/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
+  <meta property="og:title" content="Pump.fun・PumpSwap・Raydium トレーダー向け ロックされた SOL レント安全回収ガイド" />
+  <meta property="og:description" content="Pump.fun、PumpSwap、Raydium、Jupiter、GMGN、Phantom を利用する Solana トレーダーが、売却済みミームコインの空口座から初回手数料 0% で SOL を安全に取り戻す手順。" />
+  <meta property="og:url" content="https://rentandrugshield.com/ja/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="Pump.fun・PumpSwap・Raydium トレーダー向け ロックされた SOL レント安全回収ガイド" />
+  <meta name="twitter:description" content="Pump.fun、PumpSwap、Raydium、Jupiter、GMGN、Phantom を利用する Solana トレーダーが、売却済みミームコインの空口座から初回手数料 0% で SOL を安全に取り戻す手順。" />
+  <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Pump.fun・PumpSwap・Raydium トレーダー向け ロックされた SOL レント安全回収ガイド",
+      "description": "Pump.fun、PumpSwap、Raydium、Jupiter、GMGN、Phantom を利用する Solana トレーダーが、売却済みミームコインの空口座から初回手数料 0% で SOL を安全に取り戻す手順。",
+      "inLanguage": "ja",
+      "datePublished": "2026-11-23",
+      "dateModified": "2026-11-23",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rentandrugshield.com/ja/reclaim-pumpfun-raydium-trader-sol-rent.html"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rentandrugshield.com/favicon.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "空口座を閉じた銘柄を後からもう一度購入することはできますか?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、全く問題ありません。再購入時にスワップルーターが自動的に ATA を再作成します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "現在保有している他の Pump.fun や Raydium トークンに影響はありますか?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "一切ありません。残高が 0 の口座のみが対象となり、保有中のトークンはプロトコルレベルで保護されます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "複数のサブウォレットを順番に無料チェックできますか?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。ウォレット接続不要で何個でも公開アドレスを読み取り専用スキャンできます。"
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    :root {
+      --bg: #020408;
+      --surface: #080f1a;
+      --surface-alt: #0c1626;
+      --border: #1a2c46;
+      --emerald: #00FFA3;
+      --emerald-dim: rgba(0, 255, 163, 0.12);
+      --gold: #D4AF37;
+      --gold-dim: rgba(212, 175, 55, 0.14);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Devanagari", sans-serif;
+      line-height: 1.68;
+    }
+    a { color: var(--emerald); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(2, 4, 8, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+    }
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--emerald);
+      letter-spacing: 0.02em;
+    }
+    .brand span { color: var(--gold); }
+    .lang-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .lang-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--surface);
+    }
+    .lang-pill.active {
+      border-color: var(--emerald);
+      color: var(--emerald);
+      background: var(--emerald-dim);
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 3.4vw, 2.55rem);
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: #ffffff;
+    }
+    .lead {
+      font-size: 1.08rem;
+      color: #cbd5e1;
+      max-width: 960px;
+      margin: 0 0 26px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--emerald);
+      color: #020408;
+      font-weight: 800;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 2px solid var(--emerald);
+      transition: transform 0.12s ease;
+    }
+    .btn-primary:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-block;
+      background: var(--surface);
+      color: var(--gold);
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 1px solid var(--gold);
+    }
+    .btn-secondary:hover { text-decoration: none; background: var(--gold-dim); }
+    .scan-box {
+      background: linear-gradient(180deg, #091526 0%, #060d18 100%);
+      border: 1px solid var(--emerald);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 30px;
+    }
+    .scan-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .scan-input {
+      flex: 1 1 320px;
+      background: #020408;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+    }
+    .scan-submit {
+      background: var(--gold);
+      color: #020408;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .metric-val {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--emerald);
+      margin-bottom: 4px;
+    }
+    .metric-lbl {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .content-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .content-card p {
+      margin: 0;
+      color: #dbeafe;
+    }
+    .arch-box {
+      background: #040811;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 26px 0;
+      overflow-x: auto;
+    }
+    .arch-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--emerald);
+    }
+    .arch-box pre {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+    }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 28px 0;
+      overflow-x: auto;
+    }
+    .table-wrap h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      color: #ffffff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    th {
+      color: var(--gold);
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+    td.highlight-col {
+      color: var(--emerald);
+      font-weight: 700;
+      background: rgba(0, 255, 163, 0.05);
+    }
+    .faq-section {
+      margin-top: 32px;
+    }
+    .faq-section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--emerald);
+    }
+    .faq-item p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+    .related-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 32px;
+    }
+    .related-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--gold);
+    }
+    .related-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .related-box li {
+      margin-bottom: 8px;
+    }
+    footer {
+      border-top: 2px solid var(--gold);
+      background: #020408;
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    footer .footer-domain {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://rentandrugshield.com/?src=seo_ja_reclaim_pumpfun_raydium_trader_sol_rent">SOLANA RENT <span>&amp; RUG SHIELD</span></a>
+      <nav class="lang-bar" aria-label="Language Switcher">
+        <a href="/en/reclaim-pumpfun-raydium-trader-sol-rent.html" class="lang-pill">English</a><a href="/zh/reclaim-pumpfun-raydium-trader-sol-rent.html" class="lang-pill">简体中文</a><a href="/in/reclaim-pumpfun-raydium-trader-sol-rent.html" class="lang-pill">हिन्दी / India (INR)</a><a href="/ja/reclaim-pumpfun-raydium-trader-sol-rent.html" class="lang-pill active">日本語</a><a href="/ko/reclaim-pumpfun-raydium-trader-sol-rent.html" class="lang-pill">한국어</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="badge">DEX トレーダー実践ガイド - PUMPFUN / PUMPSWAP / RAYDIUM</div>
+    <h1>Pump.fun・PumpSwap・Raydium トレーダーのための SOL レント安全回収ガイド (初回手数料 0%)</h1>
+    <p class="lead">Pump.fun のボンディングカーブや PumpSwap、Raydium、Jupiter アグリゲーターで日々ミームコインを売買していると、取引銘柄ごとに 0.00203928 SOL の口座開設保証金が積み上がります。全額利確・損切りした後も残り続ける空口座を安全に整理し、取引資金を即座に回復する方法を解説します。</p>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_ja_reclaim_pumpfun_raydium_trader_sol_rent">読み取り専用でウォレットをスキャン (初回手数料 0%)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/audit?src=seo_ja_reclaim_pumpfun_raydium_trader_sol_rent">12層トークン安全性監査を実行</a>
+    </div>
+
+    <div class="scan-box">
+      <form class="scan-form" action="https://rentandrugshield.com/" method="GET">
+        <input type="hidden" name="src" value="seo_ja_reclaim_pumpfun_raydium_trader_sol_rent" />
+        <input class="scan-input" type="text" name="wallet" placeholder="Solana ウォレット公開鍵を入力 (署名ポップアップなし)..." aria-label="Solana Wallet Public Key" required />
+        <button class="scan-submit" type="submit">即時無料スキャン</button>
+      </form>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-val">0.20 - 78+ SOL</div><div class="metric-lbl">メインネット活発トレーダーの実際の未回収レント規模</div></div><div class="metric-card"><div class="metric-val">シード入力ゼロ</div><div class="metric-lbl">Phantom・Solflare・Backpack・OKX Web3 完全対応</div></div><div class="metric-card"><div class="metric-val">初回手数料 0%</div><div class="metric-lbl">初回ウォレット回収は 100% 全額そのまま返還</div></div><div class="metric-card"><div class="metric-val">CSV 明細出力</div><div class="metric-lbl">確定申告・損益管理に便利な 0x09 監査ログ対応</div></div>
+    </div>
+
+    <section class="content-card"><h2>1. ミームコイン取引で毎月どれだけ SOL が眠っているか</h2><p>1日に 25 銘柄を売買するトレーダーの場合、1ヶ月で約 750 個の空トークン口座が発生し、約 1.529 SOL もの資金が口座保証金としてロックされます。不要な空口座をネイティブ 0x09 命令で閉じることで、保有トークンを一切売ることなく手元の SOL 流動性を回復できます。</p></section><section class="content-card"><h2>2. 3ステップの安全な回収フロー (まずは接続不要の読み取り確認)</h2><p>ステップ1: rentandrugshield.com または ?wallet=公開アドレス で署名ポップアップなしに回収可能 SOL を確認。ステップ2: 残高ゼロの初期化済み口座のみが対象であることを確認（凍結口座は自動除外）。ステップ3: Phantom や Solflare でトランザクションに署名し、初回手数料 0% で SOL を即時受け取ります。</p></section><section class="content-card"><h2>3. 複数ウォレット運用・ハードウェアウォレット・履歴管理にも対応</h2><p>サブウォレットやボット用ウォレットも公開鍵を貼り付けるだけで一括点検でき、Ledger などのパケットサイズ制限にも適合したバッチ設計となっています。</p></section>
+
+    <div class="arch-box">
+      <h2>オンチェーン SPL 命令およびバイト構造の検証</h2>
+      <pre>アクティブ DEX トレーダーの月間レント試算:
+  1日 25 銘柄取引 x 30 日 = 750 個の空 SPL トークン口座
+  750 口座 x 0.00203928 SOL = +1.529460 SOL 回収可能
+  初回ウォレット請求手数料  = 0.0% (+1.529460 SOL 全額受取)</pre>
+    </div>
+
+    <div class="table-wrap">
+      <h2>手数料・カストディ・安全性比較マトリクス</h2>
+      <table>
+        <thead>
+          <tr><th>取引環境 / ウォレット</th><th>全額売却後に空 ATA が残るか?</th><th>?wallet= 読み取り確認</th><th>初回 0% 全額回収</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pump.fun / PumpSwap AMM</td><td>はい (約 0.002039 SOL/銘柄)</td><td>対応 (接続不要)</td><td class="highlight-col">対応 (100% 返還)</td></tr><tr><td>Raydium V4 / CPMM / CLMM</td><td>はい (約 0.002039 SOL/銘柄)</td><td>対応 (接続不要)</td><td class="highlight-col">対応 (100% 返還)</td></tr><tr><td>Jupiter / Phantom スワップ</td><td>はい (約 0.002039 SOL/銘柄)</td><td>対応 (接続不要)</td><td class="highlight-col">対応 (100% 返還)</td></tr><tr><td>GMGN / Photon / BullX 連携ウォレット</td><td>はい (署名ウォレット上に残存)</td><td>対応 (接続不要)</td><td class="highlight-col">対応 (100% 返還)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta-row" style="margin-top: 24px;">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_ja_reclaim_pumpfun_raydium_trader_sol_rent">読み取り専用でウォレットをスキャン (初回手数料 0%)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/?src=seo_ja_reclaim_pumpfun_raydium_trader_sol_rent_bottom">rentandrugshield.com</a>
+    </div>
+
+    <section class="faq-section">
+      <h2>よくある技術的な質問 (FAQ)</h2>
+      <div class="faq-item"><h3>空口座を閉じた銘柄を後からもう一度購入することはできますか?</h3><p>はい、全く問題ありません。再購入時にスワップルーターが自動的に ATA を再作成します。</p></div><div class="faq-item"><h3>現在保有している他の Pump.fun や Raydium トークンに影響はありますか?</h3><p>一切ありません。残高が 0 の口座のみが対象となり、保有中のトークンはプロトコルレベルで保護されます。</p></div><div class="faq-item"><h3>複数のサブウォレットを順番に無料チェックできますか?</h3><p>はい。ウォレット接続不要で何個でも公開アドレスを読み取り専用スキャンできます。</p></div>
+    </section>
+
+    <nav class="related-box" aria-label="Related Guides">
+      <h2>Solana 空口座レント回収・セキュリティ技術ガイド</h2>
+      <ul>
+        <li><a href="/ja/">日本語 Hub (/ja/)</a></li><li><a href="/ja/solana-empty-ata-rent-reclaim-guide.html">Solana 空トークン口座 (Empty ATA) レント回収技術ガイド | 2,039,280 Lamports 完全返還</a></li><li><a href="/ja/sol-incinerator-vs-rent-and-rug-shield.html">Sol-Incinerator vs Rent &amp; Rug Shield 徹底比較 | 手数料 0% 初回請求と 12層ラグ監査</a></li><li><a href="/ja/token-2022-honeypot-freeze-authority-audit-guide.html">Solana 12層 Token-2022 ハニーポット・PermanentDelegate・凍結権限 監査ガイド</a></li><li><a href="/ja/reclaim-pumpfun-raydium-trader-sol-rent.html">Pump.fun・PumpSwap・Raydium トレーダー向け ロックされた SOL レント安全回収ガイド [Current]</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-domain"><a href="https://rentandrugshield.com/?src=seo_ja_reclaim_pumpfun_raydium_trader_sol_rent" style="color: var(--gold);">rentandrugshield.com</a></div>
+    <div>100% Read-Only Public Scan - 0% Fee On First Wallet Claim - Native SPL 0x09 CloseAccount</div>
+  </footer>
+</body>
+</html>

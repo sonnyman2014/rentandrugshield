@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solana Empty ATA Rent Reclaim Technical Guide (2,039,280 Lamports Recovery) | Rent &amp; Rug Shield</title>
+  <meta name="description" content="Complete technical guide to reclaiming locked Solana Associated Token Account (ATA) rent deposits (0.00203928 SOL per empty account) via native SPL 0x09 CloseAccount with 0% first-claim fee." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#020408" />
+  <link rel="canonical" href="https://rentandrugshield.com/en/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="en" href="https://rentandrugshield.com/en/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://rentandrugshield.com/zh/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="hi-IN" href="https://rentandrugshield.com/in/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="en-IN" href="https://rentandrugshield.com/in/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="ja" href="https://rentandrugshield.com/ja/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="ko" href="https://rentandrugshield.com/ko/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="x-default" href="https://rentandrugshield.com/en/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
+  <meta property="og:title" content="Solana Empty ATA Rent Reclaim Technical Guide (2,039,280 Lamports Recovery)" />
+  <meta property="og:description" content="Complete technical guide to reclaiming locked Solana Associated Token Account (ATA) rent deposits (0.00203928 SOL per empty account) via native SPL 0x09 CloseAccount with 0% first-claim fee." />
+  <meta property="og:url" content="https://rentandrugshield.com/en/solana-empty-ata-rent-reclaim-guide.html" />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="Solana Empty ATA Rent Reclaim Technical Guide (2,039,280 Lamports Recovery)" />
+  <meta name="twitter:description" content="Complete technical guide to reclaiming locked Solana Associated Token Account (ATA) rent deposits (0.00203928 SOL per empty account) via native SPL 0x09 CloseAccount with 0% first-claim fee." />
+  <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Solana Empty ATA Rent Reclaim Technical Guide (2,039,280 Lamports Recovery)",
+      "description": "Complete technical guide to reclaiming locked Solana Associated Token Account (ATA) rent deposits (0.00203928 SOL per empty account) via native SPL 0x09 CloseAccount with 0% first-claim fee.",
+      "inLanguage": "en",
+      "datePublished": "2026-11-23",
+      "dateModified": "2026-11-23",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rentandrugshield.com/en/solana-empty-ata-rent-reclaim-guide.html"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rentandrugshield.com/favicon.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can closing empty ATAs touch my active tokens or NFTs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The Solana SPL Token runtime rejects 0x09 CloseAccount at the protocol level if raw tokenAmount.amount is even 1 base unit above zero, and Rent & Rug Shield strictly filters for amount == '0' andinitialized state before building any instruction."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much SOL do 250 empty token accounts return?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "At 2,039,280 lamports per standard SPL ATA, 250 empty accounts return 0.50982 SOL. On your first wallet claim at rentandrugshield.com, the fee is 0%, so 100% of those lamports land directly in your wallet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to connect my wallet just to check my locked SOL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Never. Paste any public wallet address or visit rentandrugshield.com/?wallet=YOUR_ADDRESS for an instant read-only on-chain audit with zero wallet popups."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    :root {
+      --bg: #020408;
+      --surface: #080f1a;
+      --surface-alt: #0c1626;
+      --border: #1a2c46;
+      --emerald: #00FFA3;
+      --emerald-dim: rgba(0, 255, 163, 0.12);
+      --gold: #D4AF37;
+      --gold-dim: rgba(212, 175, 55, 0.14);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Devanagari", sans-serif;
+      line-height: 1.68;
+    }
+    a { color: var(--emerald); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(2, 4, 8, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+    }
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--emerald);
+      letter-spacing: 0.02em;
+    }
+    .brand span { color: var(--gold); }
+    .lang-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .lang-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--surface);
+    }
+    .lang-pill.active {
+      border-color: var(--emerald);
+      color: var(--emerald);
+      background: var(--emerald-dim);
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 3.4vw, 2.55rem);
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: #ffffff;
+    }
+    .lead {
+      font-size: 1.08rem;
+      color: #cbd5e1;
+      max-width: 960px;
+      margin: 0 0 26px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--emerald);
+      color: #020408;
+      font-weight: 800;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 2px solid var(--emerald);
+      transition: transform 0.12s ease;
+    }
+    .btn-primary:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-block;
+      background: var(--surface);
+      color: var(--gold);
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 1px solid var(--gold);
+    }
+    .btn-secondary:hover { text-decoration: none; background: var(--gold-dim); }
+    .scan-box {
+      background: linear-gradient(180deg, #091526 0%, #060d18 100%);
+      border: 1px solid var(--emerald);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 30px;
+    }
+    .scan-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .scan-input {
+      flex: 1 1 320px;
+      background: #020408;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+    }
+    .scan-submit {
+      background: var(--gold);
+      color: #020408;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .metric-val {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--emerald);
+      margin-bottom: 4px;
+    }
+    .metric-lbl {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .content-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .content-card p {
+      margin: 0;
+      color: #dbeafe;
+    }
+    .arch-box {
+      background: #040811;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 26px 0;
+      overflow-x: auto;
+    }
+    .arch-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--emerald);
+    }
+    .arch-box pre {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+    }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 28px 0;
+      overflow-x: auto;
+    }
+    .table-wrap h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      color: #ffffff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    th {
+      color: var(--gold);
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+    td.highlight-col {
+      color: var(--emerald);
+      font-weight: 700;
+      background: rgba(0, 255, 163, 0.05);
+    }
+    .faq-section {
+      margin-top: 32px;
+    }
+    .faq-section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--emerald);
+    }
+    .faq-item p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+    .related-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 32px;
+    }
+    .related-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--gold);
+    }
+    .related-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .related-box li {
+      margin-bottom: 8px;
+    }
+    footer {
+      border-top: 2px solid var(--gold);
+      background: #020408;
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    footer .footer-domain {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://rentandrugshield.com/?src=seo_en_solana_empty_ata_rent_reclaim_guide">SOLANA RENT <span>&amp; RUG SHIELD</span></a>
+      <nav class="lang-bar" aria-label="Language Switcher">
+        <a href="/en/solana-empty-ata-rent-reclaim-guide.html" class="lang-pill active">English</a><a href="/zh/solana-empty-ata-rent-reclaim-guide.html" class="lang-pill">简体中文</a><a href="/in/solana-empty-ata-rent-reclaim-guide.html" class="lang-pill">हिन्दी / India (INR)</a><a href="/ja/solana-empty-ata-rent-reclaim-guide.html" class="lang-pill">日本語</a><a href="/ko/solana-empty-ata-rent-reclaim-guide.html" class="lang-pill">한국어</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="badge">SPL PROTOCOL TECHNICAL GUIDE - 0x09 CLOSEACCOUNT</div>
+    <h1>Solana Empty ATA Rent Reclaim Technical Guide: Native 0x09 CloseAccount Mechanics</h1>
+    <p class="lead">Every time a Solana wallet buys a new SPL token on Raydium, Pump.fun, PumpSwap, or Jupiter, the network allocates a 165-byte Associated Token Account (ATA) funded with 2,039,280 lamports (0.00203928 SOL) from your SOL balance. Selling 100% of the token sets the token balance to zero, but leaves that SOL rent deposit locked on-chain until an explicit CloseAccount instruction is executed.</p>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_en_solana_empty_ata_rent_reclaim_guide">Scan Wallet Read-Only (0% First Claim Fee)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/audit?src=seo_en_solana_empty_ata_rent_reclaim_guide">Run 12-Layer Token Rug Audit</a>
+    </div>
+
+    <div class="scan-box">
+      <form class="scan-form" action="https://rentandrugshield.com/" method="GET">
+        <input type="hidden" name="src" value="seo_en_solana_empty_ata_rent_reclaim_guide" />
+        <input class="scan-input" type="text" name="wallet" placeholder="Paste Solana wallet pubkey (read-only, 0 popups)..." aria-label="Solana Wallet Public Key" required />
+        <button class="scan-submit" type="submit">Instant Public Scan</button>
+      </form>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-val">2,039,280</div><div class="metric-lbl">Lamports Per Empty SPL ATA (0.00203928 SOL)</div></div><div class="metric-card"><div class="metric-val">165 Bytes</div><div class="metric-lbl">Standard Tokenkeg Account State Allocation</div></div><div class="metric-card"><div class="metric-val">0% Fee</div><div class="metric-lbl">First Wallet Claim (100% SOL Returned To Owner)</div></div><div class="metric-card"><div class="metric-val">Up to 24 ATAs</div><div class="metric-lbl">Safe Atomic Batch Per Single 1,232-Byte Tx</div></div>
+    </div>
+
+    <section class="content-card"><h2>1. Why Empty SPL Token Accounts Lock SOL After Every Trade</h2><p>Solana enforces state rent-exemption proportional to byte storage. Under the canonical SPL Token program (TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA), each token mint requires a dedicated Associated Token Account derived deterministically from [wallet_pubkey, token_program_id, mint_pubkey]. Creating that 165-byte account plus its 128-byte account header requires exactly 2,039,280 lamports. DEX routers execute Swap instructions that reduce tokenAmount.amount to 0 on exit, yet routers rarely append CloseAccount so repeat buys do not re-pay rent. Active traders routinely accumulate 100 to 5,000+ zero-balance ATAs locking 0.20 SOL to 10+ SOL.</p></section><section class="content-card"><h2>2. How Native Instruction 0x09 (CloseAccount) Safely Refunds Lamports</h2><p>Native SPL Token instruction index 9 (0x09 CloseAccount) verifies three strict runtime invariants inside the Solana BPF runtime: (a) the account's raw token balance must equal zero (amount == 0), (b) the account state must not be frozen (state != frozen), and (c) the transaction signer must match the account owner or designated closeAuthority. When all three invariants hold, the runtime zeroes the account data, assigns ownership back to the System Program, and credits 100% of the lamports directly to your wallet in the exact same atomic slot.</p></section><section class="content-card"><h2>3. Read-Only PublicNode Verification &amp; Atomic Batch Packet Sizing</h2><p>Rent &amp; Rug Shield performs 100% read-only getTokenAccountsByOwner queries via ?wallet=YOUR_PUBKEY with zero wallet connection popups and zero seed phrases. Non-zero balances, staked positions, NFTs, and frozen Token-2022 accounts are automatically quarantined so transactions never revert. Closeable empty ATAs are packed into deterministic batches of 20 to 24 CloseAccount instructions per transaction to stay cleanly below Solana's 1,232-byte IPv6 MTU packet ceiling.</p></section>
+
+    <div class="arch-box">
+      <h2>On-Chain Instruction &amp; Byte-Level Architecture</h2>
+      <pre>Program ID : TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+Instruction: 0x09 (SPL Token :: CloseAccount)
+Accounts   : [0] source_empty_ata (writable)
+             [1] destination_owner_wallet (writable, receives +2,039,280 lamports)
+             [2] owner_authority (signer)
+Pre-Checks : tokenAmount.amount == '0' &amp;&amp; state == 'initialized' &amp;&amp; closeAuthority in [null, owner]</pre>
+    </div>
+
+    <div class="table-wrap">
+      <h2>Protocol &amp; Fee Verification Matrix</h2>
+      <table>
+        <thead>
+          <tr><th>Parameter</th><th>Raw Manual CLI</th><th>Typical 15%-20% Cleaners</th><th>Rent &amp; Rug Shield</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>First Wallet Claim Fee</td><td>0% (Requires Rust/CLI setup)</td><td>5% to 20% SOL skim</td><td class="highlight-col">0% Fee (Keep 100% SOL)</td></tr><tr><td>Repeat Sweep Fee</td><td>0% (Manual per-ATA CLI)</td><td>5% to 20% recurring</td><td class="highlight-col">2.0% Flat (Keep 98.0% SOL)</td></tr><tr><td>Read-Only ?wallet= Preview</td><td>No visual UI</td><td>Forces wallet connect popup</td><td class="highlight-col">100% Read-Only Public URL</td></tr><tr><td>Frozen Token-2022 Quarantine</td><td>Fails entire batch on 1 frozen ATA</td><td>Frequent simulation reverts</td><td class="highlight-col">Automatic Pre-Filter Quarantine</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta-row" style="margin-top: 24px;">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_en_solana_empty_ata_rent_reclaim_guide">Scan Wallet Read-Only (0% First Claim Fee)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/?src=seo_en_solana_empty_ata_rent_reclaim_guide_bottom">rentandrugshield.com</a>
+    </div>
+
+    <section class="faq-section">
+      <h2>Frequently Asked Technical Questions</h2>
+      <div class="faq-item"><h3>Can closing empty ATAs touch my active tokens or NFTs?</h3><p>No. The Solana SPL Token runtime rejects 0x09 CloseAccount at the protocol level if raw tokenAmount.amount is even 1 base unit above zero, and Rent &amp; Rug Shield strictly filters for amount == '0' andinitialized state before building any instruction.</p></div><div class="faq-item"><h3>How much SOL do 250 empty token accounts return?</h3><p>At 2,039,280 lamports per standard SPL ATA, 250 empty accounts return 0.50982 SOL. On your first wallet claim at rentandrugshield.com, the fee is 0%, so 100% of those lamports land directly in your wallet.</p></div><div class="faq-item"><h3>Do I need to connect my wallet just to check my locked SOL?</h3><p>Never. Paste any public wallet address or visit rentandrugshield.com/?wallet=YOUR_ADDRESS for an instant read-only on-chain audit with zero wallet popups.</p></div>
+    </section>
+
+    <nav class="related-box" aria-label="Related Guides">
+      <h2>Technical Solana Security &amp; Rent Recovery Guides</h2>
+      <ul>
+        <li><a href="/en/">English Hub (/en/)</a></li><li><a href="/en/solana-empty-ata-rent-reclaim-guide.html">Solana Empty ATA Rent Reclaim Technical Guide (2,039,280 Lamports Recovery) [Current]</a></li><li><a href="/en/sol-incinerator-vs-rent-and-rug-shield.html">Sol-Incinerator vs Rent &amp; Rug Shield: Fee, Safety &amp; 12-Layer Audit Comparison</a></li><li><a href="/en/token-2022-honeypot-freeze-authority-audit-guide.html">12-Layer Token-2022 Honeypot, Permanent Delegate &amp; Freeze Authority Audit Guide</a></li><li><a href="/en/reclaim-pumpfun-raydium-trader-sol-rent.html">How to Reclaim Locked Pump.fun, PumpSwap &amp; Raydium Trader SOL Rent Safely</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-domain"><a href="https://rentandrugshield.com/?src=seo_en_solana_empty_ata_rent_reclaim_guide" style="color: var(--gold);">rentandrugshield.com</a></div>
+    <div>100% Read-Only Public Scan - 0% Fee On First Wallet Claim - Native SPL 0x09 CloseAccount</div>
+  </footer>
+</body>
+</html>

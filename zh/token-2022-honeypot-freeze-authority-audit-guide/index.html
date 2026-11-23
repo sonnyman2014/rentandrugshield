@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱 | Rent &amp; Rug Shield</title>
+  <meta name="description" content="深入解析 Solana Token-2022 恶意扩展机制: PermanentDelegate 强制划走代币、TransferHook 99% 隐藏卖出税、FreezeAuthority 冻结貔貅盘及 Slot-0 庄家捆绑老鼠仓识别。" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#020408" />
+  <link rel="canonical" href="https://rentandrugshield.com/zh/token-2022-honeypot-freeze-authority-audit-guide.html" />
+  <link rel="alternate" hreflang="en" href="https://rentandrugshield.com/en/token-2022-honeypot-freeze-authority-audit-guide.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://rentandrugshield.com/zh/token-2022-honeypot-freeze-authority-audit-guide.html" />
+  <link rel="alternate" hreflang="hi-IN" href="https://rentandrugshield.com/in/token-2022-honeypot-freeze-authority-audit-guide.html" />
+  <link rel="alternate" hreflang="en-IN" href="https://rentandrugshield.com/in/token-2022-honeypot-freeze-authority-audit-guide.html" />
+  <link rel="alternate" hreflang="ja" href="https://rentandrugshield.com/ja/token-2022-honeypot-freeze-authority-audit-guide.html" />
+  <link rel="alternate" hreflang="ko" href="https://rentandrugshield.com/ko/token-2022-honeypot-freeze-authority-audit-guide.html" />
+  <link rel="alternate" hreflang="x-default" href="https://rentandrugshield.com/en/token-2022-honeypot-freeze-authority-audit-guide.html" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
+  <meta property="og:title" content="Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱" />
+  <meta property="og:description" content="深入解析 Solana Token-2022 恶意扩展机制: PermanentDelegate 强制划走代币、TransferHook 99% 隐藏卖出税、FreezeAuthority 冻结貔貅盘及 Slot-0 庄家捆绑老鼠仓识别。" />
+  <meta property="og:url" content="https://rentandrugshield.com/zh/token-2022-honeypot-freeze-authority-audit-guide.html" />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱" />
+  <meta name="twitter:description" content="深入解析 Solana Token-2022 恶意扩展机制: PermanentDelegate 强制划走代币、TransferHook 99% 隐藏卖出税、FreezeAuthority 冻结貔貅盘及 Slot-0 庄家捆绑老鼠仓识别。" />
+  <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱",
+      "description": "深入解析 Solana Token-2022 恶意扩展机制: PermanentDelegate 强制划走代币、TransferHook 99% 隐藏卖出税、FreezeAuthority 冻结貔貅盘及 Slot-0 庄家捆绑老鼠仓识别。",
+      "inLanguage": "zh-CN",
+      "datePublished": "2026-11-23",
+      "dateModified": "2026-11-23",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rentandrugshield.com/zh/token-2022-honeypot-freeze-authority-audit-guide.html"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rentandrugshield.com/favicon.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "什么是 Solana Token-2022 的 PermanentDelegate (永久委托)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "这是 Token-2022 面向合规稳定币设计的扩展，但若出现在土狗/Meme 代币中，意味着项目方拥有无需持币人签名即可随时清零您持仓的绝对权限，属于最高级别危险信号。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "已经被项目方恶意冻结 (Frozen) 的账户还能退回租金吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "根据 Solana 协议规则，处于 frozen 状态的账户在解冻前无法关闭。系统会自动将其安全隔离，绝不影响您一键退回其他所有正常空账户的 SOL。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "买币前做 12 层安全检测收费吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "在 rentandrugshield.com 输入任意代币合约 Mint 地址即可免费使用 12 层极速防貔貅审计。"
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    :root {
+      --bg: #020408;
+      --surface: #080f1a;
+      --surface-alt: #0c1626;
+      --border: #1a2c46;
+      --emerald: #00FFA3;
+      --emerald-dim: rgba(0, 255, 163, 0.12);
+      --gold: #D4AF37;
+      --gold-dim: rgba(212, 175, 55, 0.14);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Devanagari", sans-serif;
+      line-height: 1.68;
+    }
+    a { color: var(--emerald); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(2, 4, 8, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+    }
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--emerald);
+      letter-spacing: 0.02em;
+    }
+    .brand span { color: var(--gold); }
+    .lang-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .lang-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--surface);
+    }
+    .lang-pill.active {
+      border-color: var(--emerald);
+      color: var(--emerald);
+      background: var(--emerald-dim);
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 3.4vw, 2.55rem);
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: #ffffff;
+    }
+    .lead {
+      font-size: 1.08rem;
+      color: #cbd5e1;
+      max-width: 960px;
+      margin: 0 0 26px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--emerald);
+      color: #020408;
+      font-weight: 800;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 2px solid var(--emerald);
+      transition: transform 0.12s ease;
+    }
+    .btn-primary:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-block;
+      background: var(--surface);
+      color: var(--gold);
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 1px solid var(--gold);
+    }
+    .btn-secondary:hover { text-decoration: none; background: var(--gold-dim); }
+    .scan-box {
+      background: linear-gradient(180deg, #091526 0%, #060d18 100%);
+      border: 1px solid var(--emerald);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 30px;
+    }
+    .scan-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .scan-input {
+      flex: 1 1 320px;
+      background: #020408;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+    }
+    .scan-submit {
+      background: var(--gold);
+      color: #020408;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .metric-val {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--emerald);
+      margin-bottom: 4px;
+    }
+    .metric-lbl {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .content-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .content-card p {
+      margin: 0;
+      color: #dbeafe;
+    }
+    .arch-box {
+      background: #040811;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 26px 0;
+      overflow-x: auto;
+    }
+    .arch-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--emerald);
+    }
+    .arch-box pre {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+    }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 28px 0;
+      overflow-x: auto;
+    }
+    .table-wrap h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      color: #ffffff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    th {
+      color: var(--gold);
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+    td.highlight-col {
+      color: var(--emerald);
+      font-weight: 700;
+      background: rgba(0, 255, 163, 0.05);
+    }
+    .faq-section {
+      margin-top: 32px;
+    }
+    .faq-section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--emerald);
+    }
+    .faq-item p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+    .related-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 32px;
+    }
+    .related-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--gold);
+    }
+    .related-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .related-box li {
+      margin-bottom: 8px;
+    }
+    footer {
+      border-top: 2px solid var(--gold);
+      background: #020408;
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    footer .footer-domain {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://rentandrugshield.com/?src=seo_zh_token_2022_honeypot_freeze_authority_audit_guide">SOLANA RENT <span>&amp; RUG SHIELD</span></a>
+      <nav class="lang-bar" aria-label="Language Switcher">
+        <a href="/en/token-2022-honeypot-freeze-authority-audit-guide.html" class="lang-pill">English</a><a href="/zh/token-2022-honeypot-freeze-authority-audit-guide.html" class="lang-pill active">简体中文</a><a href="/in/token-2022-honeypot-freeze-authority-audit-guide.html" class="lang-pill">हिन्दी / India (INR)</a><a href="/ja/token-2022-honeypot-freeze-authority-audit-guide.html" class="lang-pill">日本語</a><a href="/ko/token-2022-honeypot-freeze-authority-audit-guide.html" class="lang-pill">한국어</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="badge">12 层链上合约安全架构 - TOKEN-2022 防貔貅指南</div>
+    <h1>Solana 12层防貔貅与 Token-2022 冻结权限、永久委托安全审计指南</h1>
+    <p class="lead">传统检测工具往往只看增发权限 (MintAuthority) 和冻结权限 (FreezeAuthority)，但在 Solana Token-2022 标准 (TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb) 下，恶意发币者可以利用 TLV 扩展植入零预警收割后门: 包括无需您签名即可强行划走代币的 PermanentDelegate、动态拦截卖出的 TransferHook 以及 100% 转账税。</p>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_zh_token_2022_honeypot_freeze_authority_audit_guide">立即只读扫描钱包 (首单 0% 手续费全额退回)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/audit?src=seo_zh_token_2022_honeypot_freeze_authority_audit_guide">启动 12 层防貔貅合约预检</a>
+    </div>
+
+    <div class="scan-box">
+      <form class="scan-form" action="https://rentandrugshield.com/" method="GET">
+        <input type="hidden" name="src" value="seo_zh_token_2022_honeypot_freeze_authority_audit_guide" />
+        <input class="scan-input" type="text" name="wallet" placeholder="输入 Solana 钱包公钥地址 (100% 只读无弹窗)..." aria-label="Solana Wallet Public Key" required />
+        <button class="scan-submit" type="submit">免费只读检测</button>
+      </form>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-val">&lt;120ms</div><div class="metric-lbl">毫秒级 12 层字节级合约深度预检</div></div><div class="metric-card"><div class="metric-val">Token-2022</div><div class="metric-lbl">完整解析 TLV 隐藏扩展后门</div></div><div class="metric-card"><div class="metric-val">Slot-0 侦测</div><div class="metric-lbl">识别 Jito 创世区块庄家捆绑老鼠仓</div></div><div class="metric-card"><div class="metric-val">自动隔离</div><div class="metric-lbl">退租时自动跳过恶意冻结账户防报错</div></div>
+    </div>
+
+    <section class="content-card"><h2>1. 警惕 Token-2022 最危险后门: PermanentDelegate 与 TransferHook</h2><p>如果一个代币启用了 PermanentDelegate (永久委托人)，项目方无需您的私钥或签名，随时可以从任何持币人钱包中强行转走或销毁全部代币。而可变的 TransferHook 则允许项目方在每次卖出交易中调用外部黑盒合约，拉盘吸筹后一键开启禁止卖出，形成典型的链上貔貅盘。</p></section><section class="content-card"><h2>2. 12 层全维度买前防火墙检测矩阵</h2><p>Rent &amp; Rug Shield 在 120 毫秒内同步核验: (1) 增发权是否丢弃、(2) 冻结权是否丢弃、(3) PermanentDelegate 永久委托、(4) TransferFeeConfig 100% 隐形税、(5) TransferHook 外部钩子、(6) 默认创建即冻结陷阱、(7) 灵魂绑定不可转让属性、(8) 元数据篡改风险、(9) LP 底池燃烧与锁仓比例、(10) 前十持仓集中度、(11) Slot-0 Jito 庄家捆绑抢跑、(12) 内部 CPI 恶意授权盗币指令。</p></section><section class="content-card"><h2>3. 为什么被貔貅盘冻结的 Token-2022 账户在退租时必须自动隔离?</h2><p>当黑心盘口利用 FreezeAuthority 冻结了您的代币账户后，若普通回收工具盲目对其发送 0x09 CloseAccount 指令，会导致整笔包含 20 个账户的批量交易全部回滚失败。我们的引擎会自动识别并安全隔离冻结账户，让您丝滑找回其余所有正常空账户的 SOL 租金。</p></section>
+
+    <div class="arch-box">
+      <h2>SPL 底层指令与字节级安全架构解析</h2>
+      <pre>审计目标程序 : TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb (Token-2022)
+120ms 毫秒级高危红灯拦截项:
+  [第 01-02 层] MintAuthority 未丢弃   | FreezeAuthority 冻结权未丢弃
+  [第 03-05 层] PermanentDelegate 偷币 | TransferHook 貔貅钩子 | 100% 转账税
+  [第 06-09 层] 默认冻结状态陷阱       | LP 底池未烧毁         | 前十老鼠仓控盘
+  [第 10-12 层] Slot-0 Jito 捆绑抢买   | 内部 CPI SetAuthority/Approve 盗币授权</pre>
+    </div>
+
+    <div class="table-wrap">
+      <h2>链上费率与安全机制对比矩阵</h2>
+      <table>
+        <thead>
+          <tr><th>高危收割手法</th><th>普通两项权限检测器</th><th>人工翻阅区块浏览器</th><th>12 层 Rent &amp; Rug Shield</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Token-2022 永久委托强行扣币</td><td>漏报率极高</td><td>隐藏在深层 JSON 字段中</td><td class="highlight-col">毫秒级高危红灯拦截</td></tr><tr><td>TransferHook 动态禁卖貔貅</td><td>无法识别外部钩子</td><td>需反编译关联程序</td><td class="highlight-col">买前 &lt;120ms 精准预警</td></tr><tr><td>Slot-0 Jito 庄家捆绑筹码</td><td>静态扫描不可见</td><td>需逐笔溯源创世区块</td><td class="highlight-col">自动标记庄家捆绑比例</td></tr><tr><td>批量退租遇到冻结盘处理</td><td>不支持</td><td>需手动逐个排查剔除</td><td class="highlight-col">全自动隔离保障一次成功</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta-row" style="margin-top: 24px;">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_zh_token_2022_honeypot_freeze_authority_audit_guide">立即只读扫描钱包 (首单 0% 手续费全额退回)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/?src=seo_zh_token_2022_honeypot_freeze_authority_audit_guide_bottom">rentandrugshield.com</a>
+    </div>
+
+    <section class="faq-section">
+      <h2>核心技术常见问题解答 (FAQ)</h2>
+      <div class="faq-item"><h3>什么是 Solana Token-2022 的 PermanentDelegate (永久委托)?</h3><p>这是 Token-2022 面向合规稳定币设计的扩展，但若出现在土狗/Meme 代币中，意味着项目方拥有无需持币人签名即可随时清零您持仓的绝对权限，属于最高级别危险信号。</p></div><div class="faq-item"><h3>已经被项目方恶意冻结 (Frozen) 的账户还能退回租金吗?</h3><p>根据 Solana 协议规则，处于 frozen 状态的账户在解冻前无法关闭。系统会自动将其安全隔离，绝不影响您一键退回其他所有正常空账户的 SOL。</p></div><div class="faq-item"><h3>买币前做 12 层安全检测收费吗?</h3><p>在 rentandrugshield.com 输入任意代币合约 Mint 地址即可免费使用 12 层极速防貔貅审计。</p></div>
+    </section>
+
+    <nav class="related-box" aria-label="Related Guides">
+      <h2>Solana 链上安全与空账户租金找回技术专栏</h2>
+      <ul>
+        <li><a href="/zh/">简体中文 Hub (/zh/)</a></li><li><a href="/zh/solana-empty-ata-rent-reclaim-guide.html">Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回</a></li><li><a href="/zh/sol-incinerator-vs-rent-and-rug-shield.html">Sol-Incinerator 与 Rent &amp; Rug Shield 深度对比: 手续费、防误烧与 12 层防貔貅审计</a></li><li><a href="/zh/token-2022-honeypot-freeze-authority-audit-guide.html">Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱 [Current]</a></li><li><a href="/zh/reclaim-pumpfun-raydium-trader-sol-rent.html">Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%)</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-domain"><a href="https://rentandrugshield.com/?src=seo_zh_token_2022_honeypot_freeze_authority_audit_guide" style="color: var(--gold);">rentandrugshield.com</a></div>
+    <div>100% Read-Only Public Scan - 0% Fee On First Wallet Claim - Native SPL 0x09 CloseAccount</div>
+  </footer>
+</body>
+</html>

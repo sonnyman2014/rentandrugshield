@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%) | Rent &amp; Rug Shield</title>
+  <meta name="description" content="专为 Pump.fun、PumpSwap、Raydium、GMGN、OKX Web3 与 Phantom 链上交易员打造的空账户 SOL 租金安全找回指南，100% 只读对账 + 首单 0% 手续费。" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#020408" />
+  <link rel="canonical" href="https://rentandrugshield.com/zh/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="en" href="https://rentandrugshield.com/en/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://rentandrugshield.com/zh/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="hi-IN" href="https://rentandrugshield.com/in/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="en-IN" href="https://rentandrugshield.com/in/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="ja" href="https://rentandrugshield.com/ja/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="ko" href="https://rentandrugshield.com/ko/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="alternate" hreflang="x-default" href="https://rentandrugshield.com/en/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
+  <meta property="og:title" content="Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%)" />
+  <meta property="og:description" content="专为 Pump.fun、PumpSwap、Raydium、GMGN、OKX Web3 与 Phantom 链上交易员打造的空账户 SOL 租金安全找回指南，100% 只读对账 + 首单 0% 手续费。" />
+  <meta property="og:url" content="https://rentandrugshield.com/zh/reclaim-pumpfun-raydium-trader-sol-rent.html" />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%)" />
+  <meta name="twitter:description" content="专为 Pump.fun、PumpSwap、Raydium、GMGN、OKX Web3 与 Phantom 链上交易员打造的空账户 SOL 租金安全找回指南，100% 只读对账 + 首单 0% 手续费。" />
+  <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%)",
+      "description": "专为 Pump.fun、PumpSwap、Raydium、GMGN、OKX Web3 与 Phantom 链上交易员打造的空账户 SOL 租金安全找回指南，100% 只读对账 + 首单 0% 手续费。",
+      "inLanguage": "zh-CN",
+      "datePublished": "2026-11-23",
+      "dateModified": "2026-11-23",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rentandrugshield.com/zh/reclaim-pumpfun-raydium-trader-sol-rent.html"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rentandrugshield.com/favicon.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "关闭某个 Meme 币的空账户后，以后还能再次买入同一个币吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "完全不影响! 下次再次买入该代币时，DEX 路由会自动重新为您初始化 ATA 账户，交易体验没有任何区别。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "我在 GMGN 或 TG Bot 里用的钱包怎么找回租金?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "您可以先用钱包公钥在网页上只读查询锁定的 SOL 数量；若金额可观，将该钱包导入 Phantom 或 OKX Web3 签名一次即可首单 0% 费率全额领回。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "每一笔退回交易在 Solscan 上都能查到明细吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "是的，所有指令均为透明的链上原生 SPL 0x09 CloseAccount 指令，可在 Solscan 实时核验每一分退回的 lamports。"
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    :root {
+      --bg: #020408;
+      --surface: #080f1a;
+      --surface-alt: #0c1626;
+      --border: #1a2c46;
+      --emerald: #00FFA3;
+      --emerald-dim: rgba(0, 255, 163, 0.12);
+      --gold: #D4AF37;
+      --gold-dim: rgba(212, 175, 55, 0.14);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Devanagari", sans-serif;
+      line-height: 1.68;
+    }
+    a { color: var(--emerald); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(2, 4, 8, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+    }
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--emerald);
+      letter-spacing: 0.02em;
+    }
+    .brand span { color: var(--gold); }
+    .lang-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .lang-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--surface);
+    }
+    .lang-pill.active {
+      border-color: var(--emerald);
+      color: var(--emerald);
+      background: var(--emerald-dim);
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 3.4vw, 2.55rem);
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: #ffffff;
+    }
+    .lead {
+      font-size: 1.08rem;
+      color: #cbd5e1;
+      max-width: 960px;
+      margin: 0 0 26px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--emerald);
+      color: #020408;
+      font-weight: 800;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 2px solid var(--emerald);
+      transition: transform 0.12s ease;
+    }
+    .btn-primary:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-block;
+      background: var(--surface);
+      color: var(--gold);
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 1px solid var(--gold);
+    }
+    .btn-secondary:hover { text-decoration: none; background: var(--gold-dim); }
+    .scan-box {
+      background: linear-gradient(180deg, #091526 0%, #060d18 100%);
+      border: 1px solid var(--emerald);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 30px;
+    }
+    .scan-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .scan-input {
+      flex: 1 1 320px;
+      background: #020408;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+    }
+    .scan-submit {
+      background: var(--gold);
+      color: #020408;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .metric-val {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--emerald);
+      margin-bottom: 4px;
+    }
+    .metric-lbl {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .content-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .content-card p {
+      margin: 0;
+      color: #dbeafe;
+    }
+    .arch-box {
+      background: #040811;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 26px 0;
+      overflow-x: auto;
+    }
+    .arch-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--emerald);
+    }
+    .arch-box pre {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+    }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 28px 0;
+      overflow-x: auto;
+    }
+    .table-wrap h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      color: #ffffff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    th {
+      color: var(--gold);
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+    td.highlight-col {
+      color: var(--emerald);
+      font-weight: 700;
+      background: rgba(0, 255, 163, 0.05);
+    }
+    .faq-section {
+      margin-top: 32px;
+    }
+    .faq-section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--emerald);
+    }
+    .faq-item p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+    .related-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 32px;
+    }
+    .related-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--gold);
+    }
+    .related-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .related-box li {
+      margin-bottom: 8px;
+    }
+    footer {
+      border-top: 2px solid var(--gold);
+      background: #020408;
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    footer .footer-domain {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://rentandrugshield.com/?src=seo_zh_reclaim_pumpfun_raydium_trader_sol_rent">SOLANA RENT <span>&amp; RUG SHIELD</span></a>
+      <nav class="lang-bar" aria-label="Language Switcher">
+        <a href="/en/reclaim-pumpfun-raydium-trader-sol-rent.html" class="lang-pill">English</a><a href="/zh/reclaim-pumpfun-raydium-trader-sol-rent.html" class="lang-pill active">简体中文</a><a href="/in/reclaim-pumpfun-raydium-trader-sol-rent.html" class="lang-pill">हिन्दी / India (INR)</a><a href="/ja/reclaim-pumpfun-raydium-trader-sol-rent.html" class="lang-pill">日本語</a><a href="/ko/reclaim-pumpfun-raydium-trader-sol-rent.html" class="lang-pill">한국어</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="badge">链上战壕交易员实战手册 - PUMPFUN / RAYDIUM 退租</div>
+    <h1>Pump.fun、PumpSwap 与 Raydium 交易员安全找回锁定 SOL 租金实战指南</h1>
+    <p class="lead">每天在 Pump.fun 内盘、PumpSwap 外盘、Raydium 以及 GMGN、Photon、BullX 战壕高频换手的交易员，每次买入新币都会自动创建独立的关联代币账户 (ATA)。即便您已经一键清仓卖出 100% 筹码，每个归零空账户依然在链上死死锁住 0.00203928 SOL 押金。</p>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_zh_reclaim_pumpfun_raydium_trader_sol_rent">立即只读扫描钱包 (首单 0% 手续费全额退回)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/audit?src=seo_zh_reclaim_pumpfun_raydium_trader_sol_rent">启动 12 层防貔貅合约预检</a>
+    </div>
+
+    <div class="scan-box">
+      <form class="scan-form" action="https://rentandrugshield.com/" method="GET">
+        <input type="hidden" name="src" value="seo_zh_reclaim_pumpfun_raydium_trader_sol_rent" />
+        <input class="scan-input" type="text" name="wallet" placeholder="输入 Solana 钱包公钥地址 (100% 只读无弹窗)..." aria-label="Solana Wallet Public Key" required />
+        <button class="scan-submit" type="submit">免费只读检测</button>
+      </form>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-val">0.20 - 78+ SOL</div><div class="metric-lbl">主网活跃交易员实测普遍锁定租金规模</div></div><div class="metric-card"><div class="metric-val">零助记词/零授权</div><div class="metric-lbl">完美兼容 Phantom、OKX Web3、Solflare、Backpack</div></div><div class="metric-card"><div class="metric-val">首单 0% 手续费</div><div class="metric-lbl">首次钱包清理 100% 本金原路秒回主钱包</div></div><div class="metric-card"><div class="metric-val">链上对账导出</div><div class="metric-lbl">清晰核验每一笔原生 0x09 退租记录</div></div>
+    </div>
+
+    <section class="content-card"><h2>1. 战壕高频打狗的隐形资金损耗有多惊人?</h2><p>按每天冲 30 个新盘计算，一个月就会产生约 900 个空代币账户，累计锁定高达 1.835 SOL 本金! 将这些沉睡在废弃合约账户里的押金一键找回，等于直接免费补充一笔纯净的链上建仓子弹，且完全不影响任何当前持仓代币。</p></section><section class="content-card"><h2>2. 三步极简零风险找回流程 (先只读验资，再签名领回)</h2><p>第一步: 访问 rentandrugshield.com 或直接打开 ?wallet=您的公钥地址，零弹窗只读查看可退回的空账户总数与精确 SOL 金额；第二步: 核对透明指令列表 (系统已自动剔除所有持仓币及恶意冻结盘)；第三步: 使用 Phantom、OKX Web3 或 Backpack 钱包确认原生 0x09 关闭交易，首单 0% 手续费秒级到账。</p></section><section class="content-card"><h2>3. 多钱包分仓与战壕小号批量体检神器</h2><p>许多交易员拥有多个打新钱包、跟单钱包与主仓钱包。无需来回切换连接钱包插件，只需粘贴不同地址即可秒级体检所有小号中遗留的 SOL 租金。</p></section>
+
+    <div class="arch-box">
+      <h2>SPL 底层指令与字节级安全架构解析</h2>
+      <pre>高频打狗交易员月度租金回血测算:
+  每日交易 30 个新 Meme 币 x 30 天 = 900 个空 SPL 代币账户
+  900 个空账户 x 0.00203928 SOL     = +1.835352 SOL 可直接找回
+  Rent &amp; Rug Shield 首单费率        = 0.0% (100% 全额退回您的钱包)</pre>
+    </div>
+
+    <div class="table-wrap">
+      <h2>链上费率与安全机制对比矩阵</h2>
+      <table>
+        <thead>
+          <tr><th>常用交易场景 / 钱包</th><th>清仓后是否残留空 ATA?</th><th>支持免连钱包 ?wallet= 预览?</th><th>首单 0% 全额找回</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pump.fun 内盘 &amp; PumpSwap</td><td>是 (每币锁定约 0.002039 SOL)</td><td>支持 (公钥直查)</td><td class="highlight-col">100% 全额退回</td></tr><tr><td>Raydium V4 / CPMM / CLMM</td><td>是 (每币锁定约 0.002039 SOL)</td><td>支持 (公钥直查)</td><td class="highlight-col">100% 全额退回</td></tr><tr><td>Jupiter / OKX Web3 / Phantom 闪兑</td><td>是 (每币锁定约 0.002039 SOL)</td><td>支持 (公钥直查)</td><td class="highlight-col">100% 全额退回</td></tr><tr><td>GMGN / Photon / BullX 导出钱包</td><td>是 (链上签名钱包均会产生)</td><td>支持 (公钥直查)</td><td class="highlight-col">100% 全额退回</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta-row" style="margin-top: 24px;">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_zh_reclaim_pumpfun_raydium_trader_sol_rent">立即只读扫描钱包 (首单 0% 手续费全额退回)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/?src=seo_zh_reclaim_pumpfun_raydium_trader_sol_rent_bottom">rentandrugshield.com</a>
+    </div>
+
+    <section class="faq-section">
+      <h2>核心技术常见问题解答 (FAQ)</h2>
+      <div class="faq-item"><h3>关闭某个 Meme 币的空账户后，以后还能再次买入同一个币吗?</h3><p>完全不影响! 下次再次买入该代币时，DEX 路由会自动重新为您初始化 ATA 账户，交易体验没有任何区别。</p></div><div class="faq-item"><h3>我在 GMGN 或 TG Bot 里用的钱包怎么找回租金?</h3><p>您可以先用钱包公钥在网页上只读查询锁定的 SOL 数量；若金额可观，将该钱包导入 Phantom 或 OKX Web3 签名一次即可首单 0% 费率全额领回。</p></div><div class="faq-item"><h3>每一笔退回交易在 Solscan 上都能查到明细吗?</h3><p>是的，所有指令均为透明的链上原生 SPL 0x09 CloseAccount 指令，可在 Solscan 实时核验每一分退回的 lamports。</p></div>
+    </section>
+
+    <nav class="related-box" aria-label="Related Guides">
+      <h2>Solana 链上安全与空账户租金找回技术专栏</h2>
+      <ul>
+        <li><a href="/zh/">简体中文 Hub (/zh/)</a></li><li><a href="/zh/solana-empty-ata-rent-reclaim-guide.html">Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回</a></li><li><a href="/zh/sol-incinerator-vs-rent-and-rug-shield.html">Sol-Incinerator 与 Rent &amp; Rug Shield 深度对比: 手续费、防误烧与 12 层防貔貅审计</a></li><li><a href="/zh/token-2022-honeypot-freeze-authority-audit-guide.html">Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱</a></li><li><a href="/zh/reclaim-pumpfun-raydium-trader-sol-rent.html">Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%) [Current]</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-domain"><a href="https://rentandrugshield.com/?src=seo_zh_reclaim_pumpfun_raydium_trader_sol_rent" style="color: var(--gold);">rentandrugshield.com</a></div>
+    <div>100% Read-Only Public Scan - 0% Fee On First Wallet Claim - Native SPL 0x09 CloseAccount</div>
+  </footer>
+</body>
+</html>

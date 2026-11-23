@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sol-Incinerator 与 Rent &amp; Rug Shield 深度对比: 手续费、防误烧与 12 层防貔貅审计 | Rent &amp; Rug Shield</title>
+  <meta name="description" content="全面对比 Sol-Incinerator、ClaimYourSOL 等高抽成租金回收工具与 Rent &amp; Rug Shield: 首单 0% 费率、复购仅 2%、零误烧安全隔离与 12 层防貔貅防火墙。" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#020408" />
+  <link rel="canonical" href="https://rentandrugshield.com/zh/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="en" href="https://rentandrugshield.com/en/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://rentandrugshield.com/zh/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="hi-IN" href="https://rentandrugshield.com/in/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="en-IN" href="https://rentandrugshield.com/in/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="ja" href="https://rentandrugshield.com/ja/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="ko" href="https://rentandrugshield.com/ko/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="x-default" href="https://rentandrugshield.com/en/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
+  <meta property="og:title" content="Sol-Incinerator 与 Rent &amp; Rug Shield 深度对比: 手续费、防误烧与 12 层防貔貅审计" />
+  <meta property="og:description" content="全面对比 Sol-Incinerator、ClaimYourSOL 等高抽成租金回收工具与 Rent &amp; Rug Shield: 首单 0% 费率、复购仅 2%、零误烧安全隔离与 12 层防貔貅防火墙。" />
+  <meta property="og:url" content="https://rentandrugshield.com/zh/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="Sol-Incinerator 与 Rent &amp; Rug Shield 深度对比: 手续费、防误烧与 12 层防貔貅审计" />
+  <meta name="twitter:description" content="全面对比 Sol-Incinerator、ClaimYourSOL 等高抽成租金回收工具与 Rent &amp; Rug Shield: 首单 0% 费率、复购仅 2%、零误烧安全隔离与 12 层防貔貅防火墙。" />
+  <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Sol-Incinerator 与 Rent & Rug Shield 深度对比: 手续费、防误烧与 12 层防貔貅审计",
+      "description": "全面对比 Sol-Incinerator、ClaimYourSOL 等高抽成租金回收工具与 Rent & Rug Shield: 首单 0% 费率、复购仅 2%、零误烧安全隔离与 12 层防貔貅防火墙。",
+      "inLanguage": "zh-CN",
+      "datePublished": "2026-11-23",
+      "dateModified": "2026-11-23",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rentandrugshield.com/zh/sol-incinerator-vs-rent-and-rug-shield.html"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rentandrugshield.com/favicon.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "为什么 Rent & Rug Shield 可以做到首单 0% 手续费?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "我们希望每一位 Solana 链上交易员都能零成本验证原生 0x09 退租的真实性与安全性，首单分文不取；后续日常清理仅收取全网最低档的 2.0% 服务费。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "相比其他焚烧工具，如何保证不会误烧我的土狗持仓?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "默认退租模式仅针对余额严格为 0 的空账户调用 CloseAccount，不包含任何代币销毁指令，从底层杜绝误烧持仓或 NFT。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "30% 推广返佣需要申请或等待人工打款吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "完全不需要。只需分享 https://rentandrugshield.com/?ref=您的SOL钱包地址，每笔复购交易的 30% 分润会在同一笔链上交易内自动打入您的钱包。"
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    :root {
+      --bg: #020408;
+      --surface: #080f1a;
+      --surface-alt: #0c1626;
+      --border: #1a2c46;
+      --emerald: #00FFA3;
+      --emerald-dim: rgba(0, 255, 163, 0.12);
+      --gold: #D4AF37;
+      --gold-dim: rgba(212, 175, 55, 0.14);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Devanagari", sans-serif;
+      line-height: 1.68;
+    }
+    a { color: var(--emerald); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(2, 4, 8, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+    }
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--emerald);
+      letter-spacing: 0.02em;
+    }
+    .brand span { color: var(--gold); }
+    .lang-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .lang-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--surface);
+    }
+    .lang-pill.active {
+      border-color: var(--emerald);
+      color: var(--emerald);
+      background: var(--emerald-dim);
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 3.4vw, 2.55rem);
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: #ffffff;
+    }
+    .lead {
+      font-size: 1.08rem;
+      color: #cbd5e1;
+      max-width: 960px;
+      margin: 0 0 26px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--emerald);
+      color: #020408;
+      font-weight: 800;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 2px solid var(--emerald);
+      transition: transform 0.12s ease;
+    }
+    .btn-primary:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-block;
+      background: var(--surface);
+      color: var(--gold);
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 1px solid var(--gold);
+    }
+    .btn-secondary:hover { text-decoration: none; background: var(--gold-dim); }
+    .scan-box {
+      background: linear-gradient(180deg, #091526 0%, #060d18 100%);
+      border: 1px solid var(--emerald);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 30px;
+    }
+    .scan-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .scan-input {
+      flex: 1 1 320px;
+      background: #020408;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+    }
+    .scan-submit {
+      background: var(--gold);
+      color: #020408;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .metric-val {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--emerald);
+      margin-bottom: 4px;
+    }
+    .metric-lbl {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .content-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .content-card p {
+      margin: 0;
+      color: #dbeafe;
+    }
+    .arch-box {
+      background: #040811;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 26px 0;
+      overflow-x: auto;
+    }
+    .arch-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--emerald);
+    }
+    .arch-box pre {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+    }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 28px 0;
+      overflow-x: auto;
+    }
+    .table-wrap h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      color: #ffffff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    th {
+      color: var(--gold);
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+    td.highlight-col {
+      color: var(--emerald);
+      font-weight: 700;
+      background: rgba(0, 255, 163, 0.05);
+    }
+    .faq-section {
+      margin-top: 32px;
+    }
+    .faq-section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--emerald);
+    }
+    .faq-item p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+    .related-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 32px;
+    }
+    .related-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--gold);
+    }
+    .related-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .related-box li {
+      margin-bottom: 8px;
+    }
+    footer {
+      border-top: 2px solid var(--gold);
+      background: #020408;
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    footer .footer-domain {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://rentandrugshield.com/?src=seo_zh_sol_incinerator_vs_rent_and_rug_shield">SOLANA RENT <span>&amp; RUG SHIELD</span></a>
+      <nav class="lang-bar" aria-label="Language Switcher">
+        <a href="/en/sol-incinerator-vs-rent-and-rug-shield.html" class="lang-pill">English</a><a href="/zh/sol-incinerator-vs-rent-and-rug-shield.html" class="lang-pill active">简体中文</a><a href="/in/sol-incinerator-vs-rent-and-rug-shield.html" class="lang-pill">हिन्दी / India (INR)</a><a href="/ja/sol-incinerator-vs-rent-and-rug-shield.html" class="lang-pill">日本語</a><a href="/ko/sol-incinerator-vs-rent-and-rug-shield.html" class="lang-pill">한국어</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="badge">全网费率与安全性横向评测</div>
+    <h1>Sol-Incinerator vs Rent &amp; Rug Shield: 费率抽成、资产安全与功能全面对比</h1>
+    <p class="lead">市面上多数 Solana 钱包清理工具要么收取高达 5% 至 20% 的隐蔽手续费，要么要求必须先连接钱包授权弹窗才能查看余额，甚至将高风险的代币销毁 (Burn) 与空账户关闭混在一起。本文从链上指令、费率精算与防貔貅能力进行客观技术拆解。</p>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_zh_sol_incinerator_vs_rent_and_rug_shield">立即只读扫描钱包 (首单 0% 手续费全额退回)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/audit?src=seo_zh_sol_incinerator_vs_rent_and_rug_shield">启动 12 层防貔貅合约预检</a>
+    </div>
+
+    <div class="scan-box">
+      <form class="scan-form" action="https://rentandrugshield.com/" method="GET">
+        <input type="hidden" name="src" value="seo_zh_sol_incinerator_vs_rent_and_rug_shield" />
+        <input class="scan-input" type="text" name="wallet" placeholder="输入 Solana 钱包公钥地址 (100% 只读无弹窗)..." aria-label="Solana Wallet Public Key" required />
+        <button class="scan-submit" type="submit">免费只读检测</button>
+      </form>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-val">0% vs 5%-20%</div><div class="metric-lbl">首次钱包清理手续费直观差距</div></div><div class="metric-card"><div class="metric-val">98.0% 留存</div><div class="metric-lbl">复购封顶仅 2.0% 费率无任何套路</div></div><div class="metric-card"><div class="metric-val">30% 秒级分润</div><div class="metric-lbl">非托管同笔交易原子级 ?ref= 返佣</div></div><div class="metric-card"><div class="metric-val">12 层防火墙</div><div class="metric-lbl">内置毫秒级 Token-2022 防貔貅审计</div></div>
+    </div>
+
+    <section class="content-card"><h2>1. 真实鲸鱼与高频交易员的链上费率账单对比</h2><p>在我们通过 PublicNode 审计的 200 个主网活跃交易员钱包中，高频地址普遍堆积了 500 至 38,608 个空 ATA 账户 (锁定 1.02 SOL 至 78.47 SOL)。假设回收 10 SOL 空账户租金，某 15% 抽成平台会直接划走 1.50 SOL 手续费；而在 Rent &amp; Rug Shield 首单享受 0% 费率 (实收 10.0000 SOL)，后续复购仅收 2.0% 封顶费率。</p></section><section class="content-card"><h2>2. 严格区分『0 余额空壳退租』与『代币销毁』防止误删资产</h2><p>许多交易员曾在使用一键焚烧工具时误将尚未上所或流动性较低的持仓代币一并 Burn 销毁。Rent &amp; Rug Shield 默认严格锁定 tokenAmount.amount == '0' 的空壳账户执行原生 0x09 指令，绝不触碰任何非零持仓或 NFT，并自动隔离冻结盘。</p></section><section class="content-card"><h2>3. 独家内置 12 层买前防貔貅扫描与 30% 无托管链上返佣</h2><p>除了省下租金手续费，Rent &amp; Rug Shield 还免费提供 &lt;120ms 12 层合约安全预检 (精准识别 Token-2022 PermanentDelegate 永久委托偷币、TransferHook 隐藏高额卖出税与庄家捆绑老鼠仓)，并支持 ?ref=您的钱包地址 实现 30% 同笔交易原子级秒结返佣。</p></section>
+
+    <div class="arch-box">
+      <h2>SPL 底层指令与字节级安全架构解析</h2>
+      <pre>回收 10.0000 SOL 空账户租金实收对比:
+  - 15% 抽成回收网站实收      :  8.5000 SOL (白白损失 1.5000 SOL)
+  - 5% 抽成清理工具实收       :  9.5000 SOL (损失 0.5000 SOL)
+  - Rent &amp; Rug Shield 首单    : 10.0000 SOL (0.0% 手续费 - 100% 全额落袋)
+  - Rent &amp; Rug Shield 复购    :  9.8000 SOL (2.0% 封顶费率 - 保留 98%)</pre>
+    </div>
+
+    <div class="table-wrap">
+      <h2>链上费率与安全机制对比矩阵</h2>
+      <table>
+        <thead>
+          <tr><th>对比维度</th><th>Sol-Incinerator</th><th>15%-20% 高抽成工具</th><th>Rent &amp; Rug Shield</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>首单空账户租金找回费率</td><td>2% - 5% 浮动抽成</td><td>15% - 20% 重度抽成</td><td class="highlight-col">0% 手续费 (首单 100% 全退)</td></tr><tr><td>后续日常清理费率</td><td>2% - 5% 浮动抽成</td><td>15% - 20% 持续抽成</td><td class="highlight-col">2.0% 极低固定费率</td></tr><tr><td>只读公钥预览 (?wallet=)</td><td>必须先弹窗连接钱包</td><td>必须先弹窗连接钱包</td><td class="highlight-col">100% 免连钱包只读秒查</td></tr><tr><td>12 层买前防貔貅合约检测</td><td>不支持</td><td>不支持</td><td class="highlight-col">免费内置 (&lt;120ms 极速预检)</td></tr><tr><td>推广返佣结算模式</td><td>20% 中心化提现门槛</td><td>无或中心化记账</td><td class="highlight-col">30% 链上同笔交易原子秒结</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta-row" style="margin-top: 24px;">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_zh_sol_incinerator_vs_rent_and_rug_shield">立即只读扫描钱包 (首单 0% 手续费全额退回)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/?src=seo_zh_sol_incinerator_vs_rent_and_rug_shield_bottom">rentandrugshield.com</a>
+    </div>
+
+    <section class="faq-section">
+      <h2>核心技术常见问题解答 (FAQ)</h2>
+      <div class="faq-item"><h3>为什么 Rent &amp; Rug Shield 可以做到首单 0% 手续费?</h3><p>我们希望每一位 Solana 链上交易员都能零成本验证原生 0x09 退租的真实性与安全性，首单分文不取；后续日常清理仅收取全网最低档的 2.0% 服务费。</p></div><div class="faq-item"><h3>相比其他焚烧工具，如何保证不会误烧我的土狗持仓?</h3><p>默认退租模式仅针对余额严格为 0 的空账户调用 CloseAccount，不包含任何代币销毁指令，从底层杜绝误烧持仓或 NFT。</p></div><div class="faq-item"><h3>30% 推广返佣需要申请或等待人工打款吗?</h3><p>完全不需要。只需分享 https://rentandrugshield.com/?ref=您的SOL钱包地址，每笔复购交易的 30% 分润会在同一笔链上交易内自动打入您的钱包。</p></div>
+    </section>
+
+    <nav class="related-box" aria-label="Related Guides">
+      <h2>Solana 链上安全与空账户租金找回技术专栏</h2>
+      <ul>
+        <li><a href="/zh/">简体中文 Hub (/zh/)</a></li><li><a href="/zh/solana-empty-ata-rent-reclaim-guide.html">Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回</a></li><li><a href="/zh/sol-incinerator-vs-rent-and-rug-shield.html">Sol-Incinerator 与 Rent &amp; Rug Shield 深度对比: 手续费、防误烧与 12 层防貔貅审计 [Current]</a></li><li><a href="/zh/token-2022-honeypot-freeze-authority-audit-guide.html">Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱</a></li><li><a href="/zh/reclaim-pumpfun-raydium-trader-sol-rent.html">Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%)</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-domain"><a href="https://rentandrugshield.com/?src=seo_zh_sol_incinerator_vs_rent_and_rug_shield" style="color: var(--gold);">rentandrugshield.com</a></div>
+    <div>100% Read-Only Public Scan - 0% Fee On First Wallet Claim - Native SPL 0x09 CloseAccount</div>
+  </footer>
+</body>
+</html>

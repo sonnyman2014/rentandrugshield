@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回 | Rent &amp; Rug Shield</title>
+  <meta name="description" content="深度解析 Solana 关联代币账户 (ATA) 0.00203928 SOL 免租押金机制、SPL 0x09 CloseAccount 原生关闭指令、数据包字节上限与首单 0% 手续费只读找回流程。" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#020408" />
+  <link rel="canonical" href="https://rentandrugshield.com/zh/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="en" href="https://rentandrugshield.com/en/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://rentandrugshield.com/zh/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="hi-IN" href="https://rentandrugshield.com/in/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="en-IN" href="https://rentandrugshield.com/in/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="ja" href="https://rentandrugshield.com/ja/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="ko" href="https://rentandrugshield.com/ko/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="alternate" hreflang="x-default" href="https://rentandrugshield.com/en/solana-empty-ata-rent-reclaim-guide.html" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
+  <meta property="og:title" content="Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回" />
+  <meta property="og:description" content="深度解析 Solana 关联代币账户 (ATA) 0.00203928 SOL 免租押金机制、SPL 0x09 CloseAccount 原生关闭指令、数据包字节上限与首单 0% 手续费只读找回流程。" />
+  <meta property="og:url" content="https://rentandrugshield.com/zh/solana-empty-ata-rent-reclaim-guide.html" />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回" />
+  <meta name="twitter:description" content="深度解析 Solana 关联代币账户 (ATA) 0.00203928 SOL 免租押金机制、SPL 0x09 CloseAccount 原生关闭指令、数据包字节上限与首单 0% 手续费只读找回流程。" />
+  <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回",
+      "description": "深度解析 Solana 关联代币账户 (ATA) 0.00203928 SOL 免租押金机制、SPL 0x09 CloseAccount 原生关闭指令、数据包字节上限与首单 0% 手续费只读找回流程。",
+      "inLanguage": "zh-CN",
+      "datePublished": "2026-11-23",
+      "dateModified": "2026-11-23",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rentandrugshield.com/zh/solana-empty-ata-rent-reclaim-guide.html"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rentandrugshield.com/favicon.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "关闭空代币账户会误删我有价值的代币或 NFT 吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "绝对不会。Solana 底层 SPL Token 程序硬编码规定: 只要账户内代币原始余额大于 0，0x09 CloseAccount 指令就会被链上直接拒绝；同时我们仅筛选余额严格为 0 的空壳账户。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "300 个空代币账户大约可以找回多少 SOL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "每个标准空 SPL ATA 账户锁定约 0.00203928 SOL，300 个空账户可一次性找回约 0.611784 SOL。首单享受 0% 手续费，全部 SOL 直接回到您的钱包。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "只是想查询钱包里锁了多少租金，需要连接 Phantom 或 OKX 钱包吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "完全不需要。直接粘贴钱包公钥地址即可进行 100% 只读链上扫描，零签名、零授权弹窗。"
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    :root {
+      --bg: #020408;
+      --surface: #080f1a;
+      --surface-alt: #0c1626;
+      --border: #1a2c46;
+      --emerald: #00FFA3;
+      --emerald-dim: rgba(0, 255, 163, 0.12);
+      --gold: #D4AF37;
+      --gold-dim: rgba(212, 175, 55, 0.14);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Devanagari", sans-serif;
+      line-height: 1.68;
+    }
+    a { color: var(--emerald); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(2, 4, 8, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+    }
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--emerald);
+      letter-spacing: 0.02em;
+    }
+    .brand span { color: var(--gold); }
+    .lang-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .lang-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--surface);
+    }
+    .lang-pill.active {
+      border-color: var(--emerald);
+      color: var(--emerald);
+      background: var(--emerald-dim);
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 3.4vw, 2.55rem);
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: #ffffff;
+    }
+    .lead {
+      font-size: 1.08rem;
+      color: #cbd5e1;
+      max-width: 960px;
+      margin: 0 0 26px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--emerald);
+      color: #020408;
+      font-weight: 800;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 2px solid var(--emerald);
+      transition: transform 0.12s ease;
+    }
+    .btn-primary:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-block;
+      background: var(--surface);
+      color: var(--gold);
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 1px solid var(--gold);
+    }
+    .btn-secondary:hover { text-decoration: none; background: var(--gold-dim); }
+    .scan-box {
+      background: linear-gradient(180deg, #091526 0%, #060d18 100%);
+      border: 1px solid var(--emerald);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 30px;
+    }
+    .scan-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .scan-input {
+      flex: 1 1 320px;
+      background: #020408;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+    }
+    .scan-submit {
+      background: var(--gold);
+      color: #020408;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .metric-val {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--emerald);
+      margin-bottom: 4px;
+    }
+    .metric-lbl {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .content-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .content-card p {
+      margin: 0;
+      color: #dbeafe;
+    }
+    .arch-box {
+      background: #040811;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 26px 0;
+      overflow-x: auto;
+    }
+    .arch-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--emerald);
+    }
+    .arch-box pre {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+    }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 28px 0;
+      overflow-x: auto;
+    }
+    .table-wrap h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      color: #ffffff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    th {
+      color: var(--gold);
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+    td.highlight-col {
+      color: var(--emerald);
+      font-weight: 700;
+      background: rgba(0, 255, 163, 0.05);
+    }
+    .faq-section {
+      margin-top: 32px;
+    }
+    .faq-section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--emerald);
+    }
+    .faq-item p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+    .related-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 32px;
+    }
+    .related-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--gold);
+    }
+    .related-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .related-box li {
+      margin-bottom: 8px;
+    }
+    footer {
+      border-top: 2px solid var(--gold);
+      background: #020408;
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    footer .footer-domain {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://rentandrugshield.com/?src=seo_zh_solana_empty_ata_rent_reclaim_guide">SOLANA RENT <span>&amp; RUG SHIELD</span></a>
+      <nav class="lang-bar" aria-label="Language Switcher">
+        <a href="/en/solana-empty-ata-rent-reclaim-guide.html" class="lang-pill">English</a><a href="/zh/solana-empty-ata-rent-reclaim-guide.html" class="lang-pill active">简体中文</a><a href="/in/solana-empty-ata-rent-reclaim-guide.html" class="lang-pill">हिन्दी / India (INR)</a><a href="/ja/solana-empty-ata-rent-reclaim-guide.html" class="lang-pill">日本語</a><a href="/ko/solana-empty-ata-rent-reclaim-guide.html" class="lang-pill">한국어</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="badge">SOLANA 底层协议技术指南 - SPL 0x09 指令解析</div>
+    <h1>Solana 空代币账户 (Empty ATA) 租金找回技术指南: 0x09 原生指令全解析</h1>
+    <p class="lead">每当您在 Raydium、Pump.fun、PumpSwap、Jupiter 或通过 GMGN、OKX Web3 买入一个全新的 Solana 代币时，链上会自动为您分配一个 165 字节的关联代币账户 (ATA)，并从您的主网余额中锁定 2,039,280 lamports (即 0.00203928 SOL) 作为状态免租押金。当您清仓卖出 100% 代币后，余额归零但空账户不会自动销毁，只有执行原生 CloseAccount 指令才能将锁定的 SOL 全额退回钱包。</p>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_zh_solana_empty_ata_rent_reclaim_guide">立即只读扫描钱包 (首单 0% 手续费全额退回)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/audit?src=seo_zh_solana_empty_ata_rent_reclaim_guide">启动 12 层防貔貅合约预检</a>
+    </div>
+
+    <div class="scan-box">
+      <form class="scan-form" action="https://rentandrugshield.com/" method="GET">
+        <input type="hidden" name="src" value="seo_zh_solana_empty_ata_rent_reclaim_guide" />
+        <input class="scan-input" type="text" name="wallet" placeholder="输入 Solana 钱包公钥地址 (100% 只读无弹窗)..." aria-label="Solana Wallet Public Key" required />
+        <button class="scan-submit" type="submit">免费只读检测</button>
+      </form>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-val">2,039,280</div><div class="metric-lbl">单个空 SPL 账户锁定 Lamports (0.00203928 SOL)</div></div><div class="metric-card"><div class="metric-val">165 字节</div><div class="metric-lbl">标准 Tokenkeg 关联账户链上存储空间</div></div><div class="metric-card"><div class="metric-val">首单 0% 费率</div><div class="metric-lbl">首次钱包清理 100% 全额退回无抽成</div></div><div class="metric-card"><div class="metric-val">20-24 个/笔</div><div class="metric-lbl">符合 1,232 字节 MTU 上限的安全原子批处理</div></div>
+    </div>
+
+    <section class="content-card"><h2>1. 为什么清仓冲土狗后 SOL 余额会越交易越少?</h2><p>Solana 高速状态机要求所有链上账户存入与字节体积挂钩的免租押金 (Rent-Exempt Reserve)。在标准 SPL Token 程序 (TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA) 下，每个代币合约都会派生独立的 ATA 地址。DEX 聚合器在卖出时仅将 tokenAmount.amount 清零，默认保留空壳账户。高频链上交易员往往在不知不觉中堆积 200 至 5,000+ 个空代币账户，白白锁定 0.4 SOL 至 10+ SOL 现金流。</p></section><section class="content-card"><h2>2. 原生 0x09 CloseAccount 指令的三大链上安全铁律</h2><p>SPL Token 第 9 号指令 (0x09 CloseAccount) 在 Solana BPF 虚拟机内部强制校验三项不可篡改条件: 第一，代币原始数量必须严格等于 0 (amount == '0')，任何持仓代币或 NFT 均无法被关闭；第二，账户状态必须为非冻结 (state != 'frozen')；第三，签名者必须为账户所有者本人且无第三方恶意 closeAuthority。校验通过后，链上在同一区块高度直接将 2,039,280 lamports 原路退回您的主钱包。</p></section><section class="content-card"><h2>3. 100% 只读无弹窗预检与冻结账户自动隔离机制</h2><p>在 rentandrugshield.com 输入任意钱包公钥或访问 ?wallet=钱包地址，即可通过公共 RPC 完成 100% 只读扫描，全程无需连接钱包弹窗、绝不索要助记词或私钥。系统自动隔离有余额资产与被项目方恶意冻结的 Token-2022 账户，确保每一笔批量回收交易模拟 100% 一次通过。</p></section>
+
+    <div class="arch-box">
+      <h2>SPL 底层指令与字节级安全架构解析</h2>
+      <pre>程序地址   : TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+原生指令码 : 0x09 (SPL Token :: CloseAccount 销毁空账户退租)
+账户列表   : [0] 待关闭空 ATA 账户 (writable)
+             [1] 接收退款主钱包地址 (writable, 退回 +2,039,280 lamports)
+             [2] 钱包所有者签名权限 (signer)
+前置安全过滤: tokenAmount.amount == '0' &amp;&amp; state == 'initialized' &amp;&amp; 无第三方关闭权限</pre>
+    </div>
+
+    <div class="table-wrap">
+      <h2>链上费率与安全机制对比矩阵</h2>
+      <table>
+        <thead>
+          <tr><th>核心指标</th><th>命令行手工脚本</th><th>传统抽成回收工具 (15%-20%)</th><th>Rent &amp; Rug Shield</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>首次钱包找回手续费</td><td>0% (需配置本地 Rust/CLI 环境)</td><td>抽取 5% 至 20% SOL</td><td class="highlight-col">首单 0% 手续费 (100% 全退)</td></tr><tr><td>后续复购清理费率</td><td>0% (逐个手动关闭极慢)</td><td>持续抽取 5% 至 20%</td><td class="highlight-col">固定仅 2.0% (用户保留 98%)</td></tr><tr><td>只读 ?wallet= 无需连钱包预览</td><td>无图形化对账界面</td><td>强制要求先弹窗连接钱包</td><td class="highlight-col">100% 公钥只读秒级扫描</td></tr><tr><td>冻结 Token-2022 账户防报错隔离</td><td>遇到单个冻结盘整批报错失败</td><td>经常触发交易模拟失败</td><td class="highlight-col">前置自动隔离冻结盘零报错</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta-row" style="margin-top: 24px;">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_zh_solana_empty_ata_rent_reclaim_guide">立即只读扫描钱包 (首单 0% 手续费全额退回)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/?src=seo_zh_solana_empty_ata_rent_reclaim_guide_bottom">rentandrugshield.com</a>
+    </div>
+
+    <section class="faq-section">
+      <h2>核心技术常见问题解答 (FAQ)</h2>
+      <div class="faq-item"><h3>关闭空代币账户会误删我有价值的代币或 NFT 吗?</h3><p>绝对不会。Solana 底层 SPL Token 程序硬编码规定: 只要账户内代币原始余额大于 0，0x09 CloseAccount 指令就会被链上直接拒绝；同时我们仅筛选余额严格为 0 的空壳账户。</p></div><div class="faq-item"><h3>300 个空代币账户大约可以找回多少 SOL?</h3><p>每个标准空 SPL ATA 账户锁定约 0.00203928 SOL，300 个空账户可一次性找回约 0.611784 SOL。首单享受 0% 手续费，全部 SOL 直接回到您的钱包。</p></div><div class="faq-item"><h3>只是想查询钱包里锁了多少租金，需要连接 Phantom 或 OKX 钱包吗?</h3><p>完全不需要。直接粘贴钱包公钥地址即可进行 100% 只读链上扫描，零签名、零授权弹窗。</p></div>
+    </section>
+
+    <nav class="related-box" aria-label="Related Guides">
+      <h2>Solana 链上安全与空账户租金找回技术专栏</h2>
+      <ul>
+        <li><a href="/zh/">简体中文 Hub (/zh/)</a></li><li><a href="/zh/solana-empty-ata-rent-reclaim-guide.html">Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回 [Current]</a></li><li><a href="/zh/sol-incinerator-vs-rent-and-rug-shield.html">Sol-Incinerator 与 Rent &amp; Rug Shield 深度对比: 手续费、防误烧与 12 层防貔貅审计</a></li><li><a href="/zh/token-2022-honeypot-freeze-authority-audit-guide.html">Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱</a></li><li><a href="/zh/reclaim-pumpfun-raydium-trader-sol-rent.html">Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%)</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-domain"><a href="https://rentandrugshield.com/?src=seo_zh_solana_empty_ata_rent_reclaim_guide" style="color: var(--gold);">rentandrugshield.com</a></div>
+    <div>100% Read-Only Public Scan - 0% Fee On First Wallet Claim - Native SPL 0x09 CloseAccount</div>
+  </footer>
+</body>
+</html>

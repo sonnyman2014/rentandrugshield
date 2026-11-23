@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sol-Incinerator vs Rent &amp; Rug Shield: Fee, Safety &amp; 12-Layer Audit Comparison | Rent &amp; Rug Shield</title>
+  <meta name="description" content="Detailed technical comparison of Sol-Incinerator and high-fee Solana rent cleaners vs Rent &amp; Rug Shield: 0% first-claim fee, 2% repeat cap, zero accidental burns, and 12-Layer Rug Shield." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#020408" />
+  <link rel="canonical" href="https://rentandrugshield.com/en/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="en" href="https://rentandrugshield.com/en/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://rentandrugshield.com/zh/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="hi-IN" href="https://rentandrugshield.com/in/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="en-IN" href="https://rentandrugshield.com/in/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="ja" href="https://rentandrugshield.com/ja/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="ko" href="https://rentandrugshield.com/ko/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="alternate" hreflang="x-default" href="https://rentandrugshield.com/en/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
+  <meta property="og:title" content="Sol-Incinerator vs Rent &amp; Rug Shield: Fee, Safety &amp; 12-Layer Audit Comparison" />
+  <meta property="og:description" content="Detailed technical comparison of Sol-Incinerator and high-fee Solana rent cleaners vs Rent &amp; Rug Shield: 0% first-claim fee, 2% repeat cap, zero accidental burns, and 12-Layer Rug Shield." />
+  <meta property="og:url" content="https://rentandrugshield.com/en/sol-incinerator-vs-rent-and-rug-shield.html" />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="Sol-Incinerator vs Rent &amp; Rug Shield: Fee, Safety &amp; 12-Layer Audit Comparison" />
+  <meta name="twitter:description" content="Detailed technical comparison of Sol-Incinerator and high-fee Solana rent cleaners vs Rent &amp; Rug Shield: 0% first-claim fee, 2% repeat cap, zero accidental burns, and 12-Layer Rug Shield." />
+  <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Sol-Incinerator vs Rent & Rug Shield: Fee, Safety & 12-Layer Audit Comparison",
+      "description": "Detailed technical comparison of Sol-Incinerator and high-fee Solana rent cleaners vs Rent & Rug Shield: 0% first-claim fee, 2% repeat cap, zero accidental burns, and 12-Layer Rug Shield.",
+      "inLanguage": "en",
+      "datePublished": "2026-11-23",
+      "dateModified": "2026-11-23",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rentandrugshield.com/en/sol-incinerator-vs-rent-and-rug-shield.html"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Solana Rent & Rug Shield",
+        "url": "https://rentandrugshield.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rentandrugshield.com/favicon.png"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why is the first wallet claim 0% fee on Rent & Rug Shield?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Traders should be able to verify native 0x09 CloseAccount recovery on-chain with zero friction and keep 100% of their first sweep. Repeat sweeps are capped at a flat 2.0% with zero subscriptions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the 30% ?ref= referral split work without custody?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When a repeat claim occurs via rentandrugshield.com/?ref=REFERRER_PUBKEY, 30% of the 2.0% service fee is routed directly to REFERRER_PUBKEY inside the same atomic SystemProgram::Transfer instruction - zero withdrawal thresholds or custodial balances."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I switch from another cleaner if I already closed some ATAs before?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every new swap on Raydium, Pump.fun, or Jupiter creates fresh ATAs, and your first claim on Rent & Rug Shield still qualifies for our 0% first-claim onboarding tier."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    :root {
+      --bg: #020408;
+      --surface: #080f1a;
+      --surface-alt: #0c1626;
+      --border: #1a2c46;
+      --emerald: #00FFA3;
+      --emerald-dim: rgba(0, 255, 163, 0.12);
+      --gold: #D4AF37;
+      --gold-dim: rgba(212, 175, 55, 0.14);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Devanagari", sans-serif;
+      line-height: 1.68;
+    }
+    a { color: var(--emerald); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(2, 4, 8, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+    }
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--emerald);
+      letter-spacing: 0.02em;
+    }
+    .brand span { color: var(--gold); }
+    .lang-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .lang-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--surface);
+    }
+    .lang-pill.active {
+      border-color: var(--emerald);
+      color: var(--emerald);
+      background: var(--emerald-dim);
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 3.4vw, 2.55rem);
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: #ffffff;
+    }
+    .lead {
+      font-size: 1.08rem;
+      color: #cbd5e1;
+      max-width: 960px;
+      margin: 0 0 26px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--emerald);
+      color: #020408;
+      font-weight: 800;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 2px solid var(--emerald);
+      transition: transform 0.12s ease;
+    }
+    .btn-primary:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-block;
+      background: var(--surface);
+      color: var(--gold);
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      border: 1px solid var(--gold);
+    }
+    .btn-secondary:hover { text-decoration: none; background: var(--gold-dim); }
+    .scan-box {
+      background: linear-gradient(180deg, #091526 0%, #060d18 100%);
+      border: 1px solid var(--emerald);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 30px;
+    }
+    .scan-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .scan-input {
+      flex: 1 1 320px;
+      background: #020408;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+    }
+    .scan-submit {
+      background: var(--gold);
+      color: #020408;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .metric-val {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--emerald);
+      margin-bottom: 4px;
+    }
+    .metric-lbl {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .content-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .content-card p {
+      margin: 0;
+      color: #dbeafe;
+    }
+    .arch-box {
+      background: #040811;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 26px 0;
+      overflow-x: auto;
+    }
+    .arch-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--emerald);
+    }
+    .arch-box pre {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+    }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 28px 0;
+      overflow-x: auto;
+    }
+    .table-wrap h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      color: #ffffff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    th {
+      color: var(--gold);
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+    td.highlight-col {
+      color: var(--emerald);
+      font-weight: 700;
+      background: rgba(0, 255, 163, 0.05);
+    }
+    .faq-section {
+      margin-top: 32px;
+    }
+    .faq-section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--emerald);
+    }
+    .faq-item p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+    .related-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 32px;
+    }
+    .related-box h2 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      color: var(--gold);
+    }
+    .related-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .related-box li {
+      margin-bottom: 8px;
+    }
+    footer {
+      border-top: 2px solid var(--gold);
+      background: #020408;
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    footer .footer-domain {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://rentandrugshield.com/?src=seo_en_sol_incinerator_vs_rent_and_rug_shield">SOLANA RENT <span>&amp; RUG SHIELD</span></a>
+      <nav class="lang-bar" aria-label="Language Switcher">
+        <a href="/en/sol-incinerator-vs-rent-and-rug-shield.html" class="lang-pill active">English</a><a href="/zh/sol-incinerator-vs-rent-and-rug-shield.html" class="lang-pill">简体中文</a><a href="/in/sol-incinerator-vs-rent-and-rug-shield.html" class="lang-pill">हिन्दी / India (INR)</a><a href="/ja/sol-incinerator-vs-rent-and-rug-shield.html" class="lang-pill">日本語</a><a href="/ko/sol-incinerator-vs-rent-and-rug-shield.html" class="lang-pill">한국어</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="badge">FEE, CUSTODY &amp; SAFETY BENCHMARK COMPARISON</div>
+    <h1>Sol-Incinerator &amp; Legacy Cleaners vs Rent &amp; Rug Shield: Technical Fee &amp; Safety Audit</h1>
+    <p class="lead">Most Solana wallet cleanup utilities either charge steep 5% to 20% recurring SOL skims, require immediate wallet connection popups before showing balances, or mix destructive token Burn instructions into empty-account sweeps. Here is a transparent on-chain architecture comparison between Sol-Incinerator, 15%-20% rent skimmers, and Rent &amp; Rug Shield.</p>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_en_sol_incinerator_vs_rent_and_rug_shield">Scan Wallet Read-Only (0% First Claim Fee)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/audit?src=seo_en_sol_incinerator_vs_rent_and_rug_shield">Run 12-Layer Token Rug Audit</a>
+    </div>
+
+    <div class="scan-box">
+      <form class="scan-form" action="https://rentandrugshield.com/" method="GET">
+        <input type="hidden" name="src" value="seo_en_sol_incinerator_vs_rent_and_rug_shield" />
+        <input class="scan-input" type="text" name="wallet" placeholder="Paste Solana wallet pubkey (read-only, 0 popups)..." aria-label="Solana Wallet Public Key" required />
+        <button class="scan-submit" type="submit">Instant Public Scan</button>
+      </form>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-val">0% vs 2%-20%</div><div class="metric-lbl">First Wallet Claim Fee Comparison</div></div><div class="metric-card"><div class="metric-val">98.0% Kept</div><div class="metric-lbl">2.0% Flat Repeat Cap vs 80%-95% Elsewhere</div></div><div class="metric-card"><div class="metric-val">30% Instant</div><div class="metric-lbl">Zero-Custody Atomic ?ref= On-Chain Split</div></div><div class="metric-card"><div class="metric-val">12 Layers</div><div class="metric-lbl">Integrated Pre-Buy Honeypot &amp; Rug Firewall</div></div>
+    </div>
+
+    <section class="content-card"><h2>1. Transparent Fee Math On Real Mainnet Whale Wallets</h2><p>Across our 200-wallet PublicNode mainnet audit, top active Raydium and PumpSwap traders hold between 500 and 38,608 empty SPL token accounts (1.02 SOL to 78.47 SOL in locked rent). On a 10 SOL empty-ATA recovery, a 15% competitor cleanout tool deducts 1.50 SOL ($110+ USD) for executing a standard 0x09 instruction that you sign yourself. Rent &amp; Rug Shield charges 0% on your first wallet claim (0.00 SOL fee) and caps repeat cleanouts at a flat 2.0%.</p></section><section class="content-card"><h2>2. Separating Safe 0x09 Empty-ATA Recovery From Destructive Token Burns</h2><p>Accidental loss happens when cleanup tools bundle BurnChecked instructions alongside CloseAccount on illiquid or unpriced tokens. Rent &amp; Rug Shield defaults strictly to zero-balance (tokenAmount.amount == '0') native 0x09 CloseAccount recovery first, ensuring active positions, LP receipts, and NFTs cannot be burned by mistake, while quarantining frozen Token-2022 accounts cleanly.</p></section><section class="content-card"><h2>3. Built-In 12-Layer Pre-Buy Rug Shield &amp; 30% Atomic Referral Split</h2><p>Recovering trapped rent is only half of capital preservation. Rent &amp; Rug Shield includes a real-time &lt;120ms 12-Layer Token-2022 &amp; SPL rug scanner (detecting PermanentDelegate, hidden TransferHook taxes, unburned LP, and Slot-0 creator sniper bundles) plus a 30% zero-custody ?ref=YOUR_WALLET referral payout settled inside the same Solana transaction.</p></section>
+
+    <div class="arch-box">
+      <h2>On-Chain Instruction &amp; Byte-Level Architecture</h2>
+      <pre>10.0000 SOL Locked Empty-ATA Benchmark:
+  - 15% Skim Cleaner Payout     :  8.5000 SOL (You lose 1.5000 SOL)
+  - 5% Cleanup Tool Payout      :  9.5000 SOL (You lose 0.5000 SOL)
+  - Rent &amp; Rug Shield 1st Claim : 10.0000 SOL (0.0% Fee - Keep 100%)
+  - Rent &amp; Rug Shield Repeat    :  9.8000 SOL (2.0% Flat Cap - Keep 98%)</pre>
+    </div>
+
+    <div class="table-wrap">
+      <h2>Protocol &amp; Fee Verification Matrix</h2>
+      <table>
+        <thead>
+          <tr><th>Capability</th><th>Sol-Incinerator</th><th>15%-20% Rent Cleaners</th><th>Rent &amp; Rug Shield</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>First Wallet Empty-ATA Claim</td><td>2% - 5% variable fee</td><td>15% - 20% fee</td><td class="highlight-col">0% Fee (100% Free First Claim)</td></tr><tr><td>Repeat Empty-ATA Claim</td><td>2% - 5% variable fee</td><td>15% - 20% fee</td><td class="highlight-col">2.0% Flat Fee</td></tr><tr><td>Read-Only URL Scan (?wallet=)</td><td>Requires wallet connect</td><td>Requires wallet connect</td><td class="highlight-col">Instant Read-Only Public Scan</td></tr><tr><td>12-Layer Pre-Buy Rug Scanner</td><td>Not included</td><td>Not included</td><td class="highlight-col">Included Free (&lt;120ms Audit)</td></tr><tr><td>Affiliate Payout Architecture</td><td>20% custodial threshold</td><td>Custodial or none</td><td class="highlight-col">30% Atomic Same-Tx ?ref= Split</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta-row" style="margin-top: 24px;">
+      <a class="btn-primary" href="https://rentandrugshield.com/?src=seo_en_sol_incinerator_vs_rent_and_rug_shield">Scan Wallet Read-Only (0% First Claim Fee)</a>
+      <a class="btn-secondary" href="https://rentandrugshield.com/?src=seo_en_sol_incinerator_vs_rent_and_rug_shield_bottom">rentandrugshield.com</a>
+    </div>
+
+    <section class="faq-section">
+      <h2>Frequently Asked Technical Questions</h2>
+      <div class="faq-item"><h3>Why is the first wallet claim 0% fee on Rent &amp; Rug Shield?</h3><p>Traders should be able to verify native 0x09 CloseAccount recovery on-chain with zero friction and keep 100% of their first sweep. Repeat sweeps are capped at a flat 2.0% with zero subscriptions.</p></div><div class="faq-item"><h3>How does the 30% ?ref= referral split work without custody?</h3><p>When a repeat claim occurs via rentandrugshield.com/?ref=REFERRER_PUBKEY, 30% of the 2.0% service fee is routed directly to REFERRER_PUBKEY inside the same atomic SystemProgram::Transfer instruction - zero withdrawal thresholds or custodial balances.</p></div><div class="faq-item"><h3>Can I switch from another cleaner if I already closed some ATAs before?</h3><p>Yes. Every new swap on Raydium, Pump.fun, or Jupiter creates fresh ATAs, and your first claim on Rent &amp; Rug Shield still qualifies for our 0% first-claim onboarding tier.</p></div>
+    </section>
+
+    <nav class="related-box" aria-label="Related Guides">
+      <h2>Technical Solana Security &amp; Rent Recovery Guides</h2>
+      <ul>
+        <li><a href="/en/">English Hub (/en/)</a></li><li><a href="/en/solana-empty-ata-rent-reclaim-guide.html">Solana Empty ATA Rent Reclaim Technical Guide (2,039,280 Lamports Recovery)</a></li><li><a href="/en/sol-incinerator-vs-rent-and-rug-shield.html">Sol-Incinerator vs Rent &amp; Rug Shield: Fee, Safety &amp; 12-Layer Audit Comparison [Current]</a></li><li><a href="/en/token-2022-honeypot-freeze-authority-audit-guide.html">12-Layer Token-2022 Honeypot, Permanent Delegate &amp; Freeze Authority Audit Guide</a></li><li><a href="/en/reclaim-pumpfun-raydium-trader-sol-rent.html">How to Reclaim Locked Pump.fun, PumpSwap &amp; Raydium Trader SOL Rent Safely</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-domain"><a href="https://rentandrugshield.com/?src=seo_en_sol_incinerator_vs_rent_and_rug_shield" style="color: var(--gold);">rentandrugshield.com</a></div>
+    <div>100% Read-Only Public Scan - 0% Fee On First Wallet Claim - Native SPL 0x09 CloseAccount</div>
+  </footer>
+</body>
+</html>
