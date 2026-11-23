@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://diary-gravity-opens-volunteer.trycloudflare.com",
-  "api_base": "https://diary-gravity-opens-volunteer.trycloudflare.com",
-  "rpc_url": "https://diary-gravity-opens-volunteer.trycloudflare.com/api/rpc",
-  "actions_base": "https://diary-gravity-opens-volunteer.trycloudflare.com/api/actions",
+  "endpoint": "https://factor-compliant-physically-watts.trycloudflare.com",
+  "api_base": "https://factor-compliant-physically-watts.trycloudflare.com",
+  "rpc_url": "https://factor-compliant-physically-watts.trycloudflare.com/api/rpc",
+  "actions_base": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
   "referral_bps": 50,
   "shield_trade_gate_min": 85,
