@@ -16384,7 +16384,7 @@ window.submitVisitorFeedbackNow = async function(){
       return;
     }
     stEl.style.color = "#7DD3FC";
-    stEl.innerText = "⏳ Sending inquiry to ceo@SolRentClaim.com...";
+    stEl.innerText = "⏳ Sending inquiry to ceo@rentandrugshield.com...";
     try {
       var res = await window.__rrsResilientFeedbackPost("/api/ad-inquiry", {
         category: "ad_inquiry",
@@ -16395,7 +16395,7 @@ window.submitVisitorFeedbackNow = async function(){
       }, "/api/feedback");
       if (res && res.ok){
         stEl.style.color = "#6EE7B7";
-        stEl.innerText = "✅ Ad inquiry delivered to ceo@SolRentClaim.com! Our team will follow up shortly.";
+        stEl.innerText = "✅ Ad inquiry delivered to ceo@rentandrugshield.com! Our team will follow up shortly.";
         if (tokEl) tokEl.value = "";
         if (cntEl) cntEl.value = "";
         if (msgEl) msgEl.value = "";
