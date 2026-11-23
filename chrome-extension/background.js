@@ -479,13 +479,13 @@ async function getOrCreateVisitorSession() {
 
 function updateTabBadge(tabId, score, cutoff) {
   if (!tabId || !chrome.action || !chrome.action.setBadgeText) return;
+  if (typeof unreadShieldCount === 'number' && unreadShieldCount > 0) return;
   try {
     const safe = Number(score) >= Number(cutoff || 75);
-    chrome.action.setBadgeText({ tabId, text: String(score) });
-    chrome.action.setBadgeBackgroundColor({
-      tabId,
-      color: safe ? '#00FFA3' : '#FF1744'
-    });
+    chrome.action.setBadgeText({ tabId, text: safe ? '' : String(score) });
+    if (!safe) {
+      chrome.action.setBadgeBackgroundColor({ tabId, color: '#FF1744' });
+    }
   } catch (_e) {}
 }
 
@@ -737,38 +737,123 @@ function drawShieldFrame(size, isAlert, phase) {
   return ctx.getImageData(0, 0, size, size);
 }
 
-function renderToolbarShieldTick() {
-  animPhase = (animPhase + 1) % 10000;
+const UNREAD_SHIELD_KEY_V55 = 'rrs_unread_shield_count_v55';
+let unreadShieldCount = 0;
+let shieldIconVisualState = 'yellow_black';
+let emeraldFlashResetTimer = null;
+
+const ICON_PATHS_YELLOW = {
+  16: 'icons/shield_yellow_16.png',
+  32: 'icons/shield_yellow_32.png',
+  48: 'icons/shield_yellow_48.png',
+  128: 'icons/shield_yellow_128.png'
+};
+const ICON_PATHS_RED = {
+  16: 'icons/shield_red_16.png',
+  32: 'icons/shield_red_32.png',
+  48: 'icons/shield_red_48.png',
+  128: 'icons/shield_red_128.png'
+};
+const ICON_PATHS_EMERALD = {
+  16: 'icons/shield_emerald_16.png',
+  32: 'icons/shield_emerald_32.png',
+  48: 'icons/shield_emerald_48.png',
+  128: 'icons/shield_emerald_128.png'
+};
+
+function applyLuxuryToolbarShieldState(state, countOverride) {
+  if (typeof countOverride === 'number') {
+    unreadShieldCount = Math.max(0, Math.round(countOverride));
+    try { chrome.storage.local.set({ [UNREAD_SHIELD_KEY_V55]: unreadShieldCount }, () => {}); } catch (_e) {}
+  }
+  shieldIconVisualState = state;
+  if (!chrome.action) return;
+
   try {
-    const img16 = drawShieldFrame(16, cyberAlertActive, animPhase);
-    const img32 = drawShieldFrame(32, cyberAlertActive, animPhase);
-    if (img16 && img32 && chrome.action && chrome.action.setIcon) {
-      chrome.action.setIcon({ imageData: { 16: img16, 32: img32 } }, () => { void chrome.runtime.lastError; });
-    }
-    if (chrome.action && chrome.action.setBadgeText) {
-      if (cyberAlertActive) {
-        chrome.action.setBadgeText({ text: (animPhase % 2 === 0) ? '!' : 'RUG' });
-        chrome.action.setBadgeBackgroundColor({ color: '#FF1744' });
-        chrome.action.setTitle({
-          title: 'CYBER THREAT DETECTED! Click immediately: ' + scrubNoLongDash((currentThreat && currentThreat.title) || 'Inspect Threat')
-        });
-      } else {
-        chrome.action.setBadgeText({ text: '12L' });
-        chrome.action.setBadgeBackgroundColor({ color: '#059669' });
-        chrome.action.setTitle({
-          title: 'Solana Rent & Rug Shield v5.3 | 12 Layers Clean & Armed'
-        });
-      }
+    if (state === 'red_alert' || cyberAlertActive || unreadShieldCount > 0 && state !== 'emerald_flash') {
+      shieldIconVisualState = 'red_alert';
+      const c = Math.max(1, unreadShieldCount);
+      const txt = c > 99 ? '99+' : String(c);
+      chrome.action.setIcon({ path: ICON_PATHS_RED }, () => { void chrome.runtime.lastError; });
+      chrome.action.setBadgeText({ text: txt });
+      chrome.action.setBadgeBackgroundColor({ color: '#FF1744' });
+      chrome.action.setTitle({
+        title: 'Solana Rent & Rug Shield v5.5 | ' + txt + ' Unread Alert(s) - Click to Inspect'
+      });
+    } else if (state === 'emerald_flash') {
+      chrome.action.setIcon({ path: ICON_PATHS_EMERALD }, () => { void chrome.runtime.lastError; });
+      chrome.action.setBadgeText({ text: '\u2713' });
+      chrome.action.setBadgeBackgroundColor({ color: '#00FFA3' });
+      chrome.action.setTitle({
+        title: 'Solana Rent & Rug Shield v5.5 | Verified (#00FFA3)'
+      });
+    } else {
+      shieldIconVisualState = 'yellow_black';
+      chrome.action.setIcon({ path: ICON_PATHS_YELLOW }, () => { void chrome.runtime.lastError; });
+      chrome.action.setBadgeText({ text: '' });
+      chrome.action.setBadgeBackgroundColor({ color: '#FFD000' });
+      chrome.action.setTitle({
+        title: 'Solana Rent & Rug Shield v5.5 | Caught Up (0 Unread Notices)'
+      });
     }
   } catch (_e) {}
 }
 
+function acknowledgeShieldUnreadWithEmeraldFlash() {
+  cyberAlertActive = false;
+  currentThreat = null;
+  unreadShieldCount = 0;
+  try {
+    chrome.storage.local.set({
+      [CYBER_STATE_KEY]: { active: false, threat: null },
+      [UNREAD_SHIELD_KEY_V55]: 0
+    }, () => {});
+  } catch (_e) {}
+
+  applyLuxuryToolbarShieldState('emerald_flash', 0);
+  if (emeraldFlashResetTimer) clearTimeout(emeraldFlashResetTimer);
+  emeraldFlashResetTimer = setTimeout(() => {
+    emeraldFlashResetTimer = null;
+    if (unreadShieldCount === 0 && !cyberAlertActive) {
+      applyLuxuryToolbarShieldState('yellow_black', 0);
+    }
+  }, 680);
+
+  if (chrome.tabs && chrome.tabs.query) {
+    chrome.tabs.query({ url: ['http://*/*', 'https://*/*'] }, (tabs) => {
+      (tabs || []).forEach((tb) => {
+        if (tb && tb.id) {
+          chrome.tabs.sendMessage(tb.id, { type: 'RRS_SHIELD_STATE_SYNC_V55', state: 'emerald_flash', unreadCount: 0 }, () => { void chrome.runtime.lastError; });
+        }
+      });
+    });
+  }
+}
+
+function renderToolbarShieldTick() {
+  if (shieldIconVisualState === 'emerald_flash') return;
+  if (cyberAlertActive || unreadShieldCount > 0) {
+    applyLuxuryToolbarShieldState('red_alert', Math.max(1, unreadShieldCount));
+  } else {
+    applyLuxuryToolbarShieldState('yellow_black', 0);
+  }
+}
+
 function ensureShieldPulseLoop() {
-  const intervalMs = cyberAlertActive ? 260 : 650;
-  if (pulseTimer) clearInterval(pulseTimer);
-  pulseTimer = setInterval(renderToolbarShieldTick, intervalMs);
+  if (pulseTimer) {
+    clearInterval(pulseTimer);
+    pulseTimer = null;
+  }
   renderToolbarShieldTick();
 }
+
+try {
+  chrome.storage.local.get([UNREAD_SHIELD_KEY_V55], (r) => {
+    const savedCnt = Number((r && r[UNREAD_SHIELD_KEY_V55]) || 0);
+    unreadShieldCount = Math.max(0, savedCnt);
+    renderToolbarShieldTick();
+  });
+} catch (_e) {}
 
 function triggerCyberRedAlert(threatObj, forceCornerSync) {
   if (!threatObj) return;
@@ -1164,19 +1249,25 @@ async function fireRealPopupToast(opts) {
   const targetUrl = resolveExactAlertUrl(opts, cachedFounderApprovals.founderLocalhost);
   rememberNotifUrl(notifId, targetUrl);
 
+  if (!opts.skipUnreadIncrement) {
+    unreadShieldCount = Math.max(1, unreadShieldCount + 1);
+    applyLuxuryToolbarShieldState('red_alert', unreadShieldCount);
+  }
+
   broadcastToastToActiveTabs({
     id: notifId,
     kind: opts.kind || 'coin',
     sym: opts.sym || '',
     mint: opts.mint || '',
     severity: opts.severity || 'INFO',
-    badge: scrubNoLongDash(opts.badge || '12-LAYER CARBON v5.3'),
+    unreadCount: unreadShieldCount,
+    badge: scrubNoLongDash(opts.badge || '12-LAYER LUXURY v5.5'),
     title: scrubNoLongDash(opts.title).slice(0, 115),
     message: scrubNoLongDash(opts.message || 'Click card to inspect').slice(0, 190),
     url: targetUrl
   });
 
-  return { ok: true, notifId, url: targetUrl };
+  return { ok: true, notifId, url: targetUrl, unreadCount: unreadShieldCount, iconState: shieldIconVisualState };
 }
 
 function parseRssRegex(xmlTxt, sourceLabel, kindKey) {
@@ -1444,6 +1535,15 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       syncCornerNotifierBridge('/fire-test', toastPayload);
       fireRealPopupToast(toastPayload).then((r) => sendResponse(r));
     });
+    return true;
+  }
+  if (msg.type === 'RRS_SHIELD_ACK_CLICK' || msg.type === 'RRS_POPUP_OPENED_ACK') {
+    acknowledgeShieldUnreadWithEmeraldFlash();
+    sendResponse({ ok: true, state: shieldIconVisualState, unreadCount: unreadShieldCount });
+    return true;
+  }
+  if (msg.type === 'RRS_GET_SHIELD_STATE_V55') {
+    sendResponse({ ok: true, state: shieldIconVisualState, unreadCount: unreadShieldCount });
     return true;
   }
   if (msg.type === 'RRS_GET_FOUNDER_APPROVALS') {

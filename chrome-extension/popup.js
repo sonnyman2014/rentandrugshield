@@ -1081,6 +1081,39 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    // v5.5 Luxury Shield: Acknowledge unread count on popup open -> Emerald flash -> Yellow-Black
+    const hdrImg = el('popupHdrShieldImg');
+    sendBgMsg({ type: 'RRS_GET_SHIELD_STATE_V55' }).then((st) => {
+      if (st && (st.unreadCount > 0 || st.state === 'red_alert')) {
+        if (hdrImg) hdrImg.src = 'icons/shield_emerald_48.png';
+        sendBgMsg({ type: 'RRS_POPUP_OPENED_ACK' });
+        setTimeout(() => { if (hdrImg) hdrImg.src = 'icons/shield_yellow_48.png'; }, 680);
+      }
+    });
+
+    if (el('pop-try-luxury-box-btn')) {
+      el('pop-try-luxury-box-btn').addEventListener('click', fireSingleTestBubble);
+    }
+
+    const tfPillsWrap = el('flt-move-win-pills');
+    const tfHidden = el('flt-move-win');
+    if (tfPillsWrap && tfHidden) {
+      const syncTfVisual = () => {
+        const cur = tfHidden.value || '1h';
+        tfPillsWrap.querySelectorAll('button[data-tf]').forEach((b) => {
+          b.classList.toggle('active', b.dataset.tf === cur);
+        });
+      };
+      tfPillsWrap.querySelectorAll('button[data-tf]').forEach((b) => {
+        b.addEventListener('click', () => {
+          tfHidden.value = b.dataset.tf;
+          syncTfVisual();
+          saveNow(true, 'Time window: ' + b.dataset.tf);
+        });
+      });
+      setTimeout(syncTfVisual, 120);
+    }
+
     loadBubbles(false);
   });
 })();

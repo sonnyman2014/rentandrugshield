@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Solana Rent & Rug Shield | Gemini 4 Carbon Crypto Cybersecurity Sentinel",
+  "name": "Solana Rent & Rug Shield | 24K Luxury Pre-Buy Crypto Sentinel",
   "short_name": "Rent & Rug Shield",
-  "version": "5.3.0",
-  "version_name": "5.3",
-  "description": "12-Layer Solana Pre-Buy Security v5.3: 12-Layer Live Chart Badges, Clipboard & Fake-Wallet Guard, Market Presets & 0% 1st ATA SOL Claim.",
+  "version": "5.5.0",
+  "version_name": "5.5",
+  "description": "12-Layer Solana Pre-Buy Security v5.5: 96.5% Dynamic Yellow-to-Red Shield, Luxury 24K-Gold Movable MACD Box & 0% 1st ATA SOL Claim.",
   "homepage_url": "https://rentandrugshield.com",
   "permissions": [
     "activeTab",
@@ -22,12 +22,12 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Solana Rent & Rug Shield v5.3 | 12-Layer Live Chart Badges & Wallet Guard",
+    "default_title": "Solana Rent & Rug Shield v5.5 | Caught Up (0 Unread Notices)",
     "default_icon": {
-      "16": "icon16.png",
-      "32": "icon32.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
+      "16": "icons/shield_yellow_16.png",
+      "32": "icons/shield_yellow_32.png",
+      "48": "icons/shield_yellow_48.png",
+      "128": "icons/shield_yellow_128.png"
     }
   },
   "content_scripts": [
@@ -78,6 +78,21 @@
         "icon32.png",
         "icon48.png",
         "icon128.png",
+        "icons/shield_yellow_16.png",
+        "icons/shield_yellow_32.png",
+        "icons/shield_yellow_48.png",
+        "icons/shield_yellow_128.png",
+        "icons/shield_yellow_256.png",
+        "icons/shield_red_16.png",
+        "icons/shield_red_32.png",
+        "icons/shield_red_48.png",
+        "icons/shield_red_128.png",
+        "icons/shield_red_256.png",
+        "icons/shield_emerald_16.png",
+        "icons/shield_emerald_32.png",
+        "icons/shield_emerald_48.png",
+        "icons/shield_emerald_128.png",
+        "icons/shield_emerald_256.png",
         "carbon-toast.html",
         "carbon-toast.js"
       ],
@@ -87,9 +102,9 @@
     }
   ],
   "icons": {
-    "16": "icon16.png",
-    "32": "icon32.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "16": "icons/shield_yellow_16.png",
+    "32": "icons/shield_yellow_32.png",
+    "48": "icons/shield_yellow_48.png",
+    "128": "icons/shield_yellow_128.png"
   }
 }

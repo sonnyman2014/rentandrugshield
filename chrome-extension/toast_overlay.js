@@ -1,8 +1,8 @@
 (function () {
   'use strict';
   window.__RRS_TOAST_V53_READY__ = true;
+  window.__RRS_TOAST_V55_LUXURY_READY__ = true;
 
-  const DISPLAY_DURATION_MS = 14000;
   const LAYOUT_KEY_V53 = 'rrs_box_layout_v53';
   const FLT_KEY_V53 = 'rrs_notifier_filters_v53';
   const MIN_ZOOM = 75;
@@ -19,44 +19,63 @@
     WASTED6: '3wyRvbB6nFD7Y9cuozSXrUajZs1EoJxrcBCDBxwupump',
     NVIDIA: 'AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL',
     RUGTEST: 'AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL',
-    SOL: 'So11111111111111111111111111111111111111112'
+    SOL: 'So11111111111111111111111111111111111111112',
+    BONK: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263'
   };
 
-  const DEFAULT_LAYOUT = { x: -1, y: -1, pinned: false, zoomPct: 100 };
+  const DEFAULT_LAYOUT = { x: -1, y: -1, pinned: false, zoomPct: 100, autoHideSec: 14 };
   const DEFAULT_FILTERS = {
     masterBubbles: true,
+    autoHideSec: 14,
+    stayOpen: false,
+    soundEnabled: false,
+    roboticVoice: false,
+    tf: '3m',
+    preset: 'Runners',
     catCoin: true,
     catRug: true,
+    cyberLat: true,
+    whalePro: true,
     catCrypto: true,
     catAi: true,
-    catWorld: true,
-    macdOn: false,
-    macd1m: true,
+    catWorld: false,
+    macdOn: true,
+    macd1m: false,
     macd3m: true,
     macd5m: true,
-    macd15m: true,
+    macd15m: false,
     macdBull: true,
-    macdBear: false,
     macdHistFlip: true,
+    macdBear: true,
     tickerOn: false,
-    tickerQuery: '',
-    newsKwOn: false,
-    newsKeywords: 'SOL,BTC,ETF,GEMINI',
-    worldRegion: 'US,CA,GLOBAL',
-    mcOn: false,
+    tickerQuery: 'ALL',
+    newsKwOn: true,
+    newsKeywords: 'Solana, ETF, Gold',
+    worldRegion: 'Global',
+    mcOn: true,
     mcMin: 15000,
-    mcMax: 50000000,
-    moveOn: false,
-    moveMin: 5,
-    moveWin: '1h',
-    liqOn: false,
-    liqMin: 10000,
-    soundEnabled: false,
-    roboticVoice: false
+    mcMax: 10000000,
+    moveOn: true,
+    moveMin: 10,
+    moveWin: '3m',
+    liqOn: true,
+    liqMin: 10000
   };
 
   let layoutState = Object.assign({}, DEFAULT_LAYOUT);
   let filterState = Object.assign({}, DEFAULT_FILTERS);
+  const uniqueAlerts = [];
+  const seenAlertKeys = new Set();
+  let activeAlertIdx = 0;
+  let localUnreadCount = 0;
+  let localShieldState = 'yellow_black'; // yellow_black | red_alert | emerald_flash
+  let countdownRemMs = 14000;
+  let countdownTotalMs = 14000;
+  let countdownTimerId = null;
+  let cardHovered = false;
+  let isDraggingCard = false;
+
+  const isExtRuntime = Boolean(typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.id);
 
   function clampZoom(z) {
     const n = Math.round(Number(z) || 100);
@@ -117,123 +136,110 @@
     if (kind === 'promo') {
       return 'http://127.0.0.1:18088/command/terminal-4';
     }
-
-    // Click-to-article routing for Crypto / AI / World News
     if ((kind === 'news' || kind === 'crypto' || kind === 'ai' || kind === 'world') && /^https?:\/\//i.test(rawUrl)) {
       return rawUrl;
     }
 
-    // Click-to-trade routing for coins/tokens with a Solana mint
     const mint = extractMint(t && t.mint, rawUrl, t && t.title, t && t.sym);
-    if (kind === 'moonbag' && !mint) {
-      return 'http://127.0.0.1:18088/command/terminal-1';
-    }
-    if (mint) {
-      return 'https://rentandrugshield.com/?mint=' + encodeURIComponent(mint) + '&trade=1';
-    }
-    if (kind === 'moonbag') {
-      return 'http://127.0.0.1:18088/command/terminal-1';
-    }
-    if (/^https?:\/\//i.test(rawUrl)) {
-      const isGenericHome = /^https?:\/\/(?:www\.)?rentandrugshield\.com(?:\/|\/index\.html|\/app\.html)?(?:\?.*)?$/i.test(rawUrl)
-        && !/[?&](?:mint|domain|wallet)=/i.test(rawUrl);
-      if (!isGenericHome) return rawUrl;
-    }
+    if (kind === 'moonbag' && !mint) return 'http://127.0.0.1:18088/command/terminal-1';
+    if (mint) return 'https://rentandrugshield.com/?mint=' + encodeURIComponent(mint) + '&trade=1';
+    if (kind === 'moonbag') return 'http://127.0.0.1:18088/command/terminal-1';
+    if (/^https?:\/\//i.test(rawUrl)) return rawUrl;
     return 'https://rentandrugshield.com/?mint=3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump&trade=1';
   }
 
+  function renderShieldSvgMarkup(state) {
+    if (state === 'red_alert') {
+      return `<svg viewBox="0 0 256 256" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="rrsRedRim" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FF8095"/><stop offset="32%" stop-color="#FF1744"/><stop offset="100%" stop-color="#8A001A"/>
+          </linearGradient>
+        </defs>
+        <path d="M128 5 C175 5 232 14 250 22 C252 98 238 184 128 251 C18 184 4 98 6 22 C24 14 81 5 128 5 Z" fill="url(#rrsRedRim)"/>
+        <path d="M128 24 C168 24 214 31 229 38 C230 100 218 170 128 228 C38 170 26 100 27 38 C42 31 88 24 128 24 Z" fill="#050208" stroke="#FF5277" stroke-width="3"/>
+        <polygon points="139,58 94,130 125,130 112,194 165,117 132,117" fill="#FF1744"/>
+      </svg>`;
+    }
+    if (state === 'emerald_flash') {
+      return `<svg viewBox="0 0 256 256" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="rrsEmRim" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#B8FFE3"/><stop offset="35%" stop-color="#00FFA3"/><stop offset="100%" stop-color="#046C4A"/>
+          </linearGradient>
+        </defs>
+        <path d="M128 5 C175 5 232 14 250 22 C252 98 238 184 128 251 C18 184 4 98 6 22 C24 14 81 5 128 5 Z" fill="url(#rrsEmRim)"/>
+        <path d="M128 24 C168 24 214 31 229 38 C230 100 218 170 128 228 C38 170 26 100 27 38 C42 31 88 24 128 24 Z" fill="#030A09" stroke="#00FFA3" stroke-width="3"/>
+        <polygon points="128,54 140,68 128,82 116,68" fill="#00FFA3"/>
+        <polygon points="78,124 96,105 117,128 163,78 182,97 117,166" fill="#00FFA3"/>
+      </svg>`;
+    }
+    return `<svg viewBox="0 0 256 256" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rrsGoldRim" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFF2A6"/><stop offset="35%" stop-color="#FFD000"/><stop offset="100%" stop-color="#9E7306"/>
+        </linearGradient>
+      </defs>
+      <path d="M128 5 C175 5 232 14 250 22 C252 98 238 184 128 251 C18 184 4 98 6 22 C24 14 81 5 128 5 Z" fill="url(#rrsGoldRim)"/>
+      <path d="M128 24 C168 24 214 31 229 38 C230 100 218 170 128 228 C38 170 26 100 27 38 C42 31 88 24 128 24 Z" fill="#040812" stroke="#FFD000" stroke-width="3"/>
+      <polygon points="128,54 140,68 128,82 116,68" fill="#FFD000"/>
+      <polygon points="78,124 96,105 117,128 163,78 182,97 117,166" fill="#FFD000"/>
+    </svg>`;
+  }
+
   function loadPersistedState(cb) {
+    if (isExtRuntime && chrome.storage && chrome.storage.local) {
+      try {
+        chrome.storage.local.get([LAYOUT_KEY_V53, FLT_KEY_V53], (res) => {
+          if (res && res[LAYOUT_KEY_V53]) {
+            layoutState = Object.assign({}, DEFAULT_LAYOUT, res[LAYOUT_KEY_V53]);
+            layoutState.zoomPct = clampZoom(layoutState.zoomPct);
+          }
+          if (res && res[FLT_KEY_V53]) {
+            filterState = Object.assign({}, DEFAULT_FILTERS, res[FLT_KEY_V53]);
+          }
+          cb();
+        });
+        return;
+      } catch (_e) {}
+    }
     try {
       const rawL = localStorage.getItem(LAYOUT_KEY_V53);
       if (rawL) layoutState = Object.assign({}, DEFAULT_LAYOUT, JSON.parse(rawL));
+      layoutState.zoomPct = clampZoom(layoutState.zoomPct);
+      const rawF = localStorage.getItem(FLT_KEY_V53);
+      if (rawF) filterState = Object.assign({}, DEFAULT_FILTERS, JSON.parse(rawF));
     } catch (_e) {}
-    layoutState.zoomPct = clampZoom(layoutState.zoomPct);
-
-    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-      chrome.storage.local.get([LAYOUT_KEY_V53, FLT_KEY_V53], (res) => {
-        if (res && res[LAYOUT_KEY_V53]) {
-          layoutState = Object.assign({}, DEFAULT_LAYOUT, res[LAYOUT_KEY_V53]);
-          layoutState.zoomPct = clampZoom(layoutState.zoomPct);
-        }
-        if (res && res[FLT_KEY_V53]) {
-          filterState = Object.assign({}, DEFAULT_FILTERS, res[FLT_KEY_V53]);
-          if (res[FLT_KEY_V53].zoomPct !== undefined) {
-            layoutState.zoomPct = clampZoom(res[FLT_KEY_V53].zoomPct);
-          }
-          if (res[FLT_KEY_V53].cardPinned !== undefined) {
-            layoutState.pinned = Boolean(res[FLT_KEY_V53].cardPinned);
-          }
-        }
-        if (cb) cb();
-      });
-    } else if (cb) {
-      cb();
-    }
+    cb();
   }
 
-  function saveLayoutState() {
+  function saveStateAll() {
     layoutState.zoomPct = clampZoom(layoutState.zoomPct);
-    try { localStorage.setItem(LAYOUT_KEY_V53, JSON.stringify(layoutState)); } catch (_e) {}
-    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-      chrome.storage.local.set({ [LAYOUT_KEY_V53]: layoutState }, () => {});
-    }
-    if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
-      chrome.runtime.sendMessage({
-        type: 'RRS_SYNC_FILTERS_V53',
-        filters: Object.assign({}, filterState, {
-          cardX: layoutState.x,
-          cardY: layoutState.y,
-          cardPinned: layoutState.pinned,
-          zoomPct: layoutState.zoomPct,
-          roboticVoice: false
-        })
-      }, () => { void chrome.runtime.lastError; });
-    }
-  }
-
-  function applyStackPositionAndZoom(host, root) {
-    if (!host || !root) return;
-    const scale = clampZoom(layoutState.zoomPct) / 100;
-    host.style.setProperty('--rrs-scale', String(scale));
-
-    if (layoutState.x >= 0 && layoutState.y >= 0) {
-      const maxX = Math.max(8, window.innerWidth - Math.round(492 * scale) - 8);
-      const maxY = Math.max(8, window.innerHeight - Math.round(206 * scale) - 8);
-      const cx = Math.max(8, Math.min(maxX, Math.round(layoutState.x)));
-      const cy = Math.max(8, Math.min(maxY, Math.round(layoutState.y)));
-      host.style.left = cx + 'px';
-      host.style.top = cy + 'px';
-      host.style.right = 'auto';
-      host.style.bottom = 'auto';
+    const mergedFlt = Object.assign({}, filterState, {
+      cardX: layoutState.x,
+      cardY: layoutState.y,
+      cardPinned: Boolean(layoutState.pinned),
+      stayOpen: Boolean(layoutState.pinned),
+      zoomPct: layoutState.zoomPct,
+      autoHideSec: Number(layoutState.autoHideSec || 14),
+      roboticVoice: false
+    });
+    if (isExtRuntime && chrome.storage && chrome.storage.local) {
+      try {
+        chrome.storage.local.set({ [LAYOUT_KEY_V53]: layoutState, [FLT_KEY_V53]: mergedFlt }, () => {});
+        if (chrome.runtime && chrome.runtime.sendMessage) {
+          chrome.runtime.sendMessage({ type: 'RRS_SYNC_FILTERS_V53', filters: mergedFlt }, () => { void chrome.runtime.lastError; });
+        }
+      } catch (_e) {}
     } else {
-      host.style.left = 'auto';
-      host.style.top = 'auto';
-      host.style.right = '18px';
-      host.style.bottom = '18px';
+      try {
+        localStorage.setItem(LAYOUT_KEY_V53, JSON.stringify(layoutState));
+        localStorage.setItem(FLT_KEY_V53, JSON.stringify(mergedFlt));
+      } catch (_e) {}
     }
-
-    root.querySelectorAll('.rrs-zoom-pct').forEach((b) => {
-      b.textContent = clampZoom(layoutState.zoomPct) + '%';
-    });
-    root.querySelectorAll('.rrs-pin-btn').forEach((b) => {
-      b.classList.toggle('pinned', Boolean(layoutState.pinned));
-      b.title = layoutState.pinned ? 'Position Pinned (Click to Unlock)' : 'Pin Notification Position';
-    });
-    root.querySelectorAll('.rrs-drag-cue').forEach((el) => {
-      el.textContent = layoutState.pinned ? 'PIN LOCKED | Ctrl+Wheel Zoom' : 'Drag Anywhere | Ctrl+Wheel Zoom';
-    });
-    const dzLbl = root.getElementById('rrs-drw-zoom-lbl');
-    if (dzLbl) dzLbl.textContent = clampZoom(layoutState.zoomPct) + '%';
-    const dpChk = root.getElementById('rrs-drw-pin');
-    if (dpChk) dpChk.checked = Boolean(layoutState.pinned);
   }
 
-  function ensureShadowRootHost() {
-    const old1 = document.getElementById('rrs-v51-toast-stack');
-    if (old1) old1.remove();
-    const old2 = document.getElementById('rrs-v52-shadow-host');
-    if (old2) old2.remove();
-
+  function ensureShadowHost() {
     let host = document.getElementById('rrs-v53-black-host');
     if (!host) {
       host = document.createElement('div');
@@ -242,569 +248,820 @@
       (document.body || document.documentElement).appendChild(host);
     }
     const root = host.shadowRoot || host.attachShadow({ mode: 'open' });
-    let st = root.getElementById('rrs-v53-style');
-    if (!st) {
-      st = document.createElement('style');
-      st.id = 'rrs-v53-style';
+    if (!root.getElementById('rrs-v55-luxury-style')) {
+      root.innerHTML = '';
+      const st = document.createElement('style');
+      st.id = 'rrs-v55-luxury-style';
+      st.textContent = `
+        * { box-sizing: border-box; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .rrs-lux-wrap {
+          display: flex; flex-direction: column; align-items: flex-end;
+          pointer-events: none;
+        }
+        /* Above-Card Luxury Settings Drawer: opens EXACTLY 8px above Notice Card */
+        .rrs-lux-drawer {
+          pointer-events: auto; display: none;
+          width: calc(508px * min(1.22, var(--rrs-scale, 1)));
+          max-width: calc(100vw - 20px); max-height: calc(100vh - 230px); overflow-y: auto;
+          margin-bottom: 8px;
+          border-radius: 14px;
+          border: 1.8px solid transparent;
+          background:
+            radial-gradient(120% 110% at 32% 16%, #10203E 0%, #091224 48%, #020408 100%) padding-box,
+            linear-gradient(135deg, #FFF2A6 0%, #FFD000 42%, #D49B00 72%, #9E7306 100%) border-box;
+          box-shadow: 0 22px 56px rgba(0,0,0,0.95), 0 0 24px rgba(255,208,0,0.34);
+          padding: 13px 15px; color: #F8FAFC;
+        }
+        .rrs-lux-drawer.open { display: block; }
+        .rrs-lux-card {
+          pointer-events: auto; display: none; user-select: none; cursor: grab;
+          width: calc(508px * var(--rrs-scale, 1));
+          max-width: calc(100vw - 18px);
+          border-radius: 14px;
+          border: 1.8px solid transparent;
+          background:
+            radial-gradient(120% 110% at 32% 18%, #10203E 0%, #091224 48%, #020408 100%) padding-box,
+            linear-gradient(135deg, #FFF2A6 0%, #FFD000 42%, #D49B00 72%, #9E7306 100%) border-box;
+          box-shadow: 0 22px 54px rgba(0,0,0,0.95), 0 0 22px rgba(255,208,0,0.36);
+          padding: calc(12px * var(--rrs-scale, 1)) calc(15px * var(--rrs-scale, 1)) calc(7px * var(--rrs-scale, 1));
+          color: #FFFFFF;
+          transition: box-shadow 0.2s ease;
+        }
+        .rrs-lux-card.open { display: block; }
+        .rrs-lux-card.dragging { cursor: grabbing !important; }
+        .rrs-lux-card.state-red {
+          background:
+            radial-gradient(120% 110% at 32% 18%, #220813 0%, #091224 52%, #020408 100%) padding-box,
+            linear-gradient(135deg, #FF94A8 0%, #FF1744 48%, #9B001C 100%) border-box;
+          box-shadow: 0 22px 54px rgba(0,0,0,0.95), 0 0 26px rgba(255,23,68,0.52);
+        }
+        .rrs-lux-card.state-emerald {
+          background:
+            radial-gradient(120% 110% at 32% 18%, #07281F 0%, #091224 52%, #020408 100%) padding-box,
+            linear-gradient(135deg, #B8FFE3 0%, #00FFA3 48%, #059669 100%) border-box;
+          box-shadow: 0 22px 54px rgba(0,0,0,0.95), 0 0 28px rgba(0,255,163,0.58);
+        }
+        .rrs-hdr { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+        .rrs-hdr-left { display: flex; align-items: center; gap: 9px; min-width: 0; flex: 1; }
+        .rrs-shield-box {
+          position: relative; width: calc(38px * var(--rrs-scale, 1)); height: calc(38px * var(--rrs-scale, 1));
+          flex-shrink: 0; cursor: pointer;
+        }
+        .rrs-unread-badge {
+          display: none; position: absolute; right: -3px; bottom: -3px;
+          min-width: 17px; height: 17px; padding: 0 4px; border-radius: 999px;
+          background: #FF1744; border: 1.4px solid #FFD000; color: #FFFFFF;
+          font-size: 9.5px; font-weight: 900; align-items: center; justify-content: center;
+        }
+        .rrs-unread-badge.show { display: inline-flex; }
+        .rrs-status-pill {
+          padding: calc(4px * var(--rrs-scale, 1)) calc(9px * var(--rrs-scale, 1));
+          border-radius: 8px; background: rgba(6, 56, 42, 0.68);
+          border: 1px solid rgba(0, 255, 163, 0.55); color: #00FFA3;
+          font-size: calc(10.8px * var(--rrs-scale, 1)); font-weight: 900;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .rrs-nav-grp { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+        .rrs-pill-btn {
+          background: linear-gradient(180deg, #131E35 0%, #09101E 100%);
+          border: 1.1px solid #3A4D6B; color: #F8FAFC;
+          border-radius: 9px; padding: calc(4px * var(--rrs-scale, 1)) calc(9px * var(--rrs-scale, 1));
+          font-size: calc(11px * var(--rrs-scale, 1)); font-weight: 800; cursor: pointer;
+          transition: all 0.15s ease;
+        }
+        .rrs-pill-btn:hover { border-color: #FFD000; color: #FFF2A6; }
+        .rrs-pill-gold {
+          background: linear-gradient(180deg, rgba(168,120,8,0.42) 0%, rgba(68,48,4,0.72) 100%);
+          border-color: #FFD000; color: #FFF2A6;
+          box-shadow: 0 0 10px rgba(255,208,0,0.28);
+        }
+        .rrs-pill-emerald {
+          background: linear-gradient(180deg, rgba(6,95,70,0.65) 0%, rgba(4,48,34,0.88) 100%);
+          border-color: #00FFA3; color: #00FFA3;
+          box-shadow: 0 0 11px rgba(0,255,163,0.32);
+        }
+        .rrs-pill-red {
+          background: linear-gradient(180deg, rgba(88,14,30,0.7) 0%, rgba(42,6,14,0.9) 100%);
+          border-color: #FF1744; color: #FF94A8;
+        }
+        .rrs-title {
+          font-size: calc(14.5px * var(--rrs-scale, 1)); font-weight: 900; color: #FFFFFF;
+          margin: calc(9px * var(--rrs-scale, 1)) 2px calc(4px * var(--rrs-scale, 1));
+          line-height: 1.28; cursor: pointer;
+        }
+        .rrs-body {
+          font-size: calc(12px * var(--rrs-scale, 1)); font-weight: 600; color: #D6E0EE;
+          margin: 0 2px calc(10px * var(--rrs-scale, 1)); line-height: 1.38; cursor: pointer;
+        }
+        .rrs-actions { display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+        .rrs-act-left, .rrs-act-right { display: flex; align-items: center; gap: 5px; }
+        .rrs-foot {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-top: calc(8px * var(--rrs-scale, 1)); padding-top: calc(5px * var(--rrs-scale, 1));
+          border-top: 1px solid rgba(255,208,0,0.18);
+          font-size: calc(11px * var(--rrs-scale, 1)); font-weight: 800;
+        }
+        .rrs-brand {
+          background: linear-gradient(90deg, #FFF2A6, #FFD000);
+          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+          font-weight: 900; cursor: pointer;
+        }
+        .rrs-prog-track {
+          width: 100%; height: 4px; background: #0C1526; border-radius: 999px;
+          margin-top: 6px; overflow: hidden;
+        }
+        .rrs-prog-bar {
+          height: 100%; width: 100%;
+          background: linear-gradient(90deg, #FFF2A6 0%, #FFD000 65%, #D49B00 100%);
+          border-radius: 999px; transition: width 0.1s linear;
+        }
+        /* Drawer Luxury Controls (ZERO native checkboxes or gray dropdowns!) */
+        .rrs-sec-lbl {
+          font-size: 10.4px; font-weight: 900; letter-spacing: 0.03em;
+          color: #FFD000; margin: 8px 0 5px;
+        }
+        .rrs-seg-bar { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+        .rrs-seg-pill {
+          background: #080E1C; border: 1.1px solid #263854; color: #94A3B8;
+          border-radius: 9px; padding: 4px 10px; font-size: 11px; font-weight: 800;
+          cursor: pointer; transition: all 0.15s ease;
+        }
+        .rrs-seg-pill.active-gold {
+          background: linear-gradient(180deg, rgba(180,130,8,0.45), rgba(72,50,4,0.78));
+          border-color: #FFD000; color: #FFF2A6; box-shadow: 0 0 10px rgba(255,208,0,0.36);
+        }
+        .rrs-seg-pill.active-em {
+          background: linear-gradient(180deg, rgba(6,95,70,0.55), rgba(4,52,40,0.85));
+          border-color: #00FFA3; color: #A7F3D0; box-shadow: 0 0 10px rgba(0,255,163,0.36);
+        }
+        /* Animated Glowing Sliding Pill Toggle Switch */
+        .rrs-sw-wrap {
+          display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+          padding: 3px 4px 3px 0; user-select: none;
+        }
+        .rrs-sw-track {
+          position: relative; width: 42px; height: 21px; border-radius: 999px;
+          background: #080E1C; border: 1.2px solid #2D3E5A;
+          transition: all 0.18s ease; flex-shrink: 0;
+        }
+        .rrs-sw-thumb {
+          position: absolute; top: 2px; left: 2px; width: 15px; height: 15px;
+          border-radius: 50%; background: #94A3B8;
+          transition: transform 0.18s cubic-bezier(0.22,1,0.36,1), background 0.18s ease;
+        }
+        .rrs-sw-wrap[data-on="true"][data-tone="emerald"] .rrs-sw-track {
+          background: linear-gradient(135deg, rgba(6,95,70,0.72), rgba(4,56,42,0.92));
+          border-color: #00FFA3; box-shadow: 0 0 12px rgba(0,255,163,0.52);
+        }
+        .rrs-sw-wrap[data-on="true"][data-tone="emerald"] .rrs-sw-thumb {
+          transform: translateX(20px);
+          background: radial-gradient(circle at 35% 35%, #FFFFFF, #00FFA3);
+        }
+        .rrs-sw-wrap[data-on="true"][data-tone="gold"] .rrs-sw-track {
+          background: linear-gradient(135deg, rgba(146,102,4,0.68), rgba(68,48,4,0.90));
+          border-color: #FFD000; box-shadow: 0 0 12px rgba(255,208,0,0.52);
+        }
+        .rrs-sw-wrap[data-on="true"][data-tone="gold"] .rrs-sw-thumb {
+          transform: translateX(20px);
+          background: radial-gradient(circle at 35% 35%, #FFFFFF, #FFD000);
+        }
+        .rrs-sw-lbl { font-size: 11.2px; font-weight: 700; color: #E8EEF8; }
+        .rrs-inp-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; margin-bottom: 6px; }
+        .rrs-inp-lbl { font-size: 9.8px; font-weight: 700; color: #94A3B8; margin-bottom: 2px; }
+        .rrs-lux-inp {
+          width: 100%; background: #060B16; border: 1.1px solid #384C6C;
+          border-radius: 8px; padding: 5px 7px; color: #00FFA3;
+          font-size: 11.5px; font-weight: 800; outline: none;
+        }
+        .rrs-lux-inp:focus { border-color: #FFD000; box-shadow: 0 0 8px rgba(255,208,0,0.28); }
+        .rrs-founder-bell {
+          position: fixed; bottom: 20px; left: 20px; pointer-events: auto; cursor: pointer;
+          display: none; align-items: center; gap: 9px;
+          background: #020408; color: #FEF08A; border: 1.8px solid #FFD000;
+          border-radius: 999px; padding: 8px 14px; font-size: 12px; font-weight: 900;
+          box-shadow: 0 12px 34px rgba(0,0,0,0.95), 0 0 18px rgba(255,208,0,0.34);
+        }
+        .rrs-founder-bell.show { display: inline-flex; }
+      `;
       root.appendChild(st);
-    }
-    st.textContent = `
-      * { box-sizing: border-box; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-      .rrs-stack { display: flex; flex-direction: column-reverse; gap: 12px; width: calc(492px * var(--rrs-scale, 1)); max-width: calc(100vw - 16px); pointer-events: none; }
-      .rrs-card {
-        pointer-events: auto; cursor: grab; user-select: none;
-        width: calc(492px * var(--rrs-scale, 1)); min-height: calc(206px * var(--rrs-scale, 1));
-        max-width: calc(100vw - 16px);
-        background-color: #020408 !important;
-        background-image: linear-gradient(160deg, #060B14 0%, #020408 100%) !important;
-        color: #FFFFFF !important;
-        border-radius: calc(14px * var(--rrs-scale, 1));
-        padding: calc(13px * var(--rrs-scale, 1)) calc(16px * var(--rrs-scale, 1));
-        display: flex; flex-direction: column; justify-content: space-between;
-        box-shadow: 0 22px 54px rgba(0,0,0,0.96), 0 0 22px var(--rrs-glow);
-        border: 2px solid var(--rrs-accent);
-        border-left: calc(8px * var(--rrs-scale, 1)) solid var(--rrs-accent);
-        transform: translateY(12px); opacity: 0;
-        transition: opacity 0.18s ease;
-      }
-      .rrs-card.dragging { cursor: grabbing !important; }
-      .rrs-top { display: flex; align-items: center; justify-content: space-between; gap: calc(6px * var(--rrs-scale, 1)); }
-      .rrs-badges { display: flex; align-items: center; gap: calc(6px * var(--rrs-scale, 1)); flex-wrap: nowrap; overflow: hidden; min-width: 0; }
-      .rrs-ticker {
-        background-color: #020408 !important;
-        border: 1.6px solid var(--rrs-accent);
-        color: var(--rrs-accent) !important;
-        padding: calc(2px * var(--rrs-scale, 1)) calc(8px * var(--rrs-scale, 1));
-        border-radius: calc(7px * var(--rrs-scale, 1));
-        font-size: calc(16px * var(--rrs-scale, 1)); font-weight: 900; white-space: nowrap;
-      }
-      .rrs-pill {
-        background-color: var(--rrs-pill-bg) !important;
-        border: 1px solid var(--rrs-accent);
-        color: #FFFFFF !important;
-        padding: calc(3px * var(--rrs-scale, 1)) calc(9px * var(--rrs-scale, 1));
-        border-radius: 999px;
-        font-size: calc(11px * var(--rrs-scale, 1)); font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      }
-      .rrs-ctrls { display: flex; align-items: center; gap: calc(4px * var(--rrs-scale, 1)); flex-shrink: 0; }
-      .rrs-ctrl-btn {
-        background: #0B1220 !important; color: #F8FAFC !important;
-        border: 1px solid #334155; border-radius: calc(6px * var(--rrs-scale, 1));
-        padding: calc(3px * var(--rrs-scale, 1)) calc(7px * var(--rrs-scale, 1));
-        font-size: calc(11.5px * var(--rrs-scale, 1)); font-weight: 900; cursor: pointer; line-height: 1.2;
-      }
-      .rrs-ctrl-btn:hover { border-color: #00FFA3; color: #00FFA3 !important; }
-      .rrs-zoom-pct { border-color: #00FFA3; color: #00FFA3 !important; }
-      .rrs-pin-btn.pinned { background: #3A2C0A !important; border-color: #D4AF37 !important; color: #FDE047 !important; }
-      .rrs-gear-btn { border-color: #D4AF37 !important; color: #D4AF37 !important; }
-      .rrs-gear-btn:hover { background: #2D3A52 !important; color: #FDE047 !important; }
-      .rrs-close:hover { background: #FF1744 !important; border-color: #FF1744 !important; color: #FFFFFF !important; }
-      .rrs-body-click { cursor: pointer; flex: 1; display: flex; flex-direction: column; justify-content: center; margin: calc(6px * var(--rrs-scale, 1)) 0; }
-      .rrs-title { font-size: calc(17.5px * var(--rrs-scale, 1)); font-weight: 900; color: #FFFFFF !important; line-height: 1.28; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-      .rrs-sub { font-size: calc(13px * var(--rrs-scale, 1)); font-weight: 700; color: var(--rrs-sub) !important; line-height: 1.34; margin-top: calc(5px * var(--rrs-scale, 1)); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      .rrs-footer {
-        display: flex; align-items: center; justify-content: space-between;
-        border-top: 1px solid #1E293B; padding-top: calc(5px * var(--rrs-scale, 1));
-        font-size: calc(10.8px * var(--rrs-scale, 1)); font-weight: 800;
-      }
-      .rrs-drag-cue { color: #94A3B8; }
-      .rrs-footer-domain { color: #D4AF37; font-weight: 900; letter-spacing: 0.02em; }
-      .rrs-settings-drawer {
-        pointer-events: auto; display: none;
-        width: 440px; max-width: calc(100vw - 20px); max-height: calc(100vh - 36px); overflow-y: auto;
-        background: #020408 !important; color: #F8FAFC !important;
-        border: 2px solid #D4AF37; border-radius: 14px; padding: 12px 14px;
-        box-shadow: 0 24px 60px rgba(0,0,0,0.98); margin-bottom: 8px;
-      }
-      .rrs-settings-drawer.open { display: block; }
-      .rrs-drw-hdr { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1E293B; padding-bottom: 7px; margin-bottom: 8px; }
-      .rrs-drw-sec { background: #070E1B; border: 1px solid #1E293B; border-radius: 9px; padding: 8px 9px; margin-bottom: 7px; }
-      .rrs-drw-ttl { font-size: 10.5px; font-weight: 900; color: #00FFA3; margin-bottom: 5px; letter-spacing: 0.02em; }
-      .rrs-drw-grid { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 11px; font-weight: 700; }
-      .rrs-drw-inp { background: #020408; color: #00FFA3; border: 1px solid #334155; border-radius: 5px; padding: 4px 6px; font-size: 11px; font-weight: 800; }
-      .rrs-drw-btn { background: #00FFA3; color: #020408; border: none; border-radius: 7px; padding: 6px 10px; font-size: 11px; font-weight: 900; cursor: pointer; }
-      .rrs-drw-btn-sec { background: #0F172A; color: #E2E8F0; border: 1px solid #475569; border-radius: 7px; padding: 6px 10px; font-size: 11px; font-weight: 800; cursor: pointer; }
-      .rrs-founder-bell {
-        position: fixed; bottom: 20px; left: 20px; pointer-events: auto; cursor: pointer;
-        display: none; align-items: center; gap: 9px;
-        background: #020408 !important; color: #FEF08A !important;
-        border: 2px solid #FACC15; border-radius: 999px;
-        padding: 8px 14px; font-size: 12.5px; font-weight: 900;
-        box-shadow: 0 12px 34px rgba(0,0,0,0.95), 0 0 18px rgba(250,204,21,0.34);
-        z-index: 2147483647;
-      }
-      .rrs-founder-bell.show { display: inline-flex; }
-      .rrs-bell-count { background: #FACC15; color: #020408; border-radius: 999px; padding: 2px 8px; font-size: 11.5px; font-weight: 900; }
-      .rrs-bell-hide { background: transparent; border: none; color: #94A3B8; font-size: 12px; font-weight: 900; cursor: pointer; margin-left: 2px; }
-    `;
 
-    let drawer = root.getElementById('rrs-v53-settings-drawer');
-    if (!drawer) {
-      drawer = buildSettingsDrawer(host, root);
-      root.appendChild(drawer);
-    }
+      const wrap = document.createElement('div');
+      wrap.id = 'rrs-lux-wrap';
+      wrap.className = 'rrs-lux-wrap';
+      wrap.innerHTML = `
+        <div id="rrs-v55-drawer" class="rrs-lux-drawer">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:1px solid rgba(255,208,0,0.22);">
+            <span style="font-size:12px;font-weight:900;color:#FFF2A6;">\u2699 24K LUXURY SHIELD SETTINGS | MACD, WHALE &amp; NEWS</span>
+            <button type="button" id="rrs-drw-x" class="rrs-pill-btn rrs-pill-red" style="padding:2px 8px;">\u2715</button>
+          </div>
 
-    let stack = root.getElementById('rrs-v53-stack');
-    if (!stack) {
-      stack = document.createElement('div');
-      stack.id = 'rrs-v53-stack';
-      stack.className = 'rrs-stack';
-      root.appendChild(stack);
-    }
+          <div class="rrs-sec-lbl">1. AUTO-HIDE COUNTDOWN &amp; CHIME</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <div id="rrs-seg-hide" class="rrs-seg-bar" data-tone="gold">
+              <button type="button" class="rrs-seg-pill" data-val="8s">8s</button>
+              <button type="button" class="rrs-seg-pill active-gold" data-val="14s">14s</button>
+              <button type="button" class="rrs-seg-pill" data-val="30s">30s</button>
+              <button type="button" class="rrs-seg-pill" data-val="Pinned">Pinned</button>
+            </div>
+            <div class="rrs-sw-wrap" id="rrs-sw-sound" data-on="false" data-tone="gold">
+              <div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div>
+              <span class="rrs-sw-lbl">Alert Chime</span>
+            </div>
+          </div>
 
-    let bell = root.getElementById('rrs-founder-bell');
-    if (!bell) {
-      bell = document.createElement('div');
+          <div class="rrs-sec-lbl">2. TIMEFRAME, MARKET PRESETS &amp; MACD TRIGGERS</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:6px;">
+            <div id="rrs-seg-tf" class="rrs-seg-bar" data-tone="emerald">
+              <button type="button" class="rrs-seg-pill" data-val="1m">1m</button>
+              <button type="button" class="rrs-seg-pill active-em" data-val="3m">3m</button>
+              <button type="button" class="rrs-seg-pill" data-val="5m">5m</button>
+              <button type="button" class="rrs-seg-pill" data-val="15m">15m</button>
+              <button type="button" class="rrs-seg-pill" data-val="1h">1h</button>
+            </div>
+            <div id="rrs-seg-preset" class="rrs-seg-bar" data-tone="gold">
+              <button type="button" class="rrs-seg-pill" data-val="Snipes">Snipes</button>
+              <button type="button" class="rrs-seg-pill active-gold" data-val="Runners">Runners</button>
+              <button type="button" class="rrs-seg-pill" data-val="Whales">Whales</button>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;">
+            <div class="rrs-sw-wrap" id="rrs-sw-macd-bull" data-on="true" data-tone="emerald"><div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div><span class="rrs-sw-lbl">Bull Cross</span></div>
+            <div class="rrs-sw-wrap" id="rrs-sw-macd-hist" data-on="true" data-tone="gold"><div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div><span class="rrs-sw-lbl">Histogram Flip</span></div>
+            <div class="rrs-sw-wrap" id="rrs-sw-macd-bear" data-on="true" data-tone="gold"><div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div><span class="rrs-sw-lbl">Bear Warn</span></div>
+          </div>
+
+          <div class="rrs-sec-lbl">3. MIN/MAX MCAP ($), MIN LIQUIDITY ($), % MOVE &amp; COIN TICKER</div>
+          <div class="rrs-inp-grid">
+            <div><div class="rrs-inp-lbl">Min MCap ($)</div><input id="rrs-in-minmc" class="rrs-lux-inp" type="text" value="15000" /></div>
+            <div><div class="rrs-inp-lbl">Max MCap ($)</div><input id="rrs-in-maxmc" class="rrs-lux-inp" type="text" value="10000000" /></div>
+            <div><div class="rrs-inp-lbl">Min Liquidity ($)</div><input id="rrs-in-minliq" class="rrs-lux-inp" type="text" value="10000" /></div>
+            <div><div class="rrs-inp-lbl">% Move</div><input id="rrs-in-move" class="rrs-lux-inp" type="text" value="10" /></div>
+          </div>
+          <div><div class="rrs-inp-lbl">Coin Ticker (ALL or comma list: SOL, BONK, WIF, JUP)</div><input id="rrs-in-coin" class="rrs-lux-inp" type="text" value="ALL" /></div>
+
+          <div class="rrs-sec-lbl">4. 12-LAYER SECURITY, CYBER/LATENCY &amp; WHALE MOVE SENSE</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;">
+            <div class="rrs-sw-wrap" id="rrs-sw-safe12" data-on="true" data-tone="emerald"><div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div><span class="rrs-sw-lbl">12-Layer Safe Coins</span></div>
+            <div class="rrs-sw-wrap" id="rrs-sw-rug" data-on="true" data-tone="gold"><div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div><span class="rrs-sw-lbl">Rug / Drainer Alert</span></div>
+            <div class="rrs-sw-wrap" id="rrs-sw-cyber" data-on="true" data-tone="emerald"><div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div><span class="rrs-sw-lbl">Cyber/Latency Guard</span></div>
+            <div class="rrs-sw-wrap" id="rrs-sw-whale" data-on="true" data-tone="gold"><div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div><span class="rrs-sw-lbl">Whale Move Sense</span></div>
+          </div>
+
+          <div class="rrs-sec-lbl">5. CRYPTO / AI / WORLD NEWS (KEYWORDS + REGION)</div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:5px;">
+            <div class="rrs-sw-wrap" id="rrs-sw-ncrypto" data-on="true" data-tone="emerald"><div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div><span class="rrs-sw-lbl">Crypto News</span></div>
+            <div class="rrs-sw-wrap" id="rrs-sw-nai" data-on="true" data-tone="emerald"><div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div><span class="rrs-sw-lbl">AI News</span></div>
+            <div class="rrs-sw-wrap" id="rrs-sw-nworld" data-on="false" data-tone="gold"><div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div><span class="rrs-sw-lbl">World News</span></div>
+          </div>
+          <div id="rrs-seg-region" class="rrs-seg-bar" data-tone="gold" style="margin-bottom:6px;">
+            <button type="button" class="rrs-seg-pill active-gold" data-val="Global">Global</button>
+            <button type="button" class="rrs-seg-pill" data-val="North America">North America</button>
+            <button type="button" class="rrs-seg-pill" data-val="Asia">Asia</button>
+            <button type="button" class="rrs-seg-pill" data-val="Europe">Europe</button>
+          </div>
+          <div><div class="rrs-inp-lbl">News Keywords</div><input id="rrs-in-kw" class="rrs-lux-inp" type="text" value="Solana, ETF, Gold" /></div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,208,0,0.2);">
+            <span class="rrs-brand">rentandrugshield.com</span>
+            <div style="display:flex;gap:6px;">
+              <button type="button" id="rrs-drw-simred" class="rrs-pill-btn rrs-pill-red">\u26A1 Test Red Alert</button>
+              <button type="button" id="rrs-drw-save" class="rrs-pill-btn rrs-pill-emerald">\u2713 Save &amp; Arm Shield</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="rrs-v55-card" class="rrs-lux-card">
+          <div class="rrs-hdr">
+            <div class="rrs-hdr-left">
+              <div id="rrs-card-shield" class="rrs-shield-box" title="Click Shield to Acknowledge &amp; Flash Emerald">
+                <div id="rrs-card-shield-svg" style="width:100%;height:100%;"></div>
+                <span id="rrs-card-unread" class="rrs-unread-badge">1</span>
+              </div>
+              <span id="rrs-card-badge" class="rrs-status-pill">SHIELD LIVE | 12-LAYER + MACD ARMED</span>
+            </div>
+            <div class="rrs-nav-grp">
+              <button type="button" id="rrs-btn-prev" class="rrs-pill-btn">&lt;</button>
+              <span id="rrs-lbl-cnt" style="font-size:11px;font-weight:900;color:#FFF2A6;padding:0 3px;">1/1</span>
+              <button type="button" id="rrs-btn-next" class="rrs-pill-btn">&gt;</button>
+              <button type="button" id="rrs-btn-close" class="rrs-pill-btn rrs-pill-red">\u2715</button>
+            </div>
+          </div>
+
+          <div id="rrs-card-title" class="rrs-title">24K-Gold &amp; Obsidian Luxury Trader Shield Ready</div>
+          <div id="rrs-card-body" class="rrs-body">Oversized 96.5% Yellow-Black Shield flips Crimson-Red on unread notices, flashes Emerald on click, and opens Luxury Pill Settings 8px above.</div>
+
+          <div class="rrs-actions">
+            <div class="rrs-act-left">
+              <button type="button" id="rrs-btn-zout" class="rrs-pill-btn">\u2212</button>
+              <button type="button" id="rrs-btn-zpct" class="rrs-pill-btn" style="color:#FFF2A6;">100%</button>
+              <button type="button" id="rrs-btn-zin" class="rrs-pill-btn" style="color:#00FFA3;">+</button>
+              <button type="button" id="rrs-btn-pin" class="rrs-pill-btn rrs-pill-gold">14s Auto</button>
+            </div>
+            <div class="rrs-act-right">
+              <button type="button" id="rrs-btn-gear" class="rrs-pill-btn rrs-pill-gold">\u2699 Settings \u25B2</button>
+              <button type="button" id="rrs-btn-trade" class="rrs-pill-btn rrs-pill-emerald">Open Trade \u2197</button>
+            </div>
+          </div>
+
+          <div class="rrs-foot">
+            <span id="rrs-brand-link" class="rrs-brand">rentandrugshield.com</span>
+            <span id="rrs-lbl-timer" style="color:#94A3B8;">14s</span>
+          </div>
+          <div class="rrs-prog-track"><div id="rrs-prog-bar" class="rrs-prog-bar"></div></div>
+        </div>
+      `;
+      root.appendChild(wrap);
+
+      const bell = document.createElement('div');
       bell.id = 'rrs-founder-bell';
       bell.className = 'rrs-founder-bell';
-      bell.innerHTML = '<span>Approvals Waiting</span><span id="rrs-bell-num" class="rrs-bell-count">0</span><button id="rrs-bell-x" class="rrs-bell-hide" title="Hide on this tab">X</button>';
-      bell.addEventListener('click', function (ev) {
-        if (ev.target && ev.target.id === 'rrs-bell-x') {
-          ev.stopPropagation();
-          bell.classList.remove('show');
-          bell.dataset.dismissedCount = bell.dataset.currentCount || '0';
-          return;
-        }
-        window.open('http://127.0.0.1:18088/command/waiting-approvals', '_blank', 'noopener,noreferrer');
-      });
+      bell.innerHTML = '<span>Approvals Waiting</span><span id="rrs-bell-num" style="background:#FFD000;color:#020408;border-radius:999px;padding:1px 7px;">0</span>';
+      bell.onclick = () => window.open('http://127.0.0.1:18088/command/waiting-approvals', '_blank', 'noopener,noreferrer');
       root.appendChild(bell);
+
+      wireLuxuryInteractions(host, root);
     }
-
-    applyStackPositionAndZoom(host, root);
-    return { host, root, stack, drawer, bell };
+    return { host, root };
   }
 
-  function buildSettingsDrawer(host, root) {
-    const drw = document.createElement('div');
-    drw.id = 'rrs-v53-settings-drawer';
-    drw.className = 'rrs-settings-drawer';
-    drw.innerHTML = `
-      <div class="rrs-drw-hdr">
-        <span style="font-size:12.5px;font-weight:900;color:#D4AF37;">\u2699 CARBON v5.3 ALERT &amp; MACD SETTINGS</span>
-        <button type="button" id="rrs-drw-close" class="rrs-ctrl-btn rrs-close">X</button>
-      </div>
+  function setSegmentedValue(root, barId, val) {
+    const bar = root.getElementById(barId);
+    if (!bar) return;
+    const cls = bar.dataset.tone === 'emerald' ? 'active-em' : 'active-gold';
+    bar.querySelectorAll('.rrs-seg-pill').forEach((b) => {
+      b.classList.remove('active-gold', 'active-em');
+      if (String(b.dataset.val).toLowerCase() === String(val).toLowerCase()) b.classList.add(cls);
+    });
+  }
 
-      <div class="rrs-drw-sec">
-        <div class="rrs-drw-ttl">BOX POSITION, PIN LOCK (\uD83D\uDCCC) &amp; ZOOM (75% TO 200%)</div>
-        <div class="rrs-drw-grid">
-          <button type="button" id="rrs-drw-zout" class="rrs-ctrl-btn">-</button>
-          <span id="rrs-drw-zoom-lbl" style="color:#00FFA3;font-weight:900;">100%</span>
-          <button type="button" id="rrs-drw-z100" class="rrs-ctrl-btn">100%</button>
-          <button type="button" id="rrs-drw-zin" class="rrs-ctrl-btn">+</button>
-          <label><input type="checkbox" id="rrs-drw-pin" /> \uD83D\uDCCC Pin X/Y</label>
-          <button type="button" id="rrs-drw-reset-pos" class="rrs-ctrl-btn">Reset Pos</button>
-        </div>
-      </div>
+  function getSegmentedValue(root, barId, fallback) {
+    const bar = root.getElementById(barId);
+    if (!bar) return fallback;
+    const act = bar.querySelector('.active-gold, .active-em');
+    return act ? act.dataset.val : fallback;
+  }
 
-      <div class="rrs-drw-sec" style="border-color:#38BDF8;">
-        <div class="rrs-drw-ttl" style="color:#38BDF8;">MACD CROSSOVER &amp; HISTOGRAM FLIP (1m / 3m / 5m / 15m)</div>
-        <div class="rrs-drw-grid" style="margin-bottom:5px;">
-          <label><input type="checkbox" id="rrs-f-macd-on" /> Enable MACD</label>
-          <label><input type="checkbox" id="rrs-f-macd-1m" checked /> 1m</label>
-          <label><input type="checkbox" id="rrs-f-macd-3m" checked /> 3m</label>
-          <label><input type="checkbox" id="rrs-f-macd-5m" checked /> 5m</label>
-          <label><input type="checkbox" id="rrs-f-macd-15m" checked /> 15m</label>
-        </div>
-        <div class="rrs-drw-grid">
-          <label style="color:#00FFA3;"><input type="checkbox" id="rrs-f-macd-bull" checked /> Bull Crossover</label>
-          <label style="color:#FDA4AF;"><input type="checkbox" id="rrs-f-macd-bear" /> Bear Crossover</label>
-          <label style="color:#FDE047;"><input type="checkbox" id="rrs-f-macd-hist" checked /> Histogram Flip</label>
-        </div>
-      </div>
+  function setSwitchOn(root, id, val) {
+    const el = root.getElementById(id);
+    if (el) el.dataset.on = val ? 'true' : 'false';
+  }
 
-      <div class="rrs-drw-sec">
-        <div class="rrs-drw-ttl">MARKET CAP ($), MIN LIQUIDITY ($), % MOVE &amp; COIN NAME</div>
-        <div class="rrs-drw-grid" style="margin-bottom:5px;">
-          <label><input type="checkbox" id="rrs-f-mc-on" /> MC ($):</label>
-          <input type="number" id="rrs-f-mc-min" class="rrs-drw-inp" style="width:78px;" value="15000" />
-          <span>to</span>
-          <input type="number" id="rrs-f-mc-max" class="rrs-drw-inp" style="width:90px;" value="50000000" />
-        </div>
-        <div class="rrs-drw-grid" style="margin-bottom:5px;">
-          <label><input type="checkbox" id="rrs-f-liq-on" /> Min Liq ($):</label>
-          <input type="number" id="rrs-f-liq-min" class="rrs-drw-inp" style="width:76px;" value="10000" />
-          <label><input type="checkbox" id="rrs-f-mv-on" /> % Move:</label>
-          <input type="number" id="rrs-f-mv-min" class="rrs-drw-inp" style="width:52px;" value="5" />
-          <select id="rrs-f-mv-win" class="rrs-drw-inp">
-            <option value="1m">1m</option>
-            <option value="3m">3m</option>
-            <option value="5m">5m</option>
-            <option value="15m">15m</option>
-            <option value="1h" selected>1h</option>
-          </select>
-        </div>
-        <div class="rrs-drw-grid">
-          <label><input type="checkbox" id="rrs-f-tk-on" /> Coin Name:</label>
-          <input type="text" id="rrs-f-tk-q" class="rrs-drw-inp" style="flex:1;" placeholder="SOL, BONK, MELNOK" />
-        </div>
-      </div>
+  function getSwitchOn(root, id) {
+    const el = root.getElementById(id);
+    return Boolean(el && el.dataset.on === 'true');
+  }
 
-      <div class="rrs-drw-sec">
-        <div class="rrs-drw-ttl">CRYPTO / AI / WORLD NEWS &amp; KEYWORD FILTERS</div>
-        <div class="rrs-drw-grid" style="margin-bottom:5px;">
-          <label><input type="checkbox" id="rrs-f-cat-coin" checked /> Coins</label>
-          <label><input type="checkbox" id="rrs-f-cat-rug" checked /> Rugs</label>
-          <label><input type="checkbox" id="rrs-f-cat-crypto" checked /> Crypto News</label>
-          <label><input type="checkbox" id="rrs-f-cat-ai" checked /> AI News</label>
-          <label><input type="checkbox" id="rrs-f-cat-world" checked /> World News</label>
-        </div>
-        <div class="rrs-drw-grid" style="margin-bottom:5px;">
-          <label><input type="checkbox" id="rrs-f-nkw-on" /> News Keywords:</label>
-          <input type="text" id="rrs-f-nkw" class="rrs-drw-inp" style="flex:1;" value="SOL,BTC,ETF,GEMINI" />
-        </div>
-        <div class="rrs-drw-grid">
-          <span>World Filter:</span>
-          <input type="text" id="rrs-f-wreg" class="rrs-drw-inp" style="flex:1;" value="US,CA,GLOBAL" />
-        </div>
-      </div>
+  function syncVisualShieldState(root, state, unread) {
+    localShieldState = state;
+    localUnreadCount = Math.max(0, Number(unread || 0));
+    const card = root.getElementById('rrs-v55-card');
+    const svgBox = root.getElementById('rrs-card-shield-svg');
+    const badgeEl = root.getElementById('rrs-card-unread');
+    if (!card || !svgBox || !badgeEl) return;
 
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;">
-        <button type="button" id="rrs-drw-save" class="rrs-drw-btn" style="flex:1;">Save &amp; Sync Filters</button>
-        <button type="button" id="rrs-drw-test" class="rrs-drw-btn-sec">Fire Test Box</button>
-      </div>
-      <div id="rrs-drw-msg" style="display:none;margin-top:5px;text-align:center;font-size:10.5px;font-weight:800;color:#00FFA3;">Settings synced!</div>
-      <div style="margin-top:8px;padding-top:6px;border-top:1px solid #1E293B;display:flex;justify-content:space-between;font-size:10px;font-weight:800;color:#94A3B8;">
-        <span>Zero Robotic Voice | Click-To-Trade Active</span>
-        <span style="color:#D4AF37;">rentandrugshield.com</span>
-      </div>
-    `;
+    card.classList.remove('state-red', 'state-emerald');
+    if (state === 'red_alert') {
+      card.classList.add('state-red');
+      svgBox.innerHTML = renderShieldSvgMarkup('red_alert');
+      const c = Math.max(1, localUnreadCount);
+      badgeEl.textContent = c > 9 ? '9+' : String(c);
+      badgeEl.classList.add('show');
+    } else if (state === 'emerald_flash') {
+      card.classList.add('state-emerald');
+      svgBox.innerHTML = renderShieldSvgMarkup('emerald_flash');
+      badgeEl.classList.remove('show');
+    } else {
+      svgBox.innerHTML = renderShieldSvgMarkup('yellow_black');
+      badgeEl.classList.remove('show');
+    }
+  }
 
-    const q = (id) => drw.querySelector('#' + id);
-    q('rrs-drw-close').onclick = () => drw.classList.remove('open');
-    q('rrs-drw-zout').onclick = () => { layoutState.zoomPct = clampZoom(layoutState.zoomPct - 15); applyStackPositionAndZoom(host, root); saveLayoutState(); };
-    q('rrs-drw-z100').onclick = () => { layoutState.zoomPct = 100; applyStackPositionAndZoom(host, root); saveLayoutState(); };
-    q('rrs-drw-zin').onclick = () => { layoutState.zoomPct = clampZoom(layoutState.zoomPct + 15); applyStackPositionAndZoom(host, root); saveLayoutState(); };
-    q('rrs-drw-pin').onchange = () => { layoutState.pinned = Boolean(q('rrs-drw-pin').checked); applyStackPositionAndZoom(host, root); saveLayoutState(); };
-    q('rrs-drw-reset-pos').onclick = () => { layoutState.x = -1; layoutState.y = -1; layoutState.pinned = false; applyStackPositionAndZoom(host, root); saveLayoutState(); };
-    q('rrs-drw-test').onclick = () => {
-      if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
-        chrome.runtime.sendMessage({ type: 'RRS_FIRE_TEST_TOAST' }, () => { void chrome.runtime.lastError; });
+  function acknowledgeWithEmeraldFlash(root) {
+    localUnreadCount = 0;
+    syncVisualShieldState(root, 'emerald_flash', 0);
+    if (isExtRuntime && chrome.runtime && chrome.runtime.sendMessage) {
+      try {
+        chrome.runtime.sendMessage({ type: 'RRS_SHIELD_ACK_CLICK' }, () => { void chrome.runtime.lastError; });
+      } catch (_e) {}
+    }
+    setTimeout(() => {
+      if (localUnreadCount === 0) syncVisualShieldState(root, 'yellow_black', 0);
+    }, 680);
+  }
+
+  function applyLayoutToHost(host, root) {
+    const z = clampZoom(layoutState.zoomPct);
+    host.style.setProperty('--rrs-scale', (z / 100).toFixed(3));
+    const zBtn = root.getElementById('rrs-btn-zpct');
+    if (zBtn) zBtn.textContent = z + '%';
+    const pinBtn = root.getElementById('rrs-btn-pin');
+    const sec = Number(layoutState.autoHideSec || 14);
+    if (pinBtn) pinBtn.textContent = layoutState.pinned ? 'Pinned' : (sec + 's Auto');
+
+    if (layoutState.x >= 0 && layoutState.y >= 0) {
+      const maxX = Math.max(8, window.innerWidth - 160);
+      const maxY = Math.max(8, window.innerHeight - 100);
+      host.style.left = Math.min(layoutState.x, maxX) + 'px';
+      host.style.top = Math.min(layoutState.y, maxY) + 'px';
+      host.style.right = 'auto';
+      host.style.bottom = 'auto';
+    } else {
+      host.style.right = '18px';
+      host.style.bottom = '18px';
+      host.style.left = 'auto';
+      host.style.top = 'auto';
+    }
+  }
+
+  function populateDrawerFromState(root) {
+    setSegmentedValue(root, 'rrs-seg-hide', layoutState.pinned ? 'Pinned' : ((layoutState.autoHideSec || 14) + 's'));
+    setSwitchOn(root, 'rrs-sw-sound', Boolean(filterState.soundEnabled));
+    setSegmentedValue(root, 'rrs-seg-tf', filterState.tf || '3m');
+    setSegmentedValue(root, 'rrs-seg-preset', filterState.preset || 'Runners');
+    setSwitchOn(root, 'rrs-sw-macd-bull', filterState.macdBull !== false);
+    setSwitchOn(root, 'rrs-sw-macd-hist', filterState.macdHistFlip !== false);
+    setSwitchOn(root, 'rrs-sw-macd-bear', filterState.macdBear !== false);
+    root.getElementById('rrs-in-minmc').value = filterState.mcMin || 15000;
+    root.getElementById('rrs-in-maxmc').value = filterState.mcMax || 10000000;
+    root.getElementById('rrs-in-minliq').value = filterState.liqMin || 10000;
+    root.getElementById('rrs-in-move').value = filterState.moveMin || 10;
+    root.getElementById('rrs-in-coin').value = filterState.tickerQuery || 'ALL';
+    setSwitchOn(root, 'rrs-sw-safe12', filterState.catCoin !== false);
+    setSwitchOn(root, 'rrs-sw-rug', filterState.catRug !== false);
+    setSwitchOn(root, 'rrs-sw-cyber', filterState.cyberLat !== false);
+    setSwitchOn(root, 'rrs-sw-whale', filterState.whalePro !== false);
+    setSwitchOn(root, 'rrs-sw-ncrypto', filterState.catCrypto !== false);
+    setSwitchOn(root, 'rrs-sw-nai', filterState.catAi !== false);
+    setSwitchOn(root, 'rrs-sw-nworld', Boolean(filterState.catWorld));
+    setSegmentedValue(root, 'rrs-seg-region', filterState.worldRegion || 'Global');
+    root.getElementById('rrs-in-kw').value = filterState.newsKeywords || 'Solana, ETF, Gold';
+  }
+
+  function renderActiveAlert(root) {
+    if (!uniqueAlerts.length) return;
+    activeAlertIdx = Math.max(0, Math.min(activeAlertIdx, uniqueAlerts.length - 1));
+    const cur = uniqueAlerts[activeAlertIdx];
+    root.getElementById('rrs-card-badge').textContent = cur.badge;
+    root.getElementById('rrs-card-title').textContent = cur.title;
+    root.getElementById('rrs-card-body').textContent = cur.message;
+    root.getElementById('rrs-lbl-cnt').textContent = (activeAlertIdx + 1) + '/' + uniqueAlerts.length;
+  }
+
+  function ensureCountdownLoop(root) {
+    if (countdownTimerId) return;
+    countdownTimerId = setInterval(() => {
+      const card = root.getElementById('rrs-v55-card');
+      const drawer = root.getElementById('rrs-v55-drawer');
+      if (!card || !card.classList.contains('open')) return;
+      const timerLbl = root.getElementById('rrs-lbl-timer');
+      const progBar = root.getElementById('rrs-prog-bar');
+      const drawerOpen = drawer && drawer.classList.contains('open');
+
+      if (layoutState.pinned || drawerOpen || cardHovered || isDraggingCard) {
+        if (timerLbl) timerLbl.textContent = layoutState.pinned ? 'Pinned' : (drawerOpen ? 'Settings Open' : 'Paused');
+        return;
       }
-    };
+      countdownRemMs -= 100;
+      const secLeft = Math.max(0, Math.ceil(countdownRemMs / 1000));
+      if (timerLbl) timerLbl.textContent = secLeft + 's';
+      if (progBar) {
+        const pct = Math.max(0, Math.min(100, (countdownRemMs / Math.max(1000, countdownTotalMs)) * 100));
+        progBar.style.width = pct.toFixed(1) + '%';
+      }
+      if (countdownRemMs <= 0) {
+        if (drawer) drawer.classList.remove('open');
+        card.classList.remove('open');
+        root.getElementById('rrs-btn-gear').textContent = '\u2699 Settings \u25B2';
+      }
+    }, 100);
+  }
 
-    q('rrs-drw-save').onclick = () => {
-      filterState = Object.assign({}, filterState, {
-        catCoin: Boolean(q('rrs-f-cat-coin').checked),
-        catRug: Boolean(q('rrs-f-cat-rug').checked),
-        catCrypto: Boolean(q('rrs-f-cat-crypto').checked),
-        catAi: Boolean(q('rrs-f-cat-ai').checked),
-        catWorld: Boolean(q('rrs-f-cat-world').checked),
-        macdOn: Boolean(q('rrs-f-macd-on').checked),
-        macd1m: Boolean(q('rrs-f-macd-1m').checked),
-        macd3m: Boolean(q('rrs-f-macd-3m').checked),
-        macd5m: Boolean(q('rrs-f-macd-5m').checked),
-        macd15m: Boolean(q('rrs-f-macd-15m').checked),
-        macdBull: Boolean(q('rrs-f-macd-bull').checked),
-        macdBear: Boolean(q('rrs-f-macd-bear').checked),
-        macdHistFlip: Boolean(q('rrs-f-macd-hist').checked),
-        mcOn: Boolean(q('rrs-f-mc-on').checked),
-        mcMin: Number(q('rrs-f-mc-min').value || 15000),
-        mcMax: Number(q('rrs-f-mc-max').value || 50000000),
-        liqOn: Boolean(q('rrs-f-liq-on').checked),
-        liqMin: Number(q('rrs-f-liq-min').value || 10000),
-        moveOn: Boolean(q('rrs-f-mv-on').checked),
-        moveMin: Number(q('rrs-f-mv-min').value || 5),
-        moveWin: String(q('rrs-f-mv-win').value || '1h'),
-        tickerOn: Boolean(q('rrs-f-tk-on').checked),
-        tickerQuery: String(q('rrs-f-tk-q').value || '').trim(),
-        newsKwOn: Boolean(q('rrs-f-nkw-on').checked),
-        newsKeywords: String(q('rrs-f-nkw').value || '').trim(),
-        worldRegion: String(q('rrs-f-wreg').value || 'US,CA,GLOBAL').trim(),
-        zoomPct: layoutState.zoomPct,
-        cardPinned: layoutState.pinned,
-        cardX: layoutState.x,
-        cardY: layoutState.y,
-        roboticVoice: false
+  function wireLuxuryInteractions(host, root) {
+    const card = root.getElementById('rrs-v55-card');
+    const drawer = root.getElementById('rrs-v55-drawer');
+    const gearBtn = root.getElementById('rrs-btn-gear');
+
+    // Segmented pills
+    root.querySelectorAll('.rrs-seg-bar').forEach((bar) => {
+      bar.querySelectorAll('.rrs-seg-pill').forEach((pill) => {
+        pill.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          setSegmentedValue(root, bar.id, pill.dataset.val);
+          if (bar.id === 'rrs-seg-preset') {
+            const p = pill.dataset.val;
+            if (p === 'Snipes') {
+              root.getElementById('rrs-in-minmc').value = '5000';
+              root.getElementById('rrs-in-maxmc').value = '100000';
+              root.getElementById('rrs-in-minliq').value = '6000';
+              root.getElementById('rrs-in-move').value = '8';
+            } else if (p === 'Runners') {
+              root.getElementById('rrs-in-minmc').value = '100000';
+              root.getElementById('rrs-in-maxmc').value = '5000000';
+              root.getElementById('rrs-in-minliq').value = '25000';
+              root.getElementById('rrs-in-move').value = '12';
+            } else if (p === 'Whales') {
+              root.getElementById('rrs-in-minmc').value = '5000000';
+              root.getElementById('rrs-in-maxmc').value = '500000000';
+              root.getElementById('rrs-in-minliq').value = '150000';
+              root.getElementById('rrs-in-move').value = '5';
+            }
+          }
+        });
       });
-      saveLayoutState();
-      const msg = q('rrs-drw-msg');
-      if (msg) {
-        msg.style.display = 'block';
-        setTimeout(() => { msg.style.display = 'none'; }, 2200);
+    });
+
+    // Animated sliding pill switches
+    root.querySelectorAll('.rrs-sw-wrap').forEach((sw) => {
+      sw.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        sw.dataset.on = sw.dataset.on === 'true' ? 'false' : 'true';
+      });
+    });
+
+    root.getElementById('rrs-card-shield').onclick = (ev) => {
+      ev.stopPropagation();
+      acknowledgeWithEmeraldFlash(root);
+    };
+
+    const openCurUrl = (ev) => {
+      ev.stopPropagation();
+      if (localUnreadCount > 0 || localShieldState === 'red_alert') acknowledgeWithEmeraldFlash(root);
+      const cur = uniqueAlerts[activeAlertIdx];
+      if (cur && cur.url) window.open(cur.url, '_blank', 'noopener,noreferrer');
+    };
+    root.getElementById('rrs-card-title').onclick = openCurUrl;
+    root.getElementById('rrs-card-body').onclick = openCurUrl;
+    root.getElementById('rrs-btn-trade').onclick = openCurUrl;
+    root.getElementById('rrs-brand-link').onclick = (ev) => {
+      ev.stopPropagation();
+      window.open('https://rentandrugshield.com', '_blank', 'noopener,noreferrer');
+    };
+
+    root.getElementById('rrs-btn-prev').onclick = (ev) => {
+      ev.stopPropagation();
+      if (!uniqueAlerts.length) return;
+      activeAlertIdx = (activeAlertIdx - 1 + uniqueAlerts.length) % uniqueAlerts.length;
+      renderActiveAlert(root);
+    };
+    root.getElementById('rrs-btn-next').onclick = (ev) => {
+      ev.stopPropagation();
+      if (!uniqueAlerts.length) return;
+      activeAlertIdx = (activeAlertIdx + 1) % uniqueAlerts.length;
+      renderActiveAlert(root);
+    };
+    root.getElementById('rrs-btn-close').onclick = (ev) => {
+      ev.stopPropagation();
+      if (localUnreadCount > 0) acknowledgeWithEmeraldFlash(root);
+      drawer.classList.remove('open');
+      card.classList.remove('open');
+      gearBtn.textContent = '\u2699 Settings \u25B2';
+    };
+
+    root.getElementById('rrs-btn-zout').onclick = (ev) => {
+      ev.stopPropagation();
+      layoutState.zoomPct = clampZoom(layoutState.zoomPct - 15);
+      applyLayoutToHost(host, root);
+      saveStateAll();
+    };
+    root.getElementById('rrs-btn-zpct').onclick = (ev) => {
+      ev.stopPropagation();
+      layoutState.zoomPct = 100;
+      applyLayoutToHost(host, root);
+      saveStateAll();
+    };
+    root.getElementById('rrs-btn-zin').onclick = (ev) => {
+      ev.stopPropagation();
+      layoutState.zoomPct = clampZoom(layoutState.zoomPct + 15);
+      applyLayoutToHost(host, root);
+      saveStateAll();
+    };
+    root.getElementById('rrs-btn-pin').onclick = (ev) => {
+      ev.stopPropagation();
+      layoutState.pinned = !layoutState.pinned;
+      applyLayoutToHost(host, root);
+      saveStateAll();
+    };
+
+    gearBtn.onclick = (ev) => {
+      ev.stopPropagation();
+      if (localUnreadCount > 0 || localShieldState === 'red_alert') acknowledgeWithEmeraldFlash(root);
+      populateDrawerFromState(root);
+      const openNow = drawer.classList.toggle('open');
+      gearBtn.textContent = openNow ? '\u2699 Settings \u25BC' : '\u2699 Settings \u25B2';
+    };
+    root.getElementById('rrs-drw-x').onclick = (ev) => {
+      ev.stopPropagation();
+      drawer.classList.remove('open');
+      gearBtn.textContent = '\u2699 Settings \u25B2';
+    };
+
+    root.getElementById('rrs-drw-simred').onclick = (ev) => {
+      ev.stopPropagation();
+      if (isExtRuntime && chrome.runtime && chrome.runtime.sendMessage) {
+        chrome.runtime.sendMessage({ type: 'RRS_FIRE_TEST_TOAST' }, () => { void chrome.runtime.lastError; });
+      } else {
+        window.__rrsRenderBlackToastV53({
+          kind: 'coin',
+          sym: 'SOL',
+          mint: 'So11111111111111111111111111111111111111112',
+          unreadCount: localUnreadCount + 1,
+          badge: 'MACD BULL CROSS | WHALE',
+          title: '$SOL Whale Breakout +14.8% (12/12 Safe)',
+          message: 'Shield flipped Crimson-Red (#FF1744 + unread badge). Click Shield to flash #00FFA3 Emerald & reset!',
+          url: 'https://rentandrugshield.com/?mint=So11111111111111111111111111111111111111112&trade=1'
+        });
       }
     };
 
-    return drw;
-  }
+    root.getElementById('rrs-drw-save').onclick = (ev) => {
+      ev.stopPropagation();
+      const hv = getSegmentedValue(root, 'rrs-seg-hide', '14s');
+      if (hv === 'Pinned') {
+        layoutState.pinned = true;
+      } else {
+        layoutState.pinned = false;
+        layoutState.autoHideSec = parseInt(hv, 10) || 14;
+      }
+      const tf = getSegmentedValue(root, 'rrs-seg-tf', '3m');
+      filterState = Object.assign({}, filterState, {
+        soundEnabled: getSwitchOn(root, 'rrs-sw-sound'),
+        tf,
+        preset: getSegmentedValue(root, 'rrs-seg-preset', 'Runners'),
+        macdOn: true,
+        macd1m: tf === '1m',
+        macd3m: tf === '3m',
+        macd5m: tf === '5m',
+        macd15m: tf === '15m' || tf === '1h',
+        macdBull: getSwitchOn(root, 'rrs-sw-macd-bull'),
+        macdHistFlip: getSwitchOn(root, 'rrs-sw-macd-hist'),
+        macdBear: getSwitchOn(root, 'rrs-sw-macd-bear'),
+        mcOn: true,
+        mcMin: Number(root.getElementById('rrs-in-minmc').value || 15000),
+        mcMax: Number(root.getElementById('rrs-in-maxmc').value || 10000000),
+        liqOn: true,
+        liqMin: Number(root.getElementById('rrs-in-minliq').value || 10000),
+        moveOn: true,
+        moveMin: Number(root.getElementById('rrs-in-move').value || 10),
+        moveWin: tf,
+        tickerQuery: scrubText(root.getElementById('rrs-in-coin').value || 'ALL').trim(),
+        catCoin: getSwitchOn(root, 'rrs-sw-safe12'),
+        catRug: getSwitchOn(root, 'rrs-sw-rug'),
+        cyberLat: getSwitchOn(root, 'rrs-sw-cyber'),
+        whalePro: getSwitchOn(root, 'rrs-sw-whale'),
+        catCrypto: getSwitchOn(root, 'rrs-sw-ncrypto'),
+        catAi: getSwitchOn(root, 'rrs-sw-nai'),
+        catWorld: getSwitchOn(root, 'rrs-sw-nworld'),
+        worldRegion: getSegmentedValue(root, 'rrs-seg-region', 'Global'),
+        newsKeywords: scrubText(root.getElementById('rrs-in-kw').value || 'Solana, ETF, Gold').trim()
+      });
+      applyLayoutToHost(host, root);
+      saveStateAll();
+      drawer.classList.remove('open');
+      gearBtn.textContent = '\u2699 Settings \u25B2';
+      acknowledgeWithEmeraldFlash(root);
+    };
 
-  function populateDrawerInputs(root) {
-    const q = (id) => root.getElementById(id);
-    if (!q('rrs-f-macd-on')) return;
-    q('rrs-f-cat-coin').checked = filterState.catCoin !== false;
-    q('rrs-f-cat-rug').checked = filterState.catRug !== false;
-    q('rrs-f-cat-crypto').checked = filterState.catCrypto !== false;
-    q('rrs-f-cat-ai').checked = filterState.catAi !== false;
-    q('rrs-f-cat-world').checked = filterState.catWorld !== false;
-    q('rrs-f-macd-on').checked = Boolean(filterState.macdOn);
-    q('rrs-f-macd-1m').checked = filterState.macd1m !== false;
-    q('rrs-f-macd-3m').checked = filterState.macd3m !== false;
-    q('rrs-f-macd-5m').checked = filterState.macd5m !== false;
-    q('rrs-f-macd-15m').checked = filterState.macd15m !== false;
-    q('rrs-f-macd-bull').checked = filterState.macdBull !== false;
-    q('rrs-f-macd-bear').checked = Boolean(filterState.macdBear);
-    q('rrs-f-macd-hist').checked = filterState.macdHistFlip !== false;
-    q('rrs-f-mc-on').checked = Boolean(filterState.mcOn);
-    q('rrs-f-mc-min').value = filterState.mcMin || 15000;
-    q('rrs-f-mc-max').value = filterState.mcMax || 50000000;
-    q('rrs-f-liq-on').checked = Boolean(filterState.liqOn);
-    q('rrs-f-liq-min').value = filterState.liqMin || 10000;
-    q('rrs-f-mv-on').checked = Boolean(filterState.moveOn);
-    q('rrs-f-mv-min').value = filterState.moveMin || 5;
-    q('rrs-f-mv-win').value = filterState.moveWin || '1h';
-    q('rrs-f-tk-on').checked = Boolean(filterState.tickerOn);
-    q('rrs-f-tk-q').value = filterState.tickerQuery || '';
-    q('rrs-f-nkw-on').checked = Boolean(filterState.newsKwOn);
-    q('rrs-f-nkw').value = filterState.newsKeywords || 'SOL,BTC,ETF,GEMINI';
-    q('rrs-f-wreg').value = filterState.worldRegion || 'US,CA,GLOBAL';
-    q('rrs-drw-pin').checked = Boolean(layoutState.pinned);
-    q('rrs-drw-zoom-lbl').textContent = clampZoom(layoutState.zoomPct) + '%';
-  }
+    // Hover pause & Ctrl+Wheel zoom
+    card.addEventListener('mouseenter', () => { cardHovered = true; });
+    card.addEventListener('mouseleave', () => { cardHovered = false; });
+    card.addEventListener('wheel', (ev) => {
+      if (ev.ctrlKey) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        layoutState.zoomPct = clampZoom(layoutState.zoomPct + (ev.deltaY < 0 ? 10 : -10));
+        applyLayoutToHost(host, root);
+        saveStateAll();
+      }
+    }, { passive: false });
 
-  function parseTicker(t) {
-    const raw = String(t.title || '');
-    const sm = raw.match(/\$([A-Za-z0-9_]{2,12})/);
-    const pm = raw.match(/([+-]\d+(?:\.\d+)?%)/);
-    const sym = (t.sym ? ('$' + String(t.sym).replace(/^\$/, '').toUpperCase()) : (sm ? ('$' + sm[1].toUpperCase()) : '')).slice(0, 12);
-    const pct = pm ? pm[1] : '';
-    return { sym, pct };
+    // Smooth pointer drag on Card
+    let startX = 0, startY = 0, origLeft = 0, origTop = 0, ptrDown = false;
+    card.addEventListener('pointerdown', (ev) => {
+      if (ev.button !== 0) return;
+      if (ev.target && ev.target.closest && ev.target.closest('button, #rrs-card-shield, #rrs-brand-link')) return;
+      if (localUnreadCount > 0 || localShieldState === 'red_alert') acknowledgeWithEmeraldFlash(root);
+      ptrDown = true;
+      isDraggingCard = false;
+      startX = ev.clientX;
+      startY = ev.clientY;
+      const r = host.getBoundingClientRect();
+      origLeft = r.left;
+      origTop = r.top;
+      try { card.setPointerCapture(ev.pointerId); } catch (_e) {}
+    });
+    card.addEventListener('pointermove', (ev) => {
+      if (!ptrDown) return;
+      const dx = ev.clientX - startX;
+      const dy = ev.clientY - startY;
+      if (!isDraggingCard && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) {
+        isDraggingCard = true;
+        card.classList.add('dragging');
+      }
+      if (isDraggingCard) {
+        layoutState.x = Math.max(6, Math.min(window.innerWidth - 150, Math.round(origLeft + dx)));
+        layoutState.y = Math.max(6, Math.min(window.innerHeight - 90, Math.round(origTop + dy)));
+        applyLayoutToHost(host, root);
+      }
+    });
+    card.addEventListener('pointerup', (ev) => {
+      if (!ptrDown) return;
+      ptrDown = false;
+      try { card.releasePointerCapture(ev.pointerId); } catch (_e) {}
+      if (isDraggingCard) {
+        isDraggingCard = false;
+        card.classList.remove('dragging');
+        saveStateAll();
+      }
+    });
   }
 
   window.__rrsUpdateFounderBell = function (info) {
     if (window.location && String(window.location.href).includes('127.0.0.1:18088/command/waiting-approvals')) return;
-    const { root, bell } = ensureShadowRootHost();
+    const { root } = ensureShadowHost();
+    const bell = root.getElementById('rrs-founder-bell');
     const cnt = Number((info && info.pending_count) || 0);
-    bell.dataset.currentCount = String(cnt);
     const numEl = root.getElementById('rrs-bell-num');
     if (numEl) numEl.textContent = String(cnt);
-    if (cnt > 0 && bell.dataset.dismissedCount !== String(cnt)) {
-      bell.classList.add('show');
-    } else if (cnt <= 0) {
-      bell.classList.remove('show');
+    if (bell) {
+      if (cnt > 0) bell.classList.add('show');
+      else bell.classList.remove('show');
     }
   };
 
-  window.__rrsRenderBlackToastV53 = function (t) {
+  window.__rrsRenderBlackToastV53 = function (t, openDrawerImmediately) {
     if (!t || !t.title) return;
     loadPersistedState(() => {
-      const { host, root, stack, drawer } = ensureShadowRootHost();
-      populateDrawerInputs(root);
+      const { host, root } = ensureShadowHost();
+      const exactUrl = resolveExactAlertUrl(t);
+      const badge = scrubText(t.badge || 'SHIELD LIVE | 12-LAYER + MACD ARMED');
+      const title = scrubText(t.title);
+      const message = scrubText(t.message || 'Click card or [Open Trade] to inspect 12-Layer token audit.');
+      const key = title + '|' + message;
 
-      const { sym, pct } = parseTicker(t);
-      const isRed = (t.severity === 'CRITICAL' || t.kind === 'rug' || pct.startsWith('-'));
-      const accent = isRed ? '#FF1744' : '#00FFA3';
-      const glow = isRed ? 'rgba(255,23,68,0.36)' : 'rgba(0,255,163,0.30)';
-      const pillBg = isRed ? '#4A0816' : '#043222';
-      const subCol = isRed ? '#FDA4AF' : '#86EFAC';
-      const exactUrl = resolveExactAlertUrl(Object.assign({}, t, { sym: sym.replace(/^\$/, '') }));
-
-      const card = document.createElement('div');
-      card.className = 'rrs-card';
-      card.dataset.resolvedUrl = exactUrl;
-      card.style.setProperty('--rrs-accent', accent);
-      card.style.setProperty('--rrs-glow', glow);
-      card.style.setProperty('--rrs-pill-bg', pillBg);
-      card.style.setProperty('--rrs-sub', subCol);
-
-      const top = document.createElement('div');
-      top.className = 'rrs-top';
-
-      const badges = document.createElement('div');
-      badges.className = 'rrs-badges';
-      if (sym) {
-        const tk = document.createElement('span');
-        tk.className = 'rrs-ticker';
-        tk.textContent = sym + (pct ? (' ' + pct) : '');
-        badges.appendChild(tk);
+      if (!seenAlertKeys.has(key)) {
+        seenAlertKeys.add(key);
+        uniqueAlerts.push({ badge, title, message, url: exactUrl });
+        if (uniqueAlerts.length > 15) uniqueAlerts.shift();
+        activeAlertIdx = uniqueAlerts.length - 1;
       }
-      const pill = document.createElement('span');
-      pill.className = 'rrs-pill';
-      pill.textContent = scrubText(t.badge || (isRed ? 'CRITICAL RUG ALERT' : '12-LAYER SHIELD v5.3')).replace(/^[^\w$]+/, '').trim();
-      badges.appendChild(pill);
 
-      const ctrls = document.createElement('div');
-      ctrls.className = 'rrs-ctrls';
+      renderActiveAlert(root);
+      applyLayoutToHost(host, root);
 
-      const btnZOut = document.createElement('button');
-      btnZOut.type = 'button';
-      btnZOut.className = 'rrs-ctrl-btn rrs-zoom-out';
-      btnZOut.textContent = '-';
-      btnZOut.title = 'Zoom Out (75%-200%)';
-      btnZOut.onclick = (ev) => {
-        ev.stopPropagation();
-        layoutState.zoomPct = clampZoom(layoutState.zoomPct - 15);
-        applyStackPositionAndZoom(host, root);
-        saveLayoutState();
-      };
+      countdownTotalMs = Math.max(4000, Number(layoutState.autoHideSec || 14) * 1000);
+      countdownRemMs = countdownTotalMs;
+      const progBar = root.getElementById('rrs-prog-bar');
+      if (progBar) progBar.style.width = '100%';
 
-      const btnZPct = document.createElement('button');
-      btnZPct.type = 'button';
-      btnZPct.className = 'rrs-ctrl-btn rrs-zoom-pct';
-      btnZPct.textContent = clampZoom(layoutState.zoomPct) + '%';
-      btnZPct.title = 'Reset Zoom to 100%';
-      btnZPct.onclick = (ev) => {
-        ev.stopPropagation();
-        layoutState.zoomPct = 100;
-        applyStackPositionAndZoom(host, root);
-        saveLayoutState();
-      };
+      const unread = typeof t.unreadCount === 'number' ? t.unreadCount : (t.markCaughtUp ? 0 : (localUnreadCount + 1));
+      if (unread > 0) {
+        syncVisualShieldState(root, 'red_alert', unread);
+      } else {
+        syncVisualShieldState(root, 'yellow_black', 0);
+      }
 
-      const btnZIn = document.createElement('button');
-      btnZIn.type = 'button';
-      btnZIn.className = 'rrs-ctrl-btn rrs-zoom-in';
-      btnZIn.textContent = '+';
-      btnZIn.title = 'Zoom In (75%-200%)';
-      btnZIn.onclick = (ev) => {
-        ev.stopPropagation();
-        layoutState.zoomPct = clampZoom(layoutState.zoomPct + 15);
-        applyStackPositionAndZoom(host, root);
-        saveLayoutState();
-      };
+      const card = root.getElementById('rrs-v55-card');
+      const drawer = root.getElementById('rrs-v55-drawer');
+      const gearBtn = root.getElementById('rrs-btn-gear');
+      card.classList.add('open');
 
-      const btnPin = document.createElement('button');
-      btnPin.type = 'button';
-      btnPin.className = 'rrs-ctrl-btn rrs-pin-btn' + (layoutState.pinned ? ' pinned' : '');
-      btnPin.textContent = '\uD83D\uDCCC';
-      btnPin.onclick = (ev) => {
-        ev.stopPropagation();
-        layoutState.pinned = !layoutState.pinned;
-        if (layoutState.pinned && layoutState.x < 0) {
-          const rect = host.getBoundingClientRect();
-          layoutState.x = Math.round(rect.left);
-          layoutState.y = Math.round(rect.top);
-        }
-        applyStackPositionAndZoom(host, root);
-        saveLayoutState();
-      };
-
-      const btnGear = document.createElement('button');
-      btnGear.type = 'button';
-      btnGear.className = 'rrs-ctrl-btn rrs-gear-btn';
-      btnGear.textContent = '\u2699';
-      btnGear.title = 'Open MACD & Market Settings Drawer';
-      btnGear.onclick = (ev) => {
-        ev.stopPropagation();
-        populateDrawerInputs(root);
-        drawer.classList.toggle('open');
-      };
-
-      const cls = document.createElement('button');
-      cls.type = 'button';
-      cls.className = 'rrs-ctrl-btn rrs-close';
-      cls.textContent = 'X';
-      cls.onclick = (ev) => { ev.stopPropagation(); card.remove(); };
-
-      ctrls.append(btnZOut, btnZPct, btnZIn, btnPin, btnGear, cls);
-      top.append(badges, ctrls);
-
-      const bodyWrap = document.createElement('div');
-      bodyWrap.className = 'rrs-body-click';
-
-      const ttl = document.createElement('div');
-      ttl.className = 'rrs-title';
-      ttl.textContent = scrubText(t.title);
-
-      const sub = document.createElement('div');
-      sub.className = 'rrs-sub';
-      sub.textContent = scrubText(t.message || 'Click card to trade or inspect');
-
-      bodyWrap.append(ttl, sub);
-
-      const ftr = document.createElement('div');
-      ftr.className = 'rrs-footer';
-      ftr.innerHTML = '<span class="rrs-drag-cue">' + (layoutState.pinned ? 'PIN LOCKED | Ctrl+Wheel Zoom' : 'Drag Anywhere | Ctrl+Wheel Zoom') + '</span><span class="rrs-footer-domain">rentandrugshield.com</span>';
-
-      card.append(top, bodyWrap, ftr);
-
-      // Ctrl+Wheel smooth zoom (75% to 200%)
-      card.addEventListener('wheel', (ev) => {
-        if (ev.ctrlKey) {
-          ev.preventDefault();
-          ev.stopPropagation();
-          const delta = ev.deltaY < 0 ? 10 : -10;
-          layoutState.zoomPct = clampZoom(layoutState.zoomPct + delta);
-          applyStackPositionAndZoom(host, root);
-          saveLayoutState();
-        }
-      }, { passive: false });
-
-      // Draggable / Movable anywhere on viewport + click-to-trade / click-to-article
-      let downX = 0, downY = 0, startHostX = 0, startHostY = 0, dragging = false, pointerActive = false;
-      let hovered = false;
-      card.addEventListener('mouseenter', () => { hovered = true; });
-      card.addEventListener('mouseleave', () => { hovered = false; });
-
-      card.addEventListener('pointerdown', (ev) => {
-        if (ev.button !== 0) return;
-        if (ev.target && ev.target.closest && ev.target.closest('button')) return;
-        pointerActive = true;
-        dragging = false;
-        downX = ev.clientX;
-        downY = ev.clientY;
-        const rect = host.getBoundingClientRect();
-        startHostX = rect.left;
-        startHostY = rect.top;
-        try { card.setPointerCapture(ev.pointerId); } catch (_e) {}
-      });
-
-      card.addEventListener('pointermove', (ev) => {
-        if (!pointerActive || layoutState.pinned) return;
-        const dx = ev.clientX - downX;
-        const dy = ev.clientY - downY;
-        if (!dragging && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) {
-          dragging = true;
-          card.classList.add('dragging');
-        }
-        if (dragging) {
-          layoutState.x = Math.max(6, Math.min(window.innerWidth - 120, Math.round(startHostX + dx)));
-          layoutState.y = Math.max(6, Math.min(window.innerHeight - 80, Math.round(startHostY + dy)));
-          applyStackPositionAndZoom(host, root);
-        }
-      });
-
-      card.addEventListener('pointerup', (ev) => {
-        if (!pointerActive) return;
-        pointerActive = false;
-        try { card.releasePointerCapture(ev.pointerId); } catch (_e) {}
-        if (dragging) {
-          dragging = false;
-          card.classList.remove('dragging');
-          saveLayoutState();
-          return;
-        }
-        if (ev.target && ev.target.closest && ev.target.closest('button')) return;
-        window.open(exactUrl, '_blank', 'noopener,noreferrer');
-        if (!layoutState.pinned) card.remove();
-      });
-
-      while (stack.children.length >= 2) stack.firstElementChild.remove();
-      stack.appendChild(card);
-      applyStackPositionAndZoom(host, root);
-
-      requestAnimationFrame(() => {
-        card.style.transform = 'translateY(0)';
-        card.style.opacity = '1';
-      });
-
-      let elapsed = 0;
-      const lifeIv = setInterval(() => {
-        if (!card.isConnected) { clearInterval(lifeIv); return; }
-        if (layoutState.pinned || hovered || dragging || drawer.classList.contains('open')) return;
-        elapsed += 250;
-        if (elapsed >= DISPLAY_DURATION_MS) {
-          clearInterval(lifeIv);
-          card.style.opacity = '0';
-          setTimeout(() => { if (card.parentNode) card.remove(); }, 220);
-        }
-      }, 250);
+      if (openDrawerImmediately) {
+        populateDrawerFromState(root);
+        drawer.classList.add('open');
+        gearBtn.textContent = '\u2699 Settings \u25BC';
+      }
+      ensureCountdownLoop(root);
     });
   };
 
-  if (!window.__RRS_V53_LISTENER_BOUND__ && typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.onMessage) {
-    window.__RRS_V53_LISTENER_BOUND__ = true;
+  // Public interactive demo trigger for [Try Luxury Movable Trader Shield] on rentandrugshield.com
+  window.RRS_openLuxuryTraderShieldDemo = function (openDrawer) {
+    window.__rrsRenderBlackToastV53({
+      kind: 'coin',
+      sym: 'SOL',
+      mint: 'So11111111111111111111111111111111111111112',
+      unreadCount: 1,
+      badge: 'MACD BULL CROSS | 12-LAYER SAFE',
+      title: '$SOL Whale Runner +14.8% | Luxury Movable Trader Shield',
+      message: 'Drag this 24K-Gold & Obsidian box anywhere, zoom 75%-200%, click Red Shield to flash Emerald, or tune glowing pill switches above.',
+      url: 'https://rentandrugshield.com/?mint=So11111111111111111111111111111111111111112&trade=1'
+    }, openDrawer !== false);
+  };
+
+  if (!window.__RRS_V55_LISTENER_BOUND__ && isExtRuntime && chrome.runtime && chrome.runtime.onMessage) {
+    window.__RRS_V55_LISTENER_BOUND__ = true;
     chrome.runtime.onMessage.addListener((msg) => {
       if (!msg) return;
       if ((msg.type === 'RRS_SHOW_LIVE_TOAST_V53' || msg.type === 'RRS_SHOW_LIVE_TOAST_V52' || msg.type === 'RRS_SHOW_LIVE_TOAST') && msg.toast) {
-        window.__rrsRenderBlackToastV53(msg.toast);
+        window.__rrsRenderBlackToastV53(msg.toast, false);
+      } else if (msg.type === 'RRS_SHIELD_STATE_SYNC_V55') {
+        const { root } = ensureShadowHost();
+        syncVisualShieldState(root, msg.state || 'yellow_black', Number(msg.unreadCount || 0));
+        if (msg.state === 'emerald_flash') {
+          setTimeout(() => {
+            if (localUnreadCount === 0) syncVisualShieldState(root, 'yellow_black', 0);
+          }, 680);
+        }
       } else if (msg.type === 'RRS_FOUNDER_APPROVALS_SYNC') {
         window.__rrsUpdateFounderBell(msg.approvals || {});
       }
