@@ -6726,7 +6726,7 @@ html body #rrsVaultCoverGate .rrs-vault-exact-badge {
           <button type="button" class="rrs-paste-pill" id="instPasteWalletBtn">Paste</button>
         </div>
         <button type="button" class="rrs-btn-gleam-gold" id="instScanWalletBtn" onclick="window.rrsTriggerRentDropSheet(document.getElementById('instWalletInput').value)" style="width:100%;">SCAN &amp; RECLAIM SOL</button>
-        <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnInstTryLiveDemoWallet" class="rrs-instant-demo-cta-gold" onclick="window.rrsRunInstantDemoWallet('inst')" style="width:100%;margin-top:8px;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.18),rgba(255,208,0,0.16));color:#00FFA3;font-size:0.88rem;font-weight:900;letter-spacing:0.01em;cursor:pointer;box-shadow:0 0 14px rgba(0,255,163,0.24);">⚡ Try Live Demo Wallet ($109.85 Locked SOL - 0 Wallet Connect)</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
+        <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnInstTryLiveDemoWallet" class="rrs-instant-demo-cta-gold" onclick="window.rrsRunInstantDemoWallet('inst')" style="width:100%;margin-top:8px;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.18),rgba(255,208,0,0.16));color:#00FFA3;font-size:0.88rem;font-weight:900;letter-spacing:0.01em;cursor:pointer;box-shadow:0 0 14px rgba(0,255,163,0.24);" title="0 Wallet Connect Required - Instant Read-Only Mainnet Scan">⚡ Try Live Demo Wallet ($109.85 Locked SOL)</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
         <div class="inst-result-box" id="instRentResult" aria-live="polite" style="display:none;"></div>
       </section>
 
@@ -7317,7 +7317,7 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
         </div>
 
         <div class="service-actions-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; width:100%; box-sizing:border-box;">
-          <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnRetailTryLiveDemoWallet" onclick="window.rrsRunInstantDemoWallet('retail')" style="grid-column:1 / -1;width:100%;min-height:44px;padding:9px 14px;border-radius:10px;border:2px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.22),rgba(250,204,21,0.18));color:#ECFDF5;font-size:0.91rem;font-weight:900;cursor:pointer;box-shadow:0 0 16px rgba(0,255,163,0.32);">⚡ Try Live Demo Wallet ($109.85 Locked SOL - 0 Wallet Connect)</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
+          <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnRetailTryLiveDemoWallet" onclick="window.rrsRunInstantDemoWallet('retail')" style="grid-column:1 / -1;width:100%;min-height:44px;padding:9px 14px;border-radius:10px;border:2px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.22),rgba(250,204,21,0.18));color:#ECFDF5;font-size:0.91rem;font-weight:900;cursor:pointer;box-shadow:0 0 16px rgba(0,255,163,0.32);" title="0 Wallet Connect Required - Instant Read-Only Mainnet Scan">⚡ Try Live Demo Wallet ($109.85 Locked SOL)</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
           <button type="button" id="scanWalletBtn" class="btn btn-primary" onclick="window.__explicitUserWalletScan=true; scanWallet(null, 'rent')" style="min-height:42px; padding:8px 12px; border-radius:9px; font-size:0.90rem; font-weight:700; cursor:pointer; justify-content:center;">🔥 Scan Rent &amp; Burn Dead Coins</button>
           <button type="button" id="pasteReadOnlyWalletBtn" onclick="window.pasteAndScanIndexWallet()" style="min-height:42px; padding:8px 12px; border-radius:9px; border:1.5px solid #10B981; background:rgba(16, 185, 129, 0.16); color:#6EE7B7; font-size:0.90rem; font-weight:700; cursor:pointer;">
             📋 Paste &amp; Scan
@@ -24178,11 +24178,12 @@ window.submitVisitorFeedbackNow = async function(){
       + '</div>';
   }
 
-  window.rrsRunInstantDemoWallet = async function(mode) {
+  window.rrsRunInstantDemoWallet = async function(mode, customWallet) {
+    var targetW = (customWallet && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(String(customWallet).trim())) ? String(customWallet).trim() : DEMO_WALLET;
     var isInst = (mode === 'inst') || (!mode && (document.body.classList.contains('rrs-mode-institutional') || (document.getElementById('rrsViewInstitutional') && document.getElementById('rrsViewInstitutional').offsetParent !== null)));
     var effMode = isInst ? 'inst' : 'retail';
     var inp = document.getElementById(isInst ? 'instWalletInput' : 'walletInput');
-    if (inp) inp.value = DEMO_WALLET;
+    if (inp) inp.value = targetW;
 
     var btn = document.getElementById(isInst ? 'btnInstTryLiveDemoWallet' : 'btnRetailTryLiveDemoWallet');
     var origTxt = btn ? btn.textContent : '';
@@ -24194,7 +24195,7 @@ window.submitVisitorFeedbackNow = async function(){
       var r = await fetch(base + '/api/scan-wallet', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ wallet: DEMO_WALLET, mode: 'rent', user_initiated: false, is_sample_test: true })
+        body: JSON.stringify({ wallet: targetW, mode: 'rent', user_initiated: false, is_sample_test: (targetW === DEMO_WALLET) })
       });
       var d = await r.json();
       var ms = Math.max(8, Math.round(performance.now() - t0));
@@ -24205,7 +24206,7 @@ window.submitVisitorFeedbackNow = async function(){
         var emptySol = Number((emptyCnt * 0.00203928).toFixed(6));
         var dispSol = emptyCnt >= 700 ? emptySol : Number(d.total_reclaimable_sol || 1.533749);
         var dispUsd = Number((dispSol * solPx).toFixed(2));
-        window.__rrsLastViralReceipt = { wallet: DEMO_WALLET, emptyAtas: emptyCnt, reclaimableSol: dispSol, reclaimableUsd: dispUsd, isDemo: true };
+        window.__rrsLastViralReceipt = { wallet: targetW, emptyAtas: emptyCnt, reclaimableSol: dispSol, reclaimableUsd: dispUsd, isDemo: (targetW === DEMO_WALLET) };
 
         if (isInst) {
           var ds = document.getElementById('instRentResult');
@@ -24244,7 +24245,7 @@ window.submitVisitorFeedbackNow = async function(){
       }
     } catch (_err) {
     } finally {
-      if (btn) { btn.disabled = false; btn.textContent = origTxt || '⚡ Try Live Demo Wallet ($109.85 Locked SOL - 0 Wallet Connect)'; }
+      if (btn) { btn.disabled = false; btn.textContent = origTxt || '⚡ Try Live Demo Wallet ($109.85 Locked SOL)'; }
     }
   };
 
@@ -24335,6 +24336,20 @@ window.submitVisitorFeedbackNow = async function(){
     }
   }
   setInterval(syncPostScanViralShareButtons, 900);
+
+  // Deep-link auto-trigger strictly when ?demo_wallet=1 or explicit ?wallet=<PUBKEY> is in URL (bare / stays 100% untouched)
+  window.addEventListener('DOMContentLoaded', function() {
+    try {
+      var sp = new URLSearchParams(window.location.search || '');
+      var dw = sp.get('demo_wallet');
+      var qw = (sp.get('wallet') || sp.get('w') || '').trim();
+      if (dw === '1' || (qw && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(qw))) {
+        setTimeout(function() {
+          window.rrsRunInstantDemoWallet(null, (qw && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(qw)) ? qw : DEMO_WALLET);
+        }, 380);
+      }
+    } catch (_qErr) {}
+  });
 })();
 </script>
 <!-- RRS_INSTANT_DEMO_HOOK_V1_END -->

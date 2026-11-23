@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RefundYourSOL vs Solana Rent &amp; Rug Shield: Instruction-Level Fee Audit | Solana Rent &amp; Rug Shield</title>
+  <meta name="description" content="Forensic instruction audit comparing RefundYourSOL 15% deductions with Solana Rent &amp; Rug Shield 0% first claim, 2% repeat cap, and read-only pre-scan." />
+  <link rel="canonical" href="https://rentandrugshield.com/compare/refundyoursol-vs-rentandrugshield.html" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
+  <meta property="og:title" content="RefundYourSOL vs Solana Rent &amp; Rug Shield: Instruction-Level Fee Audit" />
+  <meta property="og:description" content="Forensic instruction audit comparing RefundYourSOL 15% deductions with Solana Rent &amp; Rug Shield 0% first claim, 2% repeat cap, and read-only pre-scan." />
+  <meta property="og:url" content="https://rentandrugshield.com/compare/refundyoursol-vs-rentandrugshield.html" />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="RefundYourSOL vs Solana Rent &amp; Rug Shield: Instruction-Level Fee Audit" />
+  <meta name="twitter:description" content="Forensic instruction audit comparing RefundYourSOL 15% deductions with Solana Rent &amp; Rug Shield 0% first claim, 2% repeat cap, and read-only pre-scan." />
+  <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png" />
+  <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Solana Rent & Rug Shield",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web, Chrome MV3, Solana SVM",
+    "url": "https://rentandrugshield.com/",
+    "description": "Forensic instruction audit comparing RefundYourSOL 15% deductions with Solana Rent & Rug Shield 0% first claim, 2% repeat cap, and read-only pre-scan.",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "1st Wallet Empty-ATA Rent Claim & 1st 12-Layer Token Audit",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "30-Day Trader Pro Pass (Reg. $39.99/mo)",
+        "price": "19.99",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Sniper Bot 12-Layer API",
+        "price": "49.99",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Quant Desk Sub-120ms API",
+        "price": "99.00",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Institutional Unlimited API",
+        "price": "500.00",
+        "priceCurrency": "USD"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many empty ATAs fit in one Solana transaction?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Due to Solana's 1,232-byte packet MTU limit, Solana Rent & Rug Shield packs 22 to 25 CloseAccount instructions per transaction cleanly without exceeding compute or size caps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I ever share a seed phrase or private key?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Never. All scans use read-only JSON-RPC getTokenAccountsByOwner calls, and closing transactions are signed locally inside your own wallet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens on my second or third claim?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Subsequent claims are capped at a flat 2.0% protocol fee (98.0% net SOL stays in your wallet), or 1.5% / 98.5% on qualifying Pro passes."
+        }
+      }
+    ]
+  }
+]
+  </script>
+  <style>
+    :root {
+      --bg: #020408;
+      --card: #09111E;
+      --card-alt: #0E192D;
+      --emerald: #00FFA3;
+      --gold: #D4AF37;
+      --crimson: #FF3B5C;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --border: rgba(212, 175, 55, 0.28);
+      --border-em: rgba(0, 255, 163, 0.38);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0, 255, 163, 0.08), transparent 52%), var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      line-height: 1.62;
+    }
+    a { color: var(--emerald); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    header.topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(2, 4, 8, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+    }
+    .topbar-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .brand img { width: 36px; height: 36px; border-radius: 8px; }
+    .nav-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.9rem; font-weight: 700; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--emerald); text-decoration: none; }
+    main { max-width: 1160px; margin: 0 auto; padding: 32px 20px 64px; }
+    .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .badge-gold { background: rgba(212, 175, 55, 0.16); color: var(--gold); border: 1px solid var(--gold); }
+    .badge-em { background: rgba(0, 255, 163, 0.12); color: var(--emerald); border: 1px solid var(--emerald); }
+    h1 { font-size: clamp(1.75rem, 3.4vw, 2.55rem); line-height: 1.2; margin: 0 0 14px; color: var(--text); }
+    .lead { font-size: 1.08rem; color: #CBD5E1; max-width: 920px; margin: 0 0 24px; }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(0, 255, 163, 0.12), rgba(212, 175, 55, 0.12));
+      border: 1.5px solid var(--emerald);
+      border-radius: 16px;
+      padding: 22px;
+      margin: 24px 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 12px;
+      background: var(--emerald);
+      color: #02160E !important;
+      font-weight: 900;
+      font-size: 1rem;
+      text-decoration: none !important;
+      box-shadow: 0 0 22px rgba(0, 255, 163, 0.34);
+    }
+    .cta-btn-sec {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1.5px solid var(--gold);
+      color: var(--gold) !important;
+      font-weight: 800;
+      font-size: 0.92rem;
+      text-decoration: none !important;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+      margin: 24px 0;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .panel-em { border-color: var(--border-em); }
+    .panel h2, .panel h3 { margin-top: 0; color: var(--gold); }
+    .panel-em h2, .panel-em h3 { color: var(--emerald); }
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin: 24px 0 32px;
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 680px; }
+    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid rgba(148, 163, 184, 0.14); vertical-align: top; }
+    th { background: var(--card-alt); color: var(--gold); font-size: 0.86rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    .hi-emerald { background: rgba(0, 255, 163, 0.05); }
+    .ok-pill { display: inline-block; margin-top: 4px; padding: 2px 8px; border-radius: 6px; background: rgba(0,255,163,0.16); color: var(--emerald); font-size: 0.78rem; font-weight: 800; }
+    .gold-pill { display: inline-block; margin-top: 4px; padding: 2px 8px; border-radius: 6px; background: rgba(212,175,55,0.16); color: var(--gold); font-size: 0.78rem; font-weight: 800; }
+    .bad-pill { display: inline-block; margin-top: 4px; padding: 2px 8px; border-radius: 6px; background: rgba(255,59,92,0.18); color: #FF8FA3; font-size: 0.78rem; font-weight: 800; }
+    .muted { color: var(--muted); font-size: 0.85rem; }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+    .faq-item h3 { margin: 0 0 8px; font-size: 1.04rem; color: var(--emerald); }
+    .faq-item p { margin: 0; color: #CBD5E1; }
+    .rel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 16px; }
+    .rel-card {
+      display: block;
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: var(--text);
+    }
+    .rel-card:hover { border-color: var(--emerald); text-decoration: none; }
+    .rel-cat { display: block; font-size: 0.74rem; color: var(--gold); text-transform: uppercase; font-weight: 800; margin-bottom: 4px; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      background: #010205;
+    }
+    footer .f-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://rentandrugshield.com/">
+        <img src="/dex6-official-shield-96.png" alt="Solana Rent &amp; Rug Shield Crest" />
+        <span>SOLANA RENT &amp; RUG SHIELD</span>
+      </a>
+      <nav class="nav-links" aria-label="Comparison Navigation">
+        <a href="https://rentandrugshield.com/">Live Scanner</a>
+        <a href="/compare/index.html">All 30 Comparisons</a>
+        <a href="/enterprise-api.html">API Tiers ($19.99-$500)</a>
+        <a href="https://x.com/SolRentClaim" target="_blank" rel="noopener noreferrer">X (@SolRentClaim)</a>
+        <a href="https://t.me/SolRentShieldBot" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="/openapi.json">OpenAPI</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="badge-row">
+      <span class="badge badge-gold">Rent Recovery Benchmark</span>
+      <span class="badge badge-em">0% 1st Wallet Rent Claim</span>
+      <span class="badge badge-em">&lt;120ms 12-Layer Pre-Buy Sim</span>
+    </div>
+
+    <h1>RefundYourSOL vs Solana Rent &amp; Rug Shield: Instruction-Level Fee Audit</h1>
+    <p class="lead">RefundYourSOL targets heavy meme-coin traders with ratusan of orphaned ATAs, extracting ~15% of total recovered SOL via bundled fee transfer instructions.</p>
+
+    <section class="cta-box" aria-label="Instant Demo Wallet Action">
+      <div style="max-width: 650px;">
+        <div style="font-weight: 900; font-size: 1.08rem; color: var(--emerald); margin-bottom: 4px;">Zero Wallet Connect Needed: Verify Real Mainnet Empty-ATA Math Live</div>
+        <div style="color: #E2E8F0; font-size: 0.94rem;">Run an instant read-only RPC scan on active PumpSwap trader wallet <span class="mono">66666y...rjRH</span> ($109.85+ locked SOL rent) or paste your own public Solana address.</div>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <a class="cta-btn" href="https://rentandrugshield.com/?demo_wallet=1#scanner">⚡ Try Live Demo Wallet ($109.85 Locked SOL)</a>
+        <a class="cta-btn-sec" href="https://rentandrugshield.com/?wallet=66666y3RmL6gNyttNKXNhF5awxAWbBdGSfpKuaTLrjRH&demo_wallet=1#scanner">Inspect 66666y...rjRH Proof</a>
+      </div>
+    </section>
+
+    <div class="grid-2">
+      <section class="panel">
+        <h2>Where RefundYourSOL Costs Traders SOL</h2>
+        <p style="color:#CBD5E1;"><strong>Fee / Model:</strong> 15% reclaim deduction</p>
+        <p style="color:#CBD5E1;">High 15% recurring fee across large trench wallets, costing active Pump.fun and Raydium traders 0.75+ SOL on a 2,500-ATA cleanup.</p>
+      </section>
+      <section class="panel panel-em">
+        <h2>Solana Rent &amp; Rug Shield Forensic Edge</h2>
+        <p style="color:#ECFDF5;"><strong>Fee / Model:</strong> 0.0% 1st Wallet Claim | 2.0% Repeat Cap (98.0% Net) | 1.5% / 98.5% on $19.99/mo Trader Pro (Reg. $39.99/mo)</p>
+        <p style="color:#ECFDF5;">0.0% first wallet claim saves $16.48 on a $109.85 wallet and $56+ on a 2,500-ATA trench wallet, backed by public Solscan 0x09 transaction proofs.</p>
+      </section>
+    </div>
+
+    <h2>Head-to-Head Architecture &amp; Security Matrix</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Capability / Invariant</th>
+            <th>RefundYourSOL</th>
+            <th>Solana Rent &amp; Rug Shield</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1st Wallet Empty-ATA Rent Claim Fee</strong></td>
+            <td>15% reclaim deduction</td>
+            <td class="hi-emerald"><strong style="color:var(--emerald);">0.0% FREE (Keep 100% of Unlocked SOL)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Subsequent Rent Claims Thereafter</strong></td>
+            <td>15.0% recurring deduction</td>
+            <td class="hi-emerald"><strong>2.0% Strict Cap (98.0% Net User Keep) / 1.5% Pro (98.5% Net)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Repeat Claim Fee Cap</strong></td>
+            <td>~15.0% Uncapped Commission</td>
+            <td class="hi-emerald"><strong style="color:var(--emerald);">2.0% Strict Cap (98.0% Yours)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Token-2022 Extensions (TransferHook, PermanentDelegate, Frozen ATA)</strong></td>
+            <td>Partial or Unquarantined</td>
+            <td class="hi-emerald"><strong>Full TLV Bytecode Audit + Automatic Frozen-ATA Quarantine</strong></td>
+          </tr>
+          <tr>
+            <td><strong>On-Chain Referral Split (?ref=YOUR_WALLET)</strong></td>
+            <td>Custodial / Tier-Locked / None</td>
+            <td class="hi-emerald"><strong>30.0% Atomic Non-Custodial SOL Split</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Pro &amp; Institutional API Pricing</strong></td>
+            <td>Separate SaaS or Not Available</td>
+            <td class="hi-emerald"><strong>$19.99/mo Trader Pro (Reg. $39.99/mo) | $49.99 Bot | $99 Quant | $500 Enterprise</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Real Solana Mainnet Rent Recovery Math (2,039,280 Lamports / ATA)</h2>
+    <p class="muted">Every standard 165-byte SPL Associated Token Account locks <span class="mono">0.00203928 SOL</span> on-chain. Below is exact net user payout math across three real wallet sizes:</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Wallet Empty-ATA Profile</th>
+            <th>RefundYourSOL Net Payout</th>
+            <th>Rent &amp; Rug Shield (1st Wallet Claim)</th>
+            <th>Rent &amp; Rug Shield (Repeat Claims)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Starter Wallet (100 Empty ATAs)</strong><br><span class='muted mono'>0.2039 SOL ($14.60)</span></td><td>0.1733 SOL ($12.41) <span class='bad-pill'>-$2.19 skim</span></td><td class='hi-emerald'><strong>0.2039 SOL ($14.60)</strong><br><span class='ok-pill'>0.0% 1st Claim ($0.00 Fee)</span></td><td><strong>0.1998 SOL ($14.31)</strong><br><span class='gold-pill'>98.0% Net (2.0% Cap) / 98.5% Pro</span></td></tr><tr><td><strong>Live Proof Benchmark (743 Empty ATAs: 66666y...rjRH)</strong><br><span class='muted mono'>1.5337 SOL ($109.85)</span></td><td>1.3036 SOL ($93.37) <span class='bad-pill'>-$16.48 skim</span></td><td class='hi-emerald'><strong>1.5337 SOL ($109.85)</strong><br><span class='ok-pill'>0.0% 1st Claim ($0.00 Fee)</span></td><td><strong>1.5030 SOL ($107.65)</strong><br><span class='gold-pill'>98.0% Net (2.0% Cap) / 98.5% Pro</span></td></tr><tr><td><strong>Heavy Trench / Bot Wallet (2,500 Empty ATAs)</strong><br><span class='muted mono'>5.0982 SOL ($365.13)</span></td><td>4.3335 SOL ($310.36) <span class='bad-pill'>-$54.77 skim</span></td><td class='hi-emerald'><strong>5.0982 SOL ($365.13)</strong><br><span class='ok-pill'>0.0% 1st Claim ($0.00 Fee)</span></td><td><strong>4.9962 SOL ($357.83)</strong><br><span class='gold-pill'>98.0% Net (2.0% Cap) / 98.5% Pro</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Why Trust Rent &amp; Rug Shield (4 On-Chain Pillars)</h2>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>1. Read-Only Scans (Zero Seed Phrases)</h3>
+        <p>Inspect any 44-character Solana wallet or token mint via public RPC with zero wallet connection and zero blind signing.</p>
+      </div>
+      <div class="panel">
+        <h3>2. Native SPL CloseAccount (0x09)</h3>
+        <p>Uses canonical Solana SPL Token opcode <span class="mono">0x09</span> directly rather than opaque third-party wrapper contracts.</p>
+      </div>
+      <div class="panel">
+        <h3>3. 12-Layer Adaptive Pre-Buy Protection</h3>
+        <p>Sub-120ms evaluation across authorities, LP locks, Token-2022 hooks, Inner-CPI drainers, and Block-0 Jito Sybil clusters (superseding legacy 11-Layer Adaptive Pre-Buy Protection baselines).</p>
+      </div>
+      <div class="panel">
+        <h3>4. Verifiable On-Chain Proof</h3>
+        <p>Every Solscan <span class="mono">0x09</span> transaction hash and pre-rug outcome receipt is publicly auditable on Solana Mainnet.</p>
+      </div>
+    </div>
+
+    <h2>Frequently Asked Technical Questions</h2>
+    <div class="faq-item"><h3>How many empty ATAs fit in one Solana transaction?</h3><p>Due to Solana&#x27;s 1,232-byte packet MTU limit, Solana Rent &amp; Rug Shield packs 22 to 25 CloseAccount instructions per transaction cleanly without exceeding compute or size caps.</p></div>
+<div class="faq-item"><h3>Do I ever share a seed phrase or private key?</h3><p>Never. All scans use read-only JSON-RPC getTokenAccountsByOwner calls, and closing transactions are signed locally inside your own wallet.</p></div>
+<div class="faq-item"><h3>What happens on my second or third claim?</h3><p>Subsequent claims are capped at a flat 2.0% protocol fee (98.0% net SOL stays in your wallet), or 1.5% / 98.5% on qualifying Pro passes.</p></div>
+
+    <section class="cta-box" style="margin-top: 36px;">
+      <div>
+        <strong style="font-size: 1.06rem; color: var(--gold);">Ready to Test on Live Solana Mainnet Data?</strong>
+        <div style="color:#CBD5E1; font-size:0.93rem;">Click once to run the $109.85 demo wallet scan in &lt;120ms with 0 wallet connect, then test your own public address.</div>
+      </div>
+      <a class="cta-btn" href="https://rentandrugshield.com/?demo_wallet=1#scanner">⚡ Try Live Demo Wallet ($109.85 Locked SOL)</a>
+    </section>
+
+    <h2 style="margin-top: 40px;">Related Forensic Comparisons</h2>
+    <div class="rel-grid">
+      <a class="rel-card" href="/compare/phantom-burn-token-vs-rentandrugshield.html"><span class="rel-cat">Rent Recovery</span><strong>Phantom Built-In Burn vs Solana Rent &amp; Rug Shield 22-ATA Batch Sweep</strong></a><a class="rel-card" href="/compare/solflare-account-cleanup-vs-rentandrugshield.html"><span class="rel-cat">Rent Recovery</span><strong>Solflare Manual Account Close vs Solana Rent &amp; Rug Shield Batch Engine</strong></a><a class="rel-card" href="/compare/jupiter-ata-cleanup-vs-rentandrugshield.html"><span class="rel-cat">Rent Recovery</span><strong>Jupiter Swap ATA Rent Overhead vs Solana Rent &amp; Rug Shield 0x09 Recovery</strong></a><a class="rel-card" href="/compare/backpack-wallet-rent-reclaim-vs-rentandrugshield.html"><span class="rel-cat">Rent Recovery</span><strong>Backpack Wallet Rent Recovery vs Solana Rent &amp; Rug Shield Batch Cleaner</strong></a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="f-links">
+      <a href="https://rentandrugshield.com/">rentandrugshield.com</a>
+      <a href="/compare/index.html">Comparison Hub (30 Guides)</a>
+      <a href="https://x.com/SolRentClaim" target="_blank" rel="noopener noreferrer">X/Twitter (@SolRentClaim)</a>
+      <a href="https://t.me/SolRentShieldBot" target="_blank" rel="noopener noreferrer">Telegram</a>
+      <a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="/openapi.json">OpenAPI (/openapi.json)</a>
+    </div>
+    <div>Solana Rent &amp; Rug Shield | 1st Wallet Claim 0.0% Fee | 98.0% Net Thereafter | Zero Seed Phrases</div>
+  </footer>
+</body>
+</html>
