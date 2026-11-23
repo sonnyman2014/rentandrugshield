@@ -5,7 +5,7 @@
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:creator" content="@SolRentClaim" />
   <meta name="twitter:title" content="Solana Rent &amp; Rug Shield | 12-Layer Pre-Buy Rug Firewall &amp; 0% 1st SOL Rent Claim" />
-  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
+  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09." />
   <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png?v=25771" />
   <meta name="twitter:image:src" content="https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png?v=25771" />
   <meta name="twitter:image:alt" content="Solana Rent &amp; Rug Shield 12-Layer Institutional Master Shield" />
@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://rentandrugshield.com/" />
   <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
   <meta property="og:title" content="Solana Rent &amp; Rug Shield | 12-Layer Pre-Buy Rug Firewall &amp; 0% 1st SOL Rent Claim" />
-  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
+  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09." />
   <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png?v=25771" />
   <meta property="og:image:secure_url" content="https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png?v=25771" />
   <meta property="og:image:type" content="image/png" />
@@ -43,7 +43,7 @@
   <link rel="manifest" href="manifest.json" />
   <title>Solana Rent &amp; Rug Shield | Reclaim Free SOL from Empty Token Accounts &amp; 12-Layer Adaptive Token Scanner</title>
   <link rel="canonical" href="https://rentandrugshield.com/" />
-  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
+  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09." />
   <meta name="keywords" content="Solana rent recovery, SPL CloseAccount 0x09, Token-2022 rent reclaim, Sol Incinerator alternative, Solana 12-layer mint security scanner, read-only Solana explorer" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://rentandrugshield.com/sitemap.xml" />
@@ -1329,7 +1329,7 @@ var __values = (this && this.__values) || function(o) {
 (function() {
   var SW_VER = "25766";
   var EXPECTED_CACHE = "rent-shield-v25766-bingo-bango-v51";
-  var ACTIVE_TUNNEL = "https://keen-playing-text-essence.trycloudflare.com";
+  var ACTIVE_TUNNEL = "https://mae-astronomy-communities-tray.trycloudflare.com";
   try {
     for (var sIdx = 0; sIdx < 2; sIdx++) {
       var st = sIdx === 0 ? window.localStorage : window.sessionStorage;
@@ -8562,7 +8562,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-var _LIVE_BACKEND_TUNNEL = "https://keen-playing-text-essence.trycloudflare.com";
+var _LIVE_BACKEND_TUNNEL = "https://mae-astronomy-communities-tray.trycloudflare.com";
 var _CUR_HOSTNAME = String(window.location.hostname || "").toLowerCase();
 var _IS_STATIC_GH_PAGES = (_CUR_HOSTNAME === "rentandrugshield.com" || _CUR_HOSTNAME === "www.rentandrugshield.com" || _CUR_HOSTNAME.indexOf("github.io") !== -1);
 var BACKEND_TUNNEL_BASE = _IS_STATIC_GH_PAGES ? _LIVE_BACKEND_TUNNEL : "";
@@ -12758,7 +12758,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (!params.get('wallet') && !params.get('w')) {
       var inputs = document.querySelectorAll('input[type="text"], input[type="search"], input:not([type])');
       inputs.forEach(function(inp) {
-        if (inp.id === 'mintInput' && (params.get('mint') || params.get('token'))) return;
+        if ((inp.id === 'mintInput' || inp.id === 'instMintInput') && (params.get('mint') || params.get('token'))) return;
         if (inp.value && (inp.value.indexOf('89Sv') !== -1 || inp.value.length >= 32)) {
           inp.value = '';
           inp.placeholder = 'Paste any public 44-character Solana wallet address for a 100% Read-Only Rent Scan (No wallet connection required)...';
@@ -14402,7 +14402,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             });
         }
         if (!hasUrlMint) {
-            ["mintInput", "tokenInput", "m-inp"].forEach(function (id) {
+            ["mintInput", "instMintInput", "tokenInput", "m-inp"].forEach(function (id) {
                 var el = document.getElementById(id);
                 if (el && document.activeElement !== el) {
                     el.value = "";
@@ -16174,12 +16174,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             });
         }
         var params = new URLSearchParams(window.location.search);
-        var qMint = (params.get("mint") || "").trim();
+        var qMint = (params.get("mint") || params.get("token") || "").trim();
         var qAutoScan = params.get("autoscan") === "1" || params.get("autoconnect") === "1";
         var qWallet = (params.get("wallet") || params.get("w") || "").trim();
         if (isSolAddr(qMint)) {
             if (mIn)
                 mIn.value = qMint;
+            var instIn = document.getElementById("instMintInput");
+            if (instIn)
+                instIn.value = qMint;
+            if (qAutoScan || window.location.hash === "#tokenScanner" || window.location.hash === "#rugShieldCard") {
+                var scTarget = document.getElementById("rugShieldCard") || document.getElementById("instRugEngineCard");
+                if (scTarget && scTarget.scrollIntoView)
+                    scTarget.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
             setTimeout(function () { window.scanToken(false, qMint); }, 120);
         }
         closeScanBubble();
@@ -17553,7 +17561,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function resolveHbEndpoint() {
         var host = String((window.location && window.location.hostname) || "").toLowerCase();
         var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-        var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://keen-playing-text-essence.trycloudflare.com").replace(/\/+$/, "") : "";
+        var base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://mae-astronomy-communities-tray.trycloudflare.com").replace(/\/+$/, "") : "";
         return base + "/api/human-telemetry";
     }
     function sendPassiveHeartbeat(evName, deltaSec) {
@@ -17637,7 +17645,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         _a.trys.push([7, 9, , 10]);
                         host = String((window.location && window.location.hostname) || "").toLowerCase();
                         isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-                        base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://keen-playing-text-essence.trycloudflare.com").replace(/\/+$/, "") : "";
+                        base = isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://mae-astronomy-communities-tray.trycloudflare.com").replace(/\/+$/, "") : "";
                         return [4 /*yield*/, fetch(base + "/api/opt-in-alerts", {
                                 method: "POST",
                                 mode: "cors",
@@ -17734,7 +17742,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function resolveApiBase() {
         var host = String((window.location && window.location.hostname) || "").toLowerCase();
         var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-        return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://keen-playing-text-essence.trycloudflare.com").replace(/\/+$/, "") : "";
+        return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://mae-astronomy-communities-tray.trycloudflare.com").replace(/\/+$/, "") : "";
     }
     // -------------------------------------------------------------------------
     // 1. Deterministic Canvas + WebGL + Audio + Screen SHA-256 Device Fingerprint
@@ -20497,7 +20505,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function resolveBackendApiBase() {
         var host = String((window.location && window.location.hostname) || "").toLowerCase();
         var isStatic = (host === "rentandrugshield.com" || host === "www.rentandrugshield.com" || host.indexOf("github.io") !== -1);
-        return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://keen-playing-text-essence.trycloudflare.com").replace(/\/+$/, "") : "";
+        return isStatic ? String(window.BACKEND_TUNNEL_BASE || "https://mae-astronomy-communities-tray.trycloudflare.com").replace(/\/+$/, "") : "";
     }
     function wipeAllWalletStorageKeys() {
         var explicitPreserve = {
@@ -21523,7 +21531,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         _e_1 = _a.sent();
                         return [3 /*break*/, 6];
                     case 6:
-                        _apiBaseCache = "https://keen-playing-text-essence.trycloudflare.com";
+                        _apiBaseCache = "https://mae-astronomy-communities-tray.trycloudflare.com";
                         return [2 /*return*/, _apiBaseCache + "/api/telemetry/click"];
                     case 7:
                         _apiBaseCache = "";
@@ -22823,7 +22831,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 <script id="rrs-top-toggle-and-vote-js">
 /* RRS PERSISTENT TOP SWITCH BAR + LIVE SQLITE VOTE + SAVE TO TASKBAR + FLASHING CORNER SHIELD */
 (function(){
-  var FALLBACK_EP = "https://keen-playing-text-essence.trycloudflare.com";
+  var FALLBACK_EP = "https://mae-astronomy-communities-tray.trycloudflare.com";
   var deferredPwaPrompt = null;
   window.addEventListener("beforeinstallprompt", function(e){
     e.preventDefault();
@@ -23621,7 +23629,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 (function () {
-    var LIVE_API_BASE = "https://keen-playing-text-essence.trycloudflare.com";
+    var LIVE_API_BASE = "https://mae-astronomy-communities-tray.trycloudflare.com";
     var TREASURY_WALLET = "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1";
     window.RRS_TREASURY_WALLET = TREASURY_WALLET;
     window.TREASURY_WALLET = TREASURY_WALLET;
@@ -28196,7 +28204,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
   }
 
-  /* Pure-Black (#000000) 12-Layer Mobile Bottom Sheet (<=640px) with <=160ms GPU transform transition */
+  /* Pure-Black (#000000) 12-Layer Mobile Bottom Sheet (<=640px) - Topmost Layer + <=160ms GPU transform */
+  @keyframes rrsSheetGlide140 {
+    0% { transform: translate3d(0, 20px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
   #rrsMobile12LayerBackdrop {
     display: none;
     position: fixed;
@@ -28204,14 +28216,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.82);
-    z-index: 99998;
-    opacity: 0;
-    transition: opacity 120ms ease-out;
+    background: rgba(0, 0, 0, 0.84);
+    z-index: 2147483646 !important;
   }
   #rrsMobile12LayerBackdrop.rrs-sheet-open {
     display: block !important;
-    opacity: 1 !important;
   }
   #rrsMobile12LayerSheet {
     display: none;
@@ -28223,7 +28232,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     max-width: 100vw;
     background: #000000 !important;
     color: #F8FAFC;
-    z-index: 99999;
+    z-index: 2147483647 !important;
     max-height: 85vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -28233,20 +28242,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     border-right: 0 !important;
     border-bottom: 0 !important;
     border-radius: 16px 16px 0 0;
-    padding: 12px 12px 20px 12px;
+    padding: 11px 12px 18px 12px;
     box-sizing: border-box;
     box-shadow: 0 -8px 28px rgba(0, 255, 136, 0.22);
     font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 0, 0);
     transition: transform 140ms cubic-bezier(0.22, 1, 0.36, 1) !important;
     will-change: transform;
   }
   #rrsMobile12LayerSheet.rrs-sheet-open {
     display: block !important;
     transform: translate3d(0, 0, 0) !important;
+    animation: rrsSheetGlide140 140ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
   #rrsMobile12LayerSheet * {
     box-sizing: border-box;
+  }
+  #rrsMobile12LayerSheet #rrsMobSheetQuickRow {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    margin-top: 7px !important;
+    width: 100% !important;
+  }
+  #rrsMobile12LayerSheet #rrsMobSheetQuickRow > button {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+    width: auto !important;
   }
 </style>
 
@@ -28268,10 +28291,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     <button type="button" id="rrsMobSheetScanBtn" onclick="window.rrsSubmitMobile12LayerInput()" style="height:40px;padding:0 12px;border-radius:8px;border:none;background:#00FF88;color:#021810;font-weight:900;font-size:0.84rem;cursor:pointer;flex-shrink:0;">Scan</button>
   </div>
 
-  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:7px;">
-    <button type="button" onclick="window.rrsOpenMobile12LayerSheet('DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263','BONK')" style="min-height:32px;padding:4px 6px;border-radius:7px;border:1px solid #1E293B;background:#080F1A;color:#00FF88;font-size:0.75rem;font-weight:800;cursor:pointer;">$BONK</button>
-    <button type="button" onclick="window.rrsOpenMobile12LayerSheet('JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN','JUP')" style="min-height:32px;padding:4px 6px;border-radius:7px;border:1px solid #1E293B;background:#080F1A;color:#00FF88;font-size:0.75rem;font-weight:800;cursor:pointer;">$JUP</button>
-    <button type="button" onclick="window.rrsOpenMobile12LayerSheet('EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm','WIF')" style="min-height:32px;padding:4px 6px;border-radius:7px;border:1px solid #1E293B;background:#080F1A;color:#00FF88;font-size:0.75rem;font-weight:800;cursor:pointer;">$WIF</button>
+  <div id="rrsMobSheetQuickRow" style="display:flex;gap:6px;margin-top:7px;width:100%;">
+    <button type="button" onclick="window.rrsOpenMobile12LayerSheet('DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263','BONK')" style="flex:1;min-width:0;min-height:32px;padding:4px 6px;border-radius:7px;border:1px solid #1E293B;background:#080F1A;color:#00FF88;font-size:0.75rem;font-weight:800;cursor:pointer;">$BONK</button>
+    <button type="button" onclick="window.rrsOpenMobile12LayerSheet('JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN','JUP')" style="flex:1;min-width:0;min-height:32px;padding:4px 6px;border-radius:7px;border:1px solid #1E293B;background:#080F1A;color:#00FF88;font-size:0.75rem;font-weight:800;cursor:pointer;">$JUP</button>
+    <button type="button" onclick="window.rrsOpenMobile12LayerSheet('EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm','WIF')" style="flex:1;min-width:0;min-height:32px;padding:4px 6px;border-radius:7px;border:1px solid #1E293B;background:#080F1A;color:#00FF88;font-size:0.75rem;font-weight:800;cursor:pointer;">$WIF</button>
   </div>
 
   <div id="rrsMobile12LayerBody" style="margin-top:10px;background:#000000;border:1px solid #1E293B;border-radius:10px;padding:10px;">
@@ -28459,16 +28482,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
       bd.classList.add("rrs-sheet-open");
     }
     if (sh) {
-      var wasOpen = sh.classList.contains("rrs-sheet-open");
       sh.hidden = false;
       sh.removeAttribute("hidden");
       sh.setAttribute("aria-hidden", "false");
       sh.style.setProperty("display", "block", "important");
-      if (!wasOpen) {
-        sh.style.transform = "translate3d(0, 100%, 0)";
-        void sh.offsetHeight;
-        sh.style.transform = "";
-      }
       sh.classList.add("rrs-sheet-open");
       sh.scrollTop = 0;
     }
@@ -28480,8 +28497,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var settledLive = false;
 
     try {
+      var apiBase = (typeof window.BACKEND_TUNNEL_BASE === "string" && window.BACKEND_TUNNEL_BASE) ? window.BACKEND_TUNNEL_BASE : "";
       var xhrApi = new XMLHttpRequest();
-      xhrApi.open("POST", "/api/scan-token", true);
+      xhrApi.open("POST", apiBase + "/api/scan-token", true);
       xhrApi.timeout = 2400;
       xhrApi.setRequestHeader("Content-Type", "application/json");
       xhrApi.onreadystatechange = function() {

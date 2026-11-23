@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://keen-playing-text-essence.trycloudflare.com",
-  "api_base": "https://keen-playing-text-essence.trycloudflare.com",
-  "rpc_url": "https://keen-playing-text-essence.trycloudflare.com/api/rpc",
-  "actions_base": "https://keen-playing-text-essence.trycloudflare.com/api/actions",
+  "endpoint": "https://mae-astronomy-communities-tray.trycloudflare.com",
+  "api_base": "https://mae-astronomy-communities-tray.trycloudflare.com",
+  "rpc_url": "https://mae-astronomy-communities-tray.trycloudflare.com/api/rpc",
+  "actions_base": "https://mae-astronomy-communities-tray.trycloudflare.com/api/actions",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
   "referral_bps": 50,
   "shield_trade_gate_min": 85,
