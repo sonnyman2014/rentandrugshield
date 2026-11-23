@@ -12,7 +12,7 @@
   'use strict';
 
   const PRIMARY_WEB_ORIGIN = 'https://rentandrugshield.com';
-  const LIVE_TUNNEL_API = 'https://diary-gravity-opens-volunteer.trycloudflare.com';
+  const LIVE_TUNNEL_API = 'https://factor-compliant-physically-watts.trycloudflare.com';
   const SPL_TOKEN_PROGRAM_ID = 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA';
   const TOKEN_2022_PROGRAM_ID = 'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb';
   const RENT_PER_EMPTY_ATA_SOL = 0.00203928;
@@ -42,8 +42,8 @@
 
   const DEFAULT_RPC_ENDPOINTS = [
     { url: 'https://solana-rpc.publicnode.com', label: 'PublicNode', provider: 'publicnode' },
-    { url: 'https://api.mainnet-beta.solana.com', label: 'Solana Mainnet', provider: 'solana-mainnet' },
-    { url: LIVE_TUNNEL_API + '/api/rpc', label: 'Helius', provider: 'helius' }
+    { url: LIVE_TUNNEL_API + '/api/rpc', label: 'Helius', provider: 'helius' },
+    { url: 'https://api.mainnet-beta.solana.com', label: 'Solana Mainnet', provider: 'solana-mainnet', browserStandby: true }
   ];
 
   const STORAGE_KEYS = {
@@ -195,7 +195,7 @@
       this.endpoints = [];
       this._initEndpoints(cfg.endpoints || DEFAULT_RPC_ENDPOINTS, savedCustom);
       if (!cfg.primaryApiBase && typeof window !== 'undefined') {
-        this._syncLiveEndpointJson();
+        this._liveSyncPromise = this._syncLiveEndpointJson();
       }
     }
 
@@ -235,9 +235,12 @@
         const u = typeof item === 'string' ? item : item.url;
         const lbl = typeof item === 'string' ? item : (item.label || item.url);
         const prov = typeof item === 'object' && item.provider ? item.provider : 'rpc';
+        const bStandby = Boolean(typeof item === 'object' && item.browserStandby);
         if (!u) continue;
         if (this.endpoints.some(function (e) { return e.url === u; })) continue;
-        this.endpoints.push(this._makeEndpointRecord(u, lbl, false, prov));
+        const rec = this._makeEndpointRecord(u, lbl, false, prov);
+        rec.browserStandby = bStandby;
+        this.endpoints.push(rec);
       }
     }
 
@@ -323,8 +326,11 @@
         if (aBlocked !== bBlocked) return aBlocked - bBlocked;
         const aLatencyPenalty = a.latencyMs !== null ? Math.min(25, a.latencyMs / 80) : 6;
         const bLatencyPenalty = b.latencyMs !== null ? Math.min(25, b.latencyMs / 80) : 6;
-        const aEffective = a.healthScore - aLatencyPenalty + (a.isCustom ? 15 : 0);
-        const bEffective = b.healthScore - bLatencyPenalty + (b.isCustom ? 15 : 0);
+        const isWeb = typeof window !== 'undefined' && !window.AndroidShield;
+        const aStandbyPen = (isWeb && a.browserStandby) ? 14 : 0;
+        const bStandbyPen = (isWeb && b.browserStandby) ? 14 : 0;
+        const aEffective = a.healthScore - aLatencyPenalty - aStandbyPen + (a.isCustom ? 15 : 0);
+        const bEffective = b.healthScore - bLatencyPenalty - bStandbyPen + (b.isCustom ? 15 : 0);
         return bEffective - aEffective;
       });
     }
@@ -399,7 +405,23 @@
     async probeAllEndpoints(timeoutMs) {
       const probeTimeout = timeoutMs || 4200;
       const self = this;
+      if (this._liveSyncPromise) {
+        try { await this._liveSyncPromise; } catch (_e) {}
+      }
+      const isWebBrowserOrigin = typeof window !== 'undefined' && !window.AndroidShield && (!this._fetchImpl || this._fetchImpl === fetch);
       const tasks = this.endpoints.map(async function (ep) {
+        if (isWebBrowserOrigin && ep.browserStandby) {
+          ep.lastStatus = 'failover_standby';
+          return {
+            url: ep.url,
+            label: ep.label,
+            provider: ep.provider,
+            ok: true,
+            standby: true,
+            latencyMs: ep.latencyMs,
+            score: ep.healthScore
+          };
+        }
         try {
           const res = await self._rawJsonRpc(ep, 'getSlot', [{ commitment: 'confirmed' }], probeTimeout);
           return {
