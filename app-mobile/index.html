@@ -1241,6 +1241,7 @@
       this._rpcReqId = 1;
       this._memoryCache = {};
       this._memorySyncQueue = [];
+      this._hasCustomFetch = Boolean(cfg.fetchImpl);
       this._fetchImpl = cfg.fetchImpl || (typeof fetch === 'function' ? fetch.bind(globalThis) : null);
 
       this.primaryStatus = {
@@ -1473,7 +1474,7 @@
       if (this._liveSyncPromise) {
         try { await this._liveSyncPromise; } catch (_e) {}
       }
-      const isWebBrowserOrigin = typeof window !== 'undefined' && !window.AndroidShield && (!this._fetchImpl || this._fetchImpl === fetch);
+      const isWebBrowserOrigin = typeof window !== 'undefined' && !window.AndroidShield && !this._hasCustomFetch;
       const isLocalDevPort = isWebBrowserOrigin && typeof location !== 'undefined' && (location.hostname === '127.0.0.1' || location.hostname === 'localhost') && location.port !== '8088';
       const tasks = this.endpoints.map(async function (ep) {
         if ((isWebBrowserOrigin && ep.browserStandby) || (isLocalDevPort && ep.provider === 'helius' && !ep.isCustom)) {
@@ -1532,7 +1533,7 @@
 
     async rpcCall(method, params, options) {
       const opts = options || {};
-      const isWebBrowser = typeof window !== 'undefined' && (!this._fetchImpl || this._fetchImpl === fetch);
+      const isWebBrowser = typeof window !== 'undefined' && !window.AndroidShield && !this._hasCustomFetch;
       const ranked = this.getRankedEndpoints(method).filter(function (ep) {
         return !(isWebBrowser && ep.browserStandby);
       });
