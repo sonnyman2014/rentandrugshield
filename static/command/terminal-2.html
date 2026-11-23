@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tab 2 | Verified External Humans vs Crawler Previews | Rent &amp; Rug Shield</title>
+<style>
+  :root {
+    -bg: #050914;
+    -panel: #0A1224;
+    -panel-alt: #0E1A32;
+    -gold: #FFD000;
+    -emerald: #00FFA3;
+    -blue: #38BDF8;
+    -crimson: #FF4D6D;
+    -txt: #F8FAFC;
+    -muted: #CBD5E1;
+    -border: #1E293B;
+  }
+  * {
+    box-sizing: border-box;
+    font-size: 22px;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(-bg);
+    color: var(-txt);
+    font-family: "Segoe UI", Inter, system-ui, -apple-system, sans-serif;
+    font-size: 22px !important;
+    line-height: 1.48;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 1760px;
+    margin: 0 auto;
+    padding: 24px 28px 56px;
+  }
+  .top-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    background: #081020;
+    border: 2px solid var(-gold);
+    border-radius: 16px;
+    margin-bottom: 22px;
+  }
+  .brand-title {
+    font-size: 32px !important;
+    font-weight: 900;
+    color: var(-gold);
+    letter-spacing: 0.3px;
+  }
+  .brand-sub {
+    font-size: 22px !important;
+    color: var(-muted);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 22px !important;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .pill-emerald {
+    background: #052E22;
+    color: var(-emerald);
+    border: 2px solid var(-emerald);
+  }
+  .pill-gold {
+    background: #281F05;
+    color: var(-gold);
+    border: 2px solid var(-gold);
+  }
+  .pill-blue {
+    background: #082238;
+    color: var(-blue);
+    border: 2px solid var(-blue);
+  }
+  .parked-banner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    background: #121829;
+    border: 2px solid var(-gold);
+    border-radius: 14px;
+    margin-bottom: 24px;
+  }
+  .parked-banner strong {
+    font-size: 24px !important;
+    color: var(-gold);
+  }
+  .section-box {
+    background: var(-panel);
+    border-radius: 18px;
+    padding: 24px 26px;
+    margin-bottom: 28px;
+  }
+  .section-humans {
+    border: 2px solid var(-emerald);
+  }
+  .section-crawlers {
+    border: 2px solid var(-blue);
+  }
+  .section-dispatcher {
+    border: 2px solid var(-gold);
+  }
+  .sec-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .sec-title {
+    font-size: 28px !important;
+    font-weight: 900;
+    margin: 0;
+  }
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+  .kpi-card {
+    background: var(-panel-alt);
+    border: 1px solid #283854;
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .kpi-lbl {
+    font-size: 22px !important;
+    font-weight: 800;
+    color: var(-muted);
+  }
+  .kpi-val {
+    font-size: 42px !important;
+    font-weight: 900;
+    margin: 6px 0 4px;
+  }
+  .kpi-sub {
+    font-size: 22px !important;
+    color: var(-muted);
+  }
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 23px !important;
+  }
+  th {
+    padding: 14px 16px;
+    background: #081020;
+    color: var(-gold);
+    font-size: 22px !important;
+    font-weight: 900;
+    border-bottom: 2px solid #334155;
+  }
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #1E293B;
+    color: var(-txt);
+    font-size: 23px !important;
+    font-weight: 600;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td {
+    background: rgba(15, 26, 48, 0.55);
+  }
+  .tag-pass {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: #064E3B;
+    color: var(-emerald);
+    font-size: 22px !important;
+    font-weight: 800;
+  }
+  .tag-crawler {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: #0C2D48;
+    color: var(-blue);
+    font-size: 22px !important;
+    font-weight: 800;
+  }
+  a.ext-link {
+    color: var(-emerald);
+    font-size: 22px !important;
+    font-weight: 800;
+    text-decoration: underline;
+  }
+  .footer-bar {
+    text-align: center;
+    padding-top: 16px;
+    color: var(-gold);
+    font-size: 23px !important;
+    font-weight: 800;
+  }
+</style>
+</head>
+<body class="rrs-terminal2-giant">
+<div class="wrap">
+  <div class="top-nav">
+    <div>
+      <div class="brand-title">TAB 2 | VERIFIED EXTERNAL HUMANS &amp; CRAWLER ISOLATION RADAR</div>
+      <div class="brand-sub" id="t2SyncSub">PST Locked (America/Los_Angeles) | Giant 22px+ Readability | Syncing live telemetry...</div>
+    </div>
+    <div class="pill-row">
+      <span class="status-pill pill-emerald" id="t2ZeroBotBadge">0 Bots In Human Count</span>
+      <a class="status-pill pill-gold" href="https://rentandrugshield.com/">rentandrugshield.com</a>
+    </div>
+  </div>
+
+  <div class="parked-banner" id="brownstoneBanner">
+    <div>
+      <strong>Brownstone IR &amp; Marketing | auto_send: false</strong>
+      <div style="margin-top:4px;color:#E2E8F0;">All Stock IR campaigns (25 Studio Packages + 50 TSX-V Dossiers) are strictly PARKED on disk (0 Stock IR emails sent).</div>
+    </div>
+    <span class="status-pill pill-gold" id="brownstonePill">Brownstone IR &amp; Marketing | auto_send: false</span>
+  </div>
+
+  <section class="section-box section-humans" id="verifiedHumansSection">
+    <div class="sec-head">
+      <h2 class="sec-title" style="color:var(-emerald);">1. VERIFIED EXTERNAL HUMANS (100% REAL RESIDENTIAL &amp; MOBILE BROWSERS)</h2>
+      <span class="status-pill pill-emerald">Kelowna, Localhost &amp; All Crawlers Excluded</span>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-lbl">ALL-TIME VERIFIED HUMANS</div>
+        <div class="kpi-val" style="color:var(-emerald);" id="kAllHumans">-</div>
+        <div class="kpi-sub" id="kAllVisits">Unique residential/mobile IPs</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-lbl">LAST 24 HOURS HUMANS</div>
+        <div class="kpi-val" style="color:var(-gold);" id="k24hHumans">-</div>
+        <div class="kpi-sub" id="kLatestLoc">Latest external human</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-lbl">ACTIVE NOW (5M)</div>
+        <div class="kpi-val" style="color:var(-blue);" id="k5mHumans">-</div>
+        <div class="kpi-sub">Live external human browsers</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-lbl">EXTERNAL TOKEN &amp; WALLET SCANS</div>
+        <div class="kpi-val" style="color:var(-emerald);" id="kTotalScans">-</div>
+        <div class="kpi-sub" id="kScanSplit">Read-only mint &amp; wallet audits</div>
+      </div>
+    </div>
+
+    <div style="font-size:25px !important;font-weight:900;color:var(-gold);margin:14px 0 8px;">Verified External Address Scans (Human Only)</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>EXACT TIME (PST)</th>
+            <th>CITY / COUNTRY</th>
+            <th>RESIDENTIAL / MOBILE ISP</th>
+            <th>WHAT THEY SCANNED</th>
+          </tr>
+        </thead>
+        <tbody id="humanScansBody"></tbody>
+      </table>
+    </div>
+
+    <div style="font-size:25px !important;font-weight:900;color:var(-emerald);margin:24px 0 8px;">Recent Verified External Human Visitors</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>EXACT TIME (PST)</th>
+            <th>CITY / COUNTRY</th>
+            <th>NETWORK / ISP</th>
+            <th>MASKED IP</th>
+            <th>SOURCE</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody id="humanVisitorsBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section-box section-crawlers" id="crawlerPreviewsSection">
+    <div class="sec-head">
+      <h2 class="sec-title" style="color:var(-blue);">2. CRAWLER PREVIEWS &amp; BOT PROBES (STRICTLY QUARANTINED FROM HUMANS)</h2>
+      <span class="status-pill pill-blue" id="crawlerTotalPill">Quarantined Probes</span>
+    </div>
+    <div style="color:var(-muted);margin-bottom:14px;">
+      TelegramBot, Twitterbot, Discordbot, Googlebot, bingbot, HeadlessChrome, Playwright, curl, python-requests, Palo Alto Prisma URL sandboxes, datacenter scanners, and localhost/internal QA probes are isolated below and NEVER counted as humans.
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>CRAWLER / BOT FAMILY</th>
+            <th>MATCHED AGENTS</th>
+            <th>HITS</th>
+            <th>LAST SEEN (PST)</th>
+            <th>ISOLATION STATUS</th>
+          </tr>
+        </thead>
+        <tbody id="crawlerPreviewsBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section-box section-dispatcher" id="approvedDispatcherSection">
+    <div class="sec-head">
+      <h2 class="sec-title" style="color:var(-gold);">3. PM2: Approved_Traffic_Dispatcher (1 EVERY 45m | PST LOCKED)</h2>
+      <span class="status-pill pill-gold" id="dispStatusPill">ONLINE | 2700s Cooldown</span>
+    </div>
+    <div id="dispSummaryLine" style="color:var(-txt);font-weight:700;margin-bottom:14px;"></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>PUBLISHED (PST)</th>
+            <th>SN</th>
+            <th>APPROVED ?WALLET= PROOF CARD</th>
+            <th>TELEGRAM RECEIPT</th>
+            <th>X (@SolRentClaim)</th>
+            <th>VERIFY LINK</th>
+          </tr>
+        </thead>
+        <tbody id="dispatcherRowsBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="footer-bar">rentandrugshield.com | PST Locked (America/Los_Angeles) | Verified Human vs Crawler Isolation Active</div>
+</div>
+
+<script id="t2InitialSnapshot" type="application/json">{"ok": true, "status": "ok", "timezone": "America/Los_Angeles", "synced_at": "2026-11-23 11:07:22 AM PST", "synced_date_pst": "2026-11-23", "font_floor_px": 22, "verified_humans_separated_from_crawlers": true, "active_5m_humans": 1, "last_24h_unique_human_ips": 10, "today_unique_human_ips": 5, "all_time_unique_human_ips": 86, "external_human_visits_total": 86, "external_human_sessions": 86, "external_human_sessions_live": 86, "real_external_token_scans": 3, "real_external_wallet_scans": 1, "real_external_scans_total": 4, "real_referral_link_clicks": 0, "last_visitor_location": "External", "last_visitor_ago": "1m ago", "last_visitor_seen": "Nov 23, 11:06:17 AM PST", "radar_rows": [{"pst_time": "Nov 23, 11:06:17 AM PST", "ago": "1m ago", "location": "External", "isp": "Residential / Fiber ISP", "ip_masked": "212.107.x.x", "source": "rentandrugshield.com", "action": "SCANNED WALLET: 7xKXtg..gAsU", "action_kind": "scan"}, {"pst_time": "Nov 23, 10:16:39 AM PST", "ago": "50m ago", "location": "Pawtucket, RI, United States", "isp": "T-Mobile USA, Inc.", "ip_masked": "2607:fb90:* (masked)", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 23, 07:42:53 AM PST", "ago": "3h 24m ago", "location": "Santa Clara, CA, United States", "isp": "CenturyLink Communications", "ip_masked": "205.169.x.x", "source": "rentandrugshield.com", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 23, 07:22:28 AM PST", "ago": "3h 44m ago", "location": "Frankfurt am Main, HE, Germany", "isp": "Aceville Pte.ltd", "ip_masked": "43.157.x.x", "source": "rentandrugshield.com", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 23, 12:06:37 AM PST", "ago": "11h 0m ago", "location": "Providence, RI, United States", "isp": "T-Mobile USA, Inc.", "ip_masked": "172.56.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 22, 10:28:21 PM PST", "ago": "12h 39m ago", "location": "Bratislava, BL, SK", "isp": "Slovak Telecom AS6855", "ip_masked": "212.5.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 22, 09:09:30 PM PST", "ago": "13h 57m ago", "location": "New York, NY, United States", "isp": "LogicWeb Inc", "ip_masked": "149.57.x.x", "source": "rentandrugshield.com", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 22, 09:06:10 PM PST", "ago": "14h 1m ago", "location": "New York City, NY, United States", "isp": "Digital LLC", "ip_masked": "104.253.x.x", "source": "rentandrugshield.com", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 22, 05:29:08 PM PST", "ago": "17h 38m ago", "location": "Ashburn, VA, United States", "isp": "Aceville Pte.ltd", "ip_masked": "43.166.x.x", "source": "rentandrugshield.com", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 22, 12:00:53 PM PST", "ago": "23h 6m ago", "location": "Santa Clara, CA, United States", "isp": "OPHL", "ip_masked": "49.51.x.x", "source": "rentandrugshield.com", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 22, 06:17:18 AM PST", "ago": "1d ago", "location": "Bratislava, BL, SK", "isp": "SWAN, a.s.", "ip_masked": "84.245.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 21, 09:43:25 PM PST", "ago": "1d ago", "location": "Santa Clara, CA, United States", "isp": "CenturyLink Communications", "ip_masked": "205.169.x.x", "source": "rentandrugshield.com", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 21, 08:46:30 PM PST", "ago": "1d ago", "location": "Santa Clara, CA, United States", "isp": "CenturyLink Communications", "ip_masked": "205.169.x.x", "source": "rentandrugshield.com", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 21, 02:53:33 PM PST", "ago": "1d ago", "location": "Alexandria, VA, United States", "isp": "GTT Americas", "ip_masked": "66.166.x.x", "source": "rentandrugshield.com", "action": "SCANNED TOKEN: $72puLt (72puLt..xigu)", "action_kind": "scan"}, {"pst_time": "Nov 21, 02:34:22 PM PST", "ago": "1d ago", "location": "New York, NY, United States", "isp": "LogicWeb Inc", "ip_masked": "149.57.x.x", "source": "rentandrugshield.com", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 21, 02:33:24 PM PST", "ago": "1d ago", "location": "Sydney, NSW, Australia", "isp": "Datacamp Limited", "ip_masked": "213.169.x.x", "source": "rentandrugshield.com", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 07:04:06 PM PST", "ago": "2d ago", "location": "Shanghai, SH, China", "isp": "China Unicom Shanghai Province Network", "ip_masked": "27.115.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 07:04:05 PM PST", "ago": "2d ago", "location": "Zhengzhou, HA, China", "isp": "CNC Group CHINA169 Henan Province Network", "ip_masked": "123.6.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 07:04:02 PM PST", "ago": "2d ago", "location": "Zhengzhou, HA, China", "isp": "CNC Group CHINA169 Henan Province Network", "ip_masked": "123.6.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 07:03:56 PM PST", "ago": "2d ago", "location": "Zhengzhou, HA, China", "isp": "CNC Group CHINA169 Henan Province Network", "ip_masked": "123.6.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 07:03:39 PM PST", "ago": "2d ago", "location": "Zhengzhou, HA, China", "isp": "CNC Group CHINA169 Henan Province Network", "ip_masked": "123.6.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 06:14:57 PM PST", "ago": "2d ago", "location": "Jinrongjie, BJ, China", "isp": "China Unicom CHINA169 Network", "ip_masked": "116.179.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 06:14:57 PM PST", "ago": "2d ago", "location": "Jinrongjie, BJ, China", "isp": "China Unicom CHINA169 Network", "ip_masked": "116.179.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 06:14:57 PM PST", "ago": "2d ago", "location": "Jinrongjie, BJ, China", "isp": "China Unicom CHINA169 Network", "ip_masked": "116.179.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 06:14:51 PM PST", "ago": "2d ago", "location": "Jinrongjie, BJ, China", "isp": "China Unicom CHINA169 Network", "ip_masked": "116.179.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 06:14:50 PM PST", "ago": "2d ago", "location": "Jinrongjie, BJ, China", "isp": "China Unicom CHINA169 Network", "ip_masked": "116.179.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 06:14:50 PM PST", "ago": "2d ago", "location": "Jinrongjie, BJ, China", "isp": "China Unicom CHINA169 Network", "ip_masked": "116.179.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 06:11:28 PM PST", "ago": "2d ago", "location": "Jinrongjie, BJ, China", "isp": "China Unicom CHINA169 Network", "ip_masked": "116.179.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 06:11:27 PM PST", "ago": "2d ago", "location": "Jinrongjie, BJ, China", "isp": "China Unicom CHINA169 Network", "ip_masked": "116.179.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}, {"pst_time": "Nov 20, 06:11:27 PM PST", "ago": "2d ago", "location": "Jinrongjie, BJ, China", "isp": "China Unicom CHINA169 Network", "ip_masked": "116.179.x.x", "source": "Direct / Organic", "action": "Viewed Landing Page", "action_kind": "view"}], "exact_scan_events": [{"ip_masked": "212.107.x.x", "ts": 1795460777.872, "pst_time": "Nov 23, 11:06:17 AM PST", "ago": "1m ago", "location": "External", "isp": "Residential / Fiber ISP", "source": "rentandrugshield.com", "action": "SCANNED WALLET: 7xKXtg..gAsU", "action_kind": "scan"}, {"ip_masked": "66.166.x.x", "ts": 1795301613.682, "pst_time": "Nov 21, 02:53:33 PM PST", "ago": "1d ago", "location": "Alexandria, VA, United States", "isp": "GTT Americas", "source": "rentandrugshield.com", "action": "SCANNED TOKEN: $72puLt (72puLt..xigu)", "action_kind": "scan"}, {"ip_masked": "70.66.x.x", "ts": 1794946300.199, "pst_time": "Nov 17, 12:11:40 PM PST", "ago": "5d ago", "location": "Victoria, BC, Canada", "isp": "Shaw Communications", "source": "www.rentandrugshield.com", "action": "SCANNED TOKEN: $VEYRA (8zaYjm..jyR1)", "action_kind": "scan"}, {"ip_masked": "184.150.x.x", "ts": 1794946200.031, "pst_time": "Nov 17, 12:10:00 PM PST", "ago": "5d ago", "location": "Ottawa, ON, Canada", "isp": "Bell Canada", "source": "www.rentandrugshield.com", "action": "SCANNED TOKEN: $VEYRA (8zaYjm..jyR1)", "action_kind": "scan"}], "crawler_previews_total_hits": 33583, "crawler_previews": [{"key": "social_link_previews", "category": "Social Link Previews (TelegramBot / Twitterbot / Discordbot)", "examples": "TelegramBot, Twitterbot, Discordbot, Slackbot, Telegraph", "hits": 4, "unique_sources": 0, "last_seen_pst": "Nov 20, 02:48:25 AM PST", "sample_ua": "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)", "isolation_status": "QUARANTINED (0% IN HUMANS)"}, {"key": "search_ai_crawlers", "category": "Search & AI Crawlers (Googlebot / bingbot / IndexNow)", "examples": "Googlebot/2.1, bingbot/2.0, BrickBlueBot, Applebot", "hits": 322, "unique_sources": 0, "last_seen_pst": "Nov 23, 10:40:00 AM PST", "sample_ua": "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +h", "isolation_status": "QUARANTINED (0% IN HUMANS)"}, {"key": "headless_automation", "category": "Headless Browsers (HeadlessChrome / Playwright)", "examples": "HeadlessChrome, Playwright, Puppeteer, Lighthouse", "hits": 149, "unique_sources": 0, "last_seen_pst": "Nov 19, 02:44:34 PM PST", "sample_ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Headles", "isolation_status": "QUARANTINED (0% IN HUMANS)"}, {"key": "cli_http_probes", "category": "CLI & Script HTTP Probes (curl / python-requests)", "examples": "curl, python-requests, Python-urllib, aiohttp, Go-http-client", "hits": 1875, "unique_sources": 0, "last_seen_pst": "Nov 23, 11:06:17 AM PST", "sample_ua": "python-requests/2.34.2", "isolation_status": "QUARANTINED (0% IN HUMANS)"}, {"key": "security_url_previews", "category": "Security Link Scanners (Palo Alto Prisma / Cloud Gateways)", "examples": "Palo Alto Prisma Enterprise Browser (Santa Clara URL Sandbox)", "hits": 63, "unique_sources": 30, "last_seen_pst": "Nov 22, 05:57:15 PM PST", "sample_ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, lik", "isolation_status": "QUARANTINED (0% IN HUMANS)"}, {"key": "datacenter_edge_scanners", "category": "Datacenter & Edge Burst Scanners (Cloud / Non-Human ASN)", "examples": "AWS, DigitalOcean, Hetzner, Edge CHINA169 Burst Probes", "hits": 49, "unique_sources": 0, "last_seen_pst": "Nov 22, 09:04:13 PM PST", "sample_ua": "RecordedFuture Global Inventory Crawler", "isolation_status": "QUARANTINED (0% IN HUMANS)"}, {"key": "internal_qa_probes", "category": "Localhost, Operator & Internal QA Sentinels", "examples": "127.0.0.1, West Kelowna Operator, Website_60s_QA_Sentinel, Valentina QA", "hits": 31121, "unique_sources": 3, "last_seen_pst": "Nov 21, 05:52:15 PM PST", "sample_ua": "python-requests/2.34.2", "isolation_status": "QUARANTINED (0% IN HUMANS)"}], "brownstone_ir": {"brand": "Brownstone IR & Marketing", "division": "Brownstone IR & Marketing", "auto_send": false, "parked": true, "status": "PARKED_HOLD", "display_label": "Brownstone IR & Marketing | auto_send: false", "stock_ir_emails_sent": 0, "stock_ir_25_packages_parked": 25, "tsxv_50_dossiers_parked": 50, "waiting_approvals_stock_ir_parked": 27, "focus_mandate": "100% focused on rentandrugshield.com scans & conversion; Stock IR parked under Brownstone IR & Marketing with auto_send = false.", "updated_pst": "2026-11-23 11:02:16 AM PST"}, "approved_dispatcher": {"ok": true, "daemon": "Approved_Traffic_Dispatcher", "updated_pst": "2026-11-23 11:07:11 AM PST", "drip_interval_minutes": 45, "drip_interval_seconds": 2700, "timezone": "America/Los_Angeles", "c2pa_ai_tags_blocked": true, "zero_long_dashes_enforced": true, "footer_enforced": "rentandrugshield.com", "brownstone_ir_parked": true, "brownstone_ir_brand": "Brownstone IR & Marketing", "brownstone_ir_auto_send": false, "brownstone_ir_display": "Brownstone IR & Marketing | auto_send: false", "stock_ir_emails_sent": 0, "public_tg_bot_feed_url": "http://127.0.0.1:8099/approved-feed", "x_api_credentials_present": false, "x_account": "@SolRentClaim", "total_approved_queue": 65, "dispatched_count": 1, "remaining_count": 64, "live_x_tweet_ids": [], "live_telegram_message_ids": [84086], "next_dispatch_in_sec": 801, "next_dispatch_pst": "2026-11-23 11:20:32 AM PST", "next_up": {"dispatch_key": "solrentclaim_replace_ai_footer_133", "sn": "SN #133", "title": "SN #133: Replace @SolRentClaim Live Card Showing 'C2PA provenance' With Clean rentandrugshield.com Card", "target_url": "https://rentandrugshield.com/?wallet=66666y3RmL6gNyttNKXNhF5awxAWbBdGSfpKuaTLrjRH&src=rrs_x"}, "clicks": {"total_social_link_clicks": 0, "by_source": {"rrs_x": 0, "rrs_tg": 0, "wallet_deeplink": 0}, "recent_clicks": []}, "recent_dispatches": [{"dispatch_key": "monday_wallet_proof_01_66666y3R", "approved_id": "monday_wallet_proof_01_66666y3R", "sn": "SN #113", "approved_pst": "Nov 23 | 04:06:19 AM PST", "dispatched_ts": 1795458932.883759, "dispatched_pst": "2026-11-23 10:35:32 AM PST", "title": "SN #113: Mainnet Trader Proof #1 (66666y...rjRH on PumpSwap) - 1.533749 SOL ($109.85) in 743 Empty ATAs", "wallet": "66666y3RmL6gNyttNKXNhF5awxAWbBdGSfpKuaTLrjRH", "target_url": "https://rentandrugshield.com/?wallet=66666y3RmL6gNyttNKXNhF5awxAWbBdGSfpKuaTLrjRH&src=rrs_x", "media_file": "sn_113_clean_card.png", "tweet_id": null, "tweet_url": null, "x_status": "AWAITING_X_API_KEYS_IN_ENV (set X_API_KEY+X_API_SECRET+X_ACCESS_TOKEN+X_ACCESS_TOKEN_SECRET or X_USER_OAUTH2_ACCESS_TOKEN in /home/bigrigv2/.env)", "x_intent_url": "https://x.com/intent/tweet?text=Solana%20Mainnet%20proof%20%2866666y...rjRH%29%3A%201.533749%20SOL%20%28%24109.85%29%20locked%20in%20743%20empty%20token%20accounts.%0A%0A1st%20Claim%20%3D%20100%25%20FREE%20%280%25%20fee%20via%20native%200x09%20CloseAccount%2C%200%20seed%20phrases%29.%0A%0AVerify%20read-only%20at%20rentandrugshield.com%3A%0Ahttps%3A%2F%2Frentandrugshield.com%2F%3Fwallet%3D66666y3RmL6gNyttNKXNhF5awxAWbBdGSfpKuaTLrjRH%26src%3Drrs_x", "telegram_message_ids": [84086], "telegraph_url": "https://telegra.ph/SN-113-Mainnet-Trader-Proof-1-66666yrjRH-on-PumpSwap-1533749-SOL-10985-in-743-Empty-ATAs-11-23", "delivered_channels": ["Telegram API (#84086)", "Telegraph Public Proof", "IndexNow Search (HTTP 200)", "Storefront Live Promo Feed"], "c2pa_verified_zero": true, "footer_verified": true}]}}</script>
+<script>
+(function() {
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderData(d) {
+    if (!d || typeof d !== "object") return;
+    var el = function(id) { return document.getElementById(id); };
+    el("t2SyncSub").textContent = "PST Locked (America/Los_Angeles) | Giant 22px+ Font | Synced: " + (d.synced_at || "Live PST");
+    el("kAllHumans").textContent = String(d.all_time_unique_human_ips != null ? d.all_time_unique_human_ips : 0);
+    el("kAllVisits").textContent = String(d.external_human_visits_total || d.all_time_unique_human_ips || 0) + " verified visits | 0 crawlers";
+    el("k24hHumans").textContent = String(d.last_24h_unique_human_ips != null ? d.last_24h_unique_human_ips : 0);
+    el("kLatestLoc").textContent = "Latest: " + (d.last_visitor_location || "External") + " (" + (d.last_visitor_ago || "recent") + ")";
+    el("k5mHumans").textContent = String(d.active_5m_humans != null ? d.active_5m_humans : 0);
+    var tSc = Number(d.real_external_token_scans || 0);
+    var wSc = Number(d.real_external_wallet_scans || 0);
+    el("kTotalScans").textContent = String(tSc + wSc);
+    el("kScanSplit").textContent = tSc + " token scans | " + wSc + " wallet scans | " + Number(d.real_referral_link_clicks || 0) + " referral clicks";
+
+    var br = d.brownstone_ir || {};
+    var brLabel = (br.brand || "Brownstone IR & Marketing") + " | auto_send: " + String(br.auto_send === true ? "true" : "false");
+    el("brownstonePill").textContent = brLabel;
+
+    var scans = d.exact_scan_events || [];
+    el("humanScansBody").innerHTML = scans.length ? scans.map(function(s) {
+      return "<tr>" +
+        "<td style='color:#FFD000;font-weight:800;'>" + esc(s.pst_time) + " (" + esc(s.ago) + ")</td>" +
+        "<td style='color:#38BDF8;font-weight:800;'>" + esc(s.location) + "</td>" +
+        "<td>" + esc(s.isp) + "</td>" +
+        "<td><span class='tag-pass'>" + esc(s.action) + "</span></td>" +
+      "</tr>";
+    }).join("") : "<tr><td colspan='4'>Zero external human address scans in current window.</td></tr>";
+
+    var visitors = d.radar_rows || [];
+    el("humanVisitorsBody").innerHTML = visitors.length ? visitors.map(function(r) {
+      return "<tr>" +
+        "<td style='color:#FFD000;font-weight:800;'>" + esc(r.pst_time) + " (" + esc(r.ago) + ")</td>" +
+        "<td style='color:#38BDF8;font-weight:800;'>" + esc(r.location) + "</td>" +
+        "<td>" + esc(r.isp) + "</td>" +
+        "<td style='font-family:monospace;'>" + esc(r.ip_masked) + "</td>" +
+        "<td>" + esc(r.source) + "</td>" +
+        "<td><span class='tag-pass'>" + esc(r.action) + "</span></td>" +
+      "</tr>";
+    }).join("") : "<tr><td colspan='6'>Awaiting external human visitors.</td></tr>";
+
+    var crawlers = d.crawler_previews || [];
+    el("crawlerTotalPill").textContent = String(d.crawler_previews_total_hits || 0) + " Quarantined Crawler / Bot Hits";
+    el("crawlerPreviewsBody").innerHTML = crawlers.map(function(c) {
+      return "<tr>" +
+        "<td style='color:#38BDF8;font-weight:800;'>" + esc(c.category) + "</td>" +
+        "<td>" + esc(c.examples) + "</td>" +
+        "<td style='color:#FFD000;font-weight:900;'>" + esc(c.hits) + "</td>" +
+        "<td>" + esc(c.last_seen_pst) + "</td>" +
+        "<td><span class='tag-crawler'>" + esc(c.isolation_status) + "</span></td>" +
+      "</tr>";
+    }).join("");
+
+    var ad = d.approved_dispatcher || {};
+    var disps = ad.recent_dispatches || ad.dispatched || [];
+    var nextMin = Math.max(0, Math.round(Number(ad.next_dispatch_in_sec || 0) / 60));
+    el("dispStatusPill").textContent = "ONLINE | 1 Card / 45m (" + (ad.drip_interval_seconds || 2700) + "s) PST";
+    el("dispSummaryLine").textContent =
+      "Approved ?wallet= Queue: " + (ad.dispatched_count || disps.length || 0) + " / " + (ad.total_approved_queue || 65) +
+      " Dispatched | Next Drip: " + nextMin + "m (" + (ad.next_dispatch_pst || "Scheduled PST") + ")" +
+      " | Unapproved Sent: 0 | Stock IR Sent: 0 (Brownstone IR & Marketing | auto_send: false)";
+
+    el("dispatcherRowsBody").innerHTML = disps.length ? disps.map(function(x) {
+      var tgList = (x.telegram_message_ids || []).map(function(m) { return "#" + m; }).join(", ") || "Queued";
+      var xTxt = x.tweet_id ? ("Tweet #" + esc(x.tweet_id)) : "1-Click Ready (@SolRentClaim)";
+      var tUrl = x.target_url || "https://rentandrugshield.com/";
+      var wShort = (x.wallet || "").slice(0, 6) + "..." + (x.wallet || "").slice(-4);
+      return "<tr>" +
+        "<td style='color:#FFD000;font-weight:800;'>" + esc(x.dispatched_pst) + "</td>" +
+        "<td style='color:#00FFA3;font-weight:900;'>" + esc(x.sn) + "</td>" +
+        "<td>" + esc(x.title) + "</td>" +
+        "<td style='color:#38BDF8;font-weight:800;'>HTTP 200 (TG " + esc(tgList) + ")</td>" +
+        "<td>" + xTxt + "</td>" +
+        "<td><a class='ext-link' href='" + esc(tUrl) + "' target='_blank' rel='noopener'>?wallet=" + esc(wShort) + "</a></td>" +
+      "</tr>";
+    }).join("") : "<tr><td colspan='6'>Approved_Traffic_Dispatcher armed on 45m PST cooldown.</td></tr>";
+  }
+
+  try {
+    var snapEl = document.getElementById("t2InitialSnapshot");
+    if (snapEl && snapEl.textContent) {
+      renderData(JSON.parse(snapEl.textContent));
+    }
+  } catch (_e) {}
+
+  async function refreshLive() {
+    try {
+      var isLocal = (location.hostname === "127.0.0.1" || location.hostname === "localhost");
+      if (isLocal) {
+        var r = await fetch("/api/command/terminal-2", {cache: "no-store"});
+        if (r.ok) {
+          renderData(await r.json());
+        }
+        return;
+      }
+      var epRes = await fetch("/live_endpoint.json", {cache: "no-store"});
+      if (epRes.ok) {
+        var ep = await epRes.json();
+        var base = String(ep.api_base || ep.endpoint || "").replace(/\/$/, "");
+        if (base) {
+          var r2 = await fetch(base + "/api/command/terminal-2", {cache: "no-store", mode: "cors"});
+          if (r2.ok) {
+            renderData(await r2.json());
+          }
+        }
+      }
+    } catch (_err) {
+      /* Snapshot remains rendered cleanly with zero console noise */
+    }
+  }
+
+  setTimeout(refreshLive, 120);
+  setInterval(refreshLive, 10000);
+})();
+</script>
+</body>
+</html>
