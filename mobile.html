@@ -1255,6 +1255,22 @@
 
       this.endpoints = [];
       this._initEndpoints(cfg.endpoints || DEFAULT_RPC_ENDPOINTS, savedCustom);
+      if (!cfg.primaryApiBase && typeof window !== 'undefined') {
+        this._syncLiveEndpointJson();
+      }
+    }
+
+    async _syncLiveEndpointJson() {
+      try {
+        const r = await fetchWithTimeout('/live_endpoint.json?_t=' + Date.now(), { cache: 'no-store' }, 1800);
+        if (r && r.ok) {
+          const d = await r.json();
+          const cand = String((d && (d.api_base || d.endpoint)) || '').replace(/\/+$/, '');
+          if (cand && /^https?:\/\//i.test(cand)) {
+            this.setPrimaryApiBase(cand);
+          }
+        }
+      } catch (_e) {}
     }
 
     setPrimaryApiBase(url) {

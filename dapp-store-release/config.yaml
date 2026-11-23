@@ -48,7 +48,7 @@ release:
   files:
     - purpose: install
       uri: ./SolanaRentRugShield-v6.0-dAppStore.apk
-      sha256: 1bde5c582638698a133a0615472d2b9a9c4724f3a6d995e858d599bd95210d09
+      sha256: d8fff11eee46d41d7d9b191b009fed734fa4a4a6b22931fffa6ed5766a0b378d
   catalog:
     en-US:
       name: Solana Rent & Rug Shield
