@@ -16672,7 +16672,7 @@ window.submitVisitorFeedbackNow = async function(){
   <span class="rrs-sn109-dot" aria-hidden="true"></span>
   <span>Feedback / Report Issue</span>
 </button>
-<div id="rrsFeedbackModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="fbModalTitle" onclick="if(event.target===this)window.closeSandboxFeedbackModal()">
+<div id="rrsFeedbackModalBackdrop" role="dialog" aria-modal="true" aria-hidden="true" hidden style="display:none;" aria-labelledby="fbModalTitle" onclick="if(event.target===this)window.closeSandboxFeedbackModal()">
   <div class="fb-modal-card">
     <button type="button" class="fb-close-btn" id="fbCloseBtn" onclick="window.closeSandboxFeedbackModal()">&#10005; Close</button>
     <h2 class="fb-modal-title" id="fbModalTitle">Feedback / Report Issue</h2>
@@ -16701,14 +16701,14 @@ window.submitVisitorFeedbackNow = async function(){
 (function(){
   window.openSandboxFeedbackModal = function() {
     var m = document.getElementById("rrsFeedbackModalBackdrop");
-    if (m) m.classList.add("is-open");
+    if (m) { m.hidden = false; m.setAttribute("aria-hidden", "false"); m.style.display = "flex"; m.classList.add("is-open"); }
     var inp = document.getElementById("fbMessageInp");
     if (inp) setTimeout(function() { inp.focus(); }, 50);
   };
   window.openRrsFeedbackModal = window.openSandboxFeedbackModal;
   window.closeSandboxFeedbackModal = function() {
     var m = document.getElementById("rrsFeedbackModalBackdrop");
-    if (m) m.classList.remove("is-open");
+    if (m) { m.classList.remove("is-open"); m.style.display = "none"; m.setAttribute("aria-hidden", "true"); m.hidden = true; }
   };
   window.closeRrsFeedbackModal = window.closeSandboxFeedbackModal;
   document.addEventListener("keydown", function(ev) {
