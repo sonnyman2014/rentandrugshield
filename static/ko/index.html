@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>솔라나 빈 토큰 계정 렌트비 즉시 환급 | 첫 회 수수료 0% · 12단계 러그풀 선제 방어 실드</title>
+  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09." />
+  <meta name="theme-color" content="#07090E" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="솔라나 빈 토큰 계정 렌트비 즉시 환급 | 첫 회 수수료 0% · 12단계 러그풀 선제 방어 실드" />
+  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09." />
+  <meta property="og:image" content="https://rentandrugshield.com/og-shield-v3.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="솔라나 빈 토큰 계정 렌트비 즉시 환급 | 첫 회 수수료 0% · 12단계 러그풀 선제 방어 실드" />
+  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09." />
+  <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "솔라나 빈 토큰 계정 렌트비 즉시 환급 | 첫 회 수수료 0% · 12단계 러그풀 선제 방어 실드", "applicationCategory": "FinanceApplication", "operatingSystem": "Web, iOS, Android", "url": "https://rentandrugshield.com/ko-preview.html", "description": "지갑 연결 팝업 없는 100% 읽기 전용 스캔! 솔라나 밈코인 매매 후 남은 빈 토큰 계정(ATA) 렌트비를 첫 회 수수료 0%(100% SOL 전액 환급)로 회수하세요. 12단계 러그풀·번들 탐지 및 실시간 원화(KRW) 계산기 지원.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "조회만 할 때도 팬텀이나 OKX 지갑을 연결해야 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "전혀 연결할 필요가 없습니다! 본 페이지의 모든 조회는 100% 읽기 전용(Read-Only) 공개 RPC 조회로 작동하여 지갑 팝업이나 서명이 일절 발생하지 않습니다. 실제 SOL 환급을 원하실 때만 비수탁형 금고에서 직접 서명하시면 됩니다."}}, {"@type": "Question", "name": "빈 계정을 닫으면 보유 중인 코인이나 NFT가 사라질 위험은 없나요?", "acceptedAnswer": {"@type": "Answer", "text": "절대 없습니다. 잔고가 정확히 0인 빈 토큰 계정(Empty ATA)만 선별하며, 잔고가 남아있는 모든 토큰·NFT 및 동결 계정은 100% 건드리지 않고 안전하게 보호합니다."}}, {"@type": "Question", "name": "30% 레퍼럴 보상은 어떻게 지급되나요?", "acceptedAnswer": {"@type": "Answer", "text": "별도 가입이나 출금 대기가 없습니다. ?ref=내지갑주소 링크를 통해 유입된 트레이더가 재사용 정리를 실행할 때마다 2.0% 수수료의 30%가 같은 솔라나 트랜잭션 안에서 내 지갑으로 원자적(Atomic)으로 즉시 입금됩니다."}}]}]</script>
+  <style>
+    :root {
+      --bg-obsidian: #06080D;
+      --bg-panel: #0C111B;
+      --bg-elevated: #111827;
+      --gold-24k: #D4AF37;
+      --gold-bright: #F5D061;
+      --gold-soft: rgba(212, 175, 55, 0.16);
+      --gold-border: rgba(212, 175, 55, 0.36);
+      --emerald: #00FFA3;
+      --emerald-dim: rgba(0, 255, 163, 0.14);
+      --crimson: #F87171;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --line-subtle: rgba(148, 163, 184, 0.18);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at 50% -10%, rgba(212, 175, 55, 0.14), transparent 52%), var(--bg-obsidian);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Apple SD Gothic Neo", "Malgun Gothic", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--gold-bright); text-decoration: none; }
+    .topbar {
+      border-bottom: 1px solid var(--gold-border);
+      background: rgba(6, 8, 13, 0.92);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .topbar-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 0.3px;
+      color: var(--gold-bright);
+      font-size: 15px;
+      flex-wrap: wrap;
+    }
+    .brand-crest {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #F5D061, #9E7718);
+      color: #07090E;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.4);
+    }
+    .seal-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--emerald-dim);
+      border: 1px solid rgba(0, 255, 163, 0.38);
+      color: var(--emerald);
+    }
+    .lang-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .lang-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line-subtle);
+      background: #0D1320;
+      color: #CBD5E1;
+      transition: all 0.15s ease;
+    }
+    .lang-pill:hover {
+      border-color: var(--gold-24k);
+      color: var(--gold-bright);
+    }
+    .lang-pill-active {
+      border-color: var(--gold-bright);
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.24), rgba(212, 175, 55, 0.08));
+      color: var(--gold-bright);
+    }
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 24px 18px 64px;
+    }
+    .hero {
+      border: 1px solid var(--gold-border);
+      background: linear-gradient(180deg, rgba(18, 24, 38, 0.94), rgba(10, 14, 23, 0.98));
+      border-radius: 18px;
+      padding: 26px 24px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(245, 208, 97, 0.22);
+      margin-bottom: 22px;
+    }
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+    .live-ticker-pill {
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: #E2E8F0;
+      background: #080C14;
+      border: 1px solid var(--line-subtle);
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(21px, 2.7vw, 31px);
+      line-height: 1.32;
+      font-weight: 900;
+      background: linear-gradient(92deg, #FFFFFF 0%, #FDE68A 55%, #D4AF37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      margin: 0 0 16px;
+      color: #CBD5E1;
+      font-size: 14.5px;
+      max-width: 1050px;
+    }
+    .eco-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .eco-lbl {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .eco-chip {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      color: #FDE68A;
+    }
+    .trust-pills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+    }
+    .trust-pill {
+      padding: 10px 14px;
+      border-radius: 11px;
+      background: #080C14;
+      border: 1px solid rgba(212, 175, 55, 0.26);
+      font-size: 13px;
+      font-weight: 800;
+      color: #F8FAFC;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .trust-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px var(--emerald);
+      flex-shrink: 0;
+    }
+    .dual-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .vault-card {
+      background: var(--bg-panel);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+    .card-tag {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.6px;
+      color: var(--gold-bright);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .card-title {
+      margin: 0 0 6px;
+      font-size: 19px;
+      font-weight: 900;
+      color: #FFFFFF;
+    }
+    .card-desc {
+      margin: 0 0 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .input-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .scan-input {
+      flex: 1 1 220px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(148, 163, 184, 0.28);
+      background: #060911;
+      color: #FFFFFF;
+      font-size: 13.5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      outline: none;
+    }
+    .scan-input:focus {
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+    }
+    .btn-gold {
+      cursor: pointer;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid #FDE68A;
+      background: linear-gradient(135deg, #F5D061 0%, #D4AF37 55%, #AA8220 100%);
+      color: #07090E;
+      font-weight: 900;
+      font-size: 13.5px;
+      transition: transform 0.1s ease, filter 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-gold:hover { filter: brightness(1.07); }
+    .btn-gold:active { transform: translateY(1px); }
+    .btn-emerald {
+      cursor: pointer;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid #6EE7B7;
+      background: linear-gradient(135deg, #00FFA3 0%, #10B981 100%);
+      color: #04120C;
+      font-weight: 900;
+      font-size: 13.5px;
+      white-space: nowrap;
+    }
+    .btn-ghost {
+      cursor: pointer;
+      padding: 6px 11px;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.34);
+      background: rgba(212, 175, 55, 0.08);
+      color: #FDE68A;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .btn-ghost:hover {
+      background: rgba(212, 175, 55, 0.18);
+    }
+    .sample-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .sample-lbl {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .result-box {
+      display: none;
+      margin-top: 12px;
+      padding: 15px;
+      border-radius: 12px;
+      background: #070B13;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+    }
+    .result-box.visible { display: block; }
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .kpi-cell {
+      padding: 9px 10px;
+      border-radius: 9px;
+      background: #0D1320;
+      border: 1px solid var(--line-subtle);
+    }
+    .kpi-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .kpi-val {
+      font-size: 15.5px;
+      font-weight: 900;
+      color: #FFFFFF;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .cta-claim-link {
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #00FFA3, #10B981);
+      color: #04130D;
+      font-weight: 900;
+      font-size: 14px;
+    }
+    .ata-list {
+      margin-top: 10px;
+      max-height: 155px;
+      overflow-y: auto;
+      border-top: 1px solid var(--line-subtle);
+      padding-top: 8px;
+      font-size: 12px;
+    }
+    .ata-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.12);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .checks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 7px;
+      margin-top: 10px;
+    }
+    .chk-item {
+      padding: 7px 9px;
+      border-radius: 8px;
+      background: #0D1320;
+      border: 1px solid var(--line-subtle);
+      font-size: 11.5px;
+    }
+    .section-card {
+      background: var(--bg-panel);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 18px;
+      padding: 24px 22px;
+      margin-bottom: 24px;
+    }
+    .calc-sliders {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin: 14px 0 18px;
+    }
+    .slider-box {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #070B13;
+      border: 1px solid var(--line-subtle);
+    }
+    .slider-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+    .slider-val {
+      color: var(--gold-bright);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 16px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: #D4AF37;
+      cursor: pointer;
+    }
+    .preset-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .calc-results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .calc-res-card {
+      padding: 16px;
+      border-radius: 13px;
+      background: linear-gradient(180deg, #0E1524, #080C15);
+      border: 1px solid rgba(212, 175, 55, 0.34);
+    }
+    .calc-res-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #FDE68A;
+      margin-bottom: 6px;
+    }
+    .calc-fiat-big {
+      font-size: 25px;
+      font-weight: 900;
+      color: var(--emerald);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .calc-sub-amounts {
+      font-size: 13px;
+      font-weight: 700;
+      color: #E2E8F0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      margin: 4px 0 6px;
+    }
+    .calc-note {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+    .ref-builder {
+      padding: 18px;
+      border-radius: 14px;
+      background: #070A12;
+      border: 1.5px solid rgba(0, 255, 163, 0.35);
+    }
+    .ref-output-box {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #0D1422;
+      border: 1px solid var(--gold-border);
+    }
+    .ref-output-box.visible { display: block; }
+    .layers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .layer-card {
+      padding: 15px;
+      border-radius: 12px;
+      background: #080C15;
+      border: 1px solid var(--line-subtle);
+    }
+    .layer-card-title {
+      font-weight: 900;
+      color: var(--gold-bright);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .layer-card-body {
+      font-size: 13px;
+      color: #CBD5E1;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--line-subtle);
+      padding: 12px 0;
+    }
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 14.5px;
+      color: #F8FAFC;
+    }
+    .faq-item p {
+      margin: 8px 0 0;
+      font-size: 13.5px;
+      color: #CBD5E1;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line-subtle);
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 18px 15px; }
+      .vault-card, .section-card { padding: 16px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-row">
+        <span class="brand-crest">R</span>
+        <span>SOLANA RENT &amp; RUG SHIELD</span>
+        <span class="seal-pill">100% 읽기 전용 스캔 · 지갑 연결 팝업 없음 · 자동 결제 0원 ($0 Auto-Billing)</span>
+      </div>
+      <nav class="lang-bar" aria-label="Language Switcher">
+        <a class="lang-pill" href="/zh-preview.html" data-keep-query="1">🇨🇳 中文战壕极速版</a>
+        <a class="lang-pill" href="/in-preview.html" data-keep-query="1">🇮🇳 India Fast-Scan (₹ INR)</a>
+        <a class="lang-pill" href="/ja-preview.html" data-keep-query="1">🇯🇵 日本語高速スキャン (¥ JPY)</a>
+        <a class="lang-pill lang-pill-active" href="/ko-preview.html" data-keep-query="1">🇰🇷 한국어 초고속 스캔 (₩ KRW)</a>
+        <a class="lang-pill" href="https://rentandrugshield.com/?mode=institutional" data-keep-query="1">🏛️ Main Vault</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-top-row">
+        <span class="hero-eyebrow">KOREA SOLANA TRENCH DESK · 팬텀(Phantom) / 백팩 / OKX Web3 / GMGN 최적화</span>
+        <span class="live-ticker-pill" id="liveSolTicker">1 SOL = $72.23 · KRW Ready</span>
+      </div>
+      <h1>솔라나 빈 토큰 계정 렌트비 즉시 환급 · 첫 회 수수료 0% (100% SOL 전액 환급) · 재사용 수수료 단 2% · 12단계 러그풀·번들 선제 방어 실드</h1>
+      <p class="hero-sub">Pump.fun, Raydium, GMGN 밈코인 매매 후 잔고가 0이 된 빈 토큰 계정(ATA)마다 약 0.002039 SOL의 렌트 보증금이 묶여 있습니다. 지갑 연결 팝업이나 서명 없이 공개 주소만 붙여넣어 묶인 SOL과 원화(₩) 가치를 1초 만에 조회하고, 매수 전 12단계 러그풀·초기 번들 지갑을 <120ms 내에 정밀 검증하세요.</p>
+      <div class="eco-row">
+        <span class="eco-lbl">한국 솔라나 트레이더 주요 지갑 & 터미널 완벽 호환:</span>
+        <span class="eco-chip">Phantom 팬텀</span><span class="eco-chip">Backpack 백팩</span><span class="eco-chip">Solflare</span><span class="eco-chip">OKX Web3 지갑</span><span class="eco-chip">GMGN / DEXScreener</span>
+      </div>
+      <div class="trust-pills">
+        <div class="trust-pill"><span class="trust-dot"></span><span>첫 회 수수료 0% · 100% SOL 전액 환급 ($0 자동결제)</span></div>
+        <div class="trust-pill"><span class="trust-dot"></span><span>재사용 수수료 단 2.0% (98.0% SOL 수령)</span></div>
+        <div class="trust-pill"><span class="trust-dot"></span><span>30% 온체인 즉시 레퍼럴 정산 (?ref=지갑주소)</span></div>
+      </div>
+    </section>
+
+    <section class="dual-grid">
+      <div class="vault-card">
+        <div>
+          <div class="card-tag">SERVICE 01 · 무서명 100% 읽기 전용 렌트 스캐너</div>
+          <h2 class="card-title">솔라나 빈 토큰 계정 (ATA) 렌트비 초고속 조회 (SOL / USD / ₩ 원화)</h2>
+          <p class="card-desc">공개 지갑 주소만 입력하면 SPL 및 Token-2022 잔고 0 빈 계정을 즉시 탐색합니다. 보유 중인 코인과 NFT는 100% 안전하게 보호됩니다.</p>
+          <div class="input-row">
+            <input id="walletInput" class="scan-input" type="text" autocomplete="off" spellcheck="false" placeholder="솔라나 지갑 주소 붙여넣기 (지갑 연결 불필요)..." />
+            <button id="btnScanWallet" class="btn-gold" type="button">묶인 SOL 렌트비 무료 조회</button>
+          </div>
+          <!-- RRS_LOC_DEMO_V1_START --><div style="margin:8px 0;"><button id="btnTryLiveDemoWallet" type="button" onclick="window.rrsLocRunDemoWallet()" style="width:100%;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.20),rgba(212,175,55,0.16));color:#00FFA3;font-weight:900;font-size:13.5px;cursor:pointer;">⚡ Try Live Demo Wallet ($109.85 Locked SOL - 0 Wallet Connect · 실시간 데모 지갑 스캔)</button></div><!-- RRS_LOC_DEMO_V1_END -->
+                              <div class="sample-row">
+            <span class="sample-lbl">원클릭 메인넷 실제 지갑 테스트:</span>
+            <button id="btnSampleWallet1" class="btn-ghost" type="button" data-wallet="MfDuWeqSHEqTFVYZ7LoexgAK9dxk7cy4DFJWjWMGVWa">실제 트레이더 지갑 #1 (빈 계정 71개)</button>
+            <button id="btnSampleWallet2" class="btn-ghost" type="button" data-wallet="Ex1mYTgfnxACnoGTnWqYRJRNjr8pciHnWxWnVLH8pWf2">실제 레이디움 지갑 #2 (빈 계정 70개)</button>
+            <button id="btnClearWallet" class="btn-ghost" type="button">초기화</button>
+          </div>
+          <div id="walletResult" class="result-box" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="vault-card">
+        <div>
+          <div class="card-tag">SERVICE 02 · <120ms 매수 전 먹튀 방어벽</div>
+          <h2 class="card-title">12단계 러그풀 · 허니팟 · 번들 지갑 정밀 스캐너</h2>
+          <p class="card-desc">매수 전 토큰 컨트랙트(CA/Mint)를 붙여넣으세요. 민팅·동결 권한, Token-2022 강제 회수(Permanent Delegate), Slot-0 개발자 번들 매집을 즉시 포착합니다.</p>
+          <div class="input-row">
+            <input id="mintInput" class="scan-input" type="text" autocomplete="off" spellcheck="false" placeholder="솔라나 토큰 민트 / 컨트랙트 주소 (CA) 입력..." />
+            <button id="btnScanToken" class="btn-emerald" type="button">12단계 러그풀 정밀 스캔</button>
+          </div>
+          <!-- RRS_LOC_DEMO_V1_START --><div style="margin:8px 0;"><button id="btnTestLive12LayerAudit" type="button" onclick="window.rrsLocRunDemoToken()" style="width:100%;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #F5D061;background:linear-gradient(90deg,rgba(212,175,55,0.20),rgba(56,189,248,0.16));color:#FDE68A;font-weight:900;font-size:13.5px;cursor:pointer;">⚡ Test Live 12-Layer Token Audit (12단계 러그풀 보안 감사 즉시 테스트)</button></div><!-- RRS_LOC_DEMO_V1_END -->
+                              <div class="sample-row">
+            <span class="sample-lbl">원클릭 메인넷 인기 토큰 검증:</span>
+            <button id="btnSampleBonk" class="btn-ghost" type="button" data-mint="DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263">$BONK 검증 (12/12 안전)</button>
+            <button id="btnSampleWif" class="btn-ghost" type="button" data-mint="EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm">$WIF 검증 (SPL 블루칩)</button>
+            <button id="btnClearMint" class="btn-ghost" type="button">초기화</button>
+          </div>
+          <div id="tokenResult" class="result-box" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="card-tag">실시간 원화 (KRW ₩) + USD + SOL 환급액 & 30% 레퍼럴 수익 계산기</div>
+      <h2 class="card-title">내 지갑 예상 환급액 (₩ 원화) 및 30% 온체인 자동 정산 시뮬레이터</h2>
+      <p class="card-desc">슬라이더를 움직여 빈 계정에 묶인 SOL의 실시간 원화 가치를 확인하고, 텔레그램·트위터·단톡방에 공유할 ?ref=내지갑주소 링크를 생성하세요. 피추천인 재사용 수수료(2%)의 30%가 동일 트랜잭션에서 내 지갑으로 즉시 입금됩니다.</p>
+
+      <div class="calc-sliders">
+        <div class="slider-box">
+          <div class="slider-hdr">
+            <span>지갑 내 빈 토큰 계정 수 (Empty ATAs):</span>
+            <span class="slider-val" id="ataCountDisplay">120 ATAs</span>
+          </div>
+          <input id="ataSlider" type="range" min="1" max="1000" value="120" />
+          <div class="preset-row">
+            <button type="button" class="btn-ghost ata-preset" data-atas="25">25</button>
+            <button type="button" class="btn-ghost ata-preset" data-atas="50">50</button>
+            <button type="button" class="btn-ghost ata-preset" data-atas="120">120</button>
+            <button type="button" class="btn-ghost ata-preset" data-atas="250">250</button>
+            <button type="button" class="btn-ghost ata-preset" data-atas="500">500</button>
+            <button type="button" class="btn-ghost ata-preset" data-atas="1000">1000</button>
+          </div>
+        </div>
+
+        <div class="slider-box">
+          <div class="slider-hdr">
+            <span>추천한 활성 트레이더 수 (1인당 평균 120개 빈 계정 정리 기준):</span>
+            <span class="slider-val" id="refCountDisplay">25</span>
+          </div>
+          <input id="refSlider" type="range" min="1" max="250" value="25" />
+          <div class="preset-row">
+            <button type="button" class="btn-ghost ref-preset" data-refs="5">5</button>
+            <button type="button" class="btn-ghost ref-preset" data-refs="25">25</button>
+            <button type="button" class="btn-ghost ref-preset" data-refs="50">50</button>
+            <button type="button" class="btn-ghost ref-preset" data-refs="100">100</button>
+            <button type="button" class="btn-ghost ref-preset" data-refs="250">250</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-results-grid">
+        <div class="calc-res-card">
+          <div class="calc-res-title">첫 지갑 정리 수수료 0% ($0 자동결제)</div>
+          <div class="calc-fiat-big" id="calcFirstFiat">₩0</div>
+          <div class="calc-sub-amounts" id="calcFirstSub">0.2447 SOL · $17.67 USD</div>
+          <div class="calc-note">첫 회 프로토콜 수수료 면제 · 묶인 SOL 100% 전액 내 지갑으로 환급</div>
+        </div>
+        <div class="calc-res-card">
+          <div class="calc-res-title">재사용 시 실수령액 (98.0% SOL 수령)</div>
+          <div class="calc-fiat-big" id="calcRepeatFiat">₩0</div>
+          <div class="calc-sub-amounts" id="calcRepeatSub">0.2398 SOL · $17.32 USD</div>
+          <div class="calc-note">2회차부터 고정 2.0% 최저 수수료 (타사 5% - 20% 대비 압도적 절감)</div>
+        </div>
+        <div class="calc-res-card">
+          <div class="calc-res-title">30% 온체인 즉시 레퍼럴 수익 (?ref=동시정산)</div>
+          <div class="calc-fiat-big" id="calcRefFiat">₩0</div>
+          <div class="calc-sub-amounts" id="calcRefSub">0.0367 SOL · $2.65 USD</div>
+          <div class="calc-note">회원가입·출금신청 없이 동일 솔라나 블록 내에서 지갑으로 즉시 분배</div>
+        </div>
+      </div>
+
+      <div class="ref-builder">
+        <div class="card-title" style="font-size:16.5px;margin-bottom:8px;">10초 만에 30% 온체인 즉시 레퍼럴 링크 생성 (?ref=YOUR_WALLET)</div>
+        <div class="input-row" style="margin-bottom:0;">
+          <input id="refWalletInput" class="scan-input" type="text" autocomplete="off" spellcheck="false" placeholder="보상받을 솔라나 지갑 주소 입력..." />
+          <button id="btnGenRef" class="btn-gold" type="button">레퍼럴 링크 생성</button>
+        </div>
+        <div id="refOutputBox" class="ref-output-box">
+          <div style="font-family:ui-monospace,monospace;font-size:13px;color:#00FFA3;word-break:break-all;margin-bottom:10px;" id="refUrlText"></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button id="btnCopyRef" class="btn-emerald" type="button" style="padding:8px 14px;font-size:12.5px;">링크 복사</button>
+            <a id="btnShareX" class="btn-ghost" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet">X (트위터) 공유</a>
+            <a id="btnShareTg" class="btn-ghost" target="_blank" rel="noopener" href="https://t.me/share/url">텔레그램 공유</a>
+            <span id="refCopyStatus" style="font-size:12px;color:#FDE68A;align-self:center;font-weight:800;"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2 class="card-title">한국 밈코인·덱스 트레이더가 신뢰하는 12단계 사전 방어 아키텍처</h2>
+      <div class="layers-grid">
+        <div class="layer-card"><div class="layer-card-title">L1 - L2 민팅 및 동결(Freeze) 권한 차단</div><div class="layer-card-body">추가 발행 러그풀 및 매수 직후 지갑을 얼려 매도를 막는 허니팟을 즉시 식별합니다.</div></div><div class="layer-card"><div class="layer-card-title">L3 - L5 실제 유동성 깊이 & LP 소각 검증</div><div class="layer-card-body">상위 홀더 물량 집중도, 시총 대비 실제 LP 비율, 정규 LP 소각 여부를 온체인으로 검증합니다.</div></div><div class="layer-card"><div class="layer-card-title">L6 - L9 Token-2022 악성 확장 기능 탐지</div><div class="layer-card-body">토큰을 강제 회수하는 Permanent Delegate, 악성 Transfer Hook, 숨겨진 고율 전송세를 잡아냅니다.</div></div><div class="layer-card"><div class="layer-card-title">L10 - L12 Slot-0 개발자 번들 & 자전거래 레이더</div><div class="layer-card-body">출시 직후 개발자 다계정 번들 매집(Creator Bundle), 봇 자전거래 볼륨, 숨겨진 PDA 렌트 함정을 탐지합니다.</div></div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2 class="card-title">자주 묻는 질문 (보안 · 수수료 · 원화 계산 · 레퍼럴)</h2>
+      <details class="faq-item"><summary>조회만 할 때도 팬텀이나 OKX 지갑을 연결해야 하나요?</summary><p>전혀 연결할 필요가 없습니다! 본 페이지의 모든 조회는 100% 읽기 전용(Read-Only) 공개 RPC 조회로 작동하여 지갑 팝업이나 서명이 일절 발생하지 않습니다. 실제 SOL 환급을 원하실 때만 비수탁형 금고에서 직접 서명하시면 됩니다.</p></details><details class="faq-item"><summary>빈 계정을 닫으면 보유 중인 코인이나 NFT가 사라질 위험은 없나요?</summary><p>절대 없습니다. 잔고가 정확히 0인 빈 토큰 계정(Empty ATA)만 선별하며, 잔고가 남아있는 모든 토큰·NFT 및 동결 계정은 100% 건드리지 않고 안전하게 보호합니다.</p></details><details class="faq-item"><summary>30% 레퍼럴 보상은 어떻게 지급되나요?</summary><p>별도 가입이나 출금 대기가 없습니다. ?ref=내지갑주소 링크를 통해 유입된 트레이더가 재사용 정리를 실행할 때마다 2.0% 수수료의 30%가 같은 솔라나 트랜잭션 안에서 내 지갑으로 원자적(Atomic)으로 즉시 입금됩니다.</p></details>
+    </section>
+
+    <footer class="footer">
+      <div>Solana Rent &amp; Rug Shield · Non-Custodial Read-Only Fast-Scan · $0 Auto-Billing · @SolRentClaim</div>
+      <div style="margin-top:6px;">
+        <a href="https://rentandrugshield.com/?mode=institutional">Main Institutional Vault</a> ·
+        <a href="/affiliates.html">30% On-Chain Affiliates</a> ·
+        <a href="/privacy.html">Privacy</a> ·
+        <a href="/terms.html">Terms</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+  (function() {
+    const CFG = {"code": "ko", "currencyCode": "KRW", "currencySymbol": "₩", "defaultFx": 1405.0, "fxDecimals": 0, "previewPath": "/ko-preview.html", "ui": {"scanning_wallet": "솔라나 메인넷 RPC 100% 읽기 전용 초고속 스캔 중...", "scanning_token": "12단계 러그풀 및 번들 지갑 정밀 방어 스캔 중...", "invalid_wallet": "유효한 솔라나 지갑 주소를 입력해 주세요 (32-44자 Base58).", "invalid_mint": "유효한 솔라나 토큰 민트 / 컨트랙트 주소(CA)를 입력해 주세요.", "found_rent_hdr": "환급 가능한 솔라나 렌트비 발견", "first_free_badge": "첫 회 혜택: 수수료 0% · 100% SOL 전액 환급", "repeat_fee_badge": "재사용 등급: 고정 2.0% 수수료 · 98.0% SOL 실수령", "lbl_empty_atas": "빈 토큰 계정 (잔고 0)", "lbl_dust_atas": "더스트 계정", "lbl_active_safe": "보유 토큰 (100% 보호)", "lbl_net_sol": "예상 실수령 SOL", "btn_proceed_claim": "비수탁형 금고에서 서명 후 SOL 환급받기 ->", "readonly_note": "현재 페이지는 100% 읽기 전용 무팝업 상태입니다. 위 버튼을 누르면 메인 금고로 이동하여 본인 지갑에서 직접 확인 후 안전하게 수령합니다.", "empty_sample_hdr": "회수 가능한 빈 계정 미리보기 (상위 8개):", "zero_empty_msg": "현재 회수할 잔고 0 빈 토큰 계정이 없는 깔끔한 지갑입니다!", "score_label": "안전 점수", "liq_label": "유동성 (LP)", "vol_label": "24시간 거래량", "mcap_label": "시가총액", "prog_label": "프로그램", "pass_badge": "통과 PASS", "fail_badge": "위험 경고", "locked_badge": "PRO 전용", "unlock_402_msg": "기본 레이어 검증 완료! 내부자 번들 및 자전거래 심층 레이어는 메인 금고에서 열람 가능합니다:", "btn_open_full_audit": "메인 금고에서 12단계 전체 리포트 열기 ->", "copied_ok": "레퍼럴 링크가 복사되었습니다!", "share_tweet_tpl": "@SolRentClaim 에서 지갑 연결 없이 솔라나 빈 계정 렌트비를 원화(KRW)+SOL로 바로 조회했네요! 첫 회 수수료 0% 전액 환급 + 12단계 러그풀 스캐너: "}};
+    const RENT_PER_ATA_SOL = 0.00203928;
+    const BASE58_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+
+    let liveSolUsd = 72.23;
+    let liveFx = Number(CFG.defaultFx || 1);
+    let apiBaseResolved = null;
+
+    function cleanDash(val) {
+      return String(val == null ? "" : val).replace(/[\u2013\u2014]/g, " - ");
+    }
+
+    function escHtml(str) {
+      return cleanDash(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function fmtLocalFiat(usdAmount) {
+      const val = Number(usdAmount || 0) * liveFx;
+      const dec = Number(CFG.fxDecimals || 0);
+      return CFG.currencySymbol + val.toLocaleString(undefined, {
+        minimumFractionDigits: dec,
+        maximumFractionDigits: dec
+      }) + " " + CFG.currencyCode;
+    }
+
+    function fmtUsd(usdAmount) {
+      const v = Number(usdAmount || 0);
+      return "$" + v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    async function resolveApiBase() {
+      if (apiBaseResolved !== null) return apiBaseResolved;
+      const h = window.location.hostname || "";
+      if (h === "127.0.0.1" || h === "localhost" || h.endsWith(".trycloudflare.com")) {
+        apiBaseResolved = "";
+        return apiBaseResolved;
+      }
+      try {
+        const r = await fetch("/live_endpoint.json?t=" + Date.now(), { cache: "no-store" });
+        if (r.ok) {
+          const d = await r.json();
+          if (d && d.api_base) {
+            apiBaseResolved = String(d.api_base).replace(/\/+$/, "");
+            return apiBaseResolved;
+          }
+        }
+      } catch (_e) {}
+      apiBaseResolved = "";
+      return apiBaseResolved;
+    }
+
+    function updateTickerPill() {
+      const el = document.getElementById("liveSolTicker");
+      if (!el) return;
+      const solLocal = fmtLocalFiat(liveSolUsd);
+      el.textContent = "1 SOL = " + fmtUsd(liveSolUsd) + " · " + solLocal;
+    }
+
+    function updateCalculator() {
+      const ataEl = document.getElementById("ataSlider");
+      const refEl = document.getElementById("refSlider");
+      if (!ataEl || !refEl) return;
+      const atas = Math.max(1, Number(ataEl.value || 120));
+      const refs = Math.max(1, Number(refEl.value || 25));
+
+      document.getElementById("ataCountDisplay").textContent = atas + " ATAs";
+      document.getElementById("refCountDisplay").textContent = String(refs);
+
+      const grossSol = atas * RENT_PER_ATA_SOL;
+      const grossUsd = grossSol * liveSolUsd;
+
+      const repeatNetSol = grossSol * 0.98;
+      const repeatNetUsd = repeatNetSol * liveSolUsd;
+
+      const refGrossSol = refs * 120 * RENT_PER_ATA_SOL;
+      const refEarnSol = refGrossSol * 0.02 * 0.30;
+      const refEarnUsd = refEarnSol * liveSolUsd;
+
+      document.getElementById("calcFirstFiat").textContent = fmtLocalFiat(grossUsd);
+      document.getElementById("calcFirstSub").textContent = grossSol.toFixed(4) + " SOL · " + fmtUsd(grossUsd) + " USD";
+
+      document.getElementById("calcRepeatFiat").textContent = fmtLocalFiat(repeatNetUsd);
+      document.getElementById("calcRepeatSub").textContent = repeatNetSol.toFixed(4) + " SOL · " + fmtUsd(repeatNetUsd) + " USD";
+
+      document.getElementById("calcRefFiat").textContent = fmtLocalFiat(refEarnUsd);
+      document.getElementById("calcRefSub").textContent = refEarnSol.toFixed(4) + " SOL · " + fmtUsd(refEarnUsd) + " USD";
+    }
+
+    function buildVaultUrl(extraParams) {
+      const cur = new URLSearchParams(window.location.search);
+      const out = new URLSearchParams();
+      out.set("mode", "institutional");
+      if (cur.get("ref")) out.set("ref", cur.get("ref"));
+      Object.keys(extraParams || {}).forEach(function(k) {
+        if (extraParams[k]) out.set(k, extraParams[k]);
+      });
+      return "https://rentandrugshield.com/?" + out.toString();
+    }
+
+    async function runWalletScan(rawAddr) {
+      const outBox = document.getElementById("walletResult");
+      const addr = String(rawAddr || "").trim();
+      outBox.classList.add("visible");
+      if (!BASE58_RE.test(addr)) {
+        outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">' + escHtml(CFG.ui.invalid_wallet) + '</div>';
+        return;
+      }
+      outBox.innerHTML = '<div style="color:#FDE68A;font-weight:800;">' + escHtml(CFG.ui.scanning_wallet) + '</div>';
+      try {
+        const base = await resolveApiBase();
+        const r = await fetch(base + "/api/scan-wallet", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ wallet: addr, source_page: CFG.code + "_fast_scan" })
+        });
+        const d = await r.json();
+        if (!d || !d.ok) {
+          outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">' + escHtml((d && d.error) || "Scan unavailable") + '</div>';
+          return;
+        }
+        if (Number(d.sol_usd) > 0) {
+          liveSolUsd = Number(d.sol_usd);
+          updateTickerPill();
+          updateCalculator();
+        }
+        const totalSol = Number(d.total_reclaimable_sol || 0);
+        const totalUsd = Number(d.total_reclaimable_usd || (totalSol * liveSolUsd));
+        const isFirstFree = Boolean(d.is_first_free_claim);
+        const netSol = isFirstFree ? totalSol : (totalSol * 0.98);
+        const netUsd = isFirstFree ? totalUsd : (netSol * liveSolUsd);
+        const emptyCnt = Number(d.empty_count != null ? d.empty_count : (d.reclaimable_count || 0));
+        const dustCnt = Number(d.dust_count || 0);
+        const activeCnt = Number(d.active_count || 0);
+        const badgeText = isFirstFree ? CFG.ui.first_free_badge : CFG.ui.repeat_fee_badge;
+        const badgeStyle = isFirstFree
+          ? "background:rgba(0,255,163,0.14);border:1px solid #00FFA3;color:#00FFA3;"
+          : "background:rgba(212,175,55,0.16);border:1px solid #F5D061;color:#FDE68A;";
+
+        const emptyList = Array.isArray(d.empty_reclaimable) ? d.empty_reclaimable.slice(0, 8) : [];
+        let rowsHtml = "";
+        if (emptyList.length > 0) {
+          rowsHtml = '<div class="ata-list"><div style="color:#94A3B8;font-weight:800;margin-bottom:4px;">'
+            + escHtml(CFG.ui.empty_sample_hdr) + '</div>'
+            + emptyList.map(function(item) {
+                return '<div class="ata-row"><span>' + escHtml(item.symbol || item.pubkey.slice(0, 8))
+                  + ' <small style="color:#94A3B8;">(' + escHtml(item.program_label || "SPL") + ')</small></span>'
+                  + '<span style="color:#00FFA3;">+' + Number(item.rent_sol || 0.002039).toFixed(6) + ' SOL</span></div>';
+              }).join("")
+            + '</div>';
+        } else if (emptyCnt === 0 && dustCnt === 0) {
+          rowsHtml = '<div style="margin-top:8px;color:#00FFA3;font-weight:800;font-size:13px;">' + escHtml(CFG.ui.zero_empty_msg) + '</div>';
+        }
+
+        const claimUrl = buildVaultUrl({ wallet: addr });
+        outBox.innerHTML =
+          '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">'
+          + '<span style="font-weight:900;color:#F8FAFC;font-size:14px;">' + escHtml(CFG.ui.found_rent_hdr) + '</span>'
+          + '<span style="padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:800;' + badgeStyle + '">' + escHtml(badgeText) + '</span>'
+          + '</div>'
+          + '<div style="font-size:24px;font-weight:900;color:#00FFA3;font-family:ui-monospace,monospace;">+'
+          + netSol.toFixed(6) + ' SOL · ' + escHtml(fmtLocalFiat(netUsd)) + ' <span style="font-size:14px;color:#CBD5E1;">(' + escHtml(fmtUsd(netUsd)) + ')</span></div>'
+          + '<div class="kpi-strip">'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.lbl_empty_atas) + '</div><div class="kpi-val">' + emptyCnt + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.lbl_dust_atas) + '</div><div class="kpi-val">' + dustCnt + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.lbl_active_safe) + '</div><div class="kpi-val" style="color:#00FFA3;">' + activeCnt + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.lbl_net_sol) + '</div><div class="kpi-val" style="color:#FDE68A;">+' + netSol.toFixed(4) + '</div></div>'
+          + '</div>'
+          + rowsHtml
+          + '<a id="btnClaimRedirect" class="cta-claim-link" href="' + escHtml(claimUrl) + '">' + escHtml(CFG.ui.btn_proceed_claim) + '</a>'
+          + '<div style="margin-top:7px;font-size:11.5px;color:#94A3B8;">' + escHtml(CFG.ui.readonly_note) + '</div>';
+      } catch (err) {
+        outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">RPC Error: ' + escHtml(err && err.message ? err.message : String(err)) + '</div>';
+      }
+    }
+
+    async function runTokenScan(rawMint) {
+      const outBox = document.getElementById("tokenResult");
+      const mint = String(rawMint || "").trim();
+      outBox.classList.add("visible");
+      if (!BASE58_RE.test(mint)) {
+        outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">' + escHtml(CFG.ui.invalid_mint) + '</div>';
+        return;
+      }
+      outBox.innerHTML = '<div style="color:#00FFA3;font-weight:800;">' + escHtml(CFG.ui.scanning_token) + '</div>';
+      try {
+        const base = await resolveApiBase();
+        const r = await fetch(base + "/api/scan-token", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mint: mint, source_page: CFG.code + "_fast_scan" })
+        });
+        const d = await r.json();
+        const fullAuditUrl = buildVaultUrl({ mint: mint });
+
+        if (r.status === 402 || (d && d.payment_required)) {
+          const pv = (d && (d.preview || d.blurred_preview)) || {};
+          const checks = Array.isArray(pv.checks) ? pv.checks : (Array.isArray(pv.redacted_checks) ? pv.redacted_checks : []);
+          const chkHtml = checks.slice(0, 8).map(function(c) {
+            const isBlur = Boolean(c.blurred || c.redacted);
+            const stCol = isBlur ? "#FDE68A" : (c.passed ? "#00FFA3" : "#F87171");
+            const stTxt = isBlur ? CFG.ui.locked_badge : (c.passed ? CFG.ui.pass_badge : CFG.ui.fail_badge);
+            return '<div class="chk-item"><div style="display:flex;justify-content:space-between;font-weight:800;"><span>'
+              + escHtml(c.label || c.name || "Layer") + '</span><span style="color:' + stCol + ';">' + escHtml(stTxt) + '</span></div>'
+              + '<div style="color:#94A3B8;margin-top:2px;">' + escHtml(c.detail || "") + '</div></div>';
+          }).join("");
+          outBox.innerHTML =
+            '<div style="font-weight:900;font-size:15px;color:#FDE68A;margin-bottom:6px;">$' + escHtml(pv.symbol || "TOKEN") + ' · ' + escHtml(pv.token_program || "SPL Token") + '</div>'
+            + '<div style="font-size:12.5px;color:#CBD5E1;margin-bottom:8px;">' + escHtml(CFG.ui.unlock_402_msg) + '</div>'
+            + '<div class="checks-grid">' + chkHtml + '</div>'
+            + '<a class="cta-claim-link" href="' + escHtml(fullAuditUrl) + '">' + escHtml(CFG.ui.btn_open_full_audit) + '</a>';
+          return;
+        }
+
+        if (!d || !d.ok) {
+          outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">' + escHtml((d && d.error) || "Token scan unavailable") + '</div>';
+          return;
+        }
+
+        const score = Number(d.score != null ? d.score : (d.safety_score || 0));
+        const scoreCol = score >= 80 ? "#00FFA3" : (score >= 55 ? "#FDE68A" : "#F87171");
+        const checks = Array.isArray(d.checks) ? d.checks : [];
+        const chkHtml = checks.map(function(c) {
+          const ok = Boolean(c.passed);
+          return '<div class="chk-item"><div style="display:flex;justify-content:space-between;font-weight:800;"><span>'
+            + escHtml(c.label || c.name) + '</span><span style="color:' + (ok ? "#00FFA3" : "#F87171") + ';">'
+            + escHtml(ok ? CFG.ui.pass_badge : CFG.ui.fail_badge) + '</span></div>'
+            + '<div style="color:#94A3B8;margin-top:2px;">' + escHtml(c.detail || "") + '</div></div>';
+        }).join("");
+
+        outBox.innerHTML =
+          '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">'
+          + '<div><span style="font-size:18px;font-weight:900;color:#FFFFFF;">$' + escHtml(d.symbol || "TOKEN") + '</span> '
+          + '<span style="font-size:12.5px;color:#94A3B8;">(' + escHtml(d.name || "") + ')</span></div>'
+          + '<span style="font-size:18px;font-weight:900;font-family:ui-monospace,monospace;color:' + scoreCol + ';">'
+          + escHtml(CFG.ui.score_label) + ': ' + score + '/100</span></div>'
+          + '<div style="margin-top:4px;font-size:12.5px;font-weight:800;color:' + scoreCol + ';">' + escHtml(d.verdict || "") + '</div>'
+          + '<div class="kpi-strip">'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.liq_label) + '</div><div class="kpi-val">' + escHtml(fmtUsd(d.liquidity_usd || 0)) + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.vol_label) + '</div><div class="kpi-val">' + escHtml(fmtUsd(d.volume_24h_usd || 0)) + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.mcap_label) + '</div><div class="kpi-val">' + escHtml(fmtUsd(d.market_cap_usd || 0)) + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.prog_label) + '</div><div class="kpi-val" style="font-size:13px;">' + escHtml(d.token_program || "SPL") + '</div></div>'
+          + '</div>'
+          + '<div class="checks-grid">' + chkHtml + '</div>'
+          + '<a class="cta-claim-link" href="' + escHtml(fullAuditUrl) + '">' + escHtml(CFG.ui.btn_open_full_audit) + '</a>';
+      } catch (err) {
+        outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">Scan Error: ' + escHtml(err && err.message ? err.message : String(err)) + '</div>';
+      }
+    }
+
+    function generateRefLink() {
+      const inp = document.getElementById("refWalletInput");
+      const box = document.getElementById("refOutputBox");
+      const txt = document.getElementById("refUrlText");
+      const status = document.getElementById("refCopyStatus");
+      const w = String((inp && inp.value) || "").trim();
+      box.classList.add("visible");
+      status.textContent = "";
+      if (!BASE58_RE.test(w)) {
+        txt.style.color = "#F87171";
+        txt.textContent = CFG.ui.invalid_wallet;
+        return;
+      }
+      txt.style.color = "#00FFA3";
+      const link = "https://rentandrugshield.com/?ref=" + encodeURIComponent(w);
+      txt.textContent = link;
+      const shareMsg = CFG.ui.share_tweet_tpl + link;
+      document.getElementById("btnShareX").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareMsg);
+      document.getElementById("btnShareTg").href = "https://t.me/share/url?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(CFG.ui.share_tweet_tpl);
+    }
+
+    document.getElementById("btnScanWallet").addEventListener("click", function() {
+      runWalletScan(document.getElementById("walletInput").value);
+    });
+    document.getElementById("walletInput").addEventListener("keydown", function(ev) {
+      if (ev.key === "Enter") runWalletScan(ev.target.value);
+    });
+    ["btnSampleWallet1", "btnSampleWallet2"].forEach(function(id) {
+      const b = document.getElementById(id);
+      if (b) b.addEventListener("click", function() {
+        const w = b.getAttribute("data-wallet");
+        document.getElementById("walletInput").value = w;
+        runWalletScan(w);
+      });
+    });
+    document.getElementById("btnClearWallet").addEventListener("click", function() {
+      document.getElementById("walletInput").value = "";
+      const ob = document.getElementById("walletResult");
+      ob.classList.remove("visible");
+      ob.innerHTML = "";
+    });
+
+    document.getElementById("btnScanToken").addEventListener("click", function() {
+      runTokenScan(document.getElementById("mintInput").value);
+    });
+    document.getElementById("mintInput").addEventListener("keydown", function(ev) {
+      if (ev.key === "Enter") runTokenScan(ev.target.value);
+    });
+    ["btnSampleBonk", "btnSampleWif"].forEach(function(id) {
+      const b = document.getElementById(id);
+      if (b) b.addEventListener("click", function() {
+        const m = b.getAttribute("data-mint");
+        document.getElementById("mintInput").value = m;
+        runTokenScan(m);
+      });
+    });
+    document.getElementById("btnClearMint").addEventListener("click", function() {
+      document.getElementById("mintInput").value = "";
+      const ob = document.getElementById("tokenResult");
+      ob.classList.remove("visible");
+      ob.innerHTML = "";
+    });
+
+    document.getElementById("ataSlider").addEventListener("input", updateCalculator);
+    document.getElementById("refSlider").addEventListener("input", updateCalculator);
+    document.querySelectorAll(".ata-preset").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        document.getElementById("ataSlider").value = btn.getAttribute("data-atas");
+        updateCalculator();
+      });
+    });
+    document.querySelectorAll(".ref-preset").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        document.getElementById("refSlider").value = btn.getAttribute("data-refs");
+        updateCalculator();
+      });
+    });
+
+    document.getElementById("btnGenRef").addEventListener("click", generateRefLink);
+    document.getElementById("btnCopyRef").addEventListener("click", async function() {
+      const txt = document.getElementById("refUrlText").textContent || "";
+      if (!txt.startsWith("http")) return;
+      try {
+        await navigator.clipboard.writeText(txt);
+        document.getElementById("refCopyStatus").textContent = CFG.ui.copied_ok;
+      } catch (_e) {
+        document.getElementById("refCopyStatus").textContent = txt;
+      }
+    });
+
+    const qs = window.location.search;
+    if (qs) {
+      document.querySelectorAll("a[data-keep-query='1']").forEach(function(a) {
+        const href = a.getAttribute("href") || "";
+        if (href && href.indexOf("?") === -1) a.setAttribute("href", href + qs);
+      });
+    }
+
+    updateTickerPill();
+    updateCalculator();
+
+    (async function hydrateLiveRates() {
+      try {
+        const base = await resolveApiBase();
+        const r = await fetch(base + "/api/live-market-ticker", { cache: "no-store" });
+        if (r.ok) {
+          const d = await r.json();
+          const px = Number((d && (d.sol_usd || d.sol_price_usd || d.sol_price)) || 0);
+          if (px > 0) {
+            liveSolUsd = px;
+            updateTickerPill();
+            updateCalculator();
+          }
+        }
+      } catch (_e) {}
+    })();
+
+    const initParams = new URLSearchParams(window.location.search);
+    if (initParams.get("wallet") && BASE58_RE.test(initParams.get("wallet"))) {
+      document.getElementById("walletInput").value = initParams.get("wallet");
+      runWalletScan(initParams.get("wallet"));
+    }
+    if (initParams.get("mint") && BASE58_RE.test(initParams.get("mint"))) {
+      document.getElementById("mintInput").value = initParams.get("mint");
+      runTokenScan(initParams.get("mint"));
+    }
+  })();
+  </script>
+<!-- RRS_LOC_DEMO_V1_START -->
+<script>
+(function(){
+  var DEMO_W = "66666y3RmL6gNyttNKXNhF5awxAWbBdGSfpKuaTLrjRH";
+  var DEMO_M = "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263";
+  window.rrsLocShareX = function(addr, atas, sol, usd) {
+    var ref = (addr && addr.length >= 32 && addr !== DEMO_W) ? addr : "YOUR_SOL_WALLET";
+    var u = "https://rentandrugshield.com/ko/?ref=" + encodeURIComponent(ref);
+    var txt = "Scanned Solana wallet on @SolRentClaim: " + atas + " empty token accounts = +" + Number(sol||0).toFixed(4) + " SOL ($" + Number(usd||0).toFixed(2) + ") locked rent! 1st Claim 100% FREE (0% fee) + 30% referral SOL: " + u;
+    window.open("https://x.com/intent/tweet?text=" + encodeURIComponent(txt), "_blank", "noopener,noreferrer");
+  };
+  window.rrsLocFocusWallet = function() {
+    var wi = document.getElementById("walletInput");
+    if (wi) { wi.value = ""; wi.focus(); }
+  };
+  window.rrsLocRunDemoWallet = function() {
+    var wi = document.getElementById("walletInput");
+    var sb = document.getElementById("btnScanWallet");
+    if (wi) wi.value = DEMO_W;
+    if (sb) sb.click();
+  };
+  window.rrsLocRunDemoToken = function() {
+    var mi = document.getElementById("mintInput");
+    var tb = document.getElementById("btnScanToken");
+    if (mi) mi.value = DEMO_M;
+    if (tb) tb.click();
+  };
+  var wr = document.getElementById("walletResult");
+  if (wr && typeof MutationObserver !== "undefined") {
+    new MutationObserver(function(){
+      if (wr.querySelector("#btnClaimRedirect") && !wr.querySelector("#btnLocViralShareX")) {
+        var wi = document.getElementById("walletInput");
+        var wAddr = (wi && wi.value ? wi.value.trim() : "");
+        if (wAddr === DEMO_W && !wr.querySelector("#locDemoOwnPrompt")) {
+          var d = document.createElement("div");
+          d.id = "locDemoOwnPrompt";
+          d.style.cssText = "margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(0,255,163,0.12);border:1.5px solid #00FFA3;";
+          d.innerHTML = '<div style="font-size:13px;font-weight:800;color:#F8FAFC;margin-bottom:7px;">🎯 메인넷 초고속 스캔 완료! 위 입력창에 본인 솔라나 지갑 주소를 붙여넣고 첫 청구 0% 무료 혜택을 받으세요!</div>'
+            + '<button type="button" onclick="window.rrsLocFocusWallet()" style="width:100%;padding:8px 12px;border:none;border-radius:8px;background:#00FFA3;color:#021810;font-weight:900;cursor:pointer;">📋 데모 지우기 & 내 지갑 주소 붙여넣기 (첫 청구 0% 무료)</button>';
+          wr.appendChild(d);
+        }
+        var kpis = wr.querySelectorAll(".kpi-val");
+        var atas = kpis.length > 0 ? parseInt(kpis[0].textContent || "0", 10) || 0 : 0;
+        var solMatch = (wr.textContent || "").match(/\+([0-9.]+)\s*SOL/);
+        var solVal = solMatch ? parseFloat(solMatch[1]) : 0;
+        var usdVal = solVal * 73.5;
+        var b = document.createElement("button");
+        b.id = "btnLocViralShareX";
+        b.type = "button";
+        b.style.cssText = "width:100%;margin-top:9px;padding:10px 14px;border-radius:10px;border:1.5px solid #38BDF8;background:rgba(14,165,233,0.20);color:#F0F9FF;font-weight:900;font-size:13.5px;cursor:pointer;";
+        b.textContent = "𝕏 Share My Locked SOL Receipt on X + Earn 30% ?ref= (X 공유 & 30% 리퍼럴 수익)";
+        b.onclick = function() { window.rrsLocShareX(wAddr, atas, solVal, usdVal); };
+        wr.appendChild(b);
+      }
+    }).observe(wr, { childList: true });
+  }
+})();
+</script>
+<!-- RRS_LOC_DEMO_V1_END -->
+</body>
+</html>
