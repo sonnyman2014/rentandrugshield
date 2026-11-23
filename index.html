@@ -22526,10 +22526,36 @@ window.submitVisitorFeedbackNow = async function(){
 <!-- RRS_INSTANT_BROWSER_ALERTS_V51_END -->
 
 <style id="rrs-walkthrough-stage-compact-css">
-  /* Shrink Retail video player & remove wall-of-text clutter on staged front page */
-  #rrsHeroPromoVideoSection { max-width: 1120px !important; margin: 0 auto 16px auto !important; }
-  #rrsHeroPromoVideoSection .rrs-pitch-list li:nth-child(n+3) { display: none !important; }
-  #retailVaultViewport { max-height: 295px !important; min-height: 240px !important; }
+  /* Keep current below-scanners position w/ full matching container width & equal 50/50 16:9 card/video proportions! */
+  #rrsHeroPromoVideoSection {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 18px 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+  @media (max-width: 980px) {
+    #rrsHeroPromoVideoSection { grid-template-columns: 1fr !important; }
+  }
+  #rrsRetailLeftDiffCard, #retailCastleVaultPlayerCard {
+    min-height: 430px !important;
+    height: 100% !important;
+  }
+  #retailVaultViewport {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 430px !important;
+    max-height: none !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+  #retailVaultMasterVideo {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    background: #050811 !important;
+  }
   /* Suppress Castle HUD overlay on Retail clean scanner walkthrough video */
   #retailVaultSkyOverlay { display: none !important; opacity: 0 !important; }
 </style>
