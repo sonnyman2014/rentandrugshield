@@ -787,13 +787,13 @@
 
             <div class="rrs-filter-grid">
               <label class="rrs-filter-lbl">Min MCap ($)
-                <input id="fltMinMc" class="rrs-inp" type="number" value="25000" />
+                <input id="fltMinMc" class="rrs-inp" type="text" inputmode="decimal" value="25000" />
               </label>
               <label class="rrs-filter-lbl">Min Liquidity ($)
-                <input id="fltMinLiq" class="rrs-inp" type="number" value="10000" />
+                <input id="fltMinLiq" class="rrs-inp" type="text" inputmode="decimal" value="10000" />
               </label>
               <label class="rrs-filter-lbl">Min % Move
-                <input id="fltPctMove" class="rrs-inp" type="number" value="2" />
+                <input id="fltPctMove" class="rrs-inp" type="text" inputmode="decimal" value="2" />
               </label>
               <label class="rrs-filter-lbl">Coin Name / Ticker
                 <input id="fltCoinName" class="rrs-inp" type="text" value="" placeholder="e.g. BONK, JUP" />
@@ -846,7 +846,7 @@
               <p class="rrs-lead" style="margin-top:3px;">Catches lookalike prefix/suffix spoof wallets &amp; 0-lamport dust history traps.</p>
               <input id="inpPoisonTrusted" class="rrs-inp" type="text" value="" placeholder="Your Trusted Counterparty Address..." autocomplete="off" />
               <input id="inpPoisonSuspect" class="rrs-inp" type="text" value="" placeholder="Recent TX Counterparty Address..." autocomplete="off" />
-              <input id="inpPoisonLamports" class="rrs-inp" type="number" value="" placeholder="Transfer Amount (lamports, e.g. 0)" />
+              <input id="inpPoisonLamports" class="rrs-inp" type="text" inputmode="numeric" value="" placeholder="Transfer Amount (lamports, e.g. 0)" />
               <div class="rrs-btn-row">
                 <button type="button" class="rrs-btn rrs-btn-gold" id="btnRunPoisonScan">Check Dust Poison</button>
                 <button type="button" class="rrs-btn rrs-btn-ghost" id="btnSamplePoison">Test $0 Vanity Trap</button>

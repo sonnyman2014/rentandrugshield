@@ -373,6 +373,10 @@ function triggerHaptic(kind) {
   } catch (_e) {}
   try {
     if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+      const isNativeVib = Function.prototype.toString.call(navigator.vibrate).indexOf('[native code]') !== -1;
+      if (isNativeVib && navigator.userActivation && !navigator.userActivation.hasBeenActive) {
+        return false;
+      }
       navigator.vibrate(pattern);
       return true;
     }
