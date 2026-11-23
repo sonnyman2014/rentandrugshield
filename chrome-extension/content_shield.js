@@ -397,7 +397,7 @@
         '<div class="rrs-modal-top">' +
           '<div style="display:flex;align-items:center;gap:7px;">' +
             '<img class="rrs-shield-logo" src="' + iconSrc + '" alt="Shield" />' +
-            '<span class="rrs-modal-title">SOL Rent &amp; Rug Shield • 12-Layer Suite (v5.3.0)</span>' +
+            '<span class="rrs-modal-title">SOL Rent &amp; Rug Shield • 12-Layer Suite (v5.7.0)</span>' +
             '<button type="button" class="rrs-info-trigger" id="rrs-modal-info-btn" title="12-Layer Info">ⓘ</button>' +
           '</div>' +
           '<button type="button" class="rrs-icon-btn" id="rrs-modal-close-btn">✕ Close</button>' +

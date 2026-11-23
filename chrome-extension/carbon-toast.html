@@ -2,116 +2,51 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Rent &amp; Rug Shield Carbon v5.3</title>
+<title>Rent &amp; Rug Shield Original Gold &amp; Black v5.7</title>
 <style>
   :root { --rrs-scale: 1; }
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  html, body { min-width: 360px; min-height: 155px; background: #020408; color: #FFFFFF; overflow-x: hidden; }
+  html, body { min-width: 380px; background: #060A14; color: #FFFFFF; overflow-x: hidden; zoom: var(--rrs-scale); }
   .wrap {
-    position: relative;
-    width: calc(492px * var(--rrs-scale)); min-height: calc(206px * var(--rrs-scale));
-    padding: calc(13px * var(--rrs-scale)) calc(16px * var(--rrs-scale));
-    background: linear-gradient(160deg, #060B14 0%, #020408 100%);
-    border: 2px solid #00FFA3; border-left: calc(8px * var(--rrs-scale)) solid #00FFA3;
-    border-radius: calc(14px * var(--rrs-scale));
-    display: flex; flex-direction: column; justify-content: space-between; cursor: grab; user-select: none;
+    padding: 12px 14px;
+    background: #060A14;
+    border: 2px solid #FFD000;
+    border-radius: 12px;
+    display: flex; flex-direction: column; gap: 8px;
   }
-  .wrap.red { border-color: #FF1744; border-left-color: #FF1744; }
-  .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-  .badges { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; overflow: hidden; }
-  .ticker { background: #020408; border: 1.6px solid #00FFA3; color: #00FFA3; padding: calc(2px * var(--rrs-scale)) calc(8px * var(--rrs-scale)); border-radius: 7px; font-size: calc(16px * var(--rrs-scale)); font-weight: 900; white-space: nowrap; }
-  .wrap.red .ticker { border-color: #FF1744; color: #FF1744; }
-  .pill { background: #043222; border: 1px solid #00FFA3; color: #FFFFFF; padding: calc(3px * var(--rrs-scale)) calc(9px * var(--rrs-scale)); border-radius: 999px; font-size: calc(11px * var(--rrs-scale)); font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .wrap.red .pill { background: #4A0816; border-color: #FF1744; }
-  .ctrls { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-  .cbtn { background: #0B1220; color: #F8FAFC; border: 1px solid #334155; border-radius: 6px; padding: calc(3px * var(--rrs-scale)) calc(7px * var(--rrs-scale)); font-size: calc(11.5px * var(--rrs-scale)); font-weight: 900; cursor: pointer; }
-  .cbtn:hover { border-color: #00FFA3; color: #00FFA3; }
-  .cbtn.zpct { border-color: #00FFA3; color: #00FFA3; }
-  .cbtn.pin.pinned { background: #3A2C0A; border-color: #D4AF37; color: #FDE047; }
-  .cbtn.gear { border-color: #D4AF37; color: #D4AF37; }
-  .cbtn.cls:hover { background: #FF1744; border-color: #FF1744; color: #FFFFFF; }
-  .ttl { font-size: calc(17.5px * var(--rrs-scale)); font-weight: 900; line-height: 1.28; color: #FFFFFF; margin-top: 7px; cursor: pointer; }
-  .sub { font-size: calc(13px * var(--rrs-scale)); font-weight: 700; color: #86EFAC; line-height: 1.34; margin-top: 5px; cursor: pointer; }
-  .wrap.red .sub { color: #FDA4AF; }
-  .ftr { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1E293B; padding-top: 5px; margin-top: 7px; font-size: calc(10.8px * var(--rrs-scale)); font-weight: 800; }
-  .drawer { display: none; background: #020408; border: 2px solid #D4AF37; border-radius: 12px; padding: 10px 12px; margin-top: 8px; font-size: 11px; }
-  .drawer.open { display: block; }
-  .dsec { background: #070E1B; border: 1px solid #1E293B; border-radius: 8px; padding: 7px 8px; margin-bottom: 6px; }
-  .drow { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; margin-top: 4px; }
-  .dinp { background: #020408; color: #00FFA3; border: 1px solid #334155; border-radius: 5px; padding: 3px 6px; font-size: 11px; font-weight: 800; }
+  .scan-row { display: flex; gap: 6px; width: 100%; }
+  .scan-inp { flex: 1; background: #03060C; color: #FFF; border: 1.4px solid #FFD000; border-radius: 7px; padding: 6px 9px; font-size: 11.5px; font-weight: 700; outline: none; }
+  .scan-btn { background: #FFD000; color: #060A14; border: none; border-radius: 7px; padding: 6px 11px; font-size: 11px; font-weight: 900; cursor: pointer; }
+  .cbtn { background: #0B1222; color: #FFD000; border: 1.3px solid #FFD000; border-radius: 7px; padding: 4px 8px; font-size: 10.8px; font-weight: 900; cursor: pointer; }
+  .ttl { font-size: 14px; font-weight: 900; color: #FFD000; cursor: pointer; }
+  .sub { font-size: 11.8px; font-weight: 600; color: #E2E8F0; cursor: pointer; }
+  .ftr { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,208,0,0.25); padding-top: 5px; font-size: 10.5px; font-weight: 800; }
 </style>
 </head>
 <body>
   <div id="card" class="wrap">
-    <div class="top">
-      <div class="badges">
-        <span id="tk" class="ticker" style="display:none;"></span>
-        <span id="pl" class="pill">12-LAYER SHIELD v5.3</span>
-      </div>
-      <div class="ctrls">
-        <button id="btnZoomOut" class="cbtn" type="button" title="Zoom Out">-</button>
-        <button id="btnZoomPct" class="cbtn zpct" type="button" title="Reset 100%">100%</button>
-        <button id="btnZoomIn" class="cbtn" type="button" title="Zoom In">+</button>
-        <button id="btnPin" class="cbtn pin" type="button" title="Pin Lock">&#128204;</button>
-        <button id="btnGear" class="cbtn gear" type="button" title="MACD &amp; Market Settings">&#9881;</button>
-        <button id="btnClose" class="cbtn cls" type="button" aria-label="Close Alert">X</button>
+    <div class="scan-row">
+      <input id="ctScanInp" class="scan-inp" type="text" placeholder="Paste Coin Mint or Wallet Address Here..." />
+      <button id="ctScanBtn" class="scan-btn" type="button">SCAN NOW</button>
+    </div>
+    <div id="ctScanOut" style="display:none;padding:6px 8px;border:1px solid #FFD000;border-radius:7px;font-size:10.5px;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;">
+      <span id="pl" style="color:#00FFA3;font-size:10.5px;font-weight:900;">GOLD &amp; BLACK v5.7</span>
+      <div style="display:flex;gap:4px;">
+        <button id="btnZoomOut" class="cbtn" type="button">- ZOOM</button>
+        <button id="btnZoomPct" class="cbtn" type="button">100%</button>
+        <button id="btnZoomIn" class="cbtn" type="button">+ ZOOM</button>
+        <button id="btnPin" class="cbtn" type="button">10s / PIN</button>
+        <button id="btnClose" class="cbtn" type="button" style="border-color:#FF4D6D;color:#FF4D6D;">X</button>
       </div>
     </div>
-    <div id="bodyClick" style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-      <div id="ttl" class="ttl">Loading alert...</div>
-      <div id="sub" class="sub">Click card to trade or open 12-Layer Audit</div>
+    <div id="bodyClick">
+      <div id="ttl" class="ttl">Original Carbon Black &amp; 24K Gold v5.7</div>
+      <div id="sub" class="sub">10s Idle Auto-Close | Zero False Red News Badges</div>
     </div>
     <div class="ftr">
-      <span id="dragCue" style="color:#94A3B8;">Drag Anywhere | Ctrl+Wheel Zoom</span>
-      <span style="color:#D4AF37;font-weight:900;">rentandrugshield.com</span>
-    </div>
-  </div>
-
-  <div id="drawerSettings" class="drawer">
-    <div style="font-weight:900;color:#D4AF37;margin-bottom:6px;">&#9881; MACD (1m/3m/5m/15m), MARKET &amp; NEWS SETTINGS</div>
-    <div class="dsec">
-      <b style="color:#38BDF8;">MACD Crossover &amp; Histogram Flip:</b>
-      <div class="drow">
-        <label><input type="checkbox" id="ctMacdOn" /> Enable</label>
-        <label><input type="checkbox" id="ctMacd1m" checked /> 1m</label>
-        <label><input type="checkbox" id="ctMacd3m" checked /> 3m</label>
-        <label><input type="checkbox" id="ctMacd5m" checked /> 5m</label>
-        <label><input type="checkbox" id="ctMacd15m" checked /> 15m</label>
-        <label style="color:#00FFA3;"><input type="checkbox" id="ctMacdBull" checked /> Bull</label>
-        <label style="color:#FDA4AF;"><input type="checkbox" id="ctMacdBear" /> Bear</label>
-        <label style="color:#FDE047;"><input type="checkbox" id="ctMacdHist" checked /> Hist Flip</label>
-      </div>
-    </div>
-    <div class="dsec">
-      <b style="color:#00FFA3;">Market Cap ($), Min Liquidity ($), % Move &amp; Coin Name:</b>
-      <div class="drow">
-        <label><input type="checkbox" id="ctMcOn" /> MC:</label>
-        <input id="ctMcMin" class="dinp" type="number" value="15000" style="width:74px;" />
-        <input id="ctMcMax" class="dinp" type="number" value="50000000" style="width:86px;" />
-        <label><input type="checkbox" id="ctLiqOn" /> Liq:</label>
-        <input id="ctLiqMin" class="dinp" type="number" value="10000" style="width:72px;" />
-      </div>
-      <div class="drow">
-        <label><input type="checkbox" id="ctMvOn" /> % Move:</label>
-        <input id="ctMvMin" class="dinp" type="number" value="5" style="width:50px;" />
-        <select id="ctMvWin" class="dinp"><option>1m</option><option>3m</option><option>5m</option><option>15m</option><option selected>1h</option></select>
-        <label><input type="checkbox" id="ctTkOn" /> Coin:</label>
-        <input id="ctTkQ" class="dinp" type="text" placeholder="SOL,BONK" style="width:95px;" />
-      </div>
-    </div>
-    <div class="dsec">
-      <b style="color:#FDE047;">Crypto / AI / World News Filters:</b>
-      <div class="drow">
-        <label><input type="checkbox" id="ctCrypto" checked /> Crypto</label>
-        <label><input type="checkbox" id="ctAi" checked /> AI</label>
-        <label><input type="checkbox" id="ctWorld" checked /> World</label>
-        <input id="ctNewsKw" class="dinp" type="text" value="SOL,BTC,ETF" style="width:110px;" />
-        <input id="ctWorldReg" class="dinp" type="text" value="US,CA,GLOBAL" style="width:100px;" />
-      </div>
-    </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
-      <button id="ctSaveBtn" type="button" style="background:#00FFA3;color:#020408;border:none;border-radius:6px;padding:5px 12px;font-weight:900;cursor:pointer;">Save &amp; Sync</button>
-      <span style="color:#D4AF37;font-weight:900;">rentandrugshield.com</span>
+      <span id="dragCue" style="color:#94A3B8;">10s Auto-Close</span>
+      <span style="color:#FFD000;font-weight:900;">rentandrugshield.com</span>
     </div>
   </div>
   <script src="carbon-toast.js"></script>
