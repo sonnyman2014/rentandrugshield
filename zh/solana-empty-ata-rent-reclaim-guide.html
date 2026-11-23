@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回 | Rent &amp; Rug Shield</title>
-  <meta name="description" content="深度解析 Solana 关联代币账户 (ATA) 0.00203928 SOL 免租押金机制、SPL 0x09 CloseAccount 原生关闭指令、数据包字节上限与首单 0% 手续费只读找回流程。" />
+  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#020408" />
   <link rel="canonical" href="https://rentandrugshield.com/zh/solana-empty-ata-rent-reclaim-guide.html" />
@@ -20,76 +20,15 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
   <meta property="og:title" content="Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回" />
-  <meta property="og:description" content="深度解析 Solana 关联代币账户 (ATA) 0.00203928 SOL 免租押金机制、SPL 0x09 CloseAccount 原生关闭指令、数据包字节上限与首单 0% 手续费只读找回流程。" />
+  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta property="og:url" content="https://rentandrugshield.com/zh/solana-empty-ata-rent-reclaim-guide.html" />
   <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:title" content="Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回" />
-  <meta name="twitter:description" content="深度解析 Solana 关联代币账户 (ATA) 0.00203928 SOL 免租押金机制、SPL 0x09 CloseAccount 原生关闭指令、数据包字节上限与首单 0% 手续费只读找回流程。" />
+  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "headline": "Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回",
-      "description": "深度解析 Solana 关联代币账户 (ATA) 0.00203928 SOL 免租押金机制、SPL 0x09 CloseAccount 原生关闭指令、数据包字节上限与首单 0% 手续费只读找回流程。",
-      "inLanguage": "zh-CN",
-      "datePublished": "2026-11-23",
-      "dateModified": "2026-11-23",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rentandrugshield.com/zh/solana-empty-ata-rent-reclaim-guide.html"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rentandrugshield.com/favicon.png"
-        }
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "关闭空代币账户会误删我有价值的代币或 NFT 吗?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "绝对不会。Solana 底层 SPL Token 程序硬编码规定: 只要账户内代币原始余额大于 0，0x09 CloseAccount 指令就会被链上直接拒绝；同时我们仅筛选余额严格为 0 的空壳账户。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "300 个空代币账户大约可以找回多少 SOL?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "每个标准空 SPL ATA 账户锁定约 0.00203928 SOL，300 个空账户可一次性找回约 0.611784 SOL。首单享受 0% 手续费，全部 SOL 直接回到您的钱包。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "只是想查询钱包里锁了多少租金，需要连接 Phantom 或 OKX 钱包吗?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "完全不需要。直接粘贴钱包公钥地址即可进行 100% 只读链上扫描，零签名、零授权弹窗。"
-          }
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "Solana 空代币账户 (ATA) 租金找回技术指南 | 2,039,280 Lamports 原生全额退回", "description": "深度解析 Solana 关联代币账户 (ATA) 0.00203928 SOL 免租押金机制、SPL 0x09 CloseAccount 原生关闭指令、数据包字节上限与首单 0% 手续费只读找回流程。", "inLanguage": "zh-CN", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://rentandrugshield.com/zh/solana-empty-ata-rent-reclaim-guide.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "author": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "publisher": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "logo": {"@type": "ImageObject", "url": "https://rentandrugshield.com/favicon.png"}, "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "关闭空代币账户会误删我有价值的代币或 NFT 吗?", "acceptedAnswer": {"@type": "Answer", "text": "Read-only Solana audit & rent check (0 wallet connect needed). Native SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4%-5%)."}}, {"@type": "Question", "name": "300 个空代币账户大约可以找回多少 SOL?", "acceptedAnswer": {"@type": "Answer", "text": "每个标准空 SPL ATA 账户锁定约 0.00203928 SOL，300 个空账户可一次性找回约 0.611784 SOL。首单享受 0% 手续费，全部 SOL 直接回到您的钱包。"}}, {"@type": "Question", "name": "只是想查询钱包里锁了多少租金，需要连接 Phantom 或 OKX 钱包吗?", "acceptedAnswer": {"@type": "Answer", "text": "完全不需要。直接粘贴钱包公钥地址即可进行 100% 只读链上扫描，零签名、零授权弹窗。"}}]}]}</script>
   <style>
     :root {
       --bg: #020408;
@@ -397,6 +336,8 @@
       margin-bottom: 6px;
     }
   </style>
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Solana Rent & Rug Shield", "applicationCategory": "FinanceApplication", "operatingSystem": "Web, Chrome, Android, iOS", "url": "https://rentandrugshield.com/zh/solana-empty-ata-rent-reclaim-guide.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}</script>
 </head>
 <body>
   <header class="topbar">

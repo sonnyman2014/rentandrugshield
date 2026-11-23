@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%) | Rent &amp; Rug Shield</title>
-  <meta name="description" content="专为 Pump.fun、PumpSwap、Raydium、GMGN、OKX Web3 与 Phantom 链上交易员打造的空账户 SOL 租金安全找回指南，100% 只读对账 + 首单 0% 手续费。" />
+  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#020408" />
   <link rel="canonical" href="https://rentandrugshield.com/zh/reclaim-pumpfun-raydium-trader-sol-rent.html" />
@@ -20,76 +20,15 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
   <meta property="og:title" content="Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%)" />
-  <meta property="og:description" content="专为 Pump.fun、PumpSwap、Raydium、GMGN、OKX Web3 与 Phantom 链上交易员打造的空账户 SOL 租金安全找回指南，100% 只读对账 + 首单 0% 手续费。" />
+  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta property="og:url" content="https://rentandrugshield.com/zh/reclaim-pumpfun-raydium-trader-sol-rent.html" />
   <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:title" content="Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%)" />
-  <meta name="twitter:description" content="专为 Pump.fun、PumpSwap、Raydium、GMGN、OKX Web3 与 Phantom 链上交易员打造的空账户 SOL 租金安全找回指南，100% 只读对账 + 首单 0% 手续费。" />
+  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "headline": "Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%)",
-      "description": "专为 Pump.fun、PumpSwap、Raydium、GMGN、OKX Web3 与 Phantom 链上交易员打造的空账户 SOL 租金安全找回指南，100% 只读对账 + 首单 0% 手续费。",
-      "inLanguage": "zh-CN",
-      "datePublished": "2026-11-23",
-      "dateModified": "2026-11-23",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rentandrugshield.com/zh/reclaim-pumpfun-raydium-trader-sol-rent.html"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rentandrugshield.com/favicon.png"
-        }
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "关闭某个 Meme 币的空账户后，以后还能再次买入同一个币吗?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "完全不影响! 下次再次买入该代币时，DEX 路由会自动重新为您初始化 ATA 账户，交易体验没有任何区别。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "我在 GMGN 或 TG Bot 里用的钱包怎么找回租金?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "您可以先用钱包公钥在网页上只读查询锁定的 SOL 数量；若金额可观，将该钱包导入 Phantom 或 OKX Web3 签名一次即可首单 0% 费率全额领回。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "每一笔退回交易在 Solscan 上都能查到明细吗?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "是的，所有指令均为透明的链上原生 SPL 0x09 CloseAccount 指令，可在 Solscan 实时核验每一分退回的 lamports。"
-          }
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "Pump.fun、PumpSwap 与 Raydium 交易员如何安全找回锁定的 SOL 账户租金 (首单0%)", "description": "专为 Pump.fun、PumpSwap、Raydium、GMGN、OKX Web3 与 Phantom 链上交易员打造的空账户 SOL 租金安全找回指南，100% 只读对账 + 首单 0% 手续费。", "inLanguage": "zh-CN", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://rentandrugshield.com/zh/reclaim-pumpfun-raydium-trader-sol-rent.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "author": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "publisher": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "logo": {"@type": "ImageObject", "url": "https://rentandrugshield.com/favicon.png"}, "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "关闭某个 Meme 币的空账户后，以后还能再次买入同一个币吗?", "acceptedAnswer": {"@type": "Answer", "text": "Read-only Solana audit & rent check (0 wallet connect needed). Native SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4%-5%)."}}, {"@type": "Question", "name": "我在 GMGN 或 TG Bot 里用的钱包怎么找回租金?", "acceptedAnswer": {"@type": "Answer", "text": "您可以先用钱包公钥在网页上只读查询锁定的 SOL 数量；若金额可观，将该钱包导入 Phantom 或 OKX Web3 签名一次即可首单 0% 费率全额领回。"}}, {"@type": "Question", "name": "每一笔退回交易在 Solscan 上都能查到明细吗?", "acceptedAnswer": {"@type": "Answer", "text": "是的，所有指令均为透明的链上原生 SPL 0x09 CloseAccount 指令，可在 Solscan 实时核验每一分退回的 lamports。"}}]}]}</script>
   <style>
     :root {
       --bg: #020408;
@@ -397,6 +336,8 @@
       margin-bottom: 6px;
     }
   </style>
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Solana Rent & Rug Shield", "applicationCategory": "FinanceApplication", "operatingSystem": "Web, Chrome, Android, iOS", "url": "https://rentandrugshield.com/zh/reclaim-pumpfun-raydium-trader-sol-rent.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}</script>
 </head>
 <body>
   <header class="topbar">

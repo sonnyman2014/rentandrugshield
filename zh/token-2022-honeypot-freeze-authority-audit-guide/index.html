@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱 | Rent &amp; Rug Shield</title>
-  <meta name="description" content="深入解析 Solana Token-2022 恶意扩展机制: PermanentDelegate 强制划走代币、TransferHook 99% 隐藏卖出税、FreezeAuthority 冻结貔貅盘及 Slot-0 庄家捆绑老鼠仓识别。" />
+  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#020408" />
   <link rel="canonical" href="https://rentandrugshield.com/zh/token-2022-honeypot-freeze-authority-audit-guide.html" />
@@ -20,76 +20,15 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
   <meta property="og:title" content="Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱" />
-  <meta property="og:description" content="深入解析 Solana Token-2022 恶意扩展机制: PermanentDelegate 强制划走代币、TransferHook 99% 隐藏卖出税、FreezeAuthority 冻结貔貅盘及 Slot-0 庄家捆绑老鼠仓识别。" />
+  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta property="og:url" content="https://rentandrugshield.com/zh/token-2022-honeypot-freeze-authority-audit-guide.html" />
   <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:title" content="Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱" />
-  <meta name="twitter:description" content="深入解析 Solana Token-2022 恶意扩展机制: PermanentDelegate 强制划走代币、TransferHook 99% 隐藏卖出税、FreezeAuthority 冻结貔貅盘及 Slot-0 庄家捆绑老鼠仓识别。" />
+  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "headline": "Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱",
-      "description": "深入解析 Solana Token-2022 恶意扩展机制: PermanentDelegate 强制划走代币、TransferHook 99% 隐藏卖出税、FreezeAuthority 冻结貔貅盘及 Slot-0 庄家捆绑老鼠仓识别。",
-      "inLanguage": "zh-CN",
-      "datePublished": "2026-11-23",
-      "dateModified": "2026-11-23",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rentandrugshield.com/zh/token-2022-honeypot-freeze-authority-audit-guide.html"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rentandrugshield.com/favicon.png"
-        }
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "什么是 Solana Token-2022 的 PermanentDelegate (永久委托)?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "这是 Token-2022 面向合规稳定币设计的扩展，但若出现在土狗/Meme 代币中，意味着项目方拥有无需持币人签名即可随时清零您持仓的绝对权限，属于最高级别危险信号。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "已经被项目方恶意冻结 (Frozen) 的账户还能退回租金吗?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "根据 Solana 协议规则，处于 frozen 状态的账户在解冻前无法关闭。系统会自动将其安全隔离，绝不影响您一键退回其他所有正常空账户的 SOL。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "买币前做 12 层安全检测收费吗?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "在 rentandrugshield.com 输入任意代币合约 Mint 地址即可免费使用 12 层极速防貔貅审计。"
-          }
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "Solana 12层防貔貅审计指南: 识别 Token-2022 永久委托 (PermanentDelegate) 与冻结权限陷阱", "description": "深入解析 Solana Token-2022 恶意扩展机制: PermanentDelegate 强制划走代币、TransferHook 99% 隐藏卖出税、FreezeAuthority 冻结貔貅盘及 Slot-0 庄家捆绑老鼠仓识别。", "inLanguage": "zh-CN", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://rentandrugshield.com/zh/token-2022-honeypot-freeze-authority-audit-guide.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "author": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "publisher": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "logo": {"@type": "ImageObject", "url": "https://rentandrugshield.com/favicon.png"}, "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "什么是 Solana Token-2022 的 PermanentDelegate (永久委托)?", "acceptedAnswer": {"@type": "Answer", "text": "Read-only Solana audit & rent check (0 wallet connect needed). Native SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4%-5%)."}}, {"@type": "Question", "name": "已经被项目方恶意冻结 (Frozen) 的账户还能退回租金吗?", "acceptedAnswer": {"@type": "Answer", "text": "根据 Solana 协议规则，处于 frozen 状态的账户在解冻前无法关闭。系统会自动将其安全隔离，绝不影响您一键退回其他所有正常空账户的 SOL。"}}, {"@type": "Question", "name": "买币前做 12 层安全检测收费吗?", "acceptedAnswer": {"@type": "Answer", "text": "在 rentandrugshield.com 输入任意代币合约 Mint 地址即可免费使用 12 层极速防貔貅审计。"}}]}]}</script>
   <style>
     :root {
       --bg: #020408;
@@ -397,6 +336,8 @@
       margin-bottom: 6px;
     }
   </style>
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Solana Rent & Rug Shield", "applicationCategory": "FinanceApplication", "operatingSystem": "Web, Chrome, Android, iOS", "url": "https://rentandrugshield.com/zh/token-2022-honeypot-freeze-authority-audit-guide/", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}</script>
 </head>
 <body>
   <header class="topbar">

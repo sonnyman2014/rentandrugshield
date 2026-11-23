@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to Reclaim Locked Pump.fun, PumpSwap &amp; Raydium Trader SOL Rent Safely | Rent &amp; Rug Shield</title>
-  <meta name="description" content="Step-by-step technical guide for Pump.fun, PumpSwap, Raydium, Jupiter, GMGN, Photon, and BullX traders to recover locked SOL rent from empty meme token accounts at 0% first-claim fee." />
+  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#020408" />
   <link rel="canonical" href="https://rentandrugshield.com/en/reclaim-pumpfun-raydium-trader-sol-rent.html" />
@@ -20,76 +20,15 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
   <meta property="og:title" content="How to Reclaim Locked Pump.fun, PumpSwap &amp; Raydium Trader SOL Rent Safely" />
-  <meta property="og:description" content="Step-by-step technical guide for Pump.fun, PumpSwap, Raydium, Jupiter, GMGN, Photon, and BullX traders to recover locked SOL rent from empty meme token accounts at 0% first-claim fee." />
+  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta property="og:url" content="https://rentandrugshield.com/en/reclaim-pumpfun-raydium-trader-sol-rent.html" />
   <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:title" content="How to Reclaim Locked Pump.fun, PumpSwap &amp; Raydium Trader SOL Rent Safely" />
-  <meta name="twitter:description" content="Step-by-step technical guide for Pump.fun, PumpSwap, Raydium, Jupiter, GMGN, Photon, and BullX traders to recover locked SOL rent from empty meme token accounts at 0% first-claim fee." />
+  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "headline": "How to Reclaim Locked Pump.fun, PumpSwap & Raydium Trader SOL Rent Safely",
-      "description": "Step-by-step technical guide for Pump.fun, PumpSwap, Raydium, Jupiter, GMGN, Photon, and BullX traders to recover locked SOL rent from empty meme token accounts at 0% first-claim fee.",
-      "inLanguage": "en",
-      "datePublished": "2026-11-23",
-      "dateModified": "2026-11-23",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rentandrugshield.com/en/reclaim-pumpfun-raydium-trader-sol-rent.html"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rentandrugshield.com/favicon.png"
-        }
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "If I re-buy a Pump.fun or Raydium token after closing its empty ATA, what happens?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Your swap router simply re-creates the ATA automatically during the buy transaction using the standard 0.00203928 SOL rent deposit - nothing breaks."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does closing Pump.fun empty ATAs affect my PumpSwap or Raydium active holdings?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Never. Active holdings have tokenAmount.amount > 0 and are completely untouched both by our filter and by the Solana SPL Token program itself."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I check multiple trading wallets without connecting them?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Simply change the ?wallet=PUBKEY parameter in your browser bar to audit every hot wallet or sniper wallet read-only in seconds."
-          }
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "How to Reclaim Locked Pump.fun, PumpSwap & Raydium Trader SOL Rent Safely", "description": "Step-by-step technical guide for Pump.fun, PumpSwap, Raydium, Jupiter, GMGN, Photon, and BullX traders to recover locked SOL rent from empty meme token accounts at 0% first-claim fee.", "inLanguage": "en", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://rentandrugshield.com/en/reclaim-pumpfun-raydium-trader-sol-rent.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "author": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "publisher": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "logo": {"@type": "ImageObject", "url": "https://rentandrugshield.com/favicon.png"}, "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "If I re-buy a Pump.fun or Raydium token after closing its empty ATA, what happens?", "acceptedAnswer": {"@type": "Answer", "text": "Read-only Solana audit & rent check (0 wallet connect needed). Native SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4%-5%)."}}, {"@type": "Question", "name": "Does closing Pump.fun empty ATAs affect my PumpSwap or Raydium active holdings?", "acceptedAnswer": {"@type": "Answer", "text": "Never. Active holdings have tokenAmount.amount > 0 and are completely untouched both by our filter and by the Solana SPL Token program itself."}}, {"@type": "Question", "name": "Can I check multiple trading wallets without connecting them?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Simply change the ?wallet=PUBKEY parameter in your browser bar to audit every hot wallet or sniper wallet read-only in seconds."}}]}]}</script>
   <style>
     :root {
       --bg: #020408;
@@ -397,6 +336,8 @@
       margin-bottom: 6px;
     }
   </style>
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Solana Rent & Rug Shield", "applicationCategory": "FinanceApplication", "operatingSystem": "Web, Chrome, Android, iOS", "url": "https://rentandrugshield.com/en/reclaim-pumpfun-raydium-trader-sol-rent.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}</script>
 </head>
 <body>
   <header class="topbar">

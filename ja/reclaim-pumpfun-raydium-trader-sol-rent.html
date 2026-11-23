@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pump.fun・PumpSwap・Raydium トレーダー向け ロックされた SOL レント安全回収ガイド | Rent &amp; Rug Shield</title>
-  <meta name="description" content="Pump.fun、PumpSwap、Raydium、Jupiter、GMGN、Phantom を利用する Solana トレーダーが、売却済みミームコインの空口座から初回手数料 0% で SOL を安全に取り戻す手順。" />
+  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#020408" />
   <link rel="canonical" href="https://rentandrugshield.com/ja/reclaim-pumpfun-raydium-trader-sol-rent.html" />
@@ -20,76 +20,15 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
   <meta property="og:title" content="Pump.fun・PumpSwap・Raydium トレーダー向け ロックされた SOL レント安全回収ガイド" />
-  <meta property="og:description" content="Pump.fun、PumpSwap、Raydium、Jupiter、GMGN、Phantom を利用する Solana トレーダーが、売却済みミームコインの空口座から初回手数料 0% で SOL を安全に取り戻す手順。" />
+  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta property="og:url" content="https://rentandrugshield.com/ja/reclaim-pumpfun-raydium-trader-sol-rent.html" />
   <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:title" content="Pump.fun・PumpSwap・Raydium トレーダー向け ロックされた SOL レント安全回収ガイド" />
-  <meta name="twitter:description" content="Pump.fun、PumpSwap、Raydium、Jupiter、GMGN、Phantom を利用する Solana トレーダーが、売却済みミームコインの空口座から初回手数料 0% で SOL を安全に取り戻す手順。" />
+  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "headline": "Pump.fun・PumpSwap・Raydium トレーダー向け ロックされた SOL レント安全回収ガイド",
-      "description": "Pump.fun、PumpSwap、Raydium、Jupiter、GMGN、Phantom を利用する Solana トレーダーが、売却済みミームコインの空口座から初回手数料 0% で SOL を安全に取り戻す手順。",
-      "inLanguage": "ja",
-      "datePublished": "2026-11-23",
-      "dateModified": "2026-11-23",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rentandrugshield.com/ja/reclaim-pumpfun-raydium-trader-sol-rent.html"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rentandrugshield.com/favicon.png"
-        }
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "空口座を閉じた銘柄を後からもう一度購入することはできますか?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "はい、全く問題ありません。再購入時にスワップルーターが自動的に ATA を再作成します。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "現在保有している他の Pump.fun や Raydium トークンに影響はありますか?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "一切ありません。残高が 0 の口座のみが対象となり、保有中のトークンはプロトコルレベルで保護されます。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "複数のサブウォレットを順番に無料チェックできますか?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "はい。ウォレット接続不要で何個でも公開アドレスを読み取り専用スキャンできます。"
-          }
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "Pump.fun・PumpSwap・Raydium トレーダー向け ロックされた SOL レント安全回収ガイド", "description": "Pump.fun、PumpSwap、Raydium、Jupiter、GMGN、Phantom を利用する Solana トレーダーが、売却済みミームコインの空口座から初回手数料 0% で SOL を安全に取り戻す手順。", "inLanguage": "ja", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://rentandrugshield.com/ja/reclaim-pumpfun-raydium-trader-sol-rent.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "author": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "publisher": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "logo": {"@type": "ImageObject", "url": "https://rentandrugshield.com/favicon.png"}, "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "空口座を閉じた銘柄を後からもう一度購入することはできますか?", "acceptedAnswer": {"@type": "Answer", "text": "Read-only Solana audit & rent check (0 wallet connect needed). Native SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4%-5%)."}}, {"@type": "Question", "name": "現在保有している他の Pump.fun や Raydium トークンに影響はありますか?", "acceptedAnswer": {"@type": "Answer", "text": "一切ありません。残高が 0 の口座のみが対象となり、保有中のトークンはプロトコルレベルで保護されます。"}}, {"@type": "Question", "name": "複数のサブウォレットを順番に無料チェックできますか?", "acceptedAnswer": {"@type": "Answer", "text": "はい。ウォレット接続不要で何個でも公開アドレスを読み取り専用スキャンできます。"}}]}]}</script>
   <style>
     :root {
       --bg: #020408;
@@ -397,6 +336,8 @@
       margin-bottom: 6px;
     }
   </style>
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Solana Rent & Rug Shield", "applicationCategory": "FinanceApplication", "operatingSystem": "Web, Chrome, Android, iOS", "url": "https://rentandrugshield.com/ja/reclaim-pumpfun-raydium-trader-sol-rent.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}</script>
 </head>
 <body>
   <header class="topbar">

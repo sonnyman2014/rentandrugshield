@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solana 空トークン口座 (Empty ATA) レント回収技術ガイド | 2,039,280 Lamports 完全返還 | Rent &amp; Rug Shield</title>
-  <meta name="description" content="Solana の空になった関連トークン口座 (ATA) にロックされた 0.00203928 SOL のレント保証金をネイティブ SPL 0x09 CloseAccount 命令で安全に回収する技術ガイド。初回手数料 0%。" />
+  <meta name="description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#020408" />
   <link rel="canonical" href="https://rentandrugshield.com/ja/solana-empty-ata-rent-reclaim-guide.html" />
@@ -20,76 +20,15 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
   <meta property="og:title" content="Solana 空トークン口座 (Empty ATA) レント回収技術ガイド | 2,039,280 Lamports 完全返還" />
-  <meta property="og:description" content="Solana の空になった関連トークン口座 (ATA) にロックされた 0.00203928 SOL のレント保証金をネイティブ SPL 0x09 CloseAccount 命令で安全に回収する技術ガイド。初回手数料 0%。" />
+  <meta property="og:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta property="og:url" content="https://rentandrugshield.com/ja/solana-empty-ata-rent-reclaim-guide.html" />
   <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:title" content="Solana 空トークン口座 (Empty ATA) レント回収技術ガイド | 2,039,280 Lamports 完全返還" />
-  <meta name="twitter:description" content="Solana の空になった関連トークン口座 (ATA) にロックされた 0.00203928 SOL のレント保証金をネイティブ SPL 0x09 CloseAccount 命令で安全に回収する技術ガイド。初回手数料 0%。" />
+  <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)." />
   <meta name="twitter:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "headline": "Solana 空トークン口座 (Empty ATA) レント回収技術ガイド | 2,039,280 Lamports 完全返還",
-      "description": "Solana の空になった関連トークン口座 (ATA) にロックされた 0.00203928 SOL のレント保証金をネイティブ SPL 0x09 CloseAccount 命令で安全に回収する技術ガイド。初回手数料 0%。",
-      "inLanguage": "ja",
-      "datePublished": "2026-11-23",
-      "dateModified": "2026-11-23",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rentandrugshield.com/ja/solana-empty-ata-rent-reclaim-guide.html"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Solana Rent & Rug Shield",
-        "url": "https://rentandrugshield.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rentandrugshield.com/favicon.png"
-        }
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "保有中のトークンや NFT が誤って消えることはありませんか?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "一切ありません。Solana の SPL Token プログラム自体が残高 0 以外の口座に対する CloseAccount 命令を拒否する仕様であり、さらにシステム側でも amount == '0' の口座のみを抽出します。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "スキャンするだけでウォレット接続や署名は必要ですか?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "不要です。公開ウォレットアドレスを入力するだけで 100% 読み取り専用のオンチェーン監査が完了します。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "500 個の空口座を閉じると何 SOL 戻りますか?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "500 口座 × 0.00203928 SOL = 約 1.01964 SOL が返還されます。初回請求は手数料 0% のため全額そのまま受け取れます。"
-          }
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "Solana 空トークン口座 (Empty ATA) レント回収技術ガイド | 2,039,280 Lamports 完全返還", "description": "Solana の空になった関連トークン口座 (ATA) にロックされた 0.00203928 SOL のレント保証金をネイティブ SPL 0x09 CloseAccount 命令で安全に回収する技術ガイド。初回手数料 0%。", "inLanguage": "ja", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://rentandrugshield.com/ja/solana-empty-ata-rent-reclaim-guide.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "author": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}, "publisher": {"@type": "Organization", "name": "Solana Rent & Rug Shield", "url": "https://rentandrugshield.com/", "logo": {"@type": "ImageObject", "url": "https://rentandrugshield.com/favicon.png"}, "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "保有中のトークンや NFT が誤って消えることはありませんか?", "acceptedAnswer": {"@type": "Answer", "text": "Read-only Solana audit & rent check (0 wallet connect needed). Native SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4%-5%)."}}, {"@type": "Question", "name": "スキャンするだけでウォレット接続や署名は必要ですか?", "acceptedAnswer": {"@type": "Answer", "text": "不要です。公開ウォレットアドレスを入力するだけで 100% 読み取り専用のオンチェーン監査が完了します。"}}, {"@type": "Question", "name": "500 個の空口座を閉じると何 SOL 戻りますか?", "acceptedAnswer": {"@type": "Answer", "text": "500 口座 × 0.00203928 SOL = 約 1.01964 SOL が返還されます。初回請求は手数料 0% のため全額そのまま受け取れます。"}}]}]}</script>
   <style>
     :root {
       --bg: #020408;
@@ -397,6 +336,8 @@
       margin-bottom: 6px;
     }
   </style>
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Solana Rent & Rug Shield", "applicationCategory": "FinanceApplication", "operatingSystem": "Web, Chrome, Android, iOS", "url": "https://rentandrugshield.com/ja/solana-empty-ata-rent-reclaim-guide.html", "description": "Read-only Solana audit & rent check (0 wallet connect needed). SPL 0x09 CloseAccount: 0% fee 1st claim (98% repeat vs Sol Incinerator 2.4-5%)."}</script>
 </head>
 <body>
   <header class="topbar">
