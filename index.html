@@ -16505,9 +16505,259 @@ window.submitVisitorFeedbackNow = async function(){
 </div>
 
 <!-- 2. PUBLIC BETA • EARLY ACCESS & FEEDBACK MODAL + FLOATING BOTTOM-RIGHT FEEDBACK BUTTON -->
-<button type="button" id="floatingBottomRightFeedbackBtn" onclick="window.openPublicBetaModal('feedback')" aria-label="Send Feedback">
-  💬 Feedback
+<style id="rrsSn109FeedbackModalCss">
+  #floatingBottomRightFeedbackBtn .rrs-sn109-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #10B981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.85);
+    flex-shrink: 0;
+  }
+  body.rrs-is-inst #floatingBottomRightFeedbackBtn .rrs-sn109-dot {
+    background: #FFD700;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.85);
+  }
+  #rrsFeedbackModalBackdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2147483100;
+    background: rgba(2, 6, 23, 0.84);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  #rrsFeedbackModalBackdrop.is-open,
+  body.rrs-mode-institutional #rrsFeedbackModalBackdrop.is-open,
+  body.rrs-is-inst #rrsFeedbackModalBackdrop.is-open {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  #rrsFeedbackModalBackdrop .fb-modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    background: #0E1626;
+    border: 1.5px solid #10B981;
+    border-radius: 16px;
+    padding: 24px 22px 20px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+    box-sizing: border-box;
+    color: #F8FAFC;
+    text-align: left;
+  }
+  #rrsFeedbackModalBackdrop .fb-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: #131E32;
+    color: #CBD5E1;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  #rrsFeedbackModalBackdrop .fb-close-btn:hover {
+    border-color: #10B981;
+    color: #FFFFFF;
+  }
+  #rrsFeedbackModalBackdrop .fb-modal-title {
+    margin: 0 84px 6px 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: #F8FAFC;
+  }
+  #rrsFeedbackModalBackdrop .fb-modal-sub {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: #94A3B8;
+    line-height: 1.45;
+  }
+  #rrsFeedbackModalBackdrop .fb-label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #CBD5E1;
+    margin: 0 0 6px;
+  }
+  #rrsFeedbackModalBackdrop .fb-input,
+  #rrsFeedbackModalBackdrop .fb-select,
+  #rrsFeedbackModalBackdrop .fb-textarea {
+    width: 100%;
+    background: #060A12;
+    color: #F8FAFC;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+  }
+  #rrsFeedbackModalBackdrop .fb-input:focus,
+  #rrsFeedbackModalBackdrop .fb-select:focus,
+  #rrsFeedbackModalBackdrop .fb-textarea:focus {
+    outline: none;
+    border-color: #10B981;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.22);
+  }
+  #rrsFeedbackModalBackdrop .fb-textarea {
+    min-height: 104px;
+    resize: vertical;
+  }
+  #rrsFeedbackModalBackdrop .fb-hp-wrap {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  #rrsFeedbackModalBackdrop .fb-submit-btn {
+    width: 100%;
+    min-height: 44px;
+    border: none;
+    border-radius: 10px;
+    background: #10B981;
+    color: #04120C;
+    font-size: 14.5px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  #rrsFeedbackModalBackdrop .fb-submit-btn:hover {
+    background: #34D399;
+  }
+  #rrsFeedbackModalBackdrop .fb-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: wait;
+  }
+  #fbStatusMsg {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    min-height: 18px;
+  }
+</style>
+<button type="button" id="floatingBottomRightFeedbackBtn" data-sn="109" onclick="window.openSandboxFeedbackModal()" aria-label="Feedback / Report Issue">
+  <span class="rrs-sn109-dot" aria-hidden="true"></span>
+  <span>Feedback / Report Issue</span>
 </button>
+<div id="rrsFeedbackModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="fbModalTitle" onclick="if(event.target===this)window.closeSandboxFeedbackModal()">
+  <div class="fb-modal-card">
+    <button type="button" class="fb-close-btn" id="fbCloseBtn" onclick="window.closeSandboxFeedbackModal()">&#10005; Close</button>
+    <h2 class="fb-modal-title" id="fbModalTitle">Feedback / Report Issue</h2>
+    <p class="fb-modal-sub">No wallet connect needed. Goes straight to our engineering &amp; support desk.</p>
+    <form id="rrsSandboxFeedbackForm" onsubmit="return window.submitSandboxFeedback(event)">
+      <div class="fb-hp-wrap" aria-hidden="true">
+        <label for="fbWebsiteHp">Leave this field blank</label>
+        <input type="text" id="fbWebsiteHp" name="website_hp" tabindex="-1" autocomplete="off" />
+      </div>
+      <label class="fb-label" for="fbCategorySel">Topic</label>
+      <select class="fb-select" id="fbCategorySel" name="category">
+        <option value="report_issue">Report Issue / Broken Button</option>
+        <option value="scanner_question">Wallet or Token Scanner Question</option>
+        <option value="feature_request">Feature Suggestion</option>
+      </select>
+      <label class="fb-label" for="fbContactInp">Your Email or Telegram / X Handle (optional, for reply)</label>
+      <input class="fb-input" type="text" id="fbContactInp" name="contact" maxlength="100" placeholder="you@domain.com or @handle" />
+      <label class="fb-label" for="fbMessageInp">What happened or what should we improve?</label>
+      <textarea class="fb-textarea" id="fbMessageInp" name="message" maxlength="500" required placeholder="Tell us what you saw so we can fix or add it fast..."></textarea>
+      <button type="submit" class="fb-submit-btn" id="fbSubmitBtn">Send Feedback to Support</button>
+      <div id="fbStatusMsg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+<script id="rrs-sn109-feedback-bubble-js">
+(function(){
+  window.openSandboxFeedbackModal = function() {
+    var m = document.getElementById("rrsFeedbackModalBackdrop");
+    if (m) m.classList.add("is-open");
+    var inp = document.getElementById("fbMessageInp");
+    if (inp) setTimeout(function() { inp.focus(); }, 50);
+  };
+  window.openRrsFeedbackModal = window.openSandboxFeedbackModal;
+  window.closeSandboxFeedbackModal = function() {
+    var m = document.getElementById("rrsFeedbackModalBackdrop");
+    if (m) m.classList.remove("is-open");
+  };
+  window.closeRrsFeedbackModal = window.closeSandboxFeedbackModal;
+  document.addEventListener("keydown", function(ev) {
+    if (ev.key === "Escape") window.closeSandboxFeedbackModal();
+  });
+  window.submitSandboxFeedback = async function(ev) {
+    if (ev && ev.preventDefault) ev.preventDefault();
+    var btn = document.getElementById("fbSubmitBtn");
+    var st = document.getElementById("fbStatusMsg");
+    var msgEl = document.getElementById("fbMessageInp");
+    var msg = (msgEl && msgEl.value ? msgEl.value : "").trim();
+    var contact = ((document.getElementById("fbContactInp") || {}).value || "").trim();
+    var category = ((document.getElementById("fbCategorySel") || {}).value || "report_issue").trim();
+    var website_hp = ((document.getElementById("fbWebsiteHp") || {}).value || "").trim();
+    if (!msg) {
+      st.style.color = "#F87171";
+      st.textContent = "Please enter your message first.";
+      return false;
+    }
+    btn.disabled = true;
+    st.style.color = "#94A3B8";
+    st.textContent = "Sending...";
+    var hdrs = { "Content-Type": "application/json", "Accept": "application/json" };
+    if (window.location.search.indexOf("qa_canary=1") !== -1) {
+      hdrs["X-QA-Canary-Track"] = "1";
+    }
+    var bodyStr = JSON.stringify({
+      category: category,
+      contact: contact,
+      message: msg,
+      website_hp: website_hp
+    });
+    try {
+      var r = null;
+      for (var attempt = 0; attempt < 2; attempt++) {
+        var base = "";
+        if (attempt === 0 && typeof window.__rrsResolveLiveBase === "function") {
+          base = window.__rrsResolveLiveBase() || "";
+        } else if (attempt === 1 && typeof window.__rrsRefreshLiveBaseOnce === "function") {
+          base = (await window.__rrsRefreshLiveBaseOnce()) || "";
+        }
+        try {
+          r = await fetch(base + "/api/feedback", {
+            method: "POST",
+            mode: "cors",
+            credentials: "omit",
+            headers: hdrs,
+            body: bodyStr
+          });
+          if (r && (r.ok || r.status === 400 || r.status === 429)) {
+            break;
+          }
+        } catch (_netErr) {
+          if (attempt === 1) throw _netErr;
+        }
+      }
+      var j = r ? (await r.json().catch(function() { return {}; })) : {};
+      if (r && r.ok && j.ok !== false) {
+        st.style.color = "#10B981";
+        st.textContent = "Sent straight to Support. Thank you!";
+        if (msgEl) msgEl.value = "";
+      } else {
+        st.style.color = "#F87171";
+        st.textContent = (j && j.error) || ("Error HTTP " + (r ? r.status : 0));
+      }
+    } catch (_e) {
+      st.style.color = "#F87171";
+      st.textContent = "Network error submitting feedback.";
+    } finally {
+      btn.disabled = false;
+    }
+    return false;
+  };
+})();
+</script>
 
 <div class="modal" id="publicBetaFeedbackModal" onclick="if(event.target===this)window.closePublicBetaModal()" style="display: none; position:fixed; inset:0; background:rgba(2,6,23,0.86); z-index:100115; align-items:center; justify-content:center; padding:12px; backdrop-filter:blur(5px);" role="dialog" aria-modal="true" aria-hidden="true" hidden>
   <div style="width:min(94vw, 440px); background:#0E1626; border:1.5px solid #10B981; border-radius:16px; padding:18px; color:#F8FAFC; box-sizing:border-box; box-shadow:0 20px 52px rgba(0,0,0,0.90);">
@@ -17144,11 +17394,11 @@ window.submitVisitorFeedbackNow = async function(){
   window.openInstantBuyBubble = function(tier){ window.openLiveCheckout(tier, "SOL"); };
   window.closeInstantBuyBubble = window.closeLiveCheckoutModal;
   window.executeInstantPhantomPassIndex = function(solAmt, lbl){
-    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) "trader_pro_1999";
+    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) ? "trader_pro_1999" : "day_199";
     window.openLiveCheckout(tk, "SOL");
   };
   window.buyProPass = function(solAmt, lbl){
-    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) "trader_pro_1999";
+    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) ? "trader_pro_1999" : "day_199";
     window.openLiveCheckout(tk, "SOL");
   };
 

@@ -15562,11 +15562,11 @@ window.submitVisitorFeedbackNow = async function(){
   window.openInstantBuyBubble = function(tier){ window.openLiveCheckout(tier, "SOL"); };
   window.closeInstantBuyBubble = window.closeLiveCheckoutModal;
   window.executeInstantPhantomPassIndex = function(solAmt, lbl){
-    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) "trader_pro_1999";
+    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) ? "trader_pro_1999" : "day_199";
     window.openLiveCheckout(tk, "SOL");
   };
   window.buyProPass = function(solAmt, lbl){
-    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) "trader_pro_1999";
+    var tk = (Number(solAmt) >= 0.05 || String(lbl || "").indexOf("19.99") !== -1 || String(lbl || "").indexOf("39.99") !== -1) ? "trader_pro_1999" : "day_199";
     window.openLiveCheckout(tk, "SOL");
   };
 
