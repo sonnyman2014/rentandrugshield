@@ -12,14 +12,14 @@
   <link rel="icon" type="image/png" href="/chrome-extension/icon128.png" />
   <link rel="apple-touch-icon" href="/chrome-extension/icons/icon-192.png" />
   <link rel="canonical" href="https://rentandrugshield.com/mobile.html" />
-  <meta name="description" content="Solana Rent &amp; Rug Shield Mobile v5.1 (Solana MWA v2.0): 1-Tap 0x09 SOL Rent Recovery (0% 1st Claim Keep 100% SOL, 4-Lock Anti-Sybil, 98.0% Net Repeat), Share-Target 12-Layer Rug Firewall, and Whale_Precipice_Radar Push Alerts." />
+  <meta name="description" content="Solana Rent &amp; Rug Shield Mobile v5.3 (Solana MWA v2.0): 1-Tap 0x09 SOL Rent Recovery (0% 1st Claim Keep 100% SOL, 4-Lock Anti-Sybil, 98.0% Net Repeat), Share-Target 12-Layer Rug Firewall, and Whale_Precipice_Radar Push Alerts." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://rentandrugshield.com/mobile.html" />
-  <meta property="og:title" content="Solana Rent &amp; Rug Shield Mobile v5.1 | Solana MWA v2.0 &amp; 12-Layer Firewall" />
+  <meta property="og:title" content="Solana Rent &amp; Rug Shield Mobile v5.3 | Solana MWA v2.0 &amp; 12-Layer Firewall" />
   <meta property="og:description" content="1-Tap Solana Seeker / Phantom / Solflare MWA v2.0 Rent Recovery (0% 1st Claim Keep 100% SOL, 2.0% Repeat = 98.0% Net SOL), Share-Target 12-Layer Scanner &amp; Whale Radar Push." />
   <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <title>Solana Rent &amp; Rug Shield Mobile v5.1 | MWA v2.0 &amp; 12-Layer Firewall</title>
+  <title>Solana Rent &amp; Rug Shield Mobile v5.3 | MWA v2.0 &amp; 12-Layer Firewall</title>
   <style>
     :root {
       --bg: #060b14;
@@ -738,13 +738,57 @@
         margin-bottom: 5px;
       }
     }
+
+    /* v5.3 #020408 Carbon Black Movable + Zoomable + MACD Alert HUD */
+    .rrs-carbon-hud {
+      position: fixed;
+      right: 18px;
+      bottom: 78px;
+      width: 340px;
+      max-width: calc(100vw - 20px);
+      background: linear-gradient(160deg, #060B14 0%, #020408 100%);
+      border: 2px solid #00FFA3;
+      border-left: 8px solid #00FFA3;
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #FFFFFF;
+      z-index: 9990;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.78);
+      transform-origin: bottom right;
+      display: none;
+      user-select: none;
+      touch-action: none;
+    }
+    .rrs-carbon-hud.visible { display: block; }
+    .rrs-carbon-top {
+      display: flex; align-items: center; justify-content: space-between; gap: 6px;
+      cursor: grab; padding-bottom: 6px; border-bottom: 1px solid rgba(148,163,184,0.16);
+    }
+    .rrs-carbon-hud.pinned .rrs-carbon-top { cursor: lock; }
+    .rrs-c-ctrl {
+      background: #0B1220; color: #F8FAFC; border: 1px solid #334155;
+      border-radius: 6px; padding: 2px 6px; font-size: 11px; font-weight: 800; cursor: pointer;
+    }
+    .rrs-c-ctrl.active { border-color: #facc15; color: #facc15; background: #1e1b08; }
+    .rrs-carbon-drawer {
+      margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(0,255,163,0.25);
+      display: none; font-size: 11.5px; color: #cbd5e1;
+    }
+    .rrs-carbon-drawer.open { display: block; }
+    .rrs-macd-pills { display: flex; gap: 4px; flex-wrap: wrap; margin: 5px 0 8px; }
+    .rrs-macd-pill {
+      padding: 3px 7px; border-radius: 6px; border: 1px solid #334155;
+      background: #09111e; color: #94a3b8; font-size: 10.5px; font-weight: 800; cursor: pointer;
+    }
+    .rrs-macd-pill.on { border-color: #00FFA3; color: #00FFA3; background: #042f20; }
+
   </style>
 </head>
 <body>
   <!-- Official Verification Top Bar (Desktop Showcase) -->
   <header class="desktop-verify-bar" role="banner">
     <div style="font-weight:900;color:#f8fafc;">
-      🛡️ Solana Rent &amp; Rug Shield Mobile <span style="color:#facc15;">v5.1 (Solana MWA v2.0)</span>
+      🛡️ Solana Rent &amp; Rug Shield Mobile <span style="color:#facc15;">v5.3 (Solana MWA v2.0)</span>
     </div>
     <nav class="desktop-verify-links" aria-label="Official Verification Links">
       <a href="/" class="gold-link">← Desktop Terminal</a>
@@ -780,7 +824,7 @@
             <div class="brand">
               <img src="/chrome-extension/icon128.png" alt="Rent and Rug Shield" onerror="this.style.display='none'" />
               <div>
-                <div class="brand-t">Rent &amp; Rug Shield <span style="color:#facc15;font-size:12px;">v5.1</span></div>
+                <div class="brand-t">Rent &amp; Rug Shield <span style="color:#facc15;font-size:12px;">v5.3</span></div>
                 <div class="brand-s">Solana MWA v2.0 • 12-Layer Firewall</div>
               </div>
             </div>
@@ -863,7 +907,7 @@
 
               <div class="dl-grid-3" style="margin-bottom:10px;">
                 <button type="button" class="btn-full btn-ghost" id="btnRefreshWhale">🔄 Refresh Live Feed</button>
-                <button type="button" class="btn-full btn-ghost" id="btnTestWhalePush">🔔 Test Runner Alert</button>
+                <button type="button" class="btn-full btn-ghost" id="btnTestWhalePush" onclick="if(window.launchRrsCarbonAlert)window.launchRrsCarbonAlert({symbol:'$BONK +18.4%',mint:'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',reason:'MACD 1m/5m Bull Cross | 96/100 12-Layer Shield Verified'});">🔔 Test Movable Carbon v5.3 Alert</button>
               </div>
 
               <div id="whaleFeedMeta" style="font-size:11px;color:#6ee7b7;margin-bottom:8px;font-weight:700;">
@@ -883,7 +927,7 @@
                 Add to your Home Screen to unlock full-bleed standalone mode + Android/iOS Share-Target scanning, download the verified Cloud Android MWA v2.0 <code>.APK</code>, or generate your 30% atomic SOL referral link.
               </p>
               <button type="button" class="btn-full btn-gold" id="btnInstallPwa">📲 1-Tap Add App to Home Screen (PWA)</button>
-              <a class="btn-full btn-emerald" href="https://github.com/sonnyman2014/rentandrugshield/releases/latest/download/SolanaRentRugShield-v5.1-MWA.apk" download="SolanaRentRugShield-v5.1-MWA.apk" target="_blank" rel="noopener">⬇️ Download SolanaRentRugShield-v5.1-MWA.apk</a>
+              <a class="btn-full btn-emerald" href="https://rentandrugshield.com/downloads/SolanaRentRugShield-v5.3-MWA.apk" download="SolanaRentRugShield-v5.3-MWA.apk" target="_blank" rel="noopener">⬇️ Download SolanaRentRugShield-v5.3-MWA.apk</a>
               <a class="btn-full btn-ghost" style="margin-bottom:8px;" href="https://github.com/sonnyman2014/rentandrugshield/actions/workflows/cloud-mobile-apk-and-video-pipeline.yml" target="_blank" rel="noopener">🔍 View Verified GitHub Cloud APK Build Logs ↗</a>
 
               <hr style="border:none;border-top:1px solid rgba(148,163,184,0.18);margin:13px 0;" />
@@ -920,10 +964,10 @@
     <!-- RIGHT COLUMN: Desktop Companion Showcase (QR Camera Install + Cloud APK + 1-Step Guide) -->
     <aside class="showcase-col desktop-only" aria-label="Mobile Installation and Download Hub">
       <div>
-        <span class="hero-kicker">⚡ SOLANA MOBILE v5.1 • MWA v2.0 + SHARE-TARGET SCANNER</span>
-        <h1 class="showcase-title">Test Live in the Phone Frame — or Scan to Install on iOS, Android &amp; Solana Seeker.</h1>
+        <span class="hero-kicker">⚡ SOLANA MOBILE v5.3 • MWA v2.0 + SHARE-TARGET SCANNER</span>
+        <h1 class="showcase-title">Test Live in the Phone Frame  -  or Scan to Install on iOS, Android &amp; Solana Seeker.</h1>
         <p class="showcase-lead">
-          The simulator on the left runs the live production <b>v5.1</b> mobile app against Mainnet RPC. Reclaim empty token accounts at <b>0% on your 1st claim</b> (Keep 100% of Your SOL; <b>2.0% repeat = 98.0% net SOL</b>), intercept rugs from your mobile Share Sheet in &lt;120ms, and get <code>Whale_Precipice_Radar</code> (&ge;85 score) push alerts.
+          The simulator on the left runs the live production <b>v5.3</b> mobile app against Mainnet RPC. Reclaim empty token accounts at <b>0% on your 1st claim</b> (Keep 100% of Your SOL; <b>2.0% repeat = 98.0% net SOL</b>), intercept rugs from your mobile Share Sheet in &lt;120ms, and get <code>Whale_Precipice_Radar</code> (&ge;85 score) push alerts.
         </p>
       </div>
 
@@ -931,14 +975,14 @@
       <div class="desk-card">
         <div class="desk-grid-2">
           <div>
-            <div id="qrSvgMount" class="qr-frame" role="img" aria-label="QR Code for https://rentandrugshield.com/mobile.html?src=qr"></div>
+            <div id="qrSvgMount" class="qr-frame" role="img" aria-label="QR Code for https://rentandrugshield.com/downloads/SolanaRentRugShield-v5.3-MWA.apk"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39 39" shape-rendering="crispEdges" aria-hidden="true"><rect width="39" height="39" fill="#ffffff"/><path d="M3,3h1v1h-1zM4,3h1v1h-1zM5,3h1v1h-1zM6,3h1v1h-1zM7,3h1v1h-1zM8,3h1v1h-1zM9,3h1v1h-1zM12,3h1v1h-1zM15,3h1v1h-1zM18,3h1v1h-1zM20,3h1v1h-1zM21,3h1v1h-1zM22,3h1v1h-1zM24,3h1v1h-1zM25,3h1v1h-1zM26,3h1v1h-1zM29,3h1v1h-1zM30,3h1v1h-1zM31,3h1v1h-1zM32,3h1v1h-1zM33,3h1v1h-1zM34,3h1v1h-1zM35,3h1v1h-1zM3,4h1v1h-1zM9,4h1v1h-1zM13,4h1v1h-1zM14,4h1v1h-1zM15,4h1v1h-1zM17,4h1v1h-1zM18,4h1v1h-1zM19,4h1v1h-1zM21,4h1v1h-1zM22,4h1v1h-1zM23,4h1v1h-1zM24,4h1v1h-1zM25,4h1v1h-1zM26,4h1v1h-1zM27,4h1v1h-1zM29,4h1v1h-1zM35,4h1v1h-1zM3,5h1v1h-1zM5,5h1v1h-1zM6,5h1v1h-1zM7,5h1v1h-1zM9,5h1v1h-1zM11,5h1v1h-1zM12,5h1v1h-1zM13,5h1v1h-1zM15,5h1v1h-1zM17,5h1v1h-1zM21,5h1v1h-1zM23,5h1v1h-1zM26,5h1v1h-1zM29,5h1v1h-1zM31,5h1v1h-1zM32,5h1v1h-1zM33,5h1v1h-1zM35,5h1v1h-1zM3,6h1v1h-1zM5,6h1v1h-1zM6,6h1v1h-1zM7,6h1v1h-1zM9,6h1v1h-1zM12,6h1v1h-1zM13,6h1v1h-1zM14,6h1v1h-1zM21,6h1v1h-1zM22,6h1v1h-1zM29,6h1v1h-1zM31,6h1v1h-1zM32,6h1v1h-1zM33,6h1v1h-1zM35,6h1v1h-1zM3,7h1v1h-1zM5,7h1v1h-1zM6,7h1v1h-1zM7,7h1v1h-1zM9,7h1v1h-1zM13,7h1v1h-1zM18,7h1v1h-1zM19,7h1v1h-1zM21,7h1v1h-1zM22,7h1v1h-1zM24,7h1v1h-1zM25,7h1v1h-1zM26,7h1v1h-1zM29,7h1v1h-1zM31,7h1v1h-1zM32,7h1v1h-1zM33,7h1v1h-1zM35,7h1v1h-1zM3,8h1v1h-1zM9,8h1v1h-1zM12,8h1v1h-1zM16,8h1v1h-1zM17,8h1v1h-1zM18,8h1v1h-1zM20,8h1v1h-1zM22,8h1v1h-1zM25,8h1v1h-1zM26,8h1v1h-1zM27,8h1v1h-1zM29,8h1v1h-1zM35,8h1v1h-1zM3,9h1v1h-1zM4,9h1v1h-1zM5,9h1v1h-1zM6,9h1v1h-1zM7,9h1v1h-1zM8,9h1v1h-1zM9,9h1v1h-1zM11,9h1v1h-1zM13,9h1v1h-1zM15,9h1v1h-1zM17,9h1v1h-1zM19,9h1v1h-1zM21,9h1v1h-1zM23,9h1v1h-1zM25,9h1v1h-1zM27,9h1v1h-1zM29,9h1v1h-1zM30,9h1v1h-1zM31,9h1v1h-1zM32,9h1v1h-1zM33,9h1v1h-1zM34,9h1v1h-1zM35,9h1v1h-1zM11,10h1v1h-1zM12,10h1v1h-1zM13,10h1v1h-1zM15,10h1v1h-1zM16,10h1v1h-1zM17,10h1v1h-1zM18,10h1v1h-1zM19,10h1v1h-1zM20,10h1v1h-1zM21,10h1v1h-1zM22,10h1v1h-1zM23,10h1v1h-1zM24,10h1v1h-1zM25,10h1v1h-1zM3,11h1v1h-1zM4,11h1v1h-1zM5,11h1v1h-1zM7,11h1v1h-1zM8,11h1v1h-1zM9,11h1v1h-1zM10,11h1v1h-1zM11,11h1v1h-1zM13,11h1v1h-1zM14,11h1v1h-1zM16,11h1v1h-1zM17,11h1v1h-1zM19,11h1v1h-1zM22,11h1v1h-1zM23,11h1v1h-1zM24,11h1v1h-1zM27,11h1v1h-1zM28,11h1v1h-1zM29,11h1v1h-1zM33,11h1v1h-1zM5,12h1v1h-1zM6,12h1v1h-1zM7,12h1v1h-1zM8,12h1v1h-1zM11,12h1v1h-1zM13,12h1v1h-1zM14,12h1v1h-1zM19,12h1v1h-1zM20,12h1v1h-1zM21,12h1v1h-1zM23,12h1v1h-1zM24,12h1v1h-1zM27,12h1v1h-1zM29,12h1v1h-1zM32,12h1v1h-1zM35,12h1v1h-1zM4,13h1v1h-1zM6,13h1v1h-1zM7,13h1v1h-1zM9,13h1v1h-1zM10,13h1v1h-1zM11,13h1v1h-1zM12,13h1v1h-1zM16,13h1v1h-1zM19,13h1v1h-1zM20,13h1v1h-1zM21,13h1v1h-1zM27,13h1v1h-1zM29,13h1v1h-1zM31,13h1v1h-1zM32,13h1v1h-1zM34,13h1v1h-1zM35,13h1v1h-1zM3,14h1v1h-1zM4,14h1v1h-1zM5,14h1v1h-1zM7,14h1v1h-1zM8,14h1v1h-1zM14,14h1v1h-1zM16,14h1v1h-1zM18,14h1v1h-1zM19,14h1v1h-1zM20,14h1v1h-1zM23,14h1v1h-1zM24,14h1v1h-1zM27,14h1v1h-1zM28,14h1v1h-1zM29,14h1v1h-1zM32,14h1v1h-1zM34,14h1v1h-1zM3,15h1v1h-1zM6,15h1v1h-1zM7,15h1v1h-1zM8,15h1v1h-1zM9,15h1v1h-1zM15,15h1v1h-1zM16,15h1v1h-1zM17,15h1v1h-1zM18,15h1v1h-1zM19,15h1v1h-1zM20,15h1v1h-1zM22,15h1v1h-1zM23,15h1v1h-1zM24,15h1v1h-1zM26,15h1v1h-1zM27,15h1v1h-1zM28,15h1v1h-1zM29,15h1v1h-1zM32,15h1v1h-1zM35,15h1v1h-1zM3,16h1v1h-1zM4,16h1v1h-1zM5,16h1v1h-1zM14,16h1v1h-1zM15,16h1v1h-1zM16,16h1v1h-1zM17,16h1v1h-1zM19,16h1v1h-1zM20,16h1v1h-1zM23,16h1v1h-1zM29,16h1v1h-1zM32,16h1v1h-1zM33,16h1v1h-1zM35,16h1v1h-1zM5,17h1v1h-1zM8,17h1v1h-1zM9,17h1v1h-1zM11,17h1v1h-1zM12,17h1v1h-1zM13,17h1v1h-1zM14,17h1v1h-1zM15,17h1v1h-1zM16,17h1v1h-1zM17,17h1v1h-1zM24,17h1v1h-1zM27,17h1v1h-1zM28,17h1v1h-1zM29,17h1v1h-1zM34,17h1v1h-1zM35,17h1v1h-1zM3,18h1v1h-1zM6,18h1v1h-1zM7,18h1v1h-1zM10,18h1v1h-1zM11,18h1v1h-1zM13,18h1v1h-1zM15,18h1v1h-1zM16,18h1v1h-1zM17,18h1v1h-1zM18,18h1v1h-1zM19,18h1v1h-1zM20,18h1v1h-1zM21,18h1v1h-1zM24,18h1v1h-1zM25,18h1v1h-1zM26,18h1v1h-1zM27,18h1v1h-1zM31,18h1v1h-1zM32,18h1v1h-1zM34,18h1v1h-1zM6,19h1v1h-1zM9,19h1v1h-1zM10,19h1v1h-1zM11,19h1v1h-1zM12,19h1v1h-1zM14,19h1v1h-1zM15,19h1v1h-1zM16,19h1v1h-1zM17,19h1v1h-1zM19,19h1v1h-1zM20,19h1v1h-1zM24,19h1v1h-1zM27,19h1v1h-1zM28,19h1v1h-1zM29,19h1v1h-1zM34,19h1v1h-1zM35,19h1v1h-1zM3,20h1v1h-1zM4,20h1v1h-1zM11,20h1v1h-1zM12,20h1v1h-1zM13,20h1v1h-1zM14,20h1v1h-1zM19,20h1v1h-1zM22,20h1v1h-1zM23,20h1v1h-1zM24,20h1v1h-1zM25,20h1v1h-1zM27,20h1v1h-1zM28,20h1v1h-1zM29,20h1v1h-1zM33,20h1v1h-1zM35,20h1v1h-1zM7,21h1v1h-1zM9,21h1v1h-1zM10,21h1v1h-1zM11,21h1v1h-1zM12,21h1v1h-1zM20,21h1v1h-1zM24,21h1v1h-1zM27,21h1v1h-1zM28,21h1v1h-1zM29,21h1v1h-1zM30,21h1v1h-1zM31,21h1v1h-1zM32,21h1v1h-1zM34,21h1v1h-1zM35,21h1v1h-1zM6,22h1v1h-1zM8,22h1v1h-1zM13,22h1v1h-1zM16,22h1v1h-1zM17,22h1v1h-1zM18,22h1v1h-1zM20,22h1v1h-1zM23,22h1v1h-1zM24,22h1v1h-1zM25,22h1v1h-1zM26,22h1v1h-1zM27,22h1v1h-1zM29,22h1v1h-1zM30,22h1v1h-1zM32,22h1v1h-1zM34,22h1v1h-1zM4,23h1v1h-1zM6,23h1v1h-1zM8,23h1v1h-1zM9,23h1v1h-1zM11,23h1v1h-1zM14,23h1v1h-1zM15,23h1v1h-1zM18,23h1v1h-1zM19,23h1v1h-1zM20,23h1v1h-1zM22,23h1v1h-1zM23,23h1v1h-1zM24,23h1v1h-1zM26,23h1v1h-1zM27,23h1v1h-1zM28,23h1v1h-1zM29,23h1v1h-1zM34,23h1v1h-1zM35,23h1v1h-1zM5,24h1v1h-1zM6,24h1v1h-1zM8,24h1v1h-1zM10,24h1v1h-1zM11,24h1v1h-1zM12,24h1v1h-1zM13,24h1v1h-1zM15,24h1v1h-1zM19,24h1v1h-1zM20,24h1v1h-1zM21,24h1v1h-1zM27,24h1v1h-1zM29,24h1v1h-1zM33,24h1v1h-1zM35,24h1v1h-1zM3,25h1v1h-1zM5,25h1v1h-1zM6,25h1v1h-1zM7,25h1v1h-1zM8,25h1v1h-1zM9,25h1v1h-1zM10,25h1v1h-1zM11,25h1v1h-1zM13,25h1v1h-1zM15,25h1v1h-1zM19,25h1v1h-1zM24,25h1v1h-1zM29,25h1v1h-1zM31,25h1v1h-1zM32,25h1v1h-1zM34,25h1v1h-1zM35,25h1v1h-1zM4,26h1v1h-1zM5,26h1v1h-1zM6,26h1v1h-1zM7,26h1v1h-1zM10,26h1v1h-1zM11,26h1v1h-1zM12,26h1v1h-1zM13,26h1v1h-1zM14,26h1v1h-1zM16,26h1v1h-1zM17,26h1v1h-1zM18,26h1v1h-1zM20,26h1v1h-1zM24,26h1v1h-1zM26,26h1v1h-1zM27,26h1v1h-1zM29,26h1v1h-1zM34,26h1v1h-1zM3,27h1v1h-1zM6,27h1v1h-1zM7,27h1v1h-1zM9,27h1v1h-1zM10,27h1v1h-1zM11,27h1v1h-1zM13,27h1v1h-1zM18,27h1v1h-1zM19,27h1v1h-1zM24,27h1v1h-1zM27,27h1v1h-1zM28,27h1v1h-1zM29,27h1v1h-1zM30,27h1v1h-1zM31,27h1v1h-1zM32,27h1v1h-1zM11,28h1v1h-1zM13,28h1v1h-1zM15,28h1v1h-1zM16,28h1v1h-1zM17,28h1v1h-1zM19,28h1v1h-1zM20,28h1v1h-1zM21,28h1v1h-1zM23,28h1v1h-1zM26,28h1v1h-1zM27,28h1v1h-1zM31,28h1v1h-1zM32,28h1v1h-1zM34,28h1v1h-1zM35,28h1v1h-1zM3,29h1v1h-1zM4,29h1v1h-1zM5,29h1v1h-1zM6,29h1v1h-1zM7,29h1v1h-1zM8,29h1v1h-1zM9,29h1v1h-1zM11,29h1v1h-1zM16,29h1v1h-1zM20,29h1v1h-1zM21,29h1v1h-1zM23,29h1v1h-1zM26,29h1v1h-1zM27,29h1v1h-1zM29,29h1v1h-1zM31,29h1v1h-1zM34,29h1v1h-1zM35,29h1v1h-1zM3,30h1v1h-1zM9,30h1v1h-1zM11,30h1v1h-1zM12,30h1v1h-1zM14,30h1v1h-1zM16,30h1v1h-1zM17,30h1v1h-1zM20,30h1v1h-1zM22,30h1v1h-1zM23,30h1v1h-1zM24,30h1v1h-1zM27,30h1v1h-1zM31,30h1v1h-1zM35,30h1v1h-1zM3,31h1v1h-1zM5,31h1v1h-1zM6,31h1v1h-1zM7,31h1v1h-1zM9,31h1v1h-1zM11,31h1v1h-1zM12,31h1v1h-1zM13,31h1v1h-1zM15,31h1v1h-1zM20,31h1v1h-1zM23,31h1v1h-1zM24,31h1v1h-1zM27,31h1v1h-1zM28,31h1v1h-1zM29,31h1v1h-1zM30,31h1v1h-1zM31,31h1v1h-1zM34,31h1v1h-1zM35,31h1v1h-1zM3,32h1v1h-1zM5,32h1v1h-1zM6,32h1v1h-1zM7,32h1v1h-1zM9,32h1v1h-1zM12,32h1v1h-1zM15,32h1v1h-1zM16,32h1v1h-1zM18,32h1v1h-1zM19,32h1v1h-1zM20,32h1v1h-1zM21,32h1v1h-1zM23,32h1v1h-1zM31,32h1v1h-1zM34,32h1v1h-1zM3,33h1v1h-1zM5,33h1v1h-1zM6,33h1v1h-1zM7,33h1v1h-1zM9,33h1v1h-1zM11,33h1v1h-1zM12,33h1v1h-1zM15,33h1v1h-1zM17,33h1v1h-1zM24,33h1v1h-1zM30,33h1v1h-1zM31,33h1v1h-1zM32,33h1v1h-1zM33,33h1v1h-1zM34,33h1v1h-1zM35,33h1v1h-1zM3,34h1v1h-1zM9,34h1v1h-1zM11,34h1v1h-1zM12,34h1v1h-1zM15,34h1v1h-1zM16,34h1v1h-1zM17,34h1v1h-1zM19,34h1v1h-1zM20,34h1v1h-1zM21,34h1v1h-1zM22,34h1v1h-1zM24,34h1v1h-1zM25,34h1v1h-1zM26,34h1v1h-1zM27,34h1v1h-1zM28,34h1v1h-1zM29,34h1v1h-1zM30,34h1v1h-1zM31,34h1v1h-1zM34,34h1v1h-1zM3,35h1v1h-1zM4,35h1v1h-1zM5,35h1v1h-1zM6,35h1v1h-1zM7,35h1v1h-1zM8,35h1v1h-1zM9,35h1v1h-1zM11,35h1v1h-1zM13,35h1v1h-1zM14,35h1v1h-1zM15,35h1v1h-1zM16,35h1v1h-1zM17,35h1v1h-1zM19,35h1v1h-1zM20,35h1v1h-1zM23,35h1v1h-1zM24,35h1v1h-1zM26,35h1v1h-1zM27,35h1v1h-1zM29,35h1v1h-1zM30,35h1v1h-1zM34,35h1v1h-1zM35,35h1v1h-1z" fill="#060b14"/></svg></div>
           </div>
           <div>
-            <h3>📷 Scan QR With Phone Camera to Install</h3>
+            <h3>📷 Scan QR for Direct v5.3 .APK &amp; Mobile Install</h3>
             <p style="margin:0 0 8px 0;font-size:13.5px;color:#cbd5e1;line-height:1.5;">
               Point your iPhone, Android, or Solana Seeker camera at this locally generated ISO-18004 SVG QR code (zero external trackers or CDNs) to launch full-bleed native mobile mode:
             </p>
-            <code class="url-code-pill">https://rentandrugshield.com/mobile.html?src=qr</code>
+            <div style="display:flex;gap:6px;margin-bottom:7px;flex-wrap:wrap;"><button type="button" id="btnQrModeApk" class="preset-chip" style="border-color:#10b981;color:#6ee7b7;font-weight:800;">🤖 Direct v5.3 .APK QR</button><button type="button" id="btnQrModePwa" class="preset-chip">🍎 iOS / Mobile Web QR</button></div><code id="qrUrlCodePill" class="url-code-pill">https://rentandrugshield.com/downloads/SolanaRentRugShield-v5.3-MWA.apk</code>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
               <button type="button" class="btn-full btn-gold" id="btnCopyQrLink" style="width:auto;padding:10px 15px;margin:0;font-size:13px;">📋 Copy Install URL</button>
               <button type="button" class="btn-full btn-ghost" id="btnDemoShareTarget" style="width:auto;padding:10px 14px;margin:0;font-size:12.5px;">🧪 Demo Share-Target Scan in Simulator</button>
@@ -954,13 +998,13 @@
           Compiled transparently on GitHub Cloud Runners (Capacitor + Solana Mobile Wallet Adapter v2.0 <code>solana-wallet:/v1/associate/local</code>) for Solana Seeker, Saga, and Android 10+ devices.
         </p>
         <div class="apk-meta-row">
-          <span class="apk-badge">📦 SolanaRentRugShield-v5.1-MWA.apk</span>
+          <span class="apk-badge">📦 SolanaRentRugShield-v5.3-MWA.apk</span>
           <span class="apk-badge">🔐 MWA v2.0 Seed Vault Ready</span>
-          <span class="apk-badge" id="apkCiBadge">✅ GitHub Cloud CI Verified</span>
+          <span class="apk-badge" id="apkCiBadge">✅ Signed v5.3 APK Verified</span>
         </div>
         <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:10px;">
-          <a class="btn-full btn-emerald" style="margin:0;" href="https://github.com/sonnyman2014/rentandrugshield/releases/latest/download/SolanaRentRugShield-v5.1-MWA.apk" download="SolanaRentRugShield-v5.1-MWA.apk" target="_blank" rel="noopener">
-            ⬇️ Download Direct .APK (v5.1-MWA)
+          <a class="btn-full btn-emerald" style="margin:0;" href="https://rentandrugshield.com/downloads/SolanaRentRugShield-v5.3-MWA.apk" download="SolanaRentRugShield-v5.3-MWA.apk" target="_blank" rel="noopener">
+            ⬇️ Download Direct .APK (v5.3-MWA)
           </a>
           <a class="btn-full btn-ghost" style="margin:0;" href="https://github.com/sonnyman2014/rentandrugshield/actions/workflows/cloud-mobile-apk-and-video-pipeline.yml" target="_blank" rel="noopener">
             🔍 GitHub Actions Artifact &amp; Build Proof ↗
@@ -978,7 +1022,7 @@
           </div>
           <div class="guide-box">
             <strong class="os-hdr">🤖 Android Chrome &amp; Solana Seeker (1 Step)</strong>
-            Scan QR → tap <b>"Install App"</b> (or install the <code>.APK</code>). Registers <b>Rent &amp; Rug Shield</b> inside your Android System Share Sheet — share any Pump.fun, DexScreener, Jupiter, or BullX link to auto-audit in &lt;120ms!
+            Scan QR → tap <b>"Install App"</b> (or install the <code>.APK</code>). Registers <b>Rent &amp; Rug Shield</b> inside your Android System Share Sheet  -  share any Pump.fun, DexScreener, Jupiter, or BullX link to auto-audit in &lt;120ms!
           </div>
         </div>
       </div>
@@ -995,7 +1039,7 @@
       box.style.display = 'block';
       box.innerHTML += '<div style="margin-top:10px;padding:12px;border-radius:12px;background:linear-gradient(135deg,rgba(16,185,129,0.22),rgba(250,204,21,0.18));border:1.5px solid #facc15;">'
         + '<div style="font-weight:900;color:#fde047;font-size:13.5px;margin-bottom:4px;">🛡️ SOL Recovered! Now Block the Next Rug Before You Sign</div>'
-        + '<div style="font-size:12px;color:#e2e8f0;margin-bottom:8px;">Protect your recovered SOL with our &lt;120ms 12-Layer Pre-Buy Rug Shield (Layer 13 Next — Automatic Upgrades Included Free).</div>'
+        + '<div style="font-size:12px;color:#e2e8f0;margin-bottom:8px;">Protect your recovered SOL with our &lt;120ms 12-Layer Pre-Buy Rug Shield (Layer 13 Next  -  Automatic Upgrades Included Free).</div>'
         + '<div style="display:flex;gap:7px;flex-wrap:wrap;">'
         + '<a href="/#chrome-extension" style="flex:1;text-align:center;padding:8px 10px;border-radius:8px;background:#facc15;color:#090d16;font-weight:900;text-decoration:none;font-size:12px;">⚡ 30-Day Free Chrome Ext v5.1 Pro</a>'
         + '<a href="/#pricing" style="flex:1;text-align:center;padding:8px 10px;border-radius:8px;background:#10b981;color:#04101f;font-weight:900;text-decoration:none;font-size:12px;">🛡️ $19.99/mo Pro Shield</a>'
@@ -1010,7 +1054,9 @@
       swRegPromise = navigator.serviceWorker.register('/sw-mobile-v51.js').catch(function () { return null; });
     }
 
-    const QR_INSTALL_URL = 'https://rentandrugshield.com/mobile.html?src=qr';
+    let QR_INSTALL_URL = 'https://rentandrugshield.com/downloads/SolanaRentRugShield-v5.3-MWA.apk';
+    const QR_APK_URL = 'https://rentandrugshield.com/downloads/SolanaRentRugShield-v5.3-MWA.apk';
+    const QR_PWA_URL = 'https://rentandrugshield.com/mobile.html?src=qr';
     const WRAPPED_SOL_MINT = 'So11111111111111111111111111111111111111112';
     const FROZEN_LEGACY_PREFIXES = ['5sEb9m4XP3', 'CsLX8FSsWc', 'DGnsyzo5cb', 'FRCeYgC1PR'];
     const WHALE_PREF_KEY = 'rrs_whale_radar_alerts_v51';
@@ -1216,6 +1262,27 @@
     if (qrMount) {
       qrMount.innerHTML = buildQrSvg(QR_INSTALL_URL);
     }
+
+    const qrUrlPill = document.getElementById('qrUrlCodePill');
+    const btnQrApk = document.getElementById('btnQrModeApk');
+    const btnQrPwa = document.getElementById('btnQrModePwa');
+    function setQrTarget(url, isApk) {
+      QR_INSTALL_URL = url;
+      if (qrMount) {
+        qrMount.innerHTML = buildQrSvg(url);
+        qrMount.setAttribute('aria-label', 'QR Code for ' + url);
+      }
+      if (qrUrlPill) qrUrlPill.textContent = url;
+      if (btnQrApk && btnQrPwa) {
+        btnQrApk.style.borderColor = isApk ? '#10b981' : 'rgba(148,163,184,0.28)';
+        btnQrApk.style.color = isApk ? '#6ee7b7' : '#cbd5e1';
+        btnQrPwa.style.borderColor = !isApk ? '#facc15' : 'rgba(148,163,184,0.28)';
+        btnQrPwa.style.color = !isApk ? '#fde047' : '#cbd5e1';
+      }
+    }
+    if (btnQrApk) btnQrApk.addEventListener('click', function () { setQrTarget(QR_APK_URL, true); });
+    if (btnQrPwa) btnQrPwa.addEventListener('click', function () { setQrTarget(QR_PWA_URL, false); });
+
 
     // =========================================================================
     // 2. DESKTOP HARDWARE BEZEL SWITCHER (iPhone 16 Pro vs Solana Seeker)
@@ -1951,5 +2018,158 @@
     })();
   })();
   </script>
+
+  <!-- v5.3 #020408 Carbon Black Movable + Zoomable + MACD Alert Box -->
+  <div id="rrsCarbonHud" class="rrs-carbon-hud" role="dialog" aria-label="Carbon v5.3 Live Shield Alert">
+    <div id="rrsCarbonDragBar" class="rrs-carbon-top" title="Drag anywhere on screen or Pin lock">
+      <div style="display:flex;align-items:center;gap:6px;overflow:hidden;">
+        <span id="rrsCarbonTicker" style="background:#020408;border:1.5px solid #00FFA3;color:#00FFA3;padding:2px 7px;border-radius:6px;font-weight:900;font-size:12.5px;">$BONK +18.4%</span>
+        <span style="background:#043222;border:1px solid #00FFA3;color:#fff;padding:2px 7px;border-radius:999px;font-size:10px;font-weight:800;">12L VERIFIED</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:3px;flex-shrink:0;">
+        <button type="button" class="rrs-c-ctrl" id="btnCarbonZoomOut" title="Zoom Out (75%-200%)">-</button>
+        <button type="button" class="rrs-c-ctrl" id="btnCarbonZoomReset" title="Reset Zoom 100%">100%</button>
+        <button type="button" class="rrs-c-ctrl" id="btnCarbonZoomIn" title="Zoom In (75%-200%)">+</button>
+        <button type="button" class="rrs-c-ctrl" id="btnCarbonPin" title="Pin Position">📌</button>
+        <button type="button" class="rrs-c-ctrl" id="btnCarbonGear" title="MACD &amp; Filter Settings">⚙</button>
+        <button type="button" class="rrs-c-ctrl" id="btnCarbonClose" title="Close">X</button>
+      </div>
+    </div>
+    <div id="rrsCarbonBody" style="padding-top:7px;cursor:pointer;">
+      <div id="rrsCarbonTitle" style="font-weight:900;font-size:14px;color:#fff;line-height:1.3;">MACD 1m/5m Bull Cross | 96/100 12-Layer Shield Safe</div>
+      <div id="rrsCarbonSub" style="font-size:11.5px;font-weight:700;color:#86EFAC;margin-top:3px;">Tap alert for 1-Tap Protected Trade (?mint=...&amp;trade=1)</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:10px;color:#94a3b8;font-weight:700;">
+        <span>0% 1st SOL Claim | 98.0% Net Repeat</span>
+        <span style="color:#facc15;">rentandrugshield.com</span>
+      </div>
+    </div>
+    <div id="rrsCarbonDrawer" class="rrs-carbon-drawer">
+      <div style="font-weight:900;color:#facc15;margin-bottom:4px;">⚙ Carbon v5.3 MACD &amp; Trench Filters</div>
+      <div>MACD Bull/Bear &amp; Histogram Flip:</div>
+      <div class="rrs-macd-pills" id="rrsMacdPills">
+        <button type="button" class="rrs-macd-pill on" data-tf="1m">MACD 1m</button>
+        <button type="button" class="rrs-macd-pill on" data-tf="3m">MACD 3m</button>
+        <button type="button" class="rrs-macd-pill on" data-tf="5m">MACD 5m</button>
+        <button type="button" class="rrs-macd-pill" data-tf="15m">MACD 15m</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:6px;">
+        <label>Min Liq ($): <input id="fltMinLiq" type="number" value="25000" style="width:100%;background:#020408;color:#fff;border:1px solid #334155;border-radius:5px;padding:3px 5px;font-size:11px;"/></label>
+        <label>% Move: <input id="fltPctMove" type="number" value="8" style="width:100%;background:#020408;color:#fff;border:1px solid #334155;border-radius:5px;padding:3px 5px;font-size:11px;"/></label>
+        <label>Min MCap ($): <input id="fltMinMc" type="number" value="50000" style="width:100%;background:#020408;color:#fff;border:1px solid #334155;border-radius:5px;padding:3px 5px;font-size:11px;"/></label>
+        <label>Max MCap ($): <input id="fltMaxMc" type="number" value="5000000" style="width:100%;background:#020408;color:#fff;border:1px solid #334155;border-radius:5px;padding:3px 5px;font-size:11px;"/></label>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:11px;">
+        <label><input type="checkbox" checked /> Crypto News</label>
+        <label><input type="checkbox" checked /> AI Catalyst</label>
+        <label><input type="checkbox" checked /> World News</label>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    const hud = document.getElementById('rrsCarbonHud');
+    const dragBar = document.getElementById('rrsCarbonDragBar');
+    const bodyEl = document.getElementById('rrsCarbonBody');
+    const drawer = document.getElementById('rrsCarbonDrawer');
+    const btnPin = document.getElementById('btnCarbonPin');
+    const btnGear = document.getElementById('btnCarbonGear');
+    const btnZOut = document.getElementById('btnCarbonZoomOut');
+    const btnZReset = document.getElementById('btnCarbonZoomReset');
+    const btnZIn = document.getElementById('btnCarbonZoomIn');
+    const btnClose = document.getElementById('btnCarbonClose');
+    if (!hud) return;
+
+    let state = { x: null, y: null, zoom: 100, pinned: false, mint: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263' };
+    try {
+      const saved = JSON.parse(localStorage.getItem('rrs_carbon_hud_v53') || '{}');
+      if (typeof saved.zoom === 'number') state.zoom = Math.min(200, Math.max(75, saved.zoom));
+      if (typeof saved.pinned === 'boolean') state.pinned = saved.pinned;
+      if (typeof saved.x === 'number' && typeof saved.y === 'number') { state.x = saved.x; state.y = saved.y; }
+    } catch (_e) {}
+
+    function persist() {
+      try { localStorage.setItem('rrs_carbon_hud_v53', JSON.stringify(state)); } catch (_e) {}
+    }
+    function applyLayout() {
+      const s = state.zoom / 100;
+      hud.style.transform = 'scale(' + s.toFixed(2) + ')';
+      btnZReset.textContent = state.zoom + '%';
+      btnPin.classList.toggle('active', state.pinned);
+      hud.classList.toggle('pinned', state.pinned);
+      if (state.x !== null && state.y !== null) {
+        hud.style.right = 'auto';
+        hud.style.bottom = 'auto';
+        hud.style.left = Math.max(4, Math.min(window.innerWidth - 180, state.x)) + 'px';
+        hud.style.top = Math.max(4, Math.min(window.innerHeight - 90, state.y)) + 'px';
+        hud.style.transformOrigin = 'top left';
+      }
+    }
+    function setZoom(z) {
+      state.zoom = Math.min(200, Math.max(75, Math.round(z / 5) * 5));
+      applyLayout();
+      persist();
+    }
+    btnZOut.addEventListener('click', function (e) { e.stopPropagation(); setZoom(state.zoom - 25); });
+    btnZReset.addEventListener('click', function (e) { e.stopPropagation(); setZoom(100); });
+    btnZIn.addEventListener('click', function (e) { e.stopPropagation(); setZoom(state.zoom + 25); });
+    hud.addEventListener('wheel', function (e) {
+      if (e.ctrlKey) {
+        e.preventDefault();
+        setZoom(state.zoom + (e.deltaY < 0 ? 10 : -10));
+      }
+    }, { passive: false });
+
+    btnPin.addEventListener('click', function (e) {
+      e.stopPropagation();
+      state.pinned = !state.pinned;
+      applyLayout();
+      persist();
+    });
+    btnGear.addEventListener('click', function (e) {
+      e.stopPropagation();
+      drawer.classList.toggle('open');
+      btnGear.classList.toggle('active', drawer.classList.contains('open'));
+    });
+    btnClose.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hud.classList.remove('visible');
+    });
+    document.querySelectorAll('#rrsMacdPills .rrs-macd-pill').forEach(function (b) {
+      b.addEventListener('click', function (e) { e.stopPropagation(); b.classList.toggle('on'); });
+    });
+
+    let drag = null;
+    dragBar.addEventListener('pointerdown', function (e) {
+      if (state.pinned || e.target.closest('button')) return;
+      const rect = hud.getBoundingClientRect();
+      drag = { dx: e.clientX - rect.left, dy: e.clientY - rect.top };
+      dragBar.setPointerCapture(e.pointerId);
+    });
+    dragBar.addEventListener('pointermove', function (e) {
+      if (!drag || state.pinned) return;
+      state.x = Math.round(e.clientX - drag.dx);
+      state.y = Math.round(e.clientY - drag.dy);
+      applyLayout();
+    });
+    dragBar.addEventListener('pointerup', function () {
+      if (drag) { drag = null; persist(); }
+    });
+
+    bodyEl.addEventListener('click', function () {
+      window.location.href = 'https://rentandrugshield.com/?mint=' + encodeURIComponent(state.mint) + '&trade=1';
+    });
+
+    window.launchRrsCarbonAlert = function (opts) {
+      opts = opts || {};
+      if (opts.mint) state.mint = opts.mint;
+      if (opts.symbol) document.getElementById('rrsCarbonTicker').textContent = opts.symbol;
+      if (opts.reason) document.getElementById('rrsCarbonTitle').textContent = String(opts.reason).replace(/[\u2014\u2013]/g, ' | ');
+      applyLayout();
+      hud.classList.add('visible');
+    };
+    applyLayout();
+  })();
+  </script>
+
 </body>
 </html>
