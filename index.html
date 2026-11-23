@@ -7536,7 +7536,7 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
 
           <!-- Master 34.05s Castle Video (Arcade Synth Muted by Default for Institutional Calm) -->
           <video id="retailVaultMasterVideo" controls playsinline preload="metadata" poster="/assets/social/og-retail-emerald-hero-v51.png">
-            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=retail51" type="video/mp4" />
+            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=retail52" type="video/mp4" />
           </video>
 
           <div id="retailVaultSkyOverlay" class="rrs-vault-hud-overlay rrs-perimeter-hud hud-scene-0" aria-live="polite" style="display:none;">
@@ -21320,7 +21320,7 @@ window.submitVisitorFeedbackNow = async function(){
     }
 
     video.addEventListener("click", function(ev) {
-      if (started) {
+      if (started && !video.hasAttribute("controls")) {
         ev.stopPropagation();
         togglePause();
       }
@@ -22526,8 +22526,8 @@ window.submitVisitorFeedbackNow = async function(){
 <!-- RRS_INSTANT_BROWSER_ALERTS_V51_END -->
 
 <style id="rrs-walkthrough-stage-compact-css">
-  /* Keep current below-scanners position w/ full matching container width & equal 50/50 16:9 card/video proportions! */
-  #rrsHeroPromoVideoSection {
+  /* Keep exact below-scanners position; match 50/50 width & force 100% uncropped 16:9 video fit! */
+  html body #rrsHeroPromoVideoSection {
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 0 18px 0 !important;
@@ -22537,26 +22537,51 @@ window.submitVisitorFeedbackNow = async function(){
     align-items: stretch !important;
   }
   @media (max-width: 980px) {
-    #rrsHeroPromoVideoSection { grid-template-columns: 1fr !important; }
+    html body #rrsHeroPromoVideoSection { grid-template-columns: 1fr !important; }
   }
-  #rrsRetailLeftDiffCard, #retailCastleVaultPlayerCard {
-    min-height: 430px !important;
-    height: 100% !important;
+  html body #rrsRetailLeftDiffCard {
+    padding: 12px 15px !important;
+    min-height: 0 !important;
   }
-  #retailVaultViewport {
+  html body #rrsRetailLeftDiffCard .rrs-pitch-list li {
+    font-size: 13.2px !important;
+    line-height: 1.36 !important;
+    margin-bottom: 5px !important;
+  }
+  html body #retailCastleVaultPlayerCard {
+    padding: 0 !important;
+    min-height: 400px !important;
+    background: #050a12 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  html body #retailCastleVaultPlayerCard #retailVaultViewport,
+  html body .rrs-5050-video-stage#retailVaultViewport {
     width: 100% !important;
     height: 100% !important;
-    min-height: 430px !important;
+    min-height: 400px !important;
     max-height: none !important;
-    aspect-ratio: 16 / 9 !important;
+    background: #050a12 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
-  #retailVaultMasterVideo {
+  html body #retailCastleVaultPlayerCard #retailVaultMasterVideo,
+  html body #retailVaultViewport video#retailVaultMasterVideo,
+  html body #rrsVaultViewport video#rrsVaultMasterVideo {
     width: 100% !important;
     height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     object-fit: contain !important;
-    background: #050811 !important;
+    object-position: center center !important;
+    background: #050a12 !important;
   }
-  /* Suppress Castle HUD overlay on Retail clean scanner walkthrough video */
+  html body #retailCastleVaultPlayerCard .rrs-hud-controls-dock {
+    z-index: 80 !important;
+    pointer-events: auto !important;
+  }
   #retailVaultSkyOverlay { display: none !important; opacity: 0 !important; }
 </style>
 <script id="rrs-walkthrough-stage-helpers">
