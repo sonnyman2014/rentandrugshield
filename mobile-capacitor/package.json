@@ -1,15 +1,24 @@
 {
   "name": "solana-rent-rug-shield-mobile",
-  "version": "5.1.0",
+  "version": "6.0.0",
   "private": true,
-  "description": "Solana Rent & Rug Shield Native Android/iOS Wrapper with Solana Mobile Wallet Adapter (MWA v2.0)",
+  "description": "Solana Rent & Rug Shield Standalone Native Android v6.0 Mobile App with Solana Mobile Wallet Adapter v2.0, Wallet Standard Mobile, 12-Layer QR Firewall, MACD Market Radar, Phone Cyber Shield, 30% Partner Vault, and System HUD",
+  "scripts": {
+    "build:core": "esbuild src/mwa_wallet_core_entry.js --bundle --minify --format=iife --global-name=RrsMwaCoreBundle --platform=browser --target=es2020 --alias:@noble/curves/ed25519=@noble/curves/ed25519.js --outfile=www/js/mwa_wallet_core.bundle.js",
+    "cap:sync": "npx cap sync android",
+    "test:80": "python3 tests/qa_80_test_verifier.py"
+  },
   "dependencies": {
     "@capacitor/android": "^6.1.2",
+    "@capacitor/app": "^6.0.1",
     "@capacitor/core": "^6.1.2",
-    "@solana-mobile/mobile-wallet-adapter-protocol": "^2.1.2",
-    "@solana-mobile/mobile-wallet-adapter-protocol-web3js": "^2.1.2"
+    "@capacitor/haptics": "^6.0.1",
+    "@solana-mobile/mobile-wallet-adapter-protocol": "^3.0.2",
+    "@solana-mobile/mobile-wallet-adapter-protocol-web3js": "^2.1.2",
+    "@solana-mobile/wallet-standard-mobile": "^0.7.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "^6.1.2"
+    "@capacitor/cli": "^6.1.2",
+    "esbuild": "^0.24.0"
   }
 }

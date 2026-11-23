@@ -1,27 +1,15 @@
 {
-  "name": "Solana Rent & Rug Shield Mobile (v5.1 — MWA v2.0 & 12-Layer)",
-  "short_name": "Rent&RugShield",
-  "description": "Reclaim empty Solana ATA rent (0% 1st claim Keep 100% SOL, 4-lock anti-Sybil, 2.0% repeat = 98.0% net SOL) & block rugs pre-buy in <120ms with Solana MWA v2.0 + Share-Target Scanner.",
-  "id": "/mobile.html",
-  "start_url": "/mobile.html?source=pwa",
+  "name": "Solana Rent & Rug Shield v6.0",
+  "short_name": "Rent&Rug v6",
+  "description": "Standalone Native 6-Tab Solana Mobile App v6.0: MWA v2.0 0x09 Rent Sweeper (0% 1st Claim, 98.0% Net Repeat), 12-Layer + QR Rug Scanner, MACD Market Radar, Phone Cyber Shield, 30% Partner Vault, and System HUD.",
+  "start_url": "/mobile.html?source=pwa_v6",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#060b14",
-  "theme_color": "#eab308",
+  "background_color": "#020408",
+  "theme_color": "#020408",
   "categories": ["finance", "security", "utilities"],
   "icons": [
-    {
-      "src": "/chrome-extension/icon48.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    },
-    {
-      "src": "/chrome-extension/icon128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
     {
       "src": "/chrome-extension/icons/icon-192.png",
       "sizes": "192x192",
@@ -44,28 +32,5 @@
       "text": "share_text",
       "url": "share_url"
     }
-  },
-  "shortcuts": [
-    {
-      "name": "0x09 Free 1st Rent Claim",
-      "short_name": "0x09 Rent",
-      "description": "Scan & reclaim empty Solana ATAs (0% 1st claim Keep 100% SOL)",
-      "url": "/mobile.html?tab=rent",
-      "icons": [{ "src": "/chrome-extension/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
-    },
-    {
-      "name": "12-Layer Rug Scanner",
-      "short_name": "12L Scanner",
-      "description": "Pre-buy 12-Layer Solana token & LP safety audit in <120ms",
-      "url": "/mobile.html?tab=rug",
-      "icons": [{ "src": "/chrome-extension/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
-    },
-    {
-      "name": "Whale Precipice Radar",
-      "short_name": "Whale Radar",
-      "description": "High-conviction Whale_Precipice_Radar (>=85 score) mobile push alerts",
-      "url": "/mobile.html?tab=whale",
-      "icons": [{ "src": "/chrome-extension/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
-    }
-  ]
+  }
 }

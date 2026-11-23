@@ -1,0 +1,36 @@
+{
+  "name": "Solana Rent & Rug Shield v6.0",
+  "short_name": "Rent&Rug v6",
+  "description": "Standalone Native 6-Tab Solana Mobile App v6.0: MWA v2.0 0x09 Rent Sweeper (0% 1st Claim, 98.0% Net Repeat), 12-Layer + QR Rug Scanner, MACD Market Radar, Phone Cyber Shield, 30% Partner Vault, and System HUD.",
+  "start_url": "/mobile.html?source=pwa_v6",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#020408",
+  "theme_color": "#020408",
+  "categories": ["finance", "security", "utilities"],
+  "icons": [
+    {
+      "src": "/chrome-extension/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/chrome-extension/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "share_target": {
+    "action": "/mobile.html",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "share_title",
+      "text": "share_text",
+      "url": "share_url"
+    }
+  }
+}

@@ -2,7 +2,21 @@
   "appId": "com.rentandrugshield.mobile",
   "appName": "Rent & Rug Shield",
   "webDir": "www",
+  "bundledWebRuntime": false,
+  "backgroundColor": "#020408",
   "server": {
+    "hostname": "appassets.androidplatform.net",
     "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#020408",
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
   }
 }

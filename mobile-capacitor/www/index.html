@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en" data-font-zoom="100">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+  <meta name="theme-color" content="#020408" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Rent &amp; Rug Shield" />
+  <link rel="manifest" href="/manifest-mobile.webmanifest" />
+  <link rel="icon" type="image/png" href="/chrome-extension/icon128.png" />
+  <link rel="apple-touch-icon" href="/chrome-extension/icons/icon-192.png" />
+  <link rel="canonical" href="https://rentandrugshield.com/mobile.html" />
+  <meta name="description" content="Solana Rent &amp; Rug Shield Mobile v6.0 (Solana dApp Store &amp; MWA v2.0): 6-Screen Native App with 0% 1st Claim 0x09 Rent Sweeper, 12-Layer + QR Rug Scanner, MACD Market Radar, Phone Cyber Shield, 30% Partner Vault, and System HUD." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rentandrugshield.com/mobile.html" />
+  <meta property="og:title" content="Solana Rent &amp; Rug Shield Mobile v6.0 | MWA v2.0 &amp; 6-Screen Security Suite" />
+  <meta property="og:description" content="Standalone 6-Screen Solana Mobile v6.0 App: 0% First Claim Rent Sweeper (Keep 100% SOL, 98.0% Net Repeat), Sub-120ms 12-Layer + QR Scanner, MACD Radar, Phone Cyber Shield, 30% Partner Vault &amp; System HUD." />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Solana Rent &amp; Rug Shield Mobile v6.0 | MWA v2.0 &amp; 12-Layer Firewall</title>
+  <style>
+    :root {
+      --bg: #020408;
+      --bg-card: #070d17;
+      --bg-sub: #0b1322;
+      --emerald: #00FFA3;
+      --emerald-dim: rgba(0, 255, 163, 0.14);
+      --gold: #D4AF37;
+      --gold-bright: #F3CF55;
+      --gold-dim: rgba(212, 175, 55, 0.16);
+      --danger: #FF4D6D;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --border: rgba(212, 175, 55, 0.28);
+      --border-emerald: rgba(0, 255, 163, 0.32);
+      --font-scale: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* Zero web clutter on mobile (<960px) and inside standalone APK */
+    .rrs-desktop-companion {
+      display: none;
+    }
+
+    .rrs-outer-layout {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .rrs-phone-shell {
+      width: 100%;
+      max-width: 100%;
+      min-height: 100dvh;
+      background: var(--bg);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sticky Native Top Header */
+    .rrs-top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      padding: calc(env(safe-area-inset-top, 6px) + 6px) 10px 8px 10px;
+      background: rgba(2, 4, 8, 0.96);
+      border-bottom: 1px solid rgba(0, 255, 163, 0.22);
+      backdrop-filter: blur(10px);
+    }
+
+    .rrs-brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .rrs-brand-emblem {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1.5px solid var(--emerald);
+      background: #020408;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 10px rgba(0, 255, 163, 0.25);
+    }
+
+    .rrs-brand-txt {
+      min-width: 0;
+    }
+
+    .rrs-brand-title {
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.15;
+    }
+
+    .rrs-brand-sub {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .rrs-hdr-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .rrs-hdr-btn {
+      min-height: 32px;
+      padding: 5px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--gold);
+      background: #09111e;
+      color: var(--gold-bright);
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .rrs-mwa-btn {
+      min-height: 32px;
+      padding: 5px 9px;
+      border-radius: 8px;
+      border: 1.5px solid var(--emerald);
+      background: linear-gradient(135deg, #00FFA3 0%, #00C97E 100%);
+      color: #020408;
+      font-size: 11px;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .rrs-mwa-btn.connected {
+      background: #042f20;
+      color: var(--emerald);
+    }
+
+    /* Main Scrollable Screen Area (scales cleanly with --font-scale 1.00 to 1.75) */
+    .rrs-main-stage {
+      flex: 1 1 auto;
+      width: 100%;
+      max-width: 100%;
+      padding: 10px 10px calc(76px + env(safe-area-inset-bottom, 10px)) 10px;
+      font-size: calc(1rem * var(--font-scale));
+    }
+
+    .rrs-screen {
+      display: none;
+      width: 100%;
+      max-width: 100%;
+      animation: rrsFadeIn 0.12s ease-out;
+    }
+
+    .rrs-screen.active {
+      display: block;
+    }
+
+    @keyframes rrsFadeIn {
+      from { opacity: 0.6; transform: translateY(2px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .rrs-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+      width: 100%;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .rrs-card.emerald-rim {
+      border-color: var(--border-emerald);
+    }
+
+    .rrs-subcard {
+      background: var(--bg-sub);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 11px;
+      padding: 10px;
+      margin-top: 8px;
+      width: 100%;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .rrs-h2 {
+      margin: 0 0 5px 0;
+      font-size: 1.05em;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .rrs-lead {
+      margin: 0 0 9px 0;
+      font-size: 0.82em;
+      font-weight: 500;
+      line-height: 1.44;
+      color: #CBD5E1;
+    }
+
+    .rrs-inp {
+      width: 100%;
+      max-width: 100%;
+      min-height: 42px;
+      padding: 9px 11px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.38);
+      background: #020408;
+      color: var(--text);
+      font-size: 0.86em;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .rrs-inp::placeholder {
+      color: #94A3B8;
+      opacity: 1;
+    }
+
+    .rrs-inp:focus {
+      outline: none;
+      border-color: var(--emerald);
+      box-shadow: 0 0 0 2px rgba(0, 255, 163, 0.16);
+    }
+
+    .rrs-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      max-width: 100%;
+      min-height: 42px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      font-size: 0.86em;
+      font-weight: 900;
+      line-height: 1.25;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 7px;
+      white-space: normal;
+      word-break: break-word;
+      text-decoration: none;
+    }
+
+    .rrs-btn-emerald {
+      background: linear-gradient(135deg, #00FFA3 0%, #00C97E 100%);
+      color: #020408;
+    }
+
+    .rrs-btn-gold {
+      background: linear-gradient(135deg, #F3CF55 0%, #D4AF37 100%);
+      color: #020408;
+    }
+
+    .rrs-btn-ghost {
+      background: #0a1322;
+      border-color: rgba(148, 163, 184, 0.3);
+      color: var(--text);
+    }
+
+    .rrs-btn-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+      gap: 7px;
+      width: 100%;
+      margin-bottom: 6px;
+    }
+
+    .rrs-btn-row .rrs-btn {
+      margin-bottom: 0;
+    }
+
+    .rrs-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 6px 0 8px 0;
+      width: 100%;
+    }
+
+    .rrs-chip {
+      min-height: 32px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      background: #091220;
+      color: #E2E8F0;
+      font-size: 0.78em;
+      font-weight: 800;
+      cursor: pointer;
+      max-width: 100%;
+    }
+
+    .rrs-chip.active {
+      border-color: var(--emerald);
+      background: #042f20;
+      color: var(--emerald);
+    }
+
+    .rrs-chip.gold.active {
+      border-color: var(--gold);
+      background: #241c06;
+      color: var(--gold-bright);
+    }
+
+    .rrs-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--emerald);
+      background: rgba(2, 4, 8, 0.85);
+      color: var(--emerald);
+      font-size: 0.72em;
+      font-weight: 800;
+      max-width: 100%;
+    }
+
+    .rrs-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+      margin-top: 6px;
+    }
+
+    .rrs-metric-cell {
+      background: #020408;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 9px;
+      padding: 8px;
+      min-width: 0;
+    }
+
+    .rrs-metric-cell .k {
+      display: block;
+      font-size: 0.72em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .rrs-metric-cell .v {
+      display: block;
+      font-size: 0.96em;
+      color: var(--text);
+      font-weight: 900;
+      margin-top: 2px;
+    }
+
+    .rrs-metric-cell .v.emerald { color: var(--emerald); }
+    .rrs-metric-cell .v.gold { color: var(--gold-bright); }
+
+    .rrs-layer-row {
+      font-size: 0.76em;
+      line-height: 1.35;
+      padding: 4px 6px;
+      background: #020408;
+      border-radius: 6px;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    .rrs-drawer {
+      display: none;
+      margin-top: 9px;
+      padding: 10px;
+      border-radius: 12px;
+      background: #040912;
+      border: 1.5px solid var(--gold);
+      width: 100%;
+    }
+
+    .rrs-drawer.open {
+      display: block;
+    }
+
+    .rrs-canvas-preview {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid var(--emerald);
+      margin: 8px 0;
+    }
+
+    .rrs-filter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+      margin-bottom: 7px;
+    }
+
+    .rrs-filter-lbl {
+      display: block;
+      font-size: 0.74em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .rrs-filter-lbl .rrs-inp {
+      margin-top: 3px;
+      margin-bottom: 0;
+      min-height: 36px;
+      padding: 6px 8px;
+    }
+
+    .rrs-mini-btn {
+      min-height: 32px;
+      padding: 5px 10px;
+      border-radius: 7px;
+      border: 1px solid var(--emerald);
+      background: #04281b;
+      color: var(--emerald);
+      font-size: 0.76em;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .rrs-mini-btn.gold {
+      border-color: var(--gold);
+      background: #231b06;
+      color: var(--gold-bright);
+    }
+
+    .rrs-rpc-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      background: #020408;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 9px;
+      margin-bottom: 6px;
+    }
+
+    .rrs-toast-danger {
+      display: none;
+      margin-bottom: 8px;
+      padding: 9px 11px;
+      border-radius: 10px;
+      background: rgba(255, 77, 109, 0.16);
+      border: 1.5px solid var(--danger);
+      color: #FFE4E9;
+      font-size: 0.8em;
+      font-weight: 800;
+    }
+
+    .rrs-foot-brand {
+      text-align: center;
+      padding: 8px 4px 2px 4px;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+
+    /* Fixed 6-Tab Native Bottom Navigation (Engineered for 360px zero-clipping) */
+    .rrs-bottom-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 70;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 2px;
+      padding: 5px 4px calc(5px + env(safe-area-inset-bottom, 4px)) 4px;
+      background: rgba(2, 4, 8, 0.98);
+      border-top: 1px solid rgba(212, 175, 55, 0.34);
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .rrs-tab-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      min-width: 0;
+      min-height: 48px;
+      padding: 4px 1px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .rrs-tab-btn svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+
+    .rrs-tab-btn.active {
+      color: #020408;
+      background: linear-gradient(135deg, #00FFA3 0%, #D4AF37 100%);
+      font-weight: 900;
+    }
+
+    /* Native MWA v2.0 Wallet Bottom Sheet Modal */
+    .rrs-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(2, 4, 8, 0.82);
+      align-items: flex-end;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    .rrs-modal-backdrop.open {
+      display: flex;
+    }
+
+    .rrs-modal-sheet {
+      width: 100%;
+      max-width: 430px;
+      background: #070d17;
+      border: 1.5px solid var(--emerald);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    /* Desktop Showcase (>= 960px when not inside standalone APK) */
+    @media (min-width: 960px) {
+      html:not([data-native-apk="1"]) .rrs-outer-layout {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 24px 20px;
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        gap: 28px;
+        align-items: start;
+      }
+      html:not([data-native-apk="1"]) .rrs-phone-shell {
+        min-height: 820px;
+        max-height: 860px;
+        border: 3px solid rgba(212, 175, 55, 0.5);
+        border-radius: 30px;
+        overflow-y: auto;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85);
+      }
+      html:not([data-native-apk="1"]) .rrs-bottom-nav {
+        position: sticky;
+        bottom: 0;
+      }
+      html:not([data-native-apk="1"]) .rrs-desktop-companion {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="rrs-outer-layout">
+    <!-- STANDALONE 6-SCREEN NATIVE MOBILE APP SHELL -->
+    <main class="rrs-phone-shell" id="rrsPhoneShell">
+      <header class="rrs-top-bar">
+        <div class="rrs-brand">
+          <div class="rrs-brand-emblem" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L4 5.5V11.5C4 16.8 7.4 21.3 12 22.5C16.6 21.3 20 16.8 20 11.5V5.5L12 2Z" fill="#042f20" stroke="#00FFA3" stroke-width="2"/>
+              <path d="M9 12.2L11.1 14.3L15.4 9.8" stroke="#D4AF37" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="rrs-brand-txt">
+            <div class="rrs-brand-title">Rent &amp; Rug Shield <span style="color:#00FFA3;">v6.0</span></div>
+            <div class="rrs-brand-sub">MWA v2.0 | 0% 1st Claim | 12L Firewall</div>
+          </div>
+        </div>
+        <div class="rrs-hdr-actions">
+          <button type="button" class="rrs-hdr-btn" id="btnFontZoomToggle" title="Eye-Friendly Font Zoom (100%-175%)">Aa 100%</button>
+          <button type="button" class="rrs-mwa-btn" id="btnMwaConnect">Connect MWA</button>
+        </div>
+      </header>
+
+      <div class="rrs-main-stage">
+        <div id="globalCyberToast" class="rrs-toast-danger" role="alert"></div>
+
+        <!-- ================================================================ -->
+        <!-- TAB 1: RENT SWEEPER                                              -->
+        <!-- ================================================================ -->
+        <section id="screen-sweeper" class="rrs-screen active" aria-label="Rent Sweeper">
+          <div class="rrs-card emerald-rim">
+            <h2 class="rrs-h2">1. Native 0x09 Rent Sweeper</h2>
+            <p class="rrs-lead">
+              Read-only Solana wallet scan + 1-tap <b>0% First Claim</b> (keep 100% SOL via 4-Lock Anti-Sybil) and <b>98.0% Net Repeat</b> batch <code>0x09 CloseAccount</code> recovery. 4 permanent legacy frozen Token-2022 ATAs strictly quarantined.
+            </p>
+
+            <div class="rrs-chip-row" aria-label="4-Lock Anti-Sybil Status">
+              <span class="rrs-pill">Wallet Lock</span>
+              <span class="rrs-pill">Subnet Lock</span>
+              <span class="rrs-pill">Device Lock</span>
+              <span class="rrs-pill" style="border-color:#D4AF37;color:#F3CF55;">4 Frozen ATAs Quarantined</span>
+            </div>
+
+            <input id="inpWallet" class="rrs-inp" type="text" value="" placeholder="Paste Solana Wallet Address (Base58)..." autocomplete="off" spellcheck="false" />
+
+            <div class="rrs-btn-row">
+              <button type="button" class="rrs-btn rrs-btn-emerald" id="btnScanWallet">Scan Empty ATAs (0% 1st)</button>
+              <button type="button" class="rrs-btn rrs-btn-ghost" id="btnDemoWallet">Read-Only Demo Scan</button>
+            </div>
+            <button type="button" class="rrs-btn rrs-btn-ghost" id="btnUseConnectedWallet" style="display:none;">Scan Connected MWA Wallet</button>
+            <button type="button" class="rrs-btn rrs-btn-gold" id="btnSignClaim" style="display:none;">1-Tap Claim SOL via MWA v2.0</button>
+
+            <div id="sweeperScanResult" class="rrs-subcard" style="display:none;"></div>
+
+            <div id="sweeperReceiptWrap" style="display:none;margin-top:10px;">
+              <div style="font-size:0.8em;font-weight:800;color:#D4AF37;">Live SOL Saved Receipt Card (footer: rentandrugshield.com)</div>
+              <canvas id="sweeperReceiptCanvas" class="rrs-canvas-preview" width="960" height="504"></canvas>
+              <button type="button" class="rrs-btn rrs-btn-ghost" id="btnDownloadReceipt">Download Clean Receipt PNG</button>
+            </div>
+          </div>
+          <div class="rrs-foot-brand">rentandrugshield.com</div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- TAB 2: 12-LAYER + QR RUG SCANNER                                 -->
+        <!-- ================================================================ -->
+        <section id="screen-scanner" class="rrs-screen" aria-label="12-Layer and QR Rug Scanner">
+          <div class="rrs-card">
+            <h2 class="rrs-h2">2. Sub-120ms 12-Layer + QR Scanner</h2>
+            <p class="rrs-lead">
+              Pre-buy forensic check of Mint/Freeze authorities, Token-2022 Permanent Delegate &amp; TransferHook, LP lock, Block-0 Sybil bundles, and Drainer CPIs + Camera QR scanner &amp; 1-tap DEX execution.
+            </p>
+
+            <input id="inpMint" class="rrs-inp" type="text" value="" placeholder="Paste Token Mint or Pump.fun / DexScreener / Jupiter URL..." autocomplete="off" spellcheck="false" />
+
+            <div class="rrs-chip-row">
+              <button type="button" class="rrs-chip" data-preset-mint="DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263">$BONK</button>
+              <button type="button" class="rrs-chip" data-preset-mint="JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN">$JUP</button>
+              <button type="button" class="rrs-chip" data-preset-mint="EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm">$WIF</button>
+            </div>
+
+            <div class="rrs-btn-row">
+              <button type="button" class="rrs-btn rrs-btn-emerald" id="btnScanMint">Run 12-Layer Audit</button>
+              <button type="button" class="rrs-btn rrs-btn-gold" id="btnOpenQrScanner">Camera QR Scanner</button>
+            </div>
+
+            <!-- Inline Camera / Image QR Scanner Drawer -->
+            <div id="qrScannerDrawer" class="rrs-drawer">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:6px;">
+                <strong style="color:#00FFA3;font-size:0.85em;">Phone Camera &amp; Matrix QR Decoder</strong>
+                <button type="button" class="rrs-mini-btn gold" id="btnCloseQrScanner">Close</button>
+              </div>
+              <video id="qrCameraVideo" playsinline muted style="display:none;width:100%;border-radius:9px;margin-bottom:6px;border:1px solid #00FFA3;"></video>
+              <div id="qrScannerStatus" style="font-size:0.78em;color:#CBD5E1;margin-bottom:7px;">Point camera at Solana QR or decode a QR image file locally.</div>
+              <div class="rrs-btn-row">
+                <label class="rrs-btn rrs-btn-ghost" style="margin:0;">
+                  Scan QR Image
+                  <input id="inpQrImageFile" type="file" accept="image/*" style="display:none;" />
+                </label>
+                <button type="button" class="rrs-btn rrs-btn-emerald" id="btnTestQrPayload">Test QR Payload</button>
+              </div>
+            </div>
+
+            <div id="mintAuditResult" class="rrs-subcard" style="display:none;"></div>
+
+            <button type="button" class="rrs-btn rrs-btn-ghost" id="btnToggleTradeDrawer" style="margin-top:8px;">Jupiter / Raydium Buy &amp; Sell Drawer</button>
+
+            <!-- 1-Tap Jupiter / Raydium Buy & Sell Execution Drawer -->
+            <div id="tradeExecDrawer" class="rrs-drawer">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:6px;">
+                <strong style="color:#F3CF55;font-size:0.88em;">1-Tap Protected Execution</strong>
+                <span id="tradeTargetLabel" class="rrs-pill">$BONK (DezX..B263)</span>
+              </div>
+              <div id="tradeGateStatus" style="font-size:0.76em;font-weight:700;color:#00FFA3;margin-bottom:8px;">
+                12-Layer Shield Gate PASSED (96/100 &ge; 85)
+              </div>
+
+              <div class="rrs-btn-row" style="margin-bottom:7px;">
+                <button type="button" class="rrs-chip active" id="btnSideBuy">BUY (SOL -&gt; Token)</button>
+                <button type="button" class="rrs-chip gold" id="btnSideSell">SELL (Token -&gt; SOL)</button>
+              </div>
+
+              <div id="swapAmountPresets" class="rrs-chip-row"></div>
+              <input id="inpSwapAmount" class="rrs-inp" type="text" value="0.25" aria-label="Swap Amount" />
+
+              <div class="rrs-chip-row">
+                <button type="button" class="rrs-chip" data-slip-bps="50">0.5% Slip</button>
+                <button type="button" class="rrs-chip active" data-slip-bps="100">1.0% Slip</button>
+                <button type="button" class="rrs-chip" data-slip-bps="300">3.0% Slip</button>
+              </div>
+
+              <div id="swapQuotePreview" style="font-size:0.76em;color:#CBD5E1;margin-bottom:8px;"></div>
+
+              <div class="rrs-btn-row">
+                <button type="button" class="rrs-btn rrs-btn-emerald" id="btnSwapJupiter">Jupiter v6 Swap</button>
+                <button type="button" class="rrs-btn rrs-btn-gold" id="btnSwapRaydium">Raydium V4 Swap</button>
+              </div>
+              <div id="swapExecFeedback" class="rrs-subcard" style="display:none;"></div>
+            </div>
+          </div>
+          <div class="rrs-foot-brand">rentandrugshield.com</div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- TAB 3: MACD & MARKET RADAR                                       -->
+        <!-- ================================================================ -->
+        <section id="screen-radar" class="rrs-screen" aria-label="MACD and Market Radar">
+          <div class="rrs-card emerald-rim">
+            <h2 class="rrs-h2">3. Live MACD &amp; Catalyst Radar</h2>
+            <p class="rrs-lead">
+              Customizable <code>1m/3m/5m/15m</code> MACD Bull/Bear crossover + Histogram flip scanner with Market Cap, Liquidity, <code>% Move</code>, Coin Name, and Keyword/World News filters.
+            </p>
+
+            <div style="font-size:0.76em;font-weight:800;color:#D4AF37;">MACD Timeframe:</div>
+            <div class="rrs-chip-row" id="macdTfBar">
+              <button type="button" class="rrs-chip active" data-macd-tf="1m">MACD 1m</button>
+              <button type="button" class="rrs-chip" data-macd-tf="3m">MACD 3m</button>
+              <button type="button" class="rrs-chip" data-macd-tf="5m">MACD 5m</button>
+              <button type="button" class="rrs-chip" data-macd-tf="15m">MACD 15m</button>
+            </div>
+
+            <div style="font-size:0.76em;font-weight:800;color:#00FFA3;">Crossover &amp; Histogram Signal:</div>
+            <div class="rrs-chip-row" id="macdSigBar">
+              <button type="button" class="rrs-chip active" data-macd-sig="all">All</button>
+              <button type="button" class="rrs-chip" data-macd-sig="bull_cross">Bull Cross</button>
+              <button type="button" class="rrs-chip" data-macd-sig="bear_cross">Bear Cross</button>
+              <button type="button" class="rrs-chip" data-macd-sig="hist_flip_up">Hist Flip +</button>
+              <button type="button" class="rrs-chip" data-macd-sig="hist_flip_down">Hist Flip -</button>
+            </div>
+
+            <div class="rrs-filter-grid">
+              <label class="rrs-filter-lbl">Min MCap ($)
+                <input id="fltMinMc" class="rrs-inp" type="number" value="25000" />
+              </label>
+              <label class="rrs-filter-lbl">Min Liquidity ($)
+                <input id="fltMinLiq" class="rrs-inp" type="number" value="10000" />
+              </label>
+              <label class="rrs-filter-lbl">Min % Move
+                <input id="fltPctMove" class="rrs-inp" type="number" value="2" />
+              </label>
+              <label class="rrs-filter-lbl">Coin Name / Ticker
+                <input id="fltCoinName" class="rrs-inp" type="text" value="" placeholder="e.g. BONK, JUP" />
+              </label>
+            </div>
+
+            <label class="rrs-filter-lbl" style="margin-bottom:7px;">Keyword / World News Filter
+              <input id="fltKeywordNews" class="rrs-inp" type="text" value="" placeholder="e.g. GPU, Fed, Seeker, DEX..." />
+            </label>
+
+            <div class="rrs-chip-row" style="align-items:center;">
+              <label style="font-size:0.78em;font-weight:700;"><input id="chkCatCrypto" type="checkbox" checked /> Crypto</label>
+              <label style="font-size:0.78em;font-weight:700;"><input id="chkCatAi" type="checkbox" checked /> AI News</label>
+              <label style="font-size:0.78em;font-weight:700;"><input id="chkCatWorld" type="checkbox" checked /> World News</label>
+              <button type="button" class="rrs-mini-btn gold" id="btnResetRadarFilters">Reset Filters</button>
+            </div>
+
+            <div id="radarFilterSummary" style="font-size:0.76em;font-weight:800;color:#00FFA3;margin:6px 0;"></div>
+            <div id="radarFeedList"></div>
+          </div>
+          <div class="rrs-foot-brand">rentandrugshield.com</div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- TAB 4: PHONE CYBER SHIELD                                        -->
+        <!-- ================================================================ -->
+        <section id="screen-cyber" class="rrs-screen" aria-label="Phone Cyber Shield">
+          <div class="rrs-card">
+            <h2 class="rrs-h2">4. Phone Cyber Shield</h2>
+            <p class="rrs-lead">
+              Real-time mobile defense against clipboard-hijack malware, <code>$0</code> vanity-dust address poisoning, and <code>xn--</code> Punycode homograph phishing links.
+            </p>
+
+            <!-- Guard 1: Clipboard Hijack -->
+            <div class="rrs-subcard">
+              <strong style="color:#00FFA3;font-size:0.88em;">A. Mobile Clipboard-Hijack Guard</strong>
+              <p class="rrs-lead" style="margin-top:3px;">Detects silent Base58 address swaps between copy and paste.</p>
+              <input id="inpClipOriginal" class="rrs-inp" type="text" value="" placeholder="Copied Base58 Address..." autocomplete="off" />
+              <input id="inpClipPasted" class="rrs-inp" type="text" value="" placeholder="Pasted Base58 Address..." autocomplete="off" />
+              <div class="rrs-btn-row">
+                <button type="button" class="rrs-btn rrs-btn-emerald" id="btnTestClipGuard">Verify Clipboard</button>
+                <button type="button" class="rrs-btn rrs-btn-ghost" id="btnSampleClipHijack">Simulate Hijack</button>
+              </div>
+              <div id="cyberClipboardResult" class="rrs-subcard" style="display:none;"></div>
+            </div>
+
+            <!-- Guard 2: $0 Vanity-Dust Poison Detector -->
+            <div class="rrs-subcard">
+              <strong style="color:#D4AF37;font-size:0.88em;">B. $0 Vanity-Dust Poison Detector</strong>
+              <p class="rrs-lead" style="margin-top:3px;">Catches lookalike prefix/suffix spoof wallets &amp; 0-lamport dust history traps.</p>
+              <input id="inpPoisonTrusted" class="rrs-inp" type="text" value="" placeholder="Your Trusted Counterparty Address..." autocomplete="off" />
+              <input id="inpPoisonSuspect" class="rrs-inp" type="text" value="" placeholder="Recent TX Counterparty Address..." autocomplete="off" />
+              <input id="inpPoisonLamports" class="rrs-inp" type="number" value="" placeholder="Transfer Amount (lamports, e.g. 0)" />
+              <div class="rrs-btn-row">
+                <button type="button" class="rrs-btn rrs-btn-gold" id="btnRunPoisonScan">Check Dust Poison</button>
+                <button type="button" class="rrs-btn rrs-btn-ghost" id="btnSamplePoison">Test $0 Vanity Trap</button>
+              </div>
+              <div id="cyberPoisonResult" class="rrs-subcard" style="display:none;"></div>
+            </div>
+
+            <!-- Guard 3: Punycode xn-- Phishing Scanner -->
+            <div class="rrs-subcard">
+              <strong style="color:#00FFA3;font-size:0.88em;">C. xn-- Punycode Phishing Scanner</strong>
+              <p class="rrs-lead" style="margin-top:3px;">Blocks IDN Punycode (<code>xn--</code>), Cyrillic homographs, and drainer links.</p>
+              <input id="inpPunyUrl" class="rrs-inp" type="text" value="" placeholder="Paste SMS / Telegram / DEX URL..." autocomplete="off" />
+              <div class="rrs-btn-row">
+                <button type="button" class="rrs-btn rrs-btn-emerald" id="btnRunPunyScan">Scan Link Safety</button>
+                <button type="button" class="rrs-btn rrs-btn-ghost" id="btnSamplePuny">Test xn-- Link</button>
+              </div>
+              <div id="cyberPunyResult" class="rrs-subcard" style="display:none;"></div>
+            </div>
+          </div>
+          <div class="rrs-foot-brand">rentandrugshield.com</div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- TAB 5: 30% PARTNER VAULT                                         -->
+        <!-- ================================================================ -->
+        <section id="screen-partner" class="rrs-screen" aria-label="30 Percent Partner Vault">
+          <div class="rrs-card emerald-rim">
+            <h2 class="rrs-h2">5. 30% Atomic Partner Vault</h2>
+            <p class="rrs-lead">
+              Generate your instant <code>?ref=WALLET</code> link paying <b>30% commission atomically</b> inside the same Solana transaction ($0 custody delay) + clean shareable proof card.
+            </p>
+
+            <input id="inpPartnerWallet" class="rrs-inp" type="text" value="" placeholder="Your Solana Payout Wallet (Base58)..." autocomplete="off" spellcheck="false" />
+
+            <div class="rrs-btn-row">
+              <button type="button" class="rrs-btn rrs-btn-emerald" id="btnBuildPartnerLink">Generate 30% Link</button>
+              <button type="button" class="rrs-btn rrs-btn-gold" id="btnCopyPartnerLink">Copy 30% ?ref= Link</button>
+            </div>
+            <div class="rrs-btn-row">
+              <button type="button" class="rrs-btn rrs-btn-ghost" id="btnPartnerDemoWallet">Preview Demo Vault</button>
+              <button type="button" class="rrs-btn rrs-btn-ghost" id="btnPartnerUseConnected" style="display:none;">Use MWA Wallet</button>
+            </div>
+
+            <div id="partnerLinkResult" class="rrs-subcard" style="display:none;"></div>
+
+            <div id="partnerProofWrap" style="display:none;margin-top:10px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+                <strong style="font-size:0.82em;color:#D4AF37;">Clean Shareable Proof Card (rentandrugshield.com)</strong>
+                <div id="partnerQrSvg" style="width:68px;height:68px;background:#fff;padding:3px;border-radius:6px;"></div>
+              </div>
+              <canvas id="partnerProofCanvas" class="rrs-canvas-preview" width="1200" height="630"></canvas>
+              <button type="button" class="rrs-btn rrs-btn-gold" id="btnDownloadPartnerPng">Download Clean Proof Card PNG</button>
+            </div>
+          </div>
+          <div class="rrs-foot-brand">rentandrugshield.com</div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- TAB 6: SYSTEM & LATENCY HUD                                      -->
+        <!-- ================================================================ -->
+        <section id="screen-hud" class="rrs-screen" aria-label="System and Latency HUD">
+          <div class="rrs-card">
+            <h2 class="rrs-h2">6. System &amp; Multi-RPC Latency HUD</h2>
+            <p class="rrs-lead">
+              Live Solana Mainnet TPS, offline-resilient RPC failover latency (<code>PublicNode</code> + <code>Solana Mainnet</code> + <code>Helius</code>), pass status, and eye-friendly settings sync.
+            </p>
+
+            <div class="rrs-metric-grid" style="margin-bottom:9px;">
+              <div class="rrs-metric-cell">
+                <span class="k">Live Solana TPS</span>
+                <strong class="v emerald" id="hudTpsValue">3,240 TPS</strong>
+              </div>
+              <div class="rrs-metric-cell">
+                <span class="k">Mainnet Height</span>
+                <strong class="v gold" id="hudSlotValue">Confirmed</strong>
+              </div>
+            </div>
+
+            <button type="button" class="rrs-btn rrs-btn-emerald" id="btnProbeAllRpcs">Probe All RPC Endpoints (ms)</button>
+
+            <div id="hudRpcRows" style="margin:8px 0;">
+              <div class="rrs-rpc-row">
+                <div><strong style="color:#F8FAFC;">PublicNode</strong><div style="font-size:0.72rem;color:#94A3B8;">Score 100/100</div></div>
+                <span class="rrs-pill">Ready</span>
+              </div>
+              <div class="rrs-rpc-row">
+                <div><strong style="color:#F8FAFC;">Solana Mainnet</strong><div style="font-size:0.72rem;color:#94A3B8;">Score 100/100</div></div>
+                <span class="rrs-pill">Ready</span>
+              </div>
+              <div class="rrs-rpc-row">
+                <div><strong style="color:#F8FAFC;">Helius</strong><div style="font-size:0.72rem;color:#94A3B8;">Score 100/100</div></div>
+                <span class="rrs-pill">Ready</span>
+              </div>
+            </div>
+
+            <!-- Pass Status ($0 Auto-Billing) -->
+            <div class="rrs-subcard" id="hudPassStatusCard" style="border-color:rgba(0,255,163,0.4);">
+              <strong style="color:#00FFA3;font-size:0.88em;">Pass Status: 0% First Claim Active</strong>
+              <div style="font-size:0.78em;color:#F8FAFC;margin-top:4px;font-weight:700;">
+                $0.00 Auto-Billing | Zero Recurring Subscriptions | 100% Non-Custodial
+              </div>
+            </div>
+
+            <!-- Eye-Friendly Zoom & Settings Sync -->
+            <div class="rrs-subcard">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:6px;">
+                <strong style="color:#D4AF37;font-size:0.86em;">Eye-Friendly Font Zoom</strong>
+                <span id="hudZoomCurrent" class="rrs-pill">100%</span>
+              </div>
+              <div class="rrs-chip-row">
+                <button type="button" class="rrs-chip active" data-zoom-step="100">100%</button>
+                <button type="button" class="rrs-chip" data-zoom-step="125">125%</button>
+                <button type="button" class="rrs-chip" data-zoom-step="150">150%</button>
+                <button type="button" class="rrs-chip" data-zoom-step="175">175%</button>
+              </div>
+
+              <div class="rrs-chip-row" style="margin-top:8px;">
+                <label style="font-size:0.8em;font-weight:700;"><input id="chkHudHaptics" type="checkbox" checked /> Haptic Feedback</label>
+                <label style="font-size:0.8em;font-weight:700;"><input id="chkHudDirectRpc" type="checkbox" /> Direct Offline RPC</label>
+              </div>
+
+              <input id="inpHudCustomRpc" class="rrs-inp" type="url" value="" placeholder="Optional Custom Helius / Private RPC URL..." style="margin-top:6px;" />
+              <div class="rrs-btn-row">
+                <button type="button" class="rrs-btn rrs-btn-ghost" id="btnHudSaveRpc">Save Custom RPC</button>
+                <button type="button" class="rrs-btn rrs-btn-gold" id="btnSyncSettingsNow">Sync Settings</button>
+              </div>
+              <div id="hudSyncStatus" style="font-size:0.74em;color:#94A3B8;margin-top:6px;"></div>
+            </div>
+          </div>
+          <div class="rrs-foot-brand">rentandrugshield.com</div>
+        </section>
+      </div>
+
+      <!-- 6-TAB INSTANT BOTTOM NAVIGATION BAR -->
+      <nav class="rrs-bottom-nav" role="tablist" aria-label="6-Screen Mobile Navigation">
+        <button type="button" class="rrs-tab-btn active" role="tab" aria-selected="true" data-screen="screen-sweeper" aria-label="Rent Sweeper">
+          <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Sweep</span>
+        </button>
+        <button type="button" class="rrs-tab-btn" role="tab" aria-selected="false" data-screen="screen-scanner" aria-label="12-Layer and QR Rug Scanner">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>12L QR</span>
+        </button>
+        <button type="button" class="rrs-tab-btn" role="tab" aria-selected="false" data-screen="screen-radar" aria-label="MACD and Market Radar">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>MACD</span>
+        </button>
+        <button type="button" class="rrs-tab-btn" role="tab" aria-selected="false" data-screen="screen-cyber" aria-label="Phone Cyber Shield">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Cyber</span>
+        </button>
+        <button type="button" class="rrs-tab-btn" role="tab" aria-selected="false" data-screen="screen-partner" aria-label="30 Percent Partner Vault">
+          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
+          <span>30%</span>
+        </button>
+        <button type="button" class="rrs-tab-btn" role="tab" aria-selected="false" data-screen="screen-hud" aria-label="System and Latency HUD">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>HUD</span>
+        </button>
+      </nav>
+    </main>
+
+    <!-- DESKTOP SHOWCASE COMPANION (>=960px only; hidden on all mobile screens & inside APK) -->
+    <aside class="rrs-desktop-companion" aria-label="Solana dApp Store v6.0 Release Hub">
+      <div class="rrs-card emerald-rim" style="padding:20px;">
+        <span class="rrs-pill">SOLANA DAPP STORE RELEASE v6.0 | MWA v2.0</span>
+        <h1 style="font-size:28px;font-weight:900;margin:12px 0 8px 0;color:#F8FAFC;line-height:1.2;">
+          Standalone 6-Screen Android Mobile App v6.0
+        </h1>
+        <p style="font-size:14.5px;color:#CBD5E1;line-height:1.55;margin:0 0 16px 0;">
+          Test all 6 native screens live in the interactive frame on the left or scan the locally generated ISO-18004 QR code to install the v1/v2/v3-signed <b>SolanaRentRugShield-v6.0-dAppStore.apk</b> on Solana Seeker, Saga, or Android 8.0+.
+        </p>
+
+        <div style="display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:center;background:#020408;padding:16px;border-radius:14px;border:1px solid rgba(212,175,55,0.35);">
+          <div id="deskQrSvgMount" style="width:160px;height:160px;background:#fff;padding:8px;border-radius:12px;"></div>
+          <div>
+            <div class="rrs-chip-row" style="margin-top:0;">
+              <button type="button" class="rrs-chip active" id="btnDeskQrApk">v6.0 dAppStore .APK QR</button>
+              <button type="button" class="rrs-chip" id="btnDeskQrPwa">Mobile Web PWA QR</button>
+            </div>
+            <code id="deskQrUrlText" style="display:block;font-size:12px;color:#00FFA3;word-break:break-all;margin:8px 0 12px 0;">https://rentandrugshield.com/downloads/SolanaRentRugShield-v6.0-dAppStore.apk</code>
+            <a class="rrs-btn rrs-btn-emerald" href="/downloads/SolanaRentRugShield-v6.0-dAppStore.apk" download="SolanaRentRugShield-v6.0-dAppStore.apk">
+              Download SolanaRentRugShield-v6.0-dAppStore.apk
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- NATIVE MWA v2.0 MULTI-WALLET AUTHORIZATION SHEET -->
+  <div id="mwaWalletModal" class="rrs-modal-backdrop" role="dialog" aria-modal="true" aria-label="Connect Solana MWA v2.0 Wallet">
+    <div class="rrs-modal-sheet">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <strong style="color:#00FFA3;font-size:15px;">Solana MWA v2.0 Wallet Adapter</strong>
+        <button type="button" class="rrs-mini-btn gold" id="btnCloseWalletModal">Close</button>
+      </div>
+      <div id="mwaCachedStatus" style="font-size:12px;color:#94A3B8;margin-bottom:10px;">
+        Cached MWA v2.0 Session: Ready (Seeker / Phantom / Solflare / Backpack)
+      </div>
+
+      <button type="button" class="rrs-btn rrs-btn-emerald" data-connect-wallet="seeker">Solana Seeker (Seed Vault MWA v2.0)</button>
+      <button type="button" class="rrs-btn rrs-btn-gold" data-connect-wallet="phantom">Phantom Mobile (MWA v2.0)</button>
+      <button type="button" class="rrs-btn rrs-btn-ghost" data-connect-wallet="solflare">Solflare Mobile (MWA v2.0)</button>
+      <button type="button" class="rrs-btn rrs-btn-ghost" data-connect-wallet="backpack">Backpack Mobile (MWA v2.0)</button>
+      <button type="button" class="rrs-btn rrs-btn-ghost" id="btnDisconnectWallet" style="border-color:rgba(255,77,109,0.4);color:#FF4D6D;">Clear Cached Session</button>
+
+      <div id="mwaModalFeedback" class="rrs-subcard" style="display:none;font-size:12.5px;"></div>
+    </div>
+  </div>
+
+  <script src="js/rpc_failover.js"></script>
+  <script src="js/mwa_wallet_core.bundle.js"></script>
+  <script src="js/app_v6_ui.js"></script>
+</body>
+</html>

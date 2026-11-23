@@ -1,0 +1,69 @@
+publisher:
+  name: Solana Rent & Rug Shield
+  address: 89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1
+  website: https://rentandrugshield.com
+  email: support@rentandrugshield.com
+  media:
+    - purpose: icon
+      uri: ./media/icon_512x512.png
+
+app:
+  name: Rent & Rug Shield
+  address: ""
+  android_package: com.rentandrugshield.mobile
+  urls:
+    license_url: https://rentandrugshield.com/terms.html
+    copyright_url: https://rentandrugshield.com/terms.html
+    privacy_policy_url: https://rentandrugshield.com/privacy.html
+    website: https://rentandrugshield.com/mobile.html
+  media:
+    - purpose: icon
+      uri: ./media/icon_512x512.png
+
+release:
+  address: ""
+  media:
+    - purpose: icon
+      uri: ./media/icon_512x512.png
+    - purpose: banner
+      uri: ./media/feature_graphic_1200x600.png
+    - purpose: screenshot
+      uri: ./media/screenshots/01_tab1_rent_sweeper_scan.png
+    - purpose: screenshot
+      uri: ./media/screenshots/02_tab1_mwa_v2_wallet_sheet.png
+    - purpose: screenshot
+      uri: ./media/screenshots/03_tab2_12layer_qr_rug_scanner.png
+    - purpose: screenshot
+      uri: ./media/screenshots/04_tab2_jupiter_raydium_trade_drawer.png
+    - purpose: screenshot
+      uri: ./media/screenshots/05_tab3_macd_market_radar.png
+    - purpose: screenshot
+      uri: ./media/screenshots/06_tab4_phone_cyber_shield.png
+    - purpose: screenshot
+      uri: ./media/screenshots/07_tab5_30pct_partner_vault.png
+    - purpose: screenshot
+      uri: ./media/screenshots/08_tab6_system_latency_hud_zoom.png
+    - purpose: video
+      uri: ./media/promo_reel_30s_1080x1920.mp4
+  files:
+    - purpose: install
+      uri: ./SolanaRentRugShield-v6.0-dAppStore.apk
+      sha256: 38fd281d099c86d8443ec53f0bcda771c71651b165040dae6230048b651f54ae
+  catalog:
+    en-US:
+      name: Solana Rent & Rug Shield
+      short_description: 0% 1st SOL Rent Sweeper, Sub-120ms 12-Layer + QR Rug Scanner & MACD Radar
+      long_description: |
+        Standalone 6-Screen Native Solana Mobile Security & Rent Recovery Suite (v6.0.0) built with Solana Mobile Wallet Adapter v2.0 for Solana Seeker, Saga, Phantom, Solflare, and Backpack.
+        1. Rent Sweeper: Read-only wallet scan + 1-tap 0% First Claim (keep 100% SOL) and 98.0% Net Repeat batch SPL 0x09 CloseAccount recovery with strict frozen Token-2022 quarantine and clean SOL saved receipt cards.
+        2. 12-Layer + QR Rug Scanner: Sub-120ms token audit, phone camera QR scanner, and 1-tap Jupiter v6 / Raydium V4 Buy & Sell execution drawer.
+        3. MACD & Market Radar: Customizable 1m/3m/5m/15m MACD Bull/Bear crossover and Histogram flip alerts with Market Cap, Liquidity, % Move, Ticker, and World News filters.
+        4. Phone Cyber Shield: Mobile clipboard-hijack guard, $0 vanity-dust address poison detector, and xn-- Punycode phishing scanner.
+        5. 30% Partner Vault: Instant ?ref=WALLET atomic 30% on-chain commission link and shareable proof-card generator.
+        6. System & Latency HUD: Live Solana Mainnet TPS, PublicNode + Solana Mainnet + Helius failover latency, $0.00 auto-billing status, and 100%-175% eye-friendly font zoom.
+      new_in_version: Standalone v6.0 6-screen native release with cached MWA v2.0 multi-wallet auth, Camera QR scanner, 1m/3m/5m/15m MACD radar, Phone Cyber Shield, 30% Partner Vault, and 100%-175% font zoom.
+      saga_features: Native Solana Mobile Wallet Adapter v2.0 Seed Vault session caching, Android System Share-Target 12-Layer scanner, and haptic tactical feedback.
+
+solana_mobile_dapp_publisher_portal:
+  google_store_package: com.rentandrugshield.mobile
+  testing_instructions: Tap Read-Only Demo Scan on Tab 1 or connect Seeker / Phantom / Solflare / Backpack via MWA v2.0. All scans are non-custodial ($0.00 auto-billing).
