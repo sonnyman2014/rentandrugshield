@@ -471,7 +471,10 @@
 
     async rpcCall(method, params, options) {
       const opts = options || {};
-      const ranked = this.getRankedEndpoints(method);
+      const isWebBrowser = typeof window !== 'undefined' && (!this._fetchImpl || this._fetchImpl === fetch);
+      const ranked = this.getRankedEndpoints(method).filter(function (ep) {
+        return !(isWebBrowser && ep.browserStandby);
+      });
       if (!ranked.length) {
         throw new Error('No Solana RPC endpoints configured');
       }
