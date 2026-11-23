@@ -2,103 +2,103 @@
   "rules": [
     {
       "pathPattern": "/api/actions/reclaim-rent",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/reclaim-rent"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/reclaim-rent"
     },
     {
       "pathPattern": "/api/actions/reclaim-rent/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/reclaim-rent/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/reclaim-rent/*"
     },
     {
       "pathPattern": "/reclaim-rent",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/reclaim-rent"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/reclaim-rent"
     },
     {
       "pathPattern": "/reclaim-rent/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/reclaim-rent/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/reclaim-rent/*"
     },
     {
       "pathPattern": "/proof/zero-fee-vs-incinerator",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/reclaim-rent"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/reclaim-rent"
     },
     {
       "pathPattern": "/api/actions/scan-rent",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/scan-rent"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/scan-rent"
     },
     {
       "pathPattern": "/api/actions/scan-rent/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/scan-rent/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/scan-rent/*"
     },
     {
       "pathPattern": "/api/actions/audit-token",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/audit-token"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/audit-token"
     },
     {
       "pathPattern": "/api/actions/audit-token/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/audit-token/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/audit-token/*"
     },
     {
       "pathPattern": "/scan-rent",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/scan-rent"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/scan-rent"
     },
     {
       "pathPattern": "/scan-rent/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/scan-rent/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/scan-rent/*"
     },
     {
       "pathPattern": "/audit-token",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/audit-token"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/audit-token"
     },
     {
       "pathPattern": "/audit-token/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/audit-token/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/audit-token/*"
     },
     {
       "pathPattern": "/trade/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/trade/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/trade/*"
     },
     {
       "pathPattern": "/trade",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/trade"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/trade"
     },
     {
       "pathPattern": "/swap/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/trade/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/trade/*"
     },
     {
       "pathPattern": "/swap",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/trade"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/trade"
     },
     {
       "pathPattern": "/audit/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/audit-token/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/audit-token/*"
     },
     {
       "pathPattern": "/audit",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/audit-token"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/audit-token"
     },
     {
       "pathPattern": "/rug-audit/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/rug-audit/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/rug-audit/*"
     },
     {
       "pathPattern": "/rug-audit",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/rug-audit"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/rug-audit"
     },
     {
       "pathPattern": "/rent-check/*",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/rent-check/*"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/rent-check/*"
     },
     {
       "pathPattern": "/rent-check",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/rent-check"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/rent-check"
     },
     {
       "pathPattern": "/",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/scan-rent"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/scan-rent"
     },
     {
       "pathPattern": "/api/actions/**",
-      "apiPath": "https://social-release-isle-harold.trycloudflare.com/api/actions/**"
+      "apiPath": "https://banner-modify-topics-move.trycloudflare.com/api/actions/**"
     }
   ]
 }

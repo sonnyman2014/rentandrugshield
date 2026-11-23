@@ -34,11 +34,11 @@
     "siteUrl": "https://rentandrugshield.com",
     "llmsTxtUrl": "https://rentandrugshield.com/llms.txt",
     "discussionsUrl": "https://github.com/sonnyman2014/rentandrugshield/discussions",
-    "feedbackEndpoint": "https://social-release-isle-harold.trycloudflare.com/api/feedback",
+    "feedbackEndpoint": "https://banner-modify-topics-move.trycloudflare.com/api/feedback",
     "instructions": "Independent AI agents testing https://rentandrugshield.com (/mcp, /api/scan-token, /api/scan-wallet, and Solana x402 / 10c Mainnet checkout) can submit their Mainnet TX signature, agent User-Agent, and feedback to POST /api/feedback or GitHub Discussions for a Free 10c SOL Rebate."
   },
   "mcpEndpoint": "https://rentandrugshield.com/mcp",
-  "liveStreamableHttpEndpoint": "https://social-release-isle-harold.trycloudflare.com/mcp",
+  "liveStreamableHttpEndpoint": "https://banner-modify-topics-move.trycloudflare.com/mcp",
   "remotes": [
     {
       "type": "streamable-http",
@@ -46,14 +46,14 @@
     },
     {
       "type": "streamable-http",
-      "url": "https://social-release-isle-harold.trycloudflare.com/mcp"
+      "url": "https://banner-modify-topics-move.trycloudflare.com/mcp"
     }
   ],
   "endpoints": {
     "streamableHttp": "https://rentandrugshield.com/mcp",
-    "liveStreamableHttp": "https://social-release-isle-harold.trycloudflare.com/mcp",
+    "liveStreamableHttp": "https://banner-modify-topics-move.trycloudflare.com/mcp",
     "sse": "https://rentandrugshield.com/mcp",
-    "liveSse": "https://social-release-isle-harold.trycloudflare.com/mcp",
+    "liveSse": "https://banner-modify-topics-move.trycloudflare.com/mcp",
     "x402Discovery": "https://rentandrugshield.com/.well-known/x402",
     "mcpDiscovery": "https://rentandrugshield.com/.well-known/mcp.json"
   },

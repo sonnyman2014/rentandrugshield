@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://social-release-isle-harold.trycloudflare.com",
-  "api_base": "https://social-release-isle-harold.trycloudflare.com",
-  "rpc_url": "https://social-release-isle-harold.trycloudflare.com/api/rpc",
-  "actions_base": "https://social-release-isle-harold.trycloudflare.com/api/actions",
+  "endpoint": "https://banner-modify-topics-move.trycloudflare.com",
+  "api_base": "https://banner-modify-topics-move.trycloudflare.com",
+  "rpc_url": "https://banner-modify-topics-move.trycloudflare.com/api/rpc",
+  "actions_base": "https://banner-modify-topics-move.trycloudflare.com/api/actions",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
   "referral_bps": 50,
   "shield_trade_gate_min": 85,
