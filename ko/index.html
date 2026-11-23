@@ -591,6 +591,7 @@
             <input id="walletInput" class="scan-input" type="text" autocomplete="off" spellcheck="false" placeholder="솔라나 지갑 주소 붙여넣기 (지갑 연결 불필요)..." />
             <button id="btnScanWallet" class="btn-gold" type="button">묶인 SOL 렌트비 무료 조회</button>
           </div>
+          <!-- RRS_LOC_DEMO_V1_START --><div style="margin:8px 0;"><button id="btnTryLiveDemoWallet" type="button" onclick="window.rrsLocRunDemoWallet()" style="width:100%;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.20),rgba(212,175,55,0.16));color:#00FFA3;font-weight:900;font-size:13.5px;cursor:pointer;">⚡ Try Live Demo Wallet ($109.85 Locked SOL - 0 Wallet Connect · 실시간 데모 지갑 스캔)</button></div><!-- RRS_LOC_DEMO_V1_END -->
           <div class="sample-row">
             <span class="sample-lbl">원클릭 메인넷 실제 지갑 테스트:</span>
             <button id="btnSampleWallet1" class="btn-ghost" type="button" data-wallet="MfDuWeqSHEqTFVYZ7LoexgAK9dxk7cy4DFJWjWMGVWa">실제 트레이더 지갑 #1 (빈 계정 71개)</button>
@@ -610,6 +611,7 @@
             <input id="mintInput" class="scan-input" type="text" autocomplete="off" spellcheck="false" placeholder="솔라나 토큰 민트 / 컨트랙트 주소 (CA) 입력..." />
             <button id="btnScanToken" class="btn-emerald" type="button">12단계 러그풀 정밀 스캔</button>
           </div>
+          <!-- RRS_LOC_DEMO_V1_START --><div style="margin:8px 0;"><button id="btnTestLive12LayerAudit" type="button" onclick="window.rrsLocRunDemoToken()" style="width:100%;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #F5D061;background:linear-gradient(90deg,rgba(212,175,55,0.20),rgba(56,189,248,0.16));color:#FDE68A;font-weight:900;font-size:13.5px;cursor:pointer;">⚡ Test Live 12-Layer Token Audit (12단계 러그풀 보안 감사 즉시 테스트)</button></div><!-- RRS_LOC_DEMO_V1_END -->
           <div class="sample-row">
             <span class="sample-lbl">원클릭 메인넷 인기 토큰 검증:</span>
             <button id="btnSampleBonk" class="btn-ghost" type="button" data-mint="DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263">$BONK 검증 (12/12 안전)</button>
@@ -1105,5 +1107,64 @@
     }
   })();
   </script>
+<!-- RRS_LOC_DEMO_V1_START -->
+<script>
+(function(){
+  var DEMO_W = "66666y3RmL6gNyttNKXNhF5awxAWbBdGSfpKuaTLrjRH";
+  var DEMO_M = "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263";
+  window.rrsLocShareX = function(addr, atas, sol, usd) {
+    var ref = (addr && addr.length >= 32 && addr !== DEMO_W) ? addr : "YOUR_SOL_WALLET";
+    var u = "https://rentandrugshield.com/ko/?ref=" + encodeURIComponent(ref);
+    var txt = "Scanned Solana wallet on @SolRentClaim: " + atas + " empty token accounts = +" + Number(sol||0).toFixed(4) + " SOL ($" + Number(usd||0).toFixed(2) + ") locked rent! 1st Claim 100% FREE (0% fee) + 30% referral SOL:\n" + u;
+    window.open("https://x.com/intent/tweet?text=" + encodeURIComponent(txt), "_blank", "noopener,noreferrer");
+  };
+  window.rrsLocFocusWallet = function() {
+    var wi = document.getElementById("walletInput");
+    if (wi) { wi.value = ""; wi.focus(); }
+  };
+  window.rrsLocRunDemoWallet = async function() {
+    var wi = document.getElementById("walletInput");
+    if (wi) wi.value = DEMO_W;
+    await runWalletScan(DEMO_W);
+    var box = document.getElementById("walletResult");
+    if (box && !document.getElementById("locDemoOwnPrompt")) {
+      var d = document.createElement("div");
+      d.id = "locDemoOwnPrompt";
+      d.style.cssText = "margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(0,255,163,0.12);border:1.5px solid #00FFA3;";
+      d.innerHTML = '<div style="font-size:13px;font-weight:800;color:#F8FAFC;margin-bottom:7px;">🎯 메인넷 초고속 스캔 완료! 위 입력창에 본인 솔라나 지갑 주소를 붙여넣고 첫 청구 0% 무료 혜택을 받으세요!</div>'
+        + '<button type="button" onclick="window.rrsLocFocusWallet()" style="width:100%;padding:8px 12px;border:none;border-radius:8px;background:#00FFA3;color:#021810;font-weight:900;cursor:pointer;">📋 데모 지우기 & 내 지갑 주소 붙여넣기 (첫 청구 0% 무료)</button>';
+      box.appendChild(d);
+    }
+  };
+  window.rrsLocRunDemoToken = async function() {
+    var mi = document.getElementById("mintInput");
+    if (mi) mi.value = DEMO_M;
+    await runTokenScan(DEMO_M);
+  };
+  // Observe #walletResult so EVERY wallet scan renders the 1-click Share My Locked SOL Receipt on X + Earn 30% ?ref= button
+  var wr = document.getElementById("walletResult");
+  if (wr && typeof MutationObserver !== "undefined") {
+    new MutationObserver(function(){
+      if (wr.querySelector("#btnClaimRedirect") && !wr.querySelector("#btnLocViralShareX")) {
+        var wi = document.getElementById("walletInput");
+        var wAddr = (wi && wi.value ? wi.value.trim() : "");
+        var kpis = wr.querySelectorAll(".kpi-val");
+        var atas = kpis.length > 0 ? parseInt(kpis[0].textContent || "0", 10) || 0 : 0;
+        var solMatch = (wr.textContent || "").match(/\+([0-9.]+)\s*SOL/);
+        var solVal = solMatch ? parseFloat(solMatch[1]) : 0;
+        var usdVal = solVal * 73.5;
+        var b = document.createElement("button");
+        b.id = "btnLocViralShareX";
+        b.type = "button";
+        b.style.cssText = "width:100%;margin-top:9px;padding:10px 14px;border-radius:10px;border:1.5px solid #38BDF8;background:rgba(14,165,233,0.20);color:#F0F9FF;font-weight:900;font-size:13.5px;cursor:pointer;";
+        b.textContent = "𝕏 Share My Locked SOL Receipt on X + Earn 30% ?ref= (X 공유 & 30% 리퍼럴 수익)";
+        b.onclick = function() { window.rrsLocShareX(wAddr, atas, solVal, usdVal); };
+        wr.appendChild(b);
+      }
+    }).observe(wr, { childList: true });
+  }
+})();
+</script>
+<!-- RRS_LOC_DEMO_V1_END -->
 </body>
 </html>

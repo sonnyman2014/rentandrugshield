@@ -591,6 +591,7 @@
             <input id="walletInput" class="scan-input" type="text" autocomplete="off" spellcheck="false" placeholder="粘贴任意 Solana 钱包地址 (无需连接钱包弹窗)..." />
             <button id="btnScanWallet" class="btn-gold" type="button">立即只读查租金</button>
           </div>
+          <!-- RRS_LOC_DEMO_V1_START --><div style="margin:8px 0;"><button id="btnTryLiveDemoWallet" type="button" onclick="window.rrsLocRunDemoWallet()" style="width:100%;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.20),rgba(212,175,55,0.16));color:#00FFA3;font-weight:900;font-size:13.5px;cursor:pointer;">⚡ Try Live Demo Wallet ($109.85 Locked SOL - 0 Wallet Connect · 一键实测主网 $109.85 真实待退租金)</button></div><!-- RRS_LOC_DEMO_V1_END -->
           <div class="sample-row">
             <span class="sample-lbl">一键实测主网真实战壕钱包:</span>
             <button id="btnSampleWallet1" class="btn-ghost" type="button" data-wallet="MfDuWeqSHEqTFVYZ7LoexgAK9dxk7cy4DFJWjWMGVWa">实测 Raydium 钱包 #1 (71个空账户)</button>
@@ -610,6 +611,7 @@
             <input id="mintInput" class="scan-input" type="text" autocomplete="off" spellcheck="false" placeholder="粘贴 Solana 代币合约地址 Mint / CA..." />
             <button id="btnScanToken" class="btn-emerald" type="button">12层安全预检</button>
           </div>
+          <!-- RRS_LOC_DEMO_V1_START --><div style="margin:8px 0;"><button id="btnTestLive12LayerAudit" type="button" onclick="window.rrsLocRunDemoToken()" style="width:100%;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #F5D061;background:linear-gradient(90deg,rgba(212,175,55,0.20),rgba(56,189,248,0.16));color:#FDE68A;font-weight:900;font-size:13.5px;cursor:pointer;">⚡ Test Live 12-Layer Token Audit (一键毫秒级实测 12层防貔貅合约预检)</button></div><!-- RRS_LOC_DEMO_V1_END -->
           <div class="sample-row">
             <span class="sample-lbl">一键实测主网热门代币合约:</span>
             <button id="btnSampleBonk" class="btn-ghost" type="button" data-mint="DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263">实测 $BONK (12/12 安全)</button>
@@ -1105,5 +1107,64 @@
     }
   })();
   </script>
+<!-- RRS_LOC_DEMO_V1_START -->
+<script>
+(function(){
+  var DEMO_W = "66666y3RmL6gNyttNKXNhF5awxAWbBdGSfpKuaTLrjRH";
+  var DEMO_M = "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263";
+  window.rrsLocShareX = function(addr, atas, sol, usd) {
+    var ref = (addr && addr.length >= 32 && addr !== DEMO_W) ? addr : "YOUR_SOL_WALLET";
+    var u = "https://rentandrugshield.com/zh/?ref=" + encodeURIComponent(ref);
+    var txt = "Scanned Solana wallet on @SolRentClaim: " + atas + " empty token accounts = +" + Number(sol||0).toFixed(4) + " SOL ($" + Number(usd||0).toFixed(2) + ") locked rent! 1st Claim 100% FREE (0% fee) + 30% referral SOL:\n" + u;
+    window.open("https://x.com/intent/tweet?text=" + encodeURIComponent(txt), "_blank", "noopener,noreferrer");
+  };
+  window.rrsLocFocusWallet = function() {
+    var wi = document.getElementById("walletInput");
+    if (wi) { wi.value = ""; wi.focus(); }
+  };
+  window.rrsLocRunDemoWallet = async function() {
+    var wi = document.getElementById("walletInput");
+    if (wi) wi.value = DEMO_W;
+    await runWalletScan(DEMO_W);
+    var box = document.getElementById("walletResult");
+    if (box && !document.getElementById("locDemoOwnPrompt")) {
+      var d = document.createElement("div");
+      d.id = "locDemoOwnPrompt";
+      d.style.cssText = "margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(0,255,163,0.12);border:1.5px solid #00FFA3;";
+      d.innerHTML = '<div style="font-size:13px;font-weight:800;color:#F8FAFC;margin-bottom:7px;">🎯 主网毫秒级实测完成！现在在上方粘贴【您自己的 Solana 钱包地址】，首单领回 100% 免费 (0% 手续费，无需助记词)！</div>'
+        + '<button type="button" onclick="window.rrsLocFocusWallet()" style="width:100%;padding:8px 12px;border:none;border-radius:8px;background:#00FFA3;color:#021810;font-weight:900;cursor:pointer;">📋 清空示例并粘贴我自己的钱包 (首单 0% 免费)</button>';
+      box.appendChild(d);
+    }
+  };
+  window.rrsLocRunDemoToken = async function() {
+    var mi = document.getElementById("mintInput");
+    if (mi) mi.value = DEMO_M;
+    await runTokenScan(DEMO_M);
+  };
+  // Observe #walletResult so EVERY wallet scan renders the 1-click Share My Locked SOL Receipt on X + Earn 30% ?ref= button
+  var wr = document.getElementById("walletResult");
+  if (wr && typeof MutationObserver !== "undefined") {
+    new MutationObserver(function(){
+      if (wr.querySelector("#btnClaimRedirect") && !wr.querySelector("#btnLocViralShareX")) {
+        var wi = document.getElementById("walletInput");
+        var wAddr = (wi && wi.value ? wi.value.trim() : "");
+        var kpis = wr.querySelectorAll(".kpi-val");
+        var atas = kpis.length > 0 ? parseInt(kpis[0].textContent || "0", 10) || 0 : 0;
+        var solMatch = (wr.textContent || "").match(/\+([0-9.]+)\s*SOL/);
+        var solVal = solMatch ? parseFloat(solMatch[1]) : 0;
+        var usdVal = solVal * 73.5;
+        var b = document.createElement("button");
+        b.id = "btnLocViralShareX";
+        b.type = "button";
+        b.style.cssText = "width:100%;margin-top:9px;padding:10px 14px;border-radius:10px;border:1.5px solid #38BDF8;background:rgba(14,165,233,0.20);color:#F0F9FF;font-weight:900;font-size:13.5px;cursor:pointer;";
+        b.textContent = "𝕏 Share My Locked SOL Receipt on X + Earn 30% ?ref= (一键晒单赚 30% 链上返佣)";
+        b.onclick = function() { window.rrsLocShareX(wAddr, atas, solVal, usdVal); };
+        wr.appendChild(b);
+      }
+    }).observe(wr, { childList: true });
+  }
+})();
+</script>
+<!-- RRS_LOC_DEMO_V1_END -->
 </body>
 </html>
