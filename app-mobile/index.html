@@ -3298,47 +3298,51 @@ lit-html/is-server.js:
         }
       }
 
-      // Extract format mask bits (r=8, c=2..4 -> fBit 12,11,10)
-      const fmtMask = ((sample(8, 2) ^ 1) << 2) | ((sample(8, 3) ^ 0) << 1) | (sample(8, 4) ^ 1);
-      const maskFn = function (r, c) {
-        if (fmtMask === 0) return (r + c) % 2 === 0;
-        if (fmtMask === 1) return r % 2 === 0;
-        if (fmtMask === 2) return c % 3 === 0;
-        if (fmtMask === 3) return (r + c) % 3 === 0;
-        return (r + c) % 2 === 0;
-      };
+      const tryMasks = [
+        function (r, c) { return (r + c) % 2 === 0; },
+        function (r, _c) { return r % 2 === 0; },
+        function (_r, c) { return c % 3 === 0; },
+        function (r, c) { return (r + c) % 3 === 0; },
+        function (r, c) { return (Math.floor(r / 2) + Math.floor(c / 3)) % 2 === 0; },
+        function (r, c) { return ((r * c) % 2) + ((r * c) % 3) === 0; },
+        function (r, c) { return (((r * c) % 2) + ((r * c) % 3)) % 2 === 0; },
+        function (r, c) { return (((r + c) % 2) + ((r * c) % 3)) % 2 === 0; }
+      ];
 
-      const bits = [];
-      let upward = true;
-      for (let right = N - 1; right >= 1; right -= 2) {
-        if (right === 6) right = 5;
-        for (let step = 0; step < N; step++) {
-          const r = upward ? (N - 1 - step) : step;
-          for (let k = 0; k < 2; k++) {
-            const c = right - k;
-            if (!isFn[r][c]) {
-              let v = sample(r, c);
-              if (maskFn(r, c)) v ^= 1;
-              bits.push(v);
+      for (let mi = 0; mi < tryMasks.length; mi++) {
+        const maskFn = tryMasks[mi];
+        const bits = [];
+        let upward = true;
+        for (let right = N - 1; right >= 1; right -= 2) {
+          if (right === 6) right = 5;
+          for (let step = 0; step < N; step++) {
+            const r = upward ? (N - 1 - step) : step;
+            for (let k = 0; k < 2; k++) {
+              const c = right - k;
+              if (!isFn[r][c]) {
+                let v = sample(r, c);
+                if (maskFn(r, c)) v ^= 1;
+                bits.push(v);
+              }
             }
           }
+          upward = !upward;
         }
-        upward = !upward;
-      }
 
-      const mode = (bits[0] << 3) | (bits[1] << 2) | (bits[2] << 1) | bits[3];
-      if (mode !== 4) continue;
-      let len = 0;
-      for (let i = 0; i < 8; i++) len = (len << 1) | bits[4 + i];
-      if (len <= 0 || 12 + len * 8 > bits.length) continue;
-      const out = new Uint8Array(len);
-      for (let b = 0; b < len; b++) {
-        let val = 0;
-        for (let j = 0; j < 8; j++) val = (val << 1) | bits[12 + b * 8 + j];
-        out[b] = val;
+        const mode = (bits[0] << 3) | (bits[1] << 2) | (bits[2] << 1) | bits[3];
+        if (mode !== 4) continue;
+        let len = 0;
+        for (let i = 0; i < 8; i++) len = (len << 1) | bits[4 + i];
+        if (len <= 0 || 12 + len * 8 > bits.length) continue;
+        const out = new Uint8Array(len);
+        for (let b = 0; b < len; b++) {
+          let val = 0;
+          for (let j = 0; j < 8; j++) val = (val << 1) | bits[12 + b * 8 + j];
+          out[b] = val;
+        }
+        const decoded = new TextDecoder().decode(out).trim();
+        if (decoded && /^[\x20-\x7E]+$/.test(decoded)) return decoded;
       }
-      const decoded = new TextDecoder().decode(out).trim();
-      if (decoded && /^[\x20-\x7E]+$/.test(decoded)) return decoded;
     }
     return '';
   }
@@ -3853,7 +3857,9 @@ lit-html/is-server.js:
         } catch (_e) {}
       }, 350);
     } catch (_err) {
-      if (status) status.textContent = 'Camera permission pending | Upload a QR image or tap Test QR Payload.';
+      if (status && status.textContent.indexOf('Decoded QR') === -1) {
+        status.textContent = 'Camera permission pending | Upload a QR image or tap Test QR Payload.';
+      }
     }
   }
 
