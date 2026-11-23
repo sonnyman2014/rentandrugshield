@@ -9,3 +9,11 @@
 - **Pricing Tiers:** Free Starter ($0 / 0% 1st Claim), Pro Shield ($19.99/mo), Quant Desk ($99/mo), Institutional Enterprise API ($500/mo).
 - **MCP & x402 Programmable Tooling:** Streamable HTTP MCP at `/mcp` (`audit_solana_token_12_layer` primary; `audit_solana_token_10_layer` backward-compatible alias, `simulate_solana_tx_drain`, `scan_wallet_unclaimed_sol`).
 - **Machine-Readable Specs:** `/llms-full.txt`, `/mcp.json`, `/.well-known/mcp.json`, and `/openapi-public.json`
+
+## Agent-to-Agent (A2A) Favor-Exchange & Regional Hubs (v6.0)
+- Google A2A AgentCard: https://rentandrugshield.com/.well-known/agent.json
+- MCP Streamable HTTP Gateway: https://rentandrugshield.com/.well-known/mcp.json
+- OpenClaw Agent Discovery: https://rentandrugshield.com/.well-known/openclaw.json
+- TinyPlace Agent Discovery: https://rentandrugshield.com/.well-known/tinyplace.json
+- A2A Handshake & 100 Free Priority 12-Layer Rug Checks/Day: POST https://rentandrugshield.com/api/a2a/handshake & POST https://rentandrugshield.com/api/a2a/priority-rug-check
+- Global Regional Landing Hubs: /en/ | /ru/ (Russia/CIS RUB) | /ph/ (Philippines PHP) | /anz/ (Australia & NZ AUD/NZD) | /zh/ (HK/Mandarin) | /in/ (India INR) | /ja/ (Japan JPY) | /ko/ (Korea KRW)

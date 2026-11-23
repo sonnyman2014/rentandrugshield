@@ -2,103 +2,103 @@
   "rules": [
     {
       "pathPattern": "/api/actions/reclaim-rent",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/reclaim-rent"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/reclaim-rent"
     },
     {
       "pathPattern": "/api/actions/reclaim-rent/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/reclaim-rent/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/reclaim-rent/*"
     },
     {
       "pathPattern": "/reclaim-rent",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/reclaim-rent"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/reclaim-rent"
     },
     {
       "pathPattern": "/reclaim-rent/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/reclaim-rent/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/reclaim-rent/*"
     },
     {
       "pathPattern": "/proof/zero-fee-vs-incinerator",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/reclaim-rent"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/reclaim-rent"
     },
     {
       "pathPattern": "/api/actions/scan-rent",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/scan-rent"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/scan-rent"
     },
     {
       "pathPattern": "/api/actions/scan-rent/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/scan-rent/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/scan-rent/*"
     },
     {
       "pathPattern": "/api/actions/audit-token",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/audit-token"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/audit-token"
     },
     {
       "pathPattern": "/api/actions/audit-token/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/audit-token/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/audit-token/*"
     },
     {
       "pathPattern": "/scan-rent",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/scan-rent"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/scan-rent"
     },
     {
       "pathPattern": "/scan-rent/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/scan-rent/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/scan-rent/*"
     },
     {
       "pathPattern": "/audit-token",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/audit-token"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/audit-token"
     },
     {
       "pathPattern": "/audit-token/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/audit-token/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/audit-token/*"
     },
     {
       "pathPattern": "/trade/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/trade/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/trade/*"
     },
     {
       "pathPattern": "/trade",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/trade"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/trade"
     },
     {
       "pathPattern": "/swap/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/trade/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/trade/*"
     },
     {
       "pathPattern": "/swap",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/trade"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/trade"
     },
     {
       "pathPattern": "/audit/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/audit-token/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/audit-token/*"
     },
     {
       "pathPattern": "/audit",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/audit-token"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/audit-token"
     },
     {
       "pathPattern": "/rug-audit/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/rug-audit/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/rug-audit/*"
     },
     {
       "pathPattern": "/rug-audit",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/rug-audit"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/rug-audit"
     },
     {
       "pathPattern": "/rent-check/*",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/rent-check/*"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/rent-check/*"
     },
     {
       "pathPattern": "/rent-check",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/rent-check"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/rent-check"
     },
     {
       "pathPattern": "/",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/scan-rent"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/scan-rent"
     },
     {
       "pathPattern": "/api/actions/**",
-      "apiPath": "https://factor-compliant-physically-watts.trycloudflare.com/api/actions/**"
+      "apiPath": "https://keen-playing-text-essence.trycloudflare.com/api/actions/**"
     }
   ]
 }
