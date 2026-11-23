@@ -16,7 +16,7 @@
     "2024-11-05"
   ],
   "endpoint": "https://rentandrugshield.com/mcp",
-  "liveStreamableHttpEndpoint": "https://answered-honor-victory-blake.trycloudflare.com/mcp",
+  "liveStreamableHttpEndpoint": "https://diary-gravity-opens-volunteer.trycloudflare.com/mcp",
   "discovery": {
     "mcp": "https://rentandrugshield.com/.well-known/mcp.json",
     "serverCard": "https://rentandrugshield.com/.well-known/mcp/server-card.json",
