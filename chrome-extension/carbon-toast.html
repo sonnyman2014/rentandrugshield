@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Rent &amp; Rug Shield Carbon v5.3</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  html, body { width: 100%; height: 100%; background: #020408; color: #FFFFFF; overflow: hidden; }
+  .wrap {
+    width: 100%; height: 100%; padding: 13px 15px;
+    background: linear-gradient(160deg, #060B14 0%, #020408 100%);
+    border: 2px solid #00FFA3; border-left: 7px solid #00FFA3;
+    display: flex; flex-direction: column; justify-content: space-between; cursor: pointer;
+  }
+  .wrap.red { border-color: #FF1744; border-left-color: #FF1744; }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .badges { display: flex; align-items: center; gap: 8px; }
+  .ticker { background: #020408; border: 1.5px solid #00FFA3; color: #00FFA3; padding: 3px 9px; border-radius: 7px; font-size: 15px; font-weight: 900; }
+  .wrap.red .ticker { border-color: #FF1744; color: #FF1744; }
+  .pill { background: #043222; border: 1px solid #00FFA3; color: #FFFFFF; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 800; }
+  .wrap.red .pill { background: #4A0816; border-color: #FF1744; }
+  .cls { background: #0B1220; color: #F8FAFC; border: 1px solid #334155; border-radius: 6px; padding: 2px 8px; font-size: 12px; font-weight: 900; cursor: pointer; }
+  .ttl { font-size: 14.5px; font-weight: 900; line-height: 1.32; color: #FFFFFF; margin-top: 6px; }
+  .sub { font-size: 12px; font-weight: 700; color: #86EFAC; line-height: 1.35; margin-top: 4px; }
+  .wrap.red .sub { color: #FDA4AF; }
+</style>
+</head>
+<body>
+  <div id="card" class="wrap">
+    <div class="top">
+      <div class="badges">
+        <span id="tk" class="ticker" style="display:none;"></span>
+        <span id="pl" class="pill">12-LAYER SHIELDED</span>
+      </div>
+      <button id="btnClose" class="cls" type="button">X</button>
+    </div>
+    <div>
+      <div id="ttl" class="ttl">Loading alert...</div>
+      <div id="sub" class="sub">Click card to inspect</div>
+    </div>
+  </div>
+  <script src="carbon-toast.js"></script>
+</body>
+</html>

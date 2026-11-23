@@ -1,7 +1,7 @@
 {
   "name": "Solana Rent & Rug Shield Mobile (v5.1 — MWA v2.0 & 12-Layer)",
   "short_name": "Rent&RugShield",
-  "description": "Reclaim empty Solana ATA rent (0% 1st claim <=25 ATAs, 4-lock anti-Sybil, 2.0% repeat = 98.0% net SOL) & block rugs pre-buy in <120ms with Solana MWA v2.0 + Share-Target Scanner.",
+  "description": "Reclaim empty Solana ATA rent (0% 1st claim Keep 100% SOL, 4-lock anti-Sybil, 2.0% repeat = 98.0% net SOL) & block rugs pre-buy in <120ms with Solana MWA v2.0 + Share-Target Scanner.",
   "id": "/mobile.html",
   "start_url": "/mobile.html?source=pwa",
   "scope": "/",
@@ -49,7 +49,7 @@
     {
       "name": "0x09 Free 1st Rent Claim",
       "short_name": "0x09 Rent",
-      "description": "Scan & reclaim empty Solana ATAs (0% 1st claim <=25 ATAs)",
+      "description": "Scan & reclaim empty Solana ATAs (0% 1st claim Keep 100% SOL)",
       "url": "/mobile.html?tab=rent",
       "icons": [{ "src": "/chrome-extension/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },

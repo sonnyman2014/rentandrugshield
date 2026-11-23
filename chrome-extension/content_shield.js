@@ -361,7 +361,7 @@
         '</div>' +
         '<div class="rrs-hdr-ctrls">' +
           '<button type="button" class="rrs-icon-btn" id="rrs-redock-btn" title="Snap beside swap box">📌</button>' +
-          '<button type="button" class="rrs-icon-btn" id="rrs-min-btn" title="Minimize / Expand"> | </button>' +
+          '<button type="button" class="rrs-icon-btn" id="rrs-min-btn" title="Minimize / Expand">-</button>' +
         '</div>' +
       '</div>' +
       '<div class="rrs-info-popover" id="rrs-info-popover">' +
@@ -370,7 +370,7 @@
       '<div class="rrs-shield-body">' +
         '<div class="rrs-score-box">' +
           '<div class="rrs-score-top">' +
-            '<span class="rrs-score-pill rrs-score-idle" id="rrs-score-pill">SHIELD READY • 11L</span>' +
+            '<span class="rrs-score-pill rrs-score-idle" id="rrs-score-pill">SHIELD READY • 12L</span>' +
             '<span class="rrs-mint-chip" id="rrs-mint-chip">Auto-Detecting…</span>' +
           '</div>' +
           '<div class="rrs-verdict-line" id="rrs-verdict-line">Select or paste any Solana token mint to audit (&lt;120ms).</div>' +
@@ -394,7 +394,7 @@
         '<div class="rrs-modal-top">' +
           '<div style="display:flex;align-items:center;gap:7px;">' +
             '<img class="rrs-shield-logo" src="' + iconSrc + '" alt="Shield" />' +
-            '<span class="rrs-modal-title">SOL Rent &amp; Rug Shield • 12-Layer Suite (v4.2.0)</span>' +
+            '<span class="rrs-modal-title">SOL Rent &amp; Rug Shield • 12-Layer Suite (v5.3.0)</span>' +
             '<button type="button" class="rrs-info-trigger" id="rrs-modal-info-btn" title="12-Layer Info">ⓘ</button>' +
           '</div>' +
           '<button type="button" class="rrs-icon-btn" id="rrs-modal-close-btn">✕ Close</button>' +
@@ -411,7 +411,7 @@
           '<a href="https://rentandrugshield.com/app.html" target="_blank" rel="noopener noreferrer" class="rrs-nav-btn" id="rrs-open-webapp-link" style="text-decoration:none;color:#fde047;border-color:#fde047;">Open Web App ↗</a>' +
         '</div>' +
         '<div class="rrs-nav-tabs">' +
-          '<button type="button" class="rrs-tab-btn rrs-tab-active" data-rrs-view="home">🛡️ 11L Audit</button>' +
+          '<button type="button" class="rrs-tab-btn rrs-tab-active" data-rrs-view="home">🛡️ 12L Audit</button>' +
           '<button type="button" class="rrs-tab-btn" data-rrs-view="alerts">⚙️ Alerts</button>' +
           '<button type="button" class="rrs-tab-btn" data-rrs-view="carbon">🏛️ Carbon Cert</button>' +
           '<button type="button" class="rrs-tab-btn" data-rrs-view="rnd">🔬 14,640h R&amp;D</button>' +
@@ -488,10 +488,10 @@
             '<div style="font-weight:900;color:#14f195;font-size:12px;margin-bottom:5px;">🛡️ Carbon Cybersecurity Certification • Verified Architecture</div>' +
             '<div style="color:#cbd5e1;margin-bottom:7px;">Certified <b>12-Layer Adaptive Pre-Buy Defense</b> powered by <b>Gemini 4 Carbon High</b> deterministic verification &amp; <b>100% Non-Custodial Zero-Key</b> read-only RPC inspection.</div>' +
             '<div style="background:#030917;border:1px solid #1e293b;border-radius:8px;padding:8px;font-size:10.2px;color:#e2e8f0;line-height:1.48;">' +
-              '• <b>L1–L3 Supply &amp; Authority Gate:</b> Mint Auth, Freeze Auth &amp; Top-Holder Concentration<br/>' +
-              '• <b>L4–L5 Liquidity Integrity:</b> Liq/MC Trap Ratio &amp; Burned/Locked LP Verification<br/>' +
-              '• <b>L6–L8 Bytecode &amp; Hook Defense:</b> Token-2022 Transfer Hooks, Metadata Spoof &amp; Inner-CPI Drainer Simulation<br/>' +
-              '• <b>L9–L10 Market Microstructure:</b> True Pool Lifecycle Age &amp; Organic Buy/Sell Velocity<br/>' +
+              '• <b>L1-L3 Supply &amp; Authority Gate:</b> Mint Auth, Freeze Auth &amp; Top-Holder Concentration<br/>' +
+              '• <b>L4-L5 Liquidity Integrity:</b> Liq/MC Trap Ratio &amp; Burned/Locked LP Verification<br/>' +
+              '• <b>L6-L8 Bytecode &amp; Hook Defense:</b> Token-2022 Transfer Hooks, Metadata Spoof &amp; Inner-CPI Drainer Simulation<br/>' +
+              '• <b>L9-L10 Market Microstructure:</b> True Pool Lifecycle Age &amp; Organic Buy/Sell Velocity<br/>' +
               '• <b style="color:#14f195;">L11 Block-0 Sybil Cluster Defense:</b> Genesis-slot bundled sniper &amp; linked funder ring detection' +
             '</div>' +
             '<div style="margin-top:8px;padding:7px 8px;background:rgba(20,241,149,0.08);border:1px solid rgba(20,241,149,0.3);border-radius:8px;font-size:10.2px;">' +
@@ -827,7 +827,7 @@
     verdictLine.textContent = d.verdict || (isDanger ? 'HIGH RISK • BELOW CUTOFF' : 'SAFE • 12-LAYER VERIFIED');
 
     if (miniSummary) {
-      miniSummary.textContent = '🛡️ ' + (d.symbol ? ('$' + String(d.symbol).replace(/^\$/, '') + ' ') : '') + score + '/100 • 11L';
+      miniSummary.textContent = '🛡️ ' + (d.symbol ? ('$' + String(d.symbol).replace(/^\$/, '') + ' ') : '') + score + '/100 • 12L';
     }
 
     const l11Detail = (d.layer11 && d.layer11.detail) ? d.layer11.detail : (l11Passed ? 'Clean Genesis Slot' : 'Sybil Cluster Flagged');
@@ -848,7 +848,7 @@
           '<span style="font-size:10px;color:#fde047;">Cutoff: ' + cutoff + '/100</span>' +
         '</div>' +
         '<div style="font-weight:800;margin-bottom:6px;color:#f8fafc;">' + escapeHtml(verdictLine.textContent) + '</div>' +
-        '<div>' + (rows || 'All 11 Pre-Buy Security Layers Verified.') + '</div>';
+        '<div>' + (rows || 'All 12 Pre-Buy Security Layers Verified.') + '</div>';
     }
 
     if (banner && bannerText) {
@@ -887,7 +887,7 @@
     }
     if (scorePill) {
       scorePill.className = 'rrs-score-pill rrs-score-idle';
-      scorePill.textContent = '⏳ AUDITING 11L…';
+      scorePill.textContent = '⏳ AUDITING 12L…';
     }
     if (verdictLine) {
       verdictLine.textContent = 'Querying 12-Layer Helius & Carbon High Gate…';
@@ -1019,6 +1019,7 @@
     } catch (_e) {}
   }, true);
 
+  setTimeout(scanDomForDrainerPayloads, 1200);
 
 
   /* === RRS v5.1 SECURITY UPGRADE: CLIPBOARD HIJACK, VANITY-POISONING & HOMOGRAPH/TYPOSQUAT SENTINEL === */

@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solana 空代币账户租金一键找回 | 首单 0% 手续费 · 12层防貔貅与捆绑盘预检防火墙 | Rent & Rug Shield</title>
+  <meta name="description" content="Solana 空代币账户租金一键找回 · 首单 0% 手续费 100% 全额退回 · 复购仅 2% 费率保留 98% SOL · 12层防貔貅与捆绑盘预检防火墙。专为 GMGN.ai, Ave.ai, OKX Web3 与 Phantom 华语链上交易员打造，100% 只读扫描无需连接钱包弹窗。" />
+  <meta name="theme-color" content="#07090E" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Solana 空代币账户租金一键找回 | 首单 0% 手续费 · 12层防貔貅与捆绑盘预检防火墙 | Rent & Rug Shield" />
+  <meta property="og:description" content="Solana 空代币账户租金一键找回 · 首单 0% 手续费 100% 全额退回 · 复购仅 2% 费率保留 98% SOL · 12层防貔貅与捆绑盘预检防火墙。专为 GMGN.ai, Ave.ai, OKX Web3 与 Phantom 华语链上交易员打造，100% 只读扫描无需连接钱包弹窗。" />
+  <meta property="og:image" content="https://rentandrugshield.com/og-shield-v3.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="Solana 空代币账户租金一键找回 | 首单 0% 手续费 · 12层防貔貅与捆绑盘预检防火墙 | Rent & Rug Shield" />
+  <meta name="twitter:description" content="Solana 空代币账户租金一键找回 · 首单 0% 手续费 100% 全额退回 · 复购仅 2% 费率保留 98% SOL · 12层防貔貅与捆绑盘预检防火墙。专为 GMGN.ai, Ave.ai, OKX Web3 与 Phantom 华语链上交易员打造，100% 只读扫描无需连接钱包弹窗。" />
+  <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "Solana 空代币账户租金一键找回 | 首单 0% 手续费 · 12层防貔貅与捆绑盘预检防火墙 | Rent & Rug Shield", "applicationCategory": "FinanceApplication", "operatingSystem": "Web, iOS, Android", "url": "https://rentandrugshield.com/zh-preview.html", "description": "Solana 空代币账户租金一键找回 · 首单 0% 手续费 100% 全额退回 · 复购仅 2% 费率保留 98% SOL · 12层防貔貅与捆绑盘预检防火墙。专为 GMGN.ai, Ave.ai, OKX Web3 与 Phantom 华语链上交易员打造，100% 只读扫描无需连接钱包弹窗。", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "扫描钱包需要连接钱包或签名授权吗?", "acceptedAnswer": {"@type": "Answer", "text": "完全不需要! 租金扫描与 12 层代币预检均为 100% 只读 RPC 查询，只需粘贴公开地址，零弹窗、零签名风险。只有当你确认金额并决定领回 SOL 时，才会在非托管金库页面使用你自己的钱包签署标准 Solana CloseAccount (0x09) 指令。"}}, {"@type": "Question", "name": "关闭空账户会影响我有余额的代币或 NFT 吗?", "acceptedAnswer": {"@type": "Answer", "text": "绝对不会。系统严格只筛选余额为 0 的空代币账户 (Empty ATA)，所有持有余额的代币、NFT 以及特殊冻结账户均被自动隔离保护，100% 安全不触碰。"}}, {"@type": "Question", "name": "30% 链上返佣怎么结算? 需要申请提现吗?", "acceptedAnswer": {"@type": "Answer", "text": "无需注册账号，无需等待人工审核或提现。将 ?ref=你的Solana钱包 分享给群友，对方复购清理时，30% 分润写在同一笔 Solana 链上交易指令里原子级秒到你的钱包。"}}]}]</script>
+  <style>
+    :root {
+      --bg-obsidian: #06080D;
+      --bg-panel: #0C111B;
+      --bg-elevated: #111827;
+      --gold-24k: #D4AF37;
+      --gold-bright: #F5D061;
+      --gold-soft: rgba(212, 175, 55, 0.16);
+      --gold-border: rgba(212, 175, 55, 0.36);
+      --emerald: #00FFA3;
+      --emerald-dim: rgba(0, 255, 163, 0.14);
+      --crimson: #F87171;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --line-subtle: rgba(148, 163, 184, 0.18);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at 50% -10%, rgba(212, 175, 55, 0.14), transparent 52%), var(--bg-obsidian);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Apple SD Gothic Neo", "Malgun Gothic", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--gold-bright); text-decoration: none; }
+    .topbar {
+      border-bottom: 1px solid var(--gold-border);
+      background: rgba(6, 8, 13, 0.92);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .topbar-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 0.3px;
+      color: var(--gold-bright);
+      font-size: 15px;
+      flex-wrap: wrap;
+    }
+    .brand-crest {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #F5D061, #9E7718);
+      color: #07090E;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.4);
+    }
+    .seal-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--emerald-dim);
+      border: 1px solid rgba(0, 255, 163, 0.38);
+      color: var(--emerald);
+    }
+    .lang-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .lang-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line-subtle);
+      background: #0D1320;
+      color: #CBD5E1;
+      transition: all 0.15s ease;
+    }
+    .lang-pill:hover {
+      border-color: var(--gold-24k);
+      color: var(--gold-bright);
+    }
+    .lang-pill-active {
+      border-color: var(--gold-bright);
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.24), rgba(212, 175, 55, 0.08));
+      color: var(--gold-bright);
+    }
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 24px 18px 64px;
+    }
+    .hero {
+      border: 1px solid var(--gold-border);
+      background: linear-gradient(180deg, rgba(18, 24, 38, 0.94), rgba(10, 14, 23, 0.98));
+      border-radius: 18px;
+      padding: 26px 24px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(245, 208, 97, 0.22);
+      margin-bottom: 22px;
+    }
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+    .live-ticker-pill {
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: #E2E8F0;
+      background: #080C14;
+      border: 1px solid var(--line-subtle);
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(21px, 2.7vw, 31px);
+      line-height: 1.32;
+      font-weight: 900;
+      background: linear-gradient(92deg, #FFFFFF 0%, #FDE68A 55%, #D4AF37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      margin: 0 0 16px;
+      color: #CBD5E1;
+      font-size: 14.5px;
+      max-width: 1050px;
+    }
+    .eco-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .eco-lbl {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .eco-chip {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      color: #FDE68A;
+    }
+    .trust-pills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+    }
+    .trust-pill {
+      padding: 10px 14px;
+      border-radius: 11px;
+      background: #080C14;
+      border: 1px solid rgba(212, 175, 55, 0.26);
+      font-size: 13px;
+      font-weight: 800;
+      color: #F8FAFC;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .trust-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px var(--emerald);
+      flex-shrink: 0;
+    }
+    .dual-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .vault-card {
+      background: var(--bg-panel);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+    .card-tag {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.6px;
+      color: var(--gold-bright);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .card-title {
+      margin: 0 0 6px;
+      font-size: 19px;
+      font-weight: 900;
+      color: #FFFFFF;
+    }
+    .card-desc {
+      margin: 0 0 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .input-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .scan-input {
+      flex: 1 1 220px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(148, 163, 184, 0.28);
+      background: #060911;
+      color: #FFFFFF;
+      font-size: 13.5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      outline: none;
+    }
+    .scan-input:focus {
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+    }
+    .btn-gold {
+      cursor: pointer;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid #FDE68A;
+      background: linear-gradient(135deg, #F5D061 0%, #D4AF37 55%, #AA8220 100%);
+      color: #07090E;
+      font-weight: 900;
+      font-size: 13.5px;
+      transition: transform 0.1s ease, filter 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-gold:hover { filter: brightness(1.07); }
+    .btn-gold:active { transform: translateY(1px); }
+    .btn-emerald {
+      cursor: pointer;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid #6EE7B7;
+      background: linear-gradient(135deg, #00FFA3 0%, #10B981 100%);
+      color: #04120C;
+      font-weight: 900;
+      font-size: 13.5px;
+      white-space: nowrap;
+    }
+    .btn-ghost {
+      cursor: pointer;
+      padding: 6px 11px;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.34);
+      background: rgba(212, 175, 55, 0.08);
+      color: #FDE68A;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .btn-ghost:hover {
+      background: rgba(212, 175, 55, 0.18);
+    }
+    .sample-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .sample-lbl {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .result-box {
+      display: none;
+      margin-top: 12px;
+      padding: 15px;
+      border-radius: 12px;
+      background: #070B13;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+    }
+    .result-box.visible { display: block; }
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .kpi-cell {
+      padding: 9px 10px;
+      border-radius: 9px;
+      background: #0D1320;
+      border: 1px solid var(--line-subtle);
+    }
+    .kpi-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .kpi-val {
+      font-size: 15.5px;
+      font-weight: 900;
+      color: #FFFFFF;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .cta-claim-link {
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #00FFA3, #10B981);
+      color: #04130D;
+      font-weight: 900;
+      font-size: 14px;
+    }
+    .ata-list {
+      margin-top: 10px;
+      max-height: 155px;
+      overflow-y: auto;
+      border-top: 1px solid var(--line-subtle);
+      padding-top: 8px;
+      font-size: 12px;
+    }
+    .ata-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.12);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .checks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 7px;
+      margin-top: 10px;
+    }
+    .chk-item {
+      padding: 7px 9px;
+      border-radius: 8px;
+      background: #0D1320;
+      border: 1px solid var(--line-subtle);
+      font-size: 11.5px;
+    }
+    .section-card {
+      background: var(--bg-panel);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 18px;
+      padding: 24px 22px;
+      margin-bottom: 24px;
+    }
+    .calc-sliders {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin: 14px 0 18px;
+    }
+    .slider-box {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #070B13;
+      border: 1px solid var(--line-subtle);
+    }
+    .slider-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+    .slider-val {
+      color: var(--gold-bright);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 16px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: #D4AF37;
+      cursor: pointer;
+    }
+    .preset-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .calc-results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .calc-res-card {
+      padding: 16px;
+      border-radius: 13px;
+      background: linear-gradient(180deg, #0E1524, #080C15);
+      border: 1px solid rgba(212, 175, 55, 0.34);
+    }
+    .calc-res-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #FDE68A;
+      margin-bottom: 6px;
+    }
+    .calc-fiat-big {
+      font-size: 25px;
+      font-weight: 900;
+      color: var(--emerald);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .calc-sub-amounts {
+      font-size: 13px;
+      font-weight: 700;
+      color: #E2E8F0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      margin: 4px 0 6px;
+    }
+    .calc-note {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+    .ref-builder {
+      padding: 18px;
+      border-radius: 14px;
+      background: #070A12;
+      border: 1.5px solid rgba(0, 255, 163, 0.35);
+    }
+    .ref-output-box {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #0D1422;
+      border: 1px solid var(--gold-border);
+    }
+    .ref-output-box.visible { display: block; }
+    .layers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .layer-card {
+      padding: 15px;
+      border-radius: 12px;
+      background: #080C15;
+      border: 1px solid var(--line-subtle);
+    }
+    .layer-card-title {
+      font-weight: 900;
+      color: var(--gold-bright);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .layer-card-body {
+      font-size: 13px;
+      color: #CBD5E1;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--line-subtle);
+      padding: 12px 0;
+    }
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 14.5px;
+      color: #F8FAFC;
+    }
+    .faq-item p {
+      margin: 8px 0 0;
+      font-size: 13.5px;
+      color: #CBD5E1;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line-subtle);
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 18px 15px; }
+      .vault-card, .section-card { padding: 16px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-row">
+        <span class="brand-crest">R</span>
+        <span>SOLANA RENT &amp; RUG SHIELD</span>
+        <span class="seal-pill">100% 只读链上扫描 · 零钱包连接弹窗 · 零自动扣费 ($0 Auto-Billing)</span>
+      </div>
+      <nav class="lang-bar" aria-label="Language Switcher">
+        <a class="lang-pill lang-pill-active" href="/zh-preview.html" data-keep-query="1">🇨🇳 中文战壕极速版</a>
+        <a class="lang-pill" href="/in-preview.html" data-keep-query="1">🇮🇳 India Fast-Scan (₹ INR)</a>
+        <a class="lang-pill" href="/ja-preview.html" data-keep-query="1">🇯🇵 日本語高速スキャン (¥ JPY)</a>
+        <a class="lang-pill" href="/ko-preview.html" data-keep-query="1">🇰🇷 한국어 초고속 스캔 (₩ KRW)</a>
+        <a class="lang-pill" href="https://rentandrugshield.com/?mode=institutional" data-keep-query="1">🏛️ Main Vault</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-top-row">
+        <span class="hero-eyebrow">GMGN.ai · Ave.ai · OKX Web3 · Phantom 华语战壕专线</span>
+        <span class="live-ticker-pill" id="liveSolTicker">1 SOL = $72.23 · CNY Ready</span>
+      </div>
+      <h1>Solana 空代币账户租金一键找回 · 首单 0% 手续费 100% 全额退回 · 复购仅 2% 费率保留 98% SOL · 12层防貔貅与捆绑盘预检防火墙</h1>
+      <p class="hero-sub">冲土狗、打金狗留下的大量 0 余额空 ATA 代币账户，每个都锁死约 0.002039 SOL 链上租金。直接粘贴公开钱包地址即可 100% 只读秒查可退 SOL，全程无需连接钱包弹窗、无需任何签名授权；冲新盘前粘贴合约地址 (CA)，<120ms 穿透识别 Token-2022 永久委托暗扣、转账钩子貔貅盘与 Slot-0 老鼠仓捆绑盘。</p>
+      <div class="eco-row">
+        <span class="eco-lbl">完美适配华语主流交易终端与钱包:</span>
+        <span class="eco-chip">GMGN.ai 战壕</span><span class="eco-chip">Ave.ai 看线</span><span class="eco-chip">OKX Web3 钱包</span><span class="eco-chip">Phantom 幻影钱包</span><span class="eco-chip">Backpack / Solflare</span>
+      </div>
+      <div class="trust-pills">
+        <div class="trust-pill"><span class="trust-dot"></span><span>首单 0% 手续费 · 100% SOL 全额退回 ($0 自动续费)</span></div>
+        <div class="trust-pill"><span class="trust-dot"></span><span>复购仅 2% 费率 · 保留 98% SOL</span></div>
+        <div class="trust-pill"><span class="trust-dot"></span><span>30% 链上原子返佣 (?ref=钱包同笔秒分账)</span></div>
+      </div>
+    </section>
+
+    <section class="dual-grid">
+      <div class="vault-card">
+        <div>
+          <div class="card-tag">服务 01 · 100% 只读无弹窗查租金</div>
+          <h2 class="card-title">Solana 空代币账户 (ATA) 租金秒级检测</h2>
+          <p class="card-desc">仅需公开地址即可扫描 SPL 与 Token-2022 零余额空账户。有余额的持仓代币与特殊冻结账户 100% 原封不动，绝不误触。</p>
+          <div class="input-row">
+            <input id="walletInput" class="scan-input" type="text" autocomplete="off" spellcheck="false" placeholder="粘贴任意 Solana 钱包地址 (无需连接钱包弹窗)..." />
+            <button id="btnScanWallet" class="btn-gold" type="button">立即只读查租金</button>
+          </div>
+          <div class="sample-row">
+            <span class="sample-lbl">一键实测主网真实战壕钱包:</span>
+            <button id="btnSampleWallet1" class="btn-ghost" type="button" data-wallet="MfDuWeqSHEqTFVYZ7LoexgAK9dxk7cy4DFJWjWMGVWa">实测 Raydium 钱包 #1 (71个空账户)</button>
+            <button id="btnSampleWallet2" class="btn-ghost" type="button" data-wallet="Ex1mYTgfnxACnoGTnWqYRJRNjr8pciHnWxWnVLH8pWf2">实测高频战壕钱包 #2 (70个空账户)</button>
+            <button id="btnClearWallet" class="btn-ghost" type="button">清空</button>
+          </div>
+          <div id="walletResult" class="result-box" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="vault-card">
+        <div>
+          <div class="card-tag">服务 02 · <120ms 买入前防割预检</div>
+          <h2 class="card-title">12层防貔貅 · Token-2022 · 捆绑盘预检防火墙</h2>
+          <p class="card-desc">在 GMGN / Ave / PumpSwap 买入前粘贴代币合约 (CA)，毫秒级扫描增发权限、冻结黑名单、永久委托暗扣与庄家同区块老鼠仓。</p>
+          <div class="input-row">
+            <input id="mintInput" class="scan-input" type="text" autocomplete="off" spellcheck="false" placeholder="粘贴 Solana 代币合约地址 Mint / CA..." />
+            <button id="btnScanToken" class="btn-emerald" type="button">12层安全预检</button>
+          </div>
+          <div class="sample-row">
+            <span class="sample-lbl">一键实测主网热门代币合约:</span>
+            <button id="btnSampleBonk" class="btn-ghost" type="button" data-mint="DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263">实测 $BONK (12/12 安全)</button>
+            <button id="btnSampleWif" class="btn-ghost" type="button" data-mint="EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm">实测 $WIF (SPL 蓝筹)</button>
+            <button id="btnClearMint" class="btn-ghost" type="button">清空</button>
+          </div>
+          <div id="tokenResult" class="result-box" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="card-tag">实时链上收益与 30% KOL/群主原子返佣计算器</div>
+      <h2 class="card-title">SOL + USD + 人民币 (CNY ¥) 实时租金与返佣测算</h2>
+      <p class="card-desc">拖动滑块测算你的历史冲狗空账户可退金额，或生成专属 ?ref=你的钱包地址 链接：被邀请人后续复购产生的 2% 服务费中，30% 在同一笔链上交易内原子级直达你的钱包，0 注册、0 提现门槛。</p>
+
+      <div class="calc-sliders">
+        <div class="slider-box">
+          <div class="slider-hdr">
+            <span>钱包内空代币账户数量 (Empty ATAs):</span>
+            <span class="slider-val" id="ataCountDisplay">120 ATAs</span>
+          </div>
+          <input id="ataSlider" type="range" min="1" max="1000" value="120" />
+          <div class="preset-row">
+            <button type="button" class="btn-ghost ata-preset" data-atas="25">25</button>
+            <button type="button" class="btn-ghost ata-preset" data-atas="50">50</button>
+            <button type="button" class="btn-ghost ata-preset" data-atas="120">120</button>
+            <button type="button" class="btn-ghost ata-preset" data-atas="250">250</button>
+            <button type="button" class="btn-ghost ata-preset" data-atas="500">500</button>
+            <button type="button" class="btn-ghost ata-preset" data-atas="1000">1000</button>
+          </div>
+        </div>
+
+        <div class="slider-box">
+          <div class="slider-hdr">
+            <span>社群/推特邀请活跃交易员人数 (每人平均清理 120 个空账户):</span>
+            <span class="slider-val" id="refCountDisplay">25</span>
+          </div>
+          <input id="refSlider" type="range" min="1" max="250" value="25" />
+          <div class="preset-row">
+            <button type="button" class="btn-ghost ref-preset" data-refs="5">5</button>
+            <button type="button" class="btn-ghost ref-preset" data-refs="25">25</button>
+            <button type="button" class="btn-ghost ref-preset" data-refs="50">50</button>
+            <button type="button" class="btn-ghost ref-preset" data-refs="100">100</button>
+            <button type="button" class="btn-ghost ref-preset" data-refs="250">250</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-results-grid">
+        <div class="calc-res-card">
+          <div class="calc-res-title">首单 0% 手续费 100% 全额退回 ($0 自动续费)</div>
+          <div class="calc-fiat-big" id="calcFirstFiat">¥0</div>
+          <div class="calc-sub-amounts" id="calcFirstSub">0.2447 SOL · $17.67 USD</div>
+          <div class="calc-note">首次清理免收协议费 · 100% 链上租金回到你的钱包</div>
+        </div>
+        <div class="calc-res-card">
+          <div class="calc-res-title">复购仅 2% 费率 (保留 98.0% SOL)</div>
+          <div class="calc-fiat-big" id="calcRepeatFiat">¥0</div>
+          <div class="calc-sub-amounts" id="calcRepeatSub">0.2398 SOL · $17.32 USD</div>
+          <div class="calc-note">第 2 次起固定仅收 2.0% · 远低于市面 5% 至 20% 抽成工具</div>
+        </div>
+        <div class="calc-res-card">
+          <div class="calc-res-title">30% 链上原子返佣收益 (?ref=同笔秒到)</div>
+          <div class="calc-fiat-big" id="calcRefFiat">¥0</div>
+          <div class="calc-sub-amounts" id="calcRefSub">0.0367 SOL · $2.65 USD</div>
+          <div class="calc-note">每笔复购交易内自动分账 30% 手续费直达你的 Solana 地址</div>
+        </div>
+      </div>
+
+      <div class="ref-builder">
+        <div class="card-title" style="font-size:16.5px;margin-bottom:8px;">10秒生成你的 30% 链上原子返佣链接 (?ref=YOUR_WALLET)</div>
+        <div class="input-row" style="margin-bottom:0;">
+          <input id="refWalletInput" class="scan-input" type="text" autocomplete="off" spellcheck="false" placeholder="输入你接收返佣的 Solana 钱包地址..." />
+          <button id="btnGenRef" class="btn-gold" type="button">生成专属返佣链接</button>
+        </div>
+        <div id="refOutputBox" class="ref-output-box">
+          <div style="font-family:ui-monospace,monospace;font-size:13px;color:#00FFA3;word-break:break-all;margin-bottom:10px;" id="refUrlText"></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button id="btnCopyRef" class="btn-emerald" type="button" style="padding:8px 14px;font-size:12.5px;">复制链接</button>
+            <a id="btnShareX" class="btn-ghost" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet">一键发推 (X)</a>
+            <a id="btnShareTg" class="btn-ghost" target="_blank" rel="noopener" href="https://t.me/share/url">分享到 Telegram 群</a>
+            <span id="refCopyStatus" style="font-size:12px;color:#FDE68A;align-self:center;font-weight:800;"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2 class="card-title">为什么 GMGN.ai、Ave.ai 与 OKX Web3 战壕老手都在用 12 层预检防火墙?</h2>
+      <div class="layers-grid">
+        <div class="layer-card"><div class="layer-card-title">L1 - L2 基础权限锁</div><div class="layer-card-body">秒查 Mint 增发权与 Freeze 冻结权是否彻底丢弃，防止买完被拉黑锁仓。</div></div><div class="layer-card"><div class="layer-card-title">L3 - L5 筹码与底池验真</div><div class="layer-card-body">穿透前 10/15 大持仓集中度、真实 LP/市值深度比与官方 LP 销毁凭证，识破假池子撤池。</div></div><div class="layer-card"><div class="layer-card-title">L6 - L9 Token-2022 深度排雷</div><div class="layer-card-body">精准拦截 Permanent Delegate (永久委托强行划走代币)、恶意 Transfer Hook 貔貅钩子与隐藏高额转账税。</div></div><div class="layer-card"><div class="layer-card-title">L10 - L12 庄家捆绑盘与对倒雷达</div><div class="layer-card-body">识别 Slot-0 创世区块庄家分仓捆绑买入 (Creator Sniper Bundle)、机器人刷量对倒与隐藏 PDA 租金陷阱。</div></div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2 class="card-title">华语交易员常见问题 (FAQ)</h2>
+      <details class="faq-item"><summary>扫描钱包需要连接钱包或签名授权吗?</summary><p>完全不需要! 租金扫描与 12 层代币预检均为 100% 只读 RPC 查询，只需粘贴公开地址，零弹窗、零签名风险。只有当你确认金额并决定领回 SOL 时，才会在非托管金库页面使用你自己的钱包签署标准 Solana CloseAccount (0x09) 指令。</p></details><details class="faq-item"><summary>关闭空账户会影响我有余额的代币或 NFT 吗?</summary><p>绝对不会。系统严格只筛选余额为 0 的空代币账户 (Empty ATA)，所有持有余额的代币、NFT 以及特殊冻结账户均被自动隔离保护，100% 安全不触碰。</p></details><details class="faq-item"><summary>30% 链上返佣怎么结算? 需要申请提现吗?</summary><p>无需注册账号，无需等待人工审核或提现。将 ?ref=你的Solana钱包 分享给群友，对方复购清理时，30% 分润写在同一笔 Solana 链上交易指令里原子级秒到你的钱包。</p></details>
+    </section>
+
+    <footer class="footer">
+      <div>Solana Rent &amp; Rug Shield · Non-Custodial Read-Only Fast-Scan · $0 Auto-Billing · @SolRentClaim</div>
+      <div style="margin-top:6px;">
+        <a href="https://rentandrugshield.com/?mode=institutional">Main Institutional Vault</a> ·
+        <a href="/affiliates.html">30% On-Chain Affiliates</a> ·
+        <a href="/privacy.html">Privacy</a> ·
+        <a href="/terms.html">Terms</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+  (function() {
+    const CFG = {"code": "zh", "currencyCode": "CNY", "currencySymbol": "¥", "defaultFx": 7.24, "fxDecimals": 2, "previewPath": "/zh-preview.html", "ui": {"scanning_wallet": "正在通过高速主网节点只读扫描钱包空账户...", "scanning_token": "正在执行 12 层防貔貅与捆绑盘毫秒级穿透扫描...", "invalid_wallet": "请输入有效的 Solana 钱包地址 (32-44位 Base58 字符)。", "invalid_mint": "请输入有效的 Solana 代币合约地址 (Mint / CA)。", "found_rent_hdr": "检测到可领回链上租金", "first_free_badge": "首单特权: 0% 手续费 · 100% SOL 全额退回", "repeat_fee_badge": "复购费率: 2.0% 固定费率 · 保留 98.0% SOL", "lbl_empty_atas": "零余额空账户 (ATA)", "lbl_dust_atas": "微尘账户", "lbl_active_safe": "持仓代币 (安全不触碰)", "lbl_net_sol": "预计净退回 SOL", "btn_proceed_claim": "前往非托管金库签名领回 SOL ->", "readonly_note": "当前页面 100% 只读零弹窗。点击上方按钮将在主站打开非托管签名面板，由你本人在钱包内确认领回。", "empty_sample_hdr": "可回收空账户明细预览 (前 8 个):", "zero_empty_msg": "该钱包当前非常干净，暂未发现可回收的 0 余额空代币账户!", "score_label": "安全评分", "liq_label": "池子流动性", "vol_label": "24h 成交量", "mcap_label": "当前市值", "prog_label": "代币标准", "pass_badge": "通过", "fail_badge": "高危预警", "locked_badge": "专业版解锁", "unlock_402_msg": "免费表面预检已完成! 解锁庄家老鼠仓分仓与刷量深度层，请点击下方进入完整 12 层金库面板:", "btn_open_full_audit": "在主站打开完整 12 层防割面板 ->", "copied_ok": "已复制专属返佣链接!", "share_tweet_tpl": "刚用 @SolRentClaim 只读测了下我的 Solana 战壕钱包，冲土狗留下的空账户租金首单 0% 手续费 100% 全额退回，还有 <120ms 12层防貔貅预检! 零弹窗秒查: "}};
+    const RENT_PER_ATA_SOL = 0.00203928;
+    const BASE58_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+
+    let liveSolUsd = 72.23;
+    let liveFx = Number(CFG.defaultFx || 1);
+    let apiBaseResolved = null;
+
+    function cleanDash(val) {
+      return String(val == null ? "" : val).replace(/[\u2013\u2014]/g, " - ");
+    }
+
+    function escHtml(str) {
+      return cleanDash(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function fmtLocalFiat(usdAmount) {
+      const val = Number(usdAmount || 0) * liveFx;
+      const dec = Number(CFG.fxDecimals || 0);
+      return CFG.currencySymbol + val.toLocaleString(undefined, {
+        minimumFractionDigits: dec,
+        maximumFractionDigits: dec
+      }) + " " + CFG.currencyCode;
+    }
+
+    function fmtUsd(usdAmount) {
+      const v = Number(usdAmount || 0);
+      return "$" + v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    async function resolveApiBase() {
+      if (apiBaseResolved !== null) return apiBaseResolved;
+      const h = window.location.hostname || "";
+      if (h === "127.0.0.1" || h === "localhost" || h.endsWith(".trycloudflare.com")) {
+        apiBaseResolved = "";
+        return apiBaseResolved;
+      }
+      try {
+        const r = await fetch("/live_endpoint.json?t=" + Date.now(), { cache: "no-store" });
+        if (r.ok) {
+          const d = await r.json();
+          if (d && d.api_base) {
+            apiBaseResolved = String(d.api_base).replace(/\/+$/, "");
+            return apiBaseResolved;
+          }
+        }
+      } catch (_e) {}
+      apiBaseResolved = "";
+      return apiBaseResolved;
+    }
+
+    function updateTickerPill() {
+      const el = document.getElementById("liveSolTicker");
+      if (!el) return;
+      const solLocal = fmtLocalFiat(liveSolUsd);
+      el.textContent = "1 SOL = " + fmtUsd(liveSolUsd) + " · " + solLocal;
+    }
+
+    function updateCalculator() {
+      const ataEl = document.getElementById("ataSlider");
+      const refEl = document.getElementById("refSlider");
+      if (!ataEl || !refEl) return;
+      const atas = Math.max(1, Number(ataEl.value || 120));
+      const refs = Math.max(1, Number(refEl.value || 25));
+
+      document.getElementById("ataCountDisplay").textContent = atas + " ATAs";
+      document.getElementById("refCountDisplay").textContent = String(refs);
+
+      const grossSol = atas * RENT_PER_ATA_SOL;
+      const grossUsd = grossSol * liveSolUsd;
+
+      const repeatNetSol = grossSol * 0.98;
+      const repeatNetUsd = repeatNetSol * liveSolUsd;
+
+      const refGrossSol = refs * 120 * RENT_PER_ATA_SOL;
+      const refEarnSol = refGrossSol * 0.02 * 0.30;
+      const refEarnUsd = refEarnSol * liveSolUsd;
+
+      document.getElementById("calcFirstFiat").textContent = fmtLocalFiat(grossUsd);
+      document.getElementById("calcFirstSub").textContent = grossSol.toFixed(4) + " SOL · " + fmtUsd(grossUsd) + " USD";
+
+      document.getElementById("calcRepeatFiat").textContent = fmtLocalFiat(repeatNetUsd);
+      document.getElementById("calcRepeatSub").textContent = repeatNetSol.toFixed(4) + " SOL · " + fmtUsd(repeatNetUsd) + " USD";
+
+      document.getElementById("calcRefFiat").textContent = fmtLocalFiat(refEarnUsd);
+      document.getElementById("calcRefSub").textContent = refEarnSol.toFixed(4) + " SOL · " + fmtUsd(refEarnUsd) + " USD";
+    }
+
+    function buildVaultUrl(extraParams) {
+      const cur = new URLSearchParams(window.location.search);
+      const out = new URLSearchParams();
+      out.set("mode", "institutional");
+      if (cur.get("ref")) out.set("ref", cur.get("ref"));
+      Object.keys(extraParams || {}).forEach(function(k) {
+        if (extraParams[k]) out.set(k, extraParams[k]);
+      });
+      return "https://rentandrugshield.com/?" + out.toString();
+    }
+
+    async function runWalletScan(rawAddr) {
+      const outBox = document.getElementById("walletResult");
+      const addr = String(rawAddr || "").trim();
+      outBox.classList.add("visible");
+      if (!BASE58_RE.test(addr)) {
+        outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">' + escHtml(CFG.ui.invalid_wallet) + '</div>';
+        return;
+      }
+      outBox.innerHTML = '<div style="color:#FDE68A;font-weight:800;">' + escHtml(CFG.ui.scanning_wallet) + '</div>';
+      try {
+        const base = await resolveApiBase();
+        const r = await fetch(base + "/api/scan-wallet", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ wallet: addr, source_page: CFG.code + "_fast_scan" })
+        });
+        const d = await r.json();
+        if (!d || !d.ok) {
+          outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">' + escHtml((d && d.error) || "Scan unavailable") + '</div>';
+          return;
+        }
+        if (Number(d.sol_usd) > 0) {
+          liveSolUsd = Number(d.sol_usd);
+          updateTickerPill();
+          updateCalculator();
+        }
+        const totalSol = Number(d.total_reclaimable_sol || 0);
+        const totalUsd = Number(d.total_reclaimable_usd || (totalSol * liveSolUsd));
+        const isFirstFree = Boolean(d.is_first_free_claim);
+        const netSol = isFirstFree ? totalSol : (totalSol * 0.98);
+        const netUsd = isFirstFree ? totalUsd : (netSol * liveSolUsd);
+        const emptyCnt = Number(d.empty_count != null ? d.empty_count : (d.reclaimable_count || 0));
+        const dustCnt = Number(d.dust_count || 0);
+        const activeCnt = Number(d.active_count || 0);
+        const badgeText = isFirstFree ? CFG.ui.first_free_badge : CFG.ui.repeat_fee_badge;
+        const badgeStyle = isFirstFree
+          ? "background:rgba(0,255,163,0.14);border:1px solid #00FFA3;color:#00FFA3;"
+          : "background:rgba(212,175,55,0.16);border:1px solid #F5D061;color:#FDE68A;";
+
+        const emptyList = Array.isArray(d.empty_reclaimable) ? d.empty_reclaimable.slice(0, 8) : [];
+        let rowsHtml = "";
+        if (emptyList.length > 0) {
+          rowsHtml = '<div class="ata-list"><div style="color:#94A3B8;font-weight:800;margin-bottom:4px;">'
+            + escHtml(CFG.ui.empty_sample_hdr) + '</div>'
+            + emptyList.map(function(item) {
+                return '<div class="ata-row"><span>' + escHtml(item.symbol || item.pubkey.slice(0, 8))
+                  + ' <small style="color:#94A3B8;">(' + escHtml(item.program_label || "SPL") + ')</small></span>'
+                  + '<span style="color:#00FFA3;">+' + Number(item.rent_sol || 0.002039).toFixed(6) + ' SOL</span></div>';
+              }).join("")
+            + '</div>';
+        } else if (emptyCnt === 0 && dustCnt === 0) {
+          rowsHtml = '<div style="margin-top:8px;color:#00FFA3;font-weight:800;font-size:13px;">' + escHtml(CFG.ui.zero_empty_msg) + '</div>';
+        }
+
+        const claimUrl = buildVaultUrl({ wallet: addr });
+        outBox.innerHTML =
+          '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">'
+          + '<span style="font-weight:900;color:#F8FAFC;font-size:14px;">' + escHtml(CFG.ui.found_rent_hdr) + '</span>'
+          + '<span style="padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:800;' + badgeStyle + '">' + escHtml(badgeText) + '</span>'
+          + '</div>'
+          + '<div style="font-size:24px;font-weight:900;color:#00FFA3;font-family:ui-monospace,monospace;">+'
+          + netSol.toFixed(6) + ' SOL · ' + escHtml(fmtLocalFiat(netUsd)) + ' <span style="font-size:14px;color:#CBD5E1;">(' + escHtml(fmtUsd(netUsd)) + ')</span></div>'
+          + '<div class="kpi-strip">'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.lbl_empty_atas) + '</div><div class="kpi-val">' + emptyCnt + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.lbl_dust_atas) + '</div><div class="kpi-val">' + dustCnt + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.lbl_active_safe) + '</div><div class="kpi-val" style="color:#00FFA3;">' + activeCnt + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.lbl_net_sol) + '</div><div class="kpi-val" style="color:#FDE68A;">+' + netSol.toFixed(4) + '</div></div>'
+          + '</div>'
+          + rowsHtml
+          + '<a id="btnClaimRedirect" class="cta-claim-link" href="' + escHtml(claimUrl) + '">' + escHtml(CFG.ui.btn_proceed_claim) + '</a>'
+          + '<div style="margin-top:7px;font-size:11.5px;color:#94A3B8;">' + escHtml(CFG.ui.readonly_note) + '</div>';
+      } catch (err) {
+        outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">RPC Error: ' + escHtml(err && err.message ? err.message : String(err)) + '</div>';
+      }
+    }
+
+    async function runTokenScan(rawMint) {
+      const outBox = document.getElementById("tokenResult");
+      const mint = String(rawMint || "").trim();
+      outBox.classList.add("visible");
+      if (!BASE58_RE.test(mint)) {
+        outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">' + escHtml(CFG.ui.invalid_mint) + '</div>';
+        return;
+      }
+      outBox.innerHTML = '<div style="color:#00FFA3;font-weight:800;">' + escHtml(CFG.ui.scanning_token) + '</div>';
+      try {
+        const base = await resolveApiBase();
+        const r = await fetch(base + "/api/scan-token", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mint: mint, source_page: CFG.code + "_fast_scan" })
+        });
+        const d = await r.json();
+        const fullAuditUrl = buildVaultUrl({ mint: mint });
+
+        if (r.status === 402 || (d && d.payment_required)) {
+          const pv = (d && (d.preview || d.blurred_preview)) || {};
+          const checks = Array.isArray(pv.checks) ? pv.checks : (Array.isArray(pv.redacted_checks) ? pv.redacted_checks : []);
+          const chkHtml = checks.slice(0, 8).map(function(c) {
+            const isBlur = Boolean(c.blurred || c.redacted);
+            const stCol = isBlur ? "#FDE68A" : (c.passed ? "#00FFA3" : "#F87171");
+            const stTxt = isBlur ? CFG.ui.locked_badge : (c.passed ? CFG.ui.pass_badge : CFG.ui.fail_badge);
+            return '<div class="chk-item"><div style="display:flex;justify-content:space-between;font-weight:800;"><span>'
+              + escHtml(c.label || c.name || "Layer") + '</span><span style="color:' + stCol + ';">' + escHtml(stTxt) + '</span></div>'
+              + '<div style="color:#94A3B8;margin-top:2px;">' + escHtml(c.detail || "") + '</div></div>';
+          }).join("");
+          outBox.innerHTML =
+            '<div style="font-weight:900;font-size:15px;color:#FDE68A;margin-bottom:6px;">$' + escHtml(pv.symbol || "TOKEN") + ' · ' + escHtml(pv.token_program || "SPL Token") + '</div>'
+            + '<div style="font-size:12.5px;color:#CBD5E1;margin-bottom:8px;">' + escHtml(CFG.ui.unlock_402_msg) + '</div>'
+            + '<div class="checks-grid">' + chkHtml + '</div>'
+            + '<a class="cta-claim-link" href="' + escHtml(fullAuditUrl) + '">' + escHtml(CFG.ui.btn_open_full_audit) + '</a>';
+          return;
+        }
+
+        if (!d || !d.ok) {
+          outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">' + escHtml((d && d.error) || "Token scan unavailable") + '</div>';
+          return;
+        }
+
+        const score = Number(d.score != null ? d.score : (d.safety_score || 0));
+        const scoreCol = score >= 80 ? "#00FFA3" : (score >= 55 ? "#FDE68A" : "#F87171");
+        const checks = Array.isArray(d.checks) ? d.checks : [];
+        const chkHtml = checks.map(function(c) {
+          const ok = Boolean(c.passed);
+          return '<div class="chk-item"><div style="display:flex;justify-content:space-between;font-weight:800;"><span>'
+            + escHtml(c.label || c.name) + '</span><span style="color:' + (ok ? "#00FFA3" : "#F87171") + ';">'
+            + escHtml(ok ? CFG.ui.pass_badge : CFG.ui.fail_badge) + '</span></div>'
+            + '<div style="color:#94A3B8;margin-top:2px;">' + escHtml(c.detail || "") + '</div></div>';
+        }).join("");
+
+        outBox.innerHTML =
+          '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">'
+          + '<div><span style="font-size:18px;font-weight:900;color:#FFFFFF;">$' + escHtml(d.symbol || "TOKEN") + '</span> '
+          + '<span style="font-size:12.5px;color:#94A3B8;">(' + escHtml(d.name || "") + ')</span></div>'
+          + '<span style="font-size:18px;font-weight:900;font-family:ui-monospace,monospace;color:' + scoreCol + ';">'
+          + escHtml(CFG.ui.score_label) + ': ' + score + '/100</span></div>'
+          + '<div style="margin-top:4px;font-size:12.5px;font-weight:800;color:' + scoreCol + ';">' + escHtml(d.verdict || "") + '</div>'
+          + '<div class="kpi-strip">'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.liq_label) + '</div><div class="kpi-val">' + escHtml(fmtUsd(d.liquidity_usd || 0)) + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.vol_label) + '</div><div class="kpi-val">' + escHtml(fmtUsd(d.volume_24h_usd || 0)) + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.mcap_label) + '</div><div class="kpi-val">' + escHtml(fmtUsd(d.market_cap_usd || 0)) + '</div></div>'
+          + '<div class="kpi-cell"><div class="kpi-lbl">' + escHtml(CFG.ui.prog_label) + '</div><div class="kpi-val" style="font-size:13px;">' + escHtml(d.token_program || "SPL") + '</div></div>'
+          + '</div>'
+          + '<div class="checks-grid">' + chkHtml + '</div>'
+          + '<a class="cta-claim-link" href="' + escHtml(fullAuditUrl) + '">' + escHtml(CFG.ui.btn_open_full_audit) + '</a>';
+      } catch (err) {
+        outBox.innerHTML = '<div style="color:#F87171;font-weight:800;">Scan Error: ' + escHtml(err && err.message ? err.message : String(err)) + '</div>';
+      }
+    }
+
+    function generateRefLink() {
+      const inp = document.getElementById("refWalletInput");
+      const box = document.getElementById("refOutputBox");
+      const txt = document.getElementById("refUrlText");
+      const status = document.getElementById("refCopyStatus");
+      const w = String((inp && inp.value) || "").trim();
+      box.classList.add("visible");
+      status.textContent = "";
+      if (!BASE58_RE.test(w)) {
+        txt.style.color = "#F87171";
+        txt.textContent = CFG.ui.invalid_wallet;
+        return;
+      }
+      txt.style.color = "#00FFA3";
+      const link = "https://rentandrugshield.com/?ref=" + encodeURIComponent(w);
+      txt.textContent = link;
+      const shareMsg = CFG.ui.share_tweet_tpl + link;
+      document.getElementById("btnShareX").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareMsg);
+      document.getElementById("btnShareTg").href = "https://t.me/share/url?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(CFG.ui.share_tweet_tpl);
+    }
+
+    document.getElementById("btnScanWallet").addEventListener("click", function() {
+      runWalletScan(document.getElementById("walletInput").value);
+    });
+    document.getElementById("walletInput").addEventListener("keydown", function(ev) {
+      if (ev.key === "Enter") runWalletScan(ev.target.value);
+    });
+    ["btnSampleWallet1", "btnSampleWallet2"].forEach(function(id) {
+      const b = document.getElementById(id);
+      if (b) b.addEventListener("click", function() {
+        const w = b.getAttribute("data-wallet");
+        document.getElementById("walletInput").value = w;
+        runWalletScan(w);
+      });
+    });
+    document.getElementById("btnClearWallet").addEventListener("click", function() {
+      document.getElementById("walletInput").value = "";
+      const ob = document.getElementById("walletResult");
+      ob.classList.remove("visible");
+      ob.innerHTML = "";
+    });
+
+    document.getElementById("btnScanToken").addEventListener("click", function() {
+      runTokenScan(document.getElementById("mintInput").value);
+    });
+    document.getElementById("mintInput").addEventListener("keydown", function(ev) {
+      if (ev.key === "Enter") runTokenScan(ev.target.value);
+    });
+    ["btnSampleBonk", "btnSampleWif"].forEach(function(id) {
+      const b = document.getElementById(id);
+      if (b) b.addEventListener("click", function() {
+        const m = b.getAttribute("data-mint");
+        document.getElementById("mintInput").value = m;
+        runTokenScan(m);
+      });
+    });
+    document.getElementById("btnClearMint").addEventListener("click", function() {
+      document.getElementById("mintInput").value = "";
+      const ob = document.getElementById("tokenResult");
+      ob.classList.remove("visible");
+      ob.innerHTML = "";
+    });
+
+    document.getElementById("ataSlider").addEventListener("input", updateCalculator);
+    document.getElementById("refSlider").addEventListener("input", updateCalculator);
+    document.querySelectorAll(".ata-preset").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        document.getElementById("ataSlider").value = btn.getAttribute("data-atas");
+        updateCalculator();
+      });
+    });
+    document.querySelectorAll(".ref-preset").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        document.getElementById("refSlider").value = btn.getAttribute("data-refs");
+        updateCalculator();
+      });
+    });
+
+    document.getElementById("btnGenRef").addEventListener("click", generateRefLink);
+    document.getElementById("btnCopyRef").addEventListener("click", async function() {
+      const txt = document.getElementById("refUrlText").textContent || "";
+      if (!txt.startsWith("http")) return;
+      try {
+        await navigator.clipboard.writeText(txt);
+        document.getElementById("refCopyStatus").textContent = CFG.ui.copied_ok;
+      } catch (_e) {
+        document.getElementById("refCopyStatus").textContent = txt;
+      }
+    });
+
+    const qs = window.location.search;
+    if (qs) {
+      document.querySelectorAll("a[data-keep-query='1']").forEach(function(a) {
+        const href = a.getAttribute("href") || "";
+        if (href && href.indexOf("?") === -1) a.setAttribute("href", href + qs);
+      });
+    }
+
+    updateTickerPill();
+    updateCalculator();
+
+    (async function hydrateLiveRates() {
+      try {
+        const base = await resolveApiBase();
+        const r = await fetch(base + "/api/live-market-ticker", { cache: "no-store" });
+        if (r.ok) {
+          const d = await r.json();
+          const px = Number((d && (d.sol_usd || d.sol_price_usd || d.sol_price)) || 0);
+          if (px > 0) {
+            liveSolUsd = px;
+            updateTickerPill();
+            updateCalculator();
+          }
+        }
+      } catch (_e) {}
+    })();
+
+    const initParams = new URLSearchParams(window.location.search);
+    if (initParams.get("wallet") && BASE58_RE.test(initParams.get("wallet"))) {
+      document.getElementById("walletInput").value = initParams.get("wallet");
+      runWalletScan(initParams.get("wallet"));
+    }
+    if (initParams.get("mint") && BASE58_RE.test(initParams.get("mint"))) {
+      document.getElementById("mintInput").value = initParams.get("mint");
+      runTokenScan(initParams.get("mint"));
+    }
+  })();
+  </script>
+</body>
+</html>
