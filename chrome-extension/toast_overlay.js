@@ -2,6 +2,7 @@
   'use strict';
   window.__RRS_TOAST_V53_READY__ = true;
   window.__RRS_TOAST_V55_LUXURY_READY__ = true;
+  window.__RRS_TOAST_V58_READY__ = true;
 
   const LAYOUT_KEY_V53 = 'rrs_box_layout_v53';
   const FLT_KEY_V53 = 'rrs_notifier_filters_v53';
@@ -23,11 +24,12 @@
     BONK: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263'
   };
 
-  const DEFAULT_LAYOUT = { x: -1, y: -1, pinned: false, zoomPct: 100, autoHideSec: 14 };
+  const DEFAULT_LAYOUT = { x: -1, y: -1, pinned: false, zoomPct: 100, autoHideSec: 10 };
   const DEFAULT_FILTERS = {
     masterBubbles: true,
-    autoHideSec: 14,
+    autoHideSec: 10,
     stayOpen: false,
+    autoProof: true,
     soundEnabled: false,
     roboticVoice: false,
     tf: '3m',
@@ -316,10 +318,18 @@
         .rrs-unread-badge.show { display: inline-flex; }
         .rrs-status-pill {
           padding: calc(4px * var(--rrs-scale, 1)) calc(9px * var(--rrs-scale, 1));
-          border-radius: 8px; background: rgba(6, 56, 42, 0.68);
-          border: 1px solid rgba(0, 255, 163, 0.55); color: #00FFA3;
+          border-radius: 8px; background: rgba(6, 56, 42, 0.72);
+          border: 1.2px solid #00FFA3; color: #00FFA3;
           font-size: calc(10.8px * var(--rrs-scale, 1)); font-weight: 900;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .rrs-status-pill.verdict-fail {
+          background: rgba(68, 8, 22, 0.85);
+          border-color: #FF4D6D; color: #FF4D6D;
+        }
+        .rrs-status-pill.verdict-wire {
+          background: rgba(54, 38, 6, 0.72);
+          border-color: #FFD000; color: #FFF2A6;
         }
         .rrs-nav-grp { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
         .rrs-pill-btn {
@@ -455,21 +465,27 @@
             <button type="button" id="rrs-drw-x" class="rrs-pill-btn rrs-pill-red" style="padding:2px 8px;">\u2715</button>
           </div>
 
-          <div class="rrs-sec-lbl">1. AUTO-HIDE COUNTDOWN &amp; CHIME</div>
+          <div class="rrs-sec-lbl">1. STAY TIME (5s / 10s / 15s / Pin) &amp; CHIME ON/OFF</div>
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
             <div id="rrs-seg-hide" class="rrs-seg-bar" data-tone="gold">
-              <button type="button" class="rrs-seg-pill" data-val="8s">8s</button>
-              <button type="button" class="rrs-seg-pill active-gold" data-val="14s">14s</button>
-              <button type="button" class="rrs-seg-pill" data-val="30s">30s</button>
-              <button type="button" class="rrs-seg-pill" data-val="Pinned">Pinned</button>
+              <button type="button" class="rrs-seg-pill" data-val="5s">5s</button>
+              <button type="button" class="rrs-seg-pill active-gold" data-val="10s">10s</button>
+              <button type="button" class="rrs-seg-pill" data-val="15s">15s</button>
+              <button type="button" class="rrs-seg-pill" data-val="Pin">Pin</button>
             </div>
-            <div class="rrs-sw-wrap" id="rrs-sw-sound" data-on="false" data-tone="gold">
-              <div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div>
-              <span class="rrs-sw-lbl">Alert Chime</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="rrs-sw-wrap" id="rrs-sw-sound" data-on="false" data-tone="gold">
+                <div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div>
+                <span class="rrs-sw-lbl">Chime ON/OFF</span>
+              </div>
+              <div class="rrs-sw-wrap" id="rrs-sw-autoproof" data-on="true" data-tone="emerald">
+                <div class="rrs-sw-track"><div class="rrs-sw-thumb"></div></div>
+                <span class="rrs-sw-lbl">Auto Proof</span>
+              </div>
             </div>
           </div>
 
-          <div class="rrs-sec-lbl">2. TIMEFRAME, MARKET PRESETS &amp; MACD TRIGGERS</div>
+          <div class="rrs-sec-lbl">2. PRO TRADER SIGNALS (MACD, TIMEFRAME &amp; PRESETS)</div>
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:6px;">
             <div id="rrs-seg-tf" class="rrs-seg-bar" data-tone="emerald">
               <button type="button" class="rrs-seg-pill" data-val="1m">1m</button>
@@ -524,7 +540,7 @@
           <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,208,0,0.2);">
             <span class="rrs-brand">rentandrugshield.com</span>
             <div style="display:flex;gap:6px;">
-              <button type="button" id="rrs-drw-simred" class="rrs-pill-btn rrs-pill-red">\u26A1 Test Red Alert</button>
+              <button type="button" id="rrs-drw-simred" class="rrs-pill-btn rrs-pill-gold">\u26A1 Test 12-Layer Call</button>
               <button type="button" id="rrs-drw-save" class="rrs-pill-btn rrs-pill-emerald">\u2713 Save &amp; Arm Shield</button>
             </div>
           </div>
@@ -541,7 +557,7 @@
             </div>
             <div class="rrs-nav-grp">
               <button type="button" id="rrs-btn-prev" class="rrs-pill-btn">&lt;</button>
-              <span id="rrs-lbl-cnt" style="font-size:11px;font-weight:900;color:#FFF2A6;padding:0 3px;">1/1</span>
+              <span id="rrs-lbl-cnt" style="display:none;"></span>
               <button type="button" id="rrs-btn-next" class="rrs-pill-btn">&gt;</button>
               <button type="button" id="rrs-btn-close" class="rrs-pill-btn rrs-pill-red">\u2715</button>
             </div>
@@ -555,7 +571,7 @@
               <button type="button" id="rrs-btn-zout" class="rrs-pill-btn">\u2212</button>
               <button type="button" id="rrs-btn-zpct" class="rrs-pill-btn" style="color:#FFF2A6;">100%</button>
               <button type="button" id="rrs-btn-zin" class="rrs-pill-btn" style="color:#00FFA3;">+</button>
-              <button type="button" id="rrs-btn-pin" class="rrs-pill-btn rrs-pill-gold">14s Auto</button>
+              <button type="button" id="rrs-btn-pin" class="rrs-pill-btn rrs-pill-gold">10s</button>
             </div>
             <div class="rrs-act-right">
               <button type="button" id="rrs-btn-gear" class="rrs-pill-btn rrs-pill-gold">\u2699 Settings \u25B2</button>
@@ -565,7 +581,7 @@
 
           <div class="rrs-foot">
             <span id="rrs-brand-link" class="rrs-brand">rentandrugshield.com</span>
-            <span id="rrs-lbl-timer" style="color:#94A3B8;">14s</span>
+            <span id="rrs-lbl-timer" style="color:#94A3B8;">10s</span>
           </div>
           <div class="rrs-prog-track"><div id="rrs-prog-bar" class="rrs-prog-bar"></div></div>
         </div>
@@ -611,28 +627,41 @@
     return Boolean(el && el.dataset.on === 'true');
   }
 
-  function syncVisualShieldState(root, state, unread) {
+  function normalizeStaySec(s) {
+    const n = Number(s || 10);
+    if (n <= 6) return 5;
+    if (n <= 12) return 10;
+    return 15;
+  }
+
+  function escapeCardHtml(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function syncVisualShieldState(root, state, _unusedUnread) {
+    // v5.8: ZERO red 1 or 2 badges! Notice Box background turns Crimson Red ONLY when active alert FAILS 12-Layer check!
     localShieldState = state;
-    localUnreadCount = Math.max(0, Number(unread || 0));
+    localUnreadCount = 0;
     const card = root.getElementById('rrs-v55-card');
     const svgBox = root.getElementById('rrs-card-shield-svg');
     const badgeEl = root.getElementById('rrs-card-unread');
     if (!card || !svgBox || !badgeEl) return;
 
+    badgeEl.classList.remove('show');
+    badgeEl.textContent = '';
+
+    const cur = uniqueAlerts[activeAlertIdx];
+    const isFail12 = Boolean(cur && cur.failed12Layer);
+
     card.classList.remove('state-red', 'state-emerald');
-    if (state === 'red_alert') {
+    if (isFail12) {
       card.classList.add('state-red');
       svgBox.innerHTML = renderShieldSvgMarkup('red_alert');
-      const c = Math.max(1, localUnreadCount);
-      badgeEl.textContent = c > 9 ? '9+' : String(c);
-      badgeEl.classList.add('show');
     } else if (state === 'emerald_flash') {
       card.classList.add('state-emerald');
       svgBox.innerHTML = renderShieldSvgMarkup('emerald_flash');
-      badgeEl.classList.remove('show');
     } else {
       svgBox.innerHTML = renderShieldSvgMarkup('yellow_black');
-      badgeEl.classList.remove('show');
     }
   }
 
@@ -655,8 +684,8 @@
     const zBtn = root.getElementById('rrs-btn-zpct');
     if (zBtn) zBtn.textContent = z + '%';
     const pinBtn = root.getElementById('rrs-btn-pin');
-    const sec = Number(layoutState.autoHideSec || 14);
-    if (pinBtn) pinBtn.textContent = layoutState.pinned ? 'Pinned' : (sec + 's Auto');
+    const sec = normalizeStaySec(layoutState.autoHideSec || 10);
+    if (pinBtn) pinBtn.textContent = layoutState.pinned ? 'Pin' : (sec + 's');
 
     if (layoutState.x >= 0 && layoutState.y >= 0) {
       const maxX = Math.max(8, window.innerWidth - 160);
@@ -674,8 +703,9 @@
   }
 
   function populateDrawerFromState(root) {
-    setSegmentedValue(root, 'rrs-seg-hide', layoutState.pinned ? 'Pinned' : ((layoutState.autoHideSec || 14) + 's'));
+    setSegmentedValue(root, 'rrs-seg-hide', layoutState.pinned ? 'Pin' : (normalizeStaySec(layoutState.autoHideSec || 10) + 's'));
     setSwitchOn(root, 'rrs-sw-sound', Boolean(filterState.soundEnabled));
+    setSwitchOn(root, 'rrs-sw-autoproof', filterState.autoProof !== false);
     setSegmentedValue(root, 'rrs-seg-tf', filterState.tf || '3m');
     setSegmentedValue(root, 'rrs-seg-preset', filterState.preset || 'Runners');
     setSwitchOn(root, 'rrs-sw-macd-bull', filterState.macdBull !== false);
@@ -701,10 +731,37 @@
     if (!uniqueAlerts.length) return;
     activeAlertIdx = Math.max(0, Math.min(activeAlertIdx, uniqueAlerts.length - 1));
     const cur = uniqueAlerts[activeAlertIdx];
-    root.getElementById('rrs-card-badge').textContent = cur.badge;
-    root.getElementById('rrs-card-title').textContent = cur.title;
-    root.getElementById('rrs-card-body').textContent = cur.message;
-    root.getElementById('rrs-lbl-cnt').textContent = (activeAlertIdx + 1) + '/' + uniqueAlerts.length;
+    const badgeNode = root.getElementById('rrs-card-badge');
+    const titleNode = root.getElementById('rrs-card-title');
+    const bodyNode = root.getElementById('rrs-card-body');
+
+    badgeNode.classList.remove('verdict-fail', 'verdict-wire');
+    if (cur.isCoinNotice) {
+      const proofSuffix = cur.isProof ? ' | TOLD YOU SO PROOF' : '';
+      if (cur.failed12Layer) {
+        badgeNode.textContent = '12-LAYER: FAIL \u2715' + proofSuffix;
+        badgeNode.classList.add('verdict-fail');
+      } else {
+        badgeNode.textContent = '12-LAYER: PASS \u2713' + proofSuffix;
+      }
+    } else {
+      badgeNode.textContent = cur.badge;
+      badgeNode.classList.add('verdict-wire');
+    }
+
+    if (cur.isCoinNotice && cur.sym) {
+      const mvCol = cur.movePct < 0 ? '#FF4D6D' : '#00FFA3';
+      const pctTxt = cur.hasMovePct ? (' ' + (cur.movePct >= 0 ? '+' : '') + Number(cur.movePct).toFixed(1) + '%') : '';
+      const rest = cur.title.replace(/^\s*\$[A-Za-z0-9_]+\s*(?:\([^)]*\)|[+-]?\d+(?:\.\d+)?%)?\s*\|?\s*/, '').trim();
+      titleNode.innerHTML =
+        `<span style="color:${mvCol};font-weight:900;">$${escapeCardHtml(cur.sym)}${escapeCardHtml(pctTxt)}</span>` +
+        (rest ? ` <span style="color:#FFFFFF;">| ${escapeCardHtml(rest)}</span>` : '');
+    } else {
+      titleNode.textContent = cur.title;
+    }
+
+    bodyNode.textContent = cur.message;
+    syncVisualShieldState(root, localShieldState === 'emerald_flash' ? 'emerald_flash' : 'yellow_black', 0);
   }
 
   function ensureCountdownLoop(root) {
@@ -875,16 +932,17 @@
 
     root.getElementById('rrs-drw-save').onclick = (ev) => {
       ev.stopPropagation();
-      const hv = getSegmentedValue(root, 'rrs-seg-hide', '14s');
-      if (hv === 'Pinned') {
+      const hv = getSegmentedValue(root, 'rrs-seg-hide', '10s');
+      if (hv === 'Pin' || hv === 'Pinned') {
         layoutState.pinned = true;
       } else {
         layoutState.pinned = false;
-        layoutState.autoHideSec = parseInt(hv, 10) || 14;
+        layoutState.autoHideSec = normalizeStaySec(parseInt(hv, 10) || 10);
       }
       const tf = getSegmentedValue(root, 'rrs-seg-tf', '3m');
       filterState = Object.assign({}, filterState, {
         soundEnabled: getSwitchOn(root, 'rrs-sw-sound'),
+        autoProof: getSwitchOn(root, 'rrs-sw-autoproof'),
         tf,
         preset: getSegmentedValue(root, 'rrs-seg-preset', 'Runners'),
         macdOn: true,
@@ -975,17 +1033,10 @@
     });
   }
 
-  window.__rrsUpdateFounderBell = function (info) {
-    if (window.location && String(window.location.href).includes('127.0.0.1:18088/command/waiting-approvals')) return;
+  window.__rrsUpdateFounderBell = function (_info) {
     const { root } = ensureShadowHost();
     const bell = root.getElementById('rrs-founder-bell');
-    const cnt = Number((info && info.pending_count) || 0);
-    const numEl = root.getElementById('rrs-bell-num');
-    if (numEl) numEl.textContent = String(cnt);
-    if (bell) {
-      if (cnt > 0) bell.classList.add('show');
-      else bell.classList.remove('show');
-    }
+    if (bell) bell.classList.remove('show');
   };
 
   window.__rrsRenderBlackToastV53 = function (t, openDrawerImmediately) {
@@ -993,32 +1044,55 @@
     loadPersistedState(() => {
       const { host, root } = ensureShadowHost();
       const exactUrl = resolveExactAlertUrl(t);
-      const badge = scrubText(t.badge || 'SHIELD LIVE | 12-LAYER + MACD ARMED');
+      const kind = String(t.kind || 'coin').toLowerCase();
+      const isNews = (kind === 'news' || kind === 'crypto' || kind === 'ai' || kind === 'world');
+      const rawBadge = scrubText(t.badge || '');
+      const failed12Layer = (!isNews) && (
+        kind === 'rug' ||
+        String(t.l12 || '').toUpperCase() === 'FAILED' ||
+        String(t.verdict_12layer || '').toUpperCase() === 'FAIL' ||
+        /12-LAYER:\s*FAIL|RUG BLOCKED/i.test(rawBadge)
+      );
       const title = scrubText(t.title);
       const message = scrubText(t.message || 'Click card or [Open Trade] to inspect 12-Layer token audit.');
-      const key = title + '|' + message;
+      let sym = String(t.sym || '').replace(/^\$/, '').trim().toUpperCase();
+      if (!sym && !isNews) {
+        const sm = title.match(/\$([A-Za-z0-9_]{2,12})/);
+        if (sm) sym = sm[1].toUpperCase();
+      }
+      let movePct = 0;
+      let hasMovePct = false;
+      if (t.move_pct !== undefined && !Number.isNaN(Number(t.move_pct))) {
+        movePct = Number(t.move_pct);
+        hasMovePct = true;
+      } else {
+        const pm = (title + ' ' + message).match(/([+-]?\d+(?:\.\d+)?)%/);
+        if (pm) { movePct = Number(pm[1]); hasMovePct = true; }
+      }
+      const isCoinNotice = (!isNews) && Boolean(sym || t.mint || kind === 'coin' || kind === 'rug' || kind === 'moonbag');
+      const badge = rawBadge || (isCoinNotice ? (failed12Layer ? '12-LAYER: FAIL \u2715' : '12-LAYER: PASS \u2713') : 'LIVE WIRE');
+      const key = title + '|' + message + '|' + (failed12Layer ? 'F' : 'P');
 
       if (!seenAlertKeys.has(key)) {
         seenAlertKeys.add(key);
-        uniqueAlerts.push({ badge, title, message, url: exactUrl });
+        uniqueAlerts.push({
+          badge, title, message, url: exactUrl,
+          sym, movePct, hasMovePct, failed12Layer, isCoinNotice,
+          isProof: Boolean(t.is_proof || /PROOF/i.test(badge))
+        });
         if (uniqueAlerts.length > 15) uniqueAlerts.shift();
         activeAlertIdx = uniqueAlerts.length - 1;
       }
 
-      renderActiveAlert(root);
       applyLayoutToHost(host, root);
-
-      countdownTotalMs = Math.max(4000, Number(layoutState.autoHideSec || 14) * 1000);
+      countdownTotalMs = Math.max(4000, normalizeStaySec(layoutState.autoHideSec || 10) * 1000);
       countdownRemMs = countdownTotalMs;
       const progBar = root.getElementById('rrs-prog-bar');
       if (progBar) progBar.style.width = '100%';
 
-      const unread = typeof t.unreadCount === 'number' ? t.unreadCount : (t.markCaughtUp ? 0 : (localUnreadCount + 1));
-      if (unread > 0) {
-        syncVisualShieldState(root, 'red_alert', unread);
-      } else {
-        syncVisualShieldState(root, 'yellow_black', 0);
-      }
+      // Calm Black & Gold by default; Crimson Red ONLY when failed12Layer === true!
+      syncVisualShieldState(root, 'yellow_black', 0);
+      renderActiveAlert(root);
 
       const card = root.getElementById('rrs-v55-card');
       const drawer = root.getElementById('rrs-v55-drawer');
@@ -1034,16 +1108,18 @@
     });
   };
 
-  // Public interactive demo trigger for [Try Luxury Movable Trader Shield] on rentandrugshield.com
   window.RRS_openLuxuryTraderShieldDemo = function (openDrawer) {
     window.__rrsRenderBlackToastV53({
       kind: 'coin',
       sym: 'SOL',
       mint: 'So11111111111111111111111111111111111111112',
-      unreadCount: 1,
-      badge: 'MACD BULL CROSS | 12-LAYER SAFE',
-      title: '$SOL Whale Runner +14.8% | Luxury Movable Trader Shield',
-      message: 'Drag this 24K-Gold & Obsidian box anywhere, zoom 75%-200%, click Red Shield to flash Emerald, or tune glowing pill switches above.',
+      move_pct: 14.8,
+      l12: 'PASSED',
+      verdict_12layer: 'PASS',
+      unreadCount: 0,
+      badge: '12-LAYER: PASS \u2713',
+      title: '$SOL +14.8% | Luxury Movable Trader Shield v5.8',
+      message: 'Calm Black & Gold notice stream | Turns Crimson Red ONLY when a token FAILS the 12-Layer check. Click Gear to tune 5s/10s/15s/Pin & Pro Signals.',
       url: 'https://rentandrugshield.com/?mint=So11111111111111111111111111111111111111112&trade=1'
     }, openDrawer !== false);
   };

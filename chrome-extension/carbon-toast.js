@@ -110,10 +110,12 @@
   const drawer = document.getElementById('drawerSettings');
 
   card.dataset.resolvedUrl = targetUrl;
-  if (sev === 'CRITICAL' || kind === 'rug' || pct.startsWith('-')) card.classList.add('red');
+  const failed12 = (kind === 'rug' || /FAIL|RUG BLOCKED/i.test(badge));
+  if (failed12) card.classList.add('red');
   if (sym) {
     tk.style.display = 'inline-block';
     tk.textContent = sym + (pct ? (' ' + pct) : '');
+    tk.style.color = pct.startsWith('-') ? '#FF4D6D' : '#00FFA3';
   }
   pl.textContent = badge.replace(/^[^\w$]+/, '').trim() || 'CARBON v5.3';
   ttl.textContent = title;

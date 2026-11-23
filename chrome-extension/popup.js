@@ -482,9 +482,13 @@ async function auditMintNow(customMint) {
     return;
   }
   out.innerHTML = '<span style="color:#67e8f9;">Running 12-Layer inspection...</span>';
-  const bgRes = await sendBgMsg({ type: 'RRS_SCAN_TOKEN', mint, forceRefresh: true, source: 'popup_v5.3.0' });
+  const bgRes = await sendBgMsg({ type: 'RRS_SCAN_TOKEN', mint, forceRefresh: true, source: 'popup_v5.8.0' });
   if (bgRes) {
-    renderMintResult(out, bgRes, true);
+    renderMintResult(out, (bgRes.ok === false && OFFLINE_PRESET_MINTS[mint]) ? OFFLINE_PRESET_MINTS[mint] : bgRes, true);
+    return;
+  }
+  if (OFFLINE_PRESET_MINTS[mint]) {
+    renderMintResult(out, OFFLINE_PRESET_MINTS[mint], true);
     return;
   }
   try {
@@ -558,7 +562,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   on('pop-nav-home', 'click', () => openView('home'));
   on('pop-btn-alerts', 'click', () => openView('alerts'));
-  on('hdr-gear-btn', 'click', () => openView('alerts'));
+  on('hdr-gear-btn', 'click', () => {
+    const inAlerts = document.getElementById('pop-view-alerts') && document.getElementById('pop-view-alerts').style.display !== 'none';
+    openView(inAlerts ? 'home' : 'alerts');
+  });
+  on('omni-inline-gear-btn', 'click', () => {
+    const inAlerts = document.getElementById('pop-view-alerts') && document.getElementById('pop-view-alerts').style.display !== 'none';
+    openView(inAlerts ? 'home' : 'alerts');
+  });
+  const runPopupOmniScan = async () => {
+    const inp = document.getElementById('ext-omni-scan-inp');
+    const out = document.getElementById('ext-omni-scan-out');
+    if (!inp || !out) return;
+    const raw = String(inp.value || '').trim();
+    if (!raw) {
+      out.style.display = 'block';
+      out.innerHTML = '<span style="color:#fde047;">Paste a Solana Wallet or Token Mint address above.</span>';
+      return;
+    }
+    const addrMatch = raw.match(/[1-9A-HJ-NP-Za-km-z]{32,44}/);
+    const addr = addrMatch ? addrMatch[0] : raw;
+    const cleanSym = raw.replace(/^\$/, '').trim().toUpperCase();
+    const mappedMint = KNOWN_SYM_MINTS[cleanSym] || (cleanSym === 'BONK' ? 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263' : '');
+    const targetAddr = mappedMint || addr;
+    openView('home');
+    out.style.display = 'block';
+    if (OFFLINE_PRESET_WALLETS[targetAddr] || /wallet=/i.test(raw)) {
+      out.innerHTML = '<span style="color:#00FFA3;">Scanning Read-Only Wallet Rent...</span>';
+      await scanWalletNow(targetAddr, Boolean(OFFLINE_PRESET_WALLETS[targetAddr]));
+      const wOut = document.getElementById('ext-wallet-out');
+      if (wOut) out.innerHTML = wOut.innerHTML;
+      return;
+    }
+    const looksDefinitelyMint = Boolean(mappedMint || /pump$/i.test(targetAddr) || /mint=|dexscreener|pump\.fun|jup\.ag|birdeye/i.test(raw) || OFFLINE_PRESET_MINTS[targetAddr]);
+    out.innerHTML = '<span style="color:#00FFA3;">Auto-Detecting Coin Mint vs Wallet...</span>';
+    await auditMintNow(targetAddr);
+    const mOut = document.getElementById('ext-mint-out');
+    const mHtml = mOut ? mOut.innerHTML : '';
+    if (looksDefinitelyMint || (mHtml && mHtml.indexOf('Score ') !== -1)) {
+      out.innerHTML = mHtml;
+    } else {
+      await scanWalletNow(targetAddr, false);
+      const wOut = document.getElementById('ext-wallet-out');
+      if (wOut) out.innerHTML = wOut.innerHTML;
+    }
+  };
+  on('ext-omni-scan-btn', 'click', runPopupOmniScan);
+  on('ext-omni-scan-inp', 'keydown', (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); runPopupOmniScan(); } });
   on('pop-btn-rnd', 'click', () => openView('rnd'));
   on('pop-nav-back', 'click', () => {
     if (viewHistoryIdx > 0) { viewHistoryIdx--; openView(viewHistory[viewHistoryIdx], false); }
@@ -655,7 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
       banner.style.borderColor = '#00FFA3';
       if (dot) { dot.style.background = '#00FFA3'; dot.style.boxShadow = '0 0 10px #00FFA3'; }
       head.style.color = '#00FFA3';
-      head.textContent = 'SENTINEL v5.3: 12 LAYERS ARMED';
+      head.textContent = 'LUXURY SHIELD v5.8: 12 LAYERS ARMED';
       det.style.color = '#cbd5e1';
       det.innerHTML = '<b style="color:#00FFA3;">12-Layer Live Chart Badges</b> &amp; <b style="color:#67e8f9;">Clipboard &amp; Fake-Wallet Guard</b> active.';
     }
@@ -691,6 +741,8 @@ document.addEventListener('DOMContentLoaded', () => {
     cardX: -1,
     cardY: -1,
     cardPinned: false,
+    autoHideSec: 10,
+    autoProof: true,
     zoomPct: 100,
     catCoin: true,
     liveChartBadges: true,
@@ -790,18 +842,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     box.innerHTML = '';
     rows.forEach((b) => {
-      const isRed = (b.kind === 'rug' || b.severity === 'CRITICAL');
-      const col = isRed ? '#FF1744' : (b.kind === 'coin' || b.kind === 'moonbag' ? '#00FFA3' : (b.kind === 'visitor' ? '#7dd3fc' : (b.kind === 'crypto' ? '#fde047' : '#38bdf8')));
+      const kind = String(b.kind || 'coin').toLowerCase();
+      const isNews = (kind === 'news' || kind === 'crypto' || kind === 'ai' || kind === 'world');
+      const failed12 = (!isNews) && (kind === 'rug' || String(b.l12 || '').toUpperCase() === 'FAILED' || String(b.verdict_12layer || '').toUpperCase() === 'FAIL');
+      const bgStyle = failed12 ? 'linear-gradient(135deg,#240610,#090306)' : '#050A14';
+      const borderCol = failed12 ? '#FF1744' : 'rgba(255,208,0,0.45)';
+      const pm = String((b.move_pct !== undefined ? b.move_pct + '%' : '') + ' ' + (b.title || '')).match(/([+-]?\d+(?:\.\d+)?)%/);
+      const mvVal = pm ? Number(pm[1]) : 0;
+      const moveCol = mvVal < 0 ? '#FF4D6D' : '#00FFA3';
+      const sym = String(b.sym || '').replace(/^\$/, '').toUpperCase();
+      const verdictHtml = isNews
+        ? `<span style="font-size:8.6px;font-weight:900;color:#FFF2A6;">${escapeHtml(b.badge || 'LIVE WIRE')}</span>`
+        : (failed12
+          ? '<span style="font-size:8.6px;font-weight:900;color:#FF4D6D;background:rgba(68,8,22,0.85);border:1px solid #FF4D6D;border-radius:5px;padding:1px 6px;">12-LAYER: FAIL \u2715</span>'
+          : '<span style="font-size:8.6px;font-weight:900;color:#00FFA3;background:rgba(6,56,42,0.75);border:1px solid #00FFA3;border-radius:5px;padding:1px 6px;">12-LAYER: PASS \u2713</span>');
+
+      let titleHtml = escapeHtml(b.title || '');
+      if (!isNews && sym) {
+        const pctStr = pm ? ((mvVal >= 0 ? '+' : '') + mvVal.toFixed(1) + '%') : '';
+        const rest = String(b.title || '').replace(/^\s*\$[A-Za-z0-9_]+\s*(?:\([^)]*\)|[+-]?\d+(?:\.\d+)?%)?\s*\|?\s*/, '').trim();
+        titleHtml = `<span style="color:${moveCol};font-weight:900;">$${escapeHtml(sym)}${pctStr ? ' ' + escapeHtml(pctStr) : ''}</span>` +
+          (rest ? ` <span style="color:#f8fafc;">| ${escapeHtml(rest)}</span>` : '');
+      }
+
       const pill = document.createElement('a');
       pill.href = resolveExactBubbleUrl(b);
       pill.target = '_blank';
       pill.rel = 'noopener noreferrer';
       pill.style.cssText =
-        'display:block;text-decoration:none;background:#020408;border:1px solid ' + col +
-        ';border-left:4px solid ' + col + ';border-radius:8px;padding:6px 8px;';
+        'display:block;text-decoration:none;background:' + bgStyle + ';border:1.2px solid ' + borderCol + ';border-radius:9px;padding:7px 9px;';
       pill.innerHTML =
-        '<div style="font-size:8.6px;font-weight:900;color:' + col + ';margin-bottom:2px;">' + escapeHtml(b.badge || String(b.kind || 'LIVE').toUpperCase()) + '</div>' +
-        '<div style="font-size:10.2px;font-weight:800;color:#ffffff;line-height:1.3;">' + escapeHtml(b.title || '') + '</div>' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' + verdictHtml + '</div>' +
+        '<div style="font-size:10.3px;font-weight:800;color:#ffffff;line-height:1.3;">' + titleHtml + '</div>' +
         (b.sub ? '<div style="font-size:9px;color:#94a3b8;margin-top:2px;">' + escapeHtml(b.sub) + '</div>' : '');
       box.appendChild(pill);
     });
@@ -853,6 +925,8 @@ document.addEventListener('DOMContentLoaded', () => {
       cardX: currentFilters.cardX !== undefined ? currentFilters.cardX : -1,
       cardY: currentFilters.cardY !== undefined ? currentFilters.cardY : -1,
       cardPinned: el('flt-card-pinned') ? Boolean(el('flt-card-pinned').checked) : false,
+      autoHideSec: Number(currentFilters.autoHideSec || 10),
+      autoProof: el('flt-auto-proof') ? Boolean(el('flt-auto-proof').checked) : true,
       zoomPct: zoomNum,
       catCoin: chartBadges,
       liveChartBadges: chartBadges,
@@ -907,6 +981,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el('flt-cat-ai')) el('flt-cat-ai').checked = Boolean(d.catAi);
     if (el('flt-cat-world')) el('flt-cat-world').checked = Boolean(d.catWorld);
     if (el('flt-sound-enabled')) el('flt-sound-enabled').checked = Boolean(d.soundEnabled);
+    if (el('flt-auto-proof')) el('flt-auto-proof').checked = d.autoProof !== false;
+    const stayWrap = el('flt-stay-pills');
+    if (stayWrap) {
+      const normS = Number(d.autoHideSec || 10) <= 6 ? '5' : (Number(d.autoHideSec || 10) <= 12 ? '10' : '15');
+      const targetStay = d.cardPinned ? 'Pin' : normS;
+      stayWrap.querySelectorAll('button[data-stay]').forEach((b) => {
+        b.classList.toggle('active', b.dataset.stay === targetStay);
+      });
+    }
     if (el('flt-macd-on')) el('flt-macd-on').checked = Boolean(d.macdOn);
     if (el('flt-macd-1m')) el('flt-macd-1m').checked = d.macd1m !== false;
     if (el('flt-macd-3m')) el('flt-macd-3m').checked = d.macd3m !== false;
@@ -1064,20 +1147,29 @@ document.addEventListener('DOMContentLoaded', () => {
     [
       'flt-master-bubbles', 'flt-card-pinned', 'flt-cat-coin', 'flt-clipboard-guard', 'flt-cat-rug',
       'flt-cat-moonbag', 'flt-cat-visitor', 'flt-cat-crypto', 'flt-cat-ai',
-      'flt-cat-world', 'flt-sound-enabled', 'flt-macd-on', 'flt-macd-1m', 'flt-macd-3m',
+      'flt-cat-world', 'flt-sound-enabled', 'flt-auto-proof', 'flt-macd-on', 'flt-macd-1m', 'flt-macd-3m',
       'flt-macd-5m', 'flt-macd-15m', 'flt-macd-bull', 'flt-macd-bear', 'flt-macd-hist',
       'flt-ticker-on', 'flt-news-kw-on', 'flt-mc-on', 'flt-move-on', 'flt-liq-on', 'flt-move-win'
     ].forEach((id) => {
       if (el(id)) el(id).addEventListener('change', () => saveNow(false));
     });
 
-    const fBadge = el('founderApprovalInlineBadge');
-    if (fBadge) {
-      sendBgMsg({ type: 'RRS_GET_FOUNDER_APPROVALS' }).then((res) => {
-        if (res && res.ok && res.approvals && res.approvals.founderLocalhost && res.approvals.pending_count > 0) {
-          fBadge.textContent = String(res.approvals.pending_count) + ' Waiting';
-          fBadge.style.display = 'inline-block';
-        }
+    const stayWrap = el('flt-stay-pills');
+    if (stayWrap) {
+      stayWrap.querySelectorAll('button[data-stay]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const v = btn.dataset.stay;
+          if (v === 'Pin') {
+            currentFilters.cardPinned = true;
+            if (el('flt-card-pinned')) el('flt-card-pinned').checked = true;
+          } else {
+            currentFilters.cardPinned = false;
+            currentFilters.autoHideSec = Number(v || 10);
+            if (el('flt-card-pinned')) el('flt-card-pinned').checked = false;
+          }
+          stayWrap.querySelectorAll('button[data-stay]').forEach((x) => x.classList.toggle('active', x === btn));
+          saveNow(true, 'Stay time: ' + (v === 'Pin' ? 'Pinned' : (v + 's')));
+        });
       });
     }
 

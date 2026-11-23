@@ -159,6 +159,9 @@ const DEFAULT_FILTERS_V53 = {
   cardX: -1,
   cardY: -1,
   cardPinned: false,
+  autoHideSec: 10,
+  autoProof: true,
+  whalePro: true,
   zoomPct: 100,
   catCoin: true,
   liveChartBadges: true,
@@ -761,31 +764,33 @@ const ICON_PATHS_EMERALD = {
   128: 'icons/shield_emerald_128.png'
 };
 
-function applyLuxuryToolbarShieldState(state, countOverride) {
-  if (typeof countOverride === 'number') {
-    unreadShieldCount = Math.max(0, Math.round(countOverride));
-    try { chrome.storage.local.set({ [UNREAD_SHIELD_KEY_V55]: unreadShieldCount }, () => {}); } catch (_e) {}
-  }
+let systemHealthRed = false;
+let systemHealthReason = '';
+let lastRpcLatencyMs = 45;
+
+function applyLuxuryToolbarShieldState(state, _unusedCount) {
+  unreadShieldCount = 0;
+  try { chrome.storage.local.set({ [UNREAD_SHIELD_KEY_V55]: 0 }, () => {}); } catch (_e) {}
   shieldIconVisualState = state;
   if (!chrome.action) return;
 
+  const realRed = Boolean(cyberAlertActive || systemHealthRed);
   try {
-    if (state === 'red_alert' || cyberAlertActive || unreadShieldCount > 0 && state !== 'emerald_flash') {
+    if (realRed && state !== 'emerald_flash') {
       shieldIconVisualState = 'red_alert';
-      const c = Math.max(1, unreadShieldCount);
-      const txt = c > 99 ? '99+' : String(c);
       chrome.action.setIcon({ path: ICON_PATHS_RED }, () => { void chrome.runtime.lastError; });
-      chrome.action.setBadgeText({ text: txt });
+      chrome.action.setBadgeText({ text: '!' });
       chrome.action.setBadgeBackgroundColor({ color: '#FF1744' });
       chrome.action.setTitle({
-        title: 'Solana Rent & Rug Shield v5.5 | ' + txt + ' Unread Alert(s) - Click to Inspect'
+        title: 'Solana Rent & Rug Shield v5.8 | System Alert: ' + (systemHealthReason || 'Active Cyber/RPC/CPU Warning')
       });
     } else if (state === 'emerald_flash') {
+      shieldIconVisualState = 'emerald_flash';
       chrome.action.setIcon({ path: ICON_PATHS_EMERALD }, () => { void chrome.runtime.lastError; });
-      chrome.action.setBadgeText({ text: '\u2713' });
+      chrome.action.setBadgeText({ text: '' });
       chrome.action.setBadgeBackgroundColor({ color: '#00FFA3' });
       chrome.action.setTitle({
-        title: 'Solana Rent & Rug Shield v5.5 | Verified (#00FFA3)'
+        title: 'Solana Rent & Rug Shield v5.8 | 12-Layer Active (#00FFA3)'
       });
     } else {
       shieldIconVisualState = 'yellow_black';
@@ -793,14 +798,31 @@ function applyLuxuryToolbarShieldState(state, countOverride) {
       chrome.action.setBadgeText({ text: '' });
       chrome.action.setBadgeBackgroundColor({ color: '#FFD000' });
       chrome.action.setTitle({
-        title: 'Solana Rent & Rug Shield v5.5 | Caught Up (0 Unread Notices)'
+        title: 'Solana Rent & Rug Shield v5.8 | 12-Layer Gold-Green Sentinel Armed'
       });
     }
   } catch (_e) {}
 }
 
+function pulseEmeraldThenGold() {
+  if (cyberAlertActive || systemHealthRed) {
+    applyLuxuryToolbarShieldState('red_alert', 0);
+    return;
+  }
+  applyLuxuryToolbarShieldState('emerald_flash', 0);
+  if (emeraldFlashResetTimer) clearTimeout(emeraldFlashResetTimer);
+  emeraldFlashResetTimer = setTimeout(() => {
+    emeraldFlashResetTimer = null;
+    if (!cyberAlertActive && !systemHealthRed) {
+      applyLuxuryToolbarShieldState('yellow_black', 0);
+    }
+  }, 700);
+}
+
 function acknowledgeShieldUnreadWithEmeraldFlash() {
   cyberAlertActive = false;
+  systemHealthRed = false;
+  systemHealthReason = '';
   currentThreat = null;
   unreadShieldCount = 0;
   try {
@@ -810,14 +832,7 @@ function acknowledgeShieldUnreadWithEmeraldFlash() {
     }, () => {});
   } catch (_e) {}
 
-  applyLuxuryToolbarShieldState('emerald_flash', 0);
-  if (emeraldFlashResetTimer) clearTimeout(emeraldFlashResetTimer);
-  emeraldFlashResetTimer = setTimeout(() => {
-    emeraldFlashResetTimer = null;
-    if (unreadShieldCount === 0 && !cyberAlertActive) {
-      applyLuxuryToolbarShieldState('yellow_black', 0);
-    }
-  }, 680);
+  pulseEmeraldThenGold();
 
   if (chrome.tabs && chrome.tabs.query) {
     chrome.tabs.query({ url: ['http://*/*', 'https://*/*'] }, (tabs) => {
@@ -832,8 +847,8 @@ function acknowledgeShieldUnreadWithEmeraldFlash() {
 
 function renderToolbarShieldTick() {
   if (shieldIconVisualState === 'emerald_flash') return;
-  if (cyberAlertActive || unreadShieldCount > 0) {
-    applyLuxuryToolbarShieldState('red_alert', Math.max(1, unreadShieldCount));
+  if (cyberAlertActive || systemHealthRed) {
+    applyLuxuryToolbarShieldState('red_alert', 0);
   } else {
     applyLuxuryToolbarShieldState('yellow_black', 0);
   }
@@ -847,13 +862,7 @@ function ensureShieldPulseLoop() {
   renderToolbarShieldTick();
 }
 
-try {
-  chrome.storage.local.get([UNREAD_SHIELD_KEY_V55], (r) => {
-    const savedCnt = Number((r && r[UNREAD_SHIELD_KEY_V55]) || 0);
-    unreadShieldCount = Math.max(0, savedCnt);
-    renderToolbarShieldTick();
-  });
-} catch (_e) {}
+applyLuxuryToolbarShieldState('yellow_black', 0);
 
 function triggerCyberRedAlert(threatObj, forceCornerSync) {
   if (!threatObj) return;
@@ -944,13 +953,17 @@ function inspectUrlForCyberThreats(urlStr) {
     const mintMatch = urlStr.match(/[1-9A-HJ-NP-Za-km-z]{32,44}/g) || [];
     for (const m of mintMatch) {
       if (flaggedRugMints.has(m)) {
-        triggerCyberRedAlert({
+        fireRealPopupToast({
           id: 'RUG-URL-' + m.slice(0, 12),
           kind: 'rug',
+          l12: 'FAILED',
+          verdict_12layer: 'FAIL',
           mint: m,
-          title: 'Layer-12 Rug / Slot-0 Bundle Token Flagged (' + m.slice(0, 6) + '...)',
-          detail: flaggedRugMints.get(m),
-          action_url: 'https://rentandrugshield.com/?mint=' + encodeURIComponent(m) + '&cyber_inspect=1'
+          severity: 'CRITICAL',
+          badge: '12-LAYER: FAIL \u2715 | RUG FLAGGED',
+          title: '12-Layer Scam/Rug Token Blocked (' + m.slice(0, 6) + '...)',
+          message: flaggedRugMints.get(m),
+          url: 'https://rentandrugshield.com/?mint=' + encodeURIComponent(m) + '&cyber_inspect=1'
         });
         return;
       }
@@ -1246,28 +1259,44 @@ function bubblePassesFiltersV53(b, flt) {
 async function fireRealPopupToast(opts) {
   if (!opts || !opts.title) return { ok: false };
   const notifId = String(opts.id || ('rrs_toast_' + Date.now()));
-  const targetUrl = resolveExactAlertUrl(opts, cachedFounderApprovals.founderLocalhost);
+  const targetUrl = resolveExactAlertUrl(opts, false);
   rememberNotifUrl(notifId, targetUrl);
 
-  if (!opts.skipUnreadIncrement) {
-    unreadShieldCount = Math.max(1, unreadShieldCount + 1);
-    applyLuxuryToolbarShieldState('red_alert', unreadShieldCount);
+  if (opts.system_health_red || opts.cyber_attack) {
+    systemHealthRed = true;
+    systemHealthReason = String(opts.system_health_reason || 'Cyber/RPC >350ms/CPU Overload');
+    applyLuxuryToolbarShieldState('red_alert', 0);
+  } else {
+    pulseEmeraldThenGold();
   }
+
+  const kind = String(opts.kind || 'coin').toLowerCase();
+  const isNews = (kind === 'news' || kind === 'crypto' || kind === 'ai' || kind === 'world');
+  const failed12 = (!isNews) && (
+    kind === 'rug' ||
+    String(opts.l12 || '').toUpperCase() === 'FAILED' ||
+    String(opts.verdict_12layer || '').toUpperCase() === 'FAIL' ||
+    /12-LAYER:\s*FAIL|RUG BLOCKED/i.test(String(opts.badge || ''))
+  );
 
   broadcastToastToActiveTabs({
     id: notifId,
-    kind: opts.kind || 'coin',
+    kind,
     sym: opts.sym || '',
     mint: opts.mint || '',
-    severity: opts.severity || 'INFO',
-    unreadCount: unreadShieldCount,
-    badge: scrubNoLongDash(opts.badge || '12-LAYER LUXURY v5.5'),
-    title: scrubNoLongDash(opts.title).slice(0, 115),
-    message: scrubNoLongDash(opts.message || 'Click card to inspect').slice(0, 190),
+    move_pct: opts.move_pct !== undefined ? Number(opts.move_pct) : (opts.h1 !== undefined ? Number(opts.h1) : undefined),
+    l12: failed12 ? 'FAILED' : (isNews ? '' : 'PASSED'),
+    verdict_12layer: failed12 ? 'FAIL' : (isNews ? '' : 'PASS'),
+    is_proof: Boolean(opts.is_proof),
+    severity: failed12 ? 'CRITICAL' : 'INFO',
+    unreadCount: 0,
+    badge: scrubNoLongDash(opts.badge || (isNews ? 'LIVE WIRE' : (failed12 ? '12-LAYER: FAIL \u2715' : '12-LAYER: PASS \u2713'))),
+    title: scrubNoLongDash(opts.title).slice(0, 125),
+    message: scrubNoLongDash(opts.message || 'Click card to inspect 12-Layer token audit.').slice(0, 200),
     url: targetUrl
   });
 
-  return { ok: true, notifId, url: targetUrl, unreadCount: unreadShieldCount, iconState: shieldIconVisualState };
+  return { ok: true, notifId, url: targetUrl, unreadCount: 0, failed12Layer: failed12, iconState: shieldIconVisualState };
 }
 
 function parseRssRegex(xmlTxt, sourceLabel, kindKey) {
@@ -1391,6 +1420,16 @@ async function refreshLiveIntelBubbles(triggerToastIfNew) {
         const j = await r.json();
         if (j && Array.isArray(j.bubbles) && j.bubbles.length > 0) {
           payload = j;
+          if (typeof j.rpc_latency_ms === 'number') lastRpcLatencyMs = j.rpc_latency_ms;
+          if (j.system_health_red === true) {
+            systemHealthRed = true;
+            systemHealthReason = j.cpu_overload ? 'PC CPU/Temp Overload' : ('RPC Latency ' + Math.round(lastRpcLatencyMs) + 'ms > 350ms');
+            applyLuxuryToolbarShieldState('red_alert', 0);
+          } else if (j.system_health_red === false && !cyberAlertActive) {
+            systemHealthRed = false;
+            systemHealthReason = '';
+            renderToolbarShieldTick();
+          }
           break;
         }
       }
@@ -1451,6 +1490,9 @@ async function refreshLiveIntelBubbles(triggerToastIfNew) {
             kind: chosen.kind,
             sym: chosen.sym || '',
             mint: chosen.mint || '',
+            move_pct: chosen.move_pct !== undefined ? chosen.move_pct : chosen.h1,
+            l12: chosen.l12 || (chosen.kind === 'rug' ? 'FAILED' : 'PASSED'),
+            verdict_12layer: chosen.verdict_12layer || (chosen.kind === 'rug' ? 'FAIL' : 'PASS'),
             severity: chosen.severity || (chosen.kind === 'rug' ? 'CRITICAL' : 'INFO'),
             badge: chosen.badge,
             title: chosen.title,
@@ -1496,10 +1538,14 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       roboticVoice: false
     });
     soundEnabled = Boolean(cleanFlt.soundEnabled);
+    const rawSec = Number(cleanFlt.autoHideSec || 10);
+    const normSec = rawSec <= 6 ? 5 : (rawSec <= 12 ? 10 : 15);
+    cleanFlt.autoHideSec = normSec;
     const boxLayout = {
       x: cleanFlt.cardX !== undefined ? cleanFlt.cardX : -1,
       y: cleanFlt.cardY !== undefined ? cleanFlt.cardY : -1,
       pinned: Boolean(cleanFlt.cardPinned),
+      autoHideSec: normSec,
       zoomPct: Math.max(75, Math.min(200, Math.round(Number(cleanFlt.zoomPct || 100))))
     };
     chrome.storage.local.set({ [FLT_KEY_V53]: cleanFlt, rrs_box_layout_v53: boxLayout, rrs_quiet_snooze_until: 0 }, () => {
@@ -1553,57 +1599,71 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   return false;
 });
 
-// === FOUNDER-ONLY PRIVATE LOCALHOST APPROVAL BELL ===
-let lastFounderApprovalsCount = -1;
+// === v5.8 PUBLIC UI HYGIENE: ZERO INTERNAL 5 / 120 DEBUG COUNTERS ===
 let cachedFounderApprovals = { founderLocalhost: false, pending_count: 0 };
+async function pollFounderApprovalsPrivate(_notify) {
+  return { founderLocalhost: false, pending_count: 0, ts: Date.now() };
+}
 
-async function pollFounderApprovalsPrivate(notifyOnIncrease) {
-  const ctrl = new AbortController();
-  const tm = setTimeout(() => ctrl.abort(), 1400);
+// === v5.8 AUTO "TOLD YOU SO" OUTCOME PROOF POLLING ($0 Helius via Shield_Outcome_Prover) ===
+const SEEN_PROOF_IDS_KEY = 'rrs_seen_outcome_proof_ids_v58';
+
+async function pollOutcomeProofNotices() {
   try {
-    const r = await fetch('http://127.0.0.1:18088/api/command/approvals?t=' + Date.now(), { cache: 'no-store', signal: ctrl.signal });
-    clearTimeout(tm);
-    if (r.ok) {
-      const j = await r.json();
-      const cnt = Number((j && j.pending_count) || 0);
-      cachedFounderApprovals = { founderLocalhost: true, pending_count: cnt, ts: Date.now() };
-      if (chrome.tabs && chrome.tabs.query) {
-        chrome.tabs.query({ url: ['http://*/*', 'https://*/*'] }, (tabs) => {
-          (tabs || []).forEach((tb) => {
-            if (tb && tb.id) {
-              chrome.tabs.sendMessage(tb.id, { type: 'RRS_FOUNDER_APPROVALS_SYNC', approvals: cachedFounderApprovals }, () => { void chrome.runtime.lastError; });
-            }
-          });
-        });
-      }
-      if (notifyOnIncrease && cnt > 0 && lastFounderApprovalsCount >= 0 && cnt > lastFounderApprovalsCount) {
-        fireRealPopupToast({
-          id: 'rrs_founder_appr_' + Date.now(),
-          kind: 'approvals',
-          severity: 'INFO',
-          badge: 'FOUNDER PRIVATE QUEUE',
-          title: cnt + ' Pending Items Waiting for Approval',
-          message: 'Click to open private Waiting Approvals deck (127.0.0.1:18088)',
-          url: 'http://127.0.0.1:18088/command/waiting-approvals'
-        });
-      }
-      lastFounderApprovalsCount = cnt;
-      return cachedFounderApprovals;
+    const flt = await getStoredFiltersV53();
+    if (flt && flt.autoProof === false) return;
+    const bases = await getOrderedEndpoints();
+    let proofs = null;
+    for (const base of bases) {
+      try {
+        const ctrl = new AbortController();
+        const tm = setTimeout(() => ctrl.abort(), 3000);
+        const r = await fetch(base + '/static/shield_proof_notices.json?t=' + Date.now(), { cache: 'no-store', signal: ctrl.signal });
+        clearTimeout(tm);
+        if (r.ok) {
+          const j = await r.json();
+          if (j && Array.isArray(j.proofs)) {
+            proofs = j.proofs;
+            break;
+          }
+        }
+      } catch (_e) {}
     }
-  } catch (_e) {
-    clearTimeout(tm);
-  }
-  cachedFounderApprovals = { founderLocalhost: false, pending_count: 0, ts: Date.now() };
-  return cachedFounderApprovals;
+    if (!proofs || !proofs.length) return;
+    chrome.storage.local.get([SEEN_PROOF_IDS_KEY], (res) => {
+      let seenArr = (res && Array.isArray(res[SEEN_PROOF_IDS_KEY])) ? res[SEEN_PROOF_IDS_KEY] : [];
+      const seenSet = new Set(seenArr);
+      const fresh = proofs.find((p) => p && p.is_proof && p.id && !seenSet.has(p.id));
+      if (fresh) {
+        seenArr.push(fresh.id);
+        if (seenArr.length > 50) seenArr = seenArr.slice(seenArr.length - 50);
+        chrome.storage.local.set({ [SEEN_PROOF_IDS_KEY]: seenArr }, () => {});
+        fireRealPopupToast({
+          id: fresh.id,
+          kind: fresh.kind || (fresh.verdict_12layer === 'FAIL' ? 'rug' : 'coin'),
+          is_proof: true,
+          sym: fresh.sym || '',
+          mint: fresh.mint || '',
+          move_pct: fresh.move_pct,
+          l12: fresh.l12 || (fresh.verdict_12layer === 'FAIL' ? 'FAILED' : 'PASSED'),
+          verdict_12layer: fresh.verdict_12layer || 'PASS',
+          badge: fresh.badge || '12-LAYER PROOF',
+          title: fresh.title,
+          message: fresh.body || fresh.message,
+          url: fresh.url
+        });
+      }
+    });
+  } catch (_e) {}
 }
 
 if (chrome.alarms) {
-  chrome.alarms.create('rrs_founder_approvals_30s', { periodInMinutes: 0.5 });
+  chrome.alarms.create('rrs_outcome_proof_30s', { periodInMinutes: 0.5 });
   chrome.alarms.onAlarm.addListener((a) => {
-    if (a && a.name === 'rrs_founder_approvals_30s') pollFounderApprovalsPrivate(true);
+    if (a && a.name === 'rrs_outcome_proof_30s') pollOutcomeProofNotices();
   });
 }
-pollFounderApprovalsPrivate(false);
+pollOutcomeProofNotices();
 
 (function initExistingTabsToastSupport() {
   try {

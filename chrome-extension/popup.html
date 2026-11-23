@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>SOL Rent &amp; Rug Shield | 24K Luxury Chrome Extension (v5.5)</title>
+<title>SOL Rent &amp; Rug Shield | 24K Luxury Chrome Extension (v5.8)</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif; }
   body { width: 424px; min-height: 590px; background: radial-gradient(125% 110% at 30% 12%, #0C1A34 0%, #091224 46%, #020408 100%); color: #f8fafc; padding: 10px; }
@@ -105,12 +105,12 @@
     <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
       <div style="display:flex;align-items:center;gap:6px;">
         <span id="cyberPulseDot" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#FFD000;box-shadow:0 0 10px #FFD000;"></span>
-        <strong id="cyberStatusHeadline" style="font-size:10.6px;color:#FFF2A6;">LUXURY SHIELD v5.5: 12 LAYERS ARMED</strong>
+        <strong id="cyberStatusHeadline" style="font-size:10.6px;color:#FFF2A6;">LUXURY SHIELD v5.8: 12 LAYERS ARMED</strong>
       </div>
-      <span style="font-size:8.9px;font-weight:800;color:#00FFA3;">14s Gold Cards</span>
+      <span style="font-size:8.9px;font-weight:800;color:#00FFA3;">Gold-Green Shield</span>
     </div>
     <div id="cyberThreatDetail" style="font-size:9.5px;color:#cbd5e1;margin-top:4px;line-height:1.35;">
-      <b style="color:#FFD000;">96.5% Yellow-to-Red Dynamic Shield</b> &amp; <b style="color:#00FFA3;">Above-Card Pill Settings</b> active.
+      <b style="color:#00FFA3;">Zero False Red</b> | Calm Black &amp; Gold cards, Red ONLY on 12-Layer FAIL.
     </div>
     <div style="margin-top:6px;display:flex;gap:6px;align-items:center;justify-content:space-between;">
       <span id="v51TrialCountdown" style="font-size:9px;color:#a7f3d0;font-weight:800;">30-Day Pro Mode FREE + 0% 1st Claim</span>
@@ -127,14 +127,27 @@
     <div style="display:flex;align-items:center;gap:9px;">
       <img id="popupHdrShieldImg" src="icons/shield_yellow_48.png" style="width:32px;height:32px;object-fit:contain;" alt="96.5% Yellow-Gold Shield" />
       <div>
-        <div class="hdr-title">SOL RENT &amp; RUG SHIELD v5.5</div>
-        <div class="hdr-sub">24K-Gold &amp; Obsidian | Dynamic Yellow-to-Red Shield</div>
+        <div class="hdr-title">SOL RENT &amp; RUG SHIELD v5.8</div>
+        <div class="hdr-sub">24K-Gold &amp; Emerald | Dual Gear + Auto Proof Prover</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:5px;">
       <button id="hdr-gear-btn" type="button" title="Open Luxury MACD &amp; Alert Settings" style="background:#141E33;color:#FFD000;border:1.4px solid #FFD000;border-radius:8px;padding:3px 8px;font-size:12px;font-weight:900;cursor:pointer;">&#9881;</button>
       <a id="ext-open-app-top" href="https://rentandrugshield.com/app.html" target="_blank" rel="noopener noreferrer" style="font-size:9.8px;font-weight:900;color:#020408;text-decoration:none;background:#00FFA3;padding:5px 9px;border-radius:8px;">Open App</a>
     </div>
+  </div>
+
+  <!-- TOP UNIFIED OMNI-SCAN BAR (v5.8) -->
+  <div id="ext-omni-scan-bar" class="card" style="padding:8px 9px;margin-bottom:8px;border-color:#00FFA3;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+      <span style="font-size:10px;font-weight:900;color:#00FFA3;">Instant 12-Layer Coin or Wallet Scan</span>
+      <button id="omni-inline-gear-btn" type="button" title="Open Pro Signal &amp; Stay-Time Settings" style="background:#141E33;color:#FFD000;border:1px solid #FFD000;border-radius:6px;padding:1px 7px;font-size:10px;font-weight:900;cursor:pointer;">&#9881; Settings</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center;">
+      <input id="ext-omni-scan-inp" class="inp" style="margin-bottom:0;border-color:#00FFA3;font-size:10.8px;" type="text" placeholder="Paste Wallet or Coin Here -> Scan" />
+      <button id="ext-omni-scan-btn" class="btn btn-green" type="button" style="width:auto;padding:7px 12px;font-size:10.8px;">Scan</button>
+    </div>
+    <div id="ext-omni-scan-out" class="out-box" style="margin-top:6px;"></div>
   </div>
 
   <div class="nav-strip">
@@ -237,8 +250,14 @@
 
       <div class="flt-rule" style="margin-bottom:6px;border-color:#FFD000;">
         <div class="flt-rule-hdr">
-          <span style="color:#FFF2A6;">Box Position, Pin Lock &amp; Zoom (75%-200%)</span>
-          <label class="pill-chk" style="color:#FFF2A6;"><span>Pin</span><span class="rrs-switch gold"><input id="flt-card-pinned" type="checkbox" /><span class="rrs-slider"></span></span></label>
+          <span style="color:#FFF2A6;">Notice Stay Time (5s / 10s / 15s / Pin) &amp; Zoom</span>
+          <label class="pill-chk" style="color:#FFF2A6;display:none;"><input id="flt-card-pinned" type="checkbox" /></label>
+        </div>
+        <div id="flt-stay-pills" style="display:flex;gap:5px;margin-bottom:6px;flex-wrap:wrap;">
+          <button type="button" class="nav-btn" data-stay="5">5s</button>
+          <button type="button" class="nav-btn active" data-stay="10">10s</button>
+          <button type="button" class="nav-btn" data-stay="15">15s</button>
+          <button type="button" class="nav-btn" data-stay="Pin">Pin</button>
         </div>
         <div style="display:flex;align-items:center;justify-content:space-between;gap:5px;">
           <div style="display:flex;align-items:center;gap:4px;">
@@ -275,9 +294,13 @@
         <span>World News</span>
         <label class="rrs-switch"><input id="flt-cat-world" type="checkbox" checked /><span class="rrs-slider"></span></label>
       </div>
+      <div class="flt-row">
+        <span style="color:#00FFA3;">Auto 'Told You So' Proof (+20% / -40%)</span>
+        <label class="rrs-switch"><input id="flt-auto-proof" type="checkbox" checked /><span class="rrs-slider"></span></label>
+      </div>
       <div class="flt-row" style="border-bottom:none;">
-        <span style="color:#fde047;">Alert Chime Tone (Default OFF)</span>
-        <label class="rrs-switch"><input id="flt-sound-enabled" type="checkbox" /><span class="rrs-slider"></span></label>
+        <span style="color:#fde047;">Chime ON/OFF (Default OFF)</span>
+        <label class="rrs-switch gold"><input id="flt-sound-enabled" type="checkbox" /><span class="rrs-slider"></span></label>
       </div>
 
       <div style="font-size:10px;font-weight:900;color:#fde047;margin-top:9px;margin-bottom:3px;letter-spacing:0.02em;">COIN MARKET THRESHOLD FILTERS</div>
@@ -307,7 +330,7 @@
 
       <div class="flt-rule" style="border-color:#FFD000;">
         <div class="flt-rule-hdr">
-          <span style="color:#FFF2A6;">MACD Crossover &amp; Histogram Flip (1m / 3m / 5m / 15m)</span>
+          <span style="color:#FFF2A6;">Pro Trader Signals (MACD Cross, Hist Flip &amp; Timeframes)</span>
           <label class="rrs-switch gold"><input id="flt-macd-on" type="checkbox" /><span class="rrs-slider"></span></label>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
@@ -400,7 +423,7 @@
       </div>
 
       <!-- COLLAPSED LOCAL FOUNDER DESK DRAWER -->
-      <details id="founderDeskDrawer" class="founder-drawer">
+      <details id="founderDeskDrawer" class="founder-drawer" style="display:none;">
         <summary id="founderDeskSummary">
           <span>Founder Desk <span id="founderApprovalInlineBadge" style="display:none;background:#facc15;color:#020408;padding:1px 6px;border-radius:999px;font-size:8.8px;margin-left:4px;">0 Waiting</span></span>
         </summary>
