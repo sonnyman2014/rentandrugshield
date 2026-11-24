@@ -16,7 +16,7 @@
     "2024-11-05"
   ],
   "endpoint": "https://rentandrugshield.com/mcp",
-  "liveStreamableHttpEndpoint": "https://mae-astronomy-communities-tray.trycloudflare.com/mcp",
+  "liveStreamableHttpEndpoint": "https://place-pierre-negotiations-soon.trycloudflare.com/mcp",
   "discovery": {
     "mcp": "https://rentandrugshield.com/.well-known/mcp.json",
     "serverCard": "https://rentandrugshield.com/.well-known/mcp/server-card.json",
