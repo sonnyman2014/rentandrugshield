@@ -1,0 +1,150 @@
+{
+  "version": "6.7.0",
+  "count": 12,
+  "voices": [
+    {
+      "id": "to_valhalla",
+      "file": "to_valhalla.wav",
+      "label": "To Valhalla!",
+      "voice": "en-US-ChristopherNeural",
+      "text": "To Valhalla!",
+      "duration_sec": 1.724,
+      "bytes": 82784,
+      "legacy_aliases": [
+        "To Valhalla"
+      ]
+    },
+    {
+      "id": "to_the_moon",
+      "file": "to_the_moon.wav",
+      "label": "To the Moon, baby!",
+      "voice": "en-US-GuyNeural",
+      "text": "To the Moon, baby!",
+      "duration_sec": 1.975,
+      "bytes": 94850,
+      "legacy_aliases": [
+        "To The Moon"
+      ]
+    },
+    {
+      "id": "wizard_check",
+      "file": "wizard_check.wav",
+      "label": "Wizard: 12 Layers Clean!",
+      "voice": "en-GB-ThomasNeural",
+      "text": "Wizard check complete, twelve layers clean!",
+      "duration_sec": 3.174,
+      "bytes": 152374,
+      "legacy_aliases": [
+        "Wizard"
+      ]
+    },
+    {
+      "id": "whale_incoming",
+      "file": "whale_incoming.wav",
+      "label": "Whale Incoming: Green Light!",
+      "voice": "en-US-EricNeural",
+      "text": "Whale incoming, green light!",
+      "duration_sec": 2.609,
+      "bytes": 125270,
+      "legacy_aliases": [
+        "Whale Horn"
+      ]
+    },
+    {
+      "id": "cha_ching_clean",
+      "file": "cha_ching_clean.wav",
+      "label": "Cha-Ching! Clean Contract!",
+      "voice": "en-US-AriaNeural",
+      "text": "Cha-ching! Clean contract!",
+      "duration_sec": 3.186,
+      "bytes": 152968,
+      "legacy_aliases": [
+        "Coin Drop"
+      ]
+    },
+    {
+      "id": "honey_badger",
+      "file": "honey_badger.wav",
+      "label": "Honey Badger Locked On!",
+      "voice": "en-AU-WilliamNeural",
+      "text": "Honey Badger locked on!",
+      "duration_sec": 1.679,
+      "bytes": 80652,
+      "legacy_aliases": [
+        "Laser Lock"
+      ]
+    },
+    {
+      "id": "rug_alert",
+      "file": "rug_alert.wav",
+      "label": "Rug Alert! Step Away!",
+      "voice": "en-US-JennyNeural",
+      "text": "Rug alert! Step away from the buy button!",
+      "duration_sec": 3.561,
+      "bytes": 170948,
+      "legacy_aliases": [
+        "Cyber Alert"
+      ]
+    },
+    {
+      "id": "freeze_trap",
+      "file": "freeze_trap.wav",
+      "label": "Freeze Trap Detected!",
+      "voice": "en-GB-SoniaNeural",
+      "text": "Freeze trap detected!",
+      "duration_sec": 1.697,
+      "bytes": 81508,
+      "legacy_aliases": [
+        "Radar Sweep"
+      ]
+    },
+    {
+      "id": "breaking_alpha",
+      "file": "breaking_alpha.wav",
+      "label": "Breaking Alpha on the Wire!",
+      "voice": "en-US-RogerNeural",
+      "text": "Breaking alpha on the wire!",
+      "duration_sec": 2.123,
+      "bytes": 101930,
+      "legacy_aliases": [
+        "News Wire"
+      ]
+    },
+    {
+      "id": "rent_reclaim_ready",
+      "file": "rent_reclaim_ready.wav",
+      "label": "Free SOL Rent Ready!",
+      "voice": "en-CA-ClaraNeural",
+      "text": "Zero balance accounts found. Free Solana rent ready to collect!",
+      "duration_sec": 5.118,
+      "bytes": 245726,
+      "legacy_aliases": [
+        "Emerald Ping"
+      ]
+    },
+    {
+      "id": "sniper_verified",
+      "file": "sniper_verified.wav",
+      "label": "Sniper Target Verified!",
+      "voice": "en-IE-ConnorNeural",
+      "text": "Sniper target verified, liquidity locked!",
+      "duration_sec": 3.072,
+      "bytes": 147522,
+      "legacy_aliases": [
+        "Sniper Tick"
+      ]
+    },
+    {
+      "id": "bull_cross_surge",
+      "file": "bull_cross_surge.wav",
+      "label": "Bull Cross Momentum Surge!",
+      "voice": "en-US-SteffanNeural",
+      "text": "Bull cross confirmed! Strong surge incoming!",
+      "duration_sec": 3.87,
+      "bytes": 185818,
+      "legacy_aliases": [
+        "Breakout Bell"
+      ]
+    }
+  ]
+}
