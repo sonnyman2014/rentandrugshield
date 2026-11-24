@@ -18,7 +18,7 @@
   <meta property="og:title" content="Solana Rent &amp; Rug Shield Mobile v6.0 | MWA v2.0 &amp; 6-Screen Security Suite" />
   <meta property="og:description" content="Read-only Solana Mobile v6.7 (0 wallet connect needed): sub-120ms 12-Layer rug scanner, 0x09 SOL rent sweeper, and 0% 1st claim." />
   <meta name="twitter:description" content="Read-only Solana Mobile v6.7 (0 wallet connect needed): sub-120ms 12-Layer rug scanner, 0x09 SOL rent sweeper, and 0% 1st claim." />
-  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-institutional-24k-gold-v51.png" />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-clean-pure-css-1200x630.png?v=purecss2" />
   <meta name="twitter:card" content="summary_large_image" />
   <title>Solana Rent &amp; Rug Shield Mobile v6.0 | MWA v2.0 &amp; 12-Layer Firewall</title>
   <style>
@@ -901,7 +901,7 @@
           <div class="rrs-card">
             <h2 class="rrs-h2">4. Phone Cyber Shield</h2>
             <p class="rrs-lead">
-              Real-time mobile defense against clipboard-hijack malware, <code>$0</code> vanity-dust address poisoning, and <code>xn--</code> Punycode homograph phishing links.
+              Real-time mobile defense against clipboard-hijack malware, <code>$0</code> vanity-dust address poisoning, and <code>xn, </code> Punycode homograph phishing links.
             </p>
 
             <!-- Guard 1: Clipboard Hijack -->
@@ -933,12 +933,12 @@
 
             <!-- Guard 3: Punycode xn-- Phishing Scanner -->
             <div class="rrs-subcard">
-              <strong style="color:#00FFA3;font-size:0.88em;">C. xn-- Punycode Phishing Scanner</strong>
-              <p class="rrs-lead" style="margin-top:3px;">Blocks IDN Punycode (<code>xn--</code>), Cyrillic homographs, and drainer links.</p>
+              <strong style="color:#00FFA3;font-size:0.88em;">C. xn,  Punycode Phishing Scanner</strong>
+              <p class="rrs-lead" style="margin-top:3px;">Blocks IDN Punycode (<code>xn, </code>), Cyrillic homographs, and drainer links.</p>
               <input id="inpPunyUrl" class="rrs-inp" type="text" value="" placeholder="Paste SMS / Telegram / DEX URL..." autocomplete="off" />
               <div class="rrs-btn-row">
                 <button type="button" class="rrs-btn rrs-btn-emerald" id="btnRunPunyScan">Scan Link Safety</button>
-                <button type="button" class="rrs-btn rrs-btn-ghost" id="btnSamplePuny">Test xn-- Link</button>
+                <button type="button" class="rrs-btn rrs-btn-ghost" id="btnSamplePuny">Test xn,  Link</button>
               </div>
               <div id="cyberPunyResult" class="rrs-subcard" style="display:none;"></div>
             </div>
@@ -1986,7 +1986,7 @@
       checks.push({ layer: 8, label: 'L8 Supply & CloseAuth', passed: supplySafe, detail: 'Supply ' + supplyUi.toLocaleString('en-US', { maximumFractionDigits: 0 }) });
       checks.push({ layer: 9, label: 'L9 Top-1 Whale Cap', passed: top1Safe, detail: 'Top-1 holds ' + top1Pct.toFixed(2) + '%' });
       checks.push({ layer: 10, label: 'L10 Top-10 Cluster', passed: top10Safe, detail: 'Top-10 holds ' + top10Pct.toFixed(2) + '%' });
-      checks.push({ layer: 11, label: 'L11 Block-0 Jito Sybil', passed: top10Safe, detail: top10Safe ? 'No Slot-0 Bundle Insider Trap' : 'Elevated Cluster Risk' });
+      checks.push({ layer: 11, label: 'L11 Block-0 Jito Sybil', passed: top10Safe, detail: top10Safe ? 'No Slot-0 Bundle Insider Trap' : 'high Cluster Risk' });
       checks.push({ layer: 12, label: 'L12 Drainer CPI Guard', passed: !hasPermanentDelegate && !hasTransferHook, detail: 'Zero SetAuthority / Approve Traps' });
 
       score = Math.max(0, Math.min(100, score));
@@ -2000,7 +2000,7 @@
         symbol: mint.slice(0, 4).toUpperCase(),
         shield_score: score,
         score: score,
-        verdict: score >= 80 ? '12-LAYER SHIELD PASSED' : (score >= 55 ? 'CAUTION: ELEVATED RISK' : 'HIGH RUG RISK BLOCKED'),
+        verdict: score >= 80 ? '12-LAYER SHIELD PASSED' : (score >= 55 ? 'CAUTION: high RISK' : 'HIGH RUG RISK BLOCKED'),
         checklist_summary: passedCount + '/12',
         checks: checks
       };
@@ -3010,7 +3010,7 @@ lit-html/is-server.js:
 <script>
 /**
  * Solana Rent & Rug Shield Mobile App v6.0 - 6-Screen Native UI Controller
- * Palette: #020408 Carbon Black | #00FFA3 Emerald | #D4AF37 24K-Gold
+ * Palette: #020408 Obsidian Black | #00FFA3 Emerald | #D4AF37 24K-Gold
  * Zero web clutter, haptic feedback, 100%-175% font zoom, strict 4-frozen-ATA quarantine, footer: rentandrugshield.com
  */
 (function () {

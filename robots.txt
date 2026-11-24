@@ -3,21 +3,33 @@ Allow: /
 Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /openapi-public.json
+Disallow: /audit/
+Disallow: /audits/
+Disallow: /assets/studio_showcase/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /audit/
+Disallow: /audits/
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /audit/
+Disallow: /audits/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /audit/
+Disallow: /audits/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /audit/
+Disallow: /audits/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /audit/
+Disallow: /audits/
 
 Sitemap: https://rentandrugshield.com/sitemap.xml
-Disallow: /assets/studio_showcase/

@@ -34,11 +34,11 @@
     "siteUrl": "https://rentandrugshield.com",
     "llmsTxtUrl": "https://rentandrugshield.com/llms.txt",
     "discussionsUrl": "https://github.com/sonnyman2014/rentandrugshield/discussions",
-    "feedbackEndpoint": "https://place-pierre-negotiations-soon.trycloudflare.com/api/feedback",
+    "feedbackEndpoint": "https://vision-under-encryption-believed.trycloudflare.com/api/feedback",
     "instructions": "Independent AI agents testing https://rentandrugshield.com (/mcp, /api/scan-token, /api/scan-wallet, and Solana x402 / 10c Mainnet checkout) can submit their Mainnet TX signature, agent User-Agent, and feedback to POST /api/feedback or GitHub Discussions for a Free 10c SOL Rebate."
   },
   "mcpEndpoint": "https://rentandrugshield.com/mcp",
-  "liveStreamableHttpEndpoint": "https://place-pierre-negotiations-soon.trycloudflare.com/mcp",
+  "liveStreamableHttpEndpoint": "https://vision-under-encryption-believed.trycloudflare.com/mcp",
   "remotes": [
     {
       "type": "streamable-http",
@@ -46,14 +46,14 @@
     },
     {
       "type": "streamable-http",
-      "url": "https://place-pierre-negotiations-soon.trycloudflare.com/mcp"
+      "url": "https://vision-under-encryption-believed.trycloudflare.com/mcp"
     }
   ],
   "endpoints": {
     "streamableHttp": "https://rentandrugshield.com/mcp",
-    "liveStreamableHttp": "https://place-pierre-negotiations-soon.trycloudflare.com/mcp",
+    "liveStreamableHttp": "https://vision-under-encryption-believed.trycloudflare.com/mcp",
     "sse": "https://rentandrugshield.com/mcp",
-    "liveSse": "https://place-pierre-negotiations-soon.trycloudflare.com/mcp",
+    "liveSse": "https://vision-under-encryption-believed.trycloudflare.com/mcp",
     "x402Discovery": "https://rentandrugshield.com/.well-known/x402",
     "mcpDiscovery": "https://rentandrugshield.com/.well-known/mcp.json",
     "a2aAgentCard": "https://rentandrugshield.com/.well-known/agent.json",
@@ -386,7 +386,7 @@
       "trader_pro_1999": {
         "id": "trader_pro_1999",
         "option": "trader_pro_1999",
-        "name": "30-Day Trader Pro (Unlimited Web/TG, No API Key) - $19.99/mo Launch (Reg. $39.99/mo)",
+        "name": "30-Day Trader Pro (Unlimited Web/TG, No API Key): $19.99/mo Launch (Reg. $39.99/mo)",
         "label": "30-Day Trader Pro ($19.99/mo, Reg. $39.99/mo)",
         "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
         "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -410,7 +410,7 @@
       "ultra_pro_4999": {
         "id": "ultra_pro_4999",
         "option": "ultra_pro_4999",
-        "name": "30-Day Ultra Pro + Sniper Bot API (15,000 calls/mo + Rug Webhooks) - $49.99/mo Launch (Reg. $99.00/mo)",
+        "name": "30-Day Ultra Pro + Sniper Bot API (15,000 calls/mo + Rug Webhooks): $49.99/mo Launch (Reg. $99.00/mo)",
         "label": "30-Day Ultra Pro + Sniper Bot API ($49.99/mo, Reg. $99.00/mo)",
         "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
         "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -436,7 +436,7 @@
       "quant_desk_99": {
         "id": "quant_desk_99",
         "option": "quant_desk_99",
-        "name": "30-Day Quant Desk Pro API (100,000 calls/mo, <120ms Priority + Batch Sybil) - $99.00/mo Launch (Reg. $199.00/mo)",
+        "name": "30-Day Quant Desk Pro API (100,000 calls/mo, <120ms Priority + Batch Sybil): $99.00/mo Launch (Reg. $199.00/mo)",
         "label": "30-Day Quant Desk Pro API ($99.00/mo, Reg. $199.00/mo)",
         "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
         "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -463,7 +463,7 @@
       "enterprise_500": {
         "id": "enterprise_500",
         "option": "enterprise_500",
-        "name": "Enterprise Unlimited API - $500/mo (Reg. $999/mo)",
+        "name": "Enterprise Unlimited API: $500/mo (Reg. $999/mo)",
         "label": "Enterprise Unlimited API ($500/mo, Reg. $999/mo)",
         "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
         "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -642,7 +642,7 @@
         "resource": "https://rentandrugshield.com/mcp",
         "mimeType": "application/json",
         "maxTimeoutSeconds": 300,
-        "description": "30-Day Trader Pro (Unlimited Web/TG, No API Key): $19.99/mo Launch (Reg. $39.99/mo) - New layers included free during active pass, $0 auto-billing"
+        "description": "30-Day Trader Pro (Unlimited Web/TG, No API Key): $19.99/mo Launch (Reg. $39.99/mo): New layers included free during active pass, $0 auto-billing"
       },
       {
         "scheme": "exact",
@@ -669,7 +669,7 @@
         "resource": "https://rentandrugshield.com/mcp",
         "mimeType": "application/json",
         "maxTimeoutSeconds": 300,
-        "description": "30-Day Ultra Pro + Sniper Bot API (15,000 calls/mo + Rug Webhooks): $49.99/mo Launch (Reg. $99.00/mo) - New layers included free during active pass, $0 auto-billing"
+        "description": "30-Day Ultra Pro + Sniper Bot API (15,000 calls/mo + Rug Webhooks): $49.99/mo Launch (Reg. $99.00/mo): New layers included free during active pass, $0 auto-billing"
       },
       {
         "scheme": "exact",
@@ -696,7 +696,7 @@
         "resource": "https://rentandrugshield.com/mcp",
         "mimeType": "application/json",
         "maxTimeoutSeconds": 300,
-        "description": "30-Day Quant Desk Pro API (100,000 calls/mo, <120ms Priority + Batch Sybil): $99.00/mo Launch (Reg. $199.00/mo) - New layers included free during active pass, $0 auto-billing"
+        "description": "30-Day Quant Desk Pro API (100,000 calls/mo, <120ms Priority + Batch Sybil): $99.00/mo Launch (Reg. $199.00/mo): New layers included free during active pass, $0 auto-billing"
       },
       {
         "scheme": "exact",
@@ -723,7 +723,7 @@
         "resource": "https://rentandrugshield.com/mcp",
         "mimeType": "application/json",
         "maxTimeoutSeconds": 300,
-        "description": "Enterprise Unlimited API: $500/mo (Reg. $999/mo) - New layers included free during active pass, $0 auto-billing"
+        "description": "Enterprise Unlimited API: $500/mo (Reg. $999/mo): New layers included free during active pass, $0 auto-billing"
       }
     ],
     "accepts": [
@@ -882,7 +882,7 @@
         "resource": "https://rentandrugshield.com/mcp",
         "mimeType": "application/json",
         "maxTimeoutSeconds": 300,
-        "description": "30-Day Trader Pro (Unlimited Web/TG, No API Key): $19.99/mo Launch (Reg. $39.99/mo) - New layers included free during active pass, $0 auto-billing"
+        "description": "30-Day Trader Pro (Unlimited Web/TG, No API Key): $19.99/mo Launch (Reg. $39.99/mo): New layers included free during active pass, $0 auto-billing"
       },
       {
         "scheme": "exact",
@@ -909,7 +909,7 @@
         "resource": "https://rentandrugshield.com/mcp",
         "mimeType": "application/json",
         "maxTimeoutSeconds": 300,
-        "description": "30-Day Ultra Pro + Sniper Bot API (15,000 calls/mo + Rug Webhooks): $49.99/mo Launch (Reg. $99.00/mo) - New layers included free during active pass, $0 auto-billing"
+        "description": "30-Day Ultra Pro + Sniper Bot API (15,000 calls/mo + Rug Webhooks): $49.99/mo Launch (Reg. $99.00/mo): New layers included free during active pass, $0 auto-billing"
       },
       {
         "scheme": "exact",
@@ -936,7 +936,7 @@
         "resource": "https://rentandrugshield.com/mcp",
         "mimeType": "application/json",
         "maxTimeoutSeconds": 300,
-        "description": "30-Day Quant Desk Pro API (100,000 calls/mo, <120ms Priority + Batch Sybil): $99.00/mo Launch (Reg. $199.00/mo) - New layers included free during active pass, $0 auto-billing"
+        "description": "30-Day Quant Desk Pro API (100,000 calls/mo, <120ms Priority + Batch Sybil): $99.00/mo Launch (Reg. $199.00/mo): New layers included free during active pass, $0 auto-billing"
       },
       {
         "scheme": "exact",
@@ -963,7 +963,7 @@
         "resource": "https://rentandrugshield.com/mcp",
         "mimeType": "application/json",
         "maxTimeoutSeconds": 300,
-        "description": "Enterprise Unlimited API: $500/mo (Reg. $999/mo) - New layers included free during active pass, $0 auto-billing"
+        "description": "Enterprise Unlimited API: $500/mo (Reg. $999/mo): New layers included free during active pass, $0 auto-billing"
       }
     ]
   },
@@ -973,7 +973,7 @@
   "openClawSkillUrl": "https://rentandrugshield.com/openclaw-skill.json",
   "tinyPlaceAgentUrl": "https://rentandrugshield.com/tinyplace-agent.json",
   "a2aFavorExchangeOffer": {
-    "program": "We Do You A Favor First - A2A Reciprocal Routing & Safety Alliance",
+    "program": "We Do You A Favor First: A2A Reciprocal Routing & Safety Alliance",
     "branch": "the-networker (Global AI Networking Agency)",
     "dailyFreePriorityRugChecks": 100,
     "latencyTargetMs": 120,
