@@ -4,12 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Model Context Protocol (MCP) Gateway | Solana Rent &amp; Rug Shield</title>
-  <meta name="description" content="Official Streamable HTTP Model Context Protocol (MCP) endpoint for institutional Solana 12-layer token security verification and non-custodial SPL 0x09 rent recovery." />
+  <meta name="description" content="Official Streamable HTTP Model Context Protocol (MCP) endpoint for 100% read-only Solana 12-layer token security verification and non-custodial SPL 0x09 rent recovery. Starter $0 (0% first rent claim), $19.99/mo Pro, $99/mo Quant, $500/mo Enterprise API." />
   <meta property="og:title" content="Model Context Protocol (MCP) Gateway | Solana Rent &amp; Rug Shield" />
-  <meta property="og:description" content="Official Streamable HTTP Model Context Protocol (MCP) endpoint for institutional Solana 12-layer token security verification and non-custodial SPL 0x09 rent recovery." />
+  <meta property="og:description" content="Official Streamable HTTP Model Context Protocol (MCP) endpoint for 100% read-only Solana 12-layer token security verification and non-custodial SPL 0x09 rent recovery. Starter $0 (0% first rent claim), $19.99/mo Pro, $99/mo Quant, $500/mo Enterprise API." />
   <meta property="og:url" content="https://rentandrugshield.com/mcp" />
   <meta property="og:type" content="website" />
   <link rel="canonical" href="https://rentandrugshield.com/mcp" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "@id": "https://rentandrugshield.com/mcp#software", "name": "Solana Rent & Rug Shield MCP Security Gateway", "url": "https://rentandrugshield.com/mcp", "applicationCategory": "SecurityApplication", "operatingSystem": "Web, Linux, macOS, Windows", "sameAs": ["https://x.com/SolRentClaim", "https://github.com/sonnyman2014/solana-rent-rug-shield-mcp", "https://pypi.org/project/solana-rug-shield/", "https://www.npmjs.com/package/@rentandrugshield/mcp-server", "https://www.ox.security/ox-radar/mcp/com-rentandrugshield-mcp-server/"], "offers": [{"@type": "Offer", "name": "0% Free First Rent Claim / Starter", "price": "0.00", "priceCurrency": "USD", "description": "100% read-only 12-Layer token scans and SPL 0x09 rent checks via public Solana address with zero wallet connection required, plus 0% service fee on first rent claim."}, {"@type": "Offer", "name": "$19.99/mo Pro", "price": "19.99", "priceCurrency": "USD", "description": "Unlimited 12-Layer Solana token security audits, real-time browser shield alerts, and whale/Sybil forensics for $19.99/mo."}, {"@type": "Offer", "name": "$99/mo Quant", "price": "99.00", "priceCurrency": "USD", "description": "High-throughput <120ms 12-Layer Solana token security REST and MCP API (100,000 calls/mo) for $99/mo."}, {"@type": "Offer", "name": "$500/mo Enterprise API", "price": "500.00", "priceCurrency": "USD", "description": "Dedicated institutional @x402/svm, REST, and MCP pre-execution firewall endpoints with 99.9% uptime SLA for $500/mo."}]}</script>
   <style>
     body { background:#05070B; color:#F8FAFC; font-family:Inter,system-ui,-apple-system,sans-serif; max-width:860px; margin:40px auto; padding:0 20px; line-height:1.65; }
     h1 { color:#FFD000; font-size:1.75rem; margin-bottom:8px; }
@@ -23,21 +24,34 @@
 </head>
 <body>
   <h1>Solana Rent &amp; Rug Shield | MCP Security Gateway</h1>
-  <p>Non-custodial Solana blockchain security infrastructure providing real-time 12-layer token auditing and SPL / Token-2022 <code>0x09 CloseAccount</code> rent verification over Streamable HTTP Model Context Protocol (<code>2025-03-26</code>).</p>
+  <p>Non-custodial Solana blockchain security infrastructure providing real-time 12-Layer token scans and SPL / Token-2022 <code>0x09 CloseAccount</code> rent checks over Streamable HTTP Model Context Protocol (<code>2025-03-26</code>). All 12-Layer token scans and SPL 0x09 rent checks are 100% read-only via public Solana address with zero wallet connection required.</p>
   <div class="card">
-    <h2>Discovery &amp; Endpoints</h2>
+    <h2>Discovery &amp; Official Registries</h2>
     <ul>
       <li><strong>MCP Server Card:</strong> <a href="/.well-known/mcp/server-card.json"><code>https://rentandrugshield.com/.well-known/mcp/server-card.json</code></a></li>
       <li><strong>MCP Manifest JSON:</strong> <a href="/.well-known/mcp.json"><code>https://rentandrugshield.com/.well-known/mcp.json</code></a></li>
       <li><strong>OpenAPI Specification:</strong> <a href="/openapi-public.json"><code>https://rentandrugshield.com/openapi-public.json</code></a></li>
+      <li><strong>GitHub MCP Repository:</strong> <a href="https://github.com/sonnyman2014/solana-rent-rug-shield-mcp" rel="noopener noreferrer"><code>github.com/sonnyman2014/solana-rent-rug-shield-mcp</code></a></li>
+      <li><strong>npm Package:</strong> <a href="https://www.npmjs.com/package/@rentandrugshield/mcp-server" rel="noopener noreferrer"><code>@rentandrugshield/mcp-server</code></a></li>
+      <li><strong>PyPI Package:</strong> <a href="https://pypi.org/project/solana-rug-shield/" rel="noopener noreferrer"><code>solana-rug-shield</code></a></li>
+      <li><strong>OX Security Radar:</strong> <a href="https://www.ox.security/ox-radar/mcp/com-rentandrugshield-mcp-server/" rel="noopener noreferrer"><code>ox.security/ox-radar/mcp/com-rentandrugshield-mcp-server</code></a></li>
       <li><strong>Interactive Web Scanner:</strong> <a href="https://rentandrugshield.com/"><code>https://rentandrugshield.com/</code></a></li>
     </ul>
   </div>
   <div class="card">
     <h2>Available Read-Only Security Tools</h2>
     <ul>
-      <li><code>scan_solana_wallet_rent</code>: Read-only SPL &amp; Token-2022 empty Associated Token Account scanner calculating exact reclaimable SOL rent (0% fee on first claim; zero private keys).</li>
-      <li><code>audit_solana_token_12_layer</code>: Real-time 12-layer Solana token security audit inspecting mint/freeze authorities, liquidity locks, holder concentration, and Token-2022 transfer hooks or permanent delegates.</li>
+      <li><code>scan_solana_wallet_rent</code>: 100% read-only SPL &amp; Token-2022 empty Associated Token Account scanner via public Solana address with zero wallet connection required (0% fee on first rent claim; 2.0% fee on repeat claims; zero private keys).</li>
+      <li><code>audit_solana_token_12_layer</code>: Real-time 100% read-only 12-Layer Solana token security audit inspecting mint/freeze authorities, liquidity locks, holder concentration, and Token-2022 transfer hooks or permanent delegates via public mint address.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Canonical Pricing &amp; API Tiers</h2>
+    <ul>
+      <li><strong>0% Free First Rent Claim / Starter ($0.00):</strong> 100% read-only wallet &amp; 12-Layer token scans with zero wallet connection required, 0% fee on first SPL 0x09 rent claim (2.0% fee on repeat claims), and 1st 12-Layer pre-buy audit free.</li>
+      <li><strong>$19.99/mo Pro:</strong> Unlimited &lt;120ms 12-Layer token security scans, browser extension shield alerts, and whale/Sybil forensics (zero auto-billing traps).</li>
+      <li><strong>$99/mo Quant:</strong> High-throughput REST &amp; MCP security API (100,000 calls/mo), Layer-11 Sybil &amp; Layer-12 Slot-0 bundle telemetry, and multi-wallet rent sweep.</li>
+      <li><strong>$500/mo Enterprise API:</strong> Dedicated institutional @x402/svm, REST, and MCP pre-execution firewall webhooks with 99.9% uptime SLA.</li>
     </ul>
   </div>
 </body>
