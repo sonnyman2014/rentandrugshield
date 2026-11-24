@@ -7155,9 +7155,10 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
             </button>
           </div>
 
-          <!-- Master 34.05s Castle Video (Arcade Synth Muted by Default for Institutional Calm) -->
+          <!-- Restored Retail Voiced Walkthrough (Canonical en-US-AndrewMultilingualNeural Voice + Enlarged Crisp Typography) -->
+          <button type="button" id="btnExpandRetailTvModal" class="rrs-expand-tv-pill" onclick="event.stopPropagation(); window.rrsOpenTvTheaterModal('retail')" aria-label="Click to Enlarge Video">⛶ Click to Enlarge Video</button>
           <video id="retailVaultMasterVideo" playsinline webkit-playsinline muted controls preload="metadata" poster="/assets/rr_badge_exact.jpg">
-            <source src="/assets/castle_promo_master.mp4?v=howto54s_30fps" type="video/mp4" />
+            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=retail_v9_72s_bigtext" type="video/mp4" />
           </video>
 
           <div id="retailVaultSkyOverlay" class="rrs-vault-hud-overlay rrs-perimeter-hud hud-scene-0" aria-live="polite" style="display:none;">
@@ -25078,8 +25079,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             if (postActions)
                 postActions.classList.remove("show");
             stopSubtleInstitutionalPad();
+            video.removeAttribute("muted");
             video.muted = false;
-            video.volume = 0.85;
+            video.volume = 0.90;
             if (audioBtn)
                 audioBtn.innerHTML = SVG_SPEAKER_ON;
             video.defaultPlaybackRate = 1.0;
@@ -29479,13 +29481,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
     for (var i = 0; i < vids.length; i++) {
       var v = vids[i];
-      if (v.id === "qrCameraVideo") continue;
+      if (v.id === "qrCameraVideo" || v.id === "rrsTvTheaterVideo") continue;
       v.playsInline = true;
-      v.muted = true;
+      if (v.paused && (!v.currentTime || v.currentTime < 0.05)) {
+        v.muted = true;
+        v.setAttribute("muted", "");
+      }
       v.controls = true;
       v.setAttribute("playsinline", "");
       v.setAttribute("webkit-playsinline", "");
-      v.setAttribute("muted", "");
       v.setAttribute("controls", "");
       v.setAttribute("preload", "metadata");
       v.setAttribute("poster", GOLD_SHIELD_POSTER);
@@ -29495,6 +29499,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         v.addEventListener("playing", syncPlayingClass);
         v.addEventListener("pause", syncPlayingClass);
         v.addEventListener("ended", syncPlayingClass);
+        if (v.id === "retailVaultMasterVideo" || v.id === "rrsVaultMasterVideo") {
+          v.addEventListener("volumechange", function () {
+            if (!this.muted && this.volume < 0.25) this.volume = 0.90;
+          });
+        }
       }
     }
   }
@@ -29564,5 +29573,581 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 })();
 </script>
 <!-- RRS_SONNY_5FIX_SURGICAL_LOCK_END -->
+<!-- RRS_VIDEO09_BIGTEXT_THEATER_UPGRADE_START -->
+<style id="rrs-video09-bigtext-theater-css">
+  :root {
+    --app-vh: 100dvh;
+  }
+
+  /* Generous Desktop TV Stage (100% Card Width, Crisp 16:9, Object-Fit Contain, Zero Cropped Text) */
+  @media (min-width: 1024px) {
+    html body #rrsHeroPromoVideoSection,
+    html body #rrsHeroPromoVideoSection.rrs-compact-5050-showcase {
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr) !important;
+      gap: 20px !important;
+      align-items: center !important;
+    }
+  }
+
+  html body #retailCastleVaultPlayerCard {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 14px !important;
+    border: 2px solid rgba(255, 209, 102, 0.72) !important;
+    box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.28), 0 18px 48px rgba(0, 0, 0, 0.92) !important;
+    background-color: #05080F !important;
+    background-image: radial-gradient(circle at 50% 45%, rgba(255, 208, 0, 0.16) 0%, rgba(7, 16, 28, 0.94) 64%, #05080F 100%), url('/assets/rr_badge_exact.jpg') !important;
+    background-position: center center !important;
+    background-size: cover, contain !important;
+    background-repeat: no-repeat !important;
+    overflow: hidden !important;
+    position: relative !important;
+    cursor: pointer !important;
+  }
+
+  html body #retailCastleVaultPlayerCard #retailVaultViewport,
+  html body .rrs-5050-video-stage#retailVaultViewport {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 16 / 9 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #05080F !important;
+    background-image: radial-gradient(circle at 50% 45%, rgba(255, 208, 0, 0.16) 0%, rgba(7, 16, 28, 0.94) 64%, #05080F 100%), url('/assets/rr_badge_exact.jpg') !important;
+    background-position: center center !important;
+    background-size: cover, contain !important;
+    background-repeat: no-repeat !important;
+    overflow: hidden !important;
+    display: block !important;
+    cursor: pointer !important;
+  }
+
+  html body #retailCastleVaultPlayerCard video#retailVaultMasterVideo,
+  html body #retailVaultViewport video#retailVaultMasterVideo {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background-color: #05080F !important;
+  }
+
+  /* Suppress legacy HTML HUD text overlays on Video #9 stage so burned-in big text is 100% clear */
+  html body #retailVaultSkyOverlay,
+  html body #retailClosingFrameOverlay {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Clean [Click to Enlarge Video] Pill on the TV Frame */
+  html body #btnExpandRetailTvModal.rrs-expand-tv-pill {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 96 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    min-height: 36px !important;
+    padding: 6px 12px !important;
+    border-radius: 999px !important;
+    background: rgba(0, 0, 0, 0.90) !important;
+    color: #FFD166 !important;
+    border: 1.5px solid #00FF88 !important;
+    box-shadow: 0 0 14px rgba(0, 255, 136, 0.32), 0 4px 12px rgba(0, 0, 0, 0.90) !important;
+    font-size: 12.5px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.01em !important;
+    line-height: 1.1 !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    pointer-events: auto !important;
+    transition: transform 0.14s ease, border-color 0.14s ease !important;
+  }
+  html body #btnExpandRetailTvModal.rrs-expand-tv-pill:hover {
+    transform: scale(1.03) !important;
+    border-color: #FFD166 !important;
+    color: #00FF88 !important;
+  }
+  html body #retailVaultViewport.rrs-stage-playing #btnExpandRetailTvModal.rrs-expand-tv-pill {
+    top: auto !important;
+    bottom: 48px !important;
+    right: 10px !important;
+  }
+
+  /* Full Centered Theater Lightbox Modal (#rrsTvTheaterModal) */
+  #rrsTvTheaterModal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: var(--app-vh, 100dvh) !important;
+    max-width: 100vw !important;
+    background: #000000 !important;
+    z-index: 2147483647 !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: max(12px, env(safe-area-inset-top, 12px)) max(12px, env(safe-area-inset-right, 12px)) max(12px, env(safe-area-inset-bottom, 12px)) max(12px, env(safe-area-inset-left, 12px)) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  #rrsTvTheaterModal[data-open="true"] {
+    display: flex !important;
+  }
+
+  #rrsTvTheaterDialog {
+    width: 94vw !important;
+    max-width: 1180px !important;
+    max-height: calc(var(--app-vh, 100dvh) - max(24px, env(safe-area-inset-top, 12px) + env(safe-area-inset-bottom, 12px))) !important;
+    background: #000000 !important;
+    border: 2px solid #FFD166 !important;
+    box-shadow: 0 0 0 1.5px #00FF88, 0 28px 90px rgba(0, 0, 0, 0.98) !important;
+    border-radius: 14px !important;
+    padding: 10px 12px 12px 12px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    overflow: hidden !important;
+  }
+
+  #rrsTvTheaterHeader {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    min-height: 44px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #rrsTvTheaterTitle {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    color: #FFD166 !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.02em !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  #rrsTvTheaterDot {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background: #00FF88 !important;
+    box-shadow: 0 0 10px #00FF88 !important;
+    flex-shrink: 0 !important;
+  }
+
+  #rrsTvTheaterActions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-shrink: 0 !important;
+  }
+
+  #rrsTvTheaterSoundBtn {
+    min-height: 44px !important;
+    height: 44px !important;
+    padding: 0 12px !important;
+    border-radius: 10px !important;
+    background: #071510 !important;
+    color: #00FF88 !important;
+    border: 1.5px solid #00FF88 !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+  }
+
+  /* Strict 44x44px Always-Reachable Close Target */
+  #rrsTvTheaterCloseBtn {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    border-radius: 10px !important;
+    background: #141923 !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFD166 !important;
+    font-size: 20px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+  }
+  #rrsTvTheaterCloseBtn:hover {
+    background: #DC2626 !important;
+    border-color: #FFFFFF !important;
+  }
+
+  #rrsTvTheaterVideo {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    max-height: calc(var(--app-vh, 100dvh) - max(96px, env(safe-area-inset-top, 12px) + env(safe-area-inset-bottom, 12px) + 76px)) !important;
+    object-fit: contain !important;
+    background-color: #000000 !important;
+    background-image: radial-gradient(circle at 50% 45%, rgba(255, 208, 0, 0.14) 0%, rgba(0, 0, 0, 0.96) 70%), url('/assets/rr_badge_exact.jpg') !important;
+    background-position: center center !important;
+    background-size: cover, contain !important;
+    background-repeat: no-repeat !important;
+    border-radius: 8px !important;
+    display: block !important;
+  }
+
+  /* Strict Mobile Zero-Overflow & Safe-Area Fit (320px / 375x667 iPhone / 390x844 Android) */
+  @media (max-width: 959.98px) {
+    html, body {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+    }
+    html body #rrsHeroPromoVideoSection,
+    html body #rrsHeroPromoVideoSection.rrs-compact-5050-showcase,
+    html body #scannersRow1Grid,
+    html body .grid-2#scannersRow1Grid {
+      grid-template-columns: minmax(0, 1fr) !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    html body .card-title {
+      white-space: normal !important;
+    }
+    html body #btnExpandRetailTvModal.rrs-expand-tv-pill {
+      min-height: 36px !important;
+      padding: 6px 10px !important;
+      font-size: 11.5px !important;
+      top: 8px !important;
+      right: 8px !important;
+    }
+    #rrsTvTheaterModal {
+      padding: max(8px, env(safe-area-inset-top, 8px)) max(8px, env(safe-area-inset-right, 8px)) max(8px, env(safe-area-inset-bottom, 8px)) max(8px, env(safe-area-inset-left, 8px)) !important;
+    }
+    #rrsTvTheaterDialog {
+      width: 100% !important;
+      max-width: calc(100vw - 16px) !important;
+      padding: 8px 10px 10px 10px !important;
+    }
+    #rrsTvTheaterTitle {
+      font-size: 12px !important;
+    }
+    #rrsTvTheaterSoundBtn {
+      padding: 0 9px !important;
+      font-size: 12px !important;
+    }
+  }
+</style>
+
+<div id="rrsTvTheaterModal" data-open="false" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Expanded Video Theater Player">
+  <div id="rrsTvTheaterDialog">
+    <div id="rrsTvTheaterHeader">
+      <div id="rrsTvTheaterTitle">
+        <span id="rrsTvTheaterDot" aria-hidden="true"></span>
+        <span>RENT &amp; RUG SHIELD • LIVE SCANNER WALKTHROUGH</span>
+      </div>
+      <div id="rrsTvTheaterActions">
+        <button type="button" id="rrsTvTheaterSoundBtn" aria-label="Toggle Theater Audio">🔊 Sound ON</button>
+        <button type="button" id="rrsTvTheaterCloseBtn" aria-label="Close Expanded Video">✕</button>
+      </div>
+    </div>
+    <video id="rrsTvTheaterVideo" playsinline webkit-playsinline controls preload="metadata" poster="/assets/rr_badge_exact.jpg">
+      <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=retail_v9_72s_bigtext" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+<script id="rrs-video09-bigtext-theater-js">
+(function () {
+  var VIDEO_URL = "/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=retail_v9_72s_bigtext";
+  var POSTER_URL = "/assets/rr_badge_exact.jpg";
+
+  function syncAppVh() {
+    var vh = (window.visualViewport && window.visualViewport.height) ? window.visualViewport.height : window.innerHeight;
+    if (vh && vh > 100) {
+      document.documentElement.style.setProperty("--app-vh", Math.round(vh) + "px");
+    }
+  }
+  syncAppVh();
+  window.addEventListener("resize", syncAppVh, { passive: true });
+  window.addEventListener("orientationchange", syncAppVh, { passive: true });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", syncAppVh, { passive: true });
+  }
+
+  function ensureRetailTvStageReady() {
+    var iv = document.getElementById("retailVaultMasterVideo");
+    if (iv) {
+      iv.playsInline = true;
+      iv.controls = true;
+      iv.setAttribute("playsinline", "");
+      iv.setAttribute("webkit-playsinline", "");
+      iv.setAttribute("controls", "");
+      iv.setAttribute("preload", "metadata");
+      iv.setAttribute("poster", POSTER_URL);
+      var srcEl = iv.querySelector("source");
+      if (srcEl && srcEl.getAttribute("src") !== VIDEO_URL) {
+        srcEl.setAttribute("src", VIDEO_URL);
+        iv.load();
+      } else if (!srcEl && iv.getAttribute("src") !== VIDEO_URL) {
+        iv.setAttribute("src", VIDEO_URL);
+        iv.load();
+      }
+    }
+
+    var tv = document.getElementById("rrsTvTheaterVideo");
+    if (tv) {
+      tv.playsInline = true;
+      tv.controls = true;
+      tv.setAttribute("playsinline", "");
+      tv.setAttribute("webkit-playsinline", "");
+      tv.setAttribute("controls", "");
+      tv.setAttribute("preload", "metadata");
+      tv.setAttribute("poster", POSTER_URL);
+    }
+
+    var vp = document.getElementById("retailVaultViewport");
+    if (vp && !document.getElementById("btnExpandRetailTvModal")) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.id = "btnExpandRetailTvModal";
+      btn.className = "rrs-expand-tv-pill";
+      btn.setAttribute("aria-label", "Click to Enlarge Video");
+      btn.textContent = "⛶ Click to Enlarge Video";
+      btn.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        window.rrsOpenTvTheaterModal("retail");
+      });
+      vp.appendChild(btn);
+    }
+  }
+
+  function syncSoundBtnUi() {
+    var tv = document.getElementById("rrsTvTheaterVideo");
+    var sb = document.getElementById("rrsTvTheaterSoundBtn");
+    if (!tv || !sb) return;
+    sb.textContent = tv.muted ? "🔇 Muted (Tap for Sound)" : "🔊 Sound ON";
+  }
+
+  window.rrsOpenTvTheaterModal = function (sourcePrefix) {
+    syncAppVh();
+    ensureRetailTvStageReady();
+    var modal = document.getElementById("rrsTvTheaterModal");
+    var tv = document.getElementById("rrsTvTheaterVideo");
+    var iv = document.getElementById("retailVaultMasterVideo");
+    if (!modal || !tv) return;
+
+    var startAt = 0;
+    if (iv) {
+      try {
+        if (iv.currentTime && iv.currentTime > 0.05 && !iv.ended) {
+          startAt = iv.currentTime;
+        }
+        iv.pause();
+      } catch (_e) {}
+    }
+
+    modal.setAttribute("data-open", "true");
+    modal.setAttribute("aria-hidden", "false");
+    modal.style.setProperty("display", "flex", "important");
+
+    tv.removeAttribute("muted");
+    tv.muted = false;
+    tv.volume = 0.95;
+
+    function seekAndPlay() {
+      try {
+        if (startAt > 0.05 && Math.abs((tv.currentTime || 0) - startAt) > 0.25) {
+          tv.currentTime = startAt;
+        }
+      } catch (_se) {}
+      var p = tv.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(function () {
+          syncSoundBtnUi();
+        });
+      }
+      syncSoundBtnUi();
+    }
+
+    if (tv.readyState >= 1) {
+      seekAndPlay();
+    } else {
+      var onMeta = function () {
+        tv.removeEventListener("loadedmetadata", onMeta);
+        seekAndPlay();
+      };
+      tv.addEventListener("loadedmetadata", onMeta);
+      tv.load();
+      seekAndPlay();
+    }
+
+    var closeBtn = document.getElementById("rrsTvTheaterCloseBtn");
+    if (closeBtn && typeof closeBtn.focus === "function") {
+      try { closeBtn.focus({ preventScroll: true }); } catch (_fe) {}
+    }
+  };
+
+  window.rrsCloseTvTheaterModal = function () {
+    var modal = document.getElementById("rrsTvTheaterModal");
+    var tv = document.getElementById("rrsTvTheaterVideo");
+    var iv = document.getElementById("retailVaultMasterVideo");
+    var gate = document.getElementById("retailVaultCoverGate");
+    var vp = document.getElementById("retailVaultViewport");
+    if (!modal) return;
+
+    var syncedTime = 0;
+    if (tv) {
+      try {
+        syncedTime = tv.currentTime || 0;
+        tv.pause();
+      } catch (_e) {}
+    }
+
+    modal.setAttribute("data-open", "false");
+    modal.setAttribute("aria-hidden", "true");
+    modal.style.setProperty("display", "none", "important");
+
+    if (iv && syncedTime > 0.02) {
+      var applySync = function () {
+        try { iv.currentTime = syncedTime; } catch (_ie) {}
+      };
+      if (iv.readyState >= 1) {
+        applySync();
+      } else {
+        iv.addEventListener("loadedmetadata", function onIvMeta() {
+          iv.removeEventListener("loadedmetadata", onIvMeta);
+          applySync();
+        });
+      }
+      if (gate) {
+        gate.style.display = "none";
+        gate.style.opacity = "0";
+      }
+      if (vp) {
+        vp.classList.add("rrs-stage-playing");
+      }
+    }
+  };
+
+  function bindTheaterEvents() {
+    ensureRetailTvStageReady();
+
+    var modal = document.getElementById("rrsTvTheaterModal");
+    var closeBtn = document.getElementById("rrsTvTheaterCloseBtn");
+    var soundBtn = document.getElementById("rrsTvTheaterSoundBtn");
+    var tv = document.getElementById("rrsTvTheaterVideo");
+    var card = document.getElementById("retailCastleVaultPlayerCard");
+
+    if (closeBtn && !closeBtn.__rrsBound) {
+      closeBtn.__rrsBound = true;
+      closeBtn.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        window.rrsCloseTvTheaterModal();
+      });
+    }
+
+    if (soundBtn && tv && !soundBtn.__rrsBound) {
+      soundBtn.__rrsBound = true;
+      soundBtn.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        tv.muted = !tv.muted;
+        if (!tv.muted) {
+          tv.removeAttribute("muted");
+          if (tv.volume < 0.25) tv.volume = 0.95;
+        }
+        syncSoundBtnUi();
+      });
+      tv.addEventListener("volumechange", syncSoundBtnUi);
+    }
+
+    if (modal && !modal.__rrsBound) {
+      modal.__rrsBound = true;
+      modal.addEventListener("click", function (ev) {
+        if (ev.target === modal) {
+          window.rrsCloseTvTheaterModal();
+        }
+      });
+    }
+
+    if (!window.__rrsTheaterEscBound) {
+      window.__rrsTheaterEscBound = true;
+      document.addEventListener("keydown", function (ev) {
+        if (ev.key === "Escape" || ev.keyCode === 27) {
+          var m = document.getElementById("rrsTvTheaterModal");
+          if (m && m.getAttribute("data-open") === "true") {
+            ev.preventDefault();
+            window.rrsCloseTvTheaterModal();
+          }
+        }
+      });
+    }
+
+    /* Click-the-box capture handler on #retailCastleVaultPlayerCard:
+       Clicking the TV box, cover gate, play pill, or video frame above native bottom controls opens Theater Modal with sound */
+    if (card && !card.__rrsBoxExpandBound) {
+      card.__rrsBoxExpandBound = true;
+      card.addEventListener("click", function (ev) {
+        var t = ev.target;
+        if (!t) return;
+        if (t.closest && t.closest("#btnAudioRetailVaultVideo, #btnPauseRetailVaultVideo, .rrs-post-video-actions")) {
+          return;
+        }
+        var iv = document.getElementById("retailVaultMasterVideo");
+        var gate = document.getElementById("retailVaultCoverGate");
+        var gateHidden = gate && (gate.style.display === "none" || gate.offsetParent === null || parseFloat(gate.style.opacity || "1") < 0.1);
+        if (t === iv && gateHidden) {
+          var r = iv.getBoundingClientRect();
+          if (ev.clientY && r.height > 80 && ev.clientY > r.bottom - 44) {
+            return;
+          }
+        }
+        ev.preventDefault();
+        ev.stopPropagation();
+        if (typeof ev.stopImmediatePropagation === "function") ev.stopImmediatePropagation();
+        window.rrsOpenTvTheaterModal("retail");
+      }, true);
+    }
+  }
+
+  bindTheaterEvents();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindTheaterEvents);
+  }
+})();
+</script>
+<!-- RRS_VIDEO09_BIGTEXT_THEATER_UPGRADE_END -->
 </body>
 </html>
