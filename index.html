@@ -29579,35 +29579,59 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     --app-vh: 100dvh;
   }
 
-  /* Generous Desktop TV Stage (100% Card Width, Crisp 16:9, Object-Fit Contain, Zero Cropped Text) */
-  @media (min-width: 1024px) {
+  /* Exact 50/50 Equal-Size Twin Boxes on Desktop (Row 1 Video Box == Left Box, Row 2 Panel 2 == Panel 1) */
+  @media (min-width: 960px) {
     html body #rrsHeroPromoVideoSection,
     html body #rrsHeroPromoVideoSection.rrs-compact-5050-showcase {
-      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr) !important;
-      gap: 20px !important;
-      align-items: center !important;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+      gap: 24px !important;
+      align-items: stretch !important;
+    }
+
+    html body #rrsHeroPromoVideoSection > #rrsRetailLeftDiffCard,
+    html body #rrsHeroPromoVideoSection > #retailCastleVaultPlayerCard,
+    html body #rrsHeroPromoVideoSection > .rrs-5050-half-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 100% !important;
+      align-self: stretch !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    html body #scannersRow1Grid,
+    html body .grid-2#scannersRow1Grid,
+    html body #instSideBySideEngines,
+    html body #rrsViewInstitutional .inst-dual-engines {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+      gap: 24px !important;
+      align-items: stretch !important;
+    }
+
+    html body #scannersRow1Grid > #rentShieldCard,
+    html body #scannersRow1Grid > #rugShieldCard,
+    html body #instSideBySideEngines > #instRentEngineCard,
+    html body #instSideBySideEngines > #instRugEngineCard {
+      height: 100% !important;
+      align-self: stretch !important;
     }
   }
 
   html body #retailCastleVaultPlayerCard {
     width: 100% !important;
     max-width: 100% !important;
-    min-height: 0 !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9 !important;
+    min-height: 240px !important;
     padding: 0 !important;
     margin: 0 !important;
     border-radius: 14px !important;
     border: 2px solid rgba(255, 209, 102, 0.72) !important;
     box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.28), 0 18px 48px rgba(0, 0, 0, 0.92) !important;
     background-color: #05080F !important;
-    background-image: radial-gradient(circle at 50% 45%, rgba(255, 208, 0, 0.16) 0%, rgba(7, 16, 28, 0.94) 64%, #05080F 100%), url('/assets/rr_badge_exact.jpg') !important;
-    background-position: center center !important;
-    background-size: cover, contain !important;
-    background-repeat: no-repeat !important;
     overflow: hidden !important;
     position: relative !important;
     cursor: pointer !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   html body #retailCastleVaultPlayerCard #retailVaultViewport,
@@ -29615,19 +29639,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     position: relative !important;
     width: 100% !important;
     max-width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    aspect-ratio: 16 / 9 !important;
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    min-height: 240px !important;
     padding: 0 !important;
     margin: 0 !important;
     background-color: #05080F !important;
-    background-image: radial-gradient(circle at 50% 45%, rgba(255, 208, 0, 0.16) 0%, rgba(7, 16, 28, 0.94) 64%, #05080F 100%), url('/assets/rr_badge_exact.jpg') !important;
-    background-position: center center !important;
-    background-size: cover, contain !important;
-    background-repeat: no-repeat !important;
     overflow: hidden !important;
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     cursor: pointer !important;
+  }
+
+  @media (max-width: 959.98px) {
+    html body #retailCastleVaultPlayerCard,
+    html body #retailCastleVaultPlayerCard #retailVaultViewport {
+      aspect-ratio: 16 / 9 !important;
+      height: auto !important;
+      min-height: 0 !important;
+    }
   }
 
   html body #retailCastleVaultPlayerCard video#retailVaultMasterVideo,
@@ -29635,7 +29666,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     width: 100% !important;
     max-width: 100% !important;
     height: 100% !important;
-    aspect-ratio: 16 / 9 !important;
     object-fit: contain !important;
     object-position: center center !important;
     display: block !important;
