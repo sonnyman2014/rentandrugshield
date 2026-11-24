@@ -18389,7 +18389,7 @@ window.submitVisitorFeedbackNow = async function(){
 
   function rrsClearStuckContractInputs() {
     var sp = new URLSearchParams(window.location.search || "");
-    var hasExplicitQuery = !!(sp.get("mint") || sp.get("wallet"));
+    var hasExplicitQuery = !!(sp.get("token") || sp.get("mint") || sp.get("wallet") || sp.get("w"));
     if (hasExplicitQuery) return;
     ["walletInput", "mintInput", "instWalletInput", "instMintInput", "w-inp", "m-inp"].forEach(function(id){
       var el = document.getElementById(id);
