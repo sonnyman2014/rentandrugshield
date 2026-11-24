@@ -1203,7 +1203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (preset === 'lt25k' || (maxVal > 0 && maxVal <= 25000)) return '< $25K';
     const raw = (minVal === undefined || minVal === null || minVal === '') ? 10000 : Number(minVal);
     const n = Math.max(0, Number.isFinite(raw) ? raw : 10000);
-    if (n >= 500000) return '$500K+';
+    if (n >= 1000000) return '$1M+';
     return '\u2265 $' + Math.round(n / 1000) + 'K';
   }
 
@@ -1214,7 +1214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxInp = el('flt-liq-max');
     const preInp = el('flt-liq-preset');
     const raw = (minVal === undefined || minVal === null || minVal === '') ? 10000 : Number(minVal);
-    const clamped = Math.max(0, Math.min(500000, Number.isFinite(raw) ? raw : 10000));
+    const clamped = Math.max(0, Math.min(1000000, Number.isFinite(raw) ? raw : 10000));
     if (sld) sld.value = String(clamped);
     if (minInp) minInp.value = String(clamped);
     if (maxInp) maxInp.value = String(Number(maxVal) || 0);

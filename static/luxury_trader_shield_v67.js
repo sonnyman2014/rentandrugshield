@@ -454,16 +454,18 @@
       autoHideSec: layoutState.autoHideSec,
       soundEnabled: Boolean(filterState.soundEnabled),
       audioPreset: resolveVoiceEntry(filterState.audioPreset).label,
+      auto_scan_collect: Boolean(filterState.autoScanEnabled),
       roboticVoice: false
     });
-    const autoRec = { enabled: Boolean(filterState.autoScanEnabled), wallet: connectedWallet, ts: Date.now() };
+    const autoRec = { enabled: Boolean(filterState.autoScanEnabled), auto_scan_collect: Boolean(filterState.autoScanEnabled), wallet: connectedWallet, ts: Date.now() };
     if (isExtRuntime && chrome.storage && chrome.storage.local) {
       try {
         chrome.storage.local.set({
           [LAYOUT_KEY_V53]: persistedLayout,
           [FLT_KEY_V53]: mergedFlt,
           [WALLET_KEY_V60]: connectedWallet,
-          [AUTOSCAN_KEY_V67]: autoRec
+          [AUTOSCAN_KEY_V67]: autoRec,
+          auto_scan_collect: Boolean(filterState.autoScanEnabled)
         }, () => {});
         if (chrome.runtime && chrome.runtime.sendMessage) {
           chrome.runtime.sendMessage({ type: 'RRS_SYNC_FILTERS_V53', filters: mergedFlt }, () => { void chrome.runtime.lastError; });
@@ -532,7 +534,7 @@
       const sm = rawTitle.match(/\$([A-Za-z0-9_]{2,12})/);
       if (sm) sym = sm[1].toUpperCase();
     }
-    if (!sym) sym = explicitFail ? 'RUG' : 'SOL';
+    if (!sym) sym = explicitFail ? 'RUG' : 'JUP';
 
     let pctNum;
     if (cur && cur.move_pct !== undefined && Number.isFinite(Number(cur.move_pct))) {
@@ -1009,7 +1011,7 @@
 
           <div class="rrs-coin-main" id="rrs-coin-main-click">
             <div class="rrs-ticker-verdict-row">
-              <span id="rrs-card-title" class="rrs-ticker-text green">$SOL +18.4%</span>
+              <span id="rrs-card-title" class="rrs-ticker-text green">$JUP +18.4%</span>
               <span id="rrs-card-badge" class="rrs-verdict-pill pass">12-LAYER: PASS</span>
             </div>
             <div id="rrs-card-body" class="rrs-metrics-white">MCap $420K  \u2022  Liquidity $68K</div>
@@ -1072,8 +1074,10 @@
 
   function formatLiqReadout(minVal, maxVal, preset) {
     if (preset === 'lt25k' || (maxVal > 0 && maxVal <= 25000)) return '< $25K';
-    const n = Math.max(5000, Number(minVal) || 10000);
-    if (n >= 1000000) return '$1M+';
+    const parsed = Number(minVal);
+    const n = Number.isFinite(parsed) ? Math.max(0, parsed) : 10000;
+    if (n <= 0) return '$0K';
+    if (n >= 500000) return '$500K+';
     return '\u2265 $' + Math.round(n / 1000) + 'K';
   }
 
@@ -1081,7 +1085,8 @@
     const sld = root.getElementById('rrs-liq-slider');
     const lbl = root.getElementById('rrs-liq-readout');
     const inp = root.getElementById('rrs-in-minliq');
-    const clamped = Math.max(5000, Math.min(1000000, Number(minVal) || 10000));
+    const parsed = Number(minVal);
+    const clamped = Math.max(0, Math.min(500000, Number.isFinite(parsed) ? parsed : 10000));
     if (sld) sld.value = String(clamped);
     if (inp) inp.value = String(clamped);
     if (lbl) lbl.textContent = formatLiqReadout(clamped, maxVal, preset);
@@ -1103,7 +1108,7 @@
     const on = Boolean(filterState.autoScanEnabled);
     if (btn) {
       btn.classList.toggle('on', on);
-      btn.textContent = on ? '\u26A1 AUTO-SCAN: ON' : '\u26A1 AUTO-SCAN: OFF';
+      btn.textContent = on ? '\u26A1 AUTO-SCAN & COLLECT: ON' : '\u26A1 AUTO-SCAN & COLLECT: OFF';
     }
     if (lbl) {
       lbl.style.color = on ? '#00FF88' : '#94A3B8';
@@ -2092,17 +2097,17 @@
   window.RRS_openLuxuryTraderShieldDemo = function (openDrawer) {
     window.__rrsRenderBlackToastV53({
       kind: 'coin',
-      sym: 'SOL',
-      mint: 'So11111111111111111111111111111111111111112',
+      sym: 'JUP',
+      mint: 'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN',
       move_pct: 18.4,
       failed12Layer: false,
       isScamFail: false,
       badge: '12-LAYER: PASS',
-      title: '$SOL +18.4%',
+      title: '$JUP +18.4%',
       mcapStr: '$420K',
       liqStr: '$68K',
       message: 'MCap $420K  \u2022  Liquidity $68K',
-      url: 'https://rentandrugshield.com/?token=So11111111111111111111111111111111111111112&autoscan=1#tokenScanner'
+      url: 'https://rentandrugshield.com/?token=JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN&autoscan=1#tokenScanner'
     }, Boolean(openDrawer === true));
   };
 
