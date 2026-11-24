@@ -7,17 +7,17 @@
 
   const SPOKEN_VOICES_V67 = [
     { label: 'To Valhalla!', file: 'to_valhalla.wav', aliases: ['to valhalla', 'to valhalla!'] },
-    { label: 'To the Moon, baby!', file: 'to_the_moon.wav', aliases: ['to the moon', 'to the moon, baby!'] },
-    { label: 'Wizard: 12 Layers Clean!', file: 'wizard_check.wav', aliases: ['wizard', 'wizard: 12 layers clean!'] },
-    { label: 'Whale Incoming: Green Light!', file: 'whale_incoming.wav', aliases: ['whale horn', 'whale incoming: green light!'] },
-    { label: 'Cha-Ching! Clean Contract!', file: 'cha_ching_clean.wav', aliases: ['coin drop', 'cha-ching! clean contract!'] },
-    { label: 'Honey Badger Locked On!', file: 'honey_badger.wav', aliases: ['laser lock', 'honey badger locked on!'] },
-    { label: 'Rug Alert! Step Away!', file: 'rug_alert.wav', aliases: ['cyber alert', 'rug alert! step away!'] },
-    { label: 'Freeze Trap Detected!', file: 'freeze_trap.wav', aliases: ['radar sweep', 'freeze trap detected!'] },
-    { label: 'Breaking Alpha on the Wire!', file: 'breaking_alpha.wav', aliases: ['news wire', 'breaking alpha on the wire!'] },
-    { label: 'Free SOL Rent Ready!', file: 'rent_reclaim_ready.wav', aliases: ['emerald ping', 'free sol rent ready!'] },
-    { label: 'Sniper Target Verified!', file: 'sniper_verified.wav', aliases: ['sniper tick', 'sniper target verified!'] },
-    { label: 'Bull Cross Momentum Surge!', file: 'bull_cross_surge.wav', aliases: ['breakout bell', 'bull cross momentum surge!'] }
+    { label: 'To the Moon, baby!', file: 'to_the_moon.wav', aliases: ['to the moon', 'to the moon!', 'to the moon, baby!'] },
+    { label: 'Wizard: 12 Layers Clean!', file: 'wizard_check.wav', aliases: ['wizard', 'wizard 12-layer clean', 'wizard 12-layer clean!', 'wizard: 12-layer clean!', 'wizard: 12 layers clean', 'wizard: 12 layers clean!'] },
+    { label: 'Whale Incoming: Green Light!', file: 'whale_incoming.wav', aliases: ['whale horn', 'whale incoming', 'whale incoming: green light!'] },
+    { label: 'Cha-Ching! Clean Contract!', file: 'cha_ching_clean.wav', aliases: ['coin drop', 'cha-ching', 'cha-ching! clean contract!'] },
+    { label: 'Honey Badger Locked On!', file: 'honey_badger.wav', aliases: ['laser lock', 'honey badger', 'honey badger locked on!'] },
+    { label: 'Rug Alert! Step Away!', file: 'rug_alert.wav', aliases: ['cyber alert', 'rug alert', 'rug alert!', 'rug alert! step away', 'rug alert! step away!'] },
+    { label: 'Freeze Trap Detected!', file: 'freeze_trap.wav', aliases: ['radar sweep', 'freeze trap', 'freeze trap detected!'] },
+    { label: 'Breaking Alpha on the Wire!', file: 'breaking_alpha.wav', aliases: ['news wire', 'breaking alpha', 'breaking alpha on the wire!'] },
+    { label: 'Free SOL Rent Ready!', file: 'rent_reclaim_ready.wav', aliases: ['emerald ping', 'free sol rent', 'free sol rent ready!'] },
+    { label: 'Sniper Target Verified!', file: 'sniper_verified.wav', aliases: ['sniper tick', 'sniper target', 'sniper target verified!'] },
+    { label: 'Bull Cross Momentum Surge!', file: 'bull_cross_surge.wav', aliases: ['breakout bell', 'bull cross', 'bull cross momentum surge!'] }
   ];
 
   const SYSTEM_MINTS = new Set([
@@ -46,6 +46,18 @@
         return SPOKEN_VOICES_V67[i].file;
       }
     }
+    if (k.includes('valhalla')) return 'to_valhalla.wav';
+    if (k.includes('moon')) return 'to_the_moon.wav';
+    if (k.includes('wizard')) return 'wizard_check.wav';
+    if (k.includes('whale')) return 'whale_incoming.wav';
+    if (k.includes('cha-ching')) return 'cha_ching_clean.wav';
+    if (k.includes('honey')) return 'honey_badger.wav';
+    if (k.includes('rug') || k.includes('cyber')) return 'rug_alert.wav';
+    if (k.includes('freeze') || k.includes('radar')) return 'freeze_trap.wav';
+    if (k.includes('breaking') || k.includes('news')) return 'breaking_alpha.wav';
+    if (k.includes('rent')) return 'rent_reclaim_ready.wav';
+    if (k.includes('sniper')) return 'sniper_verified.wav';
+    if (k.includes('bull') || k.includes('breakout')) return 'bull_cross_surge.wav';
     return 'to_valhalla.wav';
   }
 
@@ -219,7 +231,7 @@
     ttl.style.color = '#FFFFFF';
     ttl.style.fontSize = '15.8px';
     if (btnCta) {
-      btnCta.textContent = '[READ ARTICLE]';
+      btnCta.textContent = '[READ ARTICLE \u2197]';
       btnCta.style.borderColor = '#38BDF8';
       btnCta.style.color = '#38BDF8';
     }

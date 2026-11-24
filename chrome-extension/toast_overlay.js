@@ -26,20 +26,20 @@
   const MAX_ZOOM = 200;
   const ALLOWED_STAY_SECS = [3, 5, 8, 10, 15, 20, 30, 45, 60];
 
-  // 12 Real Spoken Neural Voice .WAV Clips (edge-tts, 0 synth beeps)
+  // 12 Cloud-Synthesized Spoken Trader Voice .WAV Clips (gemini-3.8-flash-tts Cloud Voice pipeline, 0 local ffmpeg)
   const SPOKEN_VOICES_12 = [
     { label: 'To Valhalla!', file: 'to_valhalla.wav', aliases: ['to valhalla', 'to valhalla!'] },
-    { label: 'To the Moon, baby!', file: 'to_the_moon.wav', aliases: ['to the moon', 'to the moon, baby!'] },
-    { label: 'Wizard: 12 Layers Clean!', file: 'wizard_check.wav', aliases: ['wizard', 'wizard: 12 layers clean!'] },
-    { label: 'Whale Incoming: Green Light!', file: 'whale_incoming.wav', aliases: ['whale horn', 'whale incoming: green light!'] },
-    { label: 'Cha-Ching! Clean Contract!', file: 'cha_ching_clean.wav', aliases: ['coin drop', 'cha-ching! clean contract!'] },
-    { label: 'Honey Badger Locked On!', file: 'honey_badger.wav', aliases: ['laser lock', 'honey badger locked on!'] },
-    { label: 'Rug Alert! Step Away!', file: 'rug_alert.wav', aliases: ['cyber alert', 'rug alert! step away!'] },
-    { label: 'Freeze Trap Detected!', file: 'freeze_trap.wav', aliases: ['radar sweep', 'freeze trap detected!'] },
-    { label: 'Breaking Alpha on the Wire!', file: 'breaking_alpha.wav', aliases: ['news wire', 'breaking alpha on the wire!'] },
-    { label: 'Free SOL Rent Ready!', file: 'rent_reclaim_ready.wav', aliases: ['emerald ping', 'free sol rent ready!'] },
-    { label: 'Sniper Target Verified!', file: 'sniper_verified.wav', aliases: ['sniper tick', 'sniper target verified!'] },
-    { label: 'Bull Cross Momentum Surge!', file: 'bull_cross_surge.wav', aliases: ['breakout bell', 'bull cross momentum surge!'] }
+    { label: 'To the Moon, baby!', file: 'to_the_moon.wav', aliases: ['to the moon', 'to the moon!', 'to the moon, baby!'] },
+    { label: 'Wizard: 12 Layers Clean!', file: 'wizard_check.wav', aliases: ['wizard', 'wizard 12-layer clean', 'wizard 12-layer clean!', 'wizard: 12-layer clean!', 'wizard: 12 layers clean', 'wizard: 12 layers clean!'] },
+    { label: 'Whale Incoming: Green Light!', file: 'whale_incoming.wav', aliases: ['whale horn', 'whale incoming', 'whale incoming: green light!'] },
+    { label: 'Cha-Ching! Clean Contract!', file: 'cha_ching_clean.wav', aliases: ['coin drop', 'cha-ching', 'cha-ching! clean contract!'] },
+    { label: 'Honey Badger Locked On!', file: 'honey_badger.wav', aliases: ['laser lock', 'honey badger', 'honey badger locked on!'] },
+    { label: 'Rug Alert! Step Away!', file: 'rug_alert.wav', aliases: ['cyber alert', 'rug alert', 'rug alert!', 'rug alert! step away', 'rug alert! step away!'] },
+    { label: 'Freeze Trap Detected!', file: 'freeze_trap.wav', aliases: ['radar sweep', 'freeze trap', 'freeze trap detected!'] },
+    { label: 'Breaking Alpha on the Wire!', file: 'breaking_alpha.wav', aliases: ['news wire', 'breaking alpha', 'breaking alpha on the wire!'] },
+    { label: 'Free SOL Rent Ready!', file: 'rent_reclaim_ready.wav', aliases: ['emerald ping', 'free sol rent', 'free sol rent ready!'] },
+    { label: 'Sniper Target Verified!', file: 'sniper_verified.wav', aliases: ['sniper tick', 'sniper target', 'sniper target verified!'] },
+    { label: 'Bull Cross Momentum Surge!', file: 'bull_cross_surge.wav', aliases: ['breakout bell', 'bull cross', 'bull cross momentum surge!'] }
   ];
 
   // Plain-English [?] Trader Tooltip Bubbles
@@ -249,6 +249,18 @@
       const v = SPOKEN_VOICES_12[i];
       if (v.label.toLowerCase() === key || v.aliases.indexOf(key) !== -1) return v;
     }
+    if (key.includes('valhalla')) return SPOKEN_VOICES_12[0];
+    if (key.includes('moon')) return SPOKEN_VOICES_12[1];
+    if (key.includes('wizard')) return SPOKEN_VOICES_12[2];
+    if (key.includes('whale')) return SPOKEN_VOICES_12[3];
+    if (key.includes('cha-ching')) return SPOKEN_VOICES_12[4];
+    if (key.includes('honey')) return SPOKEN_VOICES_12[5];
+    if (key.includes('rug') || key.includes('cyber')) return SPOKEN_VOICES_12[6];
+    if (key.includes('freeze') || key.includes('radar')) return SPOKEN_VOICES_12[7];
+    if (key.includes('breaking') || key.includes('news')) return SPOKEN_VOICES_12[8];
+    if (key.includes('rent')) return SPOKEN_VOICES_12[9];
+    if (key.includes('sniper')) return SPOKEN_VOICES_12[10];
+    if (key.includes('bull') || key.includes('breakout')) return SPOKEN_VOICES_12[11];
     return SPOKEN_VOICES_12[0];
   }
 
@@ -513,7 +525,7 @@
         tickerLabel: cleanHeadline || 'Solana Institutional Market Update',
         verdictLabel: 'BREAKING NEWS WIRE',
         metricsLine: '',
-        ctaLabel: '[READ ARTICLE]'
+        ctaLabel: '[READ ARTICLE \u2197]'
       };
     }
 
@@ -1407,7 +1419,7 @@
       titleEl.textContent = parsed.tickerLabel;
       titleEl.className = 'rrs-ticker-text blue';
       if (tradeBtn) {
-        tradeBtn.textContent = '[READ ARTICLE]';
+        tradeBtn.textContent = '[READ ARTICLE \u2197]';
         tradeBtn.style.borderColor = '#38BDF8';
         tradeBtn.style.color = '#38BDF8';
       }

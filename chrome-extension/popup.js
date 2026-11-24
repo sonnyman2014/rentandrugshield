@@ -27,20 +27,20 @@ const PHANTOM_45S_URL = 'https://rentandrugshield.com/app.html?connect_phantom=1
 const SAMPLE_VERIFIED_WALLET = 'C3FFhG83pda2veVRFwTDNyf1YT2R2U2ZHxcg8pUeMjrC';
 const ALLOWED_STAY_SECS = [3, 5, 8, 10, 15, 20, 30, 45, 60];
 
-// 12 Real Spoken Neural Voice .WAV Clips (edge-tts, 0 synth beeps)
+// 12 Cloud-Synthesized Spoken Trader Voice .WAV Clips (gemini-3.8-flash-tts Cloud Voice pipeline, 0 local ffmpeg)
 const SPOKEN_VOICES_V67 = [
   { label: 'To Valhalla!', file: 'to_valhalla.wav', aliases: ['to valhalla', 'to valhalla!'] },
-  { label: 'To the Moon, baby!', file: 'to_the_moon.wav', aliases: ['to the moon', 'to the moon, baby!'] },
-  { label: 'Wizard: 12 Layers Clean!', file: 'wizard_check.wav', aliases: ['wizard', 'wizard: 12 layers clean!'] },
-  { label: 'Whale Incoming: Green Light!', file: 'whale_incoming.wav', aliases: ['whale horn', 'whale incoming: green light!'] },
-  { label: 'Cha-Ching! Clean Contract!', file: 'cha_ching_clean.wav', aliases: ['coin drop', 'cha-ching! clean contract!'] },
-  { label: 'Honey Badger Locked On!', file: 'honey_badger.wav', aliases: ['laser lock', 'honey badger locked on!'] },
-  { label: 'Rug Alert! Step Away!', file: 'rug_alert.wav', aliases: ['cyber alert', 'rug alert! step away!'] },
-  { label: 'Freeze Trap Detected!', file: 'freeze_trap.wav', aliases: ['radar sweep', 'freeze trap detected!'] },
-  { label: 'Breaking Alpha on the Wire!', file: 'breaking_alpha.wav', aliases: ['news wire', 'breaking alpha on the wire!'] },
-  { label: 'Free SOL Rent Ready!', file: 'rent_reclaim_ready.wav', aliases: ['emerald ping', 'free sol rent ready!'] },
-  { label: 'Sniper Target Verified!', file: 'sniper_verified.wav', aliases: ['sniper tick', 'sniper target verified!'] },
-  { label: 'Bull Cross Momentum Surge!', file: 'bull_cross_surge.wav', aliases: ['breakout bell', 'bull cross momentum surge!'] }
+  { label: 'To the Moon, baby!', file: 'to_the_moon.wav', aliases: ['to the moon', 'to the moon!', 'to the moon, baby!'] },
+  { label: 'Wizard: 12 Layers Clean!', file: 'wizard_check.wav', aliases: ['wizard', 'wizard 12-layer clean', 'wizard 12-layer clean!', 'wizard: 12-layer clean!', 'wizard: 12 layers clean', 'wizard: 12 layers clean!'] },
+  { label: 'Whale Incoming: Green Light!', file: 'whale_incoming.wav', aliases: ['whale horn', 'whale incoming', 'whale incoming: green light!'] },
+  { label: 'Cha-Ching! Clean Contract!', file: 'cha_ching_clean.wav', aliases: ['coin drop', 'cha-ching', 'cha-ching! clean contract!'] },
+  { label: 'Honey Badger Locked On!', file: 'honey_badger.wav', aliases: ['laser lock', 'honey badger', 'honey badger locked on!'] },
+  { label: 'Rug Alert! Step Away!', file: 'rug_alert.wav', aliases: ['cyber alert', 'rug alert', 'rug alert!', 'rug alert! step away', 'rug alert! step away!'] },
+  { label: 'Freeze Trap Detected!', file: 'freeze_trap.wav', aliases: ['radar sweep', 'freeze trap', 'freeze trap detected!'] },
+  { label: 'Breaking Alpha on the Wire!', file: 'breaking_alpha.wav', aliases: ['news wire', 'breaking alpha', 'breaking alpha on the wire!'] },
+  { label: 'Free SOL Rent Ready!', file: 'rent_reclaim_ready.wav', aliases: ['emerald ping', 'free sol rent', 'free sol rent ready!'] },
+  { label: 'Sniper Target Verified!', file: 'sniper_verified.wav', aliases: ['sniper tick', 'sniper target', 'sniper target verified!'] },
+  { label: 'Bull Cross Momentum Surge!', file: 'bull_cross_surge.wav', aliases: ['breakout bell', 'bull cross', 'bull cross momentum surge!'] }
 ];
 
 // Plain-English [?] Trader Tooltips
@@ -81,26 +81,35 @@ const PLAIN_ENGLISH_TOOLTIPS_V67 = {
 
 let activeAudioEl = null;
 
-function resolveVoiceWavFile(presetName) {
+function matchVoiceEntryPopup(presetName) {
   const key = String(presetName || 'To Valhalla!').trim().toLowerCase();
   for (let i = 0; i < SPOKEN_VOICES_V67.length; i++) {
     const v = SPOKEN_VOICES_V67[i];
     if (v.label.toLowerCase() === key || v.aliases.indexOf(key) !== -1) {
-      return v.file;
+      return v;
     }
   }
-  return 'to_valhalla.wav';
+  if (key.includes('valhalla')) return SPOKEN_VOICES_V67[0];
+  if (key.includes('moon')) return SPOKEN_VOICES_V67[1];
+  if (key.includes('wizard')) return SPOKEN_VOICES_V67[2];
+  if (key.includes('whale')) return SPOKEN_VOICES_V67[3];
+  if (key.includes('cha-ching')) return SPOKEN_VOICES_V67[4];
+  if (key.includes('honey')) return SPOKEN_VOICES_V67[5];
+  if (key.includes('rug') || key.includes('cyber')) return SPOKEN_VOICES_V67[6];
+  if (key.includes('freeze') || key.includes('radar')) return SPOKEN_VOICES_V67[7];
+  if (key.includes('breaking') || key.includes('news')) return SPOKEN_VOICES_V67[8];
+  if (key.includes('rent')) return SPOKEN_VOICES_V67[9];
+  if (key.includes('sniper')) return SPOKEN_VOICES_V67[10];
+  if (key.includes('bull') || key.includes('breakout')) return SPOKEN_VOICES_V67[11];
+  return SPOKEN_VOICES_V67[0];
+}
+
+function resolveVoiceWavFile(presetName) {
+  return matchVoiceEntryPopup(presetName).file;
 }
 
 function normalizeVoiceLabel(presetName) {
-  const key = String(presetName || 'To Valhalla!').trim().toLowerCase();
-  for (let i = 0; i < SPOKEN_VOICES_V67.length; i++) {
-    const v = SPOKEN_VOICES_V67[i];
-    if (v.label.toLowerCase() === key || v.aliases.indexOf(key) !== -1) {
-      return v.label;
-    }
-  }
-  return 'To Valhalla!';
+  return matchVoiceEntryPopup(presetName).label;
 }
 
 function playSpokenVoiceWav(presetName, forceTest) {
@@ -1285,7 +1294,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pill.innerHTML =
           '<div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:4px;">' +
             '<span style="font-size:9.2px;font-weight:900;color:#38BDF8;border:1px solid #38BDF8;border-radius:5px;padding:1px 6px;">BREAKING NEWS WIRE</span>' +
-            '<span class="rrs-read-article-cta" style="font-size:9.2px;font-weight:900;color:#38BDF8;">[READ ARTICLE]</span>' +
+            '<span class="rrs-read-article-cta" style="font-size:9.2px;font-weight:900;color:#38BDF8;">[READ ARTICLE &#8599;]</span>' +
           '</div>' +
           '<div style="font-size:11.4px;font-weight:800;color:#FFFFFF;line-height:1.3;">' + cleanNewsTitle + '</div>';
       } else {
@@ -1326,7 +1335,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         pill.innerHTML =
           '<div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:4px;">' + tickerSpan + verdictHtml + '</div>' +
-          '<div style="font-size:12px;font-weight:800;color:#FFFFFF;line-height:1.3;">' + whiteMetrics + '</div>';
+          '<div style="display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:11.6px;font-weight:800;color:#FFFFFF;line-height:1.3;">' +
+            '<span>' + whiteMetrics + '</span>' +
+            '<span class="rrs-open-audit-cta" style="font-size:9.1px;font-weight:900;color:' + moveCol + ';white-space:nowrap;">[OPEN 12-LAYER AUDIT &#8599;]</span>' +
+          '</div>';
       }
       box.appendChild(pill);
     });

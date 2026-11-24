@@ -4,11 +4,12 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Solana Rent-Exempt Math Explained: Why Every Empty ATA Locks 0.00203928 SOL</title>
-<meta name="description" content="Exact byte-level formula behind Solana's 2,039,280 lamport (0.00203928 SOL) Associated Token Account deposit and how | 0% 1st claim."/>
+<meta name="description" content="Read-only Solana guide (0 wallet connect): Solana Rent-Exempt Math Explained: Why Every Empty ATA Locks 0.00203928 SOL. 0% 1st claim."/>
 <link rel="canonical" href="https://rentandrugshield.com/guides/solana-associated-token-account-2039280-lamports-math.html"/>
 <meta property="og:type" content="article"/>
 <meta property="og:title" content="Solana Rent-Exempt Math Explained: Why Every Empty ATA Locks 0.00203928 SOL"/>
-<meta property="og:description" content="Exact byte-level formula behind Solana's 2,039,280 lamport (0.00203928 SOL) Associated Token Account deposit and how | 0% 1st claim."/>
+<meta property="og:description" content="Read-only Solana guide (0 wallet connect): Solana Rent-Exempt Math Explained: Why Every Empty ATA Locks 0.00203928 SOL. 0% 1st claim."/>
+  <meta name="twitter:description" content="Read-only Solana guide (0 wallet connect): Solana Rent-Exempt Math Explained: Why Every Empty ATA Locks 0.00203928 SOL. 0% 1st claim." />
 <meta property="og:url" content="https://rentandrugshield.com/guides/solana-associated-token-account-2039280-lamports-math.html"/>
 <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -44,6 +45,7 @@ a.btn-em{display:inline-block;padding:13px 22px;border-radius:10px;background:#1
 a.btn-gold{display:inline-block;padding:13px 22px;border-radius:10px;background:rgba(245,197,66,.14);border:1.5px solid #F5C542;color:#F5C542;font-weight:800;text-decoration:none}
 .ftr{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-top:20px;font-size:.88rem;color:#94a3b8;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is 0.00203928 SOL an airdrop or protocol reward?","acceptedAnswer":{"@type":"Answer","text":"Neither. It is your own original SOL rent-exempt state deposit returned to your wallet when you close an unused zero-balance token account."}},{"@type":"Question","name":"What network transaction fee does Solana charge to close 20 accounts?","acceptedAnswer":{"@type":"Answer","text":"A single base transaction signature on Solana costs ~0.000005 SOL (5,000 lamports) and can close ~20 empty ATAs in one batch."}}]}</script>
+  <style id="rrs-iphone-320-fix">@media (max-width: 360px) { html, body { max-width: 100vw !important; overflow-x: hidden !important; } *, *::before, *::after { box-sizing: border-box; } body > *, main, header, footer, section, article, nav, aside, form, div { max-width: 100%; min-width: 0; } img, svg, video, canvas, iframe { max-width: 100%; height: auto; } input, select, textarea, button, a, label, code { max-width: 100%; min-width: 0; overflow-wrap: anywhere; } [style*="display:flex"], [style*="display: flex"], .flex, .row, .btn-row, .cta-row, .hero-actions, .nav-links, .input-row { flex-wrap: wrap; min-width: 0; } pre, table { max-width: 100%; overflow-x: auto; } }</style>
 </head>
 <body>
 <header class="topbar">

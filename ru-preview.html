@@ -29,7 +29,54 @@
   <meta name="twitter:site" content="@SolRentClaim" />
   <meta name="twitter:title" content="Возврат Аренды Solana ATA (0% Комиссия на 1-й Вывод) и 12-Уровневый Анти-Раг Сканер | Rent & Rug Shield" />
   <meta name="twitter:description" content="Read-only Solana audit &amp; rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09." />
-  <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "Возврат Аренды Solana ATA (0% Комиссия на 1-й Вывод) и 12-Уровневый Анти-Раг Сканер | Rent & Rug Shield", "applicationCategory": "FinanceApplication", "operatingSystem": "Web, iOS, Android", "url": "https://rentandrugshield.com/ru/", "description": "Создано для Solana-трейдеров России и СНГ (Phantom, Solflare, OKX Web3, Bybit Web3, GMGN.ai, Photon, BullX). 1-й возврат аренды пустых ATA с комиссией 0% (100% SOL обратно), 12-уровневая проверка токенов за <120мс без подключения кошелька и 30% ончейн реферал (?ref=КОШЕЛЕК) с калькулятором в ₽ RUB + $ USD + SOL.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Нужно ли подключать кошелек Phantom или OKX Web3 для сканирования?", "acceptedAnswer": {"@type": "Answer", "text": "Нет! Оба сканера работают на 100% через публичные Read-Only RPC запросы. Просто вставьте адрес без всплывающих окон и подписей. Подпись стандартной некастодиальной инструкции CloseAccount (0x09) требуется только если вы решите забрать найденные SOL."}}, {"@type": "Question", "name": "Безопасно ли это после взломов кастодиальных Telegram-ботов?", "acceptedAnswer": {"@type": "Answer", "text": "На 100% некастодиально. Мы никогда не запрашиваем сид-фразы или приватные ключи. Все закрытия пустых счетов (0 баланс) формируются прозрачно в вашем собственном кошельке Phantom / Solflare / OKX Web3, а все активные токены и замороженные счета Token-2022 автоматически исключаются."}}, {"@type": "Question", "name": "Как работает мгновенная выплата 30% в SOL по ссылке ?ref=ВАШ_КОШЕЛЕК?", "acceptedAnswer": {"@type": "Answer", "text": "Без регистрации и без минималки на вывод. Поделитесь ссылкой https://rentandrugshield.com/ru/?ref=ВАШ_КОШЕЛЕК в Telegram-чате или канале. При каждой повторной очистке кошелька по вашей ссылке 30% комиссии отправляется напрямую в ваш кошелек в том же блоке Solana."}}]}]</script>
+  <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Возврат Аренды Solana ATA (0% Комиссия на 1-й Вывод) и 12-Уровневый Анти-Раг Сканер | Rent & Rug Shield",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web, iOS, Android",
+    "url": "https://rentandrugshield.com/ru/",
+    "description": "Read-only Solana audit & rent check (0 wallet connect needed). 0% fee 1st claim via native SPL 0x09.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Нужно ли подключать кошелек Phantom или OKX Web3 для сканирования?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Нет! Оба сканера работают на 100% через публичные Read-Only RPC запросы. Просто вставьте адрес без всплывающих окон и подписей. Подпись стандартной некастодиальной инструкции CloseAccount (0x09) требуется только если вы решите забрать найденные SOL."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Безопасно ли это после взломов кастодиальных Telegram-ботов?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "На 100% некастодиально. Мы никогда не запрашиваем сид-фразы или приватные ключи. Все закрытия пустых счетов (0 баланс) формируются прозрачно в вашем собственном кошельке Phantom / Solflare / OKX Web3, а все активные токены и замороженные счета Token-2022 автоматически исключаются."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как работает мгновенная выплата 30% в SOL по ссылке ?ref=ВАШ_КОШЕЛЕК?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Без регистрации и без минималки на вывод. Поделитесь ссылкой https://rentandrugshield.com/ru/?ref=ВАШ_КОШЕЛЕК в Telegram-чате или канале. При каждой повторной очистке кошелька по вашей ссылке 30% комиссии отправляется напрямую в ваш кошелек в том же блоке Solana."
+        }
+      }
+    ]
+  }
+]
+</script>
   <style>
     :root {
       --bg-obsidian: #06080D;
@@ -557,6 +604,7 @@
       .vault-card, .section-card { padding: 16px 14px; }
     }
   </style>
+  <style id="rrs-iphone-320-fix">@media (max-width: 360px) { html, body { max-width: 100vw !important; overflow-x: hidden !important; } *, *::before, *::after { box-sizing: border-box; } body > *, main, header, footer, section, article, nav, aside, form, div { max-width: 100%; min-width: 0; } img, svg, video, canvas, iframe { max-width: 100%; height: auto; } input, select, textarea, button, a, label, code { max-width: 100%; min-width: 0; overflow-wrap: anywhere; } [style*="display:flex"], [style*="display: flex"], .flex, .row, .btn-row, .cta-row, .hero-actions, .nav-links, .input-row { flex-wrap: wrap; min-width: 0; } pre, table { max-width: 100%; overflow-x: auto; } }</style>
 </head>
 <body>
   <header class="topbar">

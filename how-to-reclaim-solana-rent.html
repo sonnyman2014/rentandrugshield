@@ -57,7 +57,74 @@ a.btn-ghost{display:inline-block;padding:12px 18px;border-radius:10px;background
 .chk{padding-left:20px}
 .chk li{margin:7px 0}
 .ftr{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:20px;font-size:.87rem;color:#94a3b8;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}</style>
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Solana Rent & Rug Shield","applicationCategory":"FinanceApplication","operatingSystem":"Web, Chrome MV3, Solana Seeker MWA v2.0, Solana Mainnet","url":"https://rentandrugshield.com/how-to-reclaim-solana-rent.html","description":"Complete technical guide to reclaiming locked Solana ATA rent (~0.00203928 SOL per account) via native SPL 0x09 CloseAccount. 100% read-only scan, 0% 1st claim (<=25 ATAs), 2.0% repeat (98.0% net SOL).","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"0% platform fee on your 1st empty ATA claim (up to 25 ATAs, 100% of locked SOL returned); 2.0% flat atomic on-chain fee on repeat claims (98.0% net SOL returned directly to your wallet); 30% instant same-transaction on-chain ?ref= affiliate split."}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can closing zero-balance 0x09 ATAs ever touch my staked SOL, NFTs, or active tokens?","acceptedAnswer":{"@type":"Answer","text":"No. Native SPL CloseAccount (0x09) strictly targets zero-balance token accounts; non-zero balances cannot be closed by 0x09."}},{"@type":"Question","name":"Why are some Token-2022 empty accounts marked quarantined/frozen?","acceptedAnswer":{"@type":"Answer","text":"If a malicious Token-2022 creator retained FreezeAuthority and froze your ATA, Solana's runtime rejects CloseAccount; we auto-quarantine those accounts so the rest of your SOL reclaims cleanly."}},{"@type":"Question","name":"How does the 30% atomic ?ref= referral work?","acceptedAnswer":{"@type":"Answer","text":"Share any rentandrugshield.com URL with ?ref=<YourBase58Wallet>; 30% of every referred 2.0% repeat fee settles directly to your wallet inside the same transaction."}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rentandrugshield.com/"},{"@type":"ListItem","position":2,"name":"How to Reclaim Locked Solana Rent From Empty Token Accounts (Complete 0x09 Guide)","item":"https://rentandrugshield.com/how-to-reclaim-solana-rent.html"}]}]</script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Solana Rent & Rug Shield",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web, Chrome MV3, Solana Seeker MWA v2.0, Solana Mainnet",
+    "url": "https://rentandrugshield.com/how-to-reclaim-solana-rent.html",
+    "description": "Reclaim ~0.00204 SOL per empty SPL account via native 0x09 CloseAccount. 100% read-only scan; 0% fee on 1st claim.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Read-only Solana scan (0 wallet connect needed). 0% fee on 1st SOL rent claim via SPL 0x09; 98% net SOL repeat."
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can closing zero-balance 0x09 ATAs ever touch my staked SOL, NFTs, or active tokens?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Native SPL CloseAccount (0x09) strictly targets zero-balance token accounts; non-zero balances cannot be closed by 0x09."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are some Token-2022 empty accounts marked quarantined/frozen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If a malicious Token-2022 creator retained FreezeAuthority and froze your ATA, Solana's runtime rejects CloseAccount; we auto-quarantine those accounts so the rest of your SOL reclaims cleanly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the 30% atomic ?ref= referral work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Share any rentandrugshield.com URL with ?ref=<YourBase58Wallet>; 30% of every referred 2.0% repeat fee settles directly to your wallet inside the same transaction."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://rentandrugshield.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "How to Reclaim Locked Solana Rent From Empty Token Accounts (Complete 0x09 Guide)",
+        "item": "https://rentandrugshield.com/how-to-reclaim-solana-rent.html"
+      }
+    ]
+  }
+]
+</script>
+  <style id="rrs-iphone-320-fix">@media (max-width: 360px) { html, body { max-width: 100vw !important; overflow-x: hidden !important; } *, *::before, *::after { box-sizing: border-box; } body > *, main, header, footer, section, article, nav, aside, form, div { max-width: 100%; min-width: 0; } img, svg, video, canvas, iframe { max-width: 100%; height: auto; } input, select, textarea, button, a, label, code { max-width: 100%; min-width: 0; overflow-wrap: anywhere; } [style*="display:flex"], [style*="display: flex"], .flex, .row, .btn-row, .cta-row, .hero-actions, .nav-links, .input-row { flex-wrap: wrap; min-width: 0; } pre, table { max-width: 100%; overflow-x: auto; } }</style>
 </head>
 <body>
 <header class="topbar">

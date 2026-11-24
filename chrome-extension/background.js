@@ -165,12 +165,13 @@ async function verifyExternalNewsUrlHttp200Bg(rawUrl) {
     }
   }
   const ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
-  for (const method of ['HEAD', 'GET']) {
+  let needRangeFallback = false;
+  {
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 3000);
+    const timer = setTimeout(() => ctrl.abort(), 2400);
     try {
       const res = await fetch(trimmed, {
-        method,
+        method: 'HEAD',
         redirect: 'follow',
         cache: 'no-store',
         signal: ctrl.signal,
@@ -189,14 +190,40 @@ async function verifyExternalNewsUrlHttp200Bg(rawUrl) {
         }
         return { ok: true, finalUrl };
       }
-      if (method === 'HEAD' && (res.status === 403 || res.status === 405 || res.status === 406 || res.status === 501)) {
-        continue;
+      if (res.status === 405) {
+        needRangeFallback = true;
       }
-      verifiedNewsHttp200Cache.set(trimmed, { ok: false, finalUrl: '', ts: now });
-      return { ok: false, finalUrl: '' };
     } catch (_err) {
       clearTimeout(timer);
-      if (method === 'HEAD') continue;
+    }
+  }
+  if (needRangeFallback) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 2400);
+    try {
+      const res = await fetch(trimmed, {
+        method: 'GET',
+        redirect: 'follow',
+        cache: 'no-store',
+        signal: ctrl.signal,
+        headers: {
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Range': 'bytes=0-512',
+          'User-Agent': ua
+        }
+      });
+      clearTimeout(timer);
+      const finalUrl = String(res.url || trimmed).trim();
+      if ((res.status === 200 || res.status === 206) && isValidExternalNewsUrlBg(finalUrl)) {
+        verifiedNewsHttp200Cache.set(trimmed, { ok: true, finalUrl, ts: now });
+        if (verifiedNewsHttp200Cache.size > 300) {
+          const firstKey = verifiedNewsHttp200Cache.keys().next().value;
+          if (firstKey) verifiedNewsHttp200Cache.delete(firstKey);
+        }
+        return { ok: true, finalUrl };
+      }
+    } catch (_err) {
+      clearTimeout(timer);
     }
   }
   verifiedNewsHttp200Cache.set(trimmed, { ok: false, finalUrl: '', ts: now });

@@ -4,11 +4,12 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Meteora DLMM vs Raydium AMM LP Burn &amp; Vault Lock Proof on Solana (Layer 03)</title>
-<meta name="description" content="How liquidity locking differs across Raydium AMM v4, Raydium CLMM, Meteora DLMM, and PumpSwap, and how Layer 03 verifies vault safety."/>
+<meta name="description" content="Read-only Solana benchmark (0 wallet connect): Meteora DLMM vs Raydium AMM LP Burn and Vault Lock Proof on Solana (Layer 03). 0% 1st claim."/>
 <link rel="canonical" href="https://rentandrugshield.com/guides/meteora-dlmm-and-raydium-clmm-lp-lock-verification.html"/>
 <meta property="og:type" content="article"/>
 <meta property="og:title" content="Meteora DLMM vs Raydium AMM LP Burn &amp; Vault Lock Proof on Solana (Layer 03)"/>
-<meta property="og:description" content="How liquidity locking differs across Raydium AMM v4, Raydium CLMM, Meteora DLMM, and PumpSwap, and how Layer 03 verifies vault safety."/>
+<meta property="og:description" content="Read-only Solana benchmark (0 wallet connect): Meteora DLMM vs Raydium AMM LP Burn and Vault Lock Proof on Solana (Layer 03). 0% 1st claim."/>
+  <meta name="twitter:description" content="Read-only Solana benchmark (0 wallet connect): Meteora DLMM vs Raydium AMM LP Burn and Vault Lock Proof on Solana (Layer 03). 0% 1st claim." />
 <meta property="og:url" content="https://rentandrugshield.com/guides/meteora-dlmm-and-raydium-clmm-lp-lock-verification.html"/>
 <meta property="og:image" content="https://rentandrugshield.com/assets/social/og-retail-emerald-hero-v51.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -44,6 +45,7 @@ a.btn-em{display:inline-block;padding:13px 22px;border-radius:10px;background:#1
 a.btn-gold{display:inline-block;padding:13px 22px;border-radius:10px;background:rgba(245,197,66,.14);border:1.5px solid #F5C542;color:#F5C542;font-weight:800;text-decoration:none}
 .ftr{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-top:20px;font-size:.88rem;color:#94a3b8;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can a pool with 100% burned LP still lose value?","acceptedAnswer":{"@type":"Answer","text":"Yes, if insiders hold concentrated token supply (Layers 07, 10, 11) and sell into the burned pool; that is why all 12 layers must run together."}},{"@type":"Question","name":"Does Layer 03 check quote SOL reserve depth as well?","acceptedAnswer":{"@type":"Answer","text":"Yes, Layers 03 and 04 jointly verify LP custody and real quote reserve solvency."}}]}</script>
+  <style id="rrs-iphone-320-fix">@media (max-width: 360px) { html, body { max-width: 100vw !important; overflow-x: hidden !important; } *, *::before, *::after { box-sizing: border-box; } body > *, main, header, footer, section, article, nav, aside, form, div { max-width: 100%; min-width: 0; } img, svg, video, canvas, iframe { max-width: 100%; height: auto; } input, select, textarea, button, a, label, code { max-width: 100%; min-width: 0; overflow-wrap: anywhere; } [style*="display:flex"], [style*="display: flex"], .flex, .row, .btn-row, .cta-row, .hero-actions, .nav-links, .input-row { flex-wrap: wrap; min-width: 0; } pre, table { max-width: 100%; overflow-x: auto; } }</style>
 </head>
 <body>
 <header class="topbar">

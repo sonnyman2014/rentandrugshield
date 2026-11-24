@@ -1,149 +1,254 @@
 {
   "version": "6.7.0",
+  "pipeline": "gemini-3.8-flash-tts-cloud-wav-24khz",
+  "active_provider": "edge_tts+miniaudio-24kHz-cloud",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "bits_per_sample": 16,
+  "local_ffmpeg_processes": 0,
   "count": 12,
   "voices": [
     {
       "id": "to_valhalla",
       "file": "to_valhalla.wav",
       "label": "To Valhalla!",
-      "voice": "en-US-ChristopherNeural",
+      "voice": "cloud-neural:en-US-ChristopherNeural",
+      "gemini_voice": "Fenrir",
+      "style": "bold, heroic trader battle cry with crisp clarity",
       "text": "To Valhalla!",
-      "duration_sec": 1.724,
-      "bytes": 82784,
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 1.872,
+      "bytes": 89900,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "To Valhalla"
+        "To Valhalla",
+        "To Valhalla!"
       ]
     },
     {
       "id": "to_the_moon",
       "file": "to_the_moon.wav",
       "label": "To the Moon, baby!",
-      "voice": "en-US-GuyNeural",
+      "voice": "cloud-neural:en-US-GuyNeural",
+      "gemini_voice": "Puck",
+      "style": "upbeat, charismatic momentum trader celebrating a breakout",
       "text": "To the Moon, baby!",
-      "duration_sec": 1.975,
-      "bytes": 94850,
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 2.256,
+      "bytes": 108332,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "To The Moon"
+        "To The Moon",
+        "To the Moon!",
+        "To the Moon, baby!"
       ]
     },
     {
       "id": "wizard_check",
       "file": "wizard_check.wav",
       "label": "Wizard: 12 Layers Clean!",
-      "voice": "en-GB-ThomasNeural",
-      "text": "Wizard check complete, twelve layers clean!",
-      "duration_sec": 3.174,
-      "bytes": 152374,
+      "voice": "cloud-neural:en-GB-ThomasNeural",
+      "gemini_voice": "Charon",
+      "style": "crisp, authoritative security chief confirming contract safety",
+      "text": "Wizard: twelve layers clean!",
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 2.76,
+      "bytes": 132524,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "Wizard"
+        "Wizard",
+        "Wizard 12-Layer Clean!",
+        "Wizard: 12 Layers Clean!"
       ]
     },
     {
       "id": "whale_incoming",
       "file": "whale_incoming.wav",
       "label": "Whale Incoming: Green Light!",
-      "voice": "en-US-EricNeural",
-      "text": "Whale incoming, green light!",
-      "duration_sec": 2.609,
-      "bytes": 125270,
+      "voice": "cloud-neural:en-US-EricNeural",
+      "gemini_voice": "Orus",
+      "style": "confident institutional trading desk callout",
+      "text": "Whale incoming! Green light!",
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 3.624,
+      "bytes": 173996,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "Whale Horn"
+        "Whale Horn",
+        "Whale Incoming: Green Light!"
       ]
     },
     {
       "id": "cha_ching_clean",
       "file": "cha_ching_clean.wav",
       "label": "Cha-Ching! Clean Contract!",
-      "voice": "en-US-AriaNeural",
+      "voice": "cloud-neural:en-US-AriaNeural",
+      "gemini_voice": "Kore",
+      "style": "bright, energetic, sharp trader confirmation",
       "text": "Cha-ching! Clean contract!",
-      "duration_sec": 3.186,
-      "bytes": 152968,
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 3.456,
+      "bytes": 165932,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "Coin Drop"
+        "Coin Drop",
+        "Cha-Ching! Clean Contract!"
       ]
     },
     {
       "id": "honey_badger",
       "file": "honey_badger.wav",
       "label": "Honey Badger Locked On!",
-      "voice": "en-AU-WilliamNeural",
+      "voice": "cloud-neural:en-AU-WilliamNeural",
+      "gemini_voice": "Fenrir",
+      "style": "fearless, locked-in tactical trader",
       "text": "Honey Badger locked on!",
-      "duration_sec": 1.679,
-      "bytes": 80652,
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 1.872,
+      "bytes": 89900,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "Laser Lock"
+        "Laser Lock",
+        "Honey Badger Locked On!"
       ]
     },
     {
       "id": "rug_alert",
       "file": "rug_alert.wav",
       "label": "Rug Alert! Step Away!",
-      "voice": "en-US-JennyNeural",
-      "text": "Rug alert! Step away from the buy button!",
-      "duration_sec": 3.561,
-      "bytes": 170948,
+      "voice": "cloud-neural:en-US-JennyNeural",
+      "gemini_voice": "Aoede",
+      "style": "urgent, sharp cybersecurity trader warning",
+      "text": "Rug alert! Step away!",
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 3.312,
+      "bytes": 159020,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "Cyber Alert"
+        "Cyber Alert",
+        "Rug Alert!",
+        "Rug Alert! Step Away!"
       ]
     },
     {
       "id": "freeze_trap",
       "file": "freeze_trap.wav",
       "label": "Freeze Trap Detected!",
-      "voice": "en-GB-SoniaNeural",
+      "voice": "cloud-neural:en-GB-SoniaNeural",
+      "gemini_voice": "Leda",
+      "style": "urgent, precise British risk alert",
       "text": "Freeze trap detected!",
-      "duration_sec": 1.697,
-      "bytes": 81508,
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 1.92,
+      "bytes": 92204,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "Radar Sweep"
+        "Radar Sweep",
+        "Freeze Trap Detected!"
       ]
     },
     {
       "id": "breaking_alpha",
       "file": "breaking_alpha.wav",
       "label": "Breaking Alpha on the Wire!",
-      "voice": "en-US-RogerNeural",
+      "voice": "cloud-neural:en-US-RogerNeural",
+      "gemini_voice": "Zephyr",
+      "style": "fast-paced financial breaking news anchor",
       "text": "Breaking alpha on the wire!",
-      "duration_sec": 2.123,
-      "bytes": 101930,
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 2.328,
+      "bytes": 111788,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "News Wire"
+        "News Wire",
+        "Breaking Alpha on the Wire!"
       ]
     },
     {
       "id": "rent_reclaim_ready",
       "file": "rent_reclaim_ready.wav",
       "label": "Free SOL Rent Ready!",
-      "voice": "en-CA-ClaraNeural",
+      "voice": "cloud-neural:en-CA-ClaraNeural",
+      "gemini_voice": "Callirrhoe",
+      "style": "clear, friendly treasury concierge",
       "text": "Zero balance accounts found. Free Solana rent ready to collect!",
-      "duration_sec": 5.118,
-      "bytes": 245726,
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 5.352,
+      "bytes": 256940,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "Emerald Ping"
+        "Emerald Ping",
+        "Free SOL Rent Ready!"
       ]
     },
     {
       "id": "sniper_verified",
       "file": "sniper_verified.wav",
       "label": "Sniper Target Verified!",
-      "voice": "en-IE-ConnorNeural",
+      "voice": "cloud-neural:en-IE-ConnorNeural",
+      "gemini_voice": "Puck",
+      "style": "sharp tactical sniper lock confirmation",
       "text": "Sniper target verified, liquidity locked!",
-      "duration_sec": 3.072,
-      "bytes": 147522,
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 3.336,
+      "bytes": 160172,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "Sniper Tick"
+        "Sniper Tick",
+        "Sniper Target Verified!"
       ]
     },
     {
       "id": "bull_cross_surge",
       "file": "bull_cross_surge.wav",
       "label": "Bull Cross Momentum Surge!",
-      "voice": "en-US-SteffanNeural",
-      "text": "Bull cross confirmed! Strong surge incoming!",
-      "duration_sec": 3.87,
-      "bytes": 185818,
+      "voice": "cloud-neural:en-US-SteffanNeural",
+      "gemini_voice": "Orus",
+      "style": "high-conviction breakout floor trader",
+      "text": "Bull cross confirmed! Momentum surge incoming!",
+      "sample_rate_hz": 24000,
+      "channels": 1,
+      "bits_per_sample": 16,
+      "duration_sec": 4.248,
+      "bytes": 203948,
+      "riff_wave_verified": true,
+      "zero_metadata_verified": true,
       "legacy_aliases": [
-        "Breakout Bell"
+        "Breakout Bell",
+        "Bull Cross Momentum Surge!"
       ]
     }
   ]
