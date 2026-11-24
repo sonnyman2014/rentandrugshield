@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Solana Rent &amp; Rug Shield | On-Chain Security &amp; SPL 0x09 Advisories</title>
+    <link>https://rentandrugshield.com/</link>
+    <description>Deterministic 12-layer Solana token contract audits and non-custodial SPL 0x09 empty ATA rent recovery reports.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Nov 2026 18:38:00 GMT</lastBuildDate>
+    <atom:link href="https://rentandrugshield.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mainnet RPC Benchmark: 38,616 Empty SPL ATAs Holding 78.485347 SOL in Reclaimable 0x09 Rent</title>
+      <link>https://rentandrugshield.com/?wallet=D9GYt4W7VvteKCSvTgyjzuiBJyTy94Kmr6YiC9fbxGjW&amp;src=rss_feed</link>
+      <guid isPermaLink="false">rrs-report-2026-11-24-0x09-benchmark</guid>
+      <pubDate>Tue, 24 Nov 2026 18:36:00 GMT</pubDate>
+      <description>Read-only Solana RPC inspection of public mainnet account D9GYt4W7VvteKCSvTgyjzuiBJyTy94Kmr6YiC9fbxGjW verified 38,616 zero-balance SPL token accounts locking 78,485,347,095 lamports (78.485347 SOL) recoverable via native SPL CloseAccount (0x09) with zero private key exposure.</description>
+    </item>
+    <item>
+      <title>12-Layer Pre-Buy Rug Blocks: Unburned LP Drain ($VEYRA) &amp; Creator Rug History ($JENSEN)</title>
+      <link>https://rentandrugshield.com/?token=8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1&amp;autoscan=1&amp;src=rss_feed#tokenScanner</link>
+      <guid isPermaLink="false">rrs-report-2026-11-24-12layer-catches</guid>
+      <pubDate>Tue, 24 Nov 2026 18:35:00 GMT</pubDate>
+      <description>12-layer pre-buy verification flagged 0/100 unburned liquidity pool risk on 8zaYjmVacfAnMhf3cLsECgzK6pLtWrLQbBv65y3vjyR1 ($VEYRA, lp_burned_pct = 0.0%) and deployer rug history on HKiMA2mKQHU2cjfZ4Kbmru5GBGCauSNqPtpu8cfmpump ($JENSEN).</description>
+    </item>
+  </channel>
+</rss>
