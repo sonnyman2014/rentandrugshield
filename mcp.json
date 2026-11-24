@@ -16,7 +16,7 @@
     "2024-11-05"
   ],
   "endpoint": "https://rentandrugshield.com/mcp",
-  "liveStreamableHttpEndpoint": "https://vision-under-encryption-believed.trycloudflare.com/mcp",
+  "liveStreamableHttpEndpoint": "https://rent-shield-api.104-197-102-151.sslip.io/mcp",
   "discovery": {
     "mcp": "https://rentandrugshield.com/.well-known/mcp.json",
     "serverCard": "https://rentandrugshield.com/.well-known/mcp/server-card.json",

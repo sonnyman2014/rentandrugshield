@@ -107,3 +107,11 @@ assets/promo_arsenal/00_CASTLE_MASTER_V3_FULL_SHIELD_4K.mp4
 studio-inbox.html
 all-media.html
 promote-now.html
+# Anti-thrash binary & 8000-file watcher excludes
+**/audit/**
+**/*.mp4
+**/*.wav
+**/*.tar.gz
+**/DEX6_MASTER_BACKUPS/**
+/audit/
+/audits/

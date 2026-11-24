@@ -355,14 +355,17 @@
   <!-- VIEW 1: LIVE POP-UP -->
   <div id="pop-view-home">
     <div class="card">
-      <!-- LIVE COIN SPOTLIGHT: EXACT ?token=<MINT>&autoscan=1#tokenScanner -->
+      <!-- LIVE COIN SPOTLIGHT: DIRECT LIVE CHART + SWAP TERMINAL + COMPACT AUDIT -->
       <div class="live-coin-box" id="pop-spotlight-box">
         <div class="live-ticker-row">
-          <span id="pop-spotlight-ticker" class="live-ticker-sym">$JUP +18.4%</span>
+          <a id="pop-spotlight-ticker" href="https://dexscreener.com/solana/JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN" target="_blank" rel="noopener noreferrer" class="live-ticker-sym" style="text-decoration:none;cursor:pointer;" title="Open Live Chart + Buy/Sell Swap">$JUP +18.4%</a>
           <span id="pop-spotlight-verdict" class="live-verdict-pass">12-LAYER: PASS</span>
         </div>
         <div id="pop-spotlight-metrics" class="live-metrics-white">MCap $420K &#8226; Liquidity $68K</div>
-        <a id="pop-spotlight-audit-btn" href="https://rentandrugshield.com/?token=JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN&amp;autoscan=1#tokenScanner" target="_blank" rel="noopener noreferrer" class="spotlight-cta-link">[OPEN 12-LAYER AUDIT &#8599;]</a>
+        <div style="display:flex;gap:6px;width:100%;">
+          <a id="pop-spotlight-trade-btn" href="https://dexscreener.com/solana/JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN" target="_blank" rel="noopener noreferrer" class="spotlight-cta-link" style="flex:1;">[CHART / TRADE &#8599;]</a>
+          <a id="pop-spotlight-audit-btn" href="https://rentandrugshield.com/?token=JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN&amp;autoscan=1#tokenScanner" target="_blank" rel="noopener noreferrer" class="spotlight-cta-link" style="width:94px;flex-shrink:0;border-color:#38BDF8;color:#38BDF8;font-size:10.3px;">[AUDIT &#8599;]</a>
+        </div>
       </div>
 
       <div class="sec-title">
@@ -370,13 +373,20 @@
         <button id="pop-try-luxury-box-btn" type="button" class="nav-btn active">Pop Live Box</button>
       </div>
       <div id="ext-active-filter-summary" style="display:none;margin-bottom:6px;padding:5px 8px;border-radius:7px;background:rgba(0,255,163,0.10);border:1px solid rgba(0,255,163,0.40);font-size:9.5px;font-weight:800;color:#00FFA3;"></div>
-      <div id="ext-intel-tabs" class="btn-row-4" style="grid-template-columns:repeat(6,minmax(0,1fr));margin-bottom:7px;">
+      <div id="ext-intel-tabs" class="btn-row-4" style="grid-template-columns:repeat(6,minmax(0,1fr));margin-bottom:5px;">
         <button type="button" class="btn-sm active" data-icat="all">All</button>
         <button type="button" class="btn-sm" data-icat="coin">Coins</button>
         <button type="button" class="btn-sm" data-icat="rug" style="color:#FF4D6D;">Scams</button>
         <button type="button" class="btn-sm" data-icat="crypto">Crypto</button>
         <button type="button" class="btn-sm" data-icat="ai">AI</button>
         <button type="button" class="btn-sm" data-icat="world">World</button>
+      </div>
+      <div id="ext-news-src-bar" class="btn-row-5" style="margin-bottom:7px;">
+        <button type="button" class="btn-sm active" data-nsrc="bbc" style="height:24px;font-size:9.1px;">BBC</button>
+        <button type="button" class="btn-sm active" data-nsrc="reuters" style="height:24px;font-size:9.1px;">Reuters</button>
+        <button type="button" class="btn-sm active" data-nsrc="ap" style="height:24px;font-size:9.1px;">AP</button>
+        <button type="button" class="btn-sm active" data-nsrc="coindesk" style="height:24px;font-size:9.1px;">CoinDesk</button>
+        <button type="button" class="btn-sm active" data-nsrc="decrypt" style="height:24px;font-size:9.1px;">Decrypt</button>
       </div>
       <div id="ext-intel-bubbles-list" style="display:flex;flex-direction:column;gap:6px;max-height:175px;overflow-y:auto;">
         <div style="font-size:10.2px;color:#CBD5E1;">Syncing live 12-Layer Solana movers &amp; market news...</div>
@@ -602,10 +612,18 @@
           <span>News Filters &amp; Instant Scan + Auto-Scan</span>
           <label class="rrs-switch"><input id="flt-news-kw-on" type="checkbox" checked /><span class="rrs-slider"></span></label>
         </div>
-        <div class="btn-row" style="margin-top:0;margin-bottom:6px;">
+        <div class="btn-row" style="margin-top:0;margin-bottom:5px;">
           <div class="sw-card-row" style="padding:4px 7px;min-height:30px;"><span>Crypto</span><label class="rrs-switch"><input id="flt-cat-crypto" type="checkbox" checked /><span class="rrs-slider"></span></label></div>
           <div class="sw-card-row" style="padding:4px 7px;min-height:30px;"><span>AI</span><label class="rrs-switch"><input id="flt-cat-ai" type="checkbox" checked /><span class="rrs-slider"></span></label></div>
           <div class="sw-card-row" style="padding:4px 7px;min-height:30px;"><span>World</span><label class="rrs-switch gold"><input id="flt-cat-world" type="checkbox" checked /><span class="rrs-slider"></span></label></div>
+        </div>
+        <div style="font-size:9.2px;font-weight:800;color:#38BDF8;margin-bottom:3px;">Multi-Source News Feeds (Round-Robin Active)</div>
+        <div id="flt-news-src-pills" class="btn-row-5" style="margin-bottom:6px;">
+          <button type="button" class="btn-sm active" data-nsrc="bbc" style="height:26px;font-size:9.3px;">BBC</button>
+          <button type="button" class="btn-sm active" data-nsrc="reuters" style="height:26px;font-size:9.3px;">Reuters</button>
+          <button type="button" class="btn-sm active" data-nsrc="ap" style="height:26px;font-size:9.3px;">AP</button>
+          <button type="button" class="btn-sm active" data-nsrc="coindesk" style="height:26px;font-size:9.3px;">CoinDesk</button>
+          <button type="button" class="btn-sm active" data-nsrc="decrypt" style="height:26px;font-size:9.3px;">Decrypt</button>
         </div>
         <div style="font-size:9.5px;font-weight:800;color:#CBD5E1;margin-bottom:3px;">News Keywords</div>
         <input id="flt-news-kw" class="flt-inp" type="text" value="SOL,BTC,ETF,GEMINI" placeholder="News Keywords" />
