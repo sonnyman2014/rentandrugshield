@@ -2,52 +2,99 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Rent &amp; Rug Shield Original Gold &amp; Black v5.7</title>
+<title>Rent &amp; Rug Shield Jet Black Live Alert v6.7</title>
 <style>
   :root { --rrs-scale: 1; }
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  html, body { min-width: 380px; background: #060A14; color: #FFFFFF; overflow-x: hidden; zoom: var(--rrs-scale); }
+  html, body { min-width: 420px; background: #020408; color: #FFFFFF; overflow-x: hidden; zoom: var(--rrs-scale); }
   .wrap {
-    padding: 12px 14px;
-    background: #060A14;
-    border: 2px solid #FFD000;
-    border-radius: 12px;
+    padding: 12px 14px 9px;
+    background: #020408;
+    border: 3px solid #00FF88;
+    border-radius: 10px;
     display: flex; flex-direction: column; gap: 8px;
   }
-  .scan-row { display: flex; gap: 6px; width: 100%; }
-  .scan-inp { flex: 1; background: #03060C; color: #FFF; border: 1.4px solid #FFD000; border-radius: 7px; padding: 6px 9px; font-size: 11.5px; font-weight: 700; outline: none; }
-  .scan-btn { background: #FFD000; color: #060A14; border: none; border-radius: 7px; padding: 6px 11px; font-size: 11px; font-weight: 900; cursor: pointer; }
-  .cbtn { background: #0B1222; color: #FFD000; border: 1.3px solid #FFD000; border-radius: 7px; padding: 4px 8px; font-size: 10.8px; font-weight: 900; cursor: pointer; }
-  .ttl { font-size: 14px; font-weight: 900; color: #FFD000; cursor: pointer; }
-  .sub { font-size: 11.8px; font-weight: 600; color: #E2E8F0; cursor: pointer; }
-  .ftr { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,208,0,0.25); padding-top: 5px; font-size: 10.5px; font-weight: 800; }
+  .wrap.state-green { border: 3px solid #00FF88; }
+  .wrap.state-red { border: 3px solid #FF3B5C; }
+  .wrap.state-blue { border: 3px solid #38BDF8; }
+  .ctrl-row { display: flex; justify-content: space-between; align-items: center; gap: 4px; flex-wrap: nowrap; }
+  .cbtn { background: #000000; color: #F8FAFC; border: 1.2px solid #2D3A4E; border-radius: 6px; padding: 4px 7px; font-size: 10px; font-weight: 800; cursor: pointer; white-space: nowrap; }
+  .cbtn.zin { color: #00FF88; border-color: rgba(0,255,136,0.55); }
+  .cbtn.pinned { color: #00FF88; border-color: #00FF88; }
+  .cbtn.gear { color: #38BDF8; border-color: #2D3A4E; font-size: 12px; padding: 3px 7px; }
+  .cbtn.close { color: #FF3B5C; border-color: rgba(255,59,92,0.55); }
+  .step-cap { display: inline-flex; align-items: center; border: 1.2px solid #2D3A4E; border-radius: 6px; background: #000000; overflow: hidden; height: 24px; }
+  .step-btn { background: transparent; color: #FFFFFF; border: none; padding: 0 6px; font-size: 11px; font-weight: 900; cursor: pointer; }
+  .step-btn.plus { color: #00FF88; }
+  .step-mid { font-size: 10px; font-weight: 800; color: #FFFFFF; padding: 0 5px; border-left: 1px solid #2D3A4E; border-right: 1px solid #2D3A4E; cursor: pointer; }
+  .wire-pill { display: none; align-self: flex-start; padding: 3px 9px; border-radius: 6px; border: 1.4px solid #38BDF8; color: #38BDF8; background: #000000; font-size: 10.8px; font-weight: 900; }
+  .hdr-verdict { display: flex; justify-content: space-between; align-items: center; gap: 8px; cursor: pointer; }
+  .ttl { font-size: 18px; font-weight: 900; color: #00FF88; cursor: pointer; line-height: 1.25; }
+  .vpill { padding: 3px 9px; border-radius: 6px; border: 1.4px solid #00FF88; color: #00FF88; background: #000000; font-size: 10.8px; font-weight: 900; white-space: nowrap; }
+  .sub { font-size: 15px; font-weight: 800; color: #FFFFFF; cursor: pointer; }
+  .cta { width: 100%; height: 31px; background: #000000; border: 1.4px solid #00FF88; color: #00FF88; border-radius: 6px; font-size: 11.2px; font-weight: 900; cursor: pointer; }
+  .drawer { display: none; padding: 10px; border: 1.5px solid #2D3A4E; border-radius: 8px; background: #000000; flex-direction: column; gap: 6px; }
+  .drawer.open { display: flex; }
+  .scan-row { display: flex; gap: 5px; width: 100%; }
+  .scan-inp { flex: 1; background: #000000; color: #FFF; border: 1.2px solid #2D3A4E; border-radius: 6px; padding: 5px 8px; font-size: 11px; font-weight: 700; outline: none; }
+  .scan-btn { background: #38BDF8; color: #000000; border: none; border-radius: 6px; padding: 5px 9px; font-size: 10.4px; font-weight: 900; cursor: pointer; white-space: nowrap; }
+  .autoscan-btn { background: #000000; color: #94A3B8; border: 1.2px solid #334155; border-radius: 6px; padding: 5px 8px; font-size: 10px; font-weight: 900; cursor: pointer; white-space: nowrap; }
+  .autoscan-btn.on { color: #00FF88; border-color: #00FF88; background: rgba(0,255,136,0.16); }
+  .ftr { display: flex; justify-content: space-between; align-items: center; padding-top: 2px; font-size: 10px; font-weight: 700; color: #94A3B8; }
+  .prog-track { width: 100%; height: 3px; background: #121824; border-radius: 99px; overflow: hidden; }
+  .prog-bar { width: 100%; height: 100%; background: #00FF88; transition: width 0.1s linear; }
 </style>
 </head>
 <body>
-  <div id="card" class="wrap">
-    <div class="scan-row">
-      <input id="ctScanInp" class="scan-inp" type="text" placeholder="Paste Coin Mint or Wallet Address Here..." />
-      <button id="ctScanBtn" class="scan-btn" type="button">SCAN NOW</button>
-    </div>
-    <div id="ctScanOut" style="display:none;padding:6px 8px;border:1px solid #FFD000;border-radius:7px;font-size:10.5px;"></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;">
-      <span id="pl" style="color:#00FFA3;font-size:10.5px;font-weight:900;">GOLD &amp; BLACK v5.7</span>
-      <div style="display:flex;gap:4px;">
-        <button id="btnZoomOut" class="cbtn" type="button">- ZOOM</button>
-        <button id="btnZoomPct" class="cbtn" type="button">100%</button>
-        <button id="btnZoomIn" class="cbtn" type="button">+ ZOOM</button>
-        <button id="btnPin" class="cbtn" type="button">10s / PIN</button>
-        <button id="btnClose" class="cbtn" type="button" style="border-color:#FF4D6D;color:#FF4D6D;">X</button>
+  <div id="card" class="wrap state-green">
+    <div class="ctrl-row">
+      <button id="btnZoomOut" class="cbtn" type="button">[- ZOOM]</button>
+      <button id="btnZoomPct" class="cbtn" type="button">100%</button>
+      <button id="btnZoomIn" class="cbtn zin" type="button">[+ ZOOM]</button>
+      <div class="step-cap">
+        <button id="btnStepMinus" class="step-btn" type="button">-</button>
+        <span id="lblStepSec" class="step-mid">5s</span>
+        <button id="btnStepPlus" class="step-btn plus" type="button">+</button>
       </div>
+      <button id="btnPin" class="cbtn" type="button">PIN</button>
+      <button id="btnMute" class="cbtn" type="button">MUTE</button>
+      <button id="btnGear" class="cbtn gear" type="button" title="Settings">&#9881;</button>
+      <button id="btnClose" class="cbtn close" type="button">&#10005;</button>
     </div>
+
+    <div id="drawerSettings" class="drawer">
+      <div style="font-size:10px;font-weight:800;color:#38BDF8;">12 REAL SPOKEN VOICES (.WAV) &amp; LIQUIDITY SLIDER</div>
+      <div class="scan-row">
+        <select id="ctAudioSelect" class="scan-inp"></select>
+        <button id="ctPlayVoiceBtn" class="scan-btn" type="button">&#9654; PLAY</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:9.8px;font-weight:800;color:#00FF88;">
+        <span>Liquidity Filter ($0K-$500K+)</span>
+        <span id="ctLiqLbl">&ge; $10K</span>
+      </div>
+      <input id="ctLiqSlider" type="range" min="0" max="500000" step="5000" value="10000" style="width:100%;accent-color:#00FF88;" />
+      <div class="scan-row">
+        <input id="ctScanInp" class="scan-inp" type="text" placeholder="Coin Mint or Wallet" />
+        <button id="ctScanBtn" class="scan-btn" type="button">SCAN NOW</button>
+        <button id="ctAutoScanBtn" class="autoscan-btn" type="button">&#9889; AUTO-SCAN &amp; COLLECT: OFF</button>
+      </div>
+      <div id="ctScanOut" style="display:none;padding:6px 8px;border:1px solid #38BDF8;border-radius:6px;font-size:10.5px;"></div>
+    </div>
+
+    <div id="wirePill" class="wire-pill">BREAKING NEWS WIRE</div>
     <div id="bodyClick">
-      <div id="ttl" class="ttl">Original Carbon Black &amp; 24K Gold v5.7</div>
-      <div id="sub" class="sub">10s Idle Auto-Close | Zero False Red News Badges</div>
+      <div class="hdr-verdict">
+        <div id="ttl" class="ttl">$SOL +18.4%</div>
+        <span id="pl" class="vpill">12-LAYER: PASS</span>
+      </div>
+      <div id="sub" class="sub" style="margin-top:5px;">MCap $420K &#8226; Liquidity $68K</div>
     </div>
+    <button id="btnCta" class="cta" type="button">[OPEN 12-LAYER AUDIT &#8599;]</button>
     <div class="ftr">
-      <span id="dragCue" style="color:#94A3B8;">10s Auto-Close</span>
-      <span style="color:#FFD000;font-weight:900;">rentandrugshield.com</span>
+      <span id="dragCue">5s</span>
+      <span>rentandrugshield.com</span>
     </div>
+    <div class="prog-track"><div id="progBar" class="prog-bar"></div></div>
   </div>
   <script src="carbon-toast.js"></script>
 </body>

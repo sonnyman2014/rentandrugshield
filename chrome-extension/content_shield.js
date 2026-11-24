@@ -397,7 +397,7 @@
         '<div class="rrs-modal-top">' +
           '<div style="display:flex;align-items:center;gap:7px;">' +
             '<img class="rrs-shield-logo" src="' + iconSrc + '" alt="Shield" />' +
-            '<span class="rrs-modal-title">SOL Rent &amp; Rug Shield • 12-Layer Suite (v5.7.0)</span>' +
+            '<span class="rrs-modal-title">SOL Rent &amp; Rug Shield • 12-Layer Suite (v6.0)</span>' +
             '<button type="button" class="rrs-info-trigger" id="rrs-modal-info-btn" title="12-Layer Info">ⓘ</button>' +
           '</div>' +
           '<button type="button" class="rrs-icon-btn" id="rrs-modal-close-btn">✕ Close</button>' +
@@ -1109,7 +1109,7 @@
       bar.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:2147483647;background:linear-gradient(90deg,#7f1d1d,#dc2626,#7f1d1d);color:#fff;padding:14px 20px;font-family:Inter,Segoe UI,sans-serif;box-shadow:0 8px 32px rgba(220,38,38,0.65);border-bottom:3px solid #fde047;display:flex;align-items:center;justify-content:space-between;gap:16px;';
       const safeHref = canonicalDomain ? ('https://' + canonicalDomain) : 'https://rentandrugshield.com';
       bar.innerHTML = '<div style="display:flex;flex-direction:column;gap:3px;">'
-        + '<strong style="font-size:15px;letter-spacing:0.3px;">🚨 RENT & RUG SHIELD v5.1 CRITICAL SECURITY BLOCK: ' + escapeHtml(title) + '</strong>'
+        + '<strong style="font-size:15px;letter-spacing:0.3px;">🚨 RENT & RUG SHIELD v6.0 CRITICAL SECURITY BLOCK: ' + escapeHtml(title) + '</strong>'
         + '<span style="font-size:13px;color:#fee2e2;">' + escapeHtml(detail) + '</span>'
         + '</div>'
         + '<div style="display:flex;gap:8px;align-items:center;flex-shrink:0;">'

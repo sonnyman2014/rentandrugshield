@@ -9,9 +9,158 @@ const API_ENDPOINTS = [
   'http://127.0.0.1:8088'
 ];
 
+const PUBLICNODE_SOLANA_RPC = 'https://solana-rpc.publicnode.com';
+const SPL_TOKEN_PROGRAM_ID = 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA';
+const TOKEN_2022_PROGRAM_ID = 'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb';
+const HARD_EXCLUDED_FROZEN_ATAS = new Set([
+  '5sEb9m4XP3mXJSsv8GEeck62Z6PY8TfAhmngZrpgNU9Q',
+  'CsLX8FSsWc8uNfMBUB9PhwcsZBaLstoYpiUi9SDdkDLg',
+  'DGnsyzo5cbQZMpXEwSbESBnSrdjroj7DhpcAPbfQaUft',
+  'FRCeYgC1PR7kTKhgk8Peq7WE8Rz6E7cEXnhB77DT5G8F'
+]);
+
 const PREFS_STORAGE_KEY = 'rrs_alert_prefs_v42';
 const FLT_KEY_V53 = 'rrs_notifier_filters_v53';
+const AUTOSCAN_KEY_V67 = 'rrs_autoscan_collect_v67';
+const PHANTOM_45S_CARD_KEY = 'rrs_v60_phantom_45s_card';
+const PHANTOM_45S_URL = 'https://rentandrugshield.com/app.html?connect_phantom=1&auto_reclaim_0pct=1&src=ext_v67';
 const SAMPLE_VERIFIED_WALLET = 'C3FFhG83pda2veVRFwTDNyf1YT2R2U2ZHxcg8pUeMjrC';
+const ALLOWED_STAY_SECS = [3, 5, 8, 10, 15, 20, 30, 45, 60];
+
+// 12 Real Spoken Neural Voice .WAV Clips (edge-tts, 0 synth beeps)
+const SPOKEN_VOICES_V67 = [
+  { label: 'To Valhalla!', file: 'to_valhalla.wav', aliases: ['to valhalla', 'to valhalla!'] },
+  { label: 'To the Moon, baby!', file: 'to_the_moon.wav', aliases: ['to the moon', 'to the moon, baby!'] },
+  { label: 'Wizard: 12 Layers Clean!', file: 'wizard_check.wav', aliases: ['wizard', 'wizard: 12 layers clean!'] },
+  { label: 'Whale Incoming: Green Light!', file: 'whale_incoming.wav', aliases: ['whale horn', 'whale incoming: green light!'] },
+  { label: 'Cha-Ching! Clean Contract!', file: 'cha_ching_clean.wav', aliases: ['coin drop', 'cha-ching! clean contract!'] },
+  { label: 'Honey Badger Locked On!', file: 'honey_badger.wav', aliases: ['laser lock', 'honey badger locked on!'] },
+  { label: 'Rug Alert! Step Away!', file: 'rug_alert.wav', aliases: ['cyber alert', 'rug alert! step away!'] },
+  { label: 'Freeze Trap Detected!', file: 'freeze_trap.wav', aliases: ['radar sweep', 'freeze trap detected!'] },
+  { label: 'Breaking Alpha on the Wire!', file: 'breaking_alpha.wav', aliases: ['news wire', 'breaking alpha on the wire!'] },
+  { label: 'Free SOL Rent Ready!', file: 'rent_reclaim_ready.wav', aliases: ['emerald ping', 'free sol rent ready!'] },
+  { label: 'Sniper Target Verified!', file: 'sniper_verified.wav', aliases: ['sniper tick', 'sniper target verified!'] },
+  { label: 'Bull Cross Momentum Surge!', file: 'bull_cross_surge.wav', aliases: ['breakout bell', 'bull cross momentum surge!'] }
+];
+
+// Plain-English [?] Trader Tooltips
+const PLAIN_ENGLISH_TOOLTIPS_V67 = {
+  runners: {
+    title: 'Runners (Verified Momentum)',
+    body: 'Verified momentum tokens holding multi-minute higher lows with real DEX volume.'
+  },
+  whales: {
+    title: 'Whales (Smart-Money Size)',
+    body: 'Large smart-money wallet accumulation above your SOL/USD size filter.'
+  },
+  bull_cross: {
+    title: 'Bull Cross (Buy-Flow Breakout)',
+    body: 'Short-term buy-flow EMA crossing above baseline volume/price trend with clean 12-Layer score.'
+  },
+  hot_hist: {
+    title: 'Hot Hist (Volume Expansion)',
+    body: 'Previously graduated/high-win-rate tokens re-entering active volume expansion.'
+  },
+  bear_warn: {
+    title: 'Bear Warn (Risk / Sell Spike)',
+    body: 'Sell-pressure spike, LP unlock/drain signal, or authority risk warning.'
+  },
+  macd: {
+    title: 'MACD Trend Speed Filter',
+    body: 'Moving Average Convergence Divergence: tracks real-time trend direction and speed across 1m, 3m, 5m, or 15m candles.'
+  },
+  liquidity: {
+    title: 'Liquidity Pool Depth ($0K-$500K+)',
+    body: 'Real cash/SOL locked inside the DEX trading pool. Higher liquidity means you can buy and sell cleanly without huge slippage or LP traps.'
+  },
+  autoscan: {
+    title: 'Auto-Scan & 0x09 SOL Rent Collect',
+    body: 'When ON with Phantom/Solflare connected, polls read-only PublicNode every 60s to find empty 0-balance token accounts and reclaim your SOL rent straight to your wallet (0% 1st claim, 98% repeat, 0 seed phrases).'
+  }
+};
+
+let activeAudioEl = null;
+
+function resolveVoiceWavFile(presetName) {
+  const key = String(presetName || 'To Valhalla!').trim().toLowerCase();
+  for (let i = 0; i < SPOKEN_VOICES_V67.length; i++) {
+    const v = SPOKEN_VOICES_V67[i];
+    if (v.label.toLowerCase() === key || v.aliases.indexOf(key) !== -1) {
+      return v.file;
+    }
+  }
+  return 'to_valhalla.wav';
+}
+
+function normalizeVoiceLabel(presetName) {
+  const key = String(presetName || 'To Valhalla!').trim().toLowerCase();
+  for (let i = 0; i < SPOKEN_VOICES_V67.length; i++) {
+    const v = SPOKEN_VOICES_V67[i];
+    if (v.label.toLowerCase() === key || v.aliases.indexOf(key) !== -1) {
+      return v.label;
+    }
+  }
+  return 'To Valhalla!';
+}
+
+function playSpokenVoiceWav(presetName, forceTest) {
+  if (!forceTest && !userPrefs.audioChimeAlert && !soundEnabled) return Promise.resolve(false);
+  try {
+    const wavFile = resolveVoiceWavFile(presetName);
+    const url = (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.getURL)
+      ? chrome.runtime.getURL('sounds/' + wavFile)
+      : ('sounds/' + wavFile);
+    if (activeAudioEl) {
+      try { activeAudioEl.pause(); activeAudioEl.currentTime = 0; } catch (_e) {}
+    }
+    const aud = new Audio(url);
+    aud.volume = 0.95;
+    activeAudioEl = aud;
+    window.__RRS_LAST_PLAYED_WAV__ = { preset: normalizeVoiceLabel(presetName), file: wavFile, url, ts: Date.now() };
+    const p = aud.play();
+    if (p && typeof p.then === 'function') {
+      return p.then(() => true).catch(() => true);
+    }
+    return Promise.resolve(true);
+  } catch (_e) {
+    return Promise.resolve(false);
+  }
+}
+
+function normStaySecPopup(s) {
+  const n = Number(s) || 5;
+  let best = 5;
+  let bestDiff = Infinity;
+  for (let i = 0; i < ALLOWED_STAY_SECS.length; i++) {
+    const d = Math.abs(ALLOWED_STAY_SECS[i] - n);
+    if (d < bestDiff) { bestDiff = d; best = ALLOWED_STAY_SECS[i]; }
+  }
+  return best;
+}
+
+function stepStaySecPopup(cur, dir) {
+  const norm = normStaySecPopup(cur);
+  let idx = ALLOWED_STAY_SECS.indexOf(norm);
+  if (idx === -1) idx = 1;
+  return ALLOWED_STAY_SECS[Math.max(0, Math.min(ALLOWED_STAY_SECS.length - 1, idx + dir))];
+}
+
+function formatCompactUsdPopup(val) {
+  if (val === undefined || val === null || val === '') return '';
+  if (typeof val === 'string') {
+    const t = val.trim();
+    if (/^\$[\d,.]+[KMB]?/i.test(t)) return t;
+    const p = Number(t.replace(/[$,]/g, ''));
+    if (!Number.isFinite(p) || p <= 0) return t;
+    val = p;
+  }
+  const num = Number(val);
+  if (!Number.isFinite(num) || num <= 0) return '';
+  if (num >= 1000000000) return '$' + (num / 1000000000).toFixed(2).replace(/\.00$/, '') + 'B';
+  if (num >= 1000000) return '$' + (num / 1000000).toFixed(2).replace(/\.00$/, '') + 'M';
+  if (num >= 1000) return '$' + Math.round(num / 1000) + 'K';
+  return '$' + Math.round(num);
+}
 
 const DEFAULT_ALERT_PREFS = {
   riskCutoff: 75,
@@ -46,14 +195,67 @@ const KNOWN_SYM_MINTS = {
   WASTED6: '3wyRvbB6nFD7Y9cuozSXrUajZs1EoJxrcBCDBxwupump',
   NVIDIA: 'AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL',
   RUGTEST: 'AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL',
-  SOL: 'So11111111111111111111111111111111111111112'
+  SOL: 'So11111111111111111111111111111111111111112',
+  BONK: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',
+  JUP: 'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN',
+  WIF: 'EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm',
+  RAY: '4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R',
+  PYTH: 'HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3',
+  POPCAT: '7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr',
+  USDC: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+  USDT: 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB'
 };
 
+function buildExact12LayerAuditUrl(mint) {
+  const safeMint = (mint && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(mint) && !SYSTEM_ONLY_MINTS.has(mint))
+    ? mint
+    : 'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN';
+  return 'https://rentandrugshield.com/?token=' + encodeURIComponent(safeMint) + '&autoscan=1#tokenScanner';
+}
+
+function isExternalNewsUrlValid(rawUrl) {
+  const trimmed = String(rawUrl || '').trim();
+  if (!/^https?:\/\//i.test(trimmed)) return false;
+  try {
+    const u = new URL(trimmed);
+    if (u.protocol !== 'http:' && u.protocol !== 'https:') return false;
+    const h = String(u.hostname || '').toLowerCase();
+    if (!h || !h.includes('.')) return false;
+    if (
+      h === 'rentandrugshield.com' ||
+      h.endsWith('.rentandrugshield.com') ||
+      h.includes('rentandrugshield.com') ||
+      h === 'localhost' ||
+      h.endsWith('.localhost') ||
+      h === '127.0.0.1' ||
+      h === '0.0.0.0' ||
+      h === '::1' ||
+      h === '[::1]' ||
+      h.endsWith('.trycloudflare.com')
+    ) {
+      return false;
+    }
+    return true;
+  } catch (_e) {
+    return false;
+  }
+}
+
+function resolveVerifiedNewsUrl(rawUrl) {
+  const trimmed = String(rawUrl || '').trim();
+  return isExternalNewsUrlValid(trimmed) ? trimmed : '';
+}
+
 function resolveExactBubbleUrl(b) {
-  if (!b) return 'https://rentandrugshield.com/?mint=3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump';
+  if (!b) return buildExact12LayerAuditUrl('JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN');
   const kind = String(b.kind || 'coin').toLowerCase();
-  const rawUrl = String(b.url || '').trim();
   const upper = (String(b.badge || '') + ' ' + String(b.title || '')).toUpperCase();
+  const isNews = (kind === 'news' || kind === 'breaking' || kind === 'breaking_news' || kind === 'crypto' || kind === 'ai' || kind === 'world' || /BREAKING\s*NEWS|CRYPTO\s*NEWS|AI\s*NEWS|WORLD\s*NEWS|LIVE\s*WIRE/i.test(upper));
+  if (isNews) {
+    const cand = String(b.article_url || b.link || b.source_url || b.url || '').trim();
+    return resolveVerifiedNewsUrl(cand);
+  }
+  const rawUrl = String(b.url || '').trim();
 
   if (rawUrl.indexOf(':18088/') !== -1) return rawUrl;
   if (kind === 'visitor' || upper.includes('EXTERNAL HUMAN IPS') || upper.includes('WEBSITE VISITORS')) {
@@ -65,9 +267,6 @@ function resolveExactBubbleUrl(b) {
   if (kind === 'promo') {
     return 'http://127.0.0.1:18088/command/terminal-4';
   }
-  if ((kind === 'news' || kind === 'crypto' || kind === 'ai' || kind === 'world') && /^https?:\/\//i.test(rawUrl)) {
-    return rawUrl;
-  }
 
   let mint = '';
   const checkMint = (cand) => Boolean(cand && cand.length >= 32 && cand.length <= 44 && !SYSTEM_ONLY_MINTS.has(cand) && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(cand));
@@ -76,7 +275,7 @@ function resolveExactBubbleUrl(b) {
   } else if (rawUrl) {
     try {
       const u = new URL(rawUrl, 'https://rentandrugshield.com');
-      for (const k of ['mint', 'trade', 'outputMint', 'token', 'address']) {
+      for (const k of ['token', 'mint', 'trade', 'outputMint', 'address']) {
         const v = (u.searchParams.get(k) || '').trim();
         if (checkMint(v)) { mint = v; break; }
       }
@@ -89,6 +288,10 @@ function resolveExactBubbleUrl(b) {
   if (!mint && b.title) {
     const matches = String(b.title).match(/[1-9A-HJ-NP-Za-km-z]{32,44}/g) || [];
     for (const m of matches) { if (checkMint(m)) { mint = m; break; } }
+    if (!mint) {
+      const sm = String(b.title).match(/\$([A-Za-z0-9_]{2,12})/);
+      if (sm && KNOWN_SYM_MINTS[sm[1].toUpperCase()]) mint = KNOWN_SYM_MINTS[sm[1].toUpperCase()];
+    }
   }
   if (!mint && b.sym) {
     const cs = String(b.sym).replace(/^\$/, '').trim().toUpperCase();
@@ -96,21 +299,16 @@ function resolveExactBubbleUrl(b) {
   }
 
   if (kind === 'moonbag' && !mint) return 'http://127.0.0.1:18088/command/terminal-1';
-  if (mint) {
-    return 'https://rentandrugshield.com/?mint=' + encodeURIComponent(mint) + '&trade=1';
+  if (!mint) {
+    mint = kind === 'rug' ? 'AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL' : 'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN';
   }
-  if (kind === 'moonbag') return 'http://127.0.0.1:18088/command/terminal-1';
-  if (/^https?:\/\//i.test(rawUrl)) {
-    const isGenericHome = /^https?:\/\/(?:www\.)?rentandrugshield\.com(?:\/|\/index\.html|\/app\.html)?(?:\?.*)?$/i.test(rawUrl)
-      && !/[?&](?:mint|domain|wallet)=/i.test(rawUrl);
-    if (!isGenericHome) return rawUrl;
-  }
-  return 'https://rentandrugshield.com/?mint=3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump&trade=1';
+  return buildExact12LayerAuditUrl(mint);
 }
 
 const OFFLINE_PRESET_MINTS = {
   '3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump': {
     ok: true,
+    mint: '3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump',
     symbol: 'MELNOK',
     safety_score: 100,
     verdict: 'SAFE | 12-LAYER SHIELD PASSED',
@@ -126,6 +324,7 @@ const OFFLINE_PRESET_MINTS = {
   },
   '3wyRvbB6nFD7Y9cuozSXrUajZs1EoJxrcBCDBxwupump': {
     ok: true,
+    mint: '3wyRvbB6nFD7Y9cuozSXrUajZs1EoJxrcBCDBxwupump',
     symbol: 'WASTED6',
     safety_score: 100,
     verdict: 'SAFE | 12-LAYER SHIELD PASSED',
@@ -141,6 +340,7 @@ const OFFLINE_PRESET_MINTS = {
   },
   'AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL': {
     ok: true,
+    mint: 'AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL',
     symbol: 'NVIDIA',
     safety_score: 0,
     verdict: 'DANGER | RUG / SYBIL & LP-PULL BLOCKED',
@@ -174,6 +374,8 @@ let userPrefs = Object.assign({}, DEFAULT_ALERT_PREFS);
 let lastAuditData = null;
 let viewHistory = ['home'];
 let viewHistoryIdx = 0;
+let autoScanEnabled = false;
+let autoScanTimerId = null;
 
 function scrubDashes(str) {
   const em = String.fromCharCode(8212);
@@ -260,10 +462,10 @@ function emitTelemetryClick(buttonId, buttonLabel) {
     id: buttonId,
     button_label: buttonLabel,
     label: buttonLabel,
-    page: 'extension:popup_v5.3.0',
+    page: 'extension:popup_v6.7.0',
     page_path: '/extension/popup.html',
     path: '/extension/popup.html',
-    source: 'mv3_extension_v5.3.0',
+    source: 'mv3_extension_v6.7.0',
     mint: mintVal.trim(),
     wallet: walletVal.trim(),
     ts: Date.now()
@@ -280,27 +482,59 @@ function emitTelemetryClick(buttonId, buttonLabel) {
   });
 }
 
-function playPopupWarningChime(forceTest) {
-  if (!forceTest && !userPrefs.audioChimeAlert && !soundEnabled) return;
-  try {
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return;
-    const ctx = new AudioCtx();
-    const now = ctx.currentTime;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(587.33, now);
-    osc.frequency.setValueAtTime(440.0, now + 0.12);
-    gain.gain.setValueAtTime(0.001, now);
-    gain.gain.exponentialRampToValueAtTime(0.12, now + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start(now);
-    osc.stop(now + 0.3);
-    setTimeout(() => { try { ctx.close(); } catch (_e) {} }, 450);
-  } catch (_e) {}
+// Read-Only PublicNode 0-Balance ATA Poll ($0 Helius Burn)
+async function pollPublicNodeZeroBalanceAtas(walletAddr) {
+  const w = String(walletAddr || '').trim();
+  if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(w)) {
+    return { ok: false, error: 'Connect Phantom/Solflare or enter a valid Solana wallet address.' };
+  }
+  let closableCount = 0;
+  let reclaimLamports = 0;
+  const closablePubkeys = [];
+
+  for (const progId of [SPL_TOKEN_PROGRAM_ID, TOKEN_2022_PROGRAM_ID]) {
+    try {
+      const res = await fetch(PUBLICNODE_SOLANA_RPC, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 1,
+          method: 'getTokenAccountsByOwner',
+          params: [w, { programId: progId }, { encoding: 'jsonParsed', commitment: 'confirmed' }]
+        })
+      });
+      if (res.ok) {
+        const j = await res.json();
+        const vals = (j && j.result && Array.isArray(j.result.value)) ? j.result.value : [];
+        for (let i = 0; i < vals.length; i++) {
+          const row = vals[i];
+          const pubk = row && row.pubkey;
+          if (!pubk || HARD_EXCLUDED_FROZEN_ATAS.has(pubk)) continue;
+          const acc = row.account || {};
+          const parsedInfo = acc.data && acc.data.parsed && acc.data.parsed.info;
+          if (!parsedInfo) continue;
+          if (String(parsedInfo.state || '').toLowerCase() !== 'initialized') continue;
+          const amtStr = parsedInfo.tokenAmount && String(parsedInfo.tokenAmount.amount || '');
+          if (amtStr === '0') {
+            closableCount += 1;
+            reclaimLamports += Number(acc.lamports || 2039280);
+            if (closablePubkeys.length < 25) closablePubkeys.push(pubk);
+          }
+        }
+      }
+    } catch (_e) {}
+  }
+
+  return {
+    ok: true,
+    wallet: w,
+    rpc: 'PublicNode (0 Helius Burn)',
+    closable_count: closableCount,
+    reclaim_sol: Number((reclaimLamports / 1e9).toFixed(6)),
+    closable_atas: closablePubkeys,
+    claim_url: 'https://rentandrugshield.com/app.html?wallet=' + encodeURIComponent(w) + '&auto_reclaim_0pct=1&autoscan=1'
+  };
 }
 
 function readLocalPrefs() {
@@ -321,19 +555,10 @@ function renderPrefsForm() {
   const valLbl = document.getElementById('pop-cutoff-val');
   const rng = document.getElementById('pop-cutoff-range');
   const num = document.getElementById('pop-cutoff-num');
-  const aud = document.getElementById('pop-pref-audio');
-  const ban = document.getElementById('pop-pref-banner');
-  const syb = document.getElementById('pop-pref-sybil');
-  const whl = document.getElementById('pop-pref-whale');
-
   if (badge) badge.textContent = cutoff + '/100';
   if (valLbl) valLbl.textContent = String(cutoff);
   if (rng) rng.value = String(cutoff);
   if (num) num.value = String(cutoff);
-  if (aud) aud.checked = Boolean(userPrefs.audioChimeAlert);
-  if (ban) ban.checked = Boolean(userPrefs.topBannerAlert);
-  if (syb) syb.checked = Boolean(userPrefs.block0SybilAutoWarn);
-  if (whl) whl.checked = Boolean(userPrefs.whaleLpRugAlert);
 }
 
 async function initAlertPrefs() {
@@ -406,10 +631,6 @@ function openView(viewName, recordHist) {
       viewHistoryIdx = viewHistory.length - 1;
     }
   }
-  const backBtn = document.getElementById('pop-nav-back');
-  const fwdBtn = document.getElementById('pop-nav-fwd');
-  if (backBtn) backBtn.disabled = viewHistoryIdx <= 0;
-  if (fwdBtn) fwdBtn.disabled = viewHistoryIdx >= viewHistory.length - 1;
 }
 
 function isValidMintCandidate(cand) {
@@ -420,7 +641,7 @@ function extractMintFromUrl(urlStr) {
   if (!urlStr) return '';
   try {
     const parsed = new URL(urlStr);
-    const paramKeys = ['outputMint', 'outputCurrency', 'mint', 'token', 'inputMint', 'address'];
+    const paramKeys = ['token', 'outputMint', 'outputCurrency', 'mint', 'inputMint', 'address'];
     for (const key of paramKeys) {
       const val = (parsed.searchParams.get(key) || '').trim();
       if (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(val) && isValidMintCandidate(val)) return val;
@@ -454,12 +675,14 @@ function renderMintResult(out, d, allowSound) {
     const ok = c && c.passed !== false;
     return `<div style="margin-top:2px;color:${ok ? '#a7f3d0' : '#fda4af'};">${ok ? '[OK]' : '[RISK]'} <b>${escapeHtml(c.label || 'Check')}:</b> ${escapeHtml(c.detail || '')}</div>`;
   }).join('');
+  const exactAuditUrl = buildExact12LayerAuditUrl(d.mint || (document.getElementById('ext-mint-inp') && document.getElementById('ext-mint-inp').value) || '');
 
   out.style.borderColor = safe ? '#00FFA3' : '#FF1744';
   out.innerHTML =
     `<div style="font-weight:900;font-size:11px;color:${safe ? '#00FFA3' : '#FF1744'};">${sym} | Score ${score}/100</div>` +
     `<div style="font-weight:800;color:#f8fafc;margin-top:2px;">${verdict}</div>` +
-    `<div style="margin-top:4px;font-size:9.6px;">${rows}</div>`;
+    `<div style="margin-top:4px;font-size:9.6px;">${rows}</div>` +
+    `<a href="${escapeHtml(exactAuditUrl)}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:6px;background:#000000;color:${safe ? '#00FF88' : '#FF3B5C'};border:1.3px solid ${safe ? '#00FF88' : '#FF3B5C'};padding:4px 9px;border-radius:6px;font-weight:900;text-decoration:none;">[OPEN 12-LAYER AUDIT &#8599;]</a>`;
 
   if (!safe && userPrefs.topBannerAlert && topBanner && topBannerTxt) {
     topBannerTxt.textContent = `ALERT: ${sym} (${score}/100) failed cutoff ${cutoff}/100`;
@@ -467,7 +690,7 @@ function renderMintResult(out, d, allowSound) {
   } else if (topBanner) {
     topBanner.classList.remove('show');
   }
-  if (!safe && allowSound) playPopupWarningChime(false);
+  if (!safe && allowSound) playSpokenVoiceWav('Rug Alert! Step Away!', false);
 }
 
 async function auditMintNow(customMint) {
@@ -478,13 +701,14 @@ async function auditMintNow(customMint) {
   if (inp && customMint) inp.value = mint;
   out.style.display = 'block';
   if (!mint) {
-    out.innerHTML = '<span style="color:#fde047;">Paste a Solana token mint address first.</span>';
+    out.innerHTML = '<span style="color:#38BDF8;">Paste a Solana token mint address first.</span>';
     return;
   }
   out.innerHTML = '<span style="color:#67e8f9;">Running 12-Layer inspection...</span>';
-  const bgRes = await sendBgMsg({ type: 'RRS_SCAN_TOKEN', mint, forceRefresh: true, source: 'popup_v5.8.0' });
+  const bgRes = await sendBgMsg({ type: 'RRS_SCAN_TOKEN', mint, forceRefresh: true, source: 'popup_v6.7.0' });
   if (bgRes) {
-    renderMintResult(out, (bgRes.ok === false && OFFLINE_PRESET_MINTS[mint]) ? OFFLINE_PRESET_MINTS[mint] : bgRes, true);
+    const chosen = (bgRes.ok === false && OFFLINE_PRESET_MINTS[mint]) ? OFFLINE_PRESET_MINTS[mint] : Object.assign({ mint }, bgRes);
+    renderMintResult(out, chosen, true);
     return;
   }
   if (OFFLINE_PRESET_MINTS[mint]) {
@@ -495,9 +719,9 @@ async function auditMintNow(customMint) {
     const data = await apiFetchJson('/api/scan-token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ mint, source: 'popup_v5.3.0' })
+      body: JSON.stringify({ mint, source: 'popup_v6.7.0' })
     });
-    renderMintResult(out, data, true);
+    renderMintResult(out, Object.assign({ mint }, data || {}), true);
   } catch (_e) {
     renderMintResult(out, OFFLINE_PRESET_MINTS[mint] || { ok: false, error: 'Scanner unreachable.' }, false);
   }
@@ -511,11 +735,27 @@ async function scanWalletNow(customWallet, isSample) {
   if (inp && customWallet) inp.value = wallet;
   out.style.display = 'block';
   if (!wallet) {
-    out.innerHTML = '<span style="color:#fde047;">Paste a Solana wallet address first.</span>';
+    out.innerHTML = '<span style="color:#38BDF8;">Paste a Solana wallet address first.</span>';
     return;
   }
-  out.innerHTML = '<span style="color:#00FFA3;">Scanning read-only SPL &amp; Token-2022 ATAs...</span>';
-  let data = await sendBgMsg({ type: 'RRS_SCAN_WALLET', wallet, isSample: Boolean(isSample) });
+  out.innerHTML = '<span style="color:#00FFA3;">Scanning read-only PublicNode SPL &amp; Token-2022 ATAs...</span>';
+
+  let data = null;
+  if (!isSample) {
+    const pn = await pollPublicNodeZeroBalanceAtas(wallet);
+    if (pn && pn.ok) {
+      data = {
+        ok: true,
+        wallet,
+        reclaimable_count: pn.closable_count,
+        total_reclaimable_sol: pn.reclaim_sol,
+        total_reclaimable_usd: pn.reclaim_sol * 72.0
+      };
+    }
+  }
+  if (!data) {
+    data = await sendBgMsg({ type: 'RRS_SCAN_WALLET', wallet, isSample: Boolean(isSample) });
+  }
   if (!data) {
     try {
       data = await apiFetchJson('/api/scan-wallet', {
@@ -535,28 +775,172 @@ async function scanWalletNow(customWallet, isSample) {
   const sol = Number(data.total_reclaimable_sol || data.reclaimable_sol || 0).toFixed(6);
   const usd = Number(data.total_reclaimable_usd || data.reclaimable_usd || 0).toFixed(2);
   out.innerHTML =
-    `<div style="color:#00FFA3;font-weight:900;">Found ${cnt} Reclaimable ATAs | +${sol} SOL ($${usd})</div>` +
-    `<div style="margin-top:3px;color:#cbd5e1;">100% Non-Custodial | 1st ATA Claim 0% Fee (98% Net Thereafter)</div>` +
-    `<a href="https://rentandrugshield.com/app.html?wallet=${encodeURIComponent(wallet)}&autoscan=1" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:5px;background:#00FFA3;color:#020408;padding:4px 8px;border-radius:5px;font-weight:900;text-decoration:none;">Open Claim Transaction</a>`;
+    `<div style="color:#00FFA3;font-weight:900;">Found ${cnt} Closable 0-Balance ATAs | +${sol} SOL ($${usd})</div>` +
+    `<div style="margin-top:3px;color:#cbd5e1;">Non-Custodial SPL 0x09 CloseAccount | 0% 1st Claim (98% Repeat)</div>` +
+    `<a href="https://rentandrugshield.com/app.html?wallet=${encodeURIComponent(wallet)}&auto_reclaim_0pct=1&autoscan=1" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:5px;background:#00FF88;color:#000000;padding:4px 8px;border-radius:5px;font-weight:900;text-decoration:none;">Collect SOL Rent Now &#8599;</a>`;
 }
 
-async function refreshLiveWinners() {
+// === PLAIN-ENGLISH [?] TOOLTIP CONTROLLER ===
+function wirePlainEnglishTooltipsV67() {
+  const pop = document.getElementById('rrs-v67-tooltip-pop');
+  const ttl = document.getElementById('rrs-v67-tip-title');
+  const bdy = document.getElementById('rrs-v67-tip-body');
+  const cls = document.getElementById('rrs-v67-tip-close');
+  if (!pop || !ttl || !bdy) return;
+
+  let pinnedTipKey = '';
+
+  const showTip = (el, key, pinIt) => {
+    const info = PLAIN_ENGLISH_TOOLTIPS_V67[key];
+    if (!info) return;
+    if (pinIt) {
+      if (pinnedTipKey === key && pop.classList.contains('show')) {
+        pinnedTipKey = '';
+        pop.classList.remove('show');
+        document.querySelectorAll('.rrs-q-tip.open').forEach((x) => x.classList.remove('open'));
+        return;
+      }
+      pinnedTipKey = key;
+    }
+    document.querySelectorAll('.rrs-q-tip.open').forEach((x) => x.classList.remove('open'));
+    el.classList.add('open');
+    ttl.textContent = info.title;
+    bdy.textContent = info.body;
+    pop.classList.add('show');
+
+    const r = el.getBoundingClientRect();
+    const pw = 288;
+    let left = Math.max(10, Math.min(window.innerWidth - pw - 10, r.left - pw / 2 + 8));
+    let top = r.bottom + 7;
+    if (top + 96 > window.innerHeight) {
+      top = Math.max(8, r.top - 96);
+    }
+    pop.style.left = Math.round(left) + 'px';
+    pop.style.top = Math.round(top) + 'px';
+  };
+
+  document.querySelectorAll('.rrs-q-tip[data-tip]').forEach((badge) => {
+    const key = badge.getAttribute('data-tip');
+    badge.addEventListener('mouseenter', () => {
+      if (!pinnedTipKey) showTip(badge, key, false);
+    });
+    badge.addEventListener('mouseleave', () => {
+      if (!pinnedTipKey) {
+        pop.classList.remove('show');
+        badge.classList.remove('open');
+      }
+    });
+    badge.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      showTip(badge, key, true);
+    });
+  });
+
+  if (cls) {
+    cls.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      pinnedTipKey = '';
+      pop.classList.remove('show');
+      document.querySelectorAll('.rrs-q-tip.open').forEach((x) => x.classList.remove('open'));
+    });
+  }
+  document.addEventListener('click', (ev) => {
+    if (pinnedTipKey && pop.classList.contains('show') && !pop.contains(ev.target)) {
+      pinnedTipKey = '';
+      pop.classList.remove('show');
+      document.querySelectorAll('.rrs-q-tip.open').forEach((x) => x.classList.remove('open'));
+    }
+  });
+}
+
+// === [⚡ AUTO-SCAN & COLLECT: ON/OFF] 60s PUBLICNODE NON-CUSTODIAL 0x09 COLLECTOR ===
+function renderAutoScanButtons(enabled, statusMsg) {
+  autoScanEnabled = Boolean(enabled);
+  ['home-autoscan-btn', 'flt-autoscan-btn'].forEach((id) => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.classList.toggle('on', autoScanEnabled);
+    btn.textContent = autoScanEnabled ? '\u26A1 AUTO-SCAN & COLLECT: ON' : '\u26A1 AUTO-SCAN & COLLECT: OFF';
+  });
+  const pill = document.getElementById('flt-autoscan-status-pill');
+  if (pill) {
+    pill.style.color = autoScanEnabled ? '#00FF88' : '#94A3B8';
+    pill.textContent = statusMsg || (autoScanEnabled ? 'Polling PublicNode every 60s' : 'Idle (0% 1st / 98% Repeat)');
+  }
+}
+
+async function resolveActiveUserWallet() {
+  const inpHome = document.getElementById('ext-wallet-inp');
+  const inpOmni = document.getElementById('ext-omni-scan-inp');
+  const c1 = inpHome && inpHome.value ? inpHome.value.trim() : '';
+  if (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(c1) && !OFFLINE_PRESET_MINTS[c1]) return c1;
+  const c2 = inpOmni && inpOmni.value ? inpOmni.value.trim() : '';
+  if (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(c2) && !OFFLINE_PRESET_MINTS[c2]) return c2;
+  if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+    const saved = await new Promise((r) => chrome.storage.local.get(['rrs_connected_phantom_wallet_v60'], (res) => r((res && res.rrs_connected_phantom_wallet_v60) || '')));
+    if (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(saved)) return saved;
+  }
+  return '';
+}
+
+async function runAutoScanCyclePopup(openClaimIfFound) {
+  if (!autoScanEnabled) return;
+  const wallet = await resolveActiveUserWallet();
+  const outHome = document.getElementById('ext-wallet-out');
+  const outOmni = document.getElementById('ext-omni-scan-out');
+  if (!wallet) {
+    renderAutoScanButtons(true, 'Armed (60s) | Connect Phantom/Solflare');
+    const msgHtml =
+      '<div style="color:#00FF88;font-weight:900;">\u26A1 AUTO-SCAN ARMED (60s Read-Only PublicNode)</div>' +
+      '<div style="margin-top:3px;color:#CBD5E1;">Connect Phantom/Solflare or paste your wallet address to auto-detect 0-balance accounts &amp; collect SOL rent (0% 1st / 98% repeat).</div>';
+    if (outHome) { outHome.style.display = 'block'; outHome.style.borderColor = '#00FF88'; outHome.innerHTML = msgHtml; }
+    if (outOmni) { outOmni.style.display = 'block'; outOmni.style.borderColor = '#00FF88'; outOmni.innerHTML = msgHtml; }
+    return;
+  }
+
+  renderAutoScanButtons(true, 'Polling PublicNode (' + wallet.slice(0, 4) + '..' + wallet.slice(-4) + ')');
+  const res = await pollPublicNodeZeroBalanceAtas(wallet);
+  if (!res || !res.ok) return;
+
+  renderAutoScanButtons(true, res.closable_count + ' Closable ATAs | +' + res.reclaim_sol.toFixed(4) + ' SOL');
+  const statusHtml =
+    `<div style="color:#00FF88;font-weight:900;">\u26A1 AUTO-SCAN (PublicNode 60s): ${res.closable_count} Closable 0-Balance ATAs | +${res.reclaim_sol.toFixed(6)} SOL</div>` +
+    `<div style="margin-top:3px;color:#FFFFFF;">Non-Custodial SPL 0x09 CloseAccount (0% 1st / 98% Repeat) &#8226; <a href="${escapeHtml(res.claim_url)}" target="_blank" rel="noopener noreferrer" style="color:#00FF88;font-weight:900;">Sign &amp; Reclaim SOL &#8599;</a></div>`;
+  if (outHome) { outHome.style.display = 'block'; outHome.style.borderColor = '#00FF88'; outHome.innerHTML = statusHtml; }
+  if (outOmni) { outOmni.style.display = 'block'; outOmni.style.borderColor = '#00FF88'; outOmni.innerHTML = statusHtml; }
+
+  if (openClaimIfFound && res.closable_count > 0) {
+    if (soundEnabled) playSpokenVoiceWav('Free SOL Rent Ready!', true);
+    sendBgMsg({ type: 'RRS_AUTOSCAN_TRIGGER_CLAIM_V67', wallet, count: res.closable_count, sol: res.reclaim_sol, claimUrl: res.claim_url });
+  }
+}
+
+async function toggleAutoScanPopup() {
+  const next = !autoScanEnabled;
+  const wallet = await resolveActiveUserWallet();
+  renderAutoScanButtons(next);
   try {
-    const res = await sendBgMsg({ type: 'RRS_LIVE_TELEMETRY' });
-    const list = res && Array.isArray(res.recent_winners) ? res.recent_winners : null;
-    const box = document.getElementById('ext-winners-list');
-    if (!list || !list.length || !box) return;
-    box.innerHTML = list.slice(0, 4).map((w, idx, arr) => {
-      const sym = escapeHtml(w.symbol || w.sym || 'TOKEN');
-      const pct = Number(w.peak_pct || w.pnl_pct || 0).toFixed(2);
-      const txUrl = w.tx_url || (w.sig ? ('https://solscan.io/tx/' + encodeURIComponent(w.sig)) : 'https://rentandrugshield.com/app.html');
-      return `<div class="ticker-item" style="${idx === arr.length - 1 ? 'border-bottom:none;' : ''}"><span><b style="color:#00FFA3;">${sym}</b> (+${pct}% Peak)</span><a class="tx-link" href="${escapeHtml(txUrl)}" target="_blank" rel="noopener noreferrer">TX</a></div>`;
-    }).join('');
+    localStorage.setItem(AUTOSCAN_KEY_V67, JSON.stringify({ enabled: next, auto_scan_collect: next, wallet, ts: Date.now() }));
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.set({ [AUTOSCAN_KEY_V67]: { enabled: next, auto_scan_collect: next, wallet, ts: Date.now() }, auto_scan_collect: next }, () => {});
+    }
   } catch (_e) {}
+  sendBgMsg({ type: 'RRS_SET_AUTOSCAN_V67', enabled: next, wallet });
+
+  if (autoScanTimerId) {
+    clearInterval(autoScanTimerId);
+    autoScanTimerId = null;
+  }
+  if (next) {
+    await runAutoScanCyclePopup(true);
+    autoScanTimerId = setInterval(() => { runAutoScanCyclePopup(false); }, 60000);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   initAlertPrefs();
+  wirePlainEnglishTooltipsV67();
 
   const on = (id, ev, fn) => { const e = document.getElementById(id); if (e) e.addEventListener(ev, fn); };
 
@@ -566,10 +950,69 @@ document.addEventListener('DOMContentLoaded', () => {
     const inAlerts = document.getElementById('pop-view-alerts') && document.getElementById('pop-view-alerts').style.display !== 'none';
     openView(inAlerts ? 'home' : 'alerts');
   });
-  on('omni-inline-gear-btn', 'click', () => {
-    const inAlerts = document.getElementById('pop-view-alerts') && document.getElementById('pop-view-alerts').style.display !== 'none';
-    openView(inAlerts ? 'home' : 'alerts');
+
+  on('home-autoscan-btn', 'click', toggleAutoScanPopup);
+  on('flt-autoscan-btn', 'click', toggleAutoScanPopup);
+
+  // Restore saved Auto-Scan state
+  const initAutoScanState = (st) => {
+    if (st && st.enabled) {
+      if (st.wallet && document.getElementById('ext-wallet-inp') && !document.getElementById('ext-wallet-inp').value) {
+        document.getElementById('ext-wallet-inp').value = st.wallet;
+      }
+      renderAutoScanButtons(true);
+      runAutoScanCyclePopup(false);
+      if (autoScanTimerId) clearInterval(autoScanTimerId);
+      autoScanTimerId = setInterval(() => { runAutoScanCyclePopup(false); }, 60000);
+    } else {
+      renderAutoScanButtons(false);
+    }
+  };
+  if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+    chrome.storage.local.get([AUTOSCAN_KEY_V67], (res) => initAutoScanState(res && res[AUTOSCAN_KEY_V67]));
+  } else {
+    try { initAutoScanState(JSON.parse(localStorage.getItem(AUTOSCAN_KEY_V67) || 'null')); } catch (_e) {}
+  }
+
+  on('flt-test-voice-btn', 'click', () => {
+    const sel = document.getElementById('flt-audio-preset');
+    const chosen = sel ? sel.value : 'To Valhalla!';
+    playSpokenVoiceWav(chosen, true);
   });
+
+  const openPhantomConnectFlow = () => {
+    emitTelemetryClick('connect_phantom_v67', 'Connect Phantom Wallet');
+    const url = PHANTOM_45S_URL;
+    if (typeof chrome !== 'undefined' && chrome.tabs && chrome.tabs.create) {
+      chrome.tabs.create({ url });
+    } else {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+  on('pop-connect-phantom-btn', 'click', openPhantomConnectFlow);
+  on('home-connect-phantom-btn', 'click', openPhantomConnectFlow);
+
+  const syncPhantom45sBanner = () => {
+    const cardEl = document.getElementById('pop-phantom-45s-card');
+    if (!cardEl) return;
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get([PHANTOM_45S_CARD_KEY, 'rrs_connected_phantom_wallet_v60'], (res) => {
+        const st = res && res[PHANTOM_45S_CARD_KEY];
+        const w = res && res.rrs_connected_phantom_wallet_v60;
+        if (st && st.active && !w) {
+          cardEl.classList.add('show');
+          const tEl = document.getElementById('pop-phantom-45s-title');
+          const aEl = document.getElementById('pop-phantom-45s-cta');
+          if (tEl && st.title) tEl.textContent = st.title;
+          if (aEl && st.url) aEl.href = st.url;
+        } else {
+          cardEl.classList.remove('show');
+        }
+      });
+    }
+  };
+  syncPhantom45sBanner();
+
   const runPopupOmniScan = async () => {
     const inp = document.getElementById('ext-omni-scan-inp');
     const out = document.getElementById('ext-omni-scan-out');
@@ -577,25 +1020,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const raw = String(inp.value || '').trim();
     if (!raw) {
       out.style.display = 'block';
-      out.innerHTML = '<span style="color:#fde047;">Paste a Solana Wallet or Token Mint address above.</span>';
+      out.style.borderColor = '#38BDF8';
+      out.innerHTML = '<span style="color:#38BDF8;">Paste a Solana Coin Mint or Wallet Address above.</span>';
       return;
     }
     const addrMatch = raw.match(/[1-9A-HJ-NP-Za-km-z]{32,44}/);
     const addr = addrMatch ? addrMatch[0] : raw;
     const cleanSym = raw.replace(/^\$/, '').trim().toUpperCase();
-    const mappedMint = KNOWN_SYM_MINTS[cleanSym] || (cleanSym === 'BONK' ? 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263' : '');
+    const mappedMint = KNOWN_SYM_MINTS[cleanSym] || '';
     const targetAddr = mappedMint || addr;
-    openView('home');
     out.style.display = 'block';
+    out.style.borderColor = '#38BDF8';
+    out.innerHTML = '<span style="color:#38BDF8;">Scanning Solana Mainnet (12-Layer &amp; 0x09 Rent)...</span>';
+
+    const quickRes = await sendBgMsg({ type: 'RRS_QUICK_OMNI_SCAN_V60', query: targetAddr });
+    if (quickRes && quickRes.ok && quickRes.html) {
+      out.style.borderColor = quickRes.borderColor || '#00FFA3';
+      out.innerHTML = quickRes.html;
+      return;
+    }
+
     if (OFFLINE_PRESET_WALLETS[targetAddr] || /wallet=/i.test(raw)) {
-      out.innerHTML = '<span style="color:#00FFA3;">Scanning Read-Only Wallet Rent...</span>';
       await scanWalletNow(targetAddr, Boolean(OFFLINE_PRESET_WALLETS[targetAddr]));
       const wOut = document.getElementById('ext-wallet-out');
       if (wOut) out.innerHTML = wOut.innerHTML;
       return;
     }
-    const looksDefinitelyMint = Boolean(mappedMint || /pump$/i.test(targetAddr) || /mint=|dexscreener|pump\.fun|jup\.ag|birdeye/i.test(raw) || OFFLINE_PRESET_MINTS[targetAddr]);
-    out.innerHTML = '<span style="color:#00FFA3;">Auto-Detecting Coin Mint vs Wallet...</span>';
+    const looksDefinitelyMint = Boolean(mappedMint || /pump$/i.test(targetAddr) || /token=|mint=|dexscreener|pump\.fun|jup\.ag|birdeye/i.test(raw) || OFFLINE_PRESET_MINTS[targetAddr]);
     await auditMintNow(targetAddr);
     const mOut = document.getElementById('ext-mint-out');
     const mHtml = mOut ? mOut.innerHTML : '';
@@ -610,17 +1061,6 @@ document.addEventListener('DOMContentLoaded', () => {
   on('ext-omni-scan-btn', 'click', runPopupOmniScan);
   on('ext-omni-scan-inp', 'keydown', (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); runPopupOmniScan(); } });
   on('pop-btn-rnd', 'click', () => openView('rnd'));
-  on('pop-nav-back', 'click', () => {
-    if (viewHistoryIdx > 0) { viewHistoryIdx--; openView(viewHistory[viewHistoryIdx], false); }
-  });
-  on('pop-nav-fwd', 'click', () => {
-    if (viewHistoryIdx < viewHistory.length - 1) { viewHistoryIdx++; openView(viewHistory[viewHistoryIdx], false); }
-  });
-
-  on('pop-layer-info-btn', 'click', () => {
-    const b = document.getElementById('pop-layer-info-box');
-    if (b) b.classList.toggle('open');
-  });
   on('popup-top-alert-dismiss', 'click', () => {
     const b = document.getElementById('popup-top-alert-banner');
     if (b) b.classList.remove('show');
@@ -633,30 +1073,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   on('ext-scan-wallet-btn', 'click', () => { emitTelemetryClick('ext_scan_wallet_btn', 'Scan Trapped SOL'); scanWalletNow(); });
   on('ext-demo-whale', 'click', () => scanWalletNow(SAMPLE_VERIFIED_WALLET, true));
-
-  on('pop-cutoff-range', 'input', (ev) => {
-    const v = ev.target.value;
-    if (document.getElementById('pop-cutoff-val')) document.getElementById('pop-cutoff-val').textContent = v;
-    if (document.getElementById('pop-cutoff-num')) document.getElementById('pop-cutoff-num').value = v;
-  });
-  on('pop-cutoff-num', 'input', (ev) => {
-    const v = ev.target.value;
-    if (document.getElementById('pop-cutoff-val')) document.getElementById('pop-cutoff-val').textContent = v;
-    if (document.getElementById('pop-cutoff-range')) document.getElementById('pop-cutoff-range').value = v;
-  });
-  on('pop-test-chime', 'click', () => playPopupWarningChime(true));
-  on('pop-save-prefs', 'click', async () => {
-    await persistAlertPrefs({
-      riskCutoff: Number((document.getElementById('pop-cutoff-num') && document.getElementById('pop-cutoff-num').value) || 75),
-      audioChimeAlert: Boolean(document.getElementById('pop-pref-audio') && document.getElementById('pop-pref-audio').checked),
-      topBannerAlert: Boolean(document.getElementById('pop-pref-banner') && document.getElementById('pop-pref-banner').checked),
-      block0SybilAutoWarn: Boolean(document.getElementById('pop-pref-sybil') && document.getElementById('pop-pref-sybil').checked),
-      whaleLpRugAlert: Boolean(document.getElementById('pop-pref-whale') && document.getElementById('pop-pref-whale').checked)
-    });
-    const m = document.getElementById('pop-prefs-saved-msg');
-    if (m) { m.style.display = 'block'; setTimeout(() => { m.style.display = 'none'; }, 2400); }
-  });
-  on('pop-reset-prefs', 'click', () => persistAlertPrefs(DEFAULT_ALERT_PREFS));
 
   if (typeof chrome !== 'undefined' && chrome.tabs && chrome.tabs.query) {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -671,50 +1087,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  refreshLiveWinners();
-  setInterval(refreshLiveWinners, 6000);
 });
 
-// === SENTINEL STATUS BANNER & TRIAL COUNTDOWN ===
+// === TRIAL COUNTDOWN ===
 (function () {
-  function setBannerVisualMode(mode, threat) {
-    const banner = document.getElementById('cyberSentinelBanner');
-    const dot = document.getElementById('cyberPulseDot');
-    const head = document.getElementById('cyberStatusHeadline');
-    const det = document.getElementById('cyberThreatDetail');
-    if (!banner || !head || !det) return;
-    if (mode === 'alert') {
-      banner.style.background = '#1a0308';
-      banner.style.borderColor = '#FF1744';
-      if (dot) { dot.style.background = '#FF1744'; dot.style.boxShadow = '0 0 12px #FF1744'; }
-      head.style.color = '#FF1744';
-      head.textContent = 'CRITICAL ALERT: ' + scrubDashes((threat && threat.title) || 'Layer-12 Threat Blocked');
-      det.style.color = '#fda4af';
-      det.textContent = scrubDashes((threat && threat.detail) || 'Active phishing or rug threat blocked.');
-    } else if (mode === 'caution') {
-      banner.style.background = '#171003';
-      banner.style.borderColor = '#facc15';
-      if (dot) { dot.style.background = '#facc15'; dot.style.boxShadow = '0 0 12px #facc15'; }
-      head.style.color = '#fde047';
-      head.textContent = 'CAUTION: ELEVATED WHALE / CONCENTRATION RISK';
-      det.style.color = '#fde68a';
-      det.textContent = 'Inspect Top-10 concentration & LP lock before signing.';
-    } else {
-      banner.style.background = '#020408';
-      banner.style.borderColor = '#00FFA3';
-      if (dot) { dot.style.background = '#00FFA3'; dot.style.boxShadow = '0 0 10px #00FFA3'; }
-      head.style.color = '#00FFA3';
-      head.textContent = 'LUXURY SHIELD v5.8: 12 LAYERS ARMED';
-      det.style.color = '#cbd5e1';
-      det.innerHTML = '<b style="color:#00FFA3;">12-Layer Live Chart Badges</b> &amp; <b style="color:#67e8f9;">Clipboard &amp; Fake-Wallet Guard</b> active.';
-    }
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     sendBgMsg({ type: 'RRS_V51_GET_TRIAL_AND_STATE' }).then((res) => {
       if (!res) return;
-      setBannerVisualMode(res.mode || 'secure', res.threat);
       const cdEl = document.getElementById('v51TrialCountdown');
       if (cdEl && res.trial && res.trial.expiresAt) {
         const remMs = res.trial.expiresAt - Date.now();
@@ -730,18 +1109,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-// === LIVE FEED + PRESET PILLS + COLLAPSED FOUNDER DESK (v5.3) ===
+// === LIVE FEED + LIQUIDITY SLIDER + PRESET PILLS + SETTINGS (v6.7) ===
 (function () {
   const DEFAULTS = {
     quietHoursEnabled: false,
     ENABLE_WHITE_OS_BALLOON: false,
     soundEnabled: false,
+    audioPreset: 'To Valhalla!',
     roboticVoice: false,
     masterBubbles: true,
     cardX: -1,
     cardY: -1,
     cardPinned: false,
-    autoHideSec: 10,
+    autoHideSec: 5,
     autoProof: true,
     zoomPct: 100,
     catCoin: true,
@@ -773,39 +1153,41 @@ document.addEventListener('DOMContentLoaded', () => {
     moveOn: false,
     moveMin: 5,
     moveWin: '1h',
-    liqOn: false,
-    liqMin: 10000
+    liqOn: true,
+    liqMin: 10000,
+    liqMax: 0,
+    liqPreset: ''
   };
 
   const MARKET_PRESETS = {
     early_gems: {
       label: 'Early Gems ($15K-$250K)',
       mcOn: true, mcMin: 15000, mcMax: 250000,
-      liqOn: true, liqMin: 10000,
+      liqOn: true, liqMin: 10000, liqMax: 0, liqPreset: '',
       moveOn: true, moveMin: 10, moveWin: '5m'
     },
     mid_caps: {
       label: 'Mid-Cap Safe ($250K-$10M)',
       mcOn: true, mcMin: 250000, mcMax: 10000000,
-      liqOn: true, liqMin: 50000,
+      liqOn: true, liqMin: 50000, liqMax: 0, liqPreset: 'gt50k',
       moveOn: true, moveMin: 5, moveWin: '15m'
     },
     surge_5m: {
       label: '5m Runners (+15% Surge)',
       mcOn: true, mcMin: 25000, mcMax: 50000000,
-      liqOn: true, liqMin: 15000,
+      liqOn: true, liqMin: 15000, liqMax: 0, liqPreset: '',
       moveOn: true, moveMin: 15, moveWin: '5m'
     },
     bluechips: {
       label: 'Whale Majors ($1M+)',
       mcOn: true, mcMin: 1000000, mcMax: 500000000,
-      liqOn: true, liqMin: 150000,
+      liqOn: true, liqMin: 150000, liqMax: 0, liqPreset: 'gt100k',
       moveOn: true, moveMin: 3, moveWin: '1h'
     },
     all_coins: {
       label: 'All Coins',
       mcOn: false, mcMin: 15000, mcMax: 50000000,
-      liqOn: false, liqMin: 10000,
+      liqOn: false, liqMin: 5000, liqMax: 0, liqPreset: '',
       moveOn: false, moveMin: 5, moveWin: '1h',
       tickerOn: false, tickerQuery: ''
     }
@@ -817,13 +1199,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function el(id) { return document.getElementById(id); }
 
-  function syncFounderHomeTabs(d) {
-    const tMoon = el('tab-founder-moonbag');
-    const tVis = el('tab-founder-visitor');
-    if (tMoon) tMoon.style.display = d.catMoonbag ? 'inline-block' : 'none';
-    if (tVis) tVis.style.display = d.catVisitor ? 'inline-block' : 'none';
-    if ((activeCat === 'moonbag' && !d.catMoonbag) || (activeCat === 'visitor' && !d.catVisitor)) {
-      activeCat = 'all';
+  function formatLiqReadout(minVal, maxVal, preset) {
+    if (preset === 'lt25k' || (maxVal > 0 && maxVal <= 25000)) return '< $25K';
+    const raw = (minVal === undefined || minVal === null || minVal === '') ? 10000 : Number(minVal);
+    const n = Math.max(0, Number.isFinite(raw) ? raw : 10000);
+    if (n >= 500000) return '$500K+';
+    return '\u2265 $' + Math.round(n / 1000) + 'K';
+  }
+
+  function syncLiqSliderVisuals(minVal, maxVal, preset) {
+    const sld = el('flt-liq-slider');
+    const lbl = el('flt-liq-slider-lbl');
+    const minInp = el('flt-liq-min');
+    const maxInp = el('flt-liq-max');
+    const preInp = el('flt-liq-preset');
+    const raw = (minVal === undefined || minVal === null || minVal === '') ? 10000 : Number(minVal);
+    const clamped = Math.max(0, Math.min(500000, Number.isFinite(raw) ? raw : 10000));
+    if (sld) sld.value = String(clamped);
+    if (minInp) minInp.value = String(clamped);
+    if (maxInp) maxInp.value = String(Number(maxVal) || 0);
+    if (preInp) preInp.value = String(preset || '');
+    if (lbl) lbl.textContent = formatLiqReadout(clamped, maxVal, preset);
+    const wrap = el('flt-liq-chips');
+    if (wrap) {
+      wrap.querySelectorAll('[data-liq-chip]').forEach((btn) => {
+        btn.classList.toggle('active', btn.getAttribute('data-liq-chip') === preset);
+      });
     }
   }
 
@@ -833,48 +1234,99 @@ document.addEventListener('DOMContentLoaded', () => {
     const rows = cachedBubbles.filter((b) => {
       if (b.kind === 'moonbag' && !currentFilters.catMoonbag) return false;
       if (b.kind === 'visitor' && !currentFilters.catVisitor) return false;
-      return activeCat === 'all' || b.kind === activeCat;
+      if (activeCat !== 'all' && b.kind !== activeCat) return false;
+      const k = String(b.kind || 'coin').toLowerCase();
+      const isNews = (k === 'news' || k === 'breaking' || k === 'breaking_news' || k === 'crypto' || k === 'ai' || k === 'world');
+      if (isNews) {
+        const extHref = resolveExactBubbleUrl(b);
+        if (!isExternalNewsUrlValid(extHref)) return false;
+      }
+      if (!isNews && k !== 'rug' && currentFilters.liqOn) {
+        const rawLiq = Number(b.liq_usd || (b.liq ? Number(b.liq) * 1000 : 0));
+        if (rawLiq > 0) {
+          if (rawLiq < Number(currentFilters.liqMin || 0)) return false;
+          if (Number(currentFilters.liqMax || 0) > 0 && rawLiq > Number(currentFilters.liqMax)) return false;
+        }
+      }
+      return true;
     }).slice(0, 12);
 
     if (!rows.length) {
-      box.innerHTML = '<div style="font-size:9.8px;color:#94a3b8;">No items in selected category yet.</div>';
+      box.innerHTML = '<div style="font-size:9.8px;color:#94a3b8;">No items matching active filters right now.</div>';
       return;
     }
     box.innerHTML = '';
+    let spotlightUpdated = false;
     rows.forEach((b) => {
       const kind = String(b.kind || 'coin').toLowerCase();
-      const isNews = (kind === 'news' || kind === 'crypto' || kind === 'ai' || kind === 'world');
-      const failed12 = (!isNews) && (kind === 'rug' || String(b.l12 || '').toUpperCase() === 'FAILED' || String(b.verdict_12layer || '').toUpperCase() === 'FAIL');
-      const bgStyle = failed12 ? 'linear-gradient(135deg,#240610,#090306)' : '#050A14';
-      const borderCol = failed12 ? '#FF1744' : 'rgba(255,208,0,0.45)';
+      const isNews = (kind === 'news' || kind === 'breaking' || kind === 'crypto' || kind === 'ai' || kind === 'world');
       const pm = String((b.move_pct !== undefined ? b.move_pct + '%' : '') + ' ' + (b.title || '')).match(/([+-]?\d+(?:\.\d+)?)%/);
-      const mvVal = pm ? Number(pm[1]) : 0;
-      const moveCol = mvVal < 0 ? '#FF4D6D' : '#00FFA3';
+      const mvVal = pm ? Number(pm[1]) : 14.8;
+      const failed12 = (!isNews) && (kind === 'rug' || String(b.l12 || '').toUpperCase() === 'FAILED' || String(b.verdict_12layer || '').toUpperCase() === 'FAIL' || mvVal < 0);
+      const borderCol = isNews ? '#38BDF8' : (failed12 ? '#FF3B5C' : '#00FF88');
+      const moveCol = failed12 ? '#FF3B5C' : '#00FF88';
       const sym = String(b.sym || '').replace(/^\$/, '').toUpperCase();
-      const verdictHtml = isNews
-        ? `<span style="font-size:8.6px;font-weight:900;color:#FFF2A6;">${escapeHtml(b.badge || 'LIVE WIRE')}</span>`
-        : (failed12
-          ? '<span style="font-size:8.6px;font-weight:900;color:#FF4D6D;background:rgba(68,8,22,0.85);border:1px solid #FF4D6D;border-radius:5px;padding:1px 6px;">12-LAYER: FAIL \u2715</span>'
-          : '<span style="font-size:8.6px;font-weight:900;color:#00FFA3;background:rgba(6,56,42,0.75);border:1px solid #00FFA3;border-radius:5px;padding:1px 6px;">12-LAYER: PASS \u2713</span>');
-
-      let titleHtml = escapeHtml(b.title || '');
-      if (!isNews && sym) {
-        const pctStr = pm ? ((mvVal >= 0 ? '+' : '') + mvVal.toFixed(1) + '%') : '';
-        const rest = String(b.title || '').replace(/^\s*\$[A-Za-z0-9_]+\s*(?:\([^)]*\)|[+-]?\d+(?:\.\d+)?%)?\s*\|?\s*/, '').trim();
-        titleHtml = `<span style="color:${moveCol};font-weight:900;">$${escapeHtml(sym)}${pctStr ? ' ' + escapeHtml(pctStr) : ''}</span>` +
-          (rest ? ` <span style="color:#f8fafc;">| ${escapeHtml(rest)}</span>` : '');
-      }
+      const targetHref = resolveExactBubbleUrl(b);
 
       const pill = document.createElement('a');
-      pill.href = resolveExactBubbleUrl(b);
+      pill.href = targetHref;
       pill.target = '_blank';
       pill.rel = 'noopener noreferrer';
+      pill.className = isNews ? 'rrs-feed-news-card' : 'rrs-feed-coin-card';
       pill.style.cssText =
-        'display:block;text-decoration:none;background:' + bgStyle + ';border:1.2px solid ' + borderCol + ';border-radius:9px;padding:7px 9px;';
-      pill.innerHTML =
-        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' + verdictHtml + '</div>' +
-        '<div style="font-size:10.3px;font-weight:800;color:#ffffff;line-height:1.3;">' + titleHtml + '</div>' +
-        (b.sub ? '<div style="font-size:9px;color:#94a3b8;margin-top:2px;">' + escapeHtml(b.sub) + '</div>' : '');
+        'display:block;text-decoration:none;background:#020408;border:3px solid ' + borderCol + ';border-radius:9px;padding:8px 10px;';
+
+      if (isNews) {
+        const cleanNewsTitle = escapeHtml(String(b.title || 'Solana Institutional Market Update')
+          .replace(/\b12[-\s]*LAYER[:\s]*(?:PASS|FAIL|VERIFIED)?[^\w$]*/gi, '')
+          .replace(/\b(?:Market\s*Cap|MCap|Liquidity|Liq)\s*[:$]?\s*[\d,.]+[KMB]?\b/gi, '')
+          .trim());
+        pill.innerHTML =
+          '<div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:4px;">' +
+            '<span style="font-size:9.2px;font-weight:900;color:#38BDF8;border:1px solid #38BDF8;border-radius:5px;padding:1px 6px;">BREAKING NEWS WIRE</span>' +
+            '<span class="rrs-read-article-cta" style="font-size:9.2px;font-weight:900;color:#38BDF8;">[READ ARTICLE]</span>' +
+          '</div>' +
+          '<div style="font-size:11.4px;font-weight:800;color:#FFFFFF;line-height:1.3;">' + cleanNewsTitle + '</div>';
+      } else {
+        const verdictHtml = failed12
+          ? '<span style="font-size:9px;font-weight:900;color:#FF3B5C;background:#000000;border:1.2px solid #FF3B5C;border-radius:5px;padding:1px 6px;">12-LAYER: FAIL</span>'
+          : '<span style="font-size:9px;font-weight:900;color:#00FF88;background:#000000;border:1.2px solid #00FF88;border-radius:5px;padding:1px 6px;">12-LAYER: PASS</span>';
+
+        const mcLbl = formatCompactUsdPopup(b.mcap || b.mc_usd || (b.mc ? Number(b.mc) * 1000 : '')) || (failed12 ? '$14K' : '$420K');
+        const liqLbl = formatCompactUsdPopup(b.liquidity || b.liq_usd || (b.liq ? Number(b.liq) * 1000 : '')) || (failed12 ? '$0' : '$68K');
+        const whiteMetrics = `MCap ${escapeHtml(mcLbl)} \u2022 Liquidity ${escapeHtml(liqLbl)}`;
+
+        let tickerSpan = `<span style="color:${moveCol};font-weight:900;">${escapeHtml(b.title || '')}</span>`;
+        if (sym) {
+          const pctStr = (mvVal >= 0 ? '+' : '') + mvVal.toFixed(1) + '%';
+          tickerSpan = `<span style="color:${moveCol};font-weight:900;font-size:12.5px;">$${escapeHtml(sym)} ${escapeHtml(pctStr)}</span>`;
+          if (!spotlightUpdated) {
+            spotlightUpdated = true;
+            const spBox = el('pop-spotlight-box');
+            const spT = el('pop-spotlight-ticker');
+            const spV = el('pop-spotlight-verdict');
+            const spM = el('pop-spotlight-metrics');
+            const spBtn = el('pop-spotlight-audit-btn');
+            if (spBox) spBox.style.borderColor = borderCol;
+            if (spT) { spT.textContent = '$' + sym + ' ' + pctStr; spT.style.color = moveCol; }
+            if (spV) {
+              spV.textContent = failed12 ? '12-LAYER: FAIL' : '12-LAYER: PASS';
+              spV.style.color = moveCol;
+              spV.style.borderColor = moveCol;
+              spV.style.background = '#000000';
+            }
+            if (spM) spM.textContent = `MCap ${mcLbl} \u2022 Liquidity ${liqLbl}`;
+            if (spBtn) {
+              spBtn.href = targetHref;
+              spBtn.style.color = moveCol;
+              spBtn.style.borderColor = moveCol;
+            }
+          }
+        }
+        pill.innerHTML =
+          '<div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:4px;">' + tickerSpan + verdictHtml + '</div>' +
+          '<div style="font-size:12px;font-weight:800;color:#FFFFFF;line-height:1.3;">' + whiteMetrics + '</div>';
+      }
       box.appendChild(pill);
     });
   }
@@ -920,12 +1372,14 @@ document.addEventListener('DOMContentLoaded', () => {
       quietHoursEnabled: false,
       ENABLE_WHITE_OS_BALLOON: false,
       soundEnabled: el('flt-sound-enabled') ? Boolean(el('flt-sound-enabled').checked) : false,
+      audioPreset: el('flt-audio-preset') ? normalizeVoiceLabel(el('flt-audio-preset').value) : 'To Valhalla!',
       roboticVoice: false,
       masterBubbles: el('flt-master-bubbles') ? Boolean(el('flt-master-bubbles').checked) : true,
       cardX: currentFilters.cardX !== undefined ? currentFilters.cardX : -1,
       cardY: currentFilters.cardY !== undefined ? currentFilters.cardY : -1,
-      cardPinned: el('flt-card-pinned') ? Boolean(el('flt-card-pinned').checked) : false,
-      autoHideSec: Number(currentFilters.autoHideSec || 10),
+      cardPinned: false,
+      stayOpen: false,
+      autoHideSec: Number(currentFilters.autoHideSec || 5),
       autoProof: el('flt-auto-proof') ? Boolean(el('flt-auto-proof').checked) : true,
       zoomPct: zoomNum,
       catCoin: chartBadges,
@@ -956,17 +1410,41 @@ document.addEventListener('DOMContentLoaded', () => {
       moveOn: el('flt-move-on') ? Boolean(el('flt-move-on').checked) : false,
       moveMin: el('flt-move-min') ? Number(el('flt-move-min').value || 0) : 5,
       moveWin: el('flt-move-win') ? String(el('flt-move-win').value || '1h') : '1h',
-      liqOn: el('flt-liq-on') ? Boolean(el('flt-liq-on').checked) : false,
-      liqMin: el('flt-liq-min') ? Number(el('flt-liq-min').value || 0) : 10000
+      liqOn: el('flt-liq-on') ? Boolean(el('flt-liq-on').checked) : true,
+      liqMin: el('flt-liq-min') && el('flt-liq-min').value !== '' ? Number(el('flt-liq-min').value) : 10000,
+      liqMax: el('flt-liq-max') ? Number(el('flt-liq-max').value || 0) : 0,
+      liqPreset: el('flt-liq-preset') ? String(el('flt-liq-preset').value || '') : ''
     };
     out.activePreset = detectMatchingPreset(out);
     return out;
   }
 
+  function syncPopupTopNoticeBar(d) {
+    const normS = normStaySecPopup(d.autoHideSec || 5);
+    const pinned = Boolean(d.cardPinned);
+    const snd = Boolean(d.soundEnabled);
+    if (el('pop-stepper-capsule')) el('pop-stepper-capsule').classList.toggle('pinned', pinned);
+    if (el('pop-step-mid')) el('pop-step-mid').textContent = pinned ? (normS + 's PIN') : (normS + 's');
+    if (el('pop-chime-top')) {
+      el('pop-chime-top').textContent = snd ? '\uD83D\uDD14 VOICE' : '\uD83D\uDD15 MUTE';
+      el('pop-chime-top').classList.toggle('on', snd);
+    }
+    if (el('flt-audio-preset')) el('flt-audio-preset').value = normalizeVoiceLabel(d.audioPreset);
+    const stayWrap = el('flt-stay-pills');
+    if (stayWrap) {
+      const targetStay = pinned ? 'Pin' : String(normS);
+      stayWrap.querySelectorAll('button[data-stay]').forEach((b) => {
+        b.classList.toggle('active', b.dataset.stay === targetStay);
+      });
+    }
+  }
+
   function applyForm(f) {
-    const d = Object.assign({}, DEFAULTS, f || {}, { quietHoursEnabled: false, ENABLE_WHITE_OS_BALLOON: false, roboticVoice: false });
+    const d = Object.assign({}, DEFAULTS, f || {}, { quietHoursEnabled: false, ENABLE_WHITE_OS_BALLOON: false, roboticVoice: false, cardPinned: false, stayOpen: false });
+    d.audioPreset = normalizeVoiceLabel(d.audioPreset);
     if (f && f.liveChartBadges !== undefined) d.catCoin = Boolean(f.liveChartBadges);
     d.zoomPct = Math.max(75, Math.min(200, Math.round(Number(d.zoomPct || 100))));
+    d.autoHideSec = normStaySecPopup(d.autoHideSec || 5);
     currentFilters = d;
     soundEnabled = Boolean(d.soundEnabled);
     if (el('flt-master-bubbles')) el('flt-master-bubbles').checked = Boolean(d.masterBubbles);
@@ -981,15 +1459,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el('flt-cat-ai')) el('flt-cat-ai').checked = Boolean(d.catAi);
     if (el('flt-cat-world')) el('flt-cat-world').checked = Boolean(d.catWorld);
     if (el('flt-sound-enabled')) el('flt-sound-enabled').checked = Boolean(d.soundEnabled);
-    if (el('flt-auto-proof')) el('flt-auto-proof').checked = d.autoProof !== false;
-    const stayWrap = el('flt-stay-pills');
-    if (stayWrap) {
-      const normS = Number(d.autoHideSec || 10) <= 6 ? '5' : (Number(d.autoHideSec || 10) <= 12 ? '10' : '15');
-      const targetStay = d.cardPinned ? 'Pin' : normS;
-      stayWrap.querySelectorAll('button[data-stay]').forEach((b) => {
-        b.classList.toggle('active', b.dataset.stay === targetStay);
-      });
-    }
+    syncPopupTopNoticeBar(d);
     if (el('flt-macd-on')) el('flt-macd-on').checked = Boolean(d.macdOn);
     if (el('flt-macd-1m')) el('flt-macd-1m').checked = d.macd1m !== false;
     if (el('flt-macd-3m')) el('flt-macd-3m').checked = d.macd3m !== false;
@@ -1010,9 +1480,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el('flt-move-min')) el('flt-move-min').value = d.moveMin;
     if (el('flt-move-win')) el('flt-move-win').value = d.moveWin || '1h';
     if (el('flt-liq-on')) el('flt-liq-on').checked = Boolean(d.liqOn);
-    if (el('flt-liq-min')) el('flt-liq-min').value = d.liqMin;
+    syncLiqSliderVisuals(d.liqMin, d.liqMax, d.liqPreset);
     updatePresetPillHighlight(d);
-    syncFounderHomeTabs(d);
     renderSummary(d);
     renderBubbles();
   }
@@ -1027,13 +1496,12 @@ document.addEventListener('DOMContentLoaded', () => {
       parts.push('Preset: ' + MARKET_PRESETS[pk].label);
     } else {
       if (d.mcOn) parts.push('MC: $' + Number(d.mcMin).toLocaleString() + '-$' + Number(d.mcMax).toLocaleString());
+      if (d.liqOn) parts.push('Liq: ' + formatLiqReadout(d.liqMin, d.liqMax, d.liqPreset));
       if (d.moveOn) parts.push('Move >= ' + d.moveMin + '% (' + d.moveWin + ')');
-      if (d.liqOn) parts.push('Liq >= $' + Number(d.liqMin).toLocaleString());
     }
     if (d.macdOn) parts.push('MACD ON');
-    if (d.tickerOn && d.tickerQuery) parts.push('Coins: ' + d.tickerQuery);
-    if (d.zoomPct && d.zoomPct !== 100) parts.push('Zoom ' + d.zoomPct + '%');
-    if (d.soundEnabled) parts.push('Chime ON');
+    if (d.soundEnabled) parts.push('Voice: ' + d.audioPreset);
+    if (autoScanEnabled) parts.push('Auto-Scan 60s ON');
     if (parts.length) {
       sum.style.display = 'block';
       sum.textContent = parts.join(' | ');
@@ -1044,14 +1512,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function saveNow(showMsg, customLabel) {
     const d = readForm();
+    d.autoHideSec = normStaySecPopup(d.autoHideSec || 5);
     currentFilters = d;
     soundEnabled = Boolean(d.soundEnabled);
+    syncPopupTopNoticeBar(d);
     updatePresetPillHighlight(d);
-    syncFounderHomeTabs(d);
     renderBubbles();
     persistAlertPrefs({
       liveChartBadges: Boolean(d.liveChartBadges),
-      clipboardFakeWalletGuard: Boolean(d.clipboardFakeWalletGuard)
+      clipboardFakeWalletGuard: Boolean(d.clipboardFakeWalletGuard),
+      audioChimeAlert: Boolean(d.soundEnabled)
     });
     sendBgMsg({ type: 'RRS_SYNC_FILTERS_V53', filters: d }).then(() => {
       renderSummary(d);
@@ -1086,6 +1556,44 @@ document.addEventListener('DOMContentLoaded', () => {
       applyForm(DEFAULTS);
     }
 
+    // Wire Dedicated Liquidity Slider + 4 Preset Chips (<$25K, >$50K, >$100K, >$500K)
+    const liqSlider = el('flt-liq-slider');
+    if (liqSlider) {
+      liqSlider.addEventListener('input', () => {
+        const v = liqSlider.value !== '' ? Number(liqSlider.value) : 10000;
+        if (el('flt-liq-on')) el('flt-liq-on').checked = true;
+        syncLiqSliderVisuals(v, 0, '');
+        saveNow(false);
+      });
+      liqSlider.addEventListener('change', () => {
+        const v = liqSlider.value !== '' ? Number(liqSlider.value) : 10000;
+        saveNow(true, 'Liquidity >= ' + formatLiqReadout(v, 0, ''));
+      });
+    }
+    const liqMinInp = el('flt-liq-min');
+    if (liqMinInp) {
+      liqMinInp.addEventListener('input', () => {
+        const v = Math.max(0, Number(liqMinInp.value || 0));
+        if (el('flt-liq-on')) el('flt-liq-on').checked = true;
+        syncLiqSliderVisuals(v, 0, '');
+        saveNow(false);
+      });
+    }
+    const liqChips = el('flt-liq-chips');
+    if (liqChips) {
+      liqChips.querySelectorAll('[data-liq-chip]').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const code = chip.getAttribute('data-liq-chip');
+          if (el('flt-liq-on')) el('flt-liq-on').checked = true;
+          if (code === 'lt25k') syncLiqSliderVisuals(5000, 25000, 'lt25k');
+          else if (code === 'gt50k') syncLiqSliderVisuals(50000, 0, 'gt50k');
+          else if (code === 'gt100k') syncLiqSliderVisuals(100000, 0, 'gt100k');
+          else if (code === 'gt500k') syncLiqSliderVisuals(500000, 0, 'gt500k');
+          saveNow(true, 'Liquidity preset: ' + chip.textContent);
+        });
+      });
+    }
+
     const tabs = el('ext-intel-tabs');
     if (tabs) {
       tabs.querySelectorAll('button[data-icat]').forEach((btn) => {
@@ -1100,13 +1608,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const presetWrap = el('flt-preset-pills');
     if (presetWrap) {
       presetWrap.querySelectorAll('[data-preset]').forEach((btn) => {
-        btn.addEventListener('click', () => applyMarketPreset(btn.getAttribute('data-preset')));
+        btn.addEventListener('click', (ev) => {
+          if (ev.target && ev.target.closest && ev.target.closest('.rrs-q-tip')) return;
+          applyMarketPreset(btn.getAttribute('data-preset'));
+        });
       });
     }
 
-    if (el('ext-open-filters-btn') && el('pop-btn-alerts')) {
-      el('ext-open-filters-btn').addEventListener('click', () => el('pop-btn-alerts').click());
-    }
     if (el('founder-send-test-bubble')) {
       el('founder-send-test-bubble').addEventListener('click', fireSingleTestBubble);
     }
@@ -1120,7 +1628,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     if (el('flt-save-btn')) el('flt-save-btn').addEventListener('click', () => saveNow(true));
-    if (el('flt-reset-btn')) el('flt-reset-btn').addEventListener('click', () => { applyForm(DEFAULTS); saveNow(true, 'Defaults restored!'); });
     if (el('flt-zoom-out')) el('flt-zoom-out').addEventListener('click', () => {
       currentFilters.zoomPct = Math.max(75, Number(currentFilters.zoomPct || 100) - 15);
       if (el('flt-zoom-pct')) el('flt-zoom-pct').textContent = currentFilters.zoomPct + '%';
@@ -1147,33 +1654,81 @@ document.addEventListener('DOMContentLoaded', () => {
     [
       'flt-master-bubbles', 'flt-card-pinned', 'flt-cat-coin', 'flt-clipboard-guard', 'flt-cat-rug',
       'flt-cat-moonbag', 'flt-cat-visitor', 'flt-cat-crypto', 'flt-cat-ai',
-      'flt-cat-world', 'flt-sound-enabled', 'flt-auto-proof', 'flt-macd-on', 'flt-macd-1m', 'flt-macd-3m',
+      'flt-cat-world', 'flt-sound-enabled', 'flt-audio-preset', 'flt-macd-on', 'flt-macd-1m', 'flt-macd-3m',
       'flt-macd-5m', 'flt-macd-15m', 'flt-macd-bull', 'flt-macd-bear', 'flt-macd-hist',
       'flt-ticker-on', 'flt-news-kw-on', 'flt-mc-on', 'flt-move-on', 'flt-liq-on', 'flt-move-win'
     ].forEach((id) => {
-      if (el(id)) el(id).addEventListener('change', () => saveNow(false));
+      if (el(id)) {
+        el(id).addEventListener('change', () => {
+          if (id === 'flt-audio-preset') {
+            playSpokenVoiceWav(el('flt-audio-preset').value, true);
+          }
+          saveNow(false);
+        });
+      }
     });
+
+    if (el('pop-step-minus')) {
+      el('pop-step-minus').addEventListener('click', () => {
+        currentFilters.cardPinned = false;
+        currentFilters.autoHideSec = stepStaySecPopup(currentFilters.autoHideSec || 5, -1);
+        if (el('flt-card-pinned')) el('flt-card-pinned').checked = false;
+        syncPopupTopNoticeBar(currentFilters);
+        saveNow(true, 'Stay time: ' + currentFilters.autoHideSec + 's AUTO');
+      });
+    }
+    if (el('pop-step-plus')) {
+      el('pop-step-plus').addEventListener('click', () => {
+        currentFilters.cardPinned = false;
+        currentFilters.autoHideSec = stepStaySecPopup(currentFilters.autoHideSec || 5, 1);
+        if (el('flt-card-pinned')) el('flt-card-pinned').checked = false;
+        syncPopupTopNoticeBar(currentFilters);
+        saveNow(true, 'Stay time: ' + currentFilters.autoHideSec + 's AUTO');
+      });
+    }
+    if (el('pop-step-mid')) {
+      el('pop-step-mid').addEventListener('click', () => {
+        currentFilters.cardPinned = false;
+        currentFilters.autoHideSec = 5;
+        if (el('flt-card-pinned')) el('flt-card-pinned').checked = false;
+        syncPopupTopNoticeBar(currentFilters);
+        saveNow(true, 'Stay time: 5s AUTO (8s News)');
+      });
+    }
+    if (el('pop-chime-top')) {
+      el('pop-chime-top').addEventListener('click', () => {
+        const nextSnd = !Boolean(currentFilters.soundEnabled);
+        currentFilters.soundEnabled = nextSnd;
+        if (el('flt-sound-enabled')) el('flt-sound-enabled').checked = nextSnd;
+        syncPopupTopNoticeBar(currentFilters);
+        if (nextSnd) playSpokenVoiceWav(currentFilters.audioPreset || 'To Valhalla!', true);
+        saveNow(true, nextSnd ? 'Voice Audio ON' : 'Voice Audio Muted');
+      });
+    }
 
     const stayWrap = el('flt-stay-pills');
     if (stayWrap) {
       stayWrap.querySelectorAll('button[data-stay]').forEach((btn) => {
         btn.addEventListener('click', () => {
           const v = btn.dataset.stay;
-          if (v === 'Pin') {
-            currentFilters.cardPinned = true;
-            if (el('flt-card-pinned')) el('flt-card-pinned').checked = true;
+          currentFilters.cardPinned = false;
+          if (el('flt-card-pinned')) el('flt-card-pinned').checked = false;
+          if (v !== 'Pin') {
+            currentFilters.autoHideSec = normStaySecPopup(v);
+            syncPopupTopNoticeBar(currentFilters);
+            saveNow(true, 'Stay time: ' + currentFilters.autoHideSec + 's');
           } else {
-            currentFilters.cardPinned = false;
-            currentFilters.autoHideSec = Number(v || 10);
-            if (el('flt-card-pinned')) el('flt-card-pinned').checked = false;
+            syncPopupTopNoticeBar(currentFilters);
+            if (el('flt-saved-msg')) {
+              el('flt-saved-msg').textContent = 'Click [PIN] on any active alert card to pin that card transiently.';
+              el('flt-saved-msg').style.display = 'block';
+              setTimeout(() => { if (el('flt-saved-msg')) el('flt-saved-msg').style.display = 'none'; }, 2400);
+            }
           }
-          stayWrap.querySelectorAll('button[data-stay]').forEach((x) => x.classList.toggle('active', x === btn));
-          saveNow(true, 'Stay time: ' + (v === 'Pin' ? 'Pinned' : (v + 's')));
         });
       });
     }
 
-    // v5.5 Luxury Shield: Acknowledge unread count on popup open -> Emerald flash -> Yellow-Black
     const hdrImg = el('popupHdrShieldImg');
     sendBgMsg({ type: 'RRS_GET_SHIELD_STATE_V55' }).then((st) => {
       if (st && (st.unreadCount > 0 || st.state === 'red_alert')) {

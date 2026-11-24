@@ -2,325 +2,510 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>SOL Rent &amp; Rug Shield | 24K Luxury Chrome Extension (v5.8)</title>
+<title>Solana Rent &amp; Rug Shield v6.7 | Jet Black 12-Layer Sentinel</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif; }
-  body { width: 424px; min-height: 590px; background: radial-gradient(125% 110% at 30% 12%, #0C1A34 0%, #091224 46%, #020408 100%); color: #f8fafc; padding: 10px; }
-  .top-alert { display: none; background: linear-gradient(90deg, #3b050e, #6b0f22); border: 1.5px solid #FF1744; border-radius: 12px; padding: 6px 8px; margin-bottom: 8px; font-size: 10px; font-weight: 800; color: #ffe4e6; justify-content: space-between; align-items: center; gap: 6px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  body {
+    width: 476px; min-height: 620px;
+    background: #020408;
+    color: #FFFFFF;
+    padding: 13px;
+    position: relative;
+  }
+  .top-alert {
+    display: none; background: #000000; border: 3px solid #FF3B5C;
+    border-radius: 10px; padding: 7px 10px; margin-bottom: 9px;
+    font-size: 10.5px; font-weight: 800; color: #FF3B5C;
+    justify-content: space-between; align-items: center; gap: 6px;
+  }
   .top-alert.show { display: flex; }
+
+  .phantom-45s-card {
+    display: none; background: #000000; border: 3px solid #00FF88;
+    border-radius: 10px; padding: 10px 12px; margin-bottom: 9px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.92);
+  }
+  .phantom-45s-card.show { display: block; }
+
   .hdr {
     display: flex; align-items: center; justify-content: space-between;
-    border-radius: 14px; border: 1.8px solid transparent;
-    background: radial-gradient(120% 110% at 32% 18%, #10203E 0%, #091224 48%, #020408 100%) padding-box,
-                linear-gradient(135deg, #FFF2A6 0%, #FFD000 42%, #D49B00 72%, #9E7306 100%) border-box;
-    padding: 9px 11px; margin-bottom: 8px; box-shadow: 0 12px 30px rgba(0,0,0,0.85), 0 0 18px rgba(255,208,0,0.28);
+    border-radius: 10px; border: 1.5px solid #2D3A4E;
+    background: #000000;
+    padding: 10px 12px; margin-bottom: 9px;
   }
-  .hdr-title { font-size: 13px; font-weight: 900; color: #FFF2A6; }
-  .hdr-sub { font-size: 9.6px; color: #cbd5e1; font-weight: 700; }
-  .nav-strip { display: flex; align-items: center; justify-content: space-between; gap: 4px; background: #050a14; border: 1px solid rgba(255,208,0,0.28); border-radius: 10px; padding: 4px 7px; margin-bottom: 7px; }
-  .nav-grp { display: flex; align-items: center; gap: 4px; }
-  .nav-btn { background: #09101d; color: #e2e8f0; border: 1px solid #334155; border-radius: 8px; padding: 3px 8px; font-size: 9.8px; font-weight: 800; cursor: pointer; }
-  .nav-btn:disabled { opacity: 0.4; cursor: default; }
-  .nav-btn.active { border-color: #FFD000; color: #FFF2A6; background: rgba(255, 208, 0, 0.16); box-shadow: 0 0 8px rgba(255,208,0,0.28); }
-  .badge-strip { display: grid; grid-template-columns: 1.35fr 1fr; gap: 6px; margin-bottom: 8px; }
-  .trust-pill { background: #071020; border: 1.2px solid rgba(255, 208, 0, 0.48); border-radius: 10px; padding: 6px 6px; font-size: 10px; font-weight: 900; color: #FFF2A6; cursor: pointer; text-align: center; white-space: nowrap; }
-  .trust-pill.gold { border-color: #00FFA3; color: #00FFA3; background: rgba(0,255,163,0.10); box-shadow: 0 0 10px rgba(0,255,163,0.18); }
-  .trust-pill.active { background: linear-gradient(90deg,#FFD000,#E6A800); color: #020408; border-color: #FFF2A6; }
+  .hdr-title { font-size: 13px; font-weight: 900; color: #FFFFFF; letter-spacing: 0.02em; }
+  .hdr-sub { font-size: 9.8px; color: #94A3B8; font-weight: 700; margin-top: 1px; }
+
+  .top-notice-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 4px;
+    width: 100%; margin-bottom: 9px;
+  }
+  .zoom-cluster { display: inline-flex; align-items: center; gap: 3px; flex-shrink: 0; }
+  .ctrl-btn {
+    height: 28px; padding: 0 7px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #000000; color: #F8FAFC;
+    border: 1.2px solid #2D3A4E; border-radius: 7px;
+    font-size: 9.8px; font-weight: 900; cursor: pointer; white-space: nowrap;
+  }
+  .ctrl-btn:hover { border-color: #38BDF8; color: #38BDF8; }
+  .ctrl-btn.zin { border-color: rgba(0,255,136,0.55); color: #00FF88; }
+  .ctrl-btn.zpct { width: 42px; color: #E2E8F0; border-color: #2D3A4E; }
+  .ctrl-btn.gear { border-color: #2D3A4E; color: #38BDF8; font-size: 12.5px; }
+
+  .stepper-capsule {
+    height: 28px; display: inline-flex; align-items: stretch;
+    background: #000000; border: 1.2px solid #2D3A4E;
+    border-radius: 7px; overflow: hidden; flex-shrink: 0;
+  }
+  .stepper-capsule.pinned { border-color: #00FF88; }
+  .step-side {
+    width: 22px; background: transparent; border: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 900; cursor: pointer; color: #FFFFFF;
+  }
+  .step-side.minus { border-right: 1px solid #2D3A4E; }
+  .step-side.plus { color: #00FF88; border-left: 1px solid #2D3A4E; }
+  .step-mid {
+    min-width: 44px; padding: 0 5px; background: transparent; border: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #FFFFFF; font-size: 9.8px; font-weight: 900; cursor: pointer; white-space: nowrap;
+  }
+  .stepper-capsule.pinned .step-mid { color: #00FF88; }
+
+  .chime-pill {
+    height: 28px; min-width: 68px; padding: 0 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #000000; border: 1.2px solid #2D3A4E;
+    border-radius: 7px; color: #94A3B8;
+    font-size: 9.8px; font-weight: 900; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  }
+  .chime-pill.on { border-color: #00FF88; color: #00FF88; }
+
+  .badge-strip {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px; width: 100%; margin-bottom: 10px;
+  }
+  .trust-pill {
+    width: 100%; height: 32px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #000000; border: 1.2px solid #2D3A4E;
+    border-radius: 8px; font-size: 10.2px; font-weight: 900; color: #CBD5E1;
+    cursor: pointer; text-align: center; white-space: nowrap;
+  }
+  .trust-pill.active {
+    background: #00FF88; color: #000000; border-color: #00FF88;
+  }
+
   .card, .card-cyan, .flt-card {
-    border-radius: 14px; border: 1.6px solid transparent;
-    background: radial-gradient(120% 110% at 32% 18%, #0E1C36 0%, #091224 48%, #020408 100%) padding-box,
-                linear-gradient(135deg, #FFF2A6 0%, #FFD000 42%, #D49B00 72%, #9E7306 100%) border-box;
-    padding: 10px; margin-bottom: 8px; box-shadow: 0 14px 32px rgba(0,0,0,0.82), 0 0 16px rgba(255,208,0,0.18);
+    border-radius: 10px; border: 1.5px solid #2D3A4E;
+    background: #000000;
+    padding: 12px; margin-bottom: 10px;
   }
-  .sec-title { font-size: 11px; font-weight: 900; color: #00FFA3; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; gap: 4px; }
-  .info-dot { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 999px; background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #7dd3fc; font-size: 9.5px; font-weight: 900; cursor: pointer; margin-left: 3px; }
-  .info-bubble { display: none; margin-bottom: 6px; padding: 6px 8px; border-radius: 7px; background: #081c34; border: 1px solid #38bdf8; color: #e0f2fe; font-size: 9.8px; line-height: 1.38; }
-  .info-bubble.open { display: block; }
-  .inp { width: 100%; padding: 7px 9px; border-radius: 7px; border: 1px solid #38bdf8; background: #020408; color: #fff; font-size: 11px; margin-bottom: 6px; outline: none; }
-  .btn { width: 100%; padding: 8px 10px; border-radius: 7px; border: none; font-size: 11px; font-weight: 900; cursor: pointer; text-align: center; display: inline-block; text-decoration: none; }
-  .btn-green { background: #00FFA3; color: #020408; }
-  .btn-red { background: #FF1744; color: #FFFFFF; }
-  .btn-cyan { background: linear-gradient(90deg, #0891b2, #00FFA3); color: #020408; }
-  .btn-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 5px; }
-  .btn-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 5px; }
-  .btn-sm { padding: 5px 4px; font-size: 9.8px; border-radius: 6px; background: #09101d; color: #cbd5e1; border: 1px solid #334155; cursor: pointer; font-weight: 800; text-align: center; }
-  .out-box { display: none; margin-top: 6px; padding: 7px 8px; border-radius: 7px; background: #020408; border: 1px solid #22d3ee; font-size: 10.3px; line-height: 1.42; }
-  .ticker-item { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; gap: 4px; }
-  .tx-link { color: #00FFA3; font-weight: 900; text-decoration: underline; white-space: nowrap; }
-  .pref-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid rgba(148,163,184,0.14); font-size: 10.5px; }
-  .pref-sub { font-size: 9.2px; color: #94a3b8; margin-top: 1px; }
-  .num-inp { width: 54px; padding: 3px 5px; border-radius: 5px; border: 1px solid #fde047; background: #020408; color: #fde047; font-size: 10.5px; font-weight: 900; text-align: center; }
-  .ftr { margin-top: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 9.3px; color: #64748b; padding: 0 2px; }
-  .ftr a { color: #38bdf8; text-decoration: none; font-weight: 700; }
-  .rrs-switch { position: relative; display: inline-flex; align-items: center; width: 38px; height: 20px; flex-shrink: 0; cursor: pointer; vertical-align: middle; }
+  .sec-title {
+    font-size: 11px; font-weight: 900; color: #38BDF8;
+    margin-bottom: 7px; display: flex; justify-content: space-between; align-items: center; gap: 6px;
+  }
+  .inp, .flt-inp {
+    width: 100%; height: 35px; padding: 0 10px;
+    border-radius: 8px; border: 1.2px solid #2D3A4E;
+    background: #000000; color: #FFFFFF; font-size: 11.2px; font-weight: 700; outline: none;
+  }
+  .inp:focus, .flt-inp:focus { border-color: #38BDF8; }
+
+  .btn {
+    width: 100%; height: 36px; padding: 0 10px;
+    border-radius: 8px; border: none; font-size: 11.2px; font-weight: 900;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+    text-decoration: none; white-space: nowrap;
+  }
+  .btn-gold { background: #000000; color: #38BDF8; border: 1.4px solid #38BDF8; }
+  .btn-green { background: #00FF88; color: #000000; border: 1.4px solid #00FF88; }
+  .btn-cyan { background: #000000; color: #00FF88; border: 1.4px solid #00FF88; }
+  .btn-autoscan {
+    background: #000000; color: #94A3B8; border: 1.4px solid #334155;
+    font-size: 10.2px; font-weight: 900; transition: all 0.16s ease;
+  }
+  .btn-autoscan.on {
+    background: rgba(0,255,136,0.16); color: #00FF88; border-color: #00FF88;
+    box-shadow: 0 0 12px rgba(0,255,136,0.28);
+  }
+
+  .btn-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; width: 100%; margin-top: 6px; }
+  .btn-row-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; width: 100%; margin-top: 6px; }
+  .btn-row-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; width: 100%; }
+  .btn-row-5 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; width: 100%; }
+  .stay-10-grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; width: 100%; margin-bottom: 7px; }
+
+  .btn-sm {
+    width: 100%; height: 29px; padding: 0 4px; font-size: 9.8px;
+    border-radius: 7px; background: #000000; color: #E2E8F0;
+    border: 1.1px solid #2D3A4E; cursor: pointer; font-weight: 800;
+    display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+  }
+  .btn-sm.active, .nav-btn.active {
+    border-color: #38BDF8; color: #38BDF8; background: rgba(56,189,248,0.14);
+  }
+  .btn-sm.liq-chip.active {
+    border-color: #00FF88; color: #00FF88; background: rgba(0,255,136,0.16);
+  }
+  .nav-btn {
+    height: 28px; padding: 0 8px; border-radius: 7px;
+    background: #000000; color: #E2E8F0; border: 1.1px solid #2D3A4E;
+    font-size: 10px; font-weight: 800; cursor: pointer;
+  }
+
+  .out-box {
+    display: none; margin-top: 7px; padding: 8px 10px;
+    border-radius: 8px; background: #000000; border: 1.2px solid #38BDF8;
+    font-size: 10.6px; line-height: 1.42; color: #FFFFFF;
+  }
+
+  .live-coin-box {
+    background: #020408; border: 3px solid #00FF88;
+    border-radius: 10px; padding: 10px 12px; margin-bottom: 9px;
+  }
+  .live-ticker-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    margin-bottom: 5px; border: none;
+  }
+  .live-ticker-sym { font-size: 17.5px; font-weight: 900; color: #00FF88; }
+  .live-verdict-pass {
+    font-size: 10.8px; font-weight: 900; color: #00FF88;
+    background: #000000; border: 1.4px solid #00FF88;
+    border-radius: 6px; padding: 3px 8px;
+  }
+  .live-metrics-white {
+    font-size: 14.5px; font-weight: 800; color: #FFFFFF; border: none; margin-bottom: 7px;
+  }
+  .spotlight-cta-link {
+    width: 100%; height: 31px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #000000; border: 1.4px solid #00FF88; color: #00FF88;
+    border-radius: 6px; font-size: 11px; font-weight: 900; text-decoration: none; cursor: pointer;
+  }
+
+  .rrs-switch { position: relative; display: inline-flex; align-items: center; width: 38px; height: 20px; flex-shrink: 0; cursor: pointer; }
   .rrs-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
-  .rrs-slider { position: absolute; inset: 0; background: #080E1C; border: 1.2px solid #334155; border-radius: 999px; transition: all 0.18s cubic-bezier(0.22,1,0.36,1); }
-  .rrs-slider::before { content: ""; position: absolute; height: 14px; width: 14px; left: 2px; top: 2px; background: #94a3b8; border-radius: 50%; transition: transform 0.18s cubic-bezier(0.22,1,0.36,1), background 0.18s ease; }
-  .rrs-switch input:checked + .rrs-slider { background: linear-gradient(135deg, rgba(6,95,70,0.78), rgba(4,56,42,0.95)); border-color: #00FFA3; box-shadow: 0 0 11px rgba(0, 255, 163, 0.52); }
-  .rrs-switch input:checked + .rrs-slider::before { transform: translateX(18px); background: radial-gradient(circle at 35% 35%, #ffffff, #00FFA3); }
-  .rrs-switch.gold input:checked + .rrs-slider { background: linear-gradient(135deg, rgba(160,115,6,0.72), rgba(68,48,4,0.92)); border-color: #FFD000; box-shadow: 0 0 11px rgba(255, 208, 0, 0.52); }
-  .rrs-switch.gold input:checked + .rrs-slider::before { transform: translateX(18px); background: radial-gradient(circle at 35% 35%, #ffffff, #FFD000); }
-  .pill-chk { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; font-size: 9.8px; font-weight: 800; color: #e2e8f0; }
-  .flt-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid rgba(255, 208, 0, 0.14); font-size: 10.5px; font-weight: 800; color: #f8fafc; }
-  .flt-rule { background: #060c18; border: 1px solid #1e293b; border-radius: 7px; padding: 6px 7px; margin-top: 5px; }
-  .flt-rule-hdr { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 10px; font-weight: 800; color: #e2e8f0; margin-bottom: 4px; }
-  .flt-inp { background: #020408; border: 1px solid #334155; border-radius: 5px; padding: 4px 6px; color: #f8fafc; font-size: 10.2px; font-weight: 700; outline: none; }
-  .flt-inp:focus { border-color: #00FFA3; }
-  /* Big 1-Click Market Preset Pills */
-  .preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 6px 0 7px 0; }
+  .rrs-slider { position: absolute; inset: 0; background: #05070D; border: 1.2px solid #334155; border-radius: 999px; transition: all 0.18s ease; }
+  .rrs-slider::before { content: ""; position: absolute; height: 14px; width: 14px; left: 2px; top: 2px; background: #94A3B8; border-radius: 50%; transition: transform 0.18s ease, background 0.18s ease; }
+  .rrs-switch input:checked + .rrs-slider { background: rgba(0,255,163,0.22); border-color: #00FFA3; }
+  .rrs-switch input:checked + .rrs-slider::before { transform: translateX(18px); background: #00FFA3; }
+  .rrs-switch.gold input:checked + .rrs-slider { background: rgba(56,189,248,0.22); border-color: #38BDF8; }
+  .rrs-switch.gold input:checked + .rrs-slider::before { transform: translateX(18px); background: #38BDF8; }
+
+  .sw-card-row {
+    width: 100%; min-height: 36px;
+    display: flex; justify-content: space-between; align-items: center; gap: 6px;
+    background: #0A0E19; border: 1.1px solid #1E2B42; border-radius: 8px;
+    padding: 6px 8px; font-size: 10.4px; font-weight: 800; color: #FFFFFF;
+  }
+  .flt-rule {
+    background: #080C16; border: 1.1px solid #1E2B42; border-radius: 9px;
+    padding: 9px 10px; margin-top: 7px;
+  }
+  .flt-rule-hdr {
+    display: flex; justify-content: space-between; align-items: center; gap: 6px;
+    font-size: 10.6px; font-weight: 900; color: #38BDF8; margin-bottom: 6px;
+  }
+  .preset-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; margin: 6px 0 7px 0; }
   .preset-pill {
-    background: #071322; border: 1.5px solid #00FFA3; color: #f8fafc;
-    border-radius: 9px; padding: 9px 8px; cursor: pointer; text-align: left;
-    transition: all 0.15s ease; display: flex; flex-direction: column; gap: 2px;
+    width: 100%; background: #0A0E19; border: 1.2px solid #00FFA3; color: #FFFFFF;
+    border-radius: 8px; padding: 8px; cursor: pointer; text-align: left;
+    display: flex; flex-direction: column; gap: 2px; position: relative;
   }
-  .preset-pill:hover { background: rgba(0, 255, 163, 0.14); transform: translateY(-1px); }
-  .preset-pill.active { background: #00FFA3; color: #020408; border-color: #00FFA3; box-shadow: 0 0 12px rgba(0, 255, 163, 0.4); }
-  .preset-pill-title { font-size: 11px; font-weight: 900; color: #00FFA3; line-height: 1.2; }
-  .preset-pill.active .preset-pill-title { color: #020408; }
-  .preset-pill-sub { font-size: 9.2px; font-weight: 700; color: #94a3b8; line-height: 1.2; }
-  .preset-pill.active .preset-pill-sub { color: #052e22; }
+  .preset-pill.active { background: #00FFA3; color: #05070D; }
+  .preset-pill-title { font-size: 10.8px; font-weight: 900; color: #00FFA3; display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+  .preset-pill.active .preset-pill-title { color: #05070D; }
+  .preset-pill-sub { font-size: 9.2px; font-weight: 700; color: #CBD5E1; }
+  .preset-pill.active .preset-pill-sub { color: #052E22; }
   .preset-pill-clear {
-    grid-column: 1 / -1; background: #09101d; border: 1px solid #475569; color: #cbd5e1;
-    border-radius: 8px; padding: 7px 10px; font-size: 10.2px; font-weight: 800; cursor: pointer; text-align: center;
+    grid-column: 1 / -1; width: 100%; height: 31px;
+    background: #0A0E19; border: 1.1px solid #475569; color: #E2E8F0;
+    border-radius: 8px; font-size: 10.2px; font-weight: 800; cursor: pointer;
   }
-  .preset-pill-clear.active { border-color: #38bdf8; color: #38bdf8; background: rgba(56, 189, 248, 0.1); }
-  /* Collapsed Local Founder Desk Drawer */
-  details.founder-drawer {
-    margin-top: 9px; background: #050a14; border: 1px dashed #475569; border-radius: 9px; overflow: hidden;
+  .preset-pill-clear.active { border-color: #38BDF8; color: #38BDF8; }
+
+  .whale-pro-box {
+    width: 100%; min-height: 38px; margin-top: 6px;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    background: #0A0E19; border: 1.2px solid rgba(56,189,248,0.48);
+    border-radius: 8px; padding: 6px 10px;
   }
-  details.founder-drawer[open] { border-style: solid; border-color: #facc15; }
-  details.founder-drawer > summary {
-    list-style: none; cursor: pointer; padding: 7px 10px; font-size: 10.2px; font-weight: 900;
-    color: #fde047; display: flex; align-items: center; justify-content: space-between; user-select: none;
+  .pro-badge {
+    background: linear-gradient(90deg, rgba(56,189,248,0.18), rgba(0,255,163,0.16));
+    border: 1.1px solid #38BDF8; color: #00FFA3;
+    border-radius: 6px; padding: 2px 8px; font-size: 9.8px; font-weight: 900; white-space: nowrap;
   }
+  .inline-scan-row {
+    display: grid; grid-template-columns: minmax(0, 1fr) 82px 172px; gap: 5px; width: 100%; margin-top: 7px; align-items: center;
+  }
+  .liq-range-slider {
+    width: 100%; accent-color: #00FF88; height: 6px; cursor: pointer; margin: 5px 0 7px 0;
+  }
+  /* Plain-English [?] Tooltip Badge & Floating Bubble */
+  .rrs-q-tip {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #000000; border: 1.2px solid #38BDF8;
+    color: #38BDF8; font-size: 9.5px; font-weight: 900;
+    cursor: pointer; flex-shrink: 0; line-height: 1; margin-left: 3px;
+    user-select: none;
+  }
+  .rrs-q-tip:hover, .rrs-q-tip.open {
+    background: #38BDF8; color: #000000;
+  }
+  #rrs-v67-tooltip-pop {
+    display: none; position: fixed; z-index: 2147483647;
+    width: 288px; max-width: calc(100vw - 24px);
+    background: #000000; border: 2px solid #38BDF8;
+    border-radius: 9px; padding: 9px 11px;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.96);
+    color: #FFFFFF; font-size: 10.6px; line-height: 1.42;
+    pointer-events: auto;
+  }
+  #rrs-v67-tooltip-pop.show { display: block; }
+  .tip-hdr {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; font-weight: 900; color: #00FF88; margin-bottom: 4px;
+  }
+  .tip-close {
+    background: transparent; border: none; color: #FF3B5C; font-weight: 900; font-size: 11px; cursor: pointer;
+  }
+
+  .ticker-item {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 10.2px; padding: 5px 0; display: flex; justify-content: space-between; align-items: center;
+  }
+  .tx-link { color: #38BDF8; font-weight: 900; text-decoration: underline; }
+  .ftr {
+    margin-top: 8px; display: flex; justify-content: space-between; align-items: center;
+    font-size: 9.8px; color: #94A3B8; padding: 0 2px;
+  }
+  details.founder-drawer { margin-top: 8px; background: #080C16; border: 1px dashed #334155; border-radius: 8px; overflow: hidden; }
+  details.founder-drawer > summary { list-style: none; cursor: pointer; padding: 7px 10px; font-size: 10px; font-weight: 900; color: #38BDF8; display: flex; justify-content: space-between; }
   details.founder-drawer > summary::-webkit-details-marker { display: none; }
-  details.founder-drawer > summary::after { content: "▾ Expand"; font-size: 9px; color: #94a3b8; font-weight: 800; }
-  details.founder-drawer[open] > summary::after { content: "▴ Collapse"; color: #fde047; }
-  .founder-drawer-body { padding: 6px 10px 9px 10px; border-top: 1px solid rgba(250, 204, 21, 0.22); background: #020408; }
+  .founder-drawer-body { padding: 7px 10px; background: #05070D; }
 </style>
 </head>
 <body>
 
-  <div id="cyberSentinelBanner" style="border-radius:14px;border:1.6px solid transparent;background:radial-gradient(120% 110% at 32% 18%, #10203E 0%, #091224 48%, #020408 100%) padding-box,linear-gradient(135deg, #FFF2A6 0%, #FFD000 42%, #9E7306 100%) border-box;padding:8px 10px;margin-bottom:8px;box-shadow:0 0 18px rgba(255,208,0,0.22);">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
-      <div style="display:flex;align-items:center;gap:6px;">
-        <span id="cyberPulseDot" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#FFD000;box-shadow:0 0 10px #FFD000;"></span>
-        <strong id="cyberStatusHeadline" style="font-size:10.6px;color:#FFF2A6;">LUXURY SHIELD v5.8: 12 LAYERS ARMED</strong>
-      </div>
-      <span style="font-size:8.9px;font-weight:800;color:#00FFA3;">Gold-Green Shield</span>
+  <!-- FLOATING PLAIN-ENGLISH [?] TOOLTIP CARD -->
+  <div id="rrs-v67-tooltip-pop" role="dialog" aria-live="polite">
+    <div class="tip-hdr">
+      <span id="rrs-v67-tip-title">Plain-English Trader Guide</span>
+      <button id="rrs-v67-tip-close" class="tip-close" type="button">&#10005;</button>
     </div>
-    <div id="cyberThreatDetail" style="font-size:9.5px;color:#cbd5e1;margin-top:4px;line-height:1.35;">
-      <b style="color:#00FFA3;">Zero False Red</b> | Calm Black &amp; Gold cards, Red ONLY on 12-Layer FAIL.
-    </div>
-    <div style="margin-top:6px;display:flex;gap:6px;align-items:center;justify-content:space-between;">
-      <span id="v51TrialCountdown" style="font-size:9px;color:#a7f3d0;font-weight:800;">30-Day Pro Mode FREE + 0% 1st Claim</span>
-      <button id="pop-try-luxury-box-btn" type="button" style="background:linear-gradient(90deg,#FFD000,#E6A800);color:#020408;border:none;border-radius:8px;padding:4px 9px;font-size:9.4px;font-weight:900;cursor:pointer;box-shadow:0 0 10px rgba(255,208,0,0.35);">Try Luxury Trader Box</button>
-    </div>
+    <div id="rrs-v67-tip-body">Hover or click any [?] icon to see what it means in plain English.</div>
   </div>
 
   <div id="popup-top-alert-banner" class="top-alert">
-    <span id="popup-top-alert-text">High-Risk Token Alert Triggered</span>
-    <button id="popup-top-alert-dismiss" class="nav-btn" style="background:#450a0a;border-color:#FF1744;color:#fecaca;">X</button>
+    <span id="popup-top-alert-text">12-Layer Scam Coin Warning Triggered</span>
+    <button id="popup-top-alert-dismiss" class="nav-btn" style="border-color:#FF4D6D;color:#FF4D6D;">X</button>
   </div>
 
+  <!-- 45s POST-INSTALL RICH BLACK + EMERALD PHANTOM PROMPT CARD -->
+  <div id="pop-phantom-45s-card" class="phantom-45s-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px;">
+      <span id="pop-phantom-45s-title" style="font-size:12px;font-weight:900;color:#00FFA3;">Connect Phantom for Auto 0% Rent Reclaim</span>
+      <span style="font-size:9.5px;font-weight:900;color:#00FFA3;border:1px solid #00FFA3;border-radius:6px;padding:1px 6px;">AUTO 0%</span>
+    </div>
+    <div style="font-size:10.4px;font-weight:700;color:#FFFFFF;margin-bottom:7px;">1st SOL Rent Claim 100% FREE (0% Fee) &#8226; Read-Only Scan &#8226; 0 Seed Phrases</div>
+    <a id="pop-phantom-45s-cta" href="https://rentandrugshield.com/app.html?connect_phantom=1&amp;auto_reclaim_0pct=1&amp;src=ext_45s" target="_blank" rel="noopener noreferrer" class="btn btn-green" style="height:31px;font-size:10.6px;">CONNECT PHANTOM FOR AUTO 0% RENT RECLAIM &#8599;</a>
+  </div>
+
+  <!-- HEADER -->
   <div class="hdr">
-    <div style="display:flex;align-items:center;gap:9px;">
-      <img id="popupHdrShieldImg" src="icons/shield_yellow_48.png" style="width:32px;height:32px;object-fit:contain;" alt="96.5% Yellow-Gold Shield" />
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img id="popupHdrShieldImg" src="icons/shield_emerald_48.png" style="width:32px;height:32px;object-fit:contain;" alt="Solana Shield" />
       <div>
-        <div class="hdr-title">SOL RENT &amp; RUG SHIELD v5.8</div>
-        <div class="hdr-sub">24K-Gold &amp; Emerald | Dual Gear + Auto Proof Prover</div>
+        <div class="hdr-title">SOLANA RENT &amp; RUG SHIELD v6.7</div>
+        <div class="hdr-sub" id="v51TrialCountdown">Jet Black Shield | 0% 1st SOL Claim</div>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:5px;">
-      <button id="hdr-gear-btn" type="button" title="Open Luxury MACD &amp; Alert Settings" style="background:#141E33;color:#FFD000;border:1.4px solid #FFD000;border-radius:8px;padding:3px 8px;font-size:12px;font-weight:900;cursor:pointer;">&#9881;</button>
-      <a id="ext-open-app-top" href="https://rentandrugshield.com/app.html" target="_blank" rel="noopener noreferrer" style="font-size:9.8px;font-weight:900;color:#020408;text-decoration:none;background:#00FFA3;padding:5px 9px;border-radius:8px;">Open App</a>
+    <div style="display:flex;align-items:center;gap:6px;">
+      <a id="ext-open-app-top" href="https://rentandrugshield.com/app.html" target="_blank" rel="noopener noreferrer" style="font-size:10px;font-weight:900;color:#000000;text-decoration:none;background:#00FF88;padding:6px 10px;border-radius:8px;">Open App</a>
     </div>
   </div>
 
-  <!-- TOP UNIFIED OMNI-SCAN BAR (v5.8) -->
-  <div id="ext-omni-scan-bar" class="card" style="padding:8px 9px;margin-bottom:8px;border-color:#00FFA3;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
-      <span style="font-size:10px;font-weight:900;color:#00FFA3;">Instant 12-Layer Coin or Wallet Scan</span>
-      <button id="omni-inline-gear-btn" type="button" title="Open Pro Signal &amp; Stay-Time Settings" style="background:#141E33;color:#FFD000;border:1px solid #FFD000;border-radius:6px;padding:1px 7px;font-size:10px;font-weight:900;cursor:pointer;">&#9881; Settings</button>
+  <!-- SHARED TOP NOTICE BAR: [- ZOOM] [100%] [+ ZOOM] | [- 5s +] | [MUTE] | [⚙] -->
+  <div class="top-notice-bar" id="pop-top-notice-bar">
+    <div class="zoom-cluster">
+      <button id="flt-zoom-out" class="ctrl-btn" type="button">[- ZOOM]</button>
+      <button id="flt-zoom-pct" class="ctrl-btn zpct" type="button" title="Reset Zoom to 100%">100%</button>
+      <button id="flt-zoom-in" class="ctrl-btn zin" type="button">[+ ZOOM]</button>
     </div>
-    <div style="display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center;">
-      <input id="ext-omni-scan-inp" class="inp" style="margin-bottom:0;border-color:#00FFA3;font-size:10.8px;" type="text" placeholder="Paste Wallet or Coin Here -> Scan" />
-      <button id="ext-omni-scan-btn" class="btn btn-green" type="button" style="width:auto;padding:7px 12px;font-size:10.8px;">Scan</button>
+    <div id="pop-stepper-capsule" class="stepper-capsule">
+      <button id="pop-step-minus" class="step-side minus" type="button" title="Decrease Stay Seconds (3s..60s)">-</button>
+      <button id="pop-step-mid" class="step-mid" type="button" title="Toggle AUTO vs PIN">5s</button>
+      <button id="pop-step-plus" class="step-side plus" type="button" title="Increase Stay Seconds (3s..60s)">+</button>
     </div>
-    <div id="ext-omni-scan-out" class="out-box" style="margin-top:6px;"></div>
+    <button id="pop-chime-top" class="chime-pill" type="button">MUTE</button>
+    <button id="hdr-gear-btn" class="ctrl-btn gear" type="button" title="Settings">&#9881;</button>
   </div>
+  <input id="flt-card-pinned" type="checkbox" style="display:none;" />
 
-  <div class="nav-strip">
-    <div class="nav-grp">
-      <button id="pop-nav-back" class="nav-btn" type="button" disabled>Back</button>
-      <button id="pop-nav-home" class="nav-btn active" type="button">Home</button>
-      <button id="pop-nav-fwd" class="nav-btn" type="button" disabled>Next</button>
-    </div>
-    <span style="font-size:9.3px;color:#94a3b8;font-weight:700;">Safety Cutoff: <b id="pop-cutoff-badge" style="color:#00FFA3;">75/100</b></span>
-  </div>
-
+  <!-- EQUAL-WIDTH NAVIGATION PILLS -->
   <div class="badge-strip">
-    <button id="pop-btn-alerts" class="trust-pill gold" type="button">Alert &amp; Market Filters</button>
-    <button id="pop-btn-rnd" class="trust-pill" type="button">898h + 5,501h R&amp;D</button>
+    <button id="pop-nav-home" class="trust-pill active" type="button">Live Pop-Up</button>
+    <button id="pop-btn-alerts" class="trust-pill" type="button">Settings Panel</button>
+    <button id="pop-btn-rnd" class="trust-pill" type="button">12-Layer R&amp;D</button>
   </div>
 
-  <!-- VIEW 1: HOME -->
+  <!-- VIEW 1: LIVE POP-UP -->
   <div id="pop-view-home">
-    <div id="ext-intel-bubbles-card" class="flt-card" style="margin-bottom:8px;">
-      <div class="sec-title" style="flex-wrap:wrap;gap:4px;">
-        <span style="color:#00FFA3;">1. Live Solana Market &amp; Security Feed</span>
-        <button id="ext-open-filters-btn" type="button" style="background:#09101d;color:#D4AF37;border:1px solid #D4AF37;border-radius:5px;padding:3px 8px;font-size:9px;font-weight:900;cursor:pointer;">&#9881; MACD &amp; Filters</button>
+    <div class="card">
+      <!-- LIVE COIN SPOTLIGHT: EXACT ?token=<MINT>&autoscan=1#tokenScanner -->
+      <div class="live-coin-box" id="pop-spotlight-box">
+        <div class="live-ticker-row">
+          <span id="pop-spotlight-ticker" class="live-ticker-sym">$JUP +18.4%</span>
+          <span id="pop-spotlight-verdict" class="live-verdict-pass">12-LAYER: PASS</span>
+        </div>
+        <div id="pop-spotlight-metrics" class="live-metrics-white">MCap $420K &#8226; Liquidity $68K</div>
+        <a id="pop-spotlight-audit-btn" href="https://rentandrugshield.com/?token=JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN&amp;autoscan=1#tokenScanner" target="_blank" rel="noopener noreferrer" class="spotlight-cta-link">[OPEN 12-LAYER AUDIT &#8599;]</a>
       </div>
-      <div id="ext-active-filter-summary" style="display:none;margin-bottom:5px;padding:4px 7px;border-radius:6px;background:rgba(0,255,163,0.08);border:1px solid rgba(0,255,163,0.35);font-size:9px;font-weight:800;color:#a7f3d0;"></div>
-      <div id="ext-intel-tabs" style="display:flex;gap:3px;margin-bottom:6px;flex-wrap:wrap;">
-        <button type="button" class="nav-btn active" data-icat="all">All</button>
-        <button type="button" class="nav-btn" data-icat="coin">Trending</button>
-        <button type="button" class="nav-btn" data-icat="rug" style="color:#FF1744;">Rugs</button>
-        <button type="button" class="nav-btn" data-icat="crypto">Crypto</button>
-        <button type="button" class="nav-btn" data-icat="ai">AI</button>
-        <button type="button" class="nav-btn" data-icat="world">World</button>
-        <button type="button" id="tab-founder-moonbag" class="nav-btn" data-icat="moonbag" style="display:none;color:#fde047;">Moonbags</button>
-        <button type="button" id="tab-founder-visitor" class="nav-btn" data-icat="visitor" style="display:none;color:#7dd3fc;">Visitors</button>
+
+      <div class="sec-title">
+        <span>Live Solana Market &amp; Security Feed</span>
+        <button id="pop-try-luxury-box-btn" type="button" class="nav-btn active">Pop Live Box</button>
       </div>
-      <div id="ext-intel-bubbles-list" style="display:flex;flex-direction:column;gap:5px;max-height:175px;overflow-y:auto;">
-        <div style="font-size:9.8px;color:#94a3b8;">Syncing live 12-Layer Solana movers, rug blocks &amp; market news...</div>
+      <div id="ext-active-filter-summary" style="display:none;margin-bottom:6px;padding:5px 8px;border-radius:7px;background:rgba(0,255,163,0.10);border:1px solid rgba(0,255,163,0.40);font-size:9.5px;font-weight:800;color:#00FFA3;"></div>
+      <div id="ext-intel-tabs" class="btn-row-4" style="grid-template-columns:repeat(6,minmax(0,1fr));margin-bottom:7px;">
+        <button type="button" class="btn-sm active" data-icat="all">All</button>
+        <button type="button" class="btn-sm" data-icat="coin">Coins</button>
+        <button type="button" class="btn-sm" data-icat="rug" style="color:#FF4D6D;">Scams</button>
+        <button type="button" class="btn-sm" data-icat="crypto">Crypto</button>
+        <button type="button" class="btn-sm" data-icat="ai">AI</button>
+        <button type="button" class="btn-sm" data-icat="world">World</button>
+      </div>
+      <div id="ext-intel-bubbles-list" style="display:flex;flex-direction:column;gap:6px;max-height:175px;overflow-y:auto;">
+        <div style="font-size:10.2px;color:#CBD5E1;">Syncing live 12-Layer Solana movers &amp; market news...</div>
       </div>
     </div>
 
     <div class="card-cyan">
       <div class="sec-title">
-        <span style="color:#67e8f9;display:flex;align-items:center;">
-          2. 12-Layer Pre-Buy Mint Scanner
-          <button id="pop-layer-info-btn" class="info-dot" type="button" title="12-Layer Pass Info">i</button>
-        </span>
-        <span id="tab-detect-badge" style="font-size:9px;color:#00FFA3;">Auto-Tab Ready</span>
+        <span>12-Layer Scam Coin Scanner</span>
+        <span id="tab-detect-badge" style="font-size:9.4px;color:#00FFA3;">Auto-Tab Ready</span>
       </div>
-      <div id="pop-layer-info-box" class="info-bubble">
-        12-Layer deterministic inspection: Mint/Freeze Auth, LP Lock, Token-2022 Hooks, Inner-CPI Drainer Simulation, Block-0 Sybil Cluster Defense, and Clipboard &amp; Fake-Wallet Guard.
-      </div>
-      <input id="ext-mint-inp" class="inp" type="text" placeholder="Paste Solana Mint (or auto-detects active DEX tab)..." />
-      <button id="ext-audit-btn" class="btn btn-cyan" type="button">RUN 12-LAYER MINT AUDIT (&lt;250ms)</button>
+      <input id="ext-mint-inp" class="inp" style="margin-bottom:6px;" type="text" placeholder="Paste Solana Coin Mint (auto-detects active DEX tab)" />
+      <button id="ext-audit-btn" class="btn btn-cyan" type="button">RUN 12-LAYER COIN SCAN (&lt;250ms)</button>
       <div class="btn-row">
         <button id="ext-test-winner" class="btn-sm" type="button" style="color:#00FFA3;border-color:#00FFA3;">$MELNOK</button>
-        <button id="ext-test-safe" class="btn-sm" type="button" style="color:#67e8f9;border-color:#22d3ee;">$WASTED6</button>
-        <button id="ext-test-rug" class="btn-sm" type="button" style="color:#FF1744;border-color:#FF1744;">Rug $NVIDIA</button>
+        <button id="ext-test-safe" class="btn-sm" type="button" style="color:#00FFA3;border-color:#00FFA3;">$WASTED6</button>
+        <button id="ext-test-rug" class="btn-sm" type="button" style="color:#FF4D6D;border-color:#FF4D6D;">Scam $NVIDIA</button>
       </div>
       <div id="ext-mint-out" class="out-box"></div>
     </div>
 
-    <div class="card">
-      <div class="sec-title">
-        <span>3. Read-Only Wallet Rent Scanner</span>
-        <span style="font-size:9px;color:#a7f3d0;">98% Net | 1st Claim 0% Fee</span>
-      </div>
-      <input id="ext-wallet-inp" class="inp" style="border-color:#00FFA3;" type="text" placeholder="Paste Solana Wallet Address (100% Read-Only)..." />
-      <button id="ext-scan-wallet-btn" class="btn btn-green" type="button">SCAN TRAPPED SOL RENT (READ-ONLY)</button>
-      <div class="btn-row-2">
-        <button id="ext-demo-whale" class="btn-sm" type="button" style="color:#fde047;border-color:#f59e0b;">Test Verified Wallet</button>
-        <a id="ext-claim-link" href="https://rentandrugshield.com/app.html?autoscan=1" target="_blank" rel="noopener noreferrer" class="btn-sm" style="text-decoration:none;color:#00FFA3;border-color:#00FFA3;">Connect &amp; Claim</a>
-      </div>
-      <div id="ext-wallet-out" class="out-box" style="border-color:#00FFA3;"></div>
-    </div>
-
     <div class="card" style="margin-bottom:0;">
       <div class="sec-title">
-        <span>4. Live DEX-6 Verified Winners (Solscan)</span>
-        <span id="ext-live-dot" style="font-size:9px;color:#00FFA3;">LIVE</span>
+        <span style="display:inline-flex;align-items:center;">Automatic 0% SOL Rent Reclaim <span class="rrs-q-tip" data-tip="autoscan">?</span></span>
+        <span style="font-size:9.4px;color:#00FFA3;">1st Claim 0% Fee (98% Repeat)</span>
       </div>
-      <div id="ext-winners-list">
-        <div class="ticker-item"><span><b style="color:#00FFA3;">WASTED6</b> (+500.72% Peak)</span><a class="tx-link" href="https://solscan.io/tx/4tX2ZLyLDmVTfWL4YHShF5hRTaZt7rXoxWaHMAGxkHbEgEU2YVafQjDxZbymk3RjTBeqCrnSiUVTNaeq984cbdXK" target="_blank" rel="noopener noreferrer">TX</a></div>
-        <div class="ticker-item"><span><b style="color:#00FFA3;">Dinosaur</b> (+101.26% Peak)</span><a class="tx-link" href="https://solscan.io/tx/2CZi4efos4VMWTc9VaLqpjFpiN6wuZfNXUri12ZdJt1zj1kMt1rD1D4Cgo6VhDaXmtC7afSTUX1pUU9wENAPkocr" target="_blank" rel="noopener noreferrer">TX</a></div>
-        <div class="ticker-item" style="border-bottom:none;"><span><b style="color:#00FFA3;">USWR</b> (+98.42% Peak)</span><a class="tx-link" href="https://solscan.io/tx/3ESuiLE6dKwsct8KxqEQ4Kt28Xd9wjoCqKCpfyvQptmsoZAVsC3bM1oDLV1Vp9Z6MEJBA1poi8hBZYND4R5P53fX" target="_blank" rel="noopener noreferrer">TX</a></div>
+      <input id="ext-wallet-inp" class="inp" style="margin-bottom:6px;" type="text" placeholder="Paste Solana Wallet Address (100% Read-Only PublicNode)" />
+      <div class="btn-row-2" style="margin-top:0;">
+        <button id="ext-scan-wallet-btn" class="btn btn-green" type="button">SCAN NOW</button>
+        <button id="home-autoscan-btn" class="btn btn-autoscan" type="button" style="font-size:9.6px;padding:0 6px;">&#9889; AUTO-SCAN &amp; COLLECT: OFF</button>
       </div>
+      <div class="btn-row">
+        <button id="home-connect-phantom-btn" class="btn-sm" type="button" style="color:#38BDF8;border-color:#38BDF8;">Connect Phantom</button>
+        <button id="ext-demo-whale" class="btn-sm" type="button" style="color:#38BDF8;border-color:#38BDF8;">Try Demo Wallet</button>
+        <a id="ext-claim-link" href="https://rentandrugshield.com/app.html?autoscan=1" target="_blank" rel="noopener noreferrer" class="btn-sm" style="color:#00FFA3;border-color:#00FFA3;">Open Web App</a>
+      </div>
+      <div id="ext-wallet-out" class="out-box"></div>
     </div>
   </div>
 
-  <!-- VIEW 2: ALERT & MARKET FILTERS + PRESETS + COLLAPSED FOUNDER DESK -->
+  <!-- VIEW 2: SETTINGS PANEL [ ⚙ ] -->
   <div id="pop-view-alerts" style="display:none;">
-    <div id="rrs-notifier-filters-card" class="flt-card">
-      <div class="sec-title" style="margin-bottom:6px;">
-        <span style="color:#00FFA3;">Protection Switches &amp; Alert Controls</span>
-        <span style="font-size:8.8px;color:#00FFA3;">v5.3 Synced</span>
+    <div id="rrs-notifier-filters-card" class="flt-card" style="margin-bottom:0;">
+      <div class="sec-title">
+        <span>Jet Black Shield Settings (v6.7)</span>
+        <button id="flt-reset-pos" class="nav-btn" type="button" style="border-color:#38BDF8;color:#38BDF8;">Reset X/Y</button>
       </div>
 
-      <div class="flt-row" style="background:rgba(0,255,163,0.09);border:1px solid rgba(0,255,163,0.4);border-radius:6px;padding:5px 7px;margin-bottom:5px;">
-        <span style="color:#00FFA3;">Master Movable/Zoomable Alert Box (#020408)</span>
-        <label class="rrs-switch"><input id="flt-master-bubbles" type="checkbox" checked /><span class="rrs-slider"></span></label>
+      <div style="font-size:9.5px;font-weight:900;color:#38BDF8;margin-bottom:4px;">STAY TIME (3s..60s / PIN | UNPINNED AUTO-CLOSES AT 0s)</div>
+      <div class="stay-10-grid" id="flt-stay-pills">
+        <button class="btn-sm" type="button" data-stay="3">3s</button>
+        <button class="btn-sm active" type="button" data-stay="5">5s</button>
+        <button class="btn-sm" type="button" data-stay="8">8s</button>
+        <button class="btn-sm" type="button" data-stay="10">10s</button>
+        <button class="btn-sm" type="button" data-stay="15">15s</button>
+        <button class="btn-sm" type="button" data-stay="20">20s</button>
+        <button class="btn-sm" type="button" data-stay="30">30s</button>
+        <button class="btn-sm" type="button" data-stay="45">45s</button>
+        <button class="btn-sm" type="button" data-stay="60">60s</button>
+        <button class="btn-sm" type="button" data-stay="Pin">Pin</button>
       </div>
 
-      <div class="flt-rule" style="margin-bottom:6px;border-color:#FFD000;">
-        <div class="flt-rule-hdr">
-          <span style="color:#FFF2A6;">Notice Stay Time (5s / 10s / 15s / Pin) &amp; Zoom</span>
-          <label class="pill-chk" style="color:#FFF2A6;display:none;"><input id="flt-card-pinned" type="checkbox" /></label>
+      <div class="btn-row-2" style="margin-top:0;margin-bottom:7px;">
+        <div class="sw-card-row">
+          <span style="color:#00FF88;">Movable Live Box</span>
+          <label class="rrs-switch"><input id="flt-master-bubbles" type="checkbox" checked /><span class="rrs-slider"></span></label>
         </div>
-        <div id="flt-stay-pills" style="display:flex;gap:5px;margin-bottom:6px;flex-wrap:wrap;">
-          <button type="button" class="nav-btn" data-stay="5">5s</button>
-          <button type="button" class="nav-btn active" data-stay="10">10s</button>
-          <button type="button" class="nav-btn" data-stay="15">15s</button>
-          <button type="button" class="nav-btn" data-stay="Pin">Pin</button>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:5px;">
-          <div style="display:flex;align-items:center;gap:4px;">
-            <button id="flt-zoom-out" class="nav-btn" type="button">-</button>
-            <button id="flt-zoom-pct" class="nav-btn active" type="button">100%</button>
-            <button id="flt-zoom-in" class="nav-btn" type="button">+</button>
-          </div>
-          <button id="flt-reset-pos" class="nav-btn" type="button" style="border-color:#FFD000;color:#FFF2A6;">Reset X/Y</button>
+        <div class="sw-card-row">
+          <span style="color:#38BDF8;">Spoken Voice Audio</span>
+          <label class="rrs-switch"><input id="flt-sound-enabled" type="checkbox" /><span class="rrs-slider"></span></label>
         </div>
       </div>
 
-      <div style="font-size:9.2px;font-weight:900;color:#67e8f9;margin-bottom:3px;letter-spacing:0.02em;">LIVE PROTECTION &amp; CATEGORY SWITCHES</div>
-      <div class="flt-row">
-        <span style="color:#00FFA3;">12-Layer Live Chart Badges</span>
-        <label class="rrs-switch"><input id="flt-cat-coin" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="flt-row">
-        <span style="color:#67e8f9;">Clipboard &amp; Fake-Wallet Guard</span>
-        <label class="rrs-switch"><input id="flt-clipboard-guard" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="flt-row">
-        <span style="color:#FF1744;">Critical Rug &amp; Sybil Alerts</span>
-        <label class="rrs-switch"><input id="flt-cat-rug" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="flt-row">
-        <span>Crypto News</span>
-        <label class="rrs-switch"><input id="flt-cat-crypto" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="flt-row">
-        <span>AI News</span>
-        <label class="rrs-switch"><input id="flt-cat-ai" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="flt-row">
-        <span>World News</span>
-        <label class="rrs-switch"><input id="flt-cat-world" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="flt-row">
-        <span style="color:#00FFA3;">Auto 'Told You So' Proof (+20% / -40%)</span>
-        <label class="rrs-switch"><input id="flt-auto-proof" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="flt-row" style="border-bottom:none;">
-        <span style="color:#fde047;">Chime ON/OFF (Default OFF)</span>
-        <label class="rrs-switch gold"><input id="flt-sound-enabled" type="checkbox" /><span class="rrs-slider"></span></label>
+      <!-- 12 REAL SPOKEN NEURAL VOICE .WAV CLIPS -->
+      <div style="margin-bottom:7px;">
+        <div style="font-size:9.2px;font-weight:800;color:#38BDF8;margin-bottom:3px;">12 REAL SPOKEN NEURAL VOICES (.WAV)</div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) 82px;gap:6px;">
+          <select id="flt-audio-preset" class="flt-inp">
+            <option value="To Valhalla!">To Valhalla!</option>
+            <option value="To the Moon, baby!">To the Moon, baby!</option>
+            <option value="Wizard: 12 Layers Clean!">Wizard: 12 Layers Clean!</option>
+            <option value="Whale Incoming: Green Light!">Whale Incoming: Green Light!</option>
+            <option value="Cha-Ching! Clean Contract!">Cha-Ching! Clean Contract!</option>
+            <option value="Honey Badger Locked On!">Honey Badger Locked On!</option>
+            <option value="Rug Alert! Step Away!">Rug Alert! Step Away!</option>
+            <option value="Freeze Trap Detected!">Freeze Trap Detected!</option>
+            <option value="Breaking Alpha on the Wire!">Breaking Alpha on the Wire!</option>
+            <option value="Free SOL Rent Ready!">Free SOL Rent Ready!</option>
+            <option value="Sniper Target Verified!">Sniper Target Verified!</option>
+            <option value="Bull Cross Momentum Surge!">Bull Cross Momentum Surge!</option>
+          </select>
+          <button id="flt-test-voice-btn" class="btn btn-gold" type="button" style="height:35px;font-size:10.4px;">&#9654; PLAY</button>
+        </div>
       </div>
 
-      <div style="font-size:10px;font-weight:900;color:#fde047;margin-top:9px;margin-bottom:3px;letter-spacing:0.02em;">COIN MARKET THRESHOLD FILTERS</div>
-      <div style="font-size:9px;color:#94a3b8;margin-bottom:4px;">1-Click Market Presets (auto-applies &amp; syncs immediately):</div>
+      <!-- 12-LAYER SCAM COIN WARNING + CHART BADGES -->
+      <div class="btn-row-2" style="margin-top:0;">
+        <div class="sw-card-row">
+          <span style="color:#38BDF8;">12-Layer Scam Coin Warning</span>
+          <label class="rrs-switch gold"><input id="flt-cat-rug" type="checkbox" checked /><span class="rrs-slider"></span></label>
+        </div>
+        <div class="sw-card-row">
+          <span style="color:#00FFA3;">12-Layer Chart Badges</span>
+          <label class="rrs-switch"><input id="flt-cat-coin" type="checkbox" checked /><span class="rrs-slider"></span></label>
+        </div>
+      </div>
+      <input id="flt-clipboard-guard" type="checkbox" checked style="display:none;" />
 
+      <div class="whale-pro-box" id="pop-whale-catcher-box">
+        <span style="font-size:11px;font-weight:800;color:#FFFFFF;display:inline-flex;align-items:center;">Whale Wallet Catcher <span class="rrs-q-tip" data-tip="whales">?</span></span>
+        <span class="pro-badge">[PRO SOON]</span>
+      </div>
+
+      <!-- MARKET PRESETS WITH [?] TOOLTIPS ON RUNNERS & WHALES -->
       <div id="flt-preset-pills" class="preset-grid">
         <button type="button" class="preset-pill" data-preset="early_gems">
-          <span class="preset-pill-title">Early Gems ($15K-$250K)</span>
+          <span class="preset-pill-title"><span>Early Gems ($15K-$250K)</span></span>
           <span class="preset-pill-sub">Liq &ge; $10K | +10% in 5m</span>
         </button>
         <button type="button" class="preset-pill" data-preset="mid_caps">
-          <span class="preset-pill-title">Mid-Cap Safe ($250K-$10M)</span>
+          <span class="preset-pill-title"><span>Mid-Cap Safe ($250K-$10M)</span></span>
           <span class="preset-pill-sub">Liq &ge; $50K | +5% in 15m</span>
         </button>
         <button type="button" class="preset-pill" data-preset="surge_5m">
-          <span class="preset-pill-title">5m Runners (+15% Surge)</span>
+          <span class="preset-pill-title"><span>5m Runners (+15% Surge)</span> <span class="rrs-q-tip" data-tip="runners">?</span></span>
           <span class="preset-pill-sub">MC $25K-$50M | Liq &ge; $15K</span>
         </button>
         <button type="button" class="preset-pill" data-preset="bluechips">
-          <span class="preset-pill-title">Whale Majors ($1M+)</span>
+          <span class="preset-pill-title"><span>Whale Majors ($1M+)</span> <span class="rrs-q-tip" data-tip="whales">?</span></span>
           <span class="preset-pill-sub">Liq &ge; $150K | +3% in 1h</span>
         </button>
         <button type="button" class="preset-pill-clear" data-preset="all_coins">
@@ -328,174 +513,141 @@
         </button>
       </div>
 
-      <div class="flt-rule" style="border-color:#FFD000;">
-        <div class="flt-rule-hdr">
-          <span style="color:#FFF2A6;">Pro Trader Signals (MACD Cross, Hist Flip &amp; Timeframes)</span>
-          <label class="rrs-switch gold"><input id="flt-macd-on" type="checkbox" /><span class="rrs-slider"></span></label>
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
-          <label class="pill-chk"><span class="rrs-switch"><input id="flt-macd-1m" type="checkbox" checked /><span class="rrs-slider"></span></span><span>1m</span></label>
-          <label class="pill-chk"><span class="rrs-switch"><input id="flt-macd-3m" type="checkbox" checked /><span class="rrs-slider"></span></span><span>3m</span></label>
-          <label class="pill-chk"><span class="rrs-switch"><input id="flt-macd-5m" type="checkbox" checked /><span class="rrs-slider"></span></span><span>5m</span></label>
-          <label class="pill-chk"><span class="rrs-switch"><input id="flt-macd-15m" type="checkbox" checked /><span class="rrs-slider"></span></span><span>15m</span></label>
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <label class="pill-chk" style="color:#00FFA3;"><span class="rrs-switch"><input id="flt-macd-bull" type="checkbox" checked /><span class="rrs-slider"></span></span><span>Bull Cross</span></label>
-          <label class="pill-chk" style="color:#FFF2A6;"><span class="rrs-switch gold"><input id="flt-macd-hist" type="checkbox" checked /><span class="rrs-slider"></span></span><span>Hist Flip</span></label>
-          <label class="pill-chk" style="color:#fda4af;"><span class="rrs-switch gold"><input id="flt-macd-bear" type="checkbox" /><span class="rrs-slider"></span></span><span>Bear Warn</span></label>
-        </div>
-      </div>
-
+      <!-- MACD CROSS WITH [?] TOOLTIPS -->
       <div class="flt-rule">
         <div class="flt-rule-hdr">
-          <span>Coin Name / Ticker Filter</span>
-          <label class="rrs-switch"><input id="flt-ticker-on" type="checkbox" /><span class="rrs-slider"></span></label>
+          <span style="display:inline-flex;align-items:center;">MACD Cross &amp; Timeframe (1m / 3m / 5m / 15m) <span class="rrs-q-tip" data-tip="macd">?</span></span>
+          <label class="rrs-switch gold"><input id="flt-macd-on" type="checkbox" checked /><span class="rrs-slider"></span></label>
         </div>
-        <input id="flt-ticker-inp" class="flt-inp" type="text" style="width:100%;" placeholder="e.g. SOL, BONK, MELNOK (comma-separated)" />
-      </div>
-
-      <div class="flt-rule">
-        <div class="flt-rule-hdr">
-          <span>Min &amp; Max Market Cap ($)</span>
-          <label class="rrs-switch"><input id="flt-mc-on" type="checkbox" /><span class="rrs-slider"></span></label>
+        <div class="btn-row-4" style="margin-bottom:6px;">
+          <div class="sw-card-row" style="padding:4px 7px;min-height:30px;"><span>1m</span><label class="rrs-switch"><input id="flt-macd-1m" type="checkbox" checked /><span class="rrs-slider"></span></label></div>
+          <div class="sw-card-row" style="padding:4px 7px;min-height:30px;"><span>3m</span><label class="rrs-switch"><input id="flt-macd-3m" type="checkbox" checked /><span class="rrs-slider"></span></label></div>
+          <div class="sw-card-row" style="padding:4px 7px;min-height:30px;"><span>5m</span><label class="rrs-switch"><input id="flt-macd-5m" type="checkbox" checked /><span class="rrs-slider"></span></label></div>
+          <div class="sw-card-row" style="padding:4px 7px;min-height:30px;"><span>15m</span><label class="rrs-switch"><input id="flt-macd-15m" type="checkbox" checked /><span class="rrs-slider"></span></label></div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-          <div>
-            <div style="font-size:8.7px;color:#94a3b8;margin-bottom:2px;">Min Market Cap ($)</div>
-            <input id="flt-mc-min" class="flt-inp" type="number" min="0" step="1000" value="15000" style="width:100%;" />
+        <div class="btn-row" style="margin-top:0;">
+          <div class="sw-card-row" style="padding:4px 6px;min-height:30px;">
+            <span style="color:#00FFA3;display:inline-flex;align-items:center;">Bull Cross <span class="rrs-q-tip" data-tip="bull_cross">?</span></span>
+            <label class="rrs-switch"><input id="flt-macd-bull" type="checkbox" checked /><span class="rrs-slider"></span></label>
           </div>
-          <div>
-            <div style="font-size:8.7px;color:#94a3b8;margin-bottom:2px;">Max Market Cap ($)</div>
-            <input id="flt-mc-max" class="flt-inp" type="number" min="0" step="10000" value="50000000" style="width:100%;" />
+          <div class="sw-card-row" style="padding:4px 6px;min-height:30px;">
+            <span style="color:#38BDF8;display:inline-flex;align-items:center;">Hot Hist <span class="rrs-q-tip" data-tip="hot_hist">?</span></span>
+            <label class="rrs-switch gold"><input id="flt-macd-hist" type="checkbox" checked /><span class="rrs-slider"></span></label>
+          </div>
+          <div class="sw-card-row" style="padding:4px 6px;min-height:30px;">
+            <span style="color:#FF4D6D;display:inline-flex;align-items:center;">Bear Warn <span class="rrs-q-tip" data-tip="bear_warn">?</span></span>
+            <label class="rrs-switch gold"><input id="flt-macd-bear" type="checkbox" checked /><span class="rrs-slider"></span></label>
           </div>
         </div>
       </div>
 
+      <!-- DEDICATED LIQUIDITY SLIDER ($0K-$500K+) + PRESET CHIPS RIGHT BESIDE MARKET CAP & MACD -->
+      <div class="flt-rule" id="flt-liquidity-card">
+        <div class="flt-rule-hdr">
+          <span style="display:inline-flex;align-items:center;">Liquidity Pool Filter ($0K-$500K+) <span class="rrs-q-tip" data-tip="liquidity">?</span></span>
+          <span id="flt-liq-slider-lbl" style="color:#00FF88;font-size:10.8px;font-weight:900;">&ge; $10K</span>
+        </div>
+        <input id="flt-liq-slider" class="liq-range-slider" type="range" min="0" max="500000" step="5000" value="10000" />
+        <div id="flt-liq-chips" class="btn-row-4">
+          <button type="button" class="btn-sm liq-chip" data-liq-chip="lt25k">&lt;$25K</button>
+          <button type="button" class="btn-sm liq-chip" data-liq-chip="gt50k">&gt;$50K</button>
+          <button type="button" class="btn-sm liq-chip" data-liq-chip="gt100k">&gt;$100K</button>
+          <button type="button" class="btn-sm liq-chip" data-liq-chip="gt500k">&gt;$500K</button>
+        </div>
+      </div>
+
+      <!-- MARKET CAP, LIQUIDITY, % MOVE & COIN TICKER -->
       <div class="flt-rule">
         <div class="flt-rule-hdr">
-          <span>% Move Threshold &amp; Time Window (1m / 5m / 15m / 1h)</span>
-          <label class="rrs-switch"><input id="flt-move-on" type="checkbox" /><span class="rrs-slider"></span></label>
+          <span>Market Cap ($), Liquidity ($) &amp; % Move</span>
+          <label class="rrs-switch"><input id="flt-mc-on" type="checkbox" checked /><span class="rrs-slider"></span></label>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div class="btn-row-4" style="margin-bottom:6px;">
           <div>
-            <div style="font-size:8.7px;color:#94a3b8;margin-bottom:2px;">% Move Threshold (+/-%)</div>
-            <input id="flt-move-min" class="flt-inp" type="number" min="0" step="0.5" value="5" style="width:100%;" />
+            <div style="font-size:8.8px;color:#CBD5E1;margin-bottom:2px;">Min MCap ($)</div>
+            <input id="flt-mc-min" class="flt-inp" type="number" min="0" step="1000" value="15000" />
           </div>
           <div>
-            <div style="font-size:8.7px;color:#94a3b8;margin-bottom:2px;">Time Window</div>
-            <div id="flt-move-win-pills" style="display:flex;gap:3px;flex-wrap:wrap;">
-              <button type="button" class="nav-btn" data-tf="1m">1m</button>
-              <button type="button" class="nav-btn" data-tf="3m">3m</button>
-              <button type="button" class="nav-btn" data-tf="5m">5m</button>
-              <button type="button" class="nav-btn" data-tf="15m">15m</button>
-              <button type="button" class="nav-btn active" data-tf="1h">1h</button>
-            </div>
-            <input id="flt-move-win" type="hidden" value="1h" />
+            <div style="font-size:8.8px;color:#CBD5E1;margin-bottom:2px;">Max MCap ($)</div>
+            <input id="flt-mc-max" class="flt-inp" type="number" min="0" step="10000" value="50000000" />
+          </div>
+          <div>
+            <div style="font-size:8.8px;color:#CBD5E1;margin-bottom:2px;">Min Liq ($)</div>
+            <input id="flt-liq-min" class="flt-inp" type="number" min="0" step="500" value="10000" />
+          </div>
+          <div>
+            <div style="font-size:8.8px;color:#CBD5E1;margin-bottom:2px;">% Move</div>
+            <input id="flt-move-min" class="flt-inp" type="number" min="0" step="0.5" value="5" />
           </div>
         </div>
+        <input id="flt-liq-max" type="hidden" value="0" />
+        <input id="flt-liq-preset" type="hidden" value="" />
+        <input id="flt-liq-on" type="checkbox" checked style="display:none;" />
+        <input id="flt-move-on" type="checkbox" checked style="display:none;" />
+        <div id="flt-move-win-pills" class="btn-row-5" style="margin-bottom:6px;">
+          <button type="button" class="btn-sm" data-tf="1m">1m</button>
+          <button type="button" class="btn-sm" data-tf="3m">3m</button>
+          <button type="button" class="btn-sm" data-tf="5m">5m</button>
+          <button type="button" class="btn-sm" data-tf="15m">15m</button>
+          <button type="button" class="btn-sm active" data-tf="1h">1h</button>
+        </div>
+        <input id="flt-move-win" type="hidden" value="1h" />
+        <input id="flt-ticker-on" type="checkbox" style="display:none;" />
+        <input id="flt-ticker-inp" class="flt-inp" type="text" placeholder="Coin Ticker Filter (e.g. SOL, BONK, WIF)" />
       </div>
 
+      <!-- NEWS SWITCHES + [SCAN NOW] + [⚡ AUTO-SCAN: ON/OFF] BESIDE IT -->
       <div class="flt-rule">
         <div class="flt-rule-hdr">
-          <span>Min Liquidity ($)</span>
-          <label class="rrs-switch"><input id="flt-liq-on" type="checkbox" /><span class="rrs-slider"></span></label>
+          <span>News Filters &amp; Instant Scan + Auto-Scan</span>
+          <label class="rrs-switch"><input id="flt-news-kw-on" type="checkbox" checked /><span class="rrs-slider"></span></label>
         </div>
-        <input id="flt-liq-min" class="flt-inp" type="number" min="0" step="500" value="10000" style="width:100%;" />
+        <div class="btn-row" style="margin-top:0;margin-bottom:6px;">
+          <div class="sw-card-row" style="padding:4px 7px;min-height:30px;"><span>Crypto</span><label class="rrs-switch"><input id="flt-cat-crypto" type="checkbox" checked /><span class="rrs-slider"></span></label></div>
+          <div class="sw-card-row" style="padding:4px 7px;min-height:30px;"><span>AI</span><label class="rrs-switch"><input id="flt-cat-ai" type="checkbox" checked /><span class="rrs-slider"></span></label></div>
+          <div class="sw-card-row" style="padding:4px 7px;min-height:30px;"><span>World</span><label class="rrs-switch gold"><input id="flt-cat-world" type="checkbox" checked /><span class="rrs-slider"></span></label></div>
+        </div>
+        <div style="font-size:9.5px;font-weight:800;color:#CBD5E1;margin-bottom:3px;">News Keywords</div>
+        <input id="flt-news-kw" class="flt-inp" type="text" value="SOL,BTC,ETF,GEMINI" placeholder="News Keywords" />
+        <input id="flt-world-reg" type="hidden" value="US,CA,GLOBAL" />
+
+        <!-- [Paste Coin or Wallet] + [SCAN NOW] + [⚡ AUTO-SCAN: ON/OFF] + [?] -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:7px;margin-bottom:2px;font-size:9.3px;font-weight:800;color:#00FF88;">
+          <span style="display:inline-flex;align-items:center;">Instant Scan &amp; 60s PublicNode Auto-Collect <span class="rrs-q-tip" data-tip="autoscan">?</span></span>
+          <span id="flt-autoscan-status-pill" style="color:#94A3B8;">Idle (0% 1st / 98% Repeat)</span>
+        </div>
+        <div class="inline-scan-row">
+          <input id="ext-omni-scan-inp" class="flt-inp" type="text" placeholder="Coin Mint or Wallet" />
+          <button id="ext-omni-scan-btn" class="btn btn-gold" type="button" style="height:35px;font-size:9.8px;padding:0 5px;">SCAN NOW</button>
+          <button id="flt-autoscan-btn" class="btn btn-autoscan" type="button" style="height:35px;font-size:9.2px;padding:0 5px;">&#9889; AUTO-SCAN &amp; COLLECT: OFF</button>
+        </div>
+        <div id="ext-omni-scan-out" class="out-box"></div>
       </div>
 
-      <div class="flt-rule">
-        <div class="flt-rule-hdr">
-          <span>Crypto / AI / World News Keywords &amp; Region</span>
-          <label class="rrs-switch"><input id="flt-news-kw-on" type="checkbox" /><span class="rrs-slider"></span></label>
-        </div>
-        <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:6px;">
-          <input id="flt-news-kw" class="flt-inp" type="text" value="SOL,BTC,ETF,GEMINI" placeholder="News Keywords" style="width:100%;" />
-          <input id="flt-world-reg" class="flt-inp" type="text" value="US,CA,GLOBAL" placeholder="World Filter" style="width:100%;" />
-        </div>
+      <div class="btn-row-2" style="margin-top:10px;">
+        <button id="pop-connect-phantom-btn" class="btn btn-gold" type="button">CONNECT PHANTOM WALLET</button>
+        <button id="flt-save-btn" class="btn btn-green" type="button">&#10003; SAVE SETTINGS</button>
+      </div>
+      <div id="flt-saved-msg" style="display:none;margin-top:6px;text-align:center;font-size:10px;font-weight:800;color:#00FFA3;">
+        Settings saved &amp; synced!
       </div>
 
-      <div class="btn-row-2" style="margin-top:7px;">
-        <button id="flt-save-btn" class="btn btn-green" type="button" style="padding:7px 6px;font-size:10px;">Save Filters</button>
-        <button id="flt-reset-btn" class="btn-sm" type="button">Reset Defaults</button>
-      </div>
-      <div id="flt-saved-msg" style="display:none;margin-top:5px;text-align:center;font-size:9.6px;font-weight:800;color:#00FFA3;">
-        Filters saved &amp; synced!
-      </div>
-
-      <!-- COLLAPSED LOCAL FOUNDER DESK DRAWER -->
-      <details id="founderDeskDrawer" class="founder-drawer" style="display:none;">
+      <details id="founderDeskDrawer" class="founder-drawer">
         <summary id="founderDeskSummary">
-          <span>Founder Desk <span id="founderApprovalInlineBadge" style="display:none;background:#facc15;color:#020408;padding:1px 6px;border-radius:999px;font-size:8.8px;margin-left:4px;">0 Waiting</span></span>
+          <span>Founder Desk</span>
+          <span style="color:#94A3B8;font-size:9px;">127.0.0.1:18088</span>
         </summary>
         <div class="founder-drawer-body">
-          <div style="font-size:8.9px;color:#94a3b8;margin-bottom:5px;">Local Command Deck switches (127.0.0.1:18088):</div>
-          <div class="flt-row">
-            <span style="color:#00FFA3;">DEX-6 Moonbags</span>
-            <label class="rrs-switch"><input id="flt-cat-moonbag" type="checkbox" /><span class="rrs-slider"></span></label>
+          <div class="btn-row-2" style="margin-top:0;">
+            <div class="sw-card-row"><span>DEX-6 Moonbags</span><label class="rrs-switch"><input id="flt-cat-moonbag" type="checkbox" /><span class="rrs-slider"></span></label></div>
+            <div class="sw-card-row"><span>Live Visitors</span><label class="rrs-switch"><input id="flt-cat-visitor" type="checkbox" /><span class="rrs-slider"></span></label></div>
           </div>
-          <div class="flt-row">
-            <span style="color:#7dd3fc;">Live Website Visitors</span>
-            <label class="rrs-switch"><input id="flt-cat-visitor" type="checkbox" /><span class="rrs-slider"></span></label>
-          </div>
-          <div class="btn-row-2" style="margin-top:7px;">
-            <button id="founder-send-test-bubble" type="button" class="btn btn-green" style="padding:6px 6px;font-size:9.8px;">Send Test Bubble</button>
-            <button id="founder-open-deck-btn" type="button" class="btn-sm" style="border-color:#facc15;color:#fde047;">Open 18088 Deck</button>
+          <div class="btn-row-2">
+            <button id="founder-send-test-bubble" type="button" class="btn-sm" style="color:#00FFA3;border-color:#00FFA3;">Pop Sample Coin</button>
+            <button id="founder-open-deck-btn" type="button" class="btn-sm" style="color:#38BDF8;border-color:#38BDF8;">Open 18088 Deck</button>
           </div>
         </div>
       </details>
-    </div>
-
-    <div class="card-cyan" style="margin-bottom:0;">
-      <div class="sec-title">
-        <span style="color:#fde047;">Scanner Safety Cutoff &amp; Swap Guard</span>
-        <span style="font-size:9px;color:#67e8f9;">Live Sync</span>
-      </div>
-      <div class="pref-row">
-        <div style="flex:1;">
-          <div style="font-weight:800;">Risk Score Cutoff (<span id="pop-cutoff-val">75</span>/100)</div>
-          <div class="pref-sub">Trigger red warning when token safety score is below cutoff</div>
-          <input id="pop-cutoff-range" type="range" min="0" max="100" value="75" style="width:100%;margin-top:4px;accent-color:#00FFA3;" />
-        </div>
-        <input id="pop-cutoff-num" class="num-inp" type="number" min="0" max="100" value="75" />
-      </div>
-      <div class="pref-row">
-        <div>
-          <div style="font-weight:800;">Audio Chime Tone</div>
-          <div class="pref-sub">Short tone on risky swaps &amp; scans (Default OFF, Zero Voice)</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:5px;">
-          <button id="pop-test-chime" class="nav-btn" type="button">Tone</button>
-          <label class="rrs-switch gold"><input id="pop-pref-audio" type="checkbox" /><span class="rrs-slider"></span></label>
-        </div>
-      </div>
-      <div class="pref-row">
-        <div>
-          <div style="font-weight:800;">High-Contrast Top Banner Alert</div>
-          <div class="pref-sub">Show top warning bar in DEX tab &amp; popup</div>
-        </div>
-        <label class="rrs-switch"><input id="pop-pref-banner" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="pref-row">
-        <div>
-          <div style="font-weight:800;">Layer-11 Block-0 Sybil Cluster Auto-Warn</div>
-          <div class="pref-sub">Auto-flag genesis-bundled insider &amp; sniper rings</div>
-        </div>
-        <label class="rrs-switch"><input id="pop-pref-sybil" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="pref-row" style="border-bottom:none;">
-        <div>
-          <div style="font-weight:800;">Whale Dump / LP-Rug Alert</div>
-          <div class="pref-sub">Auto-warn on unlocked LP, shallow liq, or whale dump</div>
-        </div>
-        <label class="rrs-switch gold"><input id="pop-pref-whale" type="checkbox" checked /><span class="rrs-slider"></span></label>
-      </div>
-      <div class="btn-row-2" style="margin-top:8px;">
-        <button id="pop-save-prefs" class="btn btn-cyan" type="button">Save Preferences</button>
-        <button id="pop-reset-prefs" class="btn-sm" type="button">Reset Default (75)</button>
-      </div>
-      <div id="pop-prefs-saved-msg" style="display:none;margin-top:6px;text-align:center;font-size:10px;font-weight:800;color:#00FFA3;">
-        Synced across Chrome &amp; active DEX tabs!
-      </div>
     </div>
   </div>
 
@@ -503,25 +655,25 @@
   <div id="pop-view-rnd" style="display:none;">
     <div class="card-cyan" style="margin-bottom:0;">
       <div class="sec-title">
-        <span style="color:#fde047;">SHA-256 Verified Engineering &amp; Compute Ledger</span>
+        <span>12-Layer Scam Protection Architecture (v6.7)</span>
         <span style="font-size:9px;color:#00FFA3;">Mainnet Attested</span>
       </div>
-      <div style="font-size:10.2px;color:#cbd5e1;line-height:1.45;margin-bottom:7px;">
-        Verified ledger: <b>898 Founder Hrs</b> + <b>5,501 Parallel AI &amp; Multi-Core Compute Hrs</b> across SPL rent reclamation, <b>12-Layer Live Chart Badges</b>, Token-2022 hook inspection, inner-CPI drainer defense, Block-0 Sybil detection, and <b>Clipboard &amp; Fake-Wallet Guard</b>.
+      <div style="font-size:10.5px;color:#CBD5E1;line-height:1.48;margin-bottom:8px;">
+        Deterministic 12-Layer pre-buy inspection combined with read-only PublicNode native Solana <b>0x09 CloseAccount</b> rent recovery (1st claim 100% FREE, 0% fee, 98% net repeat, 0 seed phrases).
       </div>
-      <div style="background:#020408;border:1px solid #1e293b;border-radius:8px;padding:7px 8px;font-size:9.9px;color:#e2e8f0;line-height:1.46;">
-        * <b>L1-L3 Authority &amp; Supply:</b> Mint Auth, Freeze Auth &amp; Top-Holder Concentration<br/>
-        * <b>L4-L5 Liquidity Gate:</b> Liq/MC Trap Ratio &amp; Burned/Locked LP Check<br/>
-        * <b>L6-L8 Program Safety:</b> Token-2022 Hooks, Spoof Guard &amp; Inner-CPI Drainer Simulation<br/>
-        * <b>L9-L10 Market Health:</b> True Pool Age &amp; Organic Buy/Sell Velocity<br/>
-        * <b style="color:#00FFA3;">L11-L12 Sybil &amp; Clipboard &amp; Fake-Wallet Guard:</b> Block-0 sniper ring + Clipper/Phishing block
+      <div style="background:#0A0E19;border:1px solid #1E2B42;border-radius:8px;padding:8px 10px;font-size:10px;color:#FFFFFF;line-height:1.5;">
+        &#8226; <b>L1-L3 Authority &amp; Supply:</b> Mint Auth, Freeze Auth &amp; Top-Holder Concentration<br/>
+        &#8226; <b>L4-L5 Liquidity Gate:</b> Liq/MC Trap Ratio &amp; Burned/Locked LP Check<br/>
+        &#8226; <b>L6-L8 Program Safety:</b> Token-2022 Hooks, Spoof Guard &amp; Inner-CPI Drainer Simulation<br/>
+        &#8226; <b>L9-L10 Market Health:</b> True Pool Age &amp; Organic Buy/Sell Velocity<br/>
+        &#8226; <b style="color:#00FFA3;">L11-L12 Sybil &amp; Phishing Guard:</b> Block-0 sniper ring + Clipboard/Domain defense
       </div>
     </div>
   </div>
 
   <div class="ftr">
-    <span>100% Non-Custodial | Zero Robotic Voice</span>
-    <a href="https://rentandrugshield.com" target="_blank" rel="noopener noreferrer" style="color:#D4AF37;font-weight:900;">rentandrugshield.com</a>
+    <span>0% 1st Claim | 0 Seed Phrases</span>
+    <a href="https://rentandrugshield.com" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;font-weight:900;text-decoration:none;">rentandrugshield.com</a>
   </div>
 
   <script src="popup.js"></script>
