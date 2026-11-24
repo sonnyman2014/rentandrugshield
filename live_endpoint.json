@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://appointed-intimate-database-instance.trycloudflare.com",
-  "api_base": "https://appointed-intimate-database-instance.trycloudflare.com",
-  "rpc_url": "https://appointed-intimate-database-instance.trycloudflare.com/api/rpc",
-  "actions_base": "https://appointed-intimate-database-instance.trycloudflare.com/api/actions",
+  "endpoint": "https://vision-under-encryption-believed.trycloudflare.com",
+  "api_base": "https://vision-under-encryption-believed.trycloudflare.com",
+  "rpc_url": "https://vision-under-encryption-believed.trycloudflare.com/api/rpc",
+  "actions_base": "https://vision-under-encryption-believed.trycloudflare.com/api/actions",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
   "referral_bps": 50,
   "shield_trade_gate_min": 85,
