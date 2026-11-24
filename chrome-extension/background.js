@@ -1,6 +1,6 @@
 'use strict';
 
-// === STAGE 1 CONSTANTS & DEFAULTS (v6.0.0 | ZERO VOICE TTS) ===
+// === STAGE 1 CONSTANTS & DEFAULTS (v6.7.0 | 12 NEURAL SPOKEN VOICES) ===
 const quietHoursEnabled = false;
 const ENABLE_WHITE_OS_BALLOON = false;
 let soundEnabled = false;
@@ -670,7 +670,7 @@ async function handleScanToken(msg, sender) {
     const resp = await fetchFromApiBases('/api/scan-token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ mint, source: (msg && msg.source) || 'mv3_sentinel_v6.0.0' })
+      body: JSON.stringify({ mint, source: (msg && msg.source) || 'mv3_sentinel_v6.7.0' })
     }, 5500);
     if (resp.status === 402 || (resp.data && resp.data.payment_required)) {
       const d = resp.data || {};
@@ -748,11 +748,11 @@ async function handleTelemetryClick(msg, sender) {
     id: String(raw.button_id || raw.id || 'ext_btn'),
     button_label: String(raw.button_label || raw.label || 'Extension Action'),
     label: String(raw.button_label || raw.label || 'Extension Action'),
-    page: String(raw.page || 'extension:mv3_v6.0.0'),
+    page: String(raw.page || 'extension:mv3_v6.7.0'),
     page_path: String(raw.path || '/extension'),
     path: String(raw.path || '/extension'),
     url: String(tabUrl),
-    source: 'mv3_sentinel_v6.0.0',
+    source: 'mv3_sentinel_v6.7.0',
     session_id: sessionId,
     visitor_id: sessionId,
     mint: String(raw.mint || ''),
@@ -939,7 +939,7 @@ function applyLuxuryToolbarShieldState(state, _unusedCount) {
       chrome.action.setBadgeText({ text: '' });
       chrome.action.setBadgeBackgroundColor({ color: '#FF1744' });
       chrome.action.setTitle({
-        title: 'Solana Rent & Rug Shield v6.0 | System Alert: ' + (systemHealthReason || 'Active 12-Layer Scam Warning')
+        title: 'Solana Rent & Rug Shield v6.7 | System Alert: ' + (systemHealthReason || 'Active 12-Layer Scam Warning')
       });
     } else if (state === 'emerald_flash') {
       shieldIconVisualState = 'emerald_flash';
@@ -947,7 +947,7 @@ function applyLuxuryToolbarShieldState(state, _unusedCount) {
       chrome.action.setBadgeText({ text: '' });
       chrome.action.setBadgeBackgroundColor({ color: '#00FFA3' });
       chrome.action.setTitle({
-        title: 'Solana Rent & Rug Shield v6.0 | 12-Layer Active (#00FFA3)'
+        title: 'Solana Rent & Rug Shield v6.7 | 12-Layer Active (#00FFA3)'
       });
     } else {
       shieldIconVisualState = 'yellow_black';
@@ -955,7 +955,7 @@ function applyLuxuryToolbarShieldState(state, _unusedCount) {
       chrome.action.setBadgeText({ text: '' });
       chrome.action.setBadgeBackgroundColor({ color: '#FFD000' });
       chrome.action.setTitle({
-        title: 'Solana Rent & Rug Shield v6.0 | Rich Black & 24K Gold Sentinel Armed'
+        title: 'Solana Rent & Rug Shield v6.7 | Rich Black & 24K Gold Sentinel Armed'
       });
     }
   } catch (_e) {}
@@ -1030,7 +1030,7 @@ function triggerCyberRedAlert(threatObj, forceCornerSync) {
     kind: 'rug',
     title: 'Crypto Cybersecurity Threat Blocked',
     detail: '12-Layer Sentinel detected an active Web3 threat.',
-    action_url: 'https://rentandrugshield.com/?mint=AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL&cyber_inspect=1',
+    action_url: 'https://rentandrugshield.com/?token=AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL&autoscan=1&cyber_inspect=1#tokenScanner',
     ts: Date.now()
   }, threatObj);
 
@@ -1120,7 +1120,7 @@ function inspectUrlForCyberThreats(urlStr) {
           badge: '12-LAYER: FAIL \u2715 | RUG FLAGGED',
           title: '12-Layer Scam/Rug Token Blocked (' + m.slice(0, 6) + '...)',
           message: flaggedRugMints.get(m),
-          url: 'https://rentandrugshield.com/?mint=' + encodeURIComponent(m) + '&cyber_inspect=1'
+          url: 'https://rentandrugshield.com/?token=' + encodeURIComponent(m) + '&autoscan=1&cyber_inspect=1#tokenScanner'
         });
         return;
       }
@@ -1131,7 +1131,7 @@ function inspectUrlForCyberThreats(urlStr) {
 async function pollCyberThreatFeed() {
   try {
     const sid = await getOrCreateVisitorSession();
-    const qs = '?ver=6.0.0&client_id=' + encodeURIComponent(sid);
+    const qs = '?ver=6.7.0&client_id=' + encodeURIComponent(sid);
     const resp = await fetchFromApiBases('/api/cyber-threat-feed' + qs, { method: 'GET' }, 4500);
     const d = resp && resp.data;
     if (d && d.ok) {
@@ -1227,7 +1227,7 @@ function dispatchPhantom45sPrompt(forceNow) {
         }
         const cardState = {
           active: true,
-          version: '6.0.0',
+          version: '6.7.0',
           title: 'Connect Phantom for Auto 0% Rent Reclaim',
           badge: 'AUTO 0% RENT RECLAIM \u2713',
           message: '1st SOL Rent Claim 100% FREE (0% Fee) \u2022 Read-Only Scan \u2022 0 Seed Phrases',
@@ -1299,7 +1299,7 @@ function ensure24hUltraProTrial(isInstallReason) {
       if (!rec || !rec.activatedAt) {
         const now = Date.now();
         rec = {
-          version: '6.0.0',
+          version: '6.7.0',
           activatedAt: now,
           expiresAt: now + 24 * 60 * 60 * 1000,
           tierDuring24h: 'Ultra Pro FREE (24-Hour Automatic Trial)'
@@ -1905,7 +1905,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
         badge: '12-LAYER: PASS \u2713',
         title: '$MELNOK +24.6%',
         sub: 'MCap $420K \u2022 Liquidity $68K \u2022 MACD Bull Cross',
-        url: 'https://rentandrugshield.com/?mint=3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump&trade=1'
+        url: 'https://rentandrugshield.com/?token=3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump&autoscan=1#tokenScanner'
       };
       const exactUrl = resolveExactAlertUrl(top, cachedFounderApprovals.founderLocalhost);
       const toastPayload = {

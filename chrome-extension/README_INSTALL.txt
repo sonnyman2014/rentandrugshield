@@ -1,5 +1,5 @@
 ========================================================================
-🛡️ SOL RENT & RUG SHIELD • OFFICIAL CHROME / BRAVE MV3 EXTENSION (v5.1.0)
+🛡️ SOL RENT & RUG SHIELD • OFFICIAL CHROME / BRAVE MV3 EXTENSION (v6.7.0)
 12-Layer Pre-Buy Anti-Rug, Block-0 Sybil Shield & Read-Only Rent Recovery
 ========================================================================
 How to Pin Right Next to Phantom Wallet in 10 Seconds:
@@ -11,7 +11,7 @@ How to Pin Right Next to Phantom Wallet in 10 Seconds:
 
 2. CLICK "LOAD UNPACKED":
    - On Windows: Select C:\SolanaRentRugShield_Extension (or unzipped dist folder).
-   - On Mac / Linux: Unzip SolanaRentRugShield_MV3_v5.1.0.zip (or CWS_READY.zip) and select that folder.
+   - On Mac / Linux: Unzip SolanaRentRugShield_MV3_v6.7.0.zip (or CWS_READY.zip) and select that folder.
 
 3. PIN NEXT TO PHANTOM & BROWSE ANY SOLANA DEX:
    Click the 🧩 Extensions puzzle icon in your browser toolbar and click

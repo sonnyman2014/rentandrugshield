@@ -4,7 +4,7 @@
   "short_name": "Rent & Rug Shield",
   "version": "6.7.0",
   "version_name": "6.7",
-  "description": "12-Layer Solana Pre-Buy Security v6.7: Jet Black Green/Red/Blue Pop-Ups, Auto-Scan 0x09 Rent Collect, Liquidity Slider, Plain-English Tooltips & 12 Spoken Neural Voices.",
+  "description": "12-Layer Solana Pre-Buy Security v6.7: Auto-Scan 0x09 Rent Collect, Liquidity Slider, Signal Tooltips & 12 Spoken Neural Voices.",
   "homepage_url": "https://rentandrugshield.com",
   "permissions": [
     "activeTab",
