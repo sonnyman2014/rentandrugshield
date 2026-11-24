@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://place-pierre-negotiations-soon.trycloudflare.com",
-  "api_base": "https://place-pierre-negotiations-soon.trycloudflare.com",
-  "rpc_url": "https://place-pierre-negotiations-soon.trycloudflare.com/api/rpc",
-  "actions_base": "https://place-pierre-negotiations-soon.trycloudflare.com/api/actions",
+  "endpoint": "https://api.rentandrugshield.com",
+  "api_base": "https://api.rentandrugshield.com",
+  "rpc_url": "https://solana-rpc.publicnode.com",
+  "actions_base": "https://api.rentandrugshield.com/api/actions",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
   "referral_bps": 50,
   "shield_trade_gate_min": 85,
