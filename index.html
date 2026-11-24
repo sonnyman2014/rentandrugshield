@@ -1437,8 +1437,8 @@ var __values = (this && this.__values) || function(o) {
 </style>
 <script id="rrs-sw-v311-cache-bust">
 (function() {
-  var SW_VER = "25766";
-  var EXPECTED_CACHE = "rent-shield-v25766-bingo-bango-v51";
+  var SW_VER = "25767";
+  var EXPECTED_CACHE = "rent-shield-v25767-widescreen-1400";
   var ACTIVE_TUNNEL = "https://place-pierre-negotiations-soon.trycloudflare.com";
   try {
     for (var sIdx = 0; sIdx < 2; sIdx++) {
@@ -6606,77 +6606,6 @@ html body #rrsVaultCoverGate .rrs-vault-exact-badge {
       <div id="rrsVideoPulseCalloutBar" class="rrs-video-callout-strip" role="group" onclick="document.getElementById('instWidescreenVaultSection') && document.getElementById('instWidescreenVaultSection').scrollIntoView({behavior:'smooth'}); window.rrsPlayVaultByPrefix && window.rrsPlayVaultByPrefix('inst');" style="cursor:pointer;margin:10px auto 12px auto;">⚡ <span id="rrsCalloutOpenTrialSpan" role="button" tabindex="0" onclick="event.stopPropagation(); if(window.rrsOpenTrialModal) window.rrsOpenTrialModal();" style="text-decoration:underline;text-underline-offset:3px;cursor:pointer;">30-DAY FREE PRO EXTENSION TRIAL</span> • WATCH OUR 34s CARBON AI VAULT TOUR BELOW ⚡</div>
     </div>
 
-    <!-- ROW 1: TWO STREAMLINED INSTITUTIONAL SPEED CARDS ("BINGO BANGO" PRO SPEED) -->
-    <div class="inst-dual-engines" id="instSideBySideEngines">
-      <!-- LEFT CARD: SOL Rent Claim & Dead-Bag Cleaner -->
-      <section class="inst-engine-card rrs-speed-card-gold" id="instRentEngineCard" aria-label="SOL Rent Claim and Dead-Bag Cleaner">
-        <div class="rrs-speed-card-head">
-          <h2 class="rrs-speed-card-title">🔥 SOL Rent Claim &amp; Dead-Bag Cleaner</h2>
-          <span class="rrs-speed-tag">0% 1st Claim • 0x09</span>
-        </div>
-        <div class="rrs-speed-input-wrap">
-          <input type="text" id="instWalletInput" class="rrs-speed-input" value="" placeholder="Paste Solana Wallet Address..." autocomplete="off" spellcheck="false" aria-label="Paste Solana Wallet Address" onkeydown="if(event.key==='Enter') window.rrsTriggerRentDropSheet(this.value);" />
-          <button type="button" class="rrs-paste-pill" id="instPasteWalletBtn">Paste</button>
-        </div>
-        <button type="button" class="rrs-btn-gleam-gold" id="instScanWalletBtn" onclick="window.rrsTriggerRentDropSheet(document.getElementById('instWalletInput').value)" style="width:100%;">SCAN &amp; RECLAIM SOL</button>
-        <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnInstTryLiveDemoWallet" class="rrs-instant-demo-cta-gold" onclick="window.rrsRunInstantDemoWallet('inst')" style="width:100%;margin-top:8px;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.18),rgba(255,208,0,0.16));color:#00FFA3;font-size:0.88rem;font-weight:900;letter-spacing:0.01em;cursor:pointer;box-shadow:0 0 14px rgba(0,255,163,0.24);" title="0 Wallet Connect Required - Instant Read-Only Mainnet Scan">⚡ Try Live Demo Wallet ($109.85 Locked SOL)</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
-        <div class="inst-result-box" id="instRentResult" aria-live="polite" style="display:none;"></div>
-      </section>
-
-      <!-- RIGHT CARD: 12-Layer Anti-Rug Shield -->
-      <section class="inst-engine-card rrs-speed-card-gold" id="instRugEngineCard" aria-label="12-Layer Anti-Rug Shield">
-        <div class="rrs-speed-card-head">
-          <h2 class="rrs-speed-card-title">🛡️ 12-Layer Anti-Rug Shield</h2>
-          <span class="rrs-speed-tag">Pre-Buy Sim • &lt;120ms</span>
-        </div>
-        <div class="rrs-speed-input-wrap">
-          <input type="text" id="instMintInput" class="rrs-speed-input" value="" placeholder="Paste Token Mint or Type $TICKER (e.g. BONK, JUP)..." autocomplete="off" spellcheck="false" aria-label="Paste Token Mint Address" onkeydown="if(event.key==='Enter') window.rrsTriggerShieldDropSheet(this.value);" />
-          <button type="button" class="rrs-paste-pill" id="instPasteMintBtn">Paste</button>
-        </div>
-        <button type="button" class="rrs-btn-gleam-gold" id="instScanMintBtn" onclick="window.rrsTriggerShieldDropSheet(document.getElementById('instMintInput').value)" style="width:100%;">SCAN TOKEN (&lt;120ms)</button>
-        <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnInstTestLive12LayerAudit" class="rrs-instant-demo-cta-cyan" onclick="window.rrsRunInstantDemoTokenAudit('inst')" style="width:100%;margin-top:8px;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #FFD000;background:linear-gradient(90deg,rgba(255,208,0,0.18),rgba(56,189,248,0.16));color:#FFD000;font-size:0.88rem;font-weight:900;letter-spacing:0.01em;cursor:pointer;box-shadow:0 0 14px rgba(255,208,0,0.22);">⚡ Test Live 12-Layer Token Audit</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
-        <div class="inst-result-box" id="instRugResult" aria-live="polite" style="display:none;"></div>
-      </section>
-    </div>
-
-    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
-    <div id="rrsInstProQuickBar" class="rrs-scanner-pro-quickbar" role="region" aria-label="Institutional Pro Mode and Pricing Quick Navigation">
-      <button type="button" id="btnInstUnlockProQuick" class="rrs-pro-quick-pill-gold" onclick="window.openLiveCheckout ? window.openLiveCheckout('trader_pro_1999','SOL') : window.rrsSmoothScrollToPricing('inst')">
-        ⭐ Unlock Pro Mode ($19.99/mo)
-      </button>
-      <button type="button" id="rrsInstPricingScrollBtn" class="rrs-pricing-scroll-arrow-btn" onclick="window.rrsSmoothScrollToPricing('inst')">
-        ↓ View All Pricing Tiers
-      </button>
-      <a href="https://solscan.io/tx/265HB7xEduMWffhvKHyE8SqKTUGFMebC97ZNPtK2NC3mrZSayRiMnrDJ6QZH8wedkr34HvmKAfSRNNz82DNQmNvd" target="_blank" rel="noopener noreferrer" style="font-size:0.82rem;font-weight:800;color:#FFD000;text-decoration:underline;">
-        Verified On-Chain 0x09 TX ↗
-      </a>
-    </div>
-
-    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
-    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
-    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
-    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
-    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
-    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
-    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
-    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
-    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
-    <!-- ROW 2: WIDESCREEN 34-SECOND 12-LAYER VAULT VIDEO PLAYER (1.0x EXACT 34.05s SPEED) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
-        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
     <section id="instWidescreenVaultSection" class="rrs-compact-5050-showcase" aria-label="Institutional 50/50 Architecture and 34s Vault Tour">
       <!-- LEFT 50% CARD: 24K-Gold 12-LAYER VAULT Crest + 15.5px-17px Veteran-Trader & Carbon High Pitch -->
       <div class="rrs-5050-half-card rrs-inst-diff-card" id="instExecArchitectureCard">
@@ -6810,6 +6739,79 @@ html body #rrsVaultCoverGate .rrs-vault-exact-badge {
         </div>
       </div>
     </section>
+
+    <!-- ROW 1: TWO STREAMLINED INSTITUTIONAL SPEED CARDS ("BINGO BANGO" PRO SPEED) -->
+    <div class="inst-dual-engines" id="instSideBySideEngines">
+      <!-- LEFT CARD: SOL Rent Claim & Dead-Bag Cleaner -->
+      <section class="inst-engine-card rrs-speed-card-gold" id="instRentEngineCard" aria-label="SOL Rent Claim and Dead-Bag Cleaner">
+        <div class="rrs-speed-card-head">
+          <h2 class="rrs-speed-card-title">🔥 SOL Rent Claim &amp; Dead-Bag Cleaner</h2>
+          <span class="rrs-speed-tag">0% 1st Claim • 0x09</span>
+        </div>
+        <div class="rrs-speed-input-wrap">
+          <input type="text" id="instWalletInput" class="rrs-speed-input" value="" placeholder="Paste Solana Wallet Address..." autocomplete="off" spellcheck="false" aria-label="Paste Solana Wallet Address" onkeydown="if(event.key==='Enter') window.rrsTriggerRentDropSheet(this.value);" />
+          <button type="button" class="rrs-paste-pill" id="instPasteWalletBtn">Paste</button>
+        </div>
+        <button type="button" class="rrs-btn-gleam-gold" id="instScanWalletBtn" onclick="window.rrsTriggerRentDropSheet(document.getElementById('instWalletInput').value)" style="width:100%;">SCAN &amp; RECLAIM SOL</button>
+        <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnInstTryLiveDemoWallet" class="rrs-instant-demo-cta-gold" onclick="window.rrsRunInstantDemoWallet('inst')" style="width:100%;margin-top:8px;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.18),rgba(255,208,0,0.16));color:#00FFA3;font-size:0.88rem;font-weight:900;letter-spacing:0.01em;cursor:pointer;box-shadow:0 0 14px rgba(0,255,163,0.24);" title="0 Wallet Connect Required - Instant Read-Only Mainnet Scan">⚡ Load Wallet Live Demo</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
+        <div class="inst-result-box" id="instRentResult" aria-live="polite" style="display:none;"></div>
+      </section>
+
+      <!-- RIGHT CARD: 12-Layer Anti-Rug Shield -->
+      <section class="inst-engine-card rrs-speed-card-gold" id="instRugEngineCard" aria-label="12-Layer Anti-Rug Shield">
+        <div class="rrs-speed-card-head">
+          <h2 class="rrs-speed-card-title">🛡️ 12-Layer Anti-Rug Shield</h2>
+          <span class="rrs-speed-tag">Pre-Buy Sim • &lt;120ms</span>
+        </div>
+        <div class="rrs-speed-input-wrap">
+          <input type="text" id="instMintInput" class="rrs-speed-input" value="" placeholder="Paste Token Mint or Type $TICKER (e.g. BONK, JUP)..." autocomplete="off" spellcheck="false" aria-label="Paste Token Mint Address" onkeydown="if(event.key==='Enter') window.rrsTriggerShieldDropSheet(this.value);" />
+          <button type="button" class="rrs-paste-pill" id="instPasteMintBtn">Paste</button>
+        </div>
+        <button type="button" class="rrs-btn-gleam-gold" id="instScanMintBtn" onclick="window.rrsTriggerShieldDropSheet(document.getElementById('instMintInput').value)" style="width:100%;">SCAN TOKEN (&lt;120ms)</button>
+        <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnInstTestLive12LayerAudit" class="rrs-instant-demo-cta-cyan" onclick="window.rrsRunInstantDemoTokenAudit('inst')" style="width:100%;margin-top:8px;min-height:42px;padding:9px 12px;border-radius:10px;border:1.5px solid #FFD000;background:linear-gradient(90deg,rgba(255,208,0,0.18),rgba(56,189,248,0.16));color:#FFD000;font-size:0.88rem;font-weight:900;letter-spacing:0.01em;cursor:pointer;box-shadow:0 0 14px rgba(255,208,0,0.22);">⚡ Test Live 12-Layer Token Audit</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
+        <div class="inst-result-box" id="instRugResult" aria-live="polite" style="display:none;"></div>
+      </section>
+    </div>
+
+    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
+    <div id="rrsInstProQuickBar" class="rrs-scanner-pro-quickbar" role="region" aria-label="Institutional Pro Mode and Pricing Quick Navigation">
+      <button type="button" id="btnInstUnlockProQuick" class="rrs-pro-quick-pill-gold" onclick="window.openLiveCheckout ? window.openLiveCheckout('trader_pro_1999','SOL') : window.rrsSmoothScrollToPricing('inst')">
+        ⭐ Unlock Pro Mode ($19.99/mo)
+      </button>
+      <button type="button" id="rrsInstPricingScrollBtn" class="rrs-pricing-scroll-arrow-btn" onclick="window.rrsSmoothScrollToPricing('inst')">
+        ↓ View All Pricing Tiers
+      </button>
+      <a href="https://solscan.io/tx/265HB7xEduMWffhvKHyE8SqKTUGFMebC97ZNPtK2NC3mrZSayRiMnrDJ6QZH8wedkr34HvmKAfSRNNz82DNQmNvd" target="_blank" rel="noopener noreferrer" style="font-size:0.82rem;font-weight:800;color:#FFD000;text-decoration:underline;">
+        Verified On-Chain 0x09 TX ↗
+      </a>
+    </div>
+
+    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
+    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
+    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
+    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
+    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
+    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
+    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
+    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
+    <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH INSTITUTIONAL SCANNER CARDS) -->
+    <!-- ROW 2: WIDESCREEN 34-SECOND 12-LAYER VAULT VIDEO PLAYER (1.0x EXACT 34.05s SPEED) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+        <!-- ROW 2: COMPACT 50/50 EXECUTIVE ARCHITECTURE + 34s VAULT VIDEO SHOWCASE (STRICT 3-COLOR: #05070B, #FFD000, #FFFFFF) -->
+
 
     <!-- ROW 3: 4-COLUMN INSTITUTIONAL PRICING MATRIX (18px-20px CRISP WHITE/GOLD LEAD-IN) -->
     <section id="choiceAPricingSection" class="choice-a-pricing-section" aria-label="4-Column Institutional Solana Security and Rent Recovery Pricing" style="max-width:1360px;margin:0 auto 18px auto;padding:20px;background:#05070B;border:1.5px solid #FFD000;border-radius:14px;box-sizing:border-box;box-shadow:0 14px 40px rgba(0,0,0,0.88);">
@@ -7091,8 +7093,6 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
         </div>
       </div>
     </div>
-      </div>
-    </div>
     <nav id="centeredPrimaryNavBar" class="rrs-centered-nav" aria-label="Primary Navigation">
       <div class="rrs-nav-hover-wrap" id="rrsRentHoverWrap">
         <button type="button" id="rrsNavJumpRentReclaimBtn" class="rrs-cta-nav-pill rrs-cta-nav-emerald" aria-haspopup="true" onclick="return window.rrsJumpAndPulseInput('rent', event);">⚡ Rent Reclaim ▾</button>
@@ -7169,259 +7169,9 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
     </div>
   </header>
 
-  <main class="container" style="max-width:1360px; margin:0 auto; padding:4px 16px 24px; box-sizing:border-box;">
-    
-    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
-    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
-    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
-    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
-    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
-    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | VETERAN TRADER PITCH + 34s VAULT VIDEO) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | VETERAN TRADER PITCH + 34s VAULT VIDEO) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | VETERAN TRADER PITCH + 34s VAULT VIDEO) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | VETERAN TRADER PITCH + 34s VAULT VIDEO) -->
-        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | VETERAN TRADER PITCH + 34s VAULT VIDEO) -->
-    <div id="scannersRow1Grid" class="grid-2" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:16px; margin-bottom:18px; align-items:stretch;">
-      <!-- LEFT SCANNER: WALLET RENT SCANNER & DEAD COIN BURNER -->
-      <div class="card" id="rentShieldCard" style="border:1.5px solid rgba(16, 185, 129, 0.48); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:10px; box-sizing:border-box;">
-        <div class="service-card-head">
-          <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin:0;">
-            <div class="card-title" style="font-size:1.04rem; font-weight:700; color:#F8FAFC; white-space:nowrap;">💰 Panel 1: SOL Rent Collector &amp; Dead Coin Burner</div>
-            <span class="pill pill-green" id="feeBadge" style="font-size:0.82rem; font-weight:700; padding:4px 10px; white-space:nowrap;">1ST CLAIM FREE • READY</span>
-          </div>
-          <p class="service-card-desc" style="margin:0; font-size:0.92rem; line-height:1.45; color:#CBD5E1;">1st Token &amp; 1st ATA Lifetime Free (0.0% Fee, full 2,039,280 lamports) &rarr; 2.0% SOL Fee on ATA #2+ atomically routed to <code>89Sv…nKK1</code>. Zero seed phrases.</p>
-        </div>
+  <main class="container" style="max-width:1400px; margin:0 auto; width:100%; padding:10px 16px 28px; box-sizing:border-box;">
 
-        <div class="input-row service-primary-input-wrap" style="width:100%; box-sizing:border-box; margin:0;">
-          <input
-            type="text"
-            id="walletInput"
-            class="input service-primary-input"
-            style="width:100%; min-width:100%; box-sizing:border-box; height:46px; min-height:46px; padding:10px 14px; border-radius:9px; border:1.5px solid rgba(16, 185, 129, 0.55);"
-            placeholder="Paste Solana wallet address (read-only)..."
-            value=""
-            onkeydown="if(event.key==='Enter'){ window.__explicitUserWalletScan=true; scanWallet(null, 'rent'); }"
-            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" data-1p-ignore="true" />
-        </div>
-
-        <div class="service-actions-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; width:100%; box-sizing:border-box;">
-          <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnRetailTryLiveDemoWallet" onclick="window.rrsRunInstantDemoWallet('retail')" style="grid-column:1 / -1;width:100%;min-height:44px;padding:9px 14px;border-radius:10px;border:2px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.22),rgba(250,204,21,0.18));color:#ECFDF5;font-size:0.91rem;font-weight:900;cursor:pointer;box-shadow:0 0 16px rgba(0,255,163,0.32);" title="0 Wallet Connect Required - Instant Read-Only Mainnet Scan">⚡ Try Live Demo Wallet ($109.85 Locked SOL)</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
-          <button type="button" id="scanWalletBtn" class="btn btn-primary" onclick="window.__explicitUserWalletScan=true; scanWallet(null, 'rent')" style="min-height:42px; padding:8px 12px; border-radius:9px; font-size:0.90rem; font-weight:700; cursor:pointer; justify-content:center;">🔥 Scan Rent &amp; Burn Dead Coins</button>
-          <button type="button" id="pasteReadOnlyWalletBtn" onclick="window.pasteAndScanIndexWallet()" style="min-height:42px; padding:8px 12px; border-radius:9px; border:1.5px solid #10B981; background:rgba(16, 185, 129, 0.16); color:#6EE7B7; font-size:0.90rem; font-weight:700; cursor:pointer;">
-            📋 Paste &amp; Scan
-          </button>
-        </div>
-
-        <div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; width:100%; box-sizing:border-box;">
-          <button type="button" id="panel1ConnectWalletBtn" onclick="openWalletModal()" style="min-height:40px; padding:7px 10px; border-radius:9px; border:1.5px solid #A78BFA; background:rgba(124,58,237,0.22); color:#F8FAFC; font-size:0.86rem; font-weight:600; cursor:pointer;">
-            👻 Connect Wallet
-          </button>
-          <button type="button" id="testVerifiedSampleWalletBtn" onclick="window.testIndexVerifiedWallet()" style="min-height:40px; padding:7px 10px; border-radius:9px; border:1px solid rgba(56,189,248,0.6); background:rgba(14,165,233,0.15); color:#E0F2FE; font-size:0.86rem; font-weight:600; cursor:pointer;">
-            👀 Test Verified Wallet
-          </button>
-        </div>
-
-                                                                                        <div id="panel1FreeClaimVerifyBadge" style="margin:2px 0 4px 0;padding:7px 11px;border-radius:9px;background:rgba(5,150,105,0.14);border:1px solid rgba(52,211,153,0.48);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="display:inline-flex;align-items:center;gap:7px;flex-wrap:wrap;"><span style="font-size:0.82rem;font-weight:800;color:#ECFDF5;">🛡️ 1st Claim 100% Free (0% Fee)</span><button type="button" id="panel1HonestyPolicyBadge" onclick="window.rrsOpenHonestyPledge()" style="padding:3px 9px;border-radius:999px;border:1px solid #14F195;background:rgba(20,241,149,0.16);color:#14F195;font-size:0.75rem;font-weight:900;cursor:pointer;">⚖️ Honesty Policy</button></span>
-          <a href="https://solscan.io/tx/5J8fkZPsKkcXvsvqnPtFiF6nr5xSGYpkCjJVKu7kV15siEgcnQriyAPswuijXkXhgC4Ybum2nHFhPJUhYKchjCM3" target="_blank" rel="noopener noreferrer" style="font-size:0.80rem;font-weight:800;color:#00FFA3;text-decoration:underline;white-space:nowrap;">1st Claim 100% Free • Verify Real 0x09 TX on Solscan ↗</a>
-        </div>
-
-        <label id="prop-autocollect-label" style="display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; box-sizing:border-box; padding:8px 12px; border-radius:9px; background:rgba(15, 23, 42, 0.92); border:1px solid rgba(16, 185, 129, 0.38); color:#E2E8F0; font-size:0.84rem; font-weight:600; cursor:pointer;">
-          <span style="display:flex; align-items:center; gap:8px;">
-            <input type="checkbox" id="top-auto-collect-chk" style="cursor:pointer; accent-color:#10B981; width:17px; height:17px; margin:0;" onchange="if(window.pingShieldTelemetry) window.pingShieldTelemetry('toggle_autocollect', this.checked ? 'ON' : 'OFF');" />
-            <span>⚡ Auto-Collect &amp; Burn SOL (Optional 24/7 Non-Custodial Alerts)</span>
-          </span>
-          <span style="font-size:0.78rem; font-weight:700; color:#10B981;">OPT-IN</span>
-        </label>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-top:auto;">
-          <button type="button" id="burnerScanBtn" onclick="window.__explicitUserWalletScan=true; scanWallet(null, 'burner')" style="min-height:38px; padding:6px 12px; border-radius:8px; border:1px solid rgba(245,158,11,0.55); background:rgba(245,158,11,0.14); color:#FDE68A; font-size:0.85rem; font-weight:600; cursor:pointer;">
-            🔥 Scan Burnable Dust Tokens
-          </button>
-          <button type="button" id="panel1DisconnectWalletBtn" onclick="disconnectAndClearWallet()" style="display:inline-flex; align-items:center; gap:5px; min-height:38px; padding:6px 12px; border-radius:8px; border:1px solid #EF4444; background:rgba(239,68,68,0.14); color:#FCA5A5; font-size:0.85rem; font-weight:600; cursor:pointer;">
-            🔌 Disconnect Wallet
-          </button>
-        </div>
-
-        <div id="walletDisconnectedBadge" role="status" style="display:none; background:rgba(16, 185, 129, 0.14); border:1.5px solid #10B981; border-radius:9px; padding:8px 12px; font-size:0.88rem; font-weight:700; color:#6EE7B7; text-align:center;"></div>
-
-        <div id="scanFinishedTopBanner" style="display:none; background:#0F172A; border:1.5px solid #10B981; border-radius:10px; padding:10px 12px; font-size:0.94rem; line-height:1.45; font-weight:600; color:#10B981; text-align:center;"></div>
-
-        <div id="indexEmeraldFoundCard" style="display:none; background:#042F2E; border:1.5px solid #10B981; border-radius:12px; padding:12px 14px; text-align:center;">
-          <div id="indexEmeraldFoundHeadline" style="font-size:0.98rem; font-weight:700; color:#FDE047; line-height:1.4; margin-bottom:8px;">
-            FOUND 0 EMPTY TOKEN ACCOUNTS = +0.0000 SOL ($0.00)
-          </div>
-          <button type="button" id="emeraldClaimPrimaryBtn" onclick="reclaimSolNow('all')" style="width:100%; min-height:44px; padding:10px 12px; border-radius:9px; border:1.5px solid #F8FAFC; background:linear-gradient(90deg, #10B981, #10B981); color:#022C22; font-size:0.92rem; font-weight:700; cursor:pointer;">
-            🔥 CLAIM 100% SOL NOW (1ST CLAIM 0% FEE)
-          </button>
-        </div>
-
-        <div class="stats-grid" id="primaryScanResultCards" style="display:none; grid-template-columns:repeat(3, 1fr); gap:8px; border:1px solid #1E293B; border-radius:10px; padding:10px; background:#0F172A;">
-          <div class="stat-cell" style="padding:8px;">
-            <div class="stat-label" style="font-size:0.82rem; color:#CBD5E1;">Total Found Rent</div>
-            <div class="stat-val jb-mono" id="totSol" style="font-size:1.05rem; font-weight:700; color:#10B981;">+0.0000 SOL</div>
-            <div class="stat-sub" id="totUsd" style="font-size:0.82rem; color:#CBD5E1;">0 Empty ATAs</div>
-          </div>
-          <div class="stat-cell" id="box2StatCell" style="padding:8px;">
-            <div id="box2StandardContent">
-              <div class="stat-label" style="font-size:0.82rem; color:#10B981;">Your Net Payout</div>
-              <div class="stat-val jb-mono" id="netSol" style="font-size:1.05rem; font-weight:700; color:#10B981;">+0.0000 SOL</div>
-              <div class="stat-sub" id="netUsd" style="font-size:0.82rem; color:#CBD5E1;">1st Claim 0% Fee</div>
-              <button type="button" id="box2DirectCollectBtn" onclick="reclaimSolNow('all')" style="margin-top:6px; width:100%; min-height:38px; padding:6px 8px; border-radius:7px; border:1px solid #10B981; background:#10B981; color:#022C22; font-size:0.82rem; font-weight:700; cursor:pointer;">Claim SOL</button>
-            </div>
-            <div id="box2RocketSquareContent" style="display:none;">
-              <div id="box2RocketStatusTitle" style="font-size:0.88rem; color:#10B981;">Sending to Wallet...</div>
-              <div id="box2RocketStatusSub" style="font-size:0.84rem; color:#FDE68A;"></div>
-            </div>
-          </div>
-          <div class="stat-cell" style="padding:8px;">
-            <div class="stat-label" style="font-size:0.82rem; color:#CBD5E1;">Closeable ATAs</div>
-            <div class="stat-val jb-mono" id="accCount" style="font-size:1.05rem; font-weight:700; color:#38BDF8;">0</div>
-            <div class="stat-sub" id="trapCount" style="font-size:0.82rem; color:#CBD5E1;">SPL &amp; Token-2022</div>
-            <button type="button" id="box3DirectBurnBtn" onclick="reclaimSolNow('burn_only')" style="margin-top:6px; width:100%; min-height:38px; padding:6px 8px; border-radius:7px; border:1px solid #F59E0B; background:rgba(245,158,11,0.2); color:#FEF08A; font-size:0.82rem; font-weight:600; cursor:pointer;">Burn &amp; Claim</button>
-          </div>
-        </div>
-
-        <div id="walletResults" style="display:none;">
-          <div class="banner-box" id="walletBanner" style="font-size:0.90rem;"></div>
-          <div id="burnerFrozenWarningBanner" style="display:none; background:rgba(245,158,11,0.12); border:1px solid #F59E0B; border-radius:9px; padding:9px 12px; margin-bottom:8px; font-size:0.86rem; color:#FDE68A;">
-            Tokens frozen on-chain by their creator cannot be closed; only unlocked accounts are included in your SOL payout.
-          </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
-            <button type="button" id="claimDirectRefundBtn" class="btn btn-primary" style="flex:1; min-height:42px; justify-content:center; font-size:0.90rem; font-weight:700;" onclick="reclaimSolNow('all')">
-              ⚡ CLAIM SOL DIRECTLY TO MY WALLET (1st Claim 0% Fee • Repeat 2.0%)
-            </button>
-            <button type="button" id="shareReclaimedSolResultsBtn" onclick="window.shareReclaimedSolOnX()" style="min-height:42px; padding:8px 14px; border-radius:9px; border:1.5px solid #38BDF8; background:rgba(14,165,233,0.18); color:#E0F2FE; font-size:0.88rem; font-weight:800; cursor:pointer; white-space:nowrap;">
-              𝕏 Share Reclaimed SOL on X
-            </button>
-          </div>
-          <div id="txStatus" style="margin-bottom:8px; font-size:0.88rem; color:#CBD5E1;"></div>
-          <div style="overflow-x:auto;">
-            <table style="width:100%; font-size:0.86rem;">
-              <thead>
-                <tr>
-                  <th style="width:36px;"><input type="checkbox" id="selectAllAccountsChk" checked onchange="toggleSelectAllBurnAccounts(this.checked)" title="Select All"></th>
-                  <th>Action</th>
-                  <th>Token</th>
-                  <th>Balance</th>
-                  <th>Rent SOL</th>
-                </tr>
-              </thead>
-              <tbody id="accountsTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT SCANNER: 11-LAYER PRE-BUY TOKEN AUDIT -->
-      <div id="tokenScanner" style="height:0;overflow:hidden;"></div>
-      <div class="card" id="rugShieldCard" data-anchor="panel-token-scanner" style="border:1.5px solid rgba(56, 189, 248, 0.48); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:10px; box-sizing:border-box;">
-        <div class="service-card-head">
-          <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin:0;">
-            <div class="card-title" style="font-size:1.04rem; font-weight:700; color:#F8FAFC; white-space:nowrap;">🛡️ Panel 2: 12-Layer Pre-Buy Anti-Rug Shield</div>
-            <span class="pill pill-amber" id="demoScansBadge" style="font-size:0.82rem; font-weight:700; padding:4px 10px; white-space:nowrap;">1ST AUDIT FREE • READY</span>
-          </div>
-          <p class="service-card-desc" style="margin:0; font-size:0.92rem; line-height:1.45; color:#CBD5E1;">Audits Mint &amp; Freeze Authorities, Layer-11 Sybil Wallet Clusters, Spoofed .pump LPs, Token-2022 Hooks &amp; Inner-CPI Drains in under 120ms.</p>
-        </div>
-
-        <div class="input-row service-primary-input-wrap" style="width:100%; box-sizing:border-box; margin:0;">
-          <input
-            type="text"
-            id="mintInput"
-            class="input service-primary-input"
-            style="width:100%; min-width:100%; box-sizing:border-box; height:46px; min-height:46px; padding:10px 14px; border-radius:9px; border:1.5px solid rgba(56, 189, 248, 0.55);"
-            placeholder="Paste Solana token mint or type $TICKER (e.g. BONK, JUP)..."
-            value=""
-            onkeydown="if(event.key==='Enter') scanToken(false)"
-            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" data-1p-ignore="true" />
-        </div>
-
-        <div class="service-actions-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; width:100%; box-sizing:border-box;">
-          <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnRetailTestLive12LayerAudit" onclick="window.rrsRunInstantDemoTokenAudit('retail')" style="grid-column:1 / -1;width:100%;min-height:44px;padding:9px 14px;border-radius:10px;border:2px solid #38BDF8;background:linear-gradient(90deg,rgba(56,189,248,0.22),rgba(16,185,129,0.18));color:#F0F9FF;font-size:0.91rem;font-weight:900;cursor:pointer;box-shadow:0 0 16px rgba(56,189,248,0.30);">⚡ Test Live 12-Layer Token Audit</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
-          <button type="button" id="scanTokenBtn" class="btn btn-primary" onclick="window.scanToken(false)" style="min-height:42px; padding:8px 12px; border-radius:9px; font-size:0.90rem; font-weight:700; cursor:pointer; justify-content:center;">🛡️ Scan Token: Press to Scan</button>
-          <button type="button" id="pasteAuditMintBtn" onclick="window.pasteOrAuditIndexMint()" style="min-height:42px; padding:8px 12px; border-radius:9px; border:1.5px solid #38BDF8; background:rgba(14, 165, 233, 0.16); color:#7DD3FC; font-size:0.90rem; font-weight:700; cursor:pointer;">
-            📋 Paste &amp; Scan
-          </button>
-        </div>
-
-        <!-- 4 UNIQUE 11-LAYER ADVANTAGES BADGE GRID (BELOW MINT ADDRESS BAR) -->
-        <div id="scanner2Unique4Badges" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:6px; width:100%; box-sizing:border-box; margin:0;">
-          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(16, 185, 129, 0.14); border:1px solid rgba(16, 185, 129, 0.55); color:#6EE7B7; font-size:0.78rem; font-weight:700; line-height:1.25;">⚡ Live Jupiter Sell-Side Honeypot Sim</span>
-          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(56, 189, 248, 0.14); border:1px solid rgba(56, 189, 248, 0.55); color:#7DD3FC; font-size:0.78rem; font-weight:700; line-height:1.25;">🔒 Token-2022 Tax/Hook &amp; Delegate Guard</span>
-          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(245, 158, 11, 0.15); border:1px solid rgba(245, 158, 11, 0.55); color:#FDE68A; font-size:0.78rem; font-weight:700; line-height:1.25;">🧬 Layer-11 Sybil Cluster &amp; Spoofed .pump LP Guard</span>
-          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(168, 85, 247, 0.16); border:1px solid rgba(192, 132, 252, 0.55); color:#E9D5FF; font-size:0.78rem; font-weight:700; line-height:1.25;">🛡️ Inner-CPI Drainer Sim</span>
-        </div>
-
-        <!-- INSTANT UNLIMITED 12-LAYER SHIELD BOX (BELOW MINT ADDRESS BAR) -->
-        <div id="instantUnlimitedShieldBox" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; width:100%; box-sizing:border-box; padding:8px 12px; border-radius:9px; background:rgba(15, 23, 42, 0.92); border:1px solid rgba(56, 189, 248, 0.42);">
-          <div style="font-size:0.83rem; font-weight:700; color:#E2E8F0; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-            <span>⚡ 1st 12-Layer Audit <span style="color:#10B981;">100% Free</span> • Unlimited Trader Pro <span class="mono-price" style="color:#38BDF8;">$19.99/mo</span></span>
-            <button type="button" id="idxCardLayer11InfoBtn" class="rrs-layer11-info-btn" title="12-Layer Gemini 4 Carbon AI Shield: Includes Layer 11 (Block-0 Sybil Cluster Defense) + Layer 12 (Slot-0 Insider Bundle & Cybersecurity Drainer Detection) engineered across 898 Verified Founder Hrs (165 Days) + 5,501 Parallel Compute Hrs." aria-label="12-Layer Upgrade Info">ⓘ</button>
-          </div>
-          <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-            <button type="button" id="btnPanel2TraderPro" onclick="window.openLiveCheckout('trader_pro_1999','SOL')" style="min-height:32px; padding:4px 10px; border-radius:7px; border:1px solid #10B981; background:rgba(16,185,129,0.18); color:#6EE7B7; font-size:0.80rem; font-weight:700; cursor:pointer;">Unlock Trader Pro</button>
-            <button type="button" id="botApiHoverBtn" onclick="openApiPortalModal()" style="min-height:32px; padding:4px 10px; border-radius:7px; border:1px solid rgba(56,189,248,0.5); background:rgba(14,165,233,0.14); color:#E0F2FE; font-size:0.80rem; font-weight:600; cursor:pointer;">🤖 Bot API &amp; @x402/svm</button>
-          </div>
-        </div>
-
-        <!-- QUICK-TEST CHIPS (BONK, POPCAT, WIF) BELOW MINT ADDRESS BAR -->
-        <div class="quick-wallets" style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px; width:100%; box-sizing:border-box; margin-top:auto;">
-          <button type="button" id="chipBonk" class="chip" onclick="window.runIndexQuickMintAudit('DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263', 'BONK')" style="min-height:38px; padding:6px 8px; border-radius:8px; border:1px solid rgba(16, 185, 129,0.55); background:rgba(16, 185, 129,0.10); color:#F8FAFC; font-weight:700; font-size:0.84rem; cursor:pointer;">⚡ BONK</button>
-          <button type="button" id="chipPopcat" class="chip" onclick="window.runIndexQuickMintAudit('7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr', 'POPCAT')" style="min-height:38px; padding:6px 8px; border-radius:8px; border:1px solid rgba(56,189,248,0.55); background:rgba(56,189,248,0.10); color:#F8FAFC; font-weight:700; font-size:0.84rem; cursor:pointer;">⚡ POPCAT</button>
-          <button type="button" id="chipWif" class="chip" onclick="window.runIndexQuickMintAudit('EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm', 'WIF')" style="min-height:38px; padding:6px 8px; border-radius:8px; border:1px solid rgba(250,204,21,0.55); background:rgba(250,204,21,0.10); color:#FEF08A; font-weight:700; font-size:0.84rem; cursor:pointer;">⚡ WIF</button>
-        </div>
-
-        <div id="tokenResults" style="display:none; background:#0F172A; border:1.5px solid rgba(16, 185, 129,0.5); border-radius:12px; padding:12px;">
-          <div id="auditNavTopBar" style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #1E293B;">
-            <button type="button" id="auditBackTopBtn" onclick="document.getElementById('tokenResults').style.display='none'" style="min-height:36px; padding:6px 12px; border-radius:8px; border:1px solid #10B981; background:rgba(16, 185, 129,0.14); color:#F8FAFC; font-size:0.85rem; font-weight:600; cursor:pointer;">✕ Close Audit</button>
-            <span id="auditAutoReturnCountdown" class="jb-mono" style="font-size:0.84rem; color:#CBD5E1;">12-Layer Report</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#060A12; padding:12px 14px; border-radius:10px; border:1px solid #1E293B; margin-bottom:10px;">
-            <div>
-              <div style="font-size:0.85rem; color:#CBD5E1;" id="tokTitle">TOKEN</div>
-              <div style="font-size:1.02rem; font-weight:700; margin-top:2px; color:#F8FAFC;" id="tokVerdict">SCANNING...</div>
-              <div style="font-size:0.85rem; color:#CBD5E1; margin-top:2px;" id="tokMeta"></div>
-            </div>
-            <div style="text-align:right;">
-              <div class="jb-mono" style="font-size:1.65rem; font-weight:700; color:#10B981;" id="tokScore">100</div>
-              <div style="font-size:0.82rem; color:#CBD5E1;">SHIELD SCORE</div>
-            </div>
-          </div>
-          <div id="verifiedSafeTradeGateBox" style="margin-bottom:10px;"></div>
-          <ul class="checklist" id="tokChecklist" style="margin-bottom:8px; font-size:0.90rem;"></ul>
-          <div id="auditNavBottomBar" style="display:none;"></div>
-        </div>
-        <div id="pass199Status" style="display:none; font-size:0.88rem; color:#10B981;"></div>
-      </div>
-    </div>
-
-    <div id="panel-token-scanner" style="height:0;overflow:hidden;"></div>
-    <div id="rrsCompactAboveFoldStrip" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:10px 16px;margin:0 0 14px 0;border-radius:12px;background:linear-gradient(90deg,#061a17,#0a1628);border:1.5px solid rgba(16,185,129,0.5);box-shadow:0 6px 20px rgba(0,0,0,0.45);">
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-        <button type="button" id="btnClickableSecureDemoPill" onclick="window.rrsPreviewLive94PassDemo()" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;border:1.5px solid #10B981;background:rgba(16,185,129,0.18);color:#00FF88;font-size:0.82rem;font-weight:900;box-shadow:0 0 12px rgba(16,185,129,0.3);">
-          🟢 SECURE • 94/100 LIVE DEMO (Click to Preview)
-        </button>
-        <span style="font-size:0.84rem;color:#E2E8F0;font-weight:700;">1st SOL Rent Claim <strong style="color:#10B981;">100% Free (0% Fee)</strong> • Repeat <strong style="color:#FFD000;">2.0%</strong> • Zero Seed Phrases</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-        <a href="/CWS_READY_SolanaRentRugShield_MV3.zip" download="SolanaRentRugShield_v6.0_Pro30DaysFree.zip" onclick="if(window.rrsShowInstallBolts)window.rrsShowInstallBolts(true);" style="padding:6px 13px;border-radius:8px;background:linear-gradient(90deg,#00FF88,#10B981);color:#022C22;font-size:0.82rem;font-weight:900;text-decoration:none;">🧩 Chrome Ext v5.1 (30d Pro Free)</a>
-        <button type="button" onclick="if(window.rrsLaunchInteractiveDemo)window.rrsLaunchInteractiveDemo('above_fold_strip');" style="cursor:pointer;padding:6px 12px;border-radius:8px;border:1px solid #38BDF8;background:rgba(14,165,233,0.15);color:#7DD3FC;font-size:0.82rem;font-weight:800;">🎬 Interactive Demo</button>
-        <button type="button" onclick="if(window.rrsEnableInstantBrowserAlerts)window.rrsEnableInstantBrowserAlerts('strip_1click');" style="cursor:pointer;padding:6px 12px;border-radius:8px;border:1px solid #FFD000;background:rgba(255,208,0,0.12);color:#FFD000;font-size:0.82rem;font-weight:800;">🔔 1-Click Alerts</button>
-      </div>
-    </div>
-
-<section id="rrsHeroPromoVideoSection" class="rrs-compact-5050-showcase" aria-label="Solana Rent and Rug Shield 50/50 Showcase">
+    <section id="rrsHeroPromoVideoSection" class="rrs-compact-5050-showcase" aria-label="Solana Rent and Rug Shield 50/50 Showcase">
       <!-- LEFT 50% CARD: Emerald DEX6 Shield + 15.5px-17px Anti-Spam Veteran-Trader Extension Pitch -->
       <div class="rrs-5050-half-card rrs-retail-diff-card" id="rrsRetailLeftDiffCard">
         <div>
@@ -7564,6 +7314,260 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
         </div>
       </div>
     </section>
+
+    
+    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
+    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
+    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
+    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
+    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
+    <!-- RETAIL TOP 50/50 SHOWCASE ROW: CLEAN EMERALD SHIELD BANNER + 34s CASTLE PROMO PLAYER -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | MAX HEIGHT 380px-412px) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | VETERAN TRADER PITCH + 34s VAULT VIDEO) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | VETERAN TRADER PITCH + 34s VAULT VIDEO) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | VETERAN TRADER PITCH + 34s VAULT VIDEO) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | VETERAN TRADER PITCH + 34s VAULT VIDEO) -->
+        <!-- COMPACT 50/50 SIDE-BY-SIDE PROMO SECTION (RETAIL EMERALD | VETERAN TRADER PITCH + 34s VAULT VIDEO) -->
+    <div id="scannersRow1Grid" class="grid-2" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:16px; margin-bottom:18px; align-items:stretch;">
+      <!-- LEFT SCANNER: WALLET RENT SCANNER & DEAD COIN BURNER -->
+      <div class="card" id="rentShieldCard" style="border:1.5px solid rgba(16, 185, 129, 0.48); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:10px; box-sizing:border-box;">
+        <div class="service-card-head">
+          <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin:0;">
+            <div class="card-title" style="font-size:1.04rem; font-weight:700; color:#F8FAFC; white-space:nowrap;">💰 Panel 1: SOL Rent Collector &amp; Dead Coin Burner</div>
+            <span class="pill pill-green" id="feeBadge" style="font-size:0.82rem; font-weight:700; padding:4px 10px; white-space:nowrap;">1ST CLAIM FREE • READY</span>
+          </div>
+          <p class="service-card-desc" style="margin:0; font-size:0.92rem; line-height:1.45; color:#CBD5E1;">1st Token &amp; 1st ATA Lifetime Free (0.0% Fee, full 2,039,280 lamports) &rarr; 2.0% SOL Fee on ATA #2+ atomically routed to <code>89Sv…nKK1</code>. Zero seed phrases.</p>
+        </div>
+
+        <div class="input-row service-primary-input-wrap" style="width:100%; box-sizing:border-box; margin:0;">
+          <input
+            type="text"
+            id="walletInput"
+            class="input service-primary-input"
+            style="width:100%; min-width:100%; box-sizing:border-box; height:46px; min-height:46px; padding:10px 14px; border-radius:9px; border:1.5px solid rgba(16, 185, 129, 0.55);"
+            placeholder="Paste Solana wallet address (read-only)..."
+            value=""
+            onkeydown="if(event.key==='Enter'){ window.__explicitUserWalletScan=true; scanWallet(null, 'rent'); }"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" data-1p-ignore="true" />
+        </div>
+
+        <div class="service-actions-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; width:100%; box-sizing:border-box;">
+          <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnRetailTryLiveDemoWallet" onclick="window.rrsRunInstantDemoWallet('retail')" style="grid-column:1 / -1;width:100%;min-height:44px;padding:9px 14px;border-radius:10px;border:2px solid #00FFA3;background:linear-gradient(90deg,rgba(0,255,163,0.22),rgba(250,204,21,0.18));color:#ECFDF5;font-size:0.91rem;font-weight:900;cursor:pointer;box-shadow:0 0 16px rgba(0,255,163,0.32);" title="0 Wallet Connect Required - Instant Read-Only Mainnet Scan">⚡ Load Wallet Live Demo</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
+          <button type="button" id="scanWalletBtn" class="btn btn-primary" onclick="window.__explicitUserWalletScan=true; scanWallet(null, 'rent')" style="min-height:42px; padding:8px 12px; border-radius:9px; font-size:0.90rem; font-weight:700; cursor:pointer; justify-content:center;">🔥 Scan Rent &amp; Burn Dead Coins</button>
+          <button type="button" id="pasteReadOnlyWalletBtn" onclick="window.pasteAndScanIndexWallet()" style="min-height:42px; padding:8px 12px; border-radius:9px; border:1.5px solid #10B981; background:rgba(16, 185, 129, 0.16); color:#6EE7B7; font-size:0.90rem; font-weight:700; cursor:pointer;">
+            📋 Paste &amp; Scan
+          </button>
+        </div>
+
+        <!-- PANEL 1 INSTANT TOP SCAN RESULT AREA -->
+        <div id="scanFinishedTopBanner" style="display:none; background:#0F172A; border:1.5px solid #10B981; border-radius:10px; padding:10px 12px; font-size:0.94rem; line-height:1.45; font-weight:600; color:#10B981; text-align:center;"></div>
+
+        <div id="indexEmeraldFoundCard" style="display:none; background:#042F2E; border:1.5px solid #10B981; border-radius:12px; padding:12px 14px; text-align:center;">
+          <div id="indexEmeraldFoundHeadline" style="font-size:0.98rem; font-weight:700; color:#FDE047; line-height:1.4; margin-bottom:8px;">
+            FOUND 0 EMPTY TOKEN ACCOUNTS = +0.0000 SOL ($0.00)
+          </div>
+          <button type="button" id="emeraldClaimPrimaryBtn" onclick="reclaimSolNow('all')" style="width:100%; min-height:44px; padding:10px 12px; border-radius:9px; border:1.5px solid #F8FAFC; background:linear-gradient(90deg, #10B981, #10B981); color:#022C22; font-size:0.92rem; font-weight:700; cursor:pointer;">
+            🔥 CLAIM 100% SOL NOW (1ST CLAIM 0% FEE)
+          </button>
+        </div>
+
+        <div class="stats-grid" id="primaryScanResultCards" style="display:none; grid-template-columns:repeat(3, 1fr); gap:8px; border:1px solid #1E293B; border-radius:10px; padding:10px; background:#0F172A;">
+          <div class="stat-cell" style="padding:8px;">
+            <div class="stat-label" style="font-size:0.82rem; color:#CBD5E1;">Total Found Rent</div>
+            <div class="stat-val jb-mono" id="totSol" style="font-size:1.05rem; font-weight:700; color:#10B981;">+0.0000 SOL</div>
+            <div class="stat-sub" id="totUsd" style="font-size:0.82rem; color:#CBD5E1;">0 Empty ATAs</div>
+          </div>
+          <div class="stat-cell" id="box2StatCell" style="padding:8px;">
+            <div id="box2StandardContent">
+              <div class="stat-label" style="font-size:0.82rem; color:#10B981;">Your Net Payout</div>
+              <div class="stat-val jb-mono" id="netSol" style="font-size:1.05rem; font-weight:700; color:#10B981;">+0.0000 SOL</div>
+              <div class="stat-sub" id="netUsd" style="font-size:0.82rem; color:#CBD5E1;">1st Claim 0% Fee</div>
+              <button type="button" id="box2DirectCollectBtn" onclick="reclaimSolNow('all')" style="margin-top:6px; width:100%; min-height:38px; padding:6px 8px; border-radius:7px; border:1px solid #10B981; background:#10B981; color:#022C22; font-size:0.82rem; font-weight:700; cursor:pointer;">Claim SOL</button>
+            </div>
+            <div id="box2RocketSquareContent" style="display:none;">
+              <div id="box2RocketStatusTitle" style="font-size:0.88rem; color:#10B981;">Sending to Wallet...</div>
+              <div id="box2RocketStatusSub" style="font-size:0.84rem; color:#FDE68A;"></div>
+            </div>
+          </div>
+          <div class="stat-cell" style="padding:8px;">
+            <div class="stat-label" style="font-size:0.82rem; color:#CBD5E1;">Closeable ATAs</div>
+            <div class="stat-val jb-mono" id="accCount" style="font-size:1.05rem; font-weight:700; color:#38BDF8;">0</div>
+            <div class="stat-sub" id="trapCount" style="font-size:0.82rem; color:#CBD5E1;">SPL &amp; Token-2022</div>
+            <button type="button" id="box3DirectBurnBtn" onclick="reclaimSolNow('burn_only')" style="margin-top:6px; width:100%; min-height:38px; padding:6px 8px; border-radius:7px; border:1px solid #F59E0B; background:rgba(245,158,11,0.2); color:#FEF08A; font-size:0.82rem; font-weight:600; cursor:pointer;">Burn &amp; Claim</button>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; width:100%; box-sizing:border-box;">
+          <button type="button" id="panel1ConnectWalletBtn" onclick="openWalletModal()" style="min-height:40px; padding:7px 10px; border-radius:9px; border:1.5px solid #A78BFA; background:rgba(124,58,237,0.22); color:#F8FAFC; font-size:0.86rem; font-weight:600; cursor:pointer;">
+            👻 Connect Wallet
+          </button>
+          <button type="button" id="testVerifiedSampleWalletBtn" onclick="window.testIndexVerifiedWallet()" style="min-height:40px; padding:7px 10px; border-radius:9px; border:1px solid rgba(56,189,248,0.6); background:rgba(14,165,233,0.15); color:#E0F2FE; font-size:0.86rem; font-weight:600; cursor:pointer;">
+            👀 Test Verified Wallet
+          </button>
+        </div>
+
+                                                                                        <div id="panel1FreeClaimVerifyBadge" style="margin:2px 0 4px 0;padding:7px 11px;border-radius:9px;background:rgba(5,150,105,0.14);border:1px solid rgba(52,211,153,0.48);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="display:inline-flex;align-items:center;gap:7px;flex-wrap:wrap;"><span style="font-size:0.82rem;font-weight:800;color:#ECFDF5;">🛡️ 1st Claim 100% Free (0% Fee)</span><button type="button" id="panel1HonestyPolicyBadge" onclick="window.rrsOpenHonestyPledge()" style="padding:3px 9px;border-radius:999px;border:1px solid #14F195;background:rgba(20,241,149,0.16);color:#14F195;font-size:0.75rem;font-weight:900;cursor:pointer;">⚖️ Honesty Policy</button></span>
+          <a href="https://solscan.io/tx/5J8fkZPsKkcXvsvqnPtFiF6nr5xSGYpkCjJVKu7kV15siEgcnQriyAPswuijXkXhgC4Ybum2nHFhPJUhYKchjCM3" target="_blank" rel="noopener noreferrer" style="font-size:0.80rem;font-weight:800;color:#00FFA3;text-decoration:underline;white-space:nowrap;">1st Claim 100% Free • Verify Real 0x09 TX on Solscan ↗</a>
+        </div>
+
+        <label id="prop-autocollect-label" style="display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; box-sizing:border-box; padding:8px 12px; border-radius:9px; background:rgba(15, 23, 42, 0.92); border:1px solid rgba(16, 185, 129, 0.38); color:#E2E8F0; font-size:0.84rem; font-weight:600; cursor:pointer;">
+          <span style="display:flex; align-items:center; gap:8px;">
+            <input type="checkbox" id="top-auto-collect-chk" style="cursor:pointer; accent-color:#10B981; width:17px; height:17px; margin:0;" onchange="if(window.pingShieldTelemetry) window.pingShieldTelemetry('toggle_autocollect', this.checked ? 'ON' : 'OFF');" />
+            <span>⚡ Auto-Collect &amp; Burn SOL (Optional 24/7 Non-Custodial Alerts)</span>
+          </span>
+          <span style="font-size:0.78rem; font-weight:700; color:#10B981;">OPT-IN</span>
+        </label>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-top:auto;">
+          <button type="button" id="burnerScanBtn" onclick="window.__explicitUserWalletScan=true; scanWallet(null, 'burner')" style="min-height:38px; padding:6px 12px; border-radius:8px; border:1px solid rgba(245,158,11,0.55); background:rgba(245,158,11,0.14); color:#FDE68A; font-size:0.85rem; font-weight:600; cursor:pointer;">
+            🔥 Scan Burnable Dust Tokens
+          </button>
+          <button type="button" id="panel1DisconnectWalletBtn" onclick="disconnectAndClearWallet()" style="display:inline-flex; align-items:center; gap:5px; min-height:38px; padding:6px 12px; border-radius:8px; border:1px solid #EF4444; background:rgba(239,68,68,0.14); color:#FCA5A5; font-size:0.85rem; font-weight:600; cursor:pointer;">
+            🔌 Disconnect Wallet
+          </button>
+        </div>
+
+        <div id="walletDisconnectedBadge" role="status" style="display:none; background:rgba(16, 185, 129, 0.14); border:1.5px solid #10B981; border-radius:9px; padding:8px 12px; font-size:0.88rem; font-weight:700; color:#6EE7B7; text-align:center;"></div>
+
+        <div id="walletResults" style="display:none;">
+          <div class="banner-box" id="walletBanner" style="font-size:0.90rem;"></div>
+          <div id="burnerFrozenWarningBanner" style="display:none; background:rgba(245,158,11,0.12); border:1px solid #F59E0B; border-radius:9px; padding:9px 12px; margin-bottom:8px; font-size:0.86rem; color:#FDE68A;">
+            Tokens frozen on-chain by their creator cannot be closed; only unlocked accounts are included in your SOL payout.
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+            <button type="button" id="claimDirectRefundBtn" class="btn btn-primary" style="flex:1; min-height:42px; justify-content:center; font-size:0.90rem; font-weight:700;" onclick="reclaimSolNow('all')">
+              ⚡ CLAIM SOL DIRECTLY TO MY WALLET (1st Claim 0% Fee • Repeat 2.0%)
+            </button>
+            <button type="button" id="shareReclaimedSolResultsBtn" onclick="window.shareReclaimedSolOnX()" style="min-height:42px; padding:8px 14px; border-radius:9px; border:1.5px solid #38BDF8; background:rgba(14,165,233,0.18); color:#E0F2FE; font-size:0.88rem; font-weight:800; cursor:pointer; white-space:nowrap;">
+              𝕏 Share Reclaimed SOL on X
+            </button>
+          </div>
+          <div id="txStatus" style="margin-bottom:8px; font-size:0.88rem; color:#CBD5E1;"></div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%; font-size:0.86rem;">
+              <thead>
+                <tr>
+                  <th style="width:36px;"><input type="checkbox" id="selectAllAccountsChk" checked onchange="toggleSelectAllBurnAccounts(this.checked)" title="Select All"></th>
+                  <th>Action</th>
+                  <th>Token</th>
+                  <th>Balance</th>
+                  <th>Rent SOL</th>
+                </tr>
+              </thead>
+              <tbody id="accountsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT SCANNER: 12-LAYER PRE-BUY TOKEN AUDIT -->
+      <div class="card" id="rugShieldCard" data-anchor="panel-token-scanner" style="position:relative; border:1.5px solid rgba(56, 189, 248, 0.48); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:10px; box-sizing:border-box;">
+        <span id="tokenScanner" style="position:absolute;top:0;left:0;width:0;height:0;overflow:hidden;pointer-events:none;" aria-hidden="true"></span>
+        <div class="service-card-head">
+          <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin:0;">
+            <div class="card-title" style="font-size:1.04rem; font-weight:700; color:#F8FAFC; white-space:nowrap;">🛡️ Panel 2: 12-Layer Pre-Buy Anti-Rug Shield</div>
+            <span class="pill pill-amber" id="demoScansBadge" style="font-size:0.82rem; font-weight:700; padding:4px 10px; white-space:nowrap;">1ST AUDIT FREE • READY</span>
+          </div>
+          <p class="service-card-desc" style="margin:0; font-size:0.92rem; line-height:1.45; color:#CBD5E1;">Audits Mint &amp; Freeze Authorities, Layer-11 Sybil Wallet Clusters, Spoofed .pump LPs, Token-2022 Hooks &amp; Inner-CPI Drains in under 120ms.</p>
+        </div>
+
+        <div class="input-row service-primary-input-wrap" style="width:100%; box-sizing:border-box; margin:0;">
+          <input
+            type="text"
+            id="mintInput"
+            class="input service-primary-input"
+            style="width:100%; min-width:100%; box-sizing:border-box; height:46px; min-height:46px; padding:10px 14px; border-radius:9px; border:1.5px solid rgba(56, 189, 248, 0.55);"
+            placeholder="Paste Solana token mint or type $TICKER (e.g. BONK, JUP)..."
+            value=""
+            onkeydown="if(event.key==='Enter') scanToken(false)"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" data-1p-ignore="true" />
+        </div>
+
+        <div class="service-actions-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; width:100%; box-sizing:border-box;">
+          <!-- RRS_INSTANT_DEMO_HOOK_V1_START --><button type="button" id="btnRetailTestLive12LayerAudit" onclick="window.rrsRunInstantDemoTokenAudit('retail')" style="grid-column:1 / -1;width:100%;min-height:44px;padding:9px 14px;border-radius:10px;border:2px solid #38BDF8;background:linear-gradient(90deg,rgba(56,189,248,0.22),rgba(16,185,129,0.18));color:#F0F9FF;font-size:0.91rem;font-weight:900;cursor:pointer;box-shadow:0 0 16px rgba(56,189,248,0.30);">⚡ Test Live 12-Layer Token Audit</button><!-- RRS_INSTANT_DEMO_HOOK_V1_END -->
+          <button type="button" id="scanTokenBtn" class="btn btn-primary" onclick="window.scanToken(false)" style="min-height:42px; padding:8px 12px; border-radius:9px; font-size:0.90rem; font-weight:700; cursor:pointer; justify-content:center;">🛡️ Scan Token: Press to Scan</button>
+          <button type="button" id="pasteAuditMintBtn" onclick="window.pasteOrAuditIndexMint()" style="min-height:42px; padding:8px 12px; border-radius:9px; border:1.5px solid #38BDF8; background:rgba(14, 165, 233, 0.16); color:#7DD3FC; font-size:0.90rem; font-weight:700; cursor:pointer;">
+            📋 Paste &amp; Scan
+          </button>
+        </div>
+
+        <!-- 4 UNIQUE 11-LAYER ADVANTAGES BADGE GRID (BELOW MINT ADDRESS BAR) -->
+        <div id="scanner2Unique4Badges" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:6px; width:100%; box-sizing:border-box; margin:0;">
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(16, 185, 129, 0.14); border:1px solid rgba(16, 185, 129, 0.55); color:#6EE7B7; font-size:0.78rem; font-weight:700; line-height:1.25;">⚡ Live Jupiter Sell-Side Honeypot Sim</span>
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(56, 189, 248, 0.14); border:1px solid rgba(56, 189, 248, 0.55); color:#7DD3FC; font-size:0.78rem; font-weight:700; line-height:1.25;">🔒 Token-2022 Tax/Hook &amp; Delegate Guard</span>
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(245, 158, 11, 0.15); border:1px solid rgba(245, 158, 11, 0.55); color:#FDE68A; font-size:0.78rem; font-weight:700; line-height:1.25;">🧬 Layer-11 Sybil Cluster &amp; Spoofed .pump LP Guard</span>
+          <span style="display:flex; align-items:center; gap:5px; padding:5px 8px; border-radius:8px; background:rgba(168, 85, 247, 0.16); border:1px solid rgba(192, 132, 252, 0.55); color:#E9D5FF; font-size:0.78rem; font-weight:700; line-height:1.25;">🛡️ Inner-CPI Drainer Sim</span>
+        </div>
+
+        <!-- INSTANT UNLIMITED 12-LAYER SHIELD BOX (BELOW MINT ADDRESS BAR) -->
+        <div id="instantUnlimitedShieldBox" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; width:100%; box-sizing:border-box; padding:8px 12px; border-radius:9px; background:rgba(15, 23, 42, 0.92); border:1px solid rgba(56, 189, 248, 0.42);">
+          <div style="font-size:0.83rem; font-weight:700; color:#E2E8F0; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+            <span>⚡ 1st 12-Layer Audit <span style="color:#10B981;">100% Free</span> • Unlimited Trader Pro <span class="mono-price" style="color:#38BDF8;">$19.99/mo</span></span>
+            <button type="button" id="idxCardLayer11InfoBtn" class="rrs-layer11-info-btn" title="12-Layer Gemini 4 Carbon AI Shield: Includes Layer 11 (Block-0 Sybil Cluster Defense) + Layer 12 (Slot-0 Insider Bundle & Cybersecurity Drainer Detection) engineered across 898 Verified Founder Hrs (165 Days) + 5,501 Parallel Compute Hrs." aria-label="12-Layer Upgrade Info">ⓘ</button>
+          </div>
+          <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+            <button type="button" id="btnPanel2TraderPro" onclick="window.openLiveCheckout('trader_pro_1999','SOL')" style="min-height:32px; padding:4px 10px; border-radius:7px; border:1px solid #10B981; background:rgba(16,185,129,0.18); color:#6EE7B7; font-size:0.80rem; font-weight:700; cursor:pointer;">Unlock Trader Pro</button>
+            <button type="button" id="botApiHoverBtn" onclick="openApiPortalModal()" style="min-height:32px; padding:4px 10px; border-radius:7px; border:1px solid rgba(56,189,248,0.5); background:rgba(14,165,233,0.14); color:#E0F2FE; font-size:0.80rem; font-weight:600; cursor:pointer;">🤖 Bot API &amp; @x402/svm</button>
+          </div>
+        </div>
+
+        <!-- QUICK-TEST CHIPS (BONK, POPCAT, WIF) BELOW MINT ADDRESS BAR -->
+        <div class="quick-wallets" style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px; width:100%; box-sizing:border-box; margin-top:auto;">
+          <button type="button" id="chipBonk" class="chip" onclick="window.runIndexQuickMintAudit('DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263', 'BONK')" style="min-height:38px; padding:6px 8px; border-radius:8px; border:1px solid rgba(16, 185, 129,0.55); background:rgba(16, 185, 129,0.10); color:#F8FAFC; font-weight:700; font-size:0.84rem; cursor:pointer;">⚡ BONK</button>
+          <button type="button" id="chipPopcat" class="chip" onclick="window.runIndexQuickMintAudit('7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr', 'POPCAT')" style="min-height:38px; padding:6px 8px; border-radius:8px; border:1px solid rgba(56,189,248,0.55); background:rgba(56,189,248,0.10); color:#F8FAFC; font-weight:700; font-size:0.84rem; cursor:pointer;">⚡ POPCAT</button>
+          <button type="button" id="chipWif" class="chip" onclick="window.runIndexQuickMintAudit('EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm', 'WIF')" style="min-height:38px; padding:6px 8px; border-radius:8px; border:1px solid rgba(250,204,21,0.55); background:rgba(250,204,21,0.10); color:#FEF08A; font-weight:700; font-size:0.84rem; cursor:pointer;">⚡ WIF</button>
+        </div>
+
+        <div id="tokenResults" style="display:none; background:#0F172A; border:1.5px solid rgba(16, 185, 129,0.5); border-radius:12px; padding:12px;">
+          <div id="auditNavTopBar" style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #1E293B;">
+            <button type="button" id="auditBackTopBtn" onclick="document.getElementById('tokenResults').style.display='none'" style="min-height:36px; padding:6px 12px; border-radius:8px; border:1px solid #10B981; background:rgba(16, 185, 129,0.14); color:#F8FAFC; font-size:0.85rem; font-weight:600; cursor:pointer;">✕ Close Audit</button>
+            <span id="auditAutoReturnCountdown" class="jb-mono" style="font-size:0.84rem; color:#CBD5E1;">12-Layer Report</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#060A12; padding:12px 14px; border-radius:10px; border:1px solid #1E293B; margin-bottom:10px;">
+            <div>
+              <div style="font-size:0.85rem; color:#CBD5E1;" id="tokTitle">TOKEN</div>
+              <div style="font-size:1.02rem; font-weight:700; margin-top:2px; color:#F8FAFC;" id="tokVerdict">SCANNING...</div>
+              <div style="font-size:0.85rem; color:#CBD5E1; margin-top:2px;" id="tokMeta"></div>
+            </div>
+            <div style="text-align:right;">
+              <div class="jb-mono" style="font-size:1.65rem; font-weight:700; color:#10B981;" id="tokScore">100</div>
+              <div style="font-size:0.82rem; color:#CBD5E1;">SHIELD SCORE</div>
+            </div>
+          </div>
+          <div id="verifiedSafeTradeGateBox" style="margin-bottom:10px;"></div>
+          <ul class="checklist" id="tokChecklist" style="margin-bottom:8px; font-size:0.90rem;"></ul>
+          <div id="auditNavBottomBar" style="display:none;"></div>
+        </div>
+        <div id="pass199Status" style="display:none; font-size:0.88rem; color:#10B981;"></div>
+      </div>
+    </div>
+
+    <div id="panel-token-scanner" style="height:0;overflow:hidden;"></div>
+    <div id="rrsCompactAboveFoldStrip" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:10px 16px;margin:0 0 14px 0;border-radius:12px;background:linear-gradient(90deg,#061a17,#0a1628);border:1.5px solid rgba(16,185,129,0.5);box-shadow:0 6px 20px rgba(0,0,0,0.45);">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <button type="button" id="btnClickableSecureDemoPill" onclick="window.rrsPreviewLive94PassDemo()" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;border:1.5px solid #10B981;background:rgba(16,185,129,0.18);color:#00FF88;font-size:0.82rem;font-weight:900;box-shadow:0 0 12px rgba(16,185,129,0.3);">
+          🟢 SECURE • 94/100 LIVE DEMO (Click to Preview)
+        </button>
+        <span style="font-size:0.84rem;color:#E2E8F0;font-weight:700;">1st SOL Rent Claim <strong style="color:#10B981;">100% Free (0% Fee)</strong> • Repeat <strong style="color:#FFD000;">2.0%</strong> • Zero Seed Phrases</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <a href="/CWS_READY_SolanaRentRugShield_MV3.zip" download="SolanaRentRugShield_v6.0_Pro30DaysFree.zip" onclick="if(window.rrsShowInstallBolts)window.rrsShowInstallBolts(true);" style="padding:6px 13px;border-radius:8px;background:linear-gradient(90deg,#00FF88,#10B981);color:#022C22;font-size:0.82rem;font-weight:900;text-decoration:none;">🧩 Chrome Ext v5.1 (30d Pro Free)</a>
+        <button type="button" onclick="if(window.rrsLaunchInteractiveDemo)window.rrsLaunchInteractiveDemo('above_fold_strip');" style="cursor:pointer;padding:6px 12px;border-radius:8px;border:1px solid #38BDF8;background:rgba(14,165,233,0.15);color:#7DD3FC;font-size:0.82rem;font-weight:800;">🎬 Interactive Demo</button>
+        <button type="button" onclick="if(window.rrsEnableInstantBrowserAlerts)window.rrsEnableInstantBrowserAlerts('strip_1click');" style="cursor:pointer;padding:6px 12px;border-radius:8px;border:1px solid #FFD000;background:rgba(255,208,0,0.12);color:#FFD000;font-size:0.82rem;font-weight:800;">🔔 1-Click Alerts</button>
+      </div>
+    </div>
+
+
     <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH RETAIL SCANNER CARDS) -->
         <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH RETAIL SCANNER CARDS) -->
         <!-- PRO MODE QUICK-PILL + SMOOTH-SCROLL PRICING ARROW (DIRECTLY BENEATH RETAIL SCANNER CARDS) -->
@@ -8867,7 +8871,7 @@ function showPlatformToast(msg, isSuccess) {
     if (!t) {
         t = document.createElement("div");
         t.id = "platformActionToast";
-        t.style.cssText = "position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:10005; max-width:92vw; padding:12px 20px; border-radius:12px; font-size:0.88rem; font-weight:900; text-align:center; box-shadow:0 12px 36px rgba(0,0,0,0.85), 0 0 22px rgba(16, 185, 129,0.45); transition:opacity 0.25s ease;";
+        t.style.cssText = "position:fixed; top:72px; bottom:auto; left:50%; transform:translateX(-50%); z-index:10005; max-width:92vw; padding:12px 20px; border-radius:12px; font-size:0.88rem; font-weight:900; text-align:center; box-shadow:0 12px 36px rgba(0,0,0,0.85), 0 0 22px rgba(16, 185, 129,0.45); transition:opacity 0.25s ease;";
         document.body.appendChild(t);
     }
     t.style.background = isSuccess ? "linear-gradient(135deg, #064e3b 0%, #047857 100%)" : "#1e293b";
@@ -26497,7 +26501,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         catch (_e) { }
         return false;
     }
-    function showBottomRightWebToast(title, body, targetUrl, isCritical) {
+    function showBottomRightWebToast(title, body, targetUrl, isCritical) { return; /* Hard-blocked per Sonny: 0px overlap with bottom-right [Feedback] */
         try {
             var stack = document.getElementById('rrs-instant-alert-toast-stack');
             if (!stack) {
@@ -28055,7 +28059,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     case 5:
                         if (btn) {
                             btn.disabled = false;
-                            btn.textContent = origTxt || '⚡ Try Live Demo Wallet ($109.85 Locked SOL)';
+                            btn.textContent = origTxt || '⚡ Load Wallet Live Demo';
                         }
                         return [7 /*endfinally*/];
                     case 6: return [2 /*return*/];
@@ -28759,6 +28763,262 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 })();
 </script>
 <!-- RRS_OLD_IPHONE_ES5_AND_BOTTOM_SHEET_V1_END -->
+
+
+<!-- RRS_WIDESCREEN_1400_AND_INSTANT_DEMO_V2_START -->
+<style id="rrs-widescreen-1400-and-feedback-clear-css">
+  /* 1. Centered 1400px Main Container (0 left-squished 48% column, 0 blank right half) */
+  html body main.container,
+  html body #rrsOriginalMemeContainer > main.container,
+  html body #rrsViewInstitutional .inst-shell {
+    max-width: 1400px !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Desktop >= 960px: 2-Column Hero + Video at Top & Side-by-Side Panel 1 (Left 1fr) + Panel 2 (Right 1fr) */
+  @media (min-width: 960px) {
+    html body #rrsHeroPromoVideoSection,
+    html body #rrsHeroPromoVideoSection.rrs-compact-5050-showcase,
+    html body #instWidescreenVaultSection,
+    html body #instWidescreenVaultSection.rrs-compact-5050-showcase {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+      gap: 24px !important;
+      align-items: stretch !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 0 24px 0 !important;
+    }
+
+    html body #scannersRow1Grid,
+    html body #instSideBySideEngines,
+    html body #rrsViewInstitutional .inst-dual-engines {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+      gap: 24px !important;
+      align-items: stretch !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 0 24px 0 !important;
+    }
+
+    html body #scannersRow1Grid > #rentShieldCard,
+    html body #scannersRow1Grid > #rugShieldCard,
+    html body #instSideBySideEngines > #instRentEngineCard,
+    html body #instSideBySideEngines > #instRugEngineCard {
+      grid-column: auto !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      align-self: stretch !important;
+    }
+  }
+
+  /* 3. Stack 1-Column ONLY Below 960px (0px overflow on 375x667 mobile) */
+  @media (max-width: 959.98px) {
+    html body #rrsHeroPromoVideoSection,
+    html body #rrsHeroPromoVideoSection.rrs-compact-5050-showcase,
+    html body #instWidescreenVaultSection,
+    html body #instWidescreenVaultSection.rrs-compact-5050-showcase,
+    html body #scannersRow1Grid,
+    html body #instSideBySideEngines,
+    html body #rrsViewInstitutional .inst-dual-engines {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 16px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+  }
+
+  /* 4. Emerald Highlight Styling for Panel 1 Instant Demo Result Card */
+  html body #indexEmeraldFoundCard.rrs-instant-demo-emerald-active {
+    background: linear-gradient(135deg, rgba(6, 78, 59, 0.96) 0%, rgba(4, 47, 46, 0.99) 100%) !important;
+    border: 2px solid #10B981 !important;
+    box-shadow: 0 0 24px rgba(16, 185, 129, 0.42) !important;
+    border-radius: 12px !important;
+    padding: 12px 14px !important;
+    margin: 4px 0 !important;
+  }
+  html body #indexEmeraldFoundCard.rrs-instant-demo-emerald-active #indexEmeraldFoundHeadline {
+    color: #00FFA3 !important;
+    font-weight: 900 !important;
+    font-size: 0.98rem !important;
+    letter-spacing: 0.01em !important;
+    text-shadow: 0 0 12px rgba(0, 255, 163, 0.28) !important;
+  }
+
+  /* 5. Hard-Ban ALL Bottom-Right Floating Toasts / Banners Over [Feedback] (0px Overlap Always) */
+  html body #rrs-instant-alert-toast-stack,
+  html body .rrs-instant-web-toast-card,
+  html body #rrsInstantTestAlertToast,
+  html body #rsReturnReminderBubble,
+  html body #periodic90sPingsBubble,
+  html body #smart25sPingToast,
+  html body #rrs-v55-host,
+  html body #rrs-moon-toast {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    left: -9999px !important;
+    top: -9999px !important;
+  }
+  @media (max-width: 768px) {
+    html body .rrs-honesty-tag-floating {
+      display: none !important;
+    }
+  }
+</style>
+<script id="rrs-instant-0ms-wallet-demo-controller">
+(function () {
+  var PRELOADED_DEMO_WALLET = "C3FFhG83pda2veVRFwTDNyf1YT2R2U2ZHxcg8pUeMjrC";
+  var PRELOADED_HEADLINE = "LIVE DEMO SCAN: FOUND 14 EMPTY TOKEN ACCOUNTS = +0.0285 SOL";
+  var PRELOADED_SOL = 0.0285;
+  var PRELOADED_ATAS = 14;
+  var PRELOADED_USD = 4.23;
+
+  function purgeAnyBottomRightToasts() {
+    var ids = [
+      "rrs-instant-alert-toast-stack",
+      "rrsInstantTestAlertToast",
+      "rsReturnReminderBubble",
+      "periodic90sPingsBubble",
+      "smart25sPingToast",
+      "rrs-v55-host",
+      "rrs-moon-toast"
+    ];
+    for (var i = 0; i < ids.length; i++) {
+      var el = document.getElementById(ids[i]);
+      if (el && el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    }
+  }
+
+  window.__rrsRenderBlackToastV53 = function () { return; };
+  window.RRS_openLuxuryTraderShieldDemo = function () { return; };
+
+  function runZeroMsPreloadedWalletDemo(mode) {
+    purgeAnyBottomRightToasts();
+    var instEl = document.getElementById("rrsViewInstitutional");
+    var isInst = (mode === "inst") || (!mode && (document.body.classList.contains("rrs-mode-institutional") || (instEl && instEl.offsetParent !== null)));
+
+    var demoData = {
+      ok: true,
+      is_demo: true,
+      wallet: PRELOADED_DEMO_WALLET,
+      empty_count: PRELOADED_ATAS,
+      reclaimable_count: PRELOADED_ATAS,
+      dust_count: 0,
+      is_first_claim: true,
+      is_first_free_claim: true,
+      effective_fee_bps: 0,
+      total_reclaimable_sol: PRELOADED_SOL,
+      reclaimable_sol: PRELOADED_SOL,
+      first_claim_net_100_sol: PRELOADED_SOL,
+      user_net_95_sol: PRELOADED_SOL,
+      sol_usd: 148.42,
+      empty_reclaimable: []
+    };
+    window.lastScanData = demoData;
+    window.__rrsLastViralReceipt = {
+      wallet: PRELOADED_DEMO_WALLET,
+      emptyAtas: PRELOADED_ATAS,
+      reclaimableSol: PRELOADED_SOL,
+      reclaimableUsd: PRELOADED_USD,
+      isDemo: true
+    };
+
+    var wInp = document.getElementById("walletInput");
+    if (wInp) wInp.value = PRELOADED_DEMO_WALLET;
+    var iInp = document.getElementById("instWalletInput");
+    if (iInp) iInp.value = PRELOADED_DEMO_WALLET;
+
+    var topB = document.getElementById("scanFinishedTopBanner");
+    if (topB) {
+      topB.style.display = "none";
+    }
+    var foundCard = document.getElementById("indexEmeraldFoundCard");
+    var hl = document.getElementById("indexEmeraldFoundHeadline");
+    if (foundCard) {
+      foundCard.classList.add("rrs-instant-demo-emerald-active");
+      foundCard.style.display = "block";
+    }
+    if (hl) {
+      hl.textContent = PRELOADED_HEADLINE;
+    }
+    var emBtn = document.getElementById("emeraldClaimPrimaryBtn");
+    if (emBtn) {
+      emBtn.textContent = "🔥 PASTE YOUR OWN WALLET ABOVE TO CLAIM 100% SOL (0% 1ST FEE)";
+      emBtn.onclick = function () {
+        if (wInp) {
+          wInp.value = "";
+          wInp.focus({ preventScroll: true });
+        }
+      };
+    }
+
+    var pCards = document.getElementById("primaryScanResultCards");
+    if (pCards) pCards.style.display = "grid";
+    var tEl = document.getElementById("totSol");
+    if (tEl) tEl.textContent = "+0.0285 SOL";
+    var tuEl = document.getElementById("totUsd");
+    if (tuEl) tuEl.textContent = "14 Empty ATAs";
+    var nEl = document.getElementById("netSol");
+    if (nEl) nEl.textContent = "+0.0285 SOL";
+    var nuEl = document.getElementById("netUsd");
+    if (nuEl) nuEl.textContent = "1st Claim 0% Fee";
+    var aEl = document.getElementById("accCount");
+    if (aEl) aEl.textContent = "14";
+
+    var ds = document.getElementById("instRentResult");
+    if (ds) {
+      ds.style.display = "block";
+      ds.innerHTML =
+        '<div style="background:linear-gradient(135deg,rgba(6,78,59,0.96),rgba(4,47,46,0.99));border:2px solid #10B981;box-shadow:0 0 22px rgba(16,185,129,0.38);border-radius:12px;padding:12px 14px;margin-top:6px;">'
+        + '<div style="font-size:0.96rem;font-weight:900;color:#00FFA3;margin-bottom:6px;">' + PRELOADED_HEADLINE + '</div>'
+        + '<div style="font-size:0.83rem;color:#ECFDF5;line-height:1.45;">14 closeable empty SPL/Token-2022 accounts verified (0.00203928 SOL each · <strong>1st Claim 0.0% Fee</strong>). Paste your own Solana wallet above to scan live!</div>'
+        + '</div>';
+    }
+
+    var focusTarget = isInst ? (document.getElementById("btnInstTryLiveDemoWallet") || iInp) : (document.getElementById("btnRetailTryLiveDemoWallet") || wInp);
+    if (focusTarget && typeof focusTarget.focus === "function") {
+      try { focusTarget.focus({ preventScroll: true }); } catch (_fe) { try { focusTarget.focus(); } catch (_fe2) {} }
+    }
+    return Promise.resolve(demoData);
+  }
+
+  var prevDemoFn = window.rrsRunInstantDemoWallet;
+  window.rrsRunInstantDemoWallet = function (mode, customWallet) {
+    if (customWallet && customWallet !== PRELOADED_DEMO_WALLET && customWallet !== "66666y7pS3B4wN4Z8uK8V1qL9fM2xJ7cR5tY3vW9rjRH" && typeof prevDemoFn === "function") {
+      return prevDemoFn(mode, customWallet);
+    }
+    return runZeroMsPreloadedWalletDemo(mode);
+  };
+
+  window.testIndexVerifiedWallet = function () {
+    return runZeroMsPreloadedWalletDemo("retail");
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", purgeAnyBottomRightToasts);
+  } else {
+    purgeAnyBottomRightToasts();
+  }
+})();
+</script>
+<!-- RRS_WIDESCREEN_1400_AND_INSTANT_DEMO_V2_END -->
 
 </body>
 </html>
