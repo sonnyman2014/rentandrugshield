@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://sub-pierre-learn-forecast.trycloudflare.com",
-  "api_base": "https://sub-pierre-learn-forecast.trycloudflare.com",
-  "rpc_url": "https://sub-pierre-learn-forecast.trycloudflare.com/api/rpc",
-  "actions_base": "https://sub-pierre-learn-forecast.trycloudflare.com/api/actions",
+  "endpoint": "https://provided-temperatures-lady-optional.trycloudflare.com",
+  "api_base": "https://provided-temperatures-lady-optional.trycloudflare.com",
+  "rpc_url": "https://provided-temperatures-lady-optional.trycloudflare.com/api/rpc",
+  "actions_base": "https://provided-temperatures-lady-optional.trycloudflare.com/api/actions",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
   "referral_bps": 50,
   "shield_trade_gate_min": 85,
@@ -13,5 +13,5 @@
     "DGnsyzo5cbQZMpXEwSbESBnSrdjroj7DhpcAPbfQaUft",
     "FRCeYgC1PR7kTKhgk8Peq7WE8Rz6E7cEXnhB77DT5G8F"
   ],
-  "updated_at": "2026-11-24T15:09:42Z"
+  "updated_at": "2026-11-24T16:11:44Z"
 }
