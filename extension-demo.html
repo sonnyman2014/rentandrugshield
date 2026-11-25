@@ -351,17 +351,17 @@
 
           <div class="video-shell">
             <video id="extDemoMasterVideo" controls playsinline webkit-playsinline preload="metadata" poster="/assets/rr_badge_exact.jpg">
-              <source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=1080p" type="video/mp4" />
-              <source src="/promo/extension_shield_demo.mp4?v=1080p" type="video/mp4" />
+              <source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=ext1080p_v2" type="video/mp4" />
+              <source src="/promo/extension_shield_demo.mp4?v=ext1080p_v2" type="video/mp4" />
             </video>
           </div>
 
           <div class="chapters-bar" role="group" aria-label="Walkthrough Video Chapters">
-            <button type="button" class="chap-pill active" onclick="seekWalkthrough(0, this)">0:00 12-Layer Scan</button>
-            <button type="button" class="chap-pill" onclick="seekWalkthrough(4.2, this)">0:04 0% Rent Auto-Scan</button>
-            <button type="button" class="chap-pill" onclick="seekWalkthrough(8.5, this)">0:08 Liquidity &amp; Toggles</button>
-            <button type="button" class="chap-pill" onclick="seekWalkthrough(16.0, this)">0:16 Signal Insights</button>
-            <button type="button" class="chap-pill" onclick="seekWalkthrough(24.0, this)">0:24 Zoom &amp; Pin HUD</button>
+            <button type="button" class="chap-pill active" onclick="seekWalkthrough(0, this)">0:00 Floating HUD</button>
+            <button type="button" class="chap-pill" onclick="seekWalkthrough(6.2, this)">0:06 Toggle Switches</button>
+            <button type="button" class="chap-pill" onclick="seekWalkthrough(12.5, this)">0:13 [+/-] Zoom</button>
+            <button type="button" class="chap-pill" onclick="seekWalkthrough(18.5, this)">0:19 5s/15s/1m &amp; Pin</button>
+            <button type="button" class="chap-pill" onclick="seekWalkthrough(24.5, this)">0:25 0% Phantom Claim</button>
           </div>
 
           <div class="trust-strip">
@@ -452,7 +452,7 @@
               </a>
               <div class="install-secondary-row">
                 <button type="button" id="btnCopyExtensionsUrl" class="btn btn-ghost" onclick="copyExtensionsUrl()">Copy chrome://extensions</button>
-                <button type="button" id="btnSideDemoWallet" class="btn btn-emerald" onclick="runLiveDemoWalletScan()">Scan Demo Wallet</button>
+                <a href="/app.html?autoscan=1&amp;autoclaim=1" id="btnPhantomZeroFeeClaim" class="btn btn-emerald">0% Fee Phantom Rent Claim</a>
               </div>
             </div>
 
@@ -516,7 +516,7 @@
   </div>
 
   <script>
-    var API_BASE = "https://rent-shield-api.104-197-102-151.sslip.io";
+    var API_BASE = "https://api.rentandrugshield.com"; var API_FALLBACK = "https://rent-shield-api.104-197-102-151.sslip.io";
     var hudZoomPct = 100;
     var hudTimerSec = 15;
     var hudPinned = false;
@@ -667,12 +667,12 @@
             var col = Number(d.score) >= 75 ? 'var(--emerald-bright)' : '#FDA4AF';
             out.innerHTML =
               '<div style="color:' + col + ';font-weight:900;">' + (d.name || d.symbol || raw) + ' ($' + (d.symbol || 'SPL') + ') &bull; Shield Score: ' + d.score + '/100 (' + (d.badge || 'SCANNED') + ')</div>' +
-              '<div style="margin-top:4px;"><a href="/?token=' + encodeURIComponent(d.mint || raw) + '&amp;autoscan=1#tokenScanner" style="color:var(--gold-primary);font-weight:800;">Open Full 12-Layer Scorecard on Main Scanner &rarr;</a></div>';
+              '<div style="margin-top:4px;"><a href="/?scan=' + encodeURIComponent(d.mint || raw) + '&amp;autoscan=1#tokenScanner" style="color:var(--gold-primary);font-weight:800;">Open Full 12-Layer Scorecard on Main Scanner &rarr;</a></div>';
             return;
           }
         }
       } catch (_e) {}
-      window.location.href = '/?token=' + encodeURIComponent(raw) + '&autoscan=1#tokenScanner';
+      window.location.href = '/?scan=' + encodeURIComponent(raw) + '&autoscan=1#tokenScanner';
     }
   </script>
 </body>

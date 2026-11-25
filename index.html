@@ -7742,8 +7742,8 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
           <span style="color:#00FF88;">100% Live Match</span>
         </div>
         <video id="rrsExtSectionVideo" controls playsinline webkit-playsinline muted preload="metadata" poster="/assets/rr_badge_exact.jpg" style="width:100%;aspect-ratio:16/9;border-radius:8px;background:#05070D url('/assets/rr_badge_exact.jpg') center/contain no-repeat;display:block;">
-          <source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=1080p" type="video/mp4" />
-          <source src="/promo/extension_shield_demo.mp4?v=1080p" type="video/mp4" />
+          <source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=ext1080p_v2" type="video/mp4" />
+          <source src="/promo/extension_shield_demo.mp4?v=ext1080p_v2" type="video/mp4" />
         </video>
       </div>
     </section>
@@ -13012,7 +13012,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (!params.get('wallet') && !params.get('w') && !window.__rrsUserSetWalletInput && !window.connectedWallet && !window.isScanning) {
       var inputs = document.querySelectorAll('input[type="text"], input[type="search"], input:not([type])');
       inputs.forEach(function(inp) {
-        if ((inp.id === 'mintInput' || inp.id === 'instMintInput') && (params.get('mint') || params.get('token'))) return;
+        if ((inp.id === 'mintInput' || inp.id === 'instMintInput') && (params.get('mint') || params.get('token') || params.get('scan') || params.get('ticker') || params.get('audit'))) return;
         if (inp.value && (inp.value.indexOf('89Sv') !== -1 || inp.value.length >= 32)) {
           inp.value = '';
           inp.placeholder = 'Paste any public 44-character Solana wallet address for a 100% Read-Only Rent Scan (No wallet connection required)...';
@@ -14663,7 +14663,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function clearMysteryInputsOnLoad() {
         var params = new URLSearchParams(window.location.search);
         var hasUrlWallet = Boolean(params.get("wallet") || params.get("address") || params.get("w"));
-        var hasUrlMint = Boolean(params.get("mint") || params.get("token"));
+        var hasUrlMint = Boolean(params.get("mint") || params.get("token") || params.get("scan"));
         if (!hasUrlWallet && !window.__rrsUserSetWalletInput && !window.connectedWallet && !window.isScanning) {
             try {
                 localStorage.removeItem("savedWalletAddress");
@@ -16446,7 +16446,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             });
         }
         var params = new URLSearchParams(window.location.search);
-        var qMint = (params.get("mint") || params.get("token") || "").trim();
+        var qMint = (params.get("mint") || params.get("token") || params.get("scan") || "").trim();
         var qAutoScan = params.get("autoscan") === "1" || params.get("autoconnect") === "1";
         var qWallet = (params.get("wallet") || params.get("w") || "").trim();
         if (isSolAddr(qMint)) {
@@ -23317,7 +23317,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     if (window.__rrsUserSetWalletInput || window.connectedWallet || window.isScanning) return;
     if (ev && !ev.persisted) return;
     var sp = new URLSearchParams(window.location.search || "");
-    var hasExplicitQuery = !!(sp.get("token") || sp.get("mint") || sp.get("wallet") || sp.get("w"));
+    var hasExplicitQuery = !!(sp.get("token") || sp.get("mint") || sp.get("scan") || sp.get("wallet") || sp.get("w"));
     if (hasExplicitQuery) return;
     ["walletInput", "mintInput", "instWalletInput", "instMintInput", "w-inp", "m-inp"].forEach(function(id){
       var el = document.getElementById(id);
@@ -29604,11 +29604,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             '</div>' +
           '</div>' +
           '<video id="rrsHeroExtV60Video" controls playsinline webkit-playsinline preload="metadata" poster="/assets/rr_badge_exact.jpg" style="width:100%;border-radius:10px;border:1px solid rgba(0,255,136,0.45);background:#07101C url(/assets/rr_badge_exact.jpg) center/contain no-repeat;max-height:72vh;">' +
-            '<source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=1080p" type="video/mp4" />' +
-            '<source src="/promo/extension_shield_demo.mp4?v=1080p" type="video/mp4" />' +
+            '<source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=ext1080p_v2" type="video/mp4" />' +
+            '<source src="/promo/extension_shield_demo.mp4?v=ext1080p_v2" type="video/mp4" />' +
           '</video>' +
           '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:0.84rem;">' +
-            '<span style="color:#FFD000;font-weight:900;">rentandrugshield.com &bull; Extension v6.7</span>' +
+            '<span style="color:#F5C542;font-weight:900;">rentandrugshield.com &bull; Chrome Extension</span>' +
             '<span style="color:#CBD5E1;">Drag / Pin Anywhere &bull; Green / Red / Blue Alerts &bull; Liquidity &amp; MCap $ Filters &bull; Whale / Cluster / MACD / News &bull; Voice + Chimes</span>' +
           '</div>' +
         '</div>';
@@ -33535,13 +33535,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     MELNOK: "3ig9E5SQKs8RjVn9EuW1YaprjaMd6dEftG63hBcMpump",
     WASTED6: "3wyRvbB6nFD7Y9cuozSXrUajZs1EoJxrcBCDBxwupump",
     NVIDIA: "AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL",
-    RUGTEST: "AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL"
+    RUGTEST: "AAL1P7Lyj3sPKwYfRTGCi4VRH73mMrSaeYhE4kitCAwL",
+    CHIP: "ChipCAT7vi5CZtbZsn9z7iMPXvFwyAnKz3QFu8XVuHm",
+    CYBER: "4MgfdbDSaZcd7QKAKfcq2R3EbygpR5P7cUsE3uvpump"
   };
 
   var _initialUrlMintCache = "";
   try {
     var _initSp = new URLSearchParams(window.location.search || "");
-    _initialUrlMintCache = String(_initSp.get("token") || _initSp.get("mint") || "").trim();
+    _initialUrlMintCache = String(_initSp.get("token") || _initSp.get("mint") || _initSp.get("scan") || "").trim().replace(/^\$+/, "");
   } catch (_ispErr) {}
 
   function ensureTokenScannerAnchor() {
@@ -34803,7 +34805,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         var iInpB = document.getElementById("instMintInput");
         if (iInpB) iInpB.value = qTok;
         var scCard = document.getElementById("tokenScanner") || document.getElementById("rugShieldCard");
-        if (scCard && scCard.scrollIntoView && (qp.get("autoscan") === "1" || window.location.hash === "#tokenScanner" || window.location.hash === "#rugShieldCard")) {
+        if (scCard && scCard.scrollIntoView && (qp.get("autoscan") === "1" || qp.get("scan") || window.location.hash === "#tokenScanner" || window.location.hash === "#rugShieldCard")) {
           try { scCard.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (_se) {}
         }
         setTimeout(function () { window.scanToken(true, qTok); }, 150);

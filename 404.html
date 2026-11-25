@@ -48,8 +48,8 @@
       }
 
       if (!tok) {
-        if (/^\/chip(?:$|[-_/]|\.html?$)/i.test(norm)) tok = 'CHIP';
-        else if (/^\/cyber(?:$|[-_/]|\.html?$)/i.test(norm)) tok = 'CYBER';
+        if (/^\/\$?chip(?:$|[-_/]|\.html?$)/i.test(norm)) tok = 'CHIP';
+        else if (/^\/\$?cyber(?:$|[-_/]|\.html?$)/i.test(norm)) tok = 'CYBER';
       }
 
       if (!tok) {
@@ -76,7 +76,7 @@
       }
 
       if (tok) {
-        window.location.replace('/?token=' + encodeURIComponent(tok) + '&autoscan=1#tokenScanner');
+        window.location.replace('/?scan=' + encodeURIComponent(tok) + '&token=' + encodeURIComponent(tok) + '&autoscan=1#tokenScanner');
       } else {
         window.location.replace('/' + search + hash);
       }
