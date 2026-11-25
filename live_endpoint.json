@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://rent-shield-api.104-197-102-151.sslip.io",
-  "api_base": "https://rent-shield-api.104-197-102-151.sslip.io",
-  "rpc_url": "https://rent-shield-api.104-197-102-151.sslip.io/api/rpc",
-  "actions_base": "https://rent-shield-api.104-197-102-151.sslip.io/api/actions",
+  "endpoint": "https://contributing-charm-tray-park.trycloudflare.com",
+  "api_base": "https://contributing-charm-tray-park.trycloudflare.com",
+  "rpc_url": "https://contributing-charm-tray-park.trycloudflare.com/api/rpc",
+  "actions_base": "https://contributing-charm-tray-park.trycloudflare.com/api/actions",
   "custom_domain_ready": "https://api.rentandrugshield.com",
   "cloud_static_ip": "104.197.102.151",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
@@ -15,5 +15,5 @@
     "DGnsyzo5cbQZMpXEwSbESBnSrdjroj7DhpcAPbfQaUft",
     "FRCeYgC1PR7kTKhgk8Peq7WE8Rz6E7cEXnhB77DT5G8F"
   ],
-  "updated_at": "2026-11-24T18:22:00Z"
+  "updated_at": "2026-11-25T08:33:35Z"
 }
