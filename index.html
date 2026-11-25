@@ -2364,7 +2364,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function applyV9All() {
         /* 1. Update inline preview videos to clean V9 MP4 & unmute when clicked directly */
         document.querySelectorAll('video').forEach(function (v) {
-            if (v.id !== 'ranger-v9-cinema-video' && v.id !== 'retailVaultMasterVideo' && v.id !== 'rrsVaultMasterVideo' && v.id !== 'rrsCinemaModalVideo' && v.id !== 'rrsTvTheaterVideo') {
+            if (v.id !== 'ranger-v9-cinema-video' && v.id !== 'retailVaultMasterVideo' && v.id !== 'rrsVaultMasterVideo' && v.id !== 'rrsCinemaModalVideo' && v.id !== 'rrsTvTheaterVideo' && v.id !== 'rrsExtSectionVideo' && v.id !== 'rrsHeroExtV60Video') {
                 var s = v.getAttribute('src') || '';
                 if (s.indexOf('promo') !== -1 && s.indexOf('1795136453') === -1) {
                     v.setAttribute('src', VIDEO_SRC);
@@ -6655,7 +6655,7 @@ html body #rrsVaultCoverGate .rrs-vault-exact-badge {
               🔔 Enable 1-Click Live Desktop Alerts (No Zip Needed)
             </button>
             <button type="button" id="btnInstWatchExtV60HowTo" onclick="event.stopPropagation(); if(window.RRS_openExtV60HowToModal) window.RRS_openExtV60HowToModal();" style="flex:1 1 240px;display:flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 12px;border-radius:9px;border:1.5px solid #FFD000;background:#05070D;color:#FFD000;font-size:0.84rem;font-weight:900;box-shadow:0 0 14px rgba(255,208,0,0.24);box-sizing:border-box;cursor:pointer;">
-              🎬 Watch Extension v6.7 Demo
+              🎬 Watch Extension Video
             </button>
             <button type="button" id="btnInstTryLuxuryMovableTraderShield" onclick="event.stopPropagation(); if(window.RRS_openLuxuryTraderShieldDemo) window.RRS_openLuxuryTraderShieldDemo(true);" style="flex:1 1 240px;display:flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 12px;border-radius:9px;border:1.5px solid #00FFA3;background:#05070D;color:#00FFA3;font-size:0.84rem;font-weight:900;box-shadow:0 0 14px rgba(0,255,163,0.22);box-sizing:border-box;cursor:pointer;">
               🛡️ Try Extension v6.7 Live
@@ -7272,7 +7272,7 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
               🔔 Enable 1-Click Live Desktop Alerts (No Zip Needed)
             </button>
             <button type="button" id="btnRetailWatchExtV60HowTo" onclick="event.stopPropagation(); if(window.RRS_openExtV60HowToModal) window.RRS_openExtV60HowToModal();" style="flex:1 1 240px;display:flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 12px;border-radius:10px;border:1.6px solid #FFD000;background:#05070D;color:#FFD000;font-size:0.84rem;font-weight:900;box-shadow:0 0 14px rgba(255,208,0,0.25);box-sizing:border-box;cursor:pointer;">
-              🎬 Watch Extension v6.7 Demo
+              🎬 Watch Extension Video
             </button>
             <button type="button" id="btnTryLuxuryMovableTraderShield" onclick="event.stopPropagation(); if(window.RRS_openLuxuryTraderShieldDemo) window.RRS_openLuxuryTraderShieldDemo(true);" style="flex:1 1 240px;display:flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 14px;border-radius:10px;border:1.6px solid #00FFA3;background:#05070D;color:#00FFA3;font-size:0.84rem;font-weight:900;box-shadow:0 0 16px rgba(0,255,163,0.25);box-sizing:border-box;cursor:pointer;">
               🛡️ Try Extension v6.7 Live
@@ -7742,7 +7742,8 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
           <span style="color:#00FF88;">100% Live Match</span>
         </div>
         <video id="rrsExtSectionVideo" controls playsinline webkit-playsinline muted preload="metadata" poster="/assets/rr_badge_exact.jpg" style="width:100%;aspect-ratio:16/9;border-radius:8px;background:#05070D url('/assets/rr_badge_exact.jpg') center/contain no-repeat;display:block;">
-          <source src="/promo/extension_shield_demo.mp4" type="video/mp4" />
+          <source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=1080p" type="video/mp4" />
+          <source src="/promo/extension_shield_demo.mp4?v=1080p" type="video/mp4" />
         </video>
       </div>
     </section>
@@ -12933,7 +12934,7 @@ window.addEventListener("DOMContentLoaded", function () {
     initCloudVisitorAndScanCounters();
     var params = new URLSearchParams(window.location.search);
     var urlWallet = (params.get("wallet") || params.get("address") || params.get("w") || "").trim();
-    var urlMint = (params.get("mint") || params.get("token") || "").trim();
+    var urlMint = (params.get("mint") || params.get("token") || params.get("scan") || params.get("q") || params.get("ticker") || params.get("audit") || "").trim().replace(/^\$+/, "");
     var savedW = (localStorage.getItem("savedWalletAddress") || "").trim();
     if (false && urlWallet) {
         _lastHoverAutoScanTs = Date.now();
@@ -29595,14 +29596,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
       m.innerHTML =
         '<div style="width:100%;max-width:920px;background:#05070D;border:2px solid #00FF88;border-radius:16px;padding:16px 18px;box-shadow:0 24px 64px rgba(0,0,0,0.96);color:#FFFFFF;">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">' +
-            '<strong style="color:#00FF88;font-size:1rem;">Extension v6.7 Unified Movable &amp; Pinnable HUD Demo</strong>' +
+            '<strong style="color:#00FF88;font-size:1rem;">Solana Rent &amp; Rug Shield Chrome Extension Walkthrough (1080p)</strong>' +
             '<div style="display:flex;gap:8px;align-items:center;">' +
+              '<a href="/extension" style="background:rgba(245,197,66,0.16);color:#F5C542;border:1px solid #F5C542;padding:5px 11px;border-radius:8px;font-size:0.82rem;font-weight:900;text-decoration:none;">Extension Page &rarr;</a>' +
               '<button type="button" id="rrsModalTryHudLiveBtn" style="background:#00FF88;color:#03150E;border:none;padding:5px 12px;border-radius:8px;font-size:0.82rem;font-weight:900;cursor:pointer;">&#128204; Try Live HUD</button>' +
               '<button type="button" id="rrsCloseExtV60HowToBtn" style="background:#1A0810;color:#FF4D6D;border:1px solid #FF4D6D;border-radius:8px;padding:5px 11px;font-weight:900;cursor:pointer;">&#10005; Back</button>' +
             '</div>' +
           '</div>' +
           '<video id="rrsHeroExtV60Video" controls playsinline webkit-playsinline preload="metadata" poster="/assets/rr_badge_exact.jpg" style="width:100%;border-radius:10px;border:1px solid rgba(0,255,136,0.45);background:#07101C url(/assets/rr_badge_exact.jpg) center/contain no-repeat;max-height:72vh;">' +
-            '<source src="/promo/extension_shield_demo.mp4" type="video/mp4" />' +
+            '<source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=1080p" type="video/mp4" />' +
+            '<source src="/promo/extension_shield_demo.mp4?v=1080p" type="video/mp4" />' +
           '</video>' +
           '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:0.84rem;">' +
             '<span style="color:#FFD000;font-weight:900;">rentandrugshield.com &bull; Extension v6.7</span>' +
@@ -34793,7 +34796,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         setTimeout(function () { window.openLiveCheckout(qChk, qAsset); }, 250);
         return;
       }
-      var qTok = (qp.get("token") || qp.get("mint") || "").trim();
+      var qTok = (qp.get("token") || qp.get("mint") || qp.get("scan") || qp.get("q") || qp.get("ticker") || qp.get("audit") || "").trim().replace(/^\$+/, "");
       if (qTok.length >= 2) {
         var mInpB = document.getElementById("mintInput");
         if (mInpB) mInpB.value = qTok;

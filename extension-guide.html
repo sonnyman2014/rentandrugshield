@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solana Rent &amp; Rug Shield Chrome Extension | Live 12-Layer Token Protection &amp; 0% Rent Recovery</title>
+  <meta name="description" content="Protect every Solana swap with real-time 12-layer token security alerts, customizable trader filters, and 0% fee first SOL rent recovery." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://rentandrugshield.com/extension" />
+  <link rel="icon" type="image/png" href="/favicon.png?v=202" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=202" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Solana Rent &amp; Rug Shield" />
+  <meta property="og:url" content="https://rentandrugshield.com/extension" />
+  <meta property="og:title" content="Solana Rent &amp; Rug Shield Chrome Extension | Live 12-Layer Token Protection" />
+  <meta property="og:description" content="Protect every Solana swap with real-time 12-layer token security alerts, customizable trader filters, and 0% fee first SOL rent recovery." />
+  <meta property="og:image" content="https://rentandrugshield.com/assets/rr_badge_exact.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SolRentClaim" />
+  <meta name="twitter:title" content="Solana Rent &amp; Rug Shield Chrome Extension | Live 12-Layer Token Protection" />
+  <meta name="twitter:description" content="Protect every Solana swap with real-time 12-layer token security alerts, customizable trader filters, and 0% fee first SOL rent recovery." />
+  <meta name="twitter:image" content="https://rentandrugshield.com/assets/rr_badge_exact.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Solana Rent & Rug Shield Chrome Extension",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Chrome, Brave, Edge",
+    "url": "https://rentandrugshield.com/extension",
+    "description": "Non-custodial read-only Solana browser security shield providing sub-120ms 12-layer token checks, customizable liquidity and momentum alerts, and 0% fee first empty token account rent recovery.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-obsidian: #060912;
+      --bg-panel: #0B1120;
+      --bg-surface: #0F172A;
+      --gold-primary: #F5C542;
+      --gold-bright: #FDE047;
+      --gold-border: rgba(245, 197, 66, 0.48);
+      --emerald: #10B981;
+      --emerald-bright: #34D399;
+      --crimson: #F43F5E;
+      --sky: #38BDF8;
+      --text-main: #F8FAFC;
+      --text-muted: #CBD5E1;
+      --text-dim: #94A3B8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      background: radial-gradient(circle at 50% 0%, #10192E 0%, var(--bg-obsidian) 58%);
+      color: var(--text-main);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.55;
+    }
+    .page-wrap { max-width: 1280px; margin: 0 auto; padding: 20px 18px 72px; }
+
+    /* Top Navigation Bar */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+      padding: 14px 20px; border-radius: 16px;
+      background: rgba(11, 17, 32, 0.94);
+      border: 1.5px solid var(--gold-border);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.78), 0 0 24px rgba(245, 197, 66, 0.12);
+      margin-bottom: 26px;
+    }
+    .brand-link {
+      display: inline-flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--text-main); font-weight: 900; font-size: 1.06rem; letter-spacing: 0.01em;
+    }
+    .brand-link img {
+      width: 38px; height: 38px; border-radius: 9px; object-fit: cover;
+      border: 1.5px solid var(--gold-primary);
+    }
+    .brand-title-accent { color: var(--gold-primary); }
+    .nav-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 42px; padding: 9px 18px; border-radius: 10px;
+      font-size: 0.9rem; font-weight: 800; cursor: pointer; text-decoration: none; border: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-gold {
+      background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
+      color: #070B14; border: 1.5px solid #FEF08A;
+      box-shadow: 0 6px 20px rgba(245, 197, 66, 0.28);
+    }
+    .btn-emerald {
+      background: linear-gradient(180deg, var(--emerald-bright) 0%, var(--emerald) 100%);
+      color: #04130D; border: 1.5px solid #A7F3D0;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.26);
+    }
+    .btn-ghost {
+      background: var(--bg-surface); color: var(--text-main);
+      border: 1.5px solid rgba(148, 163, 184, 0.35);
+    }
+    .btn-ghost:hover { border-color: var(--gold-primary); color: var(--gold-primary); }
+
+    /* Hero Two-Column Layout */
+    .hero-grid {
+      display: grid; grid-template-columns: 1.28fr 1fr; gap: 22px; align-items: start; margin-bottom: 28px;
+    }
+    @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; } }
+
+    .card-panel {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.92) 0%, rgba(11, 17, 32, 0.98) 100%);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 18px; padding: 24px;
+      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.85), 0 0 28px rgba(245, 197, 66, 0.09);
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px;
+      background: rgba(245, 197, 66, 0.12); border: 1px solid var(--gold-border);
+      color: var(--gold-primary); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: clamp(1.55rem, 2.6vw, 2.15rem); font-weight: 900; line-height: 1.2;
+      color: var(--text-main); margin-bottom: 10px; letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      color: var(--text-muted); font-size: 0.98rem; margin-bottom: 18px;
+    }
+
+    /* Walkthrough Video Player */
+    .video-shell {
+      width: 100%; border-radius: 14px; overflow: hidden;
+      border: 1.5px solid var(--gold-primary); background: #04070E;
+      aspect-ratio: 16 / 9; margin-bottom: 12px;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.85);
+    }
+    .video-shell video { width: 100%; height: 100%; display: block; object-fit: contain; background: #04070E; }
+
+    .chapters-bar {
+      display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;
+    }
+    @media (max-width: 720px) { .chapters-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .chap-pill {
+      padding: 8px 8px; border-radius: 9px; background: var(--bg-surface);
+      border: 1px solid rgba(245, 197, 66, 0.32); color: var(--text-main);
+      font-size: 0.78rem; font-weight: 800; cursor: pointer; text-align: center;
+      transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+    }
+    .chap-pill:hover, .chap-pill.active {
+      border-color: var(--gold-primary); color: var(--gold-primary); background: rgba(245, 197, 66, 0.12);
+    }
+
+    .trust-strip {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px;
+    }
+    @media (max-width: 640px) { .trust-strip { grid-template-columns: 1fr; } }
+    .trust-badge {
+      padding: 10px 12px; border-radius: 10px; background: rgba(6, 9, 18, 0.78);
+      border: 1px solid rgba(16, 185, 129, 0.35); font-size: 0.82rem; color: var(--text-muted);
+    }
+    .trust-badge strong { display: block; color: var(--emerald-bright); font-size: 0.86rem; margin-bottom: 2px; }
+
+    /* Interactive Live Demo HUD Sandbox */
+    .hud-sandbox-wrap {
+      margin-top: 4px;
+    }
+    .hud-preview-box {
+      background: #050811; border: 1.5px solid var(--emerald);
+      border-radius: 14px; padding: 14px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.88), 0 0 20px rgba(16, 185, 129, 0.15);
+      transform-origin: top center;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, font-size 0.15s ease;
+    }
+    .hud-preview-box.danger-mode {
+      border-color: var(--crimson);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.88), 0 0 22px rgba(244, 63, 94, 0.22);
+    }
+    .hud-top-controls {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;
+      padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+    .hud-ctrl-group { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+    .hud-mini-btn {
+      padding: 4px 8px; border-radius: 6px; background: #0E1628;
+      border: 1px solid rgba(245, 197, 66, 0.35); color: var(--text-main);
+      font-size: 0.73rem; font-weight: 800; cursor: pointer;
+    }
+    .hud-mini-btn.active {
+      background: rgba(16, 185, 129, 0.2); border-color: var(--emerald-bright); color: var(--emerald-bright);
+    }
+    .hud-verdict-banner {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+      padding: 10px 12px; border-radius: 10px;
+      background: rgba(16, 185, 129, 0.10); border: 1px solid rgba(16, 185, 129, 0.42);
+      margin-bottom: 10px;
+    }
+    .hud-preview-box.danger-mode .hud-verdict-banner {
+      background: rgba(244, 63, 94, 0.12); border-color: rgba(244, 63, 94, 0.5);
+    }
+    .hud-token-name { font-weight: 900; font-size: 1rem; color: var(--emerald-bright); }
+    .hud-preview-box.danger-mode .hud-token-name { color: #FDA4AF; }
+    .hud-verdict-pill {
+      padding: 3px 9px; border-radius: 999px; font-size: 0.73rem; font-weight: 900;
+      background: rgba(16, 185, 129, 0.22); color: var(--emerald-bright); border: 1px solid var(--emerald);
+    }
+    .hud-preview-box.danger-mode .hud-verdict-pill {
+      background: rgba(244, 63, 94, 0.24); color: #FECDD3; border-color: var(--crimson);
+    }
+    .hud-metrics-line { font-size: 0.8rem; color: var(--text-main); width: 100%; margin-top: 2px; }
+
+    .hud-mode-switcher {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;
+    }
+    .hud-state-btn {
+      padding: 7px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 800; cursor: pointer;
+      background: #0E1628; color: var(--text-muted); border: 1px solid rgba(148, 163, 184, 0.28);
+    }
+    .hud-state-btn.safe-active { border-color: var(--emerald); color: var(--emerald-bright); background: rgba(16, 185, 129, 0.12); }
+    .hud-state-btn.risk-active { border-color: var(--crimson); color: #FDA4AF; background: rgba(244, 63, 94, 0.14); }
+
+    .toggle-list { display: grid; gap: 7px; margin-bottom: 10px; }
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 7px 10px; border-radius: 8px; background: #0B1222; border: 1px solid rgba(148, 163, 184, 0.18);
+      font-size: 0.81rem; font-weight: 700; color: var(--text-main); cursor: pointer;
+    }
+    .switch-pill {
+      position: relative; width: 40px; height: 22px; border-radius: 999px;
+      background: #334155; border: 1px solid #475569; flex-shrink: 0; transition: background 0.16s ease;
+    }
+    .switch-pill::after {
+      content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
+      border-radius: 50%; background: #F8FAFC; transition: transform 0.16s ease;
+    }
+    .switch-pill.on { background: var(--emerald); border-color: var(--emerald-bright); }
+    .switch-pill.on::after { transform: translateX(18px); }
+
+    .hud-timer-track {
+      width: 100%; height: 4px; border-radius: 999px; background: #1E293B; overflow: hidden; margin-bottom: 10px;
+    }
+    .hud-timer-fill {
+      height: 100%; width: 100%; background: linear-gradient(90deg, var(--gold-primary), var(--emerald-bright));
+      transition: width 0.25s linear;
+    }
+
+    .hud-inline-scan {
+      display: flex; gap: 6px; margin-top: 6px;
+    }
+    .hud-inline-scan input {
+      flex: 1; min-width: 0; padding: 8px 10px; border-radius: 8px;
+      background: #060912; border: 1px solid rgba(245, 197, 66, 0.36); color: var(--text-main);
+      font-size: 0.8rem; outline: none;
+    }
+    .hud-inline-scan button {
+      padding: 8px 12px; border-radius: 8px; background: var(--gold-primary); color: #060912;
+      font-weight: 900; font-size: 0.8rem; border: none; cursor: pointer; white-space: nowrap;
+    }
+    .hud-scan-output {
+      display: none; margin-top: 8px; padding: 9px 11px; border-radius: 8px;
+      background: #060912; border: 1px solid var(--emerald); font-size: 0.8rem; color: var(--text-main);
+    }
+    .hud-scan-output.visible { display: block; }
+
+    /* 3-Step Install Block */
+    .install-box {
+      margin-top: 16px; padding: 16px; border-radius: 14px;
+      background: rgba(6, 9, 18, 0.86); border: 1.5px solid var(--gold-border);
+    }
+    .install-cta-grid {
+      display: grid; grid-template-columns: 1fr; gap: 9px; margin-bottom: 12px;
+    }
+    .install-secondary-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    }
+    @media (max-width: 520px) { .install-secondary-row { grid-template-columns: 1fr; } }
+    .steps-list {
+      list-style: none; display: grid; gap: 8px; font-size: 0.84rem; color: var(--text-muted);
+    }
+    .steps-list li {
+      display: flex; align-items: flex-start; gap: 9px;
+    }
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(245, 197, 66, 0.18); border: 1px solid var(--gold-primary);
+      color: var(--gold-primary); font-size: 0.75rem; font-weight: 900; margin-top: 1px;
+    }
+    .copy-toast {
+      display: none; margin-top: 8px; padding: 8px 10px; border-radius: 8px;
+      background: rgba(16, 185, 129, 0.14); border: 1px solid var(--emerald);
+      color: var(--emerald-bright); font-size: 0.8rem; font-weight: 700;
+    }
+    .copy-toast.visible { display: block; }
+
+    /* Feature Grid */
+    .features-section { margin-top: 10px; }
+    .section-heading {
+      font-size: 1.35rem; font-weight: 900; color: var(--gold-primary); margin-bottom: 14px;
+    }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;
+    }
+    @media (max-width: 920px) { .features-grid { grid-template-columns: 1fr; } }
+    .feature-card {
+      background: rgba(11, 17, 32, 0.94); border: 1px solid rgba(245, 197, 66, 0.34);
+      border-radius: 14px; padding: 18px;
+    }
+    .feature-card h3 { font-size: 1rem; font-weight: 900; color: var(--text-main); margin-bottom: 6px; }
+    .feature-card h3 span { color: var(--gold-primary); }
+    .feature-card p { font-size: 0.88rem; color: var(--text-muted); }
+
+    footer {
+      margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(245, 197, 66, 0.25);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+      font-size: 0.86rem; color: var(--text-dim);
+    }
+    footer a { color: var(--gold-primary); text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <header class="topbar">
+      <a href="/" class="brand-link">
+        <img src="/assets/rr_badge_exact.jpg" alt="Solana Rent &amp; Rug Shield Crest" />
+        <span>SOLANA <span class="brand-title-accent">RENT &amp; RUG SHIELD</span></span>
+      </a>
+      <nav class="nav-group" aria-label="Extension Navigation">
+        <a href="/" class="btn btn-ghost">Live Web Scanner</a>
+        <button type="button" id="btnTopDemoWallet" class="btn btn-emerald" onclick="runLiveDemoWalletScan()">Try Live Demo Wallet</button>
+        <a href="/CWS_READY_SolanaRentRugShield_MV3.zip" download="SolanaRentRugShield_Chrome_Extension.zip" id="btnTopDownloadExtension" class="btn btn-gold">Download Chrome Extension (.ZIP)</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero-grid">
+        <section class="card-panel" aria-labelledby="extHeroHeading">
+          <span class="eyebrow">100% Read-Only Browser Protection &bull; 30 Days Pro Free</span>
+          <h1 id="extHeroHeading">Solana Rent &amp; Rug Shield Chrome Extension</h1>
+          <p class="hero-sub">
+            Inspect any Solana token across DexScreener, Jupiter, Pump.fun, BullX, and Photon in under 120ms before you sign a swap, filter whale and momentum signals without screen clutter, and reclaim trapped empty token account SOL with 0% fee on your first claim.
+          </p>
+
+          <div class="video-shell">
+            <video id="extDemoMasterVideo" controls playsinline webkit-playsinline preload="metadata" poster="/assets/rr_badge_exact.jpg">
+              <source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=1080p" type="video/mp4" />
+              <source src="/promo/extension_shield_demo.mp4?v=1080p" type="video/mp4" />
+            </video>
+          </div>
+
+          <div class="chapters-bar" role="group" aria-label="Walkthrough Video Chapters">
+            <button type="button" class="chap-pill active" onclick="seekWalkthrough(0, this)">0:00 12-Layer Scan</button>
+            <button type="button" class="chap-pill" onclick="seekWalkthrough(4.2, this)">0:04 0% Rent Auto-Scan</button>
+            <button type="button" class="chap-pill" onclick="seekWalkthrough(8.5, this)">0:08 Liquidity &amp; Toggles</button>
+            <button type="button" class="chap-pill" onclick="seekWalkthrough(16.0, this)">0:16 Signal Insights</button>
+            <button type="button" class="chap-pill" onclick="seekWalkthrough(24.0, this)">0:24 Zoom &amp; Pin HUD</button>
+          </div>
+
+          <div class="trust-strip">
+            <div class="trust-badge">
+              <strong>Zero Seed Phrases</strong>
+              100% read-only token and wallet checks with zero custody.
+            </div>
+            <div class="trust-badge">
+              <strong>0% First SOL Rent Claim</strong>
+              Keep 100% of recovered SOL on your first empty account cleanup.
+            </div>
+            <div class="trust-badge">
+              <strong>Auto-Billing Off</strong>
+              Includes 30 days of Pro alerts free with zero credit card required.
+            </div>
+          </div>
+        </section>
+
+        <aside class="card-panel" aria-labelledby="liveHudHeading">
+          <span class="eyebrow">Interactive Live Preview</span>
+          <h2 id="liveHudHeading" style="font-size:1.28rem;font-weight:900;color:var(--gold-primary);margin-bottom:6px;">Test the Live Extension HUD</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:12px;">
+            Try the zoom controls, auto-hide timers, alert switches, and live Solana Mainnet scanner below right in your browser.
+          </p>
+
+          <div class="hud-sandbox-wrap">
+            <div id="interactiveHudCard" class="hud-preview-box">
+              <div class="hud-top-controls">
+                <div class="hud-ctrl-group" aria-label="Zoom Controls">
+                  <button type="button" id="btnHudZoomOut" class="hud-mini-btn" onclick="adjustHudZoom(-10)">- Zoom</button>
+                  <span id="hudZoomLabel" style="font-size:0.74rem;font-weight:900;color:var(--gold-primary);min-width:38px;text-align:center;">100%</span>
+                  <button type="button" id="btnHudZoomIn" class="hud-mini-btn" onclick="adjustHudZoom(10)">+ Zoom</button>
+                </div>
+                <div class="hud-ctrl-group" aria-label="Timer and Pin Controls">
+                  <button type="button" class="hud-mini-btn hud-timer-btn" data-sec="5" onclick="setHudTimer(5, this)">5s</button>
+                  <button type="button" class="hud-mini-btn hud-timer-btn active" data-sec="15" onclick="setHudTimer(15, this)">15s</button>
+                  <button type="button" class="hud-mini-btn hud-timer-btn" data-sec="60" onclick="setHudTimer(60, this)">1m</button>
+                  <button type="button" id="btnHudPin" class="hud-mini-btn" onclick="toggleHudPin(this)">Pin</button>
+                </div>
+              </div>
+
+              <div class="hud-timer-track" aria-hidden="true">
+                <div id="hudTimerBar" class="hud-timer-fill"></div>
+              </div>
+
+              <div class="hud-mode-switcher">
+                <button type="button" id="btnPreviewSafe" class="hud-state-btn safe-active" onclick="setHudVerdictMode('safe')">Safe Token ($JUP Pass)</button>
+                <button type="button" id="btnPreviewRisk" class="hud-state-btn" onclick="setHudVerdictMode('risk')">Rug Trap (Blocked)</button>
+              </div>
+
+              <div class="hud-verdict-banner">
+                <span id="hudTokenHeadline" class="hud-token-name">$JUP +18.4% &bull; Jupiter</span>
+                <span id="hudVerdictBadge" class="hud-verdict-pill">12-LAYER: PASS (98/100)</span>
+                <div id="hudMetricsLine" class="hud-metrics-line">Mint &amp; Freeze Revoked &bull; Deep Locked Liquidity &bull; 0% Transfer Hook Tax</div>
+              </div>
+
+              <div class="toggle-list" role="group" aria-label="Alert Module Switches">
+                <div class="toggle-row" onclick="flipSwitch(this)" role="switch" aria-checked="true" tabindex="0">
+                  <span>12-Layer Pre-Buy Rug Firewall</span>
+                  <span class="switch-pill on"></span>
+                </div>
+                <div class="toggle-row" onclick="flipSwitch(this)" role="switch" aria-checked="true" tabindex="0">
+                  <span>Liquidity &amp; Market Cap Minimums ($25K+)</span>
+                  <span class="switch-pill on"></span>
+                </div>
+                <div class="toggle-row" onclick="flipSwitch(this)" role="switch" aria-checked="true" tabindex="0">
+                  <span>Whale Inflow &amp; MACD Momentum Cross</span>
+                  <span class="switch-pill on"></span>
+                </div>
+                <div class="toggle-row" onclick="flipSwitch(this)" role="switch" aria-checked="true" tabindex="0">
+                  <span>Automatic 0% First SOL Rent Alert</span>
+                  <span class="switch-pill on"></span>
+                </div>
+              </div>
+
+              <div class="hud-inline-scan">
+                <input type="text" id="hudQuickScanInput" placeholder="Paste Solana Mint, Ticker (JUP), or Wallet..." aria-label="Solana Mint or Wallet Address" />
+                <button type="button" id="btnHudRunQuickScan" onclick="runHudQuickScan()">Scan Live</button>
+              </div>
+              <div id="hudQuickScanOutput" class="hud-scan-output"></div>
+            </div>
+          </div>
+
+          <div class="install-box">
+            <div class="install-cta-grid">
+              <a href="/CWS_READY_SolanaRentRugShield_MV3.zip" download="SolanaRentRugShield_Chrome_Extension.zip" id="btnMainInstallZip" class="btn btn-gold">
+                Download Chrome Extension (.ZIP) &bull; 30 Days Pro Free
+              </a>
+              <div class="install-secondary-row">
+                <button type="button" id="btnCopyExtensionsUrl" class="btn btn-ghost" onclick="copyExtensionsUrl()">Copy chrome://extensions</button>
+                <button type="button" id="btnSideDemoWallet" class="btn btn-emerald" onclick="runLiveDemoWalletScan()">Scan Demo Wallet</button>
+              </div>
+            </div>
+
+            <div id="copyExtToast" class="copy-toast">
+              Copied <code>chrome://extensions</code>! Paste it into a new Chrome or Brave tab to load the unpacked folder.
+            </div>
+
+            <ol class="steps-list">
+              <li>
+                <span class="step-num">1</span>
+                <span>Click <strong>Download Chrome Extension (.ZIP)</strong> above and extract the folder on your computer.</span>
+              </li>
+              <li>
+                <span class="step-num">2</span>
+                <span>Open <code>chrome://extensions</code> (or <code>brave://extensions</code>) and switch <strong>Developer mode</strong> on in the top-right corner.</span>
+              </li>
+              <li>
+                <span class="step-num">3</span>
+                <span>Click <strong>Load unpacked</strong>, select the extracted folder, and pin the gold shield icon beside Phantom or Solflare.</span>
+              </li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+
+      <section class="features-section" aria-labelledby="whyTradersHeading">
+        <h2 id="whyTradersHeading" class="section-heading">Built for Active Solana Trading Desks</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3><span>01.</span> Movable &amp; Pinnable Chart HUD</h3>
+            <p>Position your live alert card anywhere on screen, scale text cleanly for laptop or ultrawide monitors, and pin or auto-hide alerts in 5s, 15s, or 1m so order buttons stay unobstructed.</p>
+          </div>
+          <div class="feature-card">
+            <h3><span>02.</span> Sub-120ms 12-Layer Security Checks</h3>
+            <p>Automatically inspects mint and freeze authorities, Token-2022 transfer hooks, permanent delegates, liquidity lock depth, and genesis-slot bundler concentration before you buy.</p>
+          </div>
+          <div class="feature-card">
+            <h3><span>03.</span> Custom Liquidity &amp; Signal Filters</h3>
+            <p>Set exact USD liquidity and market cap floors alongside MACD momentum crossovers, whale accumulation alerts, and custom catalyst keywords with distinct audio chimes.</p>
+          </div>
+          <div class="feature-card">
+            <h3><span>04.</span> Non-Custodial 0% First Rent Claim</h3>
+            <p>Detects empty SPL and Token-2022 accounts holding ~0.00204 SOL each and routes directly to native Solana 0x09 CloseAccount recovery with 0% fee on your first wallet cleanup.</p>
+          </div>
+          <div class="feature-card">
+            <h3><span>05.</span> Clipboard &amp; Phishing Domain Guard</h3>
+            <p>Warns immediately on lookalike punycode DEX URLs and clipboard address-poisoning swaps before you sign or paste a destination wallet.</p>
+          </div>
+          <div class="feature-card">
+            <h3><span>06.</span> Instant Deep-Link to Full Audit</h3>
+            <p>Click any token alert inside the extension to open the full 12-layer breakdown on rentandrugshield.com with that token pre-filled and scanned automatically.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span><a href="/">rentandrugshield.com</a> &bull; Non-Custodial Solana Security &amp; Native 0x09 Rent Recovery</span>
+      <span><a href="/">Main Scanner</a> &bull; <a href="/app">Web Terminal</a> &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a></span>
+    </footer>
+  </div>
+
+  <script>
+    var API_BASE = "https://rent-shield-api.104-197-102-151.sslip.io";
+    var hudZoomPct = 100;
+    var hudTimerSec = 15;
+    var hudPinned = false;
+    var hudRemainRatio = 1.0;
+
+    function seekWalkthrough(sec, btnEl) {
+      var pills = document.querySelectorAll('.chap-pill');
+      for (var i = 0; i < pills.length; i++) pills[i].classList.remove('active');
+      if (btnEl) btnEl.classList.add('active');
+      var v = document.getElementById('extDemoMasterVideo');
+      if (!v) return;
+      try {
+        v.currentTime = sec;
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function () {});
+      } catch (_e) {}
+    }
+
+    function adjustHudZoom(delta) {
+      hudZoomPct = Math.max(80, Math.min(130, hudZoomPct + delta));
+      var lbl = document.getElementById('hudZoomLabel');
+      var box = document.getElementById('interactiveHudCard');
+      if (lbl) lbl.textContent = hudZoomPct + '%';
+      if (box) box.style.fontSize = (hudZoomPct / 100).toFixed(2) + 'em';
+    }
+
+    function setHudTimer(sec, btn) {
+      hudTimerSec = sec;
+      hudPinned = false;
+      hudRemainRatio = 1.0;
+      var btns = document.querySelectorAll('.hud-timer-btn');
+      for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+      if (btn) btn.classList.add('active');
+      var pinBtn = document.getElementById('btnHudPin');
+      if (pinBtn) pinBtn.classList.remove('active');
+      var bar = document.getElementById('hudTimerBar');
+      if (bar) bar.style.width = '100%';
+    }
+
+    function toggleHudPin(btn) {
+      hudPinned = !hudPinned;
+      if (btn) btn.classList.toggle('active', hudPinned);
+      var bar = document.getElementById('hudTimerBar');
+      if (hudPinned && bar) bar.style.width = '100%';
+    }
+
+    setInterval(function () {
+      if (hudPinned) return;
+      var step = 0.25 / Math.max(5, hudTimerSec);
+      hudRemainRatio -= step;
+      if (hudRemainRatio <= 0.05) hudRemainRatio = 1.0;
+      var bar = document.getElementById('hudTimerBar');
+      if (bar) bar.style.width = Math.round(hudRemainRatio * 100) + '%';
+    }, 250);
+
+    function setHudVerdictMode(mode) {
+      var box = document.getElementById('interactiveHudCard');
+      var bSafe = document.getElementById('btnPreviewSafe');
+      var bRisk = document.getElementById('btnPreviewRisk');
+      var hTok = document.getElementById('hudTokenHeadline');
+      var bVer = document.getElementById('hudVerdictBadge');
+      var mLine = document.getElementById('hudMetricsLine');
+      if (mode === 'risk') {
+        box.classList.add('danger-mode');
+        bSafe.className = 'hud-state-btn';
+        bRisk.className = 'hud-state-btn risk-active';
+        hTok.innerHTML = 'HONEYPOT TRAP &bull; Unverified Mint';
+        bVer.textContent = '12-LAYER: BLOCKED (12/100)';
+        mLine.innerHTML = 'Active Freeze Authority &bull; Unlocked LP Drain Risk &bull; Swap Protected';
+      } else {
+        box.classList.remove('danger-mode');
+        bSafe.className = 'hud-state-btn safe-active';
+        bRisk.className = 'hud-state-btn';
+        hTok.innerHTML = '$JUP +18.4% &bull; Jupiter';
+        bVer.textContent = '12-LAYER: PASS (98/100)';
+        mLine.innerHTML = 'Mint &amp; Freeze Revoked &bull; Deep Locked Liquidity &bull; 0% Transfer Hook Tax';
+      }
+    }
+
+    function flipSwitch(rowEl) {
+      if (!rowEl) return;
+      var pill = rowEl.querySelector('.switch-pill');
+      if (!pill) return;
+      var nextOn = !pill.classList.contains('on');
+      pill.classList.toggle('on', nextOn);
+      rowEl.setAttribute('aria-checked', nextOn ? 'true' : 'false');
+    }
+
+    function copyExtensionsUrl() {
+      var toast = document.getElementById('copyExtToast');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText('chrome://extensions').catch(function () {});
+      }
+      if (toast) toast.classList.add('visible');
+    }
+
+    async function runLiveDemoWalletScan() {
+      var out = document.getElementById('hudQuickScanOutput');
+      var inp = document.getElementById('hudQuickScanInput');
+      var demoW = 'C3FFhG83pda2veVRFwTDNyf1YT2R2U2ZHxcg8pUeMjrC';
+      if (inp) inp.value = demoW;
+      if (!out) return;
+      out.classList.add('visible');
+      out.innerHTML = '<span style="color:var(--gold-primary);font-weight:800;">Scanning Solana Mainnet Demo Wallet (Read-Only)...</span>';
+      try {
+        var r = await fetch(API_BASE + '/api/scan-wallet', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ wallet: demoW })
+        });
+        if (r.ok) {
+          var d = await r.json();
+          if (d && d.ok) {
+            var cnt = Number(d.reclaimable_count || d.empty_count || 0);
+            var sol = Number(d.total_reclaimable_sol || 0).toFixed(6);
+            var usd = Number(d.total_reclaimable_usd || 0).toFixed(2);
+            out.innerHTML =
+              '<div style="color:var(--emerald-bright);font-weight:900;">Verified Mainnet Scan: ' + cnt + ' Empty Token Accounts = +' + sol + ' SOL (~$' + usd + ')</div>' +
+              '<div style="color:var(--text-muted);margin-top:3px;">0 Wallet Connect Needed &bull; 1st Claim = 0% Fee &bull; <a href="/?wallet=' + demoW + '&amp;autoscan=1" style="color:var(--gold-primary);font-weight:800;">Open Full Breakdown &rarr;</a></div>';
+            return;
+          }
+        }
+      } catch (_e) {}
+      out.innerHTML =
+        '<div style="color:var(--emerald-bright);font-weight:900;">Verified Mainnet Scan Ready &bull; 0% First Claim Fee</div>' +
+        '<div style="margin-top:4px;"><a href="/?wallet=' + demoW + '&amp;autoscan=1" style="color:var(--gold-primary);font-weight:800;">Open Live Wallet Breakdown on Main Scanner &rarr;</a></div>';
+    }
+
+    async function runHudQuickScan() {
+      var inp = document.getElementById('hudQuickScanInput');
+      var out = document.getElementById('hudQuickScanOutput');
+      if (!out) return;
+      var raw = String((inp && inp.value) || '').trim().replace(/^\$+/, '');
+      if (!raw) {
+        return runLiveDemoWalletScan();
+      }
+      out.classList.add('visible');
+      out.innerHTML = '<span style="color:var(--gold-primary);font-weight:800;">Running Live 12-Layer Solana Inspection...</span>';
+      try {
+        var r = await fetch(API_BASE + '/api/scan-token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mint: raw })
+        });
+        if (r.ok) {
+          var d = await r.json();
+          if (d && d.ok) {
+            var col = Number(d.score) >= 75 ? 'var(--emerald-bright)' : '#FDA4AF';
+            out.innerHTML =
+              '<div style="color:' + col + ';font-weight:900;">' + (d.name || d.symbol || raw) + ' ($' + (d.symbol || 'SPL') + ') &bull; Shield Score: ' + d.score + '/100 (' + (d.badge || 'SCANNED') + ')</div>' +
+              '<div style="margin-top:4px;"><a href="/?token=' + encodeURIComponent(d.mint || raw) + '&amp;autoscan=1#tokenScanner" style="color:var(--gold-primary);font-weight:800;">Open Full 12-Layer Scorecard on Main Scanner &rarr;</a></div>';
+            return;
+          }
+        }
+      } catch (_e) {}
+      window.location.href = '/?token=' + encodeURIComponent(raw) + '&autoscan=1#tokenScanner';
+    }
+  </script>
+</body>
+</html>

@@ -1,24 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
-  <title>404 Page Not Found | Solana Rent &amp; Rug Shield</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, follow" />
+  <title>Solana Rent &amp; Rug Shield | Live Token &amp; Wallet Security Scanner</title>
+  <link rel="canonical" href="https://rentandrugshield.com/" />
+  <script>
+    (function () {
+      var rawPath = String(window.location.pathname || '/');
+      var search = String(window.location.search || '');
+      var hash = String(window.location.hash || '');
+      var norm = rawPath.replace(/\/+$/, '') || '/';
+      var lower = norm.toLowerCase();
+
+      if (
+        lower === '/extension' ||
+        lower === '/extension.html' ||
+        lower.indexOf('/extension/') === 0 ||
+        lower === '/extension-guide' ||
+        lower === '/extension-guide.html' ||
+        lower.indexOf('/extension-guide/') === 0 ||
+        lower === '/how-to' ||
+        lower === '/how-to.html' ||
+        lower.indexOf('/how-to/') === 0 ||
+        lower === '/extension-demo' ||
+        lower === '/extension-demo.html' ||
+        lower.indexOf('/extension-demo/') === 0
+      ) {
+        window.location.replace('/extension' + search + hash);
+        return;
+      }
+
+      function cleanSeg(s) {
+        try { s = decodeURIComponent(String(s || '')); } catch (_e) { s = String(s || ''); }
+        return s.replace(/\.html?$/i, '').replace(/^\$+/, '').trim();
+      }
+
+      var b58Re = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+      var knownTickers = { SOL:1, WSOL:1, USDC:1, USDT:1, JUP:1, BONK:1, RAY:1, PYTH:1, WIF:1, ORCA:1, POPCAT:1, CHIP:1, CYBER:1, TRUMP:1, PENGU:1, FARTCOIN:1 };
+      var tok = '';
+
+      var m = norm.match(/^\/(?:token|tokens|scan|audit|audits|rug-check|report)\/([^/?#]+)/i);
+      if (m && m[1]) {
+        var c = cleanSeg(m[1]);
+        if (c && c.toLowerCase() !== 'index') tok = c;
+      }
+
+      if (!tok) {
+        if (/^\/chip(?:$|[-_/]|\.html?$)/i.test(norm)) tok = 'CHIP';
+        else if (/^\/cyber(?:$|[-_/]|\.html?$)/i.test(norm)) tok = 'CYBER';
+      }
+
+      if (!tok) {
+        var parts = norm.split('/');
+        for (var i = 0; i < parts.length; i++) {
+          if (!parts[i]) continue;
+          var rawSeg = '';
+          try { rawSeg = decodeURIComponent(parts[i]); } catch (_e2) { rawSeg = parts[i]; }
+          rawSeg = rawSeg.replace(/\.html?$/i, '').trim();
+          var stripped = rawSeg.replace(/^\$+/, '');
+          if (b58Re.test(stripped)) {
+            tok = stripped;
+            break;
+          }
+          if (rawSeg.charAt(0) === '$' && /^[A-Za-z0-9_]{2,16}$/.test(stripped)) {
+            tok = stripped.toUpperCase();
+            break;
+          }
+          if (knownTickers[stripped.toUpperCase()]) {
+            tok = stripped.toUpperCase();
+            break;
+          }
+        }
+      }
+
+      if (tok) {
+        window.location.replace('/?token=' + encodeURIComponent(tok) + '&autoscan=1#tokenScanner');
+      } else {
+        window.location.replace('/' + search + hash);
+      }
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=/" /></noscript>
   <style>
-    body { background:#05070B; color:#F8FAFC; font-family:Inter,system-ui,-apple-system,sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; padding:24px; box-sizing:border-box; }
-    .card { max-width:560px; background:#0D1320; border:1px solid rgba(255,208,0,0.35); border-radius:14px; padding:32px; text-align:center; }
-    h1 { margin:0 0 12px 0; font-size:1.45rem; color:#FFD000; }
-    p { margin:0 0 20px 0; color:#CBD5E1; line-height:1.6; font-size:0.96rem; }
-    a.btn { display:inline-block; padding:11px 22px; border-radius:8px; background:#FFD000; color:#05070B; font-weight:800; text-decoration:none; }
+    html, body { margin: 0; height: 100%; background: #060912; color: #F8FAFC; font-family: Inter, system-ui, sans-serif; display: flex; align-items: center; justify-content: center; }
+    .msg { font-size: 0.95rem; color: #CBD5E1; text-align: center; padding: 20px; }
+    .msg a { color: #F5C542; font-weight: 700; text-decoration: none; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>404: Page Not Found</h1>
-    <p>This static token report route has been retired and permanently removed. Run a real-time 100% read-only 12-layer Solana token security scan or non-custodial SPL 0x09 rent check via public Solana address on the main terminal.</p>
-    <a class="btn" href="https://rentandrugshield.com/">Open Security Scanner</a>
-  </div>
+  <div class="msg">Opening live Solana security scanner... <a href="/">Continue to Scanner</a></div>
 </body>
 </html>

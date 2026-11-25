@@ -1,5 +1,5 @@
 /* Rent & Rug Shield - PWA Service Worker v25772 (Network-First Live RPC & OS Bubbles) */
-const CACHE_NAME = 'rent-shield-v25772-live-rpc';
+const CACHE_NAME = 'rent-shield-v25773-live-rpc';
 
 self.addEventListener('install', () => {
   self.skipWaiting();
