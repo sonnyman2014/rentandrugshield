@@ -1,7 +1,9 @@
 # 🛡️ SOL Rent & Rug Shield (`rentandrugshield.com`)
-**100% Client-Side Solana ATA Rent Recovery (`0%` Fee on 1st Claim • Keep 95% Net SOL on Repeat Claims) + 11-Layer Adaptive Solana Rug Shield (Powered by Gemini 4 Carbon High) + Native `x402` / MCP Agent Gateway**
 
-👉 **[Launch Live Web Scanner (`0%` 1st-Claim Rent Recovery + Free 11-Layer Token Audit)](https://rentandrugshield.com/)** | 🤖 **[Telegram Scanner Bot (`@Bigmoonbag50bot`)](https://t.me/Bigmoonbag50bot)** | 📄 **[LLM & Agent Spec (`llms.txt`)](https://rentandrugshield.com/llms.txt)**
+[![sonnyman2014/solana-rent-rug-shield-mcp MCP server](https://glama.ai/mcp/servers/sonnyman2014/solana-rent-rug-shield-mcp/badges/score.svg)](https://glama.ai/mcp/servers/sonnyman2014/solana-rent-rug-shield-mcp) [![Solana Rent & Rug Shield MCP connector](https://glama.ai/mcp/connectors/io.github.sonnyman2014/solana-rent-rug-shield-mcp/badges/score.svg)](https://glama.ai/mcp/connectors/io.github.sonnyman2014/solana-rent-rug-shield-mcp)
+**100% Client-Side Solana ATA Rent Recovery (`0%` Fee on 1st Claim • Keep 95% Net SOL on Repeat Claims) + 11-Layer Adaptive Solana Rug Shield (Deterministic On-Chain Telemetry Engine) + Native `x402` / MCP Agent Gateway**
+
+👉 **[Launch Live Web Scanner (`0%` 1st-Claim Rent Recovery + Free 11-Layer Token Audit)](https://rentandrugshield.com/)** |  **[Telegram Scanner Bot (`@Bigmoonbag50bot`)](https://t.me/Bigmoonbag50bot)** | 📄 **[Agent Protocol Spec (`llms.txt`)](https://rentandrugshield.com/llms.txt)**
 
 ---
 
@@ -9,25 +11,25 @@
 Every time you buy a Solana SPL or Token-2022 memecoin on Pump.fun, PumpSwap, Raydium, Jupiter, or Meteora, Solana locks **`~0.00203928 SOL`** in an Associated Token Account (ATA) rent deposit. Even after you sell 100% of the token, that empty ATA stays open on-chain holding your SOL hostage until explicitly closed via native `0x09 CloseAccount`.
 
 1. **`0%` First-Claim Fee (`100%` of Your Recovered SOL on Claim #1; Flat `5%` Repeat Fee)**:
-   - 100% client-side `@solana/web3.js` transaction construction in your browser — zero private keys or seed phrases ever leave your wallet.
-   - Automatically skips frozen trap accounts so a single frozen token never bricks your batch `CloseAccount` transaction.
-2. **11-Layer Adaptive Pre-Buy Solana Rug Shield (Powered by Gemini 4 Carbon High)**:
-   - **Layer 1**: Mint Authority Revocation Check (blocks infinite supply inflation)
-   - **Layer 2**: Freeze Authority & Token-2022 `DefaultAccountState` Honeypot Check
-   - **Layer 3**: Top-10 Non-LP Holder & Creator Concentration Cap
-   - **Layer 4**: Liquidity-to-Market-Cap Solvency Ratio
-   - **Layer 5**: Canonical Burned / Locked LP Verification (blocks manual unburned PumpSwap, Raydium & Meteora LP-pull traps)
-   - **Layer 6**: Token-2022 `transferFeeConfig`, `PermanentDelegate` & `TransferHook` Seizure Detector
-   - **Layer 7**: Quote-Vault Exit-Liquidity Solvency Verification
-   - **Layer 8**: Inner-CPI Hidden ATA Rent-Drain Shield
-   - **Layer 9**: Authentic On-Chain Pool Lifecycle Age Verification
-   - **Layer 10**: Live 5m / 1h Buy-to-Sell Orderflow Velocity Filter
-   - **Layer 11**: **Block-0 Sybil Wallet-Cluster & Spoofed Migration LP Guard** (detects fresh Block-0 Sybil funder clusters >20% across top-15 non-pool wallets and blocks spoofed vanity `.pump` migration pools)
+  : 100% client-side `@solana/web3.js` transaction construction in your browser , zero private keys or seed phrases ever leave your wallet.
+  : Automatically skips frozen trap accounts so a single frozen token never bricks your batch `CloseAccount` transaction.
+2. **11-Layer Adaptive Pre-Buy Solana Rug Shield (Deterministic On-Chain Telemetry Engine)**:
+  : **Layer 1**: Mint Authority Revocation Check (blocks infinite supply inflation)
+  : **Layer 2**: Freeze Authority & Token-2022 `DefaultAccountState` Honeypot Check
+  : **Layer 3**: Top-10 Non-LP Holder & Creator Concentration Cap
+  : **Layer 4**: Liquidity-to-Market-Cap Solvency Ratio
+  : **Layer 5**: Canonical Burned / Locked LP Verification (blocks manual unburned PumpSwap, Raydium & Meteora LP-pull traps)
+  : **Layer 6**: Token-2022 `transferFeeConfig`, `PermanentDelegate` & `TransferHook` Seizure Detector
+  : **Layer 7**: Quote-Vault Exit-Liquidity Solvency Verification
+  : **Layer 8**: Inner-CPI Hidden ATA Rent-Drain Shield
+  : **Layer 9**: Authentic On-Chain Pool Lifecycle Age Verification
+  : **Layer 10**: Live 5m / 1h Buy-to-Sell Orderflow Velocity Filter
+  : **Layer 11**: **Block-0 Sybil Wallet-Cluster & Spoofed Migration LP Guard** (detects fresh Block-0 Sybil funder clusters >20% across top-15 non-pool wallets and blocks spoofed vanity `.pump` migration pools)
 
-> **Why Our Shield Layers Keep Growing**: Our 24/7 Mainnet telemetry engine paired with **Gemini 4 Carbon High** continuously catches newly deployed scam mechanics (Sybil bundles, spoofed `.pump` LPs, malicious Token-2022 hooks) in real time and Ships new deterministic layers ahead of static scanners.
+> **Why Our Shield Layers Keep Growing**: Our 24/7 Mainnet telemetry engine paired with **Deterministic Mainnet Telemetry** continuously catches newly deployed scam mechanics (Sybil bundles, spoofed `.pump` LPs, malicious Token-2022 hooks) in real time and Ships new deterministic layers ahead of static scanners.
 
 
-## Headless AI Agent `x402` Auto-Pay (`X-Payment-Tx` & MCP `audit_solana_token`)
+## Headless Autonomous Agent `x402` Auto-Pay (`X-Payment-Tx` & MCP `audit_solana_token`)
 
 Funded Solana wallet-agent frameworks (`solana-agent-kit`, ElizaOS `@elizaos/plugin-solana`, Goat SDK `@goat-sdk/wallet-solana`, and custom autonomous trading bots) can purchase 11-Layer Adaptive Shield audits headlessly over HTTP with zero browser popups:
 
@@ -72,7 +74,7 @@ if audit.get("error", {}).get("httpStatus") == 402 or audit.get("status") == 402
 ---
 
 ## 🌏 中文简介 (Solana 链上空账户租金一键领回 + 11层自适应防貔貅护盾)
-大多数 Solana 链上高频交易钱包都积累了 50–300+ 个空代币账户 (Empty SPL / Token-2022 ATAs)，每个空账户锁仓约 `0.00204 SOL` 租金！
-- **首单 0% 手续费**: 首次领回 **100% 净 SOL 全额到账**（后续领回仅收 5% 透明服务费，比收 10%–20% 的销毁工具省 2–4 倍）。
-- **11 层自适应护盾 + AI Agent `x402` 无头支付**: 支持 `solana-agent-kit`、ElizaOS、Goat SDK 通过 `X-Payment-Tx` / MCP `audit_solana_token` 自动购买 `10¢` 单次扫描或 `$1.99` 24小时无限通行证。
+大多数 Solana 链上高频交易钱包都积累了 50-300+ 个空代币账户 (Empty SPL / Token-2022 ATAs)，每个空账户锁仓约 `0.00204 SOL` 租金！
+- **首单 0% 手续费**: 首次领回 **100% 净 SOL 全额到账**（后续领回仅收 5% 透明服务费，比收 10%-20% 的销毁工具省 2-4 倍）。
+- **11 层自适应护盾 + Autonomous Agent `x402` 无头支付**: 支持 `solana-agent-kit`、ElizaOS、Goat SDK 通过 `X-Payment-Tx` / MCP `audit_solana_token` 自动购买 `10¢` 单次扫描或 `$1.99` 24小时无限通行证。
 - **立即体验**: [https://rentandrugshield.com/](https://rentandrugshield.com/) | Telegram 机器人: [@Bigmoonbag50bot](https://t.me/Bigmoonbag50bot)
