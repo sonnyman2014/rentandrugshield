@@ -1,5 +1,5 @@
-/* Rent & Rug Shield - PWA Service Worker v25771 (1-Click Live Desktop & OS Bubbles) */
-const CACHE_NAME = 'rent-shield-v25771-livealerts';
+/* Rent & Rug Shield - PWA Service Worker v25772 (Network-First Live RPC & OS Bubbles) */
+const CACHE_NAME = 'rent-shield-v25772-live-rpc';
 
 self.addEventListener('install', () => {
   self.skipWaiting();
@@ -52,4 +52,53 @@ self.addEventListener('notificationclick', (event) => {
   );
 });
 
-self.addEventListener('fetch', () => {});
+self.addEventListener('fetch', (event) => {
+  const req = event.request;
+  if (!req || req.method !== 'GET') {
+    return;
+  }
+  let url;
+  try {
+    url = new URL(req.url);
+  } catch (_e) {
+    return;
+  }
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+  const p = url.pathname || '/';
+  const isHtmlNav =
+    req.mode === 'navigate' ||
+    p === '/' ||
+    p === '/index.html' ||
+    p === '/app.html' ||
+    p === '/app' ||
+    p.endsWith('.html');
+
+  if (isHtmlNav) {
+    event.respondWith(
+      fetch(new Request(req, { cache: 'no-store' }))
+        .then((res) => {
+          if (res && res.ok && res.status === 200) {
+            const copy = res.clone();
+            caches.open(CACHE_NAME).then((c) => c.put(req, copy)).catch(() => {});
+          }
+          return res;
+        })
+        .catch(() => caches.match(req))
+    );
+    return;
+  }
+
+  event.respondWith(
+    fetch(req)
+      .then((res) => {
+        if (res && res.ok && res.status === 200) {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then((c) => c.put(req, copy)).catch(() => {});
+        }
+        return res;
+      })
+      .catch(() => caches.match(req))
+  );
+});
