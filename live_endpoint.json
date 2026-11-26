@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://found-vessel-protest-extra.trycloudflare.com",
-  "api_base": "https://found-vessel-protest-extra.trycloudflare.com",
-  "rpc_url": "https://found-vessel-protest-extra.trycloudflare.com/api/rpc",
-  "actions_base": "https://found-vessel-protest-extra.trycloudflare.com/api/actions",
+  "endpoint": "https://the-prospective-berry-inns.trycloudflare.com",
+  "api_base": "https://the-prospective-berry-inns.trycloudflare.com",
+  "rpc_url": "https://the-prospective-berry-inns.trycloudflare.com/api/rpc",
+  "actions_base": "https://the-prospective-berry-inns.trycloudflare.com/api/actions",
   "custom_domain_ready": "https://api.rentandrugshield.com",
   "cloud_static_ip": "104.197.102.151",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
@@ -15,5 +15,5 @@
     "DGnsyzo5cbQZMpXEwSbESBnSrdjroj7DhpcAPbfQaUft",
     "FRCeYgC1PR7kTKhgk8Peq7WE8Rz6E7cEXnhB77DT5G8F"
   ],
-  "updated_at": "2026-11-26T02:37:23Z"
+  "updated_at": "2026-11-26T02:39:25Z"
 }
