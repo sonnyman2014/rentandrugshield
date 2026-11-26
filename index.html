@@ -6406,6 +6406,15 @@ html body #rrsVaultCoverGate .rrs-vault-exact-badge {
 })();
 </script>
 <!-- RRS_SINGLE_AUDIO_MUTEX_V67_END -->
+<style>
+  /* Keep distinct Trader & Investor Chrome Extension intro frame on Extension Video players */
+  video#rrsExtSectionVideo,
+  video#rrsHeroExtV60Video {
+    background-image: url('/assets/ext_intro_option_A.png?v=ext_traders_v5') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+  }
+</style>
 </head>
 <body class="rrs-mode-original" data-mobile-tab="rent">
 <header role="banner" style="display:block!important;"><nav id="rrs-official-verify-links" aria-label="Official Sitelinks Navigation" style="display:flex!important;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;padding:7px 14px;font-size:12.5px;font-weight:700;background:#070b14;border-bottom:1px solid #1e293b;"><a href="https://rentandrugshield.com/" style="display:inline-block!important;visibility:visible!important;color:#FFD000;text-decoration:none;font-weight:900;">Official Home &amp; 12-Layer Scanner</a><a href="https://rentandrugshield.com/reclaim-sol" style="display:inline-block!important;visibility:visible!important;color:#00FF88;text-decoration:none;">0% SOL Rent Recovery</a><a href="https://rentandrugshield.com/solana-rug-checker" style="display:inline-block!important;visibility:visible!important;color:#38BDF8;text-decoration:none;">Solana Rug Checker</a><a href="https://rentandrugshield.com/enterprise-api.html" style="display:inline-block!important;visibility:visible!important;color:#E2E8F0;text-decoration:none;">Enterprise API</a><a href="https://rentandrugshield.com/extension" style="display:inline-block!important;visibility:visible!important;color:#94A3B8;text-decoration:none;">Chrome Extension Add-On</a><a href="https://x.com/SolRentClaim" target="_blank" rel="noopener" style="display:inline-block!important;visibility:visible!important;color:#10b981;text-decoration:none;">Official X</a><a href="https://t.me/RentAndRugShieldBot" target="_blank" rel="noopener" style="display:inline-block!important;visibility:visible!important;color:#10b981;text-decoration:none;">Telegram</a><a href="https://github.com/sonnyman2014/rentandrugshield" target="_blank" rel="noopener" style="display:inline-block!important;visibility:visible!important;color:#10b981;text-decoration:none;">GitHub</a><a href="/openapi.json" style="display:inline-block!important;visibility:visible!important;color:#fbbf24;text-decoration:none;">OpenAPI Docs</a></nav></header>
@@ -6691,8 +6700,8 @@ html body #rrsVaultCoverGate .rrs-vault-exact-badge {
           </div>
 
           <video id="rrsVaultMasterVideo" playsinline webkit-playsinline muted controls preload="none" poster="/assets/rr_badge_exact.jpg">
-            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=v68_clean_master" type="video/mp4" />
-            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=v68_clean_master" type="video/mp4" />
+            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=v67_5scene_master" type="video/mp4" />
+            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=v67_5scene_master" type="video/mp4" />
           </video>
 
           <div id="rrsVaultSkyOverlay" class="rrs-vault-hud-overlay rrs-perimeter-hud hud-scene-0" aria-live="polite" style="display:none;">
@@ -7324,7 +7333,7 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
           <!-- Restored Retail Voiced Walkthrough (Canonical en-US-AndrewMultilingualNeural Voice + Enlarged Crisp Typography) -->
           <button type="button" id="btnExpandRetailTvModal" class="rrs-expand-tv-pill" onclick="event.stopPropagation(); window.rrsOpenTvTheaterModal('retail')" aria-label="Click to Enlarge Video">⛶ Click to Enlarge Video</button>
           <video id="retailVaultMasterVideo" playsinline webkit-playsinline muted controls preload="none" poster="/assets/rr_badge_exact.jpg">
-            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=v68_clean_master" type="video/mp4" />
+            <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=v67_5scene_master" type="video/mp4" />
           </video>
 
           <div id="retailVaultSkyOverlay" class="rrs-vault-hud-overlay rrs-perimeter-hud hud-scene-0" aria-live="polite" style="display:none;">
@@ -7754,9 +7763,9 @@ if (!window.exportDeadBagAuditCsv) window.exportDeadBagAuditCsv = window.exportI
           <span>&#127916; EXTENSION v6.7 UNIFIED HUD TOUR</span>
           <span style="color:#00FF88;">100% Live Match</span>
         </div>
-        <video id="rrsExtSectionVideo" controls playsinline webkit-playsinline muted preload="metadata" poster="/assets/ext_intro_option_A.png?v=ext_traders_v3" style="width:100%;aspect-ratio:16/9;border-radius:8px;background:#05070D url('/assets/ext_intro_option_A.png?v=ext_traders_v3') center/contain no-repeat;display:block;">
-          <source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=ext_traders_v3" type="video/mp4" />
-          <source src="/promo/extension_shield_demo.mp4?v=ext_traders_v3" type="video/mp4" />
+        <video id="rrsExtSectionVideo" controls playsinline webkit-playsinline preload="auto" poster="/assets/ext_intro_option_A.png?v=ext_traders_v5" style="width:100%;aspect-ratio:16/9;border-radius:8px;background:#05070D url('/assets/ext_intro_option_A.png?v=ext_traders_v5') center/cover no-repeat !important;display:block;">
+          <source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=ext_traders_v5" type="video/mp4" />
+          <source src="/promo/extension_shield_demo.mp4?v=ext_traders_v5" type="video/mp4" />
         </video>
       </div>
     </section>
@@ -29624,9 +29633,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
               '<button type="button" id="rrsCloseExtV60HowToBtn" style="background:#1A0810;color:#FF4D6D;border:1px solid #FF4D6D;border-radius:8px;padding:5px 11px;font-weight:900;cursor:pointer;">&#10005; Back</button>' +
             '</div>' +
           '</div>' +
-          '<video id="rrsHeroExtV60Video" controls playsinline webkit-playsinline preload="metadata" poster="/assets/ext_intro_option_A.png?v=ext_traders_v3" style="width:100%;border-radius:10px;border:1px solid rgba(0,255,136,0.45);background:#07101C url(/assets/ext_intro_option_A.png?v=ext_traders_v3) center/contain no-repeat;max-height:72vh;">' +
-            '<source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=ext_traders_v3" type="video/mp4" />' +
-            '<source src="/promo/extension_shield_demo.mp4?v=ext_traders_v3" type="video/mp4" />' +
+          '<video id="rrsHeroExtV60Video" controls playsinline webkit-playsinline preload="auto" poster="/assets/ext_intro_option_A.png?v=ext_traders_v5" style="width:100%;border-radius:10px;border:1px solid rgba(0,255,136,0.45);background:#07101C url(/assets/ext_intro_option_A.png?v=ext_traders_v5) center/cover no-repeat !important;max-height:72vh;">' +
+            '<source src="/assets/promo_arsenal/extension_walkthrough_1080p.mp4?v=ext_traders_v5" type="video/mp4" />' +
+            '<source src="/promo/extension_shield_demo.mp4?v=ext_traders_v5" type="video/mp4" />' +
           '</video>' +
           '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:0.84rem;">' +
             '<span style="color:#F5C542;font-weight:900;">rentandrugshield.com &bull; Chrome Extension</span>' +
@@ -31039,12 +31048,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var vids = document.getElementsByTagName("video");
     for (var i = 0; i < vids.length; i++) {
       var v = vids[i];
+      if (v.id === "rrsExtSectionVideo" || v.id === "rrsHeroExtV60Video") continue;
       v.playsInline = true;
       v.muted = true;
       v.setAttribute("playsinline", "");
       v.setAttribute("webkit-playsinline", "");
       v.setAttribute("muted", "");
-      if (v.id !== "rrsCinemaModalVideo" && v.id !== "rrsTvTheaterVideo" && v.id !== "qrCameraVideo" && v.id !== "rrsVaultMasterVideo" && v.id !== "retailVaultMasterVideo" && v.offsetParent !== null && v.getAttribute("preload") !== "metadata") {
+      if (v.id !== "rrsExtSectionVideo" && v.id !== "rrsHeroExtV60Video" && v.id !== "rrsCinemaModalVideo" && v.id !== "rrsTvTheaterVideo" && v.id !== "qrCameraVideo" && v.id !== "rrsVaultMasterVideo" && v.id !== "retailVaultMasterVideo" && v.offsetParent !== null && v.getAttribute("preload") !== "metadata") {
         v.setAttribute("preload", "metadata");
       }
       var curPoster = v.getAttribute("poster") || "";
@@ -31887,14 +31897,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
       </div>
     </div>
     <video id="rrsTvTheaterVideo" playsinline webkit-playsinline controls preload="none" poster="/assets/rr_badge_exact.jpg">
-      <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=v68_clean_master" type="video/mp4" />
+      <source src="/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=v67_5scene_master" type="video/mp4" />
     </video>
   </div>
 </div>
 
 <script id="rrs-video09-bigtext-theater-js">
 (function () {
-  var VIDEO_URL = "/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=v68_clean_master";
+  var VIDEO_URL = "/assets/promo_arsenal/00_RETAIL_EMERALD_LIVE_SCANNER_WALKTHROUGH.mp4?v=v67_5scene_master";
   var POSTER_URL = "/assets/rr_badge_exact.jpg";
 
   function syncAppVh() {
