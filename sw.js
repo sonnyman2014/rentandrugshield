@@ -1,8 +1,21 @@
-/* Rent & Rug Shield - PWA Service Worker v25772 (Network-First Live RPC & OS Bubbles) */
-const CACHE_NAME = 'rent-shield-v25773-live-rpc';
+/* Solana Rent & Rug Shield - Institutional PWA Service Worker v6.9 (App Shell + Network-First RPC) */
+const CACHE_NAME = 'rrs-pwa-shell-v70';
+const APP_SHELL_ASSETS = [
+  '/offline-shell.html',
+  '/manifest.webmanifest',
+  '/dex6-official-shield-192.png',
+  '/dex6-official-shield-512.png',
+  '/apple-touch-icon.png',
+  '/favicon.png',
+  '/pwa_and_quota_upgrade.js'
+];
 
-self.addEventListener('install', () => {
-  self.skipWaiting();
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(APP_SHELL_ASSETS).catch(() => {}))
+      .then(() => self.skipWaiting())
+  );
 });
 
 self.addEventListener('activate', (event) => {
@@ -13,6 +26,44 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+self.addEventListener('fetch', (event) => {
+  const req = event.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return;
+
+  // Never cache live /api/ mutations; keep live RPC & quota gate strictly real-time
+  if (url.pathname.startsWith('/api/')) return;
+
+  if (req.mode === 'navigate') {
+    event.respondWith(
+      fetch(req)
+        .then((resp) => {
+          const clone = resp.clone();
+          caches.open(CACHE_NAME).then((c) => c.put('/', clone)).catch(() => {});
+          return resp;
+        })
+        .catch(() => caches.match('/') || caches.match('/offline-shell.html'))
+    );
+    return;
+  }
+
+  event.respondWith(
+    caches.match(req).then((cached) => {
+      const netFetch = fetch(req)
+        .then((resp) => {
+          if (resp && resp.status === 200) {
+            const copy = resp.clone();
+            caches.open(CACHE_NAME).then((c) => c.put(req, copy)).catch(() => {});
+          }
+          return resp;
+        })
+        .catch(() => cached);
+      return cached || netFetch;
+    })
+  );
+});
+
 self.addEventListener('message', (event) => {
   const data = (event && event.data) || {};
   if (data.type === 'SKIP_WAITING') {
@@ -20,85 +71,21 @@ self.addEventListener('message', (event) => {
     return;
   }
   if (data.type === 'RRS_SHOW_OS_BUBBLE') {
-    const title = String(data.title || 'Solana Rent & Rug Shield v5.1 Active').slice(0, 110);
+    const title = String(data.title || 'Solana Rent & Rug Shield v6 Active').slice(0, 110);
     const targetUrl = String(data.url || '/');
-    const options = {
-      body: String(data.body || data.message || 'Live 12-Layer, DEX-6 Runner & News Alerts Armed').slice(0, 200),
-      icon: String(data.icon || '/assets/rr_badge_exact.jpg'),
-      badge: String(data.badge || '/assets/rr_badge_exact.jpg'),
-      tag: String(data.tag || ('rrs-live-' + Date.now())),
-      requireInteraction: false,
-      data: { url: targetUrl }
-    };
-    event.waitUntil(self.registration.showNotification(title, options));
+    event.waitUntil(
+      self.registration.showNotification(title, {
+        body: String(data.body || '12-Layer Pre-Buy & 0x09 Rent Shield Armed').slice(0, 200),
+        icon: '/dex6-official-shield-192.png',
+        badge: '/dex6-official-shield-96.png',
+        data: { url: targetUrl }
+      })
+    );
   }
 });
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  const targetUrl = (event.notification && event.notification.data && event.notification.data.url) || '/';
-  event.waitUntil(
-    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
-      for (const client of clientList) {
-        if (client && client.url === targetUrl && 'focus' in client) {
-          return client.focus();
-        }
-      }
-      if (self.clients.openWindow) {
-        return self.clients.openWindow(targetUrl);
-      }
-      return null;
-    })
-  );
-});
-
-self.addEventListener('fetch', (event) => {
-  const req = event.request;
-  if (!req || req.method !== 'GET') {
-    return;
-  }
-  let url;
-  try {
-    url = new URL(req.url);
-  } catch (_e) {
-    return;
-  }
-  if (url.origin !== self.location.origin) {
-    return;
-  }
-  const p = url.pathname || '/';
-  const isHtmlNav =
-    req.mode === 'navigate' ||
-    p === '/' ||
-    p === '/index.html' ||
-    p === '/app.html' ||
-    p === '/app' ||
-    p.endsWith('.html');
-
-  if (isHtmlNav) {
-    event.respondWith(
-      fetch(new Request(req, { cache: 'no-store' }))
-        .then((res) => {
-          if (res && res.ok && res.status === 200) {
-            const copy = res.clone();
-            caches.open(CACHE_NAME).then((c) => c.put(req, copy)).catch(() => {});
-          }
-          return res;
-        })
-        .catch(() => caches.match(req))
-    );
-    return;
-  }
-
-  event.respondWith(
-    fetch(req)
-      .then((res) => {
-        if (res && res.ok && res.status === 200) {
-          const copy = res.clone();
-          caches.open(CACHE_NAME).then((c) => c.put(req, copy)).catch(() => {});
-        }
-        return res;
-      })
-      .catch(() => caches.match(req))
-  );
+  const targetUrl = (event.notification.data && event.notification.data.url) || '/';
+  event.waitUntil(clients.openWindow(targetUrl));
 });
