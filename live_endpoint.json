@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "endpoint": "https://match-use-delivered-wall.trycloudflare.com",
-  "api_base": "https://match-use-delivered-wall.trycloudflare.com",
-  "rpc_url": "https://match-use-delivered-wall.trycloudflare.com/api/rpc",
-  "actions_base": "https://match-use-delivered-wall.trycloudflare.com/api/actions",
+  "endpoint": "https://might-katrina-prospects-makeup.trycloudflare.com",
+  "api_base": "https://might-katrina-prospects-makeup.trycloudflare.com",
+  "rpc_url": "https://might-katrina-prospects-makeup.trycloudflare.com/api/rpc",
+  "actions_base": "https://might-katrina-prospects-makeup.trycloudflare.com/api/actions",
   "custom_domain_ready": "https://api.rentandrugshield.com",
   "cloud_static_ip": "104.197.102.151",
   "referral_wallet": "89Sv5FvnMNRid1bn8y2Ti1vJPSxWxgiW9GSLsPpBnKK1",
@@ -15,5 +15,5 @@
     "DGnsyzo5cbQZMpXEwSbESBnSrdjroj7DhpcAPbfQaUft",
     "FRCeYgC1PR7kTKhgk8Peq7WE8Rz6E7cEXnhB77DT5G8F"
   ],
-  "updated_at": "2026-11-26T02:10:38Z"
+  "updated_at": "2026-11-26T02:12:41Z"
 }
